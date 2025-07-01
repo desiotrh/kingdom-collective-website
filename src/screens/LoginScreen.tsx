@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Button, View, StyleSheet } from 'react-native';
+import { Button, View, StyleSheet, Alert } from 'react-native';
 import {
   useGoogleAuthRequest,
   signInWithGoogle,
@@ -15,11 +15,15 @@ export default function LoginScreen() {
   }, []);
 
   useEffect(() => {
-    if (response?.type === 'success') {
-      const { authentication } = response;
-      console.log('Google authentication:', authentication);
-      // TODO: Send token to Firebase or backend
+    async function handleGoogleResponse() {
+      if (response?.type === 'success') {
+        const user = await signInWithGoogle(promptAsync);
+        if (user) {
+          Alert.alert('Google Login Success', `Welcome ${user.displayName}`);
+        }
+      }
     }
+    handleGoogleResponse();
   }, [response]);
 
   return (
@@ -33,8 +37,10 @@ export default function LoginScreen() {
       <Button
         title="Sign in with Facebook"
         onPress={async () => {
-          const token = await signInWithFacebook();
-          console.log('Facebook token:', token);
+          const user = await signInWithFacebook();
+          if (user) {
+            Alert.alert('Facebook Login Success', `Welcome ${user.displayName}`);
+          }
         }}
       />
     </View>

@@ -7,7 +7,7 @@ const {
   googleAndroidClientId,
   googleIosClientId,
   facebookAppId,
-} = Constants.manifest?.extra || {};
+} = Constants.expoConfig?.extra || Constants.manifest?.extra || {};
 
 export const useGoogleAuthRequest = () => {
   return Google.useAuthRequest({

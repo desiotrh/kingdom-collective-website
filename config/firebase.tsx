@@ -8,7 +8,7 @@ const {
   firebaseStorageBucket,
   firebaseMessagingSenderId,
   firebaseAppId,
-} = Constants.manifest?.extra || {};
+} = Constants.expoConfig?.extra || Constants.manifest?.extra || {};
 
 const firebaseConfig = {
   apiKey: firebaseApiKey,
