@@ -1,4 +1,4 @@
- {
+{
   "name": "digital_marketing_app",
   "version": "1.0.0",
   "main": "node_modules/expo/AppEntry.js",
@@ -11,10 +11,10 @@
   "dependencies": {
     "expo": "~53.0.0",
     "expo-facebook": "~12.3.0",
-    "expo-constants": "~14.2.1",
-    "expo-image-picker": "14.7.0",
-    "expo-av": "13.7.0",
+    "expo-constants": "~17.1.6",
+    "expo-image-picker": "~16.1.4",
+    "expo-av": "~15.1.6",
     "react": "18.2.0",
-    "react-native": "0.71.8"
+    "react-native": "0.79.4"
   }
 }
