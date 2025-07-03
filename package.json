@@ -9,5 +9,9 @@
     "android": "npm run android --workspace=kingdom-studios",
     "ios": "npm run ios --workspace=kingdom-studios",
     "web": "npm run web --workspace=kingdom-studios"
+  },
+  "devDependencies": {
+    "typescript": "~5.8.3",
+    "@types/react": "~19.0.10"
   }
 }

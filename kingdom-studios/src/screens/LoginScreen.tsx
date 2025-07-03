@@ -11,6 +11,7 @@ import {
   Image,
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
+import Svg, { Defs, LinearGradient as SvgLinearGradient, Stop, Path, Polygon } from 'react-native-svg';
 import {
   signInWithGoogle,
   signInWithFacebook,
@@ -97,36 +98,78 @@ const LoginScreen = () => {
         end={{ x: 1, y: 1 }}
       />
       
-      {/* Geometric Angular Ribbons like reference */}
+      {/* 3D Ribbon-Like Background using SVG */}
       <View style={styles.ribbonContainer}>
-        {/* Large angular ribbon - top right */}
-        <View style={styles.angularRibbon1}>
-          <LinearGradient
-            colors={[KingdomColors.gold.bright, KingdomColors.gold.warm]}
-            style={styles.angularRibbonGradient1}
-            start={{ x: 0, y: 0 }}
-            end={{ x: 1, y: 1 }}
-          />
+        {/* Ribbon 1 - Top diagonal flowing ribbon */}
+        <View style={{ position: 'absolute', top: -50, left: -100, right: 0, height: 400, transform: [{ rotate: '15deg' }] }}>
+          <Svg height="400" width={width + 200} style={{ opacity: 0.3 }}>
+            <Defs>
+              <SvgLinearGradient id="grad1" x1="0" y1="0" x2="1" y2="1">
+                <Stop offset="0" stopColor="#FFD700" stopOpacity="0.6" />
+                <Stop offset="0.5" stopColor="#FFA500" stopOpacity="0.4" />
+                <Stop offset="1" stopColor="#FF8C00" stopOpacity="0.2" />
+              </SvgLinearGradient>
+            </Defs>
+            <Path d="M0 150 Q150 80 350 120 T700 100 Q800 95 900 110 L950 180 Q850 165 750 170 T400 190 Q200 220 50 200 Z" fill="url(#grad1)" />
+          </Svg>
         </View>
         
-        {/* Medium angular ribbon - middle left */}
-        <View style={styles.angularRibbon2}>
-          <LinearGradient
-            colors={[KingdomColors.silver.bright, KingdomColors.silver.light]}
-            style={styles.angularRibbonGradient2}
-            start={{ x: 0, y: 0 }}
-            end={{ x: 1, y: 1 }}
-          />
+        {/* Ribbon 2 - Middle curved ribbon with 3D effect */}
+        <View style={{ position: 'absolute', top: 150, left: -50, right: 0, height: 300, transform: [{ rotate: '-8deg' }] }}>
+          <Svg height="300" width={width + 100} style={{ opacity: 0.25 }}>
+            <Defs>
+              <SvgLinearGradient id="grad2" x1="0" y1="0" x2="1" y2="1">
+                <Stop offset="0" stopColor="#C0C0C0" stopOpacity="0.5" />
+                <Stop offset="0.3" stopColor="#E6E6FA" stopOpacity="0.4" />
+                <Stop offset="0.7" stopColor="#DDA0DD" stopOpacity="0.3" />
+                <Stop offset="1" stopColor="#9370DB" stopOpacity="0.2" />
+              </SvgLinearGradient>
+            </Defs>
+            <Path d="M0 100 Q200 60 400 90 T800 85 L850 140 Q650 145 450 150 T100 155 Z" fill="url(#grad2)" />
+          </Svg>
         </View>
         
-        {/* Small angular ribbon - bottom */}
-        <View style={styles.angularRibbon3}>
-          <LinearGradient
-            colors={[KingdomColors.gold.amber, KingdomColors.gold.warm]}
-            style={styles.angularRibbonGradient3}
-            start={{ x: 0, y: 0 }}
-            end={{ x: 1, y: 1 }}
-          />
+        {/* Ribbon 3 - Bottom flowing ribbon */}
+        <View style={{ position: 'absolute', bottom: 50, left: 0, right: -80, height: 350, transform: [{ rotate: '25deg' }] }}>
+          <Svg height="350" width={width + 150} style={{ opacity: 0.2 }}>
+            <Defs>
+              <SvgLinearGradient id="grad3" x1="0" y1="0" x2="1" y2="1">
+                <Stop offset="0" stopColor="#FFD700" stopOpacity="0.4" />
+                <Stop offset="0.4" stopColor="#FFEB3B" stopOpacity="0.3" />
+                <Stop offset="0.8" stopColor="#FFC107" stopOpacity="0.2" />
+                <Stop offset="1" stopColor="#FF9800" stopOpacity="0.1" />
+              </SvgLinearGradient>
+            </Defs>
+            <Path d="M0 200 Q150 150 300 180 Q450 210 600 185 T900 175 L950 230 Q750 235 550 240 T200 250 Z" fill="url(#grad3)" />
+          </Svg>
+        </View>
+        
+        {/* Additional depth ribbons for 3D effect */}
+        <View style={{ position: 'absolute', top: 80, right: -120, height: 250, transform: [{ rotate: '45deg' }] }}>
+          <Svg height="250" width="200" style={{ opacity: 0.15 }}>
+            <Defs>
+              <SvgLinearGradient id="grad4" x1="0" y1="0" x2="1" y2="1">
+                <Stop offset="0" stopColor="#4A90E2" stopOpacity="0.4" />
+                <Stop offset="0.5" stopColor="#7B68EE" stopOpacity="0.3" />
+                <Stop offset="1" stopColor="#9932CC" stopOpacity="0.2" />
+              </SvgLinearGradient>
+            </Defs>
+            <Polygon points="0,50 150,30 180,80 200,140 170,180 20,200 0,150" fill="url(#grad4)" />
+          </Svg>
+        </View>
+        
+        {/* Left side accent ribbon */}
+        <View style={{ position: 'absolute', top: 300, left: -60, height: 200, transform: [{ rotate: '-30deg' }] }}>
+          <Svg height="200" width="150" style={{ opacity: 0.18 }}>
+            <Defs>
+              <SvgLinearGradient id="grad5" x1="0" y1="0" x2="1" y2="1">
+                <Stop offset="0" stopColor="#C0C0C0" stopOpacity="0.5" />
+                <Stop offset="0.6" stopColor="#B0C4DE" stopOpacity="0.3" />
+                <Stop offset="1" stopColor="#778899" stopOpacity="0.2" />
+              </SvgLinearGradient>
+            </Defs>
+            <Path d="M0 80 Q50 40 100 60 Q130 80 140 120 Q135 160 110 180 Q70 190 30 170 Q5 150 0 120 Z" fill="url(#grad5)" />
+          </Svg>
         </View>
       </View>
 
@@ -244,57 +287,6 @@ const styles = StyleSheet.create({
     right: 0,
     bottom: 0,
     overflow: 'hidden',
-  },
-  // Angular ribbon 1 - Large top-right geometric shape
-  angularRibbon1: {
-    position: 'absolute',
-    top: 50,
-    right: -80,
-    width: 200,
-    height: 300,
-    opacity: 0.15,
-  },
-  angularRibbonGradient1: {
-    flex: 1,
-    transform: [
-      { skewX: '-15deg' },
-      { skewY: '10deg' },
-      { rotate: '25deg' }
-    ],
-  },
-  // Angular ribbon 2 - Medium left geometric shape
-  angularRibbon2: {
-    position: 'absolute',
-    top: 200,
-    left: -60,
-    width: 150,
-    height: 250,
-    opacity: 0.12,
-  },
-  angularRibbonGradient2: {
-    flex: 1,
-    transform: [
-      { skewX: '20deg' },
-      { skewY: '-8deg' },
-      { rotate: '-20deg' }
-    ],
-  },
-  // Angular ribbon 3 - Small bottom geometric shape
-  angularRibbon3: {
-    position: 'absolute',
-    bottom: 100,
-    right: -40,
-    width: 120,
-    height: 180,
-    opacity: 0.18,
-  },
-  angularRibbonGradient3: {
-    flex: 1,
-    transform: [
-      { skewX: '10deg' },
-      { skewY: '15deg' },
-      { rotate: '35deg' }
-    ],
   },
   content: {
     flex: 1,
