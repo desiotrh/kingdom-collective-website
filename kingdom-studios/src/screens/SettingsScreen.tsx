@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   View,
   Text,
@@ -11,9 +11,11 @@ import {
   Linking,
   Image,
   Dimensions,
+  TextInput,
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import Constants from 'expo-constants';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { signOut } from 'firebase/auth';
 import { getAuth } from 'firebase/auth';
 import { app } from '../config/firebase';
@@ -32,6 +34,72 @@ const SettingsScreen = () => {
   const auth = getAuth(app);
   
   const [loading, setLoading] = useState(false);
+  const [apiConfig, setApiConfig] = useState<APIConfiguration>({
+    openaiApiKey: '',
+    openrouterApiKey: '',
+    etsyApiKey: '',
+    printifyApiKey: '',
+    shopifyApiKey: '',
+    shopifyStoreUrl: '',
+    stripePublishableKey: '',
+    mailchimpApiKey: '',
+  });
+  const [showApiKeys, setShowApiKeys] = useState(false);
+
+  useEffect(() => {
+    loadApiConfiguration();
+  }, []);
+
+  const loadApiConfiguration = async () => {
+    try {
+      const savedConfig = await AsyncStorage.getItem('api_configuration');
+      if (savedConfig) {
+        setApiConfig(JSON.parse(savedConfig));
+      }
+    } catch (error) {
+      console.error('Error loading API configuration:', error);
+    }
+  };
+
+  const saveApiConfiguration = async () => {
+    setLoading(true);
+    try {
+      await AsyncStorage.setItem('api_configuration', JSON.stringify(apiConfig));
+      Alert.alert('Success', 'API configuration saved successfully!');
+    } catch (error) {
+      Alert.alert('Error', 'Failed to save API configuration');
+      console.error('Save error:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  interface APIConfiguration {
+    openaiApiKey: string;
+    openrouterApiKey: string;
+    etsyApiKey: string;
+    printifyApiKey: string;
+    shopifyApiKey: string;
+    shopifyStoreUrl: string;
+    stripePublishableKey: string;
+    mailchimpApiKey: string;
+  }
+
+  useEffect(() => {
+    const fetchApiConfig = async () => {
+      try {
+        const configString = await AsyncStorage.getItem('apiConfig');
+        if (configString) {
+          const config = JSON.parse(configString);
+          setApiConfig(config);
+        }
+      } catch (error) {
+        console.error('Error fetching API config:', error);
+      }
+    };
+
+    fetchApiConfig();
+  }, []);
 
   const handleFaithModeToggle = async (value: boolean) => {
     try {
@@ -242,6 +310,86 @@ const SettingsScreen = () => {
     </TouchableOpacity>
   );
 
+  const handleApiConfigChange = (key: keyof APIConfiguration, value: string) => {
+    if (apiConfig) {
+      const newConfig = { ...apiConfig, [key]: value };
+      setApiConfig(newConfig);
+      AsyncStorage.setItem('apiConfig', JSON.stringify(newConfig))
+        .catch(error => console.error('Error saving API config:', error));
+    }
+  };
+
+  const renderAPIConfigurationSection = () => (
+    <View style={styles.section}>
+      <Text style={styles.sectionTitle}>API Configuration</Text>
+      
+      {apiConfig ? (
+        <View style={styles.apiConfigContainer}>
+          <TextInput
+            style={styles.apiInput}
+            placeholder="OpenAI API Key"
+            placeholderTextColor="#666666"
+            value={apiConfig.openaiApiKey}
+            onChangeText={text => handleApiConfigChange('openaiApiKey', text)}
+          />
+          <TextInput
+            style={styles.apiInput}
+            placeholder="OpenRouter API Key"
+            placeholderTextColor="#666666"
+            value={apiConfig.openrouterApiKey}
+            onChangeText={text => handleApiConfigChange('openrouterApiKey', text)}
+          />
+          <TextInput
+            style={styles.apiInput}
+            placeholder="Etsy API Key"
+            placeholderTextColor="#666666"
+            value={apiConfig.etsyApiKey}
+            onChangeText={text => handleApiConfigChange('etsyApiKey', text)}
+          />
+          <TextInput
+            style={styles.apiInput}
+            placeholder="Printify API Key"
+            placeholderTextColor="#666666"
+            value={apiConfig.printifyApiKey}
+            onChangeText={text => handleApiConfigChange('printifyApiKey', text)}
+          />
+          <TextInput
+            style={styles.apiInput}
+            placeholder="Shopify API Key"
+            placeholderTextColor="#666666"
+            value={apiConfig.shopifyApiKey}
+            onChangeText={text => handleApiConfigChange('shopifyApiKey', text)}
+          />
+          <TextInput
+            style={styles.apiInput}
+            placeholder="Shopify Store URL"
+            placeholderTextColor="#666666"
+            value={apiConfig.shopifyStoreUrl}
+            onChangeText={text => handleApiConfigChange('shopifyStoreUrl', text)}
+          />
+          <TextInput
+            style={styles.apiInput}
+            placeholder="Stripe Publishable Key"
+            placeholderTextColor="#666666"
+            value={apiConfig.stripePublishableKey}
+            onChangeText={text => handleApiConfigChange('stripePublishableKey', text)}
+          />
+          <TextInput
+            style={styles.apiInput}
+            placeholder="Mailchimp API Key"
+            placeholderTextColor="#666666"
+            value={apiConfig.mailchimpApiKey}
+            onChangeText={text => handleApiConfigChange('mailchimpApiKey', text)}
+          />
+        </View>
+      ) : (
+        <Text style={styles.noApiConfig}>
+          No API configuration found. Please set up your API keys.
+        </Text>
+      )}
+    </View>
+  );
+
   return (
     <SafeAreaView style={styles.container}>
       {/* Enhanced Header */}
@@ -392,6 +540,9 @@ const SettingsScreen = () => {
             </LinearGradient>
           </View>
         </View>
+
+        {/* API Configuration Section */}
+        {renderAPIConfigurationSection()}
 
         {/* Logout Section */}
         <View style={styles.section}>
@@ -728,6 +879,29 @@ const styles = StyleSheet.create({
   },
   footer: {
     height: 20,
+  },
+  apiConfigContainer: {
+    backgroundColor: '#111111',
+    borderRadius: 12,
+    padding: 16,
+    borderWidth: 1,
+    borderColor: '#333333',
+  },
+  apiInput: {
+    height: 48,
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: '#3b82f6',
+    backgroundColor: '#000000',
+    color: '#ffffff',
+    paddingHorizontal: 16,
+    marginBottom: 12,
+  },
+  noApiConfig: {
+    fontSize: 14,
+    color: '#999999',
+    textAlign: 'center',
+    marginTop: 12,
   },
 });
 

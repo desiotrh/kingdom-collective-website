@@ -2,10 +2,13 @@
   "name": "kingdom-studios-workspace",
   "private": true,
   "workspaces": [
-    "kingdom-studios"
+    "kingdom-studios",
+    "kingdom-studios-backend"
   ],
   "scripts": {
     "start": "npm run start --workspace=kingdom-studios",
+    "start:backend": "npm run start --workspace=kingdom-studios-backend",
+    "dev:backend": "npm run dev --workspace=kingdom-studios-backend",
     "android": "npm run android --workspace=kingdom-studios",
     "ios": "npm run ios --workspace=kingdom-studios",
     "web": "npm run web --workspace=kingdom-studios"

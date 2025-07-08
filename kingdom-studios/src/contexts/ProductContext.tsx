@@ -7,8 +7,12 @@ export interface Product {
   price: number;
   imageUrl: string;
   imageUri?: string; // User-uploaded image URI
-  platform: 'Printify' | 'Etsy' | 'Shopify';
+  platform: 'Printify' | 'Etsy' | 'Shopify' | 'Amazon';
   syncStatus: 'Synced' | 'Not Synced' | 'Pending';
+  status?: 'active' | 'draft' | 'archived';
+  userId?: string;
+  createdAt?: Date;
+  updatedAt?: Date;
   description: string;
   category: string;
   tags: string[];
@@ -29,6 +33,7 @@ const initialProducts: Product[] = [
     imageUrl: 'https://via.placeholder.com/400x400/f97316/ffffff?text=Faith+Over+Fear',
     platform: 'Printify',
     syncStatus: 'Synced',
+    status: 'active' as const,
     description: 'Premium cotton t-shirt with faith-based message that inspires confidence and trust in God. Perfect for everyday wear and sharing your faith journey with others.',
     category: 'Apparel',
     tags: ['faith', 'inspirational', 'christian', 'apparel', 't-shirt'],

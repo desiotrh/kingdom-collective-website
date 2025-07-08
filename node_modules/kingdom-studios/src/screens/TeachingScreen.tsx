@@ -1,620 +1,747 @@
-/**
- * Kingdom Studios Teaching Screen
- * Educational content and discipleship pathways
- */
-
 import React, { useState } from 'react';
 import {
   View,
   Text,
+  StyleSheet,
   ScrollView,
   TouchableOpacity,
-  StyleSheet,
-  SafeAreaView,
-  Dimensions,
-  FlatList,
+  Image,
+  Alert,
 } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
-import { BlurView } from 'expo-blur';
-import { useNavigation } from '@react-navigation/native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { Ionicons } from '@expo/vector-icons';
 import { useFaithMode } from '../contexts/FaithModeContext';
-import { KingdomColors, KingdomShadows } from '../constants/KingdomColors';
-import KingdomLogo from '../components/KingdomLogo';
-import { DiscipleshipPathway } from '../types/mentorship';
+import { useAuth } from '../contexts/AuthContext';
+import { useAppNavigation } from '../utils/navigationUtils';
+import { KingdomColors } from '../constants/KingdomColors';
 
-const { width } = Dimensions.get('window');
-
-interface TeachingCategory {
+interface Resource {
   id: string;
   title: string;
-  icon: string;
+  type: 'video' | 'article' | 'podcast' | 'ebook' | 'template';
+  category: string;
+  duration?: string;
+  author: string;
+  thumbnail: string;
   description: string;
-  lessonsCount: number;
-  difficulty: 'beginner' | 'intermediate' | 'advanced';
-  faithBased: boolean;
+  isBookmarked: boolean;
+  isPremium: boolean;
+  tags: string[];
 }
 
-const TeachingScreen = () => {
-  const navigation = useNavigation();
+interface TeachingModule {
+  id: string;
+  title: string;
+  description: string;
+  lessons: number;
+  duration: string;
+  level: 'beginner' | 'intermediate' | 'advanced';
+  thumbnail: string;
+  progress: number;
+  instructor: string;
+}
+
+const TeachingScreen: React.FC = () => {
+  const navigation = useAppNavigation();
   const { faithMode } = useFaithMode();
-  const [selectedCategory, setSelectedCategory] = useState<string>('all');
-
-  // Mock teaching categories
-  const categories: TeachingCategory[] = [
-    {
-      id: 'prayer',
-      title: 'Prayer Life',
-      icon: '🙏',
-      description: faithMode ? 'Deepen your relationship with God through prayer' : 'Mindfulness and reflection practices',
-      lessonsCount: 12,
-      difficulty: 'beginner',
-      faithBased: true,
-    },
-    {
-      id: 'content',
-      title: 'Content Creation',
-      icon: '🎥',
-      description: 'Master the art of creating engaging content',
-      lessonsCount: 18,
-      difficulty: 'intermediate',
-      faithBased: false,
-    },
-    {
-      id: 'business',
-      title: 'Business Strategy',
-      icon: '📈',
-      description: 'Build and scale your creative business',
-      lessonsCount: 15,
-      difficulty: 'advanced',
-      faithBased: false,
-    },
-    {
-      id: 'scripture',
-      title: 'Bible Study',
-      icon: '📖',
-      description: faithMode ? 'Study God\'s Word with guided lessons' : 'Study ancient wisdom texts',
-      lessonsCount: 25,
-      difficulty: 'beginner',
-      faithBased: true,
-    },
-    {
-      id: 'deliverance',
-      title: 'Inner Healing',
-      icon: '✨',
-      description: faithMode ? 'Freedom from strongholds and inner healing' : 'Personal growth and healing',
-      lessonsCount: 10,
-      difficulty: 'intermediate',
-      faithBased: true,
-    },
-    {
-      id: 'branding',
-      title: 'Brand Building',
-      icon: '🎨',
-      description: 'Create a compelling personal or business brand',
-      lessonsCount: 14,
-      difficulty: 'intermediate',
-      faithBased: false,
-    },
-  ];
-
-  // Mock discipleship pathways
-  const pathways: DiscipleshipPathway[] = [
+  const { user } = useAuth();
+  const [activeTab, setActiveTab] = useState<'modules' | 'library' | 'progress' | 'resources'>('modules');
+  
+  const [teachingModules] = useState<TeachingModule[]>([
     {
       id: '1',
-      title: faithMode ? 'New Believer\'s Journey' : 'Beginner\'s Path',
-      description: faithMode ? 'Essential foundations for new believers' : 'Start your personal growth journey',
-      icon: '🌱',
-      category: 'spiritual',
-      lessons: [],
-      estimatedDuration: '4 weeks',
-      difficulty: 'beginner',
-      faithBased: faithMode,
-      tags: faithMode ? ['salvation', 'prayer', 'bible'] : ['fundamentals', 'habits', 'growth'],
+      title: faithMode ? 'Kingdom Entrepreneurship Foundations' : 'Purpose-Driven Business Foundations',
+      description: faithMode 
+        ? 'Learn to build businesses that honor God and advance His Kingdom'
+        : 'Build businesses that create positive impact and fulfill your purpose',
+      lessons: 12,
+      duration: '3h 45m',
+      level: 'beginner',
+      thumbnail: 'https://via.placeholder.com/200x120/2D1B69/FFD700?text=Kingdom+Biz',
+      progress: 65,
+      instructor: 'Sarah Kingdom',
     },
     {
       id: '2',
-      title: 'Content Creator Bootcamp',
-      description: 'Complete guide to becoming a successful content creator',
-      icon: '🚀',
-      category: 'business',
-      lessons: [],
-      estimatedDuration: '8 weeks',
-      difficulty: 'intermediate',
-      faithBased: false,
-      tags: ['content', 'strategy', 'monetization'],
+      title: faithMode ? 'Faith-Based Content Creation' : 'Authentic Content Creation',
+      description: faithMode
+        ? 'Create content that reflects your faith and transforms lives'
+        : 'Create authentic content that inspires and connects with your audience',
+      lessons: 8,
+      duration: '2h 30m',
+      level: 'intermediate',
+      thumbnail: 'https://via.placeholder.com/200x120/2D1B69/FFD700?text=Content',
+      progress: 25,
+      instructor: 'Marcus Faith',
     },
     {
       id: '3',
-      title: faithMode ? 'Walking in Your Calling' : 'Purpose Discovery',
-      description: faithMode ? 'Discover and walk in God\'s calling for your life' : 'Find your life purpose and calling',
-      icon: '⭐',
-      category: 'purpose',
-      lessons: [],
-      estimatedDuration: '6 weeks',
-      difficulty: 'intermediate',
-      faithBased: faithMode,
-      tags: faithMode ? ['calling', 'purpose', 'ministry'] : ['purpose', 'vision', 'goals'],
+      title: 'Advanced Marketing Strategies',
+      description: 'Master advanced marketing techniques that align with your values',
+      lessons: 15,
+      duration: '4h 20m',
+      level: 'advanced',
+      thumbnail: 'https://via.placeholder.com/200x120/2D1B69/FFD700?text=Marketing',
+      progress: 0,
+      instructor: 'Rachel Vision',
     },
+  ]);
+
+  const [resources] = useState<Resource[]>([
+    {
+      id: '1',
+      title: faithMode ? 'Building Kingdom Wealth' : 'Building Purpose-Driven Wealth',
+      type: 'ebook',
+      category: faithMode ? 'Kingdom Business' : 'Business Strategy',
+      author: 'Dr. Kingdom Builder',
+      thumbnail: 'https://via.placeholder.com/150x200/2D1B69/FFD700?text=eBook',
+      description: faithMode
+        ? 'A comprehensive guide to building wealth that honors God and impacts eternity'
+        : 'A comprehensive guide to building wealth while staying true to your values',
+      isBookmarked: true,
+      isPremium: false,
+      tags: ['business', 'wealth', 'strategy'],
+    },
+    {
+      id: '2',
+      title: 'Content Creation Masterclass',
+      type: 'video',
+      category: 'Content Strategy',
+      duration: '45 min',
+      author: 'Creative Studios',
+      thumbnail: 'https://via.placeholder.com/150x200/2D1B69/FFD700?text=Video',
+      description: 'Learn to create compelling content that engages and converts your audience',
+      isBookmarked: false,
+      isPremium: true,
+      tags: ['content', 'video', 'social media'],
+    },
+    {
+      id: '3',
+      title: faithMode ? 'Prayer & Business Success' : 'Mindfulness & Business Success',
+      type: 'podcast',
+      category: 'Mindset',
+      duration: '32 min',
+      author: 'Success Mindset',
+      thumbnail: 'https://via.placeholder.com/150x200/2D1B69/FFD700?text=Podcast',
+      description: faithMode
+        ? 'How prayer and spiritual practices enhance business success'
+        : 'How mindfulness and meditation enhance business success',
+      isBookmarked: true,
+      isPremium: false,
+      tags: ['mindset', 'success', faithMode ? 'prayer' : 'mindfulness'],
+    },
+  ]);
+
+  const categories = [
+    { id: 'all', name: 'All Categories' },
+    { id: 'business', name: faithMode ? 'Kingdom Business' : 'Business Strategy' },
+    { id: 'content', name: 'Content Creation' },
+    { id: 'marketing', name: 'Marketing' },
+    { id: 'mindset', name: 'Mindset' },
+    { id: 'finance', name: 'Finance' },
   ];
 
-  const filteredCategories = selectedCategory === 'all' 
-    ? categories 
-    : categories.filter(cat => faithMode ? cat.faithBased : !cat.faithBased);
+  const [selectedCategory, setSelectedCategory] = useState('all');
 
-  const getDifficultyColor = (difficulty: string) => {
-    switch (difficulty) {
-      case 'beginner': return KingdomColors.accent.success;
-      case 'intermediate': return KingdomColors.gold.warm;
-      case 'advanced': return KingdomColors.accent.error;
-      default: return KingdomColors.gray;
+  const getLevelColor = (level: string) => {
+    switch (level) {
+      case 'beginner':
+        return KingdomColors.accent.success;
+      case 'intermediate':
+        return KingdomColors.accent.warning;
+      case 'advanced':
+        return KingdomColors.accent.error;
+      default:
+        return KingdomColors.text.secondary;
     }
   };
 
-  const renderCategoryCard = ({ item }: { item: TeachingCategory }) => (
-    <TouchableOpacity style={styles.categoryCard} activeOpacity={0.8}>
-      <LinearGradient
-        colors={KingdomColors.gradients.cardBackground as any}
-        style={styles.categoryGradient}
-      >
-        <View style={styles.categoryHeader}>
-          <Text style={styles.categoryIcon}>{item.icon}</Text>
-          <View style={[styles.difficultyBadge, { backgroundColor: getDifficultyColor(item.difficulty) }]}>
-            <Text style={styles.difficultyText}>{item.difficulty}</Text>
+  const getTypeIcon = (type: string) => {
+    switch (type) {
+      case 'video':
+        return 'play-circle-outline';
+      case 'article':
+        return 'document-text-outline';
+      case 'podcast':
+        return 'headset-outline';
+      case 'ebook':
+        return 'book-outline';
+      case 'template':
+        return 'document-outline';
+      default:
+        return 'document-outline';
+    }
+  };
+
+  const handleStartModule = (module: TeachingModule) => {
+    Alert.alert(
+      `Start ${module.title}`,
+      `This would open the ${module.lessons}-lesson course with ${module.duration} of content.`,
+      [
+        { text: 'Start Learning', onPress: () => console.log('Starting module') },
+        { text: 'Preview', onPress: () => console.log('Preview module') },
+        { text: 'Cancel', style: 'cancel' },
+      ]
+    );
+  };
+
+  const handleOpenResource = (resource: Resource) => {
+    if (resource.isPremium) {
+      Alert.alert(
+        'Premium Content',
+        'This resource requires a premium subscription. Would you like to upgrade?',
+        [
+          { text: 'Upgrade Now', onPress: () => console.log('Navigate to pricing') },
+          { text: 'Maybe Later', style: 'cancel' },
+        ]
+      );
+    } else {
+      Alert.alert(
+        resource.title,
+        `Opening ${resource.type}: ${resource.description}`,
+        [{ text: 'OK' }]
+      );
+    }
+  };
+
+  const renderModuleCard = (module: TeachingModule) => (
+    <TouchableOpacity
+      key={module.id}
+      style={styles.moduleCard}
+      onPress={() => handleStartModule(module)}
+    >
+      <Image source={{ uri: module.thumbnail }} style={styles.moduleThumbnail} />
+      <View style={styles.moduleContent}>
+        <View style={styles.moduleHeader}>
+          <Text style={styles.moduleTitle}>{module.title}</Text>
+          <View style={[styles.levelBadge, { backgroundColor: getLevelColor(module.level) + '20' }]}>
+            <Text style={[styles.levelText, { color: getLevelColor(module.level) }]}>
+              {module.level.toUpperCase()}
+            </Text>
           </View>
         </View>
         
-        <Text style={styles.categoryTitle}>{item.title}</Text>
-        <Text style={styles.categoryDescription}>{item.description}</Text>
+        <Text style={styles.moduleDescription}>{module.description}</Text>
         
-        <View style={styles.categoryFooter}>
-          <Text style={styles.lessonsCount}>{item.lessonsCount} lessons</Text>
-          <TouchableOpacity style={styles.startButton}>
-            <Text style={styles.startButtonText}>Start →</Text>
-          </TouchableOpacity>
+        <View style={styles.moduleStats}>
+          <View style={styles.statItem}>
+            <Ionicons name="play-circle-outline" size={16} color={KingdomColors.text.secondary} />
+            <Text style={styles.statText}>{module.lessons} lessons</Text>
+          </View>
+          <View style={styles.statItem}>
+            <Ionicons name="time-outline" size={16} color={KingdomColors.text.secondary} />
+            <Text style={styles.statText}>{module.duration}</Text>
+          </View>
+          <View style={styles.statItem}>
+            <Ionicons name="person-outline" size={16} color={KingdomColors.text.secondary} />
+            <Text style={styles.statText}>{module.instructor}</Text>
+          </View>
         </View>
-      </LinearGradient>
+        
+        {module.progress > 0 && (
+          <View style={styles.progressContainer}>
+            <View style={styles.progressBar}>
+              <View 
+                style={[styles.progressFill, { width: `${module.progress}%` }]} 
+              />
+            </View>
+            <Text style={styles.progressText}>{module.progress}% complete</Text>
+          </View>
+        )}
+      </View>
     </TouchableOpacity>
   );
 
-  const renderPathwayCard = ({ item }: { item: DiscipleshipPathway }) => (
-    <TouchableOpacity style={styles.pathwayCard} activeOpacity={0.8}>
-      <LinearGradient
-        colors={KingdomColors.gradients.primary as any}
-        style={styles.pathwayGradient}
-      >
-        <View style={styles.pathwayHeader}>
-          <Text style={styles.pathwayIcon}>{item.icon}</Text>
-          <Text style={styles.pathwayDuration}>{item.estimatedDuration}</Text>
+  const renderResourceCard = (resource: Resource) => (
+    <TouchableOpacity
+      key={resource.id}
+      style={styles.resourceCard}
+      onPress={() => handleOpenResource(resource)}
+    >
+      <Image source={{ uri: resource.thumbnail }} style={styles.resourceThumbnail} />
+      <View style={styles.resourceContent}>
+        <View style={styles.resourceHeader}>
+          <View style={styles.resourceTypeIcon}>
+            <Ionicons 
+              name={getTypeIcon(resource.type) as any} 
+              size={16} 
+              color={KingdomColors.primary.royalPurple} 
+            />
+          </View>
+          <Text style={styles.resourceType}>{resource.type.toUpperCase()}</Text>
+          {resource.isPremium && (
+            <View style={styles.premiumBadge}>
+              <Ionicons name="diamond" size={10} color={KingdomColors.gold.bright} />
+              <Text style={styles.premiumText}>PRO</Text>
+            </View>
+          )}
+          <TouchableOpacity style={styles.bookmarkButton}>
+            <Ionicons 
+              name={resource.isBookmarked ? "bookmark" : "bookmark-outline"} 
+              size={16} 
+              color={resource.isBookmarked ? KingdomColors.gold.bright : KingdomColors.text.secondary} 
+            />
+          </TouchableOpacity>
         </View>
         
-        <Text style={styles.pathwayTitle}>{item.title}</Text>
-        <Text style={styles.pathwayDescription}>{item.description}</Text>
+        <Text style={styles.resourceTitle}>{resource.title}</Text>
+        <Text style={styles.resourceAuthor}>by {resource.author}</Text>
+        {resource.duration && (
+          <Text style={styles.resourceDuration}>{resource.duration}</Text>
+        )}
+        <Text style={styles.resourceDescription}>{resource.description}</Text>
         
-        <View style={styles.pathwayTags}>
-          {item.tags.map((tag, index) => (
+        <View style={styles.resourceTags}>
+          {resource.tags.slice(0, 3).map((tag, index) => (
             <View key={index} style={styles.tag}>
               <Text style={styles.tagText}>#{tag}</Text>
             </View>
           ))}
         </View>
-        
-        <TouchableOpacity style={styles.pathwayButton}>
-          <Text style={styles.pathwayButtonText}>
-            {faithMode ? '✝️ Begin Journey' : '🚀 Start Path'}
-          </Text>
-        </TouchableOpacity>
-      </LinearGradient>
+      </View>
     </TouchableOpacity>
+  );
+
+  const renderModulesTab = () => (
+    <ScrollView style={styles.tabContent} showsVerticalScrollIndicator={false}>
+      <View style={styles.sectionHeader}>
+        <Text style={styles.sectionTitle}>
+          {faithMode ? 'Kingdom Learning Modules' : 'Learning Modules'}
+        </Text>
+        <Text style={styles.sectionSubtitle}>
+          {faithMode 
+            ? 'Comprehensive courses to build your Kingdom business'
+            : 'Comprehensive courses to build your purpose-driven business'
+          }
+        </Text>
+      </View>
+      
+      {teachingModules.map(renderModuleCard)}
+    </ScrollView>
+  );
+
+  const renderResourcesTab = () => (
+    <ScrollView style={styles.tabContent} showsVerticalScrollIndicator={false}>
+      <View style={styles.sectionHeader}>
+        <Text style={styles.sectionTitle}>Resource Library</Text>
+        <Text style={styles.sectionSubtitle}>
+          Curated resources to accelerate your growth
+        </Text>
+      </View>
+      
+      <ScrollView 
+        horizontal 
+        showsHorizontalScrollIndicator={false} 
+        style={styles.categorySelector}
+      >
+        {categories.map((category) => (
+          <TouchableOpacity
+            key={category.id}
+            style={[
+              styles.categoryButton,
+              selectedCategory === category.id && styles.selectedCategoryButton,
+            ]}
+            onPress={() => setSelectedCategory(category.id)}
+          >
+            <Text
+              style={[
+                styles.categoryButtonText,
+                selectedCategory === category.id && styles.selectedCategoryButtonText,
+              ]}
+            >
+              {category.name}
+            </Text>
+          </TouchableOpacity>
+        ))}
+      </ScrollView>
+      
+      {resources.map(renderResourceCard)}
+    </ScrollView>
+  );
+
+  const renderLibraryTab = () => (
+    <ScrollView style={styles.tabContent} showsVerticalScrollIndicator={false}>
+      <View style={styles.sectionHeader}>
+        <Text style={styles.sectionTitle}>My Library</Text>
+        <Text style={styles.sectionSubtitle}>
+          Your saved resources and bookmarked content
+        </Text>
+      </View>
+      
+      <View style={styles.libraryStats}>
+        <View style={styles.libraryStat}>
+          <Text style={styles.libraryStatNumber}>
+            {resources.filter(r => r.isBookmarked).length}
+          </Text>
+          <Text style={styles.libraryStatLabel}>Bookmarked</Text>
+        </View>
+        <View style={styles.libraryStat}>
+          <Text style={styles.libraryStatNumber}>
+            {teachingModules.filter(m => m.progress > 0).length}
+          </Text>
+          <Text style={styles.libraryStatLabel}>In Progress</Text>
+        </View>
+        <View style={styles.libraryStat}>
+          <Text style={styles.libraryStatNumber}>
+            {teachingModules.filter(m => m.progress === 100).length}
+          </Text>
+          <Text style={styles.libraryStatLabel}>Completed</Text>
+        </View>
+      </View>
+      
+      <Text style={styles.subsectionTitle}>Recently Accessed</Text>
+      {resources.filter(r => r.isBookmarked).map(renderResourceCard)}
+    </ScrollView>
   );
 
   return (
     <SafeAreaView style={styles.container}>
-      <LinearGradient
-        colors={KingdomColors.gradients.royalGold as any}
-        style={styles.background}
-      >
-        {/* Header */}
-        <View style={styles.header}>
-          <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
-            <Text style={styles.backIcon}>←</Text>
-          </TouchableOpacity>
-          <KingdomLogo size="small" />
-          <View style={styles.headerSpacer} />
-        </View>
+      <View style={styles.header}>
+        <Text style={styles.headerTitle}>
+          {faithMode ? '📚 Kingdom Academy' : '📚 Learning Center'}
+        </Text>
+        <TouchableOpacity style={styles.searchButton}>
+          <Ionicons name="search-outline" size={24} color={KingdomColors.text.primary} />
+        </TouchableOpacity>
+      </View>
 
-        <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
-          {/* Title Section */}
-          <BlurView intensity={20} style={styles.titleCard}>
-            <LinearGradient colors={KingdomColors.gradients.cardBackground as any} style={styles.titleContent}>
-              <Text style={styles.title}>
-                {faithMode ? '📚 Kingdom Teaching' : '🎓 Learning Center'}
-              </Text>
-              <Text style={styles.subtitle}>
-                {faithMode 
-                  ? 'Grow in wisdom and understanding through God\'s Word and practical teaching'
-                  : 'Expand your knowledge and skills with expert-led courses and content'
-                }
-              </Text>
-            </LinearGradient>
-          </BlurView>
-
-          {/* Mentorship CTA */}
-          <BlurView intensity={20} style={styles.mentorshipCTA}>
-            <LinearGradient colors={KingdomColors.gradients.accent as any} style={styles.mentorshipContent}>
-              <View style={styles.mentorshipInfo}>
-                <Text style={styles.mentorshipIcon}>
-                  {faithMode ? '🙏' : '🤝'}
-                </Text>
-                <View style={styles.mentorshipText}>
-                  <Text style={styles.mentorshipTitle}>
-                    {faithMode ? 'Need Personal Guidance?' : 'Want 1-on-1 Help?'}
-                  </Text>
-                  <Text style={styles.mentorshipDesc}>
-                    {faithMode 
-                      ? 'Connect with a spirit-filled mentor for personalized discipleship'
-                      : 'Get personalized guidance from experienced mentors'
-                    }
-                  </Text>
-                </View>
-              </View>
-              <TouchableOpacity 
-                style={styles.mentorshipButton}
-                onPress={() => navigation.navigate('MentorshipHub')}
-              >
-                <Text style={styles.mentorshipButtonText}>
-                  {faithMode ? 'Find a Guide' : 'Find Mentor'}
-                </Text>
-              </TouchableOpacity>
-            </LinearGradient>
-          </BlurView>
-
-          {/* Filter Tabs */}
-          <View style={styles.filterContainer}>
-            <TouchableOpacity
-              style={[styles.filterTab, selectedCategory === 'all' && styles.filterTabActive]}
-              onPress={() => setSelectedCategory('all')}
-            >
-              <Text style={[styles.filterText, selectedCategory === 'all' && styles.filterTextActive]}>
-                All Topics
-              </Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={[styles.filterTab, selectedCategory === 'faith' && styles.filterTabActive]}
-              onPress={() => setSelectedCategory('faith')}
-            >
-              <Text style={[styles.filterText, selectedCategory === 'faith' && styles.filterTextActive]}>
-                {faithMode ? 'Spiritual' : 'Personal'}
-              </Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={[styles.filterTab, selectedCategory === 'business' && styles.filterTabActive]}
-              onPress={() => setSelectedCategory('business')}
-            >
-              <Text style={[styles.filterText, selectedCategory === 'business' && styles.filterTextActive]}>
-                Business
-              </Text>
-            </TouchableOpacity>
-          </View>
-
-          {/* Learning Categories */}
-          <View style={styles.section}>
-            <Text style={styles.sectionTitle}>
-              {faithMode ? 'Teaching Categories' : 'Course Categories'}
-            </Text>
-            <FlatList
-              data={filteredCategories}
-              renderItem={renderCategoryCard}
-              keyExtractor={(item) => item.id}
-              numColumns={2}
-              columnWrapperStyle={styles.categoryRow}
-              scrollEnabled={false}
-            />
-          </View>
-
-          {/* Discipleship Pathways */}
-          <View style={styles.section}>
-            <Text style={styles.sectionTitle}>
-              {faithMode ? 'Discipleship Pathways' : 'Learning Paths'}
-            </Text>
-            <Text style={styles.sectionDescription}>
-              {faithMode 
-                ? 'Structured journeys to help you grow in specific areas of faith and life'
-                : 'Comprehensive learning journeys designed to take you from beginner to expert'
-              }
-            </Text>
-            <FlatList
-              data={pathways}
-              renderItem={renderPathwayCard}
-              keyExtractor={(item) => item.id}
-              horizontal
-              showsHorizontalScrollIndicator={false}
-              contentContainerStyle={styles.pathwaysContainer}
-            />
-          </View>
-
-          <View style={styles.bottomSpacer} />
-        </ScrollView>
-      </LinearGradient>
+      <View style={styles.tabBar}>
+        <TouchableOpacity
+          style={[styles.tab, activeTab === 'modules' && styles.activeTab]}
+          onPress={() => setActiveTab('modules')}
+        >
+          <Ionicons 
+            name="school-outline" 
+            size={18} 
+            color={activeTab === 'modules' ? KingdomColors.primary.royalPurple : KingdomColors.text.secondary} 
+          />
+          <Text style={[styles.tabText, activeTab === 'modules' && styles.activeTabText]}>
+            Modules
+          </Text>
+        </TouchableOpacity>
+        
+        <TouchableOpacity
+          style={[styles.tab, activeTab === 'resources' && styles.activeTab]}
+          onPress={() => setActiveTab('resources')}
+        >
+          <Ionicons 
+            name="library-outline" 
+            size={18} 
+            color={activeTab === 'resources' ? KingdomColors.primary.royalPurple : KingdomColors.text.secondary} 
+          />
+          <Text style={[styles.tabText, activeTab === 'resources' && styles.activeTabText]}>
+            Resources
+          </Text>
+        </TouchableOpacity>
+        
+        <TouchableOpacity
+          style={[styles.tab, activeTab === 'library' && styles.activeTab]}
+          onPress={() => setActiveTab('library')}
+        >
+          <Ionicons 
+            name="bookmark-outline" 
+            size={18} 
+            color={activeTab === 'library' ? KingdomColors.primary.royalPurple : KingdomColors.text.secondary} 
+          />
+          <Text style={[styles.tabText, activeTab === 'library' && styles.activeTabText]}>
+            My Library
+          </Text>
+        </TouchableOpacity>
+      </View>
+      
+      {activeTab === 'modules' && renderModulesTab()}
+      {activeTab === 'resources' && renderResourcesTab()}
+      {activeTab === 'library' && renderLibraryTab()}
     </SafeAreaView>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: KingdomColors.black,
-  },
-  background: {
-    flex: 1,
+    backgroundColor: KingdomColors.background.primary,
   },
   header: {
     flexDirection: 'row',
-    alignItems: 'center',
     justifyContent: 'space-between',
+    alignItems: 'center',
     paddingHorizontal: 20,
-    paddingTop: 10,
-    paddingBottom: 20,
+    paddingVertical: 16,
+    borderBottomWidth: 1,
+    borderBottomColor: KingdomColors.default.border,
   },
-  backButton: {
-    padding: 10,
-  },
-  backIcon: {
+  headerTitle: {
     fontSize: 24,
-    color: KingdomColors.white,
     fontWeight: 'bold',
+    color: KingdomColors.text.primary,
   },
-  headerSpacer: {
-    width: 44,
+  searchButton: {
+    padding: 8,
   },
-  scrollView: {
+  tabBar: {
+    flexDirection: 'row',
+    backgroundColor: KingdomColors.background.secondary,
+    borderBottomWidth: 1,
+    borderBottomColor: KingdomColors.default.border,
+  },
+  tab: {
     flex: 1,
-    paddingHorizontal: 20,
-  },
-  titleCard: {
-    borderRadius: 20,
-    marginBottom: 20,
-    overflow: 'hidden',
-    ...KingdomShadows.large,
-  },
-  titleContent: {
-    padding: 24,
-    alignItems: 'center',
-  },
-  title: {
-    fontSize: 28,
-    fontWeight: 'bold',
-    color: KingdomColors.white,
-    textAlign: 'center',
-    marginBottom: 12,
-  },
-  subtitle: {
-    fontSize: 16,
-    color: KingdomColors.lightGray,
-    textAlign: 'center',
-    lineHeight: 22,
-  },
-  mentorshipCTA: {
-    borderRadius: 16,
-    marginBottom: 20,
-    overflow: 'hidden',
-    ...KingdomShadows.medium,
-  },
-  mentorshipContent: {
-    padding: 20,
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-between',
-  },
-  mentorshipInfo: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    flex: 1,
-  },
-  mentorshipIcon: {
-    fontSize: 32,
-    marginRight: 16,
-  },
-  mentorshipText: {
-    flex: 1,
-  },
-  mentorshipTitle: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    color: KingdomColors.white,
-    marginBottom: 4,
-  },
-  mentorshipDesc: {
-    fontSize: 14,
-    color: KingdomColors.lightGray,
-  },
-  mentorshipButton: {
-    backgroundColor: KingdomColors.white,
-    paddingHorizontal: 16,
-    paddingVertical: 10,
-    borderRadius: 20,
-    marginLeft: 12,
-  },
-  mentorshipButtonText: {
-    color: KingdomColors.black,
-    fontSize: 14,
-    fontWeight: 'bold',
-  },
-  filterContainer: {
-    flexDirection: 'row',
-    backgroundColor: KingdomColors.darkGray,
-    borderRadius: 25,
-    padding: 4,
-    marginBottom: 24,
-  },
-  filterTab: {
-    flex: 1,
+    justifyContent: 'center',
     paddingVertical: 12,
-    alignItems: 'center',
-    borderRadius: 20,
+    gap: 4,
   },
-  filterTabActive: {
-    backgroundColor: KingdomColors.gold.bright,
+  activeTab: {
+    borderBottomWidth: 2,
+    borderBottomColor: KingdomColors.primary.royalPurple,
   },
-  filterText: {
-    fontSize: 14,
-    fontWeight: '600',
-    color: KingdomColors.lightGray,
+  tabText: {
+    fontSize: 12,
+    fontWeight: '500',
+    color: KingdomColors.text.secondary,
   },
-  filterTextActive: {
-    color: KingdomColors.black,
+  activeTabText: {
+    color: KingdomColors.primary.royalPurple,
   },
-  section: {
-    marginBottom: 32,
+  tabContent: {
+    flex: 1,
+    padding: 20,
+  },
+  sectionHeader: {
+    marginBottom: 24,
   },
   sectionTitle: {
     fontSize: 22,
     fontWeight: 'bold',
-    color: KingdomColors.white,
-    marginBottom: 8,
+    color: KingdomColors.text.primary,
+    marginBottom: 4,
   },
-  sectionDescription: {
-    fontSize: 16,
-    color: KingdomColors.lightGray,
-    marginBottom: 20,
-    lineHeight: 22,
+  sectionSubtitle: {
+    fontSize: 14,
+    color: KingdomColors.text.secondary,
+    lineHeight: 20,
   },
-  categoryRow: {
-    justifyContent: 'space-between',
+  subsectionTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: KingdomColors.text.primary,
+    marginTop: 20,
     marginBottom: 16,
   },
-  categoryCard: {
-    width: (width - 60) / 2,
-    borderRadius: 16,
+  moduleCard: {
+    backgroundColor: KingdomColors.background.secondary,
+    borderRadius: 12,
+    marginBottom: 16,
     overflow: 'hidden',
-    ...KingdomShadows.medium,
+    borderWidth: 1,
+    borderColor: KingdomColors.default.border,
   },
-  categoryGradient: {
+  moduleThumbnail: {
+    width: '100%',
+    height: 120,
+  },
+  moduleContent: {
     padding: 16,
-    height: 180,
   },
-  categoryHeader: {
+  moduleHeader: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'center',
-    marginBottom: 12,
+    alignItems: 'flex-start',
+    marginBottom: 8,
   },
-  categoryIcon: {
-    fontSize: 32,
+  moduleTitle: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: KingdomColors.text.primary,
+    flex: 1,
+    marginRight: 8,
   },
-  difficultyBadge: {
+  levelBadge: {
     paddingHorizontal: 8,
     paddingVertical: 4,
-    borderRadius: 12,
+    borderRadius: 8,
   },
-  difficultyText: {
+  levelText: {
     fontSize: 10,
     fontWeight: 'bold',
-    color: KingdomColors.white,
-    textTransform: 'uppercase',
   },
-  categoryTitle: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    color: KingdomColors.white,
-    marginBottom: 8,
+  moduleDescription: {
+    fontSize: 14,
+    color: KingdomColors.text.secondary,
+    marginBottom: 12,
+    lineHeight: 18,
   },
-  categoryDescription: {
-    fontSize: 12,
-    color: KingdomColors.lightGray,
-    lineHeight: 16,
+  moduleStats: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: 12,
+  },
+  statItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 4,
     flex: 1,
   },
-  categoryFooter: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginTop: 12,
-  },
-  lessonsCount: {
+  statText: {
     fontSize: 12,
-    color: KingdomColors.gold.bright,
-    fontWeight: '600',
+    color: KingdomColors.text.secondary,
   },
-  startButton: {
-    backgroundColor: KingdomColors.gold.bright,
-    paddingHorizontal: 12,
-    paddingVertical: 6,
-    borderRadius: 12,
+  progressContainer: {
+    marginTop: 8,
   },
-  startButtonText: {
-    fontSize: 12,
-    fontWeight: 'bold',
-    color: KingdomColors.black,
-  },
-  pathwaysContainer: {
-    paddingRight: 20,
-  },
-  pathwayCard: {
-    width: width * 0.75,
-    marginRight: 16,
-    borderRadius: 16,
+  progressBar: {
+    height: 4,
+    backgroundColor: KingdomColors.default.border,
+    borderRadius: 2,
     overflow: 'hidden',
-    ...KingdomShadows.large,
   },
-  pathwayGradient: {
-    padding: 20,
+  progressFill: {
+    height: '100%',
+    backgroundColor: KingdomColors.primary.royalPurple,
   },
-  pathwayHeader: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginBottom: 16,
+  progressText: {
+    fontSize: 11,
+    color: KingdomColors.text.secondary,
+    marginTop: 4,
   },
-  pathwayIcon: {
-    fontSize: 32,
-  },
-  pathwayDuration: {
-    fontSize: 14,
-    color: KingdomColors.lightGray,
-    fontWeight: '600',
-  },
-  pathwayTitle: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    color: KingdomColors.white,
-    marginBottom: 8,
-  },
-  pathwayDescription: {
-    fontSize: 14,
-    color: KingdomColors.lightGray,
-    lineHeight: 20,
-    marginBottom: 16,
-  },
-  pathwayTags: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    gap: 8,
+  categorySelector: {
     marginBottom: 20,
   },
-  tag: {
-    backgroundColor: KingdomColors.white,
-    paddingHorizontal: 8,
-    paddingVertical: 4,
+  categoryButton: {
+    paddingHorizontal: 16,
+    paddingVertical: 8,
+    borderRadius: 20,
+    marginRight: 8,
+    borderWidth: 1,
+    borderColor: KingdomColors.default.border,
+  },
+  selectedCategoryButton: {
+    backgroundColor: KingdomColors.primary.royalPurple,
+    borderColor: KingdomColors.primary.royalPurple,
+  },
+  categoryButtonText: {
+    fontSize: 12,
+    fontWeight: '500',
+    color: KingdomColors.text.secondary,
+  },
+  selectedCategoryButtonText: {
+    color: KingdomColors.background.primary,
+  },
+  resourceCard: {
+    backgroundColor: KingdomColors.background.secondary,
     borderRadius: 12,
+    padding: 16,
+    marginBottom: 16,
+    flexDirection: 'row',
+    borderWidth: 1,
+    borderColor: KingdomColors.default.border,
+  },
+  resourceThumbnail: {
+    width: 60,
+    height: 80,
+    borderRadius: 8,
+    marginRight: 16,
+  },
+  resourceContent: {
+    flex: 1,
+  },
+  resourceHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 8,
+    gap: 8,
+  },
+  resourceTypeIcon: {
+    width: 24,
+    height: 24,
+    borderRadius: 12,
+    backgroundColor: KingdomColors.primary.royalPurple + '20',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  resourceType: {
+    fontSize: 10,
+    fontWeight: 'bold',
+    color: KingdomColors.text.secondary,
+    flex: 1,
+  },
+  premiumBadge: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: KingdomColors.gold.bright + '20',
+    paddingHorizontal: 6,
+    paddingVertical: 2,
+    borderRadius: 8,
+    gap: 2,
+  },
+  premiumText: {
+    fontSize: 8,
+    fontWeight: 'bold',
+    color: KingdomColors.gold.bright,
+  },
+  bookmarkButton: {
+    padding: 4,
+  },
+  resourceTitle: {
+    fontSize: 14,
+    fontWeight: 'bold',
+    color: KingdomColors.text.primary,
+    marginBottom: 4,
+  },
+  resourceAuthor: {
+    fontSize: 12,
+    color: KingdomColors.text.secondary,
+    marginBottom: 2,
+  },
+  resourceDuration: {
+    fontSize: 11,
+    color: KingdomColors.primary.royalPurple,
+    marginBottom: 6,
+  },
+  resourceDescription: {
+    fontSize: 12,
+    color: KingdomColors.text.secondary,
+    lineHeight: 16,
+    marginBottom: 8,
+  },
+  resourceTags: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: 4,
+  },
+  tag: {
+    backgroundColor: KingdomColors.primary.royalPurple + '15',
+    paddingHorizontal: 6,
+    paddingVertical: 2,
+    borderRadius: 4,
   },
   tagText: {
-    fontSize: 12,
+    fontSize: 10,
     color: KingdomColors.primary.royalPurple,
-    fontWeight: '600',
   },
-  pathwayButton: {
-    backgroundColor: KingdomColors.white,
-    paddingVertical: 12,
+  libraryStats: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    marginBottom: 24,
+    backgroundColor: KingdomColors.background.secondary,
     borderRadius: 12,
+    padding: 16,
+    borderWidth: 1,
+    borderColor: KingdomColors.default.border,
+  },
+  libraryStat: {
     alignItems: 'center',
   },
-  pathwayButtonText: {
-    fontSize: 16,
+  libraryStatNumber: {
+    fontSize: 24,
     fontWeight: 'bold',
     color: KingdomColors.primary.royalPurple,
+    marginBottom: 4,
   },
-  bottomSpacer: {
-    height: 40,
+  libraryStatLabel: {
+    fontSize: 12,
+    color: KingdomColors.text.secondary,
   },
 });
 

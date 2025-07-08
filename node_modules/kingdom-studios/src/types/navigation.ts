@@ -1,5 +1,6 @@
 export type RootStackParamList = {
   Login: undefined;
+  Main: undefined;
   Dashboard: undefined;
   CreatorDashboard: undefined;
   ContentGenerator: undefined;
@@ -21,6 +22,48 @@ export type RootStackParamList = {
   Onboarding: undefined;
   SponsorshipRequest: undefined;
   Pricing: undefined;
+  // AI Studio Screens
+  AIStudio: undefined;
+  SocialMediaGenerator: undefined;
+  TShirtDesigner: undefined;
+  EmailSequencer: undefined;
+  SEOPlanner: undefined;
+  HashtagHelper: undefined;
+  // Design Studio Screens
+  DesignStudio: undefined;
+  PostEditor: undefined;
+  TemplateLibrary: undefined;
+  // Products Screens
+  Products: undefined;
+  ProductManager: undefined;
+  ProductAnalytics: undefined;
+  // Storefront Builder
+  Storefront: undefined;
+  StorefrontBuilder: undefined;
+  StorefrontPreview: undefined;
+  // Lead Magnets & Funnels
+  Funnels: undefined;
+  LeadMagnetBuilder: undefined;
+  LandingPageBuilder: undefined;
+  FunnelAnalytics: undefined;
+  // Course Builder
+  Courses: undefined;
+  CourseBuilder: undefined;
+  CourseEditor: undefined;
+  CourseSettings: undefined;
+  // Content Planner
+  Planner: undefined;
+  KanbanBoard: undefined;
+  ContentCalendar: undefined;
+  TaskManager: undefined;
+  // Photo & Video Editor
+  Editor: undefined;
+  PhotoEditor: undefined;
+  VideoEditor: undefined;
+  // Analytics Module
+  Analytics: undefined;
+  PostAnalytics: undefined;
+  ProductMetrics: undefined;
   // Mentorship System
   MentorshipHub: undefined;
   MentorProfile: { mentorId: string };
@@ -65,7 +108,6 @@ export type RootStackParamList = {
   VisualDiscovery: undefined;
   CanvaDesignTool: undefined;
   EcommerceStoreBuilder: undefined;
-  LeadMagnetBuilder: undefined;
   AdLaunchTool: undefined;
   SalesFunnelBuilder: undefined;
   EmailMarketing: undefined;
@@ -95,6 +137,34 @@ export type RootStackParamList = {
   AdvancedSecurityCenter: undefined;
   APIIntegrationManager: undefined;
   FaithEnhancementHub: undefined;
+  // Checkout & Payments
+  Checkout: { 
+    product: {
+      id: string;
+      name: string;
+      description: string;
+      price: number;
+      currency: string;
+      type: 'one_time' | 'subscription' | 'donation';
+      features?: string[];
+    };
+    plan?: 'monthly' | 'yearly';
+  };
+  PaymentSuccess: { transactionId: string };
+  PaymentFailed: { error: string };
+  // Settings & Configuration
+  APIConfiguration: undefined;
+};
+
+// Main Tab Navigator Type
+export type MainTabParamList = {
+  Dashboard: undefined;
+  AIStudio: undefined;
+  Products: undefined;
+  Design: undefined;
+  Storefront: undefined;
+  Community: undefined;
+  More: undefined;
 };
 
 declare global {
