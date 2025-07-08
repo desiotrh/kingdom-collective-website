@@ -32,6 +32,7 @@
     "expo-linear-gradient": "^14.1.5",
     "expo-media-library": "~17.1.7",
     "expo-notifications": "^0.31.4",
+    "expo-secure-store": "^14.2.3",
     "expo-status-bar": "~2.2.3",
     "expo-web-browser": "~14.2.0",
     "firebase": "^11.10.0",

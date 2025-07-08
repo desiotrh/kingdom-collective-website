@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import {
   View,
   Text,
+  TextInput,
   TouchableOpacity,
   ActivityIndicator,
   Alert,
@@ -9,6 +10,9 @@ import {
   SafeAreaView,
   Dimensions,
   Image,
+  KeyboardAvoidingView,
+  Platform,
+  ScrollView,
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import Svg, { Defs, LinearGradient as SvgLinearGradient, Stop, Path, Polygon } from 'react-native-svg';
@@ -18,6 +22,7 @@ import {
   useGoogleAuthRequest,
   initFacebookSDK,
 } from '../utils/authUtils';
+import { useAuth } from '../contexts/AuthContext';
 import { KingdomColors, KingdomGradients, KingdomShadows } from '../constants/KingdomColors';
 import KingdomLogo from '../components/KingdomLogo';
 
@@ -25,8 +30,17 @@ const LoginScreen = () => {
   const [loading, setLoading] = useState(false);
   const [googleLoading, setGoogleLoading] = useState(false);
   const [facebookLoading, setFacebookLoading] = useState(false);
+  const [isRegistering, setIsRegistering] = useState(false);
+  
+  // Form fields
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [faithMode, setFaithMode] = useState(false);
   
   const [request, response, promptAsync] = useGoogleAuthRequest();
+  const { login, register } = useAuth();
 
   // Initialize Facebook SDK on mount
   useEffect(() => {
@@ -46,6 +60,40 @@ const LoginScreen = () => {
       handleGoogleSignIn(response);
     }
   }, [response]);
+
+  const handleEmailAuth = async () => {
+    if (!email.trim() || !password.trim()) {
+      Alert.alert('Error', 'Please enter both email and password.');
+      return;
+    }
+
+    if (isRegistering && (!firstName.trim() || !lastName.trim())) {
+      Alert.alert('Error', 'Please enter your first and last name.');
+      return;
+    }
+
+    setLoading(true);
+    try {
+      let result;
+      if (isRegistering) {
+        result = await register(email.trim(), password, firstName.trim(), lastName.trim(), faithMode);
+      } else {
+        result = await login(email.trim(), password);
+      }
+
+      if (result.success) {
+        Alert.alert('Success', isRegistering ? 'Account created successfully!' : 'Logged in successfully!');
+        // Navigation will be handled automatically by AuthNavigator
+      } else {
+        Alert.alert('Error', result.error || `${isRegistering ? 'Registration' : 'Login'} failed.`);
+      }
+    } catch (error) {
+      console.error('Auth error:', error);
+      Alert.alert('Error', `${isRegistering ? 'Registration' : 'Login'} failed.`);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const handleGoogleSignIn = async (authResponse: any) => {
     setGoogleLoading(true);
@@ -84,6 +132,16 @@ const LoginScreen = () => {
     } finally {
       setFacebookLoading(false);
     }
+  };
+
+  const toggleAuthMode = () => {
+    setIsRegistering(!isRegistering);
+    // Clear form when switching modes
+    setEmail('');
+    setPassword('');
+    setFirstName('');
+    setLastName('');
+    setFaithMode(false);
   };
 
   const isLoading = loading || googleLoading || facebookLoading;
@@ -173,95 +231,186 @@ const LoginScreen = () => {
         </View>
       </View>
 
-      <View style={styles.content}>
-        {/* Logo Section */}
-        <View style={styles.logoSection}>
-          <View style={styles.logoContainer}>
-            <KingdomLogo size="medium" showGlow={true} glowIntensity={0.3} />
-          </View>
-          <View style={styles.titleContainer}>
-            <Text style={styles.appName}>KINGDOM</Text>
-            <Text style={styles.appNameSecondary}>STUDIOS</Text>
-          </View>
-          <Text style={styles.tagline}>Build. Share. Thrive</Text>
-        </View>
+      <KeyboardAvoidingView 
+        style={styles.container}
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+        keyboardVerticalOffset={Platform.OS === 'ios' ? 0 : 20}
+      >
+        <ScrollView
+          style={styles.scrollContainer}
+          contentContainerStyle={styles.scrollContent}
+          showsVerticalScrollIndicator={false}
+        >
+          <View style={styles.content}>
+            {/* Logo Section */}
+            <View style={styles.logoSection}>
+              <View style={styles.logoContainer}>
+                <KingdomLogo size="medium" showGlow={true} glowIntensity={0.3} />
+              </View>
+              <View style={styles.titleContainer}>
+                <Text style={styles.appName}>KINGDOM</Text>
+                <Text style={styles.appNameSecondary}>STUDIOS</Text>
+              </View>
+              <Text style={styles.tagline}>Build. Share. Thrive</Text>
+            </View>
 
-        {/* Auth Card */}
-        <View style={styles.authCard}>
-          <Text style={styles.welcomeTitle}>Build. Share. Thrive</Text>
-          <Text style={styles.welcomeSubtitle}>Launch your vision. Impact the world</Text>
-          <Text style={styles.authTitle}>LOGIN TO YOUR ACCOUNT</Text>
-          <Text style={styles.authSubtitle}>Enter your login information</Text>
+            {/* Auth Card */}
+            <View style={styles.authCard}>
+              <Text style={styles.welcomeTitle}>Build. Share. Thrive</Text>
+              <Text style={styles.welcomeSubtitle}>Launch your vision. Impact the world</Text>
+              <Text style={styles.authTitle}>
+                {isRegistering ? 'CREATE YOUR ACCOUNT' : 'LOGIN TO YOUR ACCOUNT'}
+              </Text>
+              <Text style={styles.authSubtitle}>
+                {isRegistering ? 'Join the Kingdom Studios community' : 'Enter your login information'}
+              </Text>
 
-          <View style={styles.buttonContainer}>
-            <TouchableOpacity
-              style={styles.primaryLoginButton}
-              onPress={handleGooglePress}
-              disabled={isLoading}
-            >
-              <LinearGradient
-                colors={[KingdomColors.primary.royalPurple, KingdomColors.primary.deepNavy]}
-                style={styles.buttonGradient}
-                start={{ x: 0, y: 0 }}
-                end={{ x: 1, y: 1 }}
-              >
-                {googleLoading ? (
-                  <ActivityIndicator color={KingdomColors.text.primary} size="small" />
-                ) : (
-                  <Text style={styles.primaryButtonText}>LOGIN</Text>
+              {/* Email/Password Form */}
+              <View style={styles.formContainer}>
+                {isRegistering && (
+                  <View style={styles.nameRow}>
+                    <View style={styles.nameInput}>
+                      <TextInput
+                        style={styles.textInput}
+                        placeholder="First Name"
+                        placeholderTextColor={KingdomColors.text.muted}
+                        value={firstName}
+                        onChangeText={setFirstName}
+                        editable={!isLoading}
+                        autoCapitalize="words"
+                      />
+                    </View>
+                    <View style={styles.nameInput}>
+                      <TextInput
+                        style={styles.textInput}
+                        placeholder="Last Name"
+                        placeholderTextColor={KingdomColors.text.muted}
+                        value={lastName}
+                        onChangeText={setLastName}
+                        editable={!isLoading}
+                        autoCapitalize="words"
+                      />
+                    </View>
+                  </View>
                 )}
-              </LinearGradient>
-            </TouchableOpacity>
 
-            <View style={styles.divider}>
-              <View style={styles.dividerLine} />
-              <Text style={styles.dividerText}>Or</Text>
-              <View style={styles.dividerLine} />
-            </View>
+                <View style={styles.inputContainer}>
+                  <TextInput
+                    style={styles.textInput}
+                    placeholder="Email"
+                    placeholderTextColor={KingdomColors.text.muted}
+                    value={email}
+                    onChangeText={setEmail}
+                    keyboardType="email-address"
+                    autoCapitalize="none"
+                    autoCorrect={false}
+                    editable={!isLoading}
+                  />
+                </View>
 
-            <View style={styles.socialButtonsRow}>
-              <TouchableOpacity
-                style={styles.socialButton}
-                onPress={handleGooglePress}
-                disabled={isLoading}
-              >
-                <LinearGradient
-                  colors={['rgba(255, 255, 255, 0.1)', 'rgba(255, 255, 255, 0.05)']}
-                  style={styles.socialButtonGradient}
-                  start={{ x: 0, y: 0 }}
-                  end={{ x: 1, y: 1 }}
+                <View style={styles.inputContainer}>
+                  <TextInput
+                    style={styles.textInput}
+                    placeholder="Password"
+                    placeholderTextColor={KingdomColors.text.muted}
+                    value={password}
+                    onChangeText={setPassword}
+                    secureTextEntry
+                    editable={!isLoading}
+                  />
+                </View>
+
+                {isRegistering && (
+                  <TouchableOpacity
+                    style={styles.faithModeContainer}
+                    onPress={() => setFaithMode(!faithMode)}
+                    disabled={isLoading}
+                  >
+                    <View style={[styles.checkbox, faithMode && styles.checkboxChecked]}>
+                      {faithMode && <Text style={styles.checkmark}>✓</Text>}
+                    </View>
+                    <Text style={styles.faithModeText}>
+                      Enable Faith Mode - Filter content to align with Christian values
+                    </Text>
+                  </TouchableOpacity>
+                )}
+              </View>
+
+              <View style={styles.buttonContainer}>
+                <TouchableOpacity
+                  style={styles.primaryLoginButton}
+                  onPress={handleEmailAuth}
+                  disabled={isLoading}
                 >
-                  <Text style={styles.socialButtonIcon}>G</Text>
-                  <Text style={styles.socialButtonText}>GOOGLE</Text>
-                </LinearGradient>
-              </TouchableOpacity>
+                  <LinearGradient
+                    colors={[KingdomColors.primary.royalPurple, KingdomColors.primary.deepNavy]}
+                    style={styles.buttonGradient}
+                    start={{ x: 0, y: 0 }}
+                    end={{ x: 1, y: 1 }}
+                  >
+                    {loading ? (
+                      <ActivityIndicator color={KingdomColors.text.primary} size="small" />
+                    ) : (
+                      <Text style={styles.primaryButtonText}>
+                        {isRegistering ? 'CREATE ACCOUNT' : 'LOGIN'}
+                      </Text>
+                    )}
+                  </LinearGradient>
+                </TouchableOpacity>
 
-              <TouchableOpacity
-                style={styles.socialButton}
-                onPress={handleFacebookPress}
-                disabled={isLoading}
-              >
-                <LinearGradient
-                  colors={['rgba(255, 255, 255, 0.1)', 'rgba(255, 255, 255, 0.05)']}
-                  style={styles.socialButtonGradient}
-                  start={{ x: 0, y: 0 }}
-                  end={{ x: 1, y: 1 }}
-                >
-                  <Text style={styles.socialButtonIcon}>A</Text>
-                  <Text style={styles.socialButtonText}>APPLE</Text>
-                </LinearGradient>
-              </TouchableOpacity>
+                <View style={styles.divider}>
+                  <View style={styles.dividerLine} />
+                  <Text style={styles.dividerText}>Or continue with</Text>
+                  <View style={styles.dividerLine} />
+                </View>
+
+                <View style={styles.socialButtonsRow}>
+                  <TouchableOpacity
+                    style={styles.socialButton}
+                    onPress={handleGooglePress}
+                    disabled={isLoading}
+                  >
+                    <LinearGradient
+                      colors={['rgba(255, 255, 255, 0.1)', 'rgba(255, 255, 255, 0.05)']}
+                      style={styles.socialButtonGradient}
+                      start={{ x: 0, y: 0 }}
+                      end={{ x: 1, y: 1 }}
+                    >
+                      <Text style={styles.socialButtonIcon}>G</Text>
+                      <Text style={styles.socialButtonText}>GOOGLE</Text>
+                    </LinearGradient>
+                  </TouchableOpacity>
+
+                  <TouchableOpacity
+                    style={styles.socialButton}
+                    onPress={handleFacebookPress}
+                    disabled={isLoading}
+                  >
+                    <LinearGradient
+                      colors={['rgba(255, 255, 255, 0.1)', 'rgba(255, 255, 255, 0.05)']}
+                      style={styles.socialButtonGradient}
+                      start={{ x: 0, y: 0 }}
+                      end={{ x: 1, y: 1 }}
+                    >
+                      <Text style={styles.socialButtonIcon}>F</Text>
+                      <Text style={styles.socialButtonText}>FACEBOOK</Text>
+                    </LinearGradient>
+                  </TouchableOpacity>
+                </View>
+              </View>
+
+              <View style={styles.signupSection}>
+                <Text style={styles.signupText}>
+                  {isRegistering ? 'Already have an account?' : "Don't have an account?"}{' '}
+                  <Text style={styles.signupLink} onPress={toggleAuthMode}>
+                    {isRegistering ? 'Sign In' : 'Sign Up'}
+                  </Text>
+                </Text>
+              </View>
             </View>
           </View>
-
-          <View style={styles.signupSection}>
-            <Text style={styles.signupText}>
-              Don't have an account?{' '}
-              <Text style={styles.signupLink}>Sign Up</Text>
-            </Text>
-          </View>
-        </View>
-      </View>
+        </ScrollView>
+      </KeyboardAvoidingView>
     </SafeAreaView>
   );
 };
@@ -468,6 +617,69 @@ const styles = StyleSheet.create({
   signupLink: {
     color: KingdomColors.gold.bright,
     fontWeight: '600',
+  },
+  scrollContainer: {
+    flex: 1,
+  },
+  scrollContent: {
+    flexGrow: 1,
+    minHeight: height,
+  },
+  formContainer: {
+    marginBottom: 20,
+    gap: 16,
+  },
+  nameRow: {
+    flexDirection: 'row',
+    gap: 12,
+  },
+  nameInput: {
+    flex: 1,
+  },
+  inputContainer: {
+    backgroundColor: 'rgba(255, 255, 255, 0.08)',
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: 'rgba(255, 255, 255, 0.15)',
+  },
+  textInput: {
+    color: KingdomColors.text.primary,
+    fontSize: 16,
+    paddingHorizontal: 16,
+    paddingVertical: 14,
+    fontWeight: '400',
+  },
+  faithModeContainer: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    gap: 12,
+    paddingVertical: 8,
+  },
+  checkbox: {
+    width: 20,
+    height: 20,
+    borderRadius: 4,
+    borderWidth: 2,
+    borderColor: 'rgba(255, 255, 255, 0.3)',
+    backgroundColor: 'rgba(255, 255, 255, 0.05)',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 2,
+  },
+  checkboxChecked: {
+    backgroundColor: KingdomColors.primary.royalPurple,
+    borderColor: KingdomColors.primary.royalPurple,
+  },
+  checkmark: {
+    color: KingdomColors.text.primary,
+    fontSize: 12,
+    fontWeight: 'bold',
+  },
+  faithModeText: {
+    flex: 1,
+    color: KingdomColors.text.secondary,
+    fontSize: 14,
+    lineHeight: 20,
   },
 });
 
