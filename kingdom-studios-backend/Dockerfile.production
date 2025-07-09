@@ -1,0 +1,96 @@
+# ==============================================
+# KINGDOM STUDIOS BACKEND - PRODUCTION DOCKERFILE
+# Multi-stage build for optimized production deployment
+# ==============================================
+
+# ==============================================
+# Stage 1: Dependencies and Build
+# ==============================================
+FROM node:18-alpine AS builder
+
+# Set working directory
+WORKDIR /app
+
+# Install build dependencies
+RUN apk add --no-cache \
+    python3 \
+    make \
+    g++ \
+    git \
+    curl
+
+# Copy package files
+COPY package*.json ./
+
+# Install dependencies
+RUN npm ci --only=production && npm cache clean --force
+
+# ==============================================
+# Stage 2: Production Runtime
+# ==============================================
+FROM node:18-alpine AS production
+
+# Set production environment
+ENV NODE_ENV=production
+ENV PORT=3000
+
+# Create app user for security
+RUN addgroup -g 1001 -S nodejs && \
+    adduser -S kingdom-studios -u 1001
+
+# Set working directory
+WORKDIR /app
+
+# Install production runtime dependencies
+RUN apk add --no-cache \
+    dumb-init \
+    curl \
+    ca-certificates && \
+    rm -rf /var/cache/apk/*
+
+# Copy dependencies from builder stage
+COPY --from=builder --chown=kingdom-studios:nodejs /app/node_modules ./node_modules
+
+# Copy application source
+COPY --chown=kingdom-studios:nodejs . .
+
+# Create necessary directories
+RUN mkdir -p /app/logs /app/tmp && \
+    chown -R kingdom-studios:nodejs /app
+
+# Remove unnecessary files for production
+RUN rm -rf \
+    .git \
+    .github \
+    *.md \
+    .env.example \
+    test-* \
+    enterprise-performance-test.js \
+    advanced-performance-test.js \
+    quick-performance-test.js
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
+    CMD curl -f http://localhost:3000/health || exit 1
+
+# Switch to non-root user
+USER kingdom-studios
+
+# Expose port
+EXPOSE 3000
+
+# Use dumb-init for proper signal handling
+ENTRYPOINT ["dumb-init", "--"]
+
+# Start the application
+CMD ["node", "src/server.js"]
+
+# ==============================================
+# BUILD METADATA
+# ==============================================
+LABEL maintainer="Kingdom Studios <dev@kingdomstudios.app>"
+LABEL version="1.0.0"
+LABEL description="Kingdom Studios Backend - Production Ready"
+LABEL org.opencontainers.image.source="https://github.com/kingdom-studios/backend"
+LABEL org.opencontainers.image.title="Kingdom Studios Backend"
+LABEL org.opencontainers.image.description="Enterprise-scale backend for Kingdom Studios application"

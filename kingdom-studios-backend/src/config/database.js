@@ -6,7 +6,8 @@ import { logger } from '../utils/logger.js';
 let mockDatabase = {
   users: new Map(),
   content: new Map(),
-  analytics: new Map()
+  analytics: new Map(),
+  favorites: new Map() // Map of userId -> Set of contentIds
 };
 
 let useMockMode = false;
@@ -277,6 +278,66 @@ export const MockDB = {
       return event;
     },
     find: (query = {}) => Array.from(mockDatabase.analytics.values())
+  },
+
+  // Favorites operations
+  addFavorite: (userId, contentId) => {
+    if (!mockDatabase.favorites.has(userId)) {
+      mockDatabase.favorites.set(userId, new Set());
+    }
+    mockDatabase.favorites.get(userId).add(contentId);
+    return true;
+  },
+
+  removeFavorite: (userId, contentId) => {
+    if (mockDatabase.favorites.has(userId)) {
+      mockDatabase.favorites.get(userId).delete(contentId);
+      return true;
+    }
+    return false;
+  },
+
+  getFavorites: (userId) => {
+    if (!mockDatabase.favorites.has(userId)) {
+      return [];
+    }
+    const favoriteIds = Array.from(mockDatabase.favorites.get(userId));
+    const favoriteContent = [];
+    
+    for (const contentId of favoriteIds) {
+      const content = mockDatabase.content.get(contentId);
+      if (content) {
+        favoriteContent.push(content);
+      }
+    }
+    
+    return favoriteContent.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+  },
+
+  // Additional content operations
+  addContent: (contentData) => {
+    const id = contentData.id || Date.now().toString();
+    const content = { _id: id, ...contentData, createdAt: new Date() };
+    mockDatabase.content.set(id, content);
+    return content;
+  },
+
+  getContent: (contentId) => {
+    return mockDatabase.content.get(contentId) || null;
+  },
+
+  updateContent: (contentId, updateData) => {
+    const content = mockDatabase.content.get(contentId);
+    if (content) {
+      Object.assign(content, updateData, { updatedAt: new Date() });
+      mockDatabase.content.set(contentId, content);
+      return content;
+    }
+    return null;
+  },
+
+  deleteContent: (contentId) => {
+    return mockDatabase.content.delete(contentId);
   }
 };
 
@@ -296,7 +357,8 @@ export function getDatabaseStats() {
       mode: 'mock',
       users: mockDatabase.users.size,
       content: mockDatabase.content.size,
-      analytics: mockDatabase.analytics.size
+      analytics: mockDatabase.analytics.size,
+      favorites: mockDatabase.favorites.size
     };
   }
   

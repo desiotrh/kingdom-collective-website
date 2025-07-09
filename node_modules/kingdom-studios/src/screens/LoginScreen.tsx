@@ -25,6 +25,8 @@ import {
 import { useAuth } from '../contexts/AuthContext';
 import { KingdomColors, KingdomGradients, KingdomShadows } from '../constants/KingdomColors';
 import KingdomLogo from '../components/KingdomLogo';
+import { AnalyticsService } from '../services/AnalyticsService';
+import { apiClient } from '../services/apiClient';
 
 const LoginScreen = () => {
   const [loading, setLoading] = useState(false);
@@ -74,6 +76,16 @@ const LoginScreen = () => {
 
     setLoading(true);
     try {
+      // Track auth attempt
+      AnalyticsService.getInstance().trackEvent(
+        isRegistering ? 'registration_attempt' : 'login_attempt', 
+        1, 
+        { 
+          method: 'email',
+          faithMode: faithMode,
+        }
+      );
+
       let result;
       if (isRegistering) {
         result = await register(email.trim(), password, firstName.trim(), lastName.trim(), faithMode);
@@ -82,13 +94,46 @@ const LoginScreen = () => {
       }
 
       if (result.success) {
+        // Track successful auth
+        AnalyticsService.getInstance().trackEvent(
+          isRegistering ? 'registration_success' : 'login_success', 
+          1, 
+          { 
+            method: 'email',
+            faithMode: faithMode,
+          }
+        );
+        
         Alert.alert('Success', isRegistering ? 'Account created successfully!' : 'Logged in successfully!');
         // Navigation will be handled automatically by AuthNavigator
       } else {
+        // Track failed auth
+        AnalyticsService.getInstance().trackEvent(
+          isRegistering ? 'registration_failed' : 'login_failed', 
+          1, 
+          { 
+            method: 'email',
+            error: result.error,
+            faithMode: faithMode,
+          }
+        );
+        
         Alert.alert('Error', result.error || `${isRegistering ? 'Registration' : 'Login'} failed.`);
       }
     } catch (error) {
       console.error('Auth error:', error);
+      
+      // Track error
+      AnalyticsService.getInstance().trackEvent(
+        isRegistering ? 'registration_error' : 'login_error', 
+        1, 
+        { 
+          method: 'email',
+          error: error instanceof Error ? error.message : 'Unknown error',
+          faithMode: faithMode,
+        }
+      );
+      
       Alert.alert('Error', `${isRegistering ? 'Registration' : 'Login'} failed.`);
     } finally {
       setLoading(false);
@@ -98,11 +143,29 @@ const LoginScreen = () => {
   const handleGoogleSignIn = async (authResponse: any) => {
     setGoogleLoading(true);
     try {
+      AnalyticsService.getInstance().trackEvent('login_attempt', 1, { 
+        method: 'google',
+        faithMode: faithMode,
+      });
+      
       await signInWithGoogle(authResponse);
+      
+      AnalyticsService.getInstance().trackEvent('login_success', 1, { 
+        method: 'google',
+        faithMode: faithMode,
+      });
+      
       Alert.alert('Success', 'Logged in successfully!');
       // Navigation will be handled automatically by AuthNavigator
     } catch (error) {
       console.error('Google login error:', error);
+      
+      AnalyticsService.getInstance().trackEvent('login_failed', 1, { 
+        method: 'google',
+        error: error instanceof Error ? error.message : 'Unknown error',
+        faithMode: faithMode,
+      });
+      
       Alert.alert('Error', 'Login failed.');
     } finally {
       setGoogleLoading(false);
@@ -123,11 +186,29 @@ const LoginScreen = () => {
   const handleFacebookPress = async () => {
     setFacebookLoading(true);
     try {
+      AnalyticsService.getInstance().trackEvent('login_attempt', 1, { 
+        method: 'facebook',
+        faithMode: faithMode,
+      });
+      
       await signInWithFacebook();
+      
+      AnalyticsService.getInstance().trackEvent('login_success', 1, { 
+        method: 'facebook',
+        faithMode: faithMode,
+      });
+      
       Alert.alert('Success', 'Logged in successfully!');
       // Navigation will be handled automatically by AuthNavigator
     } catch (error) {
       console.error('Facebook login error:', error);
+      
+      AnalyticsService.getInstance().trackEvent('login_failed', 1, { 
+        method: 'facebook',
+        error: error instanceof Error ? error.message : 'Unknown error',
+        faithMode: faithMode,
+      });
+      
       Alert.alert('Error', 'Login failed.');
     } finally {
       setFacebookLoading(false);
@@ -617,69 +698,6 @@ const styles = StyleSheet.create({
   signupLink: {
     color: KingdomColors.gold.bright,
     fontWeight: '600',
-  },
-  scrollContainer: {
-    flex: 1,
-  },
-  scrollContent: {
-    flexGrow: 1,
-    minHeight: height,
-  },
-  formContainer: {
-    marginBottom: 20,
-    gap: 16,
-  },
-  nameRow: {
-    flexDirection: 'row',
-    gap: 12,
-  },
-  nameInput: {
-    flex: 1,
-  },
-  inputContainer: {
-    backgroundColor: 'rgba(255, 255, 255, 0.08)',
-    borderRadius: 12,
-    borderWidth: 1,
-    borderColor: 'rgba(255, 255, 255, 0.15)',
-  },
-  textInput: {
-    color: KingdomColors.text.primary,
-    fontSize: 16,
-    paddingHorizontal: 16,
-    paddingVertical: 14,
-    fontWeight: '400',
-  },
-  faithModeContainer: {
-    flexDirection: 'row',
-    alignItems: 'flex-start',
-    gap: 12,
-    paddingVertical: 8,
-  },
-  checkbox: {
-    width: 20,
-    height: 20,
-    borderRadius: 4,
-    borderWidth: 2,
-    borderColor: 'rgba(255, 255, 255, 0.3)',
-    backgroundColor: 'rgba(255, 255, 255, 0.05)',
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginTop: 2,
-  },
-  checkboxChecked: {
-    backgroundColor: KingdomColors.primary.royalPurple,
-    borderColor: KingdomColors.primary.royalPurple,
-  },
-  checkmark: {
-    color: KingdomColors.text.primary,
-    fontSize: 12,
-    fontWeight: 'bold',
-  },
-  faithModeText: {
-    flex: 1,
-    color: KingdomColors.text.secondary,
-    fontSize: 14,
-    lineHeight: 20,
   },
 });
 

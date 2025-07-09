@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import {
   View,
   Text,
@@ -11,15 +11,17 @@ import {
   Dimensions,
   Image,
   ImageStyle,
+  RefreshControl,
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-import { signOut } from 'firebase/auth';
-import { getAuth } from 'firebase/auth';
-import { app } from '../config/firebase';
 import { useFaithMode } from '../contexts/FaithModeContext';
 import { useAuth } from '../contexts/AuthContext';
 import { KingdomColors, KingdomShadows } from '../constants/KingdomColors';
 import KingdomLogo from '../components/KingdomLogo';
+import { contentService, ContentStats } from '../services/contentService';
+import { realTimeService, NotificationData } from '../services/realTimeService';
+import { apiClient } from '../services/apiClient';
+import { AnalyticsService } from '../services/AnalyticsService';
 
 const { width } = Dimensions.get('window');
 
@@ -44,9 +46,71 @@ interface TransactionData {
 
 const DashboardScreen = () => {
   const [loading, setLoading] = useState(false);
+  const [refreshing, setRefreshing] = useState(false);
+  const [contentStats, setContentStats] = useState<ContentStats | null>(null);
+  const [notifications, setNotifications] = useState<NotificationData[]>([]);
+  const [connectionStatus, setConnectionStatus] = useState<'online' | 'offline' | 'connecting'>('connecting');
   const { faithMode } = useFaithMode();
-  const { user } = useAuth();
-  const auth = getAuth(app);
+  const { user, logout, connectionStatus: authConnectionStatus } = useAuth();
+
+  // Load dashboard data
+  const loadDashboardData = useCallback(async () => {
+    try {
+      setLoading(true);
+      
+      // Load content statistics
+      const statsResponse = await contentService.getStats();
+      if (statsResponse.success) {
+        setContentStats(statsResponse.data);
+      }
+
+    } catch (error) {
+      console.error('Failed to load dashboard data:', error);
+      Alert.alert('Error', 'Failed to load dashboard data. Please try again.');
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
+  // Handle pull to refresh
+  const handleRefresh = useCallback(async () => {
+    setRefreshing(true);
+    await loadDashboardData();
+    setRefreshing(false);
+  }, [loadDashboardData]);
+
+  // Initialize real-time connection
+  useEffect(() => {
+    if (user && authConnectionStatus === 'online') {
+      // Connect to real-time service
+      realTimeService.connect(user.id);
+
+      // Subscribe to notifications
+      realTimeService.subscribeToNotifications((notification: NotificationData) => {
+        setNotifications(prev => [notification, ...prev.slice(0, 9)]); // Keep last 10
+      });
+
+      // Subscribe to connection status
+      realTimeService.on('connectionStatus', (status: any) => {
+        setConnectionStatus(status.status === 'connected' ? 'online' : 
+                           status.status === 'connecting' ? 'connecting' : 'offline');
+      });
+
+      return () => {
+        realTimeService.disconnect();
+      };
+    }
+  }, [user, authConnectionStatus]);
+
+  // Track dashboard view
+  useEffect(() => {
+    if (user) {
+      AnalyticsService.getInstance().trackEvent('dashboard_viewed', 1, {
+        faithMode: faithMode,
+        userId: user.id,
+      });
+    }
+  }, [user, faithMode]);
 
   // Mock analytics data
   const analyticsData: AnalyticsCardData[] = [
@@ -127,7 +191,16 @@ const DashboardScreen = () => {
   const handleLogout = async () => {
     setLoading(true);
     try {
-      await signOut(auth);
+      // Track logout event
+      if (user) {
+        AnalyticsService.getInstance().trackEvent('user_logout', 1, {
+          source: 'dashboard',
+          faithMode: faithMode,
+          userId: user.id,
+        });
+      }
+      
+      await logout();
       Alert.alert('Success', 'Logged out successfully!');
       // Navigation will be handled automatically by AuthNavigator
     } catch (error) {
@@ -224,17 +297,21 @@ const DashboardScreen = () => {
         <View style={styles.headerContent}>
           <View style={styles.headerTop}>
             <View style={styles.userSection}>
-              <Image
-                source={{ uri: user?.photoURL || 'https://picsum.photos/100/100?random=user' }}
-                style={styles.userAvatar}
-              />
+              <View style={styles.userAvatarContainer}>
+                <Text style={styles.userAvatarText}>
+                  {user?.name ? user.name.split(' ').map(n => n.charAt(0)).join('').toUpperCase() : user?.email?.charAt(0)?.toUpperCase() || '?'}
+                </Text>
+              </View>
               <View style={styles.userInfo}>
                 <Text style={styles.welcomeText}>
                   {faithMode ? 'Kingdom Blessings' : 'Welcome back'}
                 </Text>
                 <Text style={styles.userName}>
-                  {user?.displayName || user?.email?.split('@')[0] || 'Creator'}
+                  {user?.name || user?.email?.split('@')[0] || 'Creator'}
                 </Text>
+                {user?.faithMode && (
+                  <Text style={styles.faithModeIndicator}>✝️ Faith Mode</Text>
+                )}
               </View>
             </View>
             
@@ -262,7 +339,17 @@ const DashboardScreen = () => {
         </View>
       </LinearGradient>
 
-      <ScrollView style={styles.scrollContainer} showsVerticalScrollIndicator={false}>
+      <ScrollView
+        style={styles.scrollContainer}
+        showsVerticalScrollIndicator={false}
+        refreshControl={
+          <RefreshControl
+            refreshing={refreshing}
+            onRefresh={handleRefresh}
+            tintColor={KingdomColors.primary.royalPurple}
+          />
+        }
+      >
         {/* Analytics Cards Grid */}
         <View style={styles.analyticsSection}>
           <Text style={styles.sectionTitle}>
@@ -405,6 +492,21 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: KingdomColors.gold.bright,
   } as ImageStyle,
+  userAvatarContainer: {
+    width: 50,
+    height: 50,
+    borderRadius: 25,
+    backgroundColor: KingdomColors.primary.royalPurple,
+    borderWidth: 2,
+    borderColor: KingdomColors.gold.bright,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  userAvatarText: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#ffffff',
+  },
   userInfo: {
     flex: 1,
   },
@@ -417,6 +519,12 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
     color: KingdomColors.text.primary,
+  },
+  faithModeIndicator: {
+    fontSize: 12,
+    color: '#4CAF50',
+    marginTop: 2,
+    fontWeight: '600',
   },
   headerActions: {
     flexDirection: 'row',

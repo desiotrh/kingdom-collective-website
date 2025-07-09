@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   View,
   Text,
@@ -8,16 +8,16 @@ import {
   StyleSheet,
   SafeAreaView,
   Alert,
+  ActivityIndicator,
 } from 'react-native';
-import { signOut } from 'firebase/auth';
-import { getAuth } from 'firebase/auth';
-import { app } from '../config/firebase';
 import { useAuth } from '../contexts/AuthContext';
 import { useAppNavigation } from '../utils/navigationUtils';
 import { useFaithMode } from '../contexts/FaithModeContext';
 import QuickActionsWidget from '../components/QuickActionsWidget';
 import KingdomLogo from '../components/KingdomLogo';
 import { KingdomColors } from '../constants/KingdomColors';
+import { AnalyticsService } from '../services/AnalyticsService';
+import { apiClient } from '../services/apiClient';
 
 interface ToolCard {
   id: string;
@@ -161,10 +161,21 @@ const toolCards: ToolCard[] = [
 ];
 
 const CreatorDashboardScreen = () => {
-  const { user } = useAuth();
+  const { user, logout } = useAuth();
   const { faithMode } = useFaithMode();
   const navigation = useAppNavigation();
-  const auth = getAuth(app);
+  const [isLoggingOut, setIsLoggingOut] = useState(false);
+
+  // Track screen view
+  useEffect(() => {
+    if (user) {
+      AnalyticsService.getInstance().trackEvent('creator_dashboard_viewed', 1, {
+        faithMode: faithMode,
+        userRole: user.email?.includes('admin') ? 'admin' : 'creator',
+        userId: user.id,
+      });
+    }
+  }, [user, faithMode]);
 
   // Mock admin check - in a real app, this would come from user profile/database
   const isAdmin = user?.email === 'admin@kingdomstudios.com' || user?.email?.includes('admin');
@@ -223,12 +234,26 @@ const CreatorDashboardScreen = () => {
   };
 
   const handleLogout = async () => {
+    if (isLoggingOut) return;
+    
+    setIsLoggingOut(true);
     try {
-      await signOut(auth);
+      // Track logout event
+      if (user) {
+        AnalyticsService.getInstance().trackEvent('user_logout', 1, {
+          source: 'creator_dashboard',
+          faithMode: faithMode,
+          userId: user.id,
+        });
+      }
+      
+      await logout();
       Alert.alert('Success', 'Logged out successfully!');
     } catch (error) {
       console.error('Logout error:', error);
       Alert.alert('Error', 'Failed to log out. Please try again.');
+    } finally {
+      setIsLoggingOut(false);
     }
   };
 
@@ -253,24 +278,24 @@ const CreatorDashboardScreen = () => {
       
       <View style={styles.userInfo}>
         <View style={styles.profileImageContainer}>
-          {user?.photoURL ? (
-            <Image source={{ uri: user.photoURL }} style={styles.profileImage} />
-          ) : (
-            <View style={styles.profileImagePlaceholder}>
-              <Text style={styles.profileImageText}>
-                {user?.displayName?.charAt(0)?.toUpperCase() || user?.email?.charAt(0)?.toUpperCase() || '?'}
-              </Text>
-            </View>
-          )}
+          {/* For now, we'll use initials since we don't have photoURL in backend User */}
+          <View style={styles.profileImagePlaceholder}>
+            <Text style={styles.profileImageText}>
+              {user?.name ? user.name.split(' ').map(n => n.charAt(0)).join('').toUpperCase() : user?.email?.charAt(0)?.toUpperCase() || '?'}
+            </Text>
+          </View>
         </View>
         <View style={styles.profileInfo}>
           <Text style={styles.welcomeText}>
             {faithMode ? 'God bless you,' : 'Welcome back,'}
           </Text>
           <Text style={styles.displayName}>
-            {user?.displayName || 'Creator'}
+            {user?.name || 'Creator'}
           </Text>
           <Text style={styles.emailText}>{user?.email}</Text>
+          {user?.faithMode && (
+            <Text style={styles.faithModeIndicator}>✝️ Faith Mode Active</Text>
+          )}
         </View>
       </View>
     </View>
@@ -399,6 +424,12 @@ const styles = StyleSheet.create({
   emailText: {
     fontSize: 14,
     color: '#999999',
+  },
+  faithModeIndicator: {
+    fontSize: 12,
+    color: '#4CAF50',
+    marginTop: 4,
+    fontWeight: '600',
   },
   logoutButton: {
     paddingHorizontal: 16,

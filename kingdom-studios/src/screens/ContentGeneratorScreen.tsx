@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   View,
   Text,
@@ -10,6 +10,9 @@ import {
   Dimensions,
   FlatList,
   Modal,
+  ActivityIndicator,
+  Alert,
+  TextInput,
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useAppNavigation } from '../utils/navigationUtils';
@@ -17,6 +20,12 @@ import { useFaithMode } from '../contexts/FaithModeContext';
 import { useAuth } from '../contexts/AuthContext';
 import { KingdomColors, KingdomShadows } from '../constants/KingdomColors';
 import KingdomLogo from '../components/KingdomLogo';
+import backendAPI, { 
+  type ContentGenerationRequest, 
+  type ContentGenerationResponse 
+} from '../services/backendAPI';
+import { contentService } from '../services/contentService';
+import { AnalyticsService } from '../services/AnalyticsService';
 
 const { width } = Dimensions.get('window');
 
@@ -28,20 +37,26 @@ interface Product {
   image: string;
 }
 
-interface GeneratedContent {
+interface GeneratedContentType {
   post: string;
   caption: string;
   reelIdea: string;
+}
+
+interface ContentGenerationState {
+  isLoading: boolean;
+  error: string | null;
+  content: ContentGenerationResponse | null;
 }
 
 interface ContentTemplate {
   id: string;
   title: string;
   description: string;
-  icon: string;
+  prompt: string;
   category: string;
-  color: string;
-  gradient: string[];
+  platforms: string[];
+  tags: string[];
 }
 
 interface RecentContent {
@@ -100,64 +115,316 @@ const mockProducts: Product[] = [
   },
 ];
 
-const mockResponses: { [key: string]: GeneratedContent } = {
-  '1': {
-    post: '🔥 God is your provider — walk in faith, not fear. This Faith Over Fear tee reminds you daily that His love conquers all! 💪✨ #FaithOverFear #KingdomStudio',
-    caption: 'Stepping out in faith today! 🙏 This tee is more than fashion - it\'s a declaration. Who else is choosing faith over fear? 💫 #FaithWalk #BlessedLife',
-    reelIdea: 'Show someone putting on the shirt in slow-mo with worship music, then cut to them confidently walking through their day with Bible verses overlaying the scenes.',
-  },
-  '2': {
-    post: '👑 Wear your crown with purpose! This Kingdom Crown Cap represents the royal identity we have in Christ. You are chosen, beloved, and called to greatness! ✨ #KingdomCrown #RoyalIdentity',
-    caption: 'Walking in my royal identity today! 👑 This cap reminds me I\'m a daughter/son of the King. How are you showing up as royalty today? 💎 #CrownedByGod',
-    reelIdea: 'Transition reel: Start with messy hair, put on the crown cap, then show confident poses with text overlay "Remember who you are in Christ" with uplifting music.',
-  },
-  '3': {
-    post: '🙌 Blessed and grateful! This cozy hoodie wraps you in comfort while declaring God\'s goodness over your life. Perfect for those cool worship nights! 🔥 #Blessed #WorshipWear',
-    caption: 'Cozy vibes with eternal truth! 🤗 This hoodie is my go-to for morning prayers and evening gratitude. What are you blessed by today? ✨ #BlessedLife #Grateful',
-    reelIdea: 'Cozy morning routine reel: Wake up, put on the hoodie, make coffee, read Bible, with peaceful acoustic music and gratitude text overlays.',
-  },
-  '4': {
-    post: '📱 Let your phone case preach! Every notification becomes a reminder of God\'s promises. Scripture at your fingertips, faith in your pocket! 🙏 #ScriptureDaily #FaithTech',
-    caption: 'My phone case is my daily devotional! 📖 Every time I check my phone, I see God\'s truth. What scripture speaks to your heart today? 💕 #WordOfGod',
-    reelIdea: 'Day-in-the-life reel showing the phone case in different scenarios: texting friends encouragement, taking photos of nature, reading Bible app, with scripture verses appearing on screen.',
-  },
-  '5': {
-    post: '✝️ Wearing His love close to my heart! This cross necklace isn\'t just jewelry - it\'s a symbol of the greatest love story ever told. Carry His presence with you always! 💕 #CrossNecklace #LoveOfChrist',
-    caption: 'His love is my accessory! ✝️ This necklace reminds me daily of the cross and His sacrifice. What reminds you of God\'s love throughout your day? 🤍 #CloseToMyHeart',
-    reelIdea: 'Getting ready reel: Put on the necklace as the final touch, then show close-ups of the cross catching light throughout the day with worship music and love-themed Bible verses.',
-  },
-  '6': {
-    post: '📖 Document your journey with God! This prayer journal is where miracles meet the page. Watch how your faith grows as you write your story with Him! ✨ #PrayerJournal #FaithJourney',
-    caption: 'My prayer journal is my treasure! 📝 Every page tells of God\'s faithfulness. What prayer has He answered for you lately? Share below! 🙏 #AnsweredPrayers',
-    reelIdea: 'Journal flip-through reel: Show pages with handwritten prayers, highlighted answered prayers, dried flowers, with soft piano music and text showing "God\'s faithfulness through the pages".',
-  },
-};
-
 const ContentGeneratorScreen = () => {
   const navigation = useAppNavigation();
   const { faithMode } = useFaithMode();
+  const { user } = useAuth();
+  // Content generation state
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [modalVisible, setModalVisible] = useState(false);
-  const [generatedContent, setGeneratedContent] = useState<string>('');
-  const [contentType, setContentType] = useState<string>('');
+  const [contentType, setContentType] = useState('');
+  const [contentGeneration, setContentGeneration] = useState<ContentGenerationState>({
+    isLoading: false,
+    error: null,
+    content: null,
+  });
+
+  // Product state
+  const [products, setProducts] = useState<Product[]>([]);
+  const [loadingProducts, setLoadingProducts] = useState(false);
+
+  // Platform and template state
+  const [selectedPlatform, setSelectedPlatform] = useState<string>('instagram');
+  const [templates, setTemplates] = useState<ContentTemplate[]>([]);
+  const [selectedTemplate, setSelectedTemplate] = useState<ContentTemplate | null>(null);
+  const [showTemplates, setShowTemplates] = useState(false);
+  const [customPrompt, setCustomPrompt] = useState('');
+  
+  // Enhanced generation options
+  const [selectedTone, setSelectedTone] = useState<string>('inspirational');
+  const [selectedLength, setSelectedLength] = useState<string>('medium');
+  const [contentSubtype, setContentSubtype] = useState<string>('post');
+  const [showAdvancedOptions, setShowAdvancedOptions] = useState(false);
+
+  // Load products on component mount
+  useEffect(() => {
+    loadProducts();
+    loadTemplates();
+  }, []);
+
+  const loadProducts = async () => {
+    setLoadingProducts(true);
+    try {
+      // For now, using mock data. In the future, this will call the Products API
+      // const response = await ProductAPI.getProducts();
+      setProducts(mockProducts);
+    } catch (error) {
+      console.error('Failed to load products:', error);
+      setProducts(mockProducts);
+    } finally {
+      setLoadingProducts(false);
+    }
+  };
+
+  const loadTemplates = async () => {
+    try {
+      // Use the backend API to get templates
+      const allTemplates = await backendAPI.getContentTemplates();
+      
+      // Filter by faith mode and platform
+      let filteredTemplates = allTemplates;
+      if (faithMode) {
+        filteredTemplates = allTemplates.filter(t => 
+          t.category === 'faith' || t.category === 'business' || t.category === 'inspiration'
+        );
+      }
+      if (selectedPlatform) {
+        filteredTemplates = filteredTemplates.filter(t => t.platforms.includes(selectedPlatform));
+      }
+
+      setTemplates(filteredTemplates.map(t => ({
+        id: t.id,
+        title: t.name,
+        description: t.description || '',
+        prompt: t.prompt,
+        category: t.category,
+        platforms: t.platforms,
+        tags: [], // Backend templates don't have tags yet
+      })));
+    } catch (error) {
+      console.error('Failed to load templates from API, using fallback:', error);
+      
+      // Fallback to mock templates
+      const mockTemplates: ContentTemplate[] = [
+        {
+          id: 'business_growth_1',
+          title: 'Business Growth Strategy',
+          description: 'Template for sharing business growth insights',
+          prompt: 'Share a key business growth strategy that has worked for you, including specific tactics and measurable results.',
+          category: 'business',
+          platforms: ['linkedin', 'instagram', 'facebook'],
+          tags: ['growth', 'strategy', 'business']
+        },
+        {
+          id: 'kingdom_principles_1',
+          title: 'Kingdom Business Principles',
+          description: 'Template for sharing biblical business wisdom',
+          prompt: 'Share a biblical principle that has transformed your approach to business, including the scripture reference and practical application.',
+          category: 'faith',
+          platforms: ['instagram', 'facebook', 'linkedin'],
+          tags: ['kingdom', 'principles', 'biblical', 'business']
+        },
+        {
+          id: 'product_launch_1',
+          title: 'Product Launch Announcement',
+          description: 'Template for announcing new products',
+          prompt: 'Create an exciting announcement for a new product launch, highlighting key benefits and creating urgency.',
+          category: 'marketing',
+          platforms: ['instagram', 'facebook', 'twitter', 'linkedin'],
+          tags: ['product', 'launch', 'announcement']
+        }
+      ];
+
+      // Filter by faith mode and platform
+      let filteredTemplates = mockTemplates;
+      if (faithMode) {
+        filteredTemplates = mockTemplates.filter(t => t.category === 'faith' || t.category === 'business');
+      }
+      if (selectedPlatform) {
+        filteredTemplates = filteredTemplates.filter(t => t.platforms.includes(selectedPlatform));
+      }
+
+      setTemplates(filteredTemplates);
+    }
+  };
+
+  // Reload templates when platform or faith mode changes
+  useEffect(() => {
+    loadTemplates();
+  }, [selectedPlatform, faithMode]);
 
   const handleProductPress = (product: Product) => {
     setSelectedProduct(product);
     setModalVisible(true);
   };
 
-  const handleGenerateContent = (type: 'post' | 'caption' | 'reelIdea') => {
-    if (!selectedProduct) return;
-    
-    const content = mockResponses[selectedProduct.id];
-    setGeneratedContent(content[type]);
+  const handleGenerateContent = async (type: 'post' | 'caption' | 'reelIdea') => {
+    if (!selectedProduct || !user) return;
+
+    setContentGeneration({
+      isLoading: true,
+      error: null,
+      content: null,
+    });
     setContentType(type);
+
+    try {
+      // Track analytics event with AnalyticsService
+      AnalyticsService.getInstance().trackEvent('content_generation_started', 1, {
+        contentType: type,
+        platform: selectedPlatform,
+        userId: user.id,
+        faithMode: faithMode,
+      });
+
+      // Track with backend API as well for backwards compatibility
+      await backendAPI.trackContentGeneration({
+        contentType: type,
+        platform: selectedPlatform,
+        success: false, // Will update to true on success
+      });
+
+      // Create enhanced content generation request
+      const basePrompt = customPrompt || selectedTemplate?.prompt || 
+        `Generate a ${type} for the product "${selectedProduct.title}" priced at ${selectedProduct.price}. ${
+          faithMode 
+            ? 'Include faith-based and inspirational messaging that aligns with Christian values and biblical principles.'
+            : 'Create inspiring, engaging, and conversion-focused content.'
+        }`;
+
+      const contentRequest: ContentGenerationRequest = {
+        contentType: type,
+        platform: selectedPlatform,
+        prompt: basePrompt,
+        tone: selectedTone,
+        length: selectedLength,
+        subtype: contentSubtype,
+        customPrompt: customPrompt || undefined,
+      };
+
+      // Try enterprise content service first for better performance
+      let response: ContentGenerationResponse;
+      try {
+        // Use enterprise content service for enhanced performance
+        const enterpriseResponse = await contentService.generateContent({
+          contentType: type,
+          platform: selectedPlatform,
+          prompt: basePrompt,
+          tone: selectedTone,
+          length: selectedLength,
+          subtype: contentSubtype,
+          customPrompt: customPrompt || undefined,
+          faithMode: faithMode,
+        });
+        
+        // Convert to expected format from API response
+        response = enterpriseResponse.data;
+      } catch (enterpriseError) {
+        // Fall back to direct backend API if enterprise service fails
+        console.log('Enterprise service unavailable, falling back to direct API');
+        response = await backendAPI.generateContent(contentRequest);
+      }
+
+      setContentGeneration({
+        isLoading: false,
+        error: null,
+        content: response,
+      });
+
+      // Track successful generation
+      AnalyticsService.getInstance().trackEvent('content_generation_success', 1, {
+        contentType: type,
+        platform: selectedPlatform,
+        userId: user.id,
+        faithMode: faithMode,
+        wordCount: response.metadata?.wordCount,
+      });
+
+      await backendAPI.trackContentGeneration({
+        contentType: type,
+        platform: selectedPlatform,
+        success: true,
+      });
+    } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : 'Failed to generate content';
+      
+      setContentGeneration({
+        isLoading: false,
+        error: errorMessage,
+        content: null,
+      });
+
+      // Track error with enhanced analytics
+      AnalyticsService.getInstance().trackEvent('content_generation_error', 1, {
+        contentType: type,
+        platform: selectedPlatform,
+        userId: user.id,
+        error: errorMessage,
+        faithMode: faithMode,
+      });
+
+      // Track error (simplified for backend API)
+      await backendAPI.trackContentGeneration({
+        contentType: type,
+        platform: selectedPlatform,
+        success: false,
+      });
+
+      Alert.alert(
+        'Generation Failed',
+        errorMessage,
+        [{ text: 'OK', style: 'default' }]
+      );
+    }
+  };
+
+  const handleCustomGeneration = async () => {
+    if (!selectedProduct || !user) return;
+
+    // Use the current content subtype or default to 'post'
+    const type = contentSubtype as 'post' | 'caption' | 'reelIdea';
+    await handleGenerateContent(type);
+  };
+
+  const handleAddToFavorites = async () => {
+    if (!contentGeneration.content || !user) return;
+
+    try {
+      await backendAPI.addToFavorites({
+        content: contentGeneration.content.content,
+        contentType: contentGeneration.content.contentType,
+        platform: contentGeneration.content.platform,
+        title: `${contentGeneration.content.contentType} for ${selectedProduct?.title}`,
+      });
+
+      Alert.alert(
+        'Added to Favorites! ⭐',
+        'This content has been saved to your favorites.',
+        [{ text: 'OK', style: 'default' }]
+      );
+    } catch (error) {
+      console.error('Failed to add to favorites:', error);
+      Alert.alert(
+        'Error',
+        'Failed to add to favorites. Please try again.',
+        [{ text: 'OK', style: 'default' }]
+      );
+    }
   };
 
   const handleCloseModal = () => {
     setModalVisible(false);
     setSelectedProduct(null);
-    setGeneratedContent('');
+    setContentGeneration({
+      isLoading: false,
+      error: null,
+      content: null,
+    });
+    setContentType('');
+  };
+
+  const handleTryAgain = () => {
+    if (contentType) {
+      handleGenerateContent(contentType as 'post' | 'caption' | 'reelIdea');
+    }
+  };
+
+  const handleBackToOptions = () => {
+    setContentGeneration({
+      isLoading: false,
+      error: null,
+      content: null,
+    });
     setContentType('');
   };
 
@@ -201,32 +468,39 @@ const ContentGeneratorScreen = () => {
                 </TouchableOpacity>
               </View>
 
-              {!generatedContent ? (
-                <View style={styles.optionsContainer}>
-                  <Text style={styles.optionsTitle}>Generate Content:</Text>
-                  
-                  <TouchableOpacity
-                    style={styles.optionButton}
-                    onPress={() => handleGenerateContent('post')}
-                  >
-                    <Text style={styles.optionText}>📝 Generate Post</Text>
-                  </TouchableOpacity>
-
-                  <TouchableOpacity
-                    style={styles.optionButton}
-                    onPress={() => handleGenerateContent('caption')}
-                  >
-                    <Text style={styles.optionText}>💬 Generate Caption</Text>
-                  </TouchableOpacity>
-
-                  <TouchableOpacity
-                    style={styles.optionButton}
-                    onPress={() => handleGenerateContent('reelIdea')}
-                  >
-                    <Text style={styles.optionText}>🎬 Generate Reel Idea</Text>
-                  </TouchableOpacity>
+              {contentGeneration.isLoading ? (
+                <View style={styles.loadingContainer}>
+                  <ActivityIndicator size="large" color="#ffffff" />
+                  <Text style={styles.loadingText}>
+                    Generating {contentType === 'reelIdea' ? 'reel idea' : contentType}...
+                  </Text>
+                  <Text style={styles.loadingSubtext}>
+                    {faithMode 
+                      ? "Creating faith-inspired content for you..."
+                      : "Creating inspiring content for you..."
+                    }
+                  </Text>
                 </View>
-              ) : (
+              ) : contentGeneration.error ? (
+                <View style={styles.errorContainer}>
+                  <Text style={styles.errorTitle}>❌ Generation Failed</Text>
+                  <Text style={styles.errorText}>{contentGeneration.error}</Text>
+                  <View style={styles.errorActions}>
+                    <TouchableOpacity
+                      style={styles.retryButton}
+                      onPress={handleTryAgain}
+                    >
+                      <Text style={styles.retryButtonText}>� Try Again</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                      style={styles.backToOptionsButton}
+                      onPress={handleBackToOptions}
+                    >
+                      <Text style={styles.backToOptionsText}>← Back to Options</Text>
+                    </TouchableOpacity>
+                  </View>
+                </View>
+              ) : contentGeneration.content ? (
                 <View style={styles.contentContainer}>
                   <Text style={styles.contentTypeTitle}>
                     {contentType === 'post' && '📝 Generated Post'}
@@ -234,14 +508,321 @@ const ContentGeneratorScreen = () => {
                     {contentType === 'reelIdea' && '🎬 Generated Reel Idea'}
                   </Text>
                   <ScrollView style={styles.contentScrollView}>
-                    <Text style={styles.generatedText}>{generatedContent}</Text>
+                    <Text style={styles.generatedText}>{contentGeneration.content.content}</Text>
+                    
+                    {/* Show metadata if available */}
+                    {contentGeneration.content.metadata && Object.keys(contentGeneration.content.metadata).length > 0 && (
+                      <View style={styles.metadataContainer}>
+                        <Text style={styles.metadataTitle}>Additional Info:</Text>
+                        {Object.entries(contentGeneration.content.metadata).map(([key, value]) => (
+                          <Text key={key} style={styles.metadataItem}>
+                            {key}: {String(value)}
+                          </Text>
+                        ))}
+                      </View>
+                    )}
                   </ScrollView>
-                  <TouchableOpacity
-                    style={styles.backToOptionsButton}
-                    onPress={() => setGeneratedContent('')}
-                  >
-                    <Text style={styles.backToOptionsText}>← Back to Options</Text>
-                  </TouchableOpacity>
+                  <View style={styles.contentActions}>
+                    <TouchableOpacity
+                      style={styles.favoriteButton}
+                      onPress={handleAddToFavorites}
+                    >
+                      <Text style={styles.favoriteButtonText}>⭐ Add to Favorites</Text>
+                    </TouchableOpacity>
+                    
+                    {/* Content Refinement Options */}
+                    <View style={styles.refinementSection}>
+                      <Text style={styles.refinementLabel}>Refine Content:</Text>
+                      <View style={styles.refinementButtons}>
+                        <TouchableOpacity
+                          style={styles.refinementButton}
+                          onPress={() => handleRefineContent('shorten')}
+                        >
+                          <Text style={styles.refinementButtonText}>✂️ Shorten</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                          style={styles.refinementButton}
+                          onPress={() => handleRefineContent('expand')}
+                        >
+                          <Text style={styles.refinementButtonText}>📖 Expand</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                          style={styles.refinementButton}
+                          onPress={() => handleRefineContent('improve')}
+                        >
+                          <Text style={styles.refinementButtonText}>✨ Improve</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                          style={styles.refinementButton}
+                          onPress={() => handleRefineContent('tone_change', `Change tone to be more ${selectedTone}`)}
+                        >
+                          <Text style={styles.refinementButtonText}>🎭 Change Tone</Text>
+                        </TouchableOpacity>
+                      </View>
+                    </View>
+                    
+                    <TouchableOpacity
+                      style={styles.generateAgainButton}
+                      onPress={() => handleGenerateContent(contentType as 'post' | 'caption' | 'reelIdea')}
+                    >
+                      <Text style={styles.generateAgainText}>🔄 Generate Again</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                      style={styles.backToOptionsButton}
+                      onPress={handleBackToOptions}
+                    >
+                      <Text style={styles.backToOptionsText}>← Back to Options</Text>
+                    </TouchableOpacity>
+                  </View>
+                </View>
+              ) : (
+                <View style={styles.optionsContainer}>
+                  <Text style={styles.optionsTitle}>Generate Content:</Text>
+                  
+                  {/* Platform Selection */}
+                  <View style={styles.platformSection}>
+                    <Text style={styles.sectionLabel}>Platform:</Text>
+                    <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.platformScroll}>
+                      {['instagram', 'facebook', 'linkedin', 'tiktok', 'twitter'].map((platform) => (
+                        <TouchableOpacity
+                          key={platform}
+                          style={[
+                            styles.platformButton,
+                            selectedPlatform === platform && styles.platformButtonActive
+                          ]}
+                          onPress={() => setSelectedPlatform(platform)}
+                        >
+                          <Text style={[
+                            styles.platformButtonText,
+                            selectedPlatform === platform && styles.platformButtonTextActive
+                          ]}>
+                            {platform === 'instagram' && '📸'} 
+                            {platform === 'facebook' && '📘'} 
+                            {platform === 'linkedin' && '💼'} 
+                            {platform === 'tiktok' && '🎵'} 
+                            {platform === 'twitter' && '🐦'} 
+                            {platform.charAt(0).toUpperCase() + platform.slice(1)}
+                          </Text>
+                        </TouchableOpacity>
+                      ))}
+                    </ScrollView>
+                  </View>
+
+                  {/* Content Type Options */}
+                  <View style={styles.contentTypeSection}>
+                    <Text style={styles.sectionLabel}>Content Type:</Text>
+                    
+                    <TouchableOpacity
+                      style={styles.optionButton}
+                      onPress={() => handleGenerateContent('post')}
+                    >
+                      <View style={styles.optionContent}>
+                        <Text style={styles.optionIcon}>📝</Text>
+                        <View style={styles.optionTextContainer}>
+                          <Text style={styles.optionText}>Generate Post</Text>
+                          <Text style={styles.optionDescription}>
+                            Detailed social media post with engaging content
+                          </Text>
+                        </View>
+                      </View>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity
+                      style={styles.optionButton}
+                      onPress={() => handleGenerateContent('caption')}
+                    >
+                      <View style={styles.optionContent}>
+                        <Text style={styles.optionIcon}>💬</Text>
+                        <View style={styles.optionTextContainer}>
+                          <Text style={styles.optionText}>Generate Caption</Text>
+                          <Text style={styles.optionDescription}>
+                            Short, punchy caption perfect for images
+                          </Text>
+                        </View>
+                      </View>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity
+                      style={styles.optionButton}
+                      onPress={() => handleGenerateContent('reelIdea')}
+                    >
+                      <View style={styles.optionContent}>
+                        <Text style={styles.optionIcon}>🎬</Text>
+                        <View style={styles.optionTextContainer}>
+                          <Text style={styles.optionText}>Generate Reel Idea</Text>
+                          <Text style={styles.optionDescription}>
+                            Creative video concept with scene breakdown
+                          </Text>
+                        </View>
+                      </View>
+                    </TouchableOpacity>
+                  </View>
+
+                  {/* Content Templates */}
+                  {templates.length > 0 && (
+                    <View style={styles.templatesSection}>
+                      <View style={styles.sectionHeaderContainer}>
+                        <Text style={styles.sectionLabel}>Templates:</Text>
+                        <TouchableOpacity
+                          style={styles.toggleButton}
+                          onPress={() => setShowTemplates(!showTemplates)}
+                        >
+                          <Text style={styles.toggleButtonText}>
+                            {showTemplates ? 'Hide' : 'Show'} Templates
+                          </Text>
+                        </TouchableOpacity>
+                      </View>
+                      
+                      {showTemplates && (
+                        <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.templatesScroll}>
+                          {templates.map((template) => (
+                            <TouchableOpacity
+                              key={template.id}
+                              style={[
+                                styles.templateCard,
+                                selectedTemplate?.id === template.id && styles.templateCardActive
+                              ]}
+                              onPress={() => {
+                                setSelectedTemplate(template);
+                                setCustomPrompt(template.prompt);
+                              }}
+                            >
+                              <View style={styles.templateContent}>
+                                <Text style={styles.templateIcon}>
+                                  {template.category === 'faith' && '🙏'}
+                                  {template.category === 'business' && '💼'}
+                                  {template.category === 'marketing' && '📢'}
+                                </Text>
+                                <Text style={styles.templateTitle}>{template.title}</Text>
+                                <Text style={styles.templateDescription}>{template.description}</Text>
+                                <View style={styles.templateTags}>
+                                  {template.tags.slice(0, 2).map((tag) => (
+                                    <Text key={tag} style={styles.templateTag}>#{tag}</Text>
+                                  ))}
+                                </View>
+                              </View>
+                            </TouchableOpacity>
+                          ))}
+                        </ScrollView>
+                      )}
+                    </View>
+                  )}
+
+                  {/* Advanced Options */}
+                  <View style={styles.advancedSection}>
+                    <TouchableOpacity
+                      style={styles.toggleButton}
+                      onPress={() => setShowAdvancedOptions(!showAdvancedOptions)}
+                    >
+                      <Text style={styles.toggleButtonText}>
+                        {showAdvancedOptions ? 'Hide' : 'Show'} Advanced Options
+                      </Text>
+                    </TouchableOpacity>
+                    
+                    {showAdvancedOptions && (
+                      <View style={styles.advancedOptions}>
+                        {/* Tone Selection */}
+                        <View style={styles.optionGroup}>
+                          <Text style={styles.optionLabel}>Tone:</Text>
+                          <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+                            {['inspirational', 'educational', 'conversational', 'professional', 'playful'].map((tone) => (
+                              <TouchableOpacity
+                                key={tone}
+                                style={[
+                                  styles.optionChip,
+                                  selectedTone === tone && styles.optionChipActive
+                                ]}
+                                onPress={() => setSelectedTone(tone)}
+                              >
+                                <Text style={[
+                                  styles.optionChipText,
+                                  selectedTone === tone && styles.optionChipTextActive
+                                ]}>
+                                  {tone.charAt(0).toUpperCase() + tone.slice(1)}
+                                </Text>
+                              </TouchableOpacity>
+                            ))}
+                          </ScrollView>
+                        </View>
+
+                        {/* Length Selection */}
+                        <View style={styles.optionGroup}>
+                          <Text style={styles.optionLabel}>Length:</Text>
+                          <View style={styles.optionChipsContainer}>
+                            {['short', 'medium', 'long'].map((length) => (
+                              <TouchableOpacity
+                                key={length}
+                                style={[
+                                  styles.optionChip,
+                                  selectedLength === length && styles.optionChipActive
+                                ]}
+                                onPress={() => setSelectedLength(length)}
+                              >
+                                <Text style={[
+                                  styles.optionChipText,
+                                  selectedLength === length && styles.optionChipTextActive
+                                ]}>
+                                  {length.charAt(0).toUpperCase() + length.slice(1)}
+                                </Text>
+                              </TouchableOpacity>
+                            ))}
+                          </View>
+                        </View>
+
+                        {/* Content Subtype */}
+                        <View style={styles.optionGroup}>
+                          <Text style={styles.optionLabel}>Content Type:</Text>
+                          <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+                            {['post', 'caption', 'story', 'reel', 'thread'].map((subtype) => (
+                              <TouchableOpacity
+                                key={subtype}
+                                style={[
+                                  styles.optionChip,
+                                  contentSubtype === subtype && styles.optionChipActive
+                                ]}
+                                onPress={() => setContentSubtype(subtype)}
+                              >
+                                <Text style={[
+                                  styles.optionChipText,
+                                  contentSubtype === subtype && styles.optionChipTextActive
+                                ]}>
+                                  {subtype.charAt(0).toUpperCase() + subtype.slice(1)}
+                                </Text>
+                              </TouchableOpacity>
+                            ))}
+                          </ScrollView>
+                        </View>
+
+                        {/* Custom Prompt */}
+                        <View style={styles.optionGroup}>
+                          <Text style={styles.optionLabel}>
+                            {selectedTemplate ? 'Template Prompt (Editable):' : 'Custom Prompt:'}
+                          </Text>
+                          <TextInput
+                            style={styles.customPromptInput}
+                            multiline
+                            numberOfLines={3}
+                            placeholder={selectedTemplate?.prompt || "Enter your custom content prompt..."}
+                            value={customPrompt}
+                            onChangeText={setCustomPrompt}
+                            placeholderTextColor="#999"
+                          />
+                        </View>
+                      </View>
+                    )}
+                    
+                    {/* Generate with Advanced Options Button */}
+                    {(showAdvancedOptions || selectedTemplate || customPrompt) && (
+                      <TouchableOpacity
+                        style={styles.advancedGenerateButton}
+                        onPress={handleCustomGeneration}
+                      >
+                        <Text style={styles.advancedGenerateText}>
+                          ✨ Generate with {selectedTemplate ? 'Template' : 'Advanced Options'}
+                        </Text>
+                      </TouchableOpacity>
+                    )}
+                  </View>
                 </View>
               )}
             </>
@@ -250,6 +831,75 @@ const ContentGeneratorScreen = () => {
       </View>
     </Modal>
   );
+
+  // Helper function to get key points for products
+  const getKeyPointsForProduct = (product: Product, contentType: string, faithMode: boolean) => {
+    const basePoints = [
+      `Product: ${product.title}`,
+      `Price: ${product.price}`,
+      'Quality and value',
+      'Customer satisfaction'
+    ];
+
+    const faithPoints = [
+      'Kingdom business principles',
+      'Biblical values in business',
+      'Serving others through products',
+      'Excellence as worship',
+      'Building for eternal impact'
+    ];
+
+    const contentTypePoints = {
+      post: ['Detailed benefits', 'Story or testimonial', 'Social proof'],
+      caption: ['Quick benefits', 'Emotional connection', 'Clear call-to-action'],
+      reelIdea: ['Visual concepts', 'Engaging transitions', 'Trending elements']
+    };
+
+    return [
+      ...basePoints,
+      ...(faithMode ? faithPoints : []),
+      ...(contentTypePoints[contentType as keyof typeof contentTypePoints] || [])
+    ];
+  };
+
+  const handleRefineContent = async (refinementType: 'shorten' | 'expand' | 'improve' | 'tone_change', instructions?: string) => {
+    if (!contentGeneration.content) return;
+
+    setContentGeneration(prev => ({
+      ...prev,
+      isLoading: true,
+    }));
+
+    try {
+      const response = await backendAPI.refineContent({
+        content: contentGeneration.content!.content,
+        refinementType,
+        instructions,
+        targetTone: selectedTone,
+      });
+
+      setContentGeneration(prev => ({
+        ...prev,
+        isLoading: false,
+        content: prev.content ? {
+          ...prev.content,
+          content: response.refinedContent,
+        } : null,
+      }));
+    } catch (error) {
+      console.error('Failed to refine content:', error);
+      setContentGeneration(prev => ({
+        ...prev,
+        isLoading: false,
+      }));
+      
+      Alert.alert(
+        'Refinement Failed',
+        'Failed to refine content. Please try again.',
+        [{ text: 'OK', style: 'default' }]
+      );
+    }
+  };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -468,6 +1118,352 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: '600',
     color: '#ffffff',
+  },
+  // Loading states
+  loadingContainer: {
+    padding: 40,
+    alignItems: 'center',
+  },
+  loadingText: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#ffffff',
+    marginTop: 20,
+    textAlign: 'center',
+  },
+  loadingSubtext: {
+    fontSize: 14,
+    color: '#cccccc',
+    marginTop: 8,
+    textAlign: 'center',
+  },
+  // Error states
+  errorContainer: {
+    padding: 20,
+    alignItems: 'center',
+  },
+  errorTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#ff6b6b',
+    marginBottom: 12,
+    textAlign: 'center',
+  },
+  errorText: {
+    fontSize: 16,
+    color: '#ffcccc',
+    textAlign: 'center',
+    marginBottom: 20,
+    lineHeight: 22,
+  },
+  errorActions: {
+    width: '100%',
+    gap: 12,
+  },
+  retryButton: {
+    backgroundColor: '#4CAF50',
+    borderRadius: 12,
+    padding: 16,
+    alignItems: 'center',
+  },
+  retryButtonText: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: '#ffffff',
+  },
+  // Enhanced content display
+  metadataContainer: {
+    marginTop: 20,
+    padding: 16,
+    backgroundColor: '#1a1a1a',
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: '#333333',
+  },
+  metadataTitle: {
+    fontSize: 14,
+    fontWeight: 'bold',
+    color: '#cccccc',
+    marginBottom: 8,
+  },
+  metadataItem: {
+    fontSize: 12,
+    color: '#999999',
+    marginBottom: 4,
+  },
+  contentActions: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingTop: 16,
+    borderTopWidth: 1,
+    borderTopColor: '#333333',
+    flexWrap: 'wrap',
+    gap: 8,
+  },
+  favoriteButton: {
+    backgroundColor: '#FF9800',
+    borderRadius: 8,
+    paddingVertical: 12,
+    paddingHorizontal: 16,
+    marginBottom: 8,
+    alignItems: 'center',
+    flex: 1,
+    minWidth: '30%',
+  },
+  favoriteButtonText: {
+    fontSize: 14,
+    fontWeight: 'bold',
+    color: '#ffffff',
+  },
+  generateAgainButton: {
+    backgroundColor: '#4CAF50',
+    borderRadius: 8,
+    paddingVertical: 12,
+    paddingHorizontal: 16,
+    marginBottom: 8,
+    alignItems: 'center',
+    flex: 1,
+    minWidth: '30%',
+  },
+  generateAgainText: {
+    fontSize: 14,
+    fontWeight: 'bold',
+    color: '#ffffff',
+  },
+  // Platform selection styles
+  platformSection: {
+    marginBottom: 20,
+  },
+  sectionLabel: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: '#ffffff',
+    marginBottom: 12,
+  },
+  platformScroll: {
+    flexDirection: 'row',
+  },
+  platformButton: {
+    paddingHorizontal: 16,
+    paddingVertical: 8,
+    marginRight: 12,
+    borderRadius: 20,
+    borderWidth: 1,
+    borderColor: '#444444',
+    backgroundColor: '#222222',
+  },
+  platformButtonActive: {
+    backgroundColor: '#4CAF50',
+    borderColor: '#4CAF50',
+  },
+  platformButtonText: {
+    fontSize: 14,
+    fontWeight: '600',
+    color: '#cccccc',
+  },
+  platformButtonTextActive: {
+    color: '#ffffff',
+  },
+  contentTypeSection: {
+    gap: 12,
+  },
+  optionContent: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  optionIcon: {
+    fontSize: 24,
+    marginRight: 16,
+  },
+  optionTextContainer: {
+    flex: 1,
+  },
+  optionDescription: {
+    fontSize: 12,
+    color: '#999999',
+    marginTop: 4,
+    lineHeight: 16,
+  },
+  // Templates section
+  templatesSection: {
+    marginTop: 20,
+  },
+  sectionHeaderContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 12,
+  },
+  toggleButton: {
+    paddingVertical: 8,
+    paddingHorizontal: 12,
+    borderRadius: 16,
+    backgroundColor: '#333333',
+  },
+  toggleButtonText: {
+    fontSize: 14,
+    fontWeight: '600',
+    color: '#ffffff',
+  },
+  templatesScroll: {
+    flexDirection: 'row',
+  },
+  templateCard: {
+    backgroundColor: '#222222',
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: '#444444',
+    padding: 16,
+    marginRight: 12,
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  templateCardActive: {
+    borderColor: '#4CAF50',
+  },
+  templateContent: {
+    flex: 1,
+  },
+  templateIcon: {
+    fontSize: 28,
+    marginBottom: 8,
+    color: '#4CAF50',
+  },
+  templateTitle: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: '#ffffff',
+    marginBottom: 4,
+  },
+  templateDescription: {
+    fontSize: 14,
+    color: '#cccccc',
+    marginBottom: 8,
+  },
+  templateTags: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: 8,
+  },
+  templateTag: {
+    fontSize: 12,
+    color: '#4CAF50',
+    backgroundColor: '#333333',
+    paddingVertical: 4,
+    paddingHorizontal: 8,
+    borderRadius: 16,
+  },
+  // Advanced options section
+  advancedSection: {
+    marginTop: 20,
+  },
+  advancedOptions: {
+    backgroundColor: '#222222',
+    borderRadius: 12,
+    padding: 16,
+    borderWidth: 1,
+    borderColor: '#444444',
+  },
+  optionGroup: {
+    marginBottom: 16,
+  },
+  optionLabel: {
+    fontSize: 14,
+    fontWeight: 'bold',
+    color: '#ffffff',
+    marginBottom: 8,
+  },
+  optionChip: {
+    backgroundColor: '#333333',
+    borderRadius: 16,
+    paddingVertical: 8,
+    paddingHorizontal: 12,
+    marginRight: 8,
+    borderWidth: 1,
+    borderColor: '#444444',
+  },
+  optionChipsContainer: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: 8,
+  },
+  optionChipActive: {
+    backgroundColor: '#4CAF50',
+    borderColor: '#4CAF50',
+  },
+  optionChipText: {
+    fontSize: 14,
+    fontWeight: '600',
+    color: '#ffffff',
+  },
+  optionChipTextActive: {
+    color: '#ffffff',
+  },
+  customPromptInput: {
+    backgroundColor: '#333333',
+    borderRadius: 8,
+    padding: 12,
+    color: '#ffffff',
+    fontSize: 14,
+    lineHeight: 20,
+    borderWidth: 1,
+    borderColor: '#444444',
+  },
+  advancedGenerateButton: {
+    backgroundColor: '#4CAF50',
+    borderRadius: 12,
+    paddingVertical: 16,
+    paddingHorizontal: 24,
+    marginTop: 16,
+    alignItems: 'center',
+    shadowColor: '#4CAF50',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.3,
+    shadowRadius: 8,
+    elevation: 8,
+  },
+  advancedGenerateText: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: '#ffffff',
+  },
+  refinementSection: {
+    marginTop: 16,
+    padding: 16,
+    backgroundColor: '#1a1a1a',
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: '#333333',
+  },
+  refinementLabel: {
+    fontSize: 14,
+    fontWeight: 'bold',
+    color: '#ffffff',
+    marginBottom: 12,
+    textAlign: 'center',
+  },
+  refinementButtons: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
+    gap: 8,
+  },
+  refinementButton: {
+    flex: 1,
+    backgroundColor: '#333333',
+    borderRadius: 8,
+    paddingVertical: 10,
+    paddingHorizontal: 8,
+    alignItems: 'center',
+    borderWidth: 1,
+    borderColor: '#444444',
+    minWidth: '22%',
+  },
+  refinementButtonText: {
+    fontSize: 12,
+    fontWeight: '600',
+    color: '#ffffff',
+    textAlign: 'center',
   },
 });
 

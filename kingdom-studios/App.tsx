@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, Suspense } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { NavigationContainer } from '@react-navigation/native';
 import { StripeProvider } from '@stripe/stripe-react-native';
@@ -7,8 +7,12 @@ import { AuthProvider } from './src/contexts/AuthContext';
 import { FaithModeProvider } from './src/contexts/FaithModeContext';
 import { ProductProvider } from './src/contexts/ProductContext';
 import { AppProvider } from './src/contexts/AppContext';
-import AuthNavigator from './src/navigation/AuthNavigator';
+import { PerformanceProvider } from './src/contexts/PerformanceContext';
+import { LoadingSkeleton } from './src/components/LazyComponents';
 import notificationService from './src/services/notificationService';
+
+// Lazy load AuthNavigator for better initial load performance
+const AuthNavigator = React.lazy(() => import('./src/navigation/AuthNavigator'));
 
 // Type override for extra config
 type AppConfig = typeof Constants.expoConfig & {
@@ -36,18 +40,22 @@ export default function App() {
 
   return (
     <StripeProvider publishableKey={stripePublishableKey}>
-      <AppProvider>
-        <ProductProvider>
-          <FaithModeProvider>
-            <AuthProvider>
-              <NavigationContainer>
-                <StatusBar style="light" />
-                <AuthNavigator />
-              </NavigationContainer>
-            </AuthProvider>
-          </FaithModeProvider>
-        </ProductProvider>
-      </AppProvider>
+      <PerformanceProvider>
+        <AppProvider>
+          <ProductProvider>
+            <FaithModeProvider>
+              <AuthProvider>
+                <NavigationContainer>
+                  <StatusBar style="light" />
+                  <Suspense fallback={<LoadingSkeleton />}>
+                    <AuthNavigator />
+                  </Suspense>
+                </NavigationContainer>
+              </AuthProvider>
+            </FaithModeProvider>
+          </ProductProvider>
+        </AppProvider>
+      </PerformanceProvider>
     </StripeProvider>
   );
 }

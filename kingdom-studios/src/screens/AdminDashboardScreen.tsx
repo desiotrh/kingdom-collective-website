@@ -136,6 +136,9 @@ const AdminDashboardScreen: React.FC<AdminDashboardScreenProps> = ({ navigation 
         case 'settings':
           navigation.navigate('AdminSettings');
           break;
+        case 'monitoring':
+          navigation.navigate('AdminMonitoring');
+          break;
         default:
           break;
       }
@@ -363,6 +366,12 @@ const AdminDashboardScreen: React.FC<AdminDashboardScreenProps> = ({ navigation 
               'Configure moderation',
               'settings',
               '⚙️'
+            )}
+            {renderQuickActionCard(
+              'System Monitoring',
+              'Real-time system health',
+              'monitoring',
+              '📊'
             )}
           </View>
         </View>

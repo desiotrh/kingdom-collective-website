@@ -22,6 +22,8 @@ export type RootStackParamList = {
   Onboarding: undefined;
   SponsorshipRequest: undefined;
   Pricing: undefined;
+  // Admin Screens
+  AdminMonitoring: undefined;
   // AI Studio Screens
   AIStudio: undefined;
   SocialMediaGenerator: undefined;

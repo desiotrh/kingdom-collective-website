@@ -14,7 +14,11 @@
     "web": "npm run web --workspace=kingdom-studios"
   },
   "devDependencies": {
-    "typescript": "~5.8.3",
-    "@types/react": "~19.0.10"
+    "@types/react": "~19.0.10",
+    "artillery": "^2.0.23",
+    "autocannon": "^8.0.0",
+    "clinic": "^13.0.0",
+    "loadtest": "^8.2.0",
+    "typescript": "~5.8.3"
   }
 }

@@ -8,6 +8,13 @@ import dotenv from 'dotenv';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
 
+// Import enterprise infrastructure
+import EnterpriseScaleInfrastructure from './services/EnterpriseScaleInfrastructure.js';
+import EnterpriseDatabaseOptimizer from './services/EnterpriseDatabaseOptimizer.js';
+
+// Import monitoring services
+import { router as monitoringRoutes, monitoringDashboard, analyticsEngine, performanceMonitoring } from './routes/enterpriseMonitoring.js';
+
 // Import routes
 import authRoutes from './routes/auth.js';
 import userRoutes from './routes/users.js';
@@ -17,9 +24,20 @@ import analyticsRoutes from './routes/analytics.js';
 import paymentRoutes from './routes/payments.js';
 import webhookRoutes from './routes/webhooks.js';
 import adminRoutes from './routes/admin.js';
+import enterpriseContentRoutes, { initializeEnterpriseContentService } from './routes/enterpriseContent.js';
 
 // Import middleware
 import { errorHandler } from './middleware/errorHandler.js';
+import { 
+  createAdvancedRateLimit,
+  createSlowDown,
+  createTimeoutMiddleware,
+  createDeduplicationMiddleware,
+  createMetricsMiddleware,
+  createSecurityMiddleware,
+  createValidationMiddleware,
+  createCorsConfig
+} from './middleware/enterpriseMiddleware.js';
 import { logger } from './utils/logger.js';
 import { connectDatabase, initializeFirebase, initializeServices, getDatabaseStatus, getDatabaseStats } from './config/database.js';
 
@@ -31,6 +49,20 @@ const __dirname = dirname(__filename);
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+
+// Initialize enterprise infrastructure
+const enterpriseInfra = new EnterpriseScaleInfrastructure();
+const dbOptimizer = new EnterpriseDatabaseOptimizer();
+
+// Initialize enterprise middleware
+const rateLimiters = createAdvancedRateLimit();
+const slowDown = createSlowDown();
+const timeoutMiddleware = createTimeoutMiddleware();
+const deduplicationMiddleware = createDeduplicationMiddleware();
+const metricsMiddleware = createMetricsMiddleware();
+const securityMiddleware = createSecurityMiddleware();
+const validationMiddleware = createValidationMiddleware();
+const corsConfig = createCorsConfig();
 
 // ==============================================
 // MIDDLEWARE SETUP
@@ -48,15 +80,14 @@ app.use(helmet({
   },
 }));
 
-// CORS configuration
-app.use(cors({
-  origin: process.env.NODE_ENV === 'production' 
-    ? ['https://kingdom-studios.app', 'https://app.kingdom-studios.app']
-    : ['http://localhost:8081', 'http://localhost:3000'],
-  credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization', 'X-API-Key'],
-}));
+// Enterprise security middleware
+app.use(securityMiddleware);
+
+// Request timeout middleware
+app.use(timeoutMiddleware);
+
+// CORS configuration with enterprise settings
+app.use(cors(corsConfig));
 
 // Compression middleware
 app.use(compression());
@@ -66,19 +97,21 @@ app.use(morgan('combined', {
   stream: { write: (message) => logger.info(message.trim()) }
 }));
 
-// Rate limiting
-const limiter = rateLimit({
-  windowMs: parseInt(process.env.RATE_LIMIT_WINDOW_MS) || 15 * 60 * 1000, // 15 minutes
-  max: parseInt(process.env.RATE_LIMIT_MAX_REQUESTS) || 100, // limit each IP to 100 requests per windowMs
-  message: {
-    error: 'Too many requests from this IP, please try again later.',
-    code: 'RATE_LIMIT_EXCEEDED'
-  },
-  standardHeaders: true,
-  legacyHeaders: false,
-});
+// Enterprise metrics middleware
+app.use(metricsMiddleware.middleware);
 
-app.use('/api/', limiter);
+// Enterprise slow down middleware
+app.use(slowDown);
+
+// Rate limiting with enterprise configuration
+app.use('/api/auth', rateLimiters.authLimiter);
+app.use('/api/', rateLimiters.apiLimiter);
+
+// Request validation middleware
+app.use(validationMiddleware);
+
+// Request deduplication middleware
+app.use(deduplicationMiddleware);
 
 // Body parsing middleware
 app.use(express.json({ limit: '10mb' }));
@@ -87,8 +120,11 @@ app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 // ==============================================
 // HEALTH CHECK ENDPOINT
 // ==============================================
-app.get('/health', (req, res) => {
+app.get('/health', async (req, res) => {
   const dbStats = getDatabaseStats();
+  const enterpriseMetrics = enterpriseInfra.getMetrics();
+  const dbOptimizerStats = await dbOptimizer.getDatabaseStats();
+  const requestMetrics = metricsMiddleware.getMetrics();
   
   res.status(200).json({
     status: 'OK',
@@ -98,12 +134,52 @@ app.get('/health', (req, res) => {
     uptime: process.uptime(),
     environment: process.env.NODE_ENV || 'development',
     database: dbStats,
+    enterpriseMetrics: enterpriseMetrics,
+    dbOptimizer: dbOptimizerStats,
+    requestMetrics: requestMetrics,
+    memoryUsage: {
+      rss: Math.round(process.memoryUsage().rss / 1024 / 1024) + 'MB',
+      heapUsed: Math.round(process.memoryUsage().heapUsed / 1024 / 1024) + 'MB',
+      heapTotal: Math.round(process.memoryUsage().heapTotal / 1024 / 1024) + 'MB'
+    },
     services: {
       auth: 'active',
       content: 'active',
-      analytics: 'active'
+      analytics: 'active',
+      enterpriseInfra: 'active',
+      dbOptimizer: 'active',
+      enterpriseContent: 'active'
     }
   });
+});
+
+// ==============================================
+// ENTERPRISE METRICS ENDPOINT
+// ==============================================
+app.get('/metrics', async (req, res) => {
+  try {
+    const metrics = {
+      timestamp: new Date().toISOString(),
+      uptime: process.uptime(),
+      requests: metricsMiddleware.getMetrics(),
+      infrastructure: enterpriseInfra.getMetrics(),
+      database: await dbOptimizer.getDatabaseStats(),
+      memory: process.memoryUsage(),
+      cpu: process.cpuUsage(),
+      environment: process.env.NODE_ENV
+    };
+
+    res.json({
+      success: true,
+      data: metrics
+    });
+  } catch (error) {
+    logger.error('Failed to get metrics:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Failed to retrieve metrics'
+    });
+  }
 });
 
 // ==============================================
@@ -114,10 +190,14 @@ const apiPrefix = `/api/${process.env.API_VERSION || 'v1'}`;
 app.use(`${apiPrefix}/auth`, authRoutes);
 app.use(`${apiPrefix}/users`, userRoutes);
 app.use(`${apiPrefix}/content`, contentRoutes);
+app.use(`${apiPrefix}/enterprise-content`, enterpriseContentRoutes);
 app.use(`${apiPrefix}/products`, productRoutes);
 app.use(`${apiPrefix}/analytics`, analyticsRoutes);
 app.use(`${apiPrefix}/payments`, paymentRoutes);
 app.use(`${apiPrefix}/admin`, adminRoutes);
+
+// Enterprise monitoring routes
+app.use(`${apiPrefix}/monitoring`, monitoringRoutes);
 
 // Webhooks (no API prefix for better webhook compatibility)
 app.use('/webhooks', webhookRoutes);
@@ -202,9 +282,21 @@ app.use(errorHandler);
 // ==============================================
 async function startServer() {
   try {
+    // Initialize enterprise database optimizer first
+    await dbOptimizer.initialize();
+    logger.info('Enterprise database optimizer initialized');
+
     // Initialize database connections
     await connectDatabase();
     logger.info('Database connected successfully');
+
+    // Initialize enterprise scale infrastructure
+    await enterpriseInfra.initialize(app);
+    logger.info('Enterprise scale infrastructure initialized');
+
+    // Initialize enterprise content service
+    initializeEnterpriseContentService(enterpriseInfra);
+    logger.info('Enterprise content service initialized');
 
     // Initialize Firebase Admin
     await initializeFirebase();
