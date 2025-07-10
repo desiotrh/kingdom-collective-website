@@ -41,6 +41,7 @@ export default {
           icon: './assets/adaptive-icon.png',
           color: '#ffffff',
           defaultChannel: 'default',
+          projectId: process.env.EXPO_PUBLIC_FIREBASE_PROJECT_ID,
         },
       ],
     ],

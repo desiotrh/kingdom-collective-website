@@ -33,9 +33,9 @@ export const LoadingSkeleton: React.FC = () => (
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: KingdomColors.dark.background,
+    backgroundColor: KingdomColors.background.primary,
   }}>
-    <ActivityIndicator size="large" color={KingdomColors.gold} />
+    <ActivityIndicator size="large" color={KingdomColors.gold.bright} />
   </View>
 );
 
