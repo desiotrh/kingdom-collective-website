@@ -58,6 +58,8 @@ class NotificationService {
             shouldShowAlert: shouldShow,
             shouldPlaySound: shouldShow,
             shouldSetBadge: shouldShow,
+            shouldShowBanner: shouldShow,
+            shouldShowList: shouldShow,
           };
         },
       });
@@ -139,10 +141,12 @@ class NotificationService {
           title: notification.title,
           body: notification.body,
           data: notification.data || {},
-          priority: this.getPriority(notification.priority),
           categoryIdentifier: notification.category,
         },
-        trigger: notification.scheduledFor ? { date: notification.scheduledFor } : null,
+        trigger: notification.scheduledFor ? {
+          type: Notifications.SchedulableTriggerInputTypes.TIME_INTERVAL,
+          seconds: Math.max(1, Math.floor((notification.scheduledFor.getTime() - Date.now()) / 1000))
+        } : null,
       });
 
       console.log('Local notification scheduled:', notificationId);
