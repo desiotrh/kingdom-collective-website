@@ -639,4 +639,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ContentModerationScreen;
+export default React.memo(ContentModerationScreen);

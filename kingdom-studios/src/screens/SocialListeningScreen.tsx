@@ -1089,4 +1089,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SocialListeningScreen;
+export default React.memo(SocialListeningScreen);

@@ -79,7 +79,7 @@ const PricingScreen = () => {
         'Priority support',
         'Advanced analytics',
         'Community leadership tools',
-        'White-label options',
+        'Custom branding options',
         'Team collaboration',
         'API access',
       ],
@@ -100,7 +100,7 @@ const PricingScreen = () => {
         'Advanced analytics',
         'Priority support',
         'Team collaboration',
-        'White-label options',
+        'Custom branding',
         'API access',
         'Custom integrations',
       ],
@@ -424,8 +424,8 @@ const PricingScreen = () => {
               >
                 <Text style={styles.contactTitle}>💬 Questions?</Text>
                 <Text style={styles.contactText}>
-                  Contact Desirea at{' '}
-                  <Text style={styles.contactEmail}>Desirea@ontheroadhomeministries.com</Text>
+                  Contact our support team at{' '}
+                  <Text style={styles.contactEmail}>support@kingdomstudiosapp.com</Text>
                 </Text>
               </LinearGradient>
             </BlurView>
@@ -797,4 +797,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default PricingScreen;
+export default React.memo(PricingScreen);

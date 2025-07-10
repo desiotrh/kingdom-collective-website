@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   View,
   Text,
@@ -9,13 +9,17 @@ import {
   Dimensions,
   Image,
   Alert,
+  Modal,
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useAppNavigation } from '../../utils/navigationUtils';
 import { useFaithMode } from '../../contexts/FaithModeContext';
+import { useDualMode } from '../../contexts/DualModeContext';
 import { useAuth } from '../../contexts/AuthContext';
+import { useTierSystem } from '../../contexts/TierSystemContext';
 import { KingdomColors, KingdomShadows } from '../../constants/KingdomColors';
 import KingdomLogo from '../../components/KingdomLogo';
+import ModeToggle from '../../components/ModeToggle';
 
 const { width } = Dimensions.get('window');
 
@@ -38,6 +42,7 @@ interface DesignTool {
   icon: string;
   gradient: string[];
   comingSoon?: boolean;
+  requiresPro?: boolean;
   faithMode?: {
     title: string;
     description: string;
@@ -47,8 +52,46 @@ interface DesignTool {
 const DesignStudioScreen: React.FC = () => {
   const navigation = useAppNavigation();
   const { faithMode } = useFaithMode();
+  const { currentMode, modeConfig, getModeSpecificContent } = useDualMode();
   const { user } = useAuth();
+  const { 
+    currentTier, 
+    tierFeatures, 
+    checkFeatureAccess, 
+    trackUsage, 
+    getUsageStats,
+    isTrialActive 
+  } = useTierSystem();
+  
   const [selectedCategory, setSelectedCategory] = useState<'all' | 'social' | 'print' | 'web'>('all');
+  const [showUpgradeModal, setShowUpgradeModal] = useState(false);
+  const [usageStats, setUsageStats] = useState<any>(null);
+
+  useEffect(() => {
+    loadUsageStats();
+  }, []);
+
+  const loadUsageStats = async () => {
+    try {
+      const stats = await getUsageStats();
+      setUsageStats(stats);
+    } catch (error) {
+      console.error('Failed to load usage stats:', error);
+    }
+  };
+
+  const handleFeatureAccess = async (featureKey: string, action: string) => {
+    const hasAccess = await checkFeatureAccess(featureKey);
+    if (!hasAccess) {
+      setShowUpgradeModal(true);
+      return false;
+    }
+    
+    // Track usage for this feature
+    await trackUsage('design_studio', action);
+    await loadUsageStats();
+    return true;
+  };
 
   const designTools: DesignTool[] = [
     {
@@ -85,6 +128,7 @@ const DesignStudioScreen: React.FC = () => {
         : 'Organize your brand assets and maintain consistency',
       icon: '🎯',
       gradient: [KingdomColors.accent.info, KingdomColors.silver.bright],
+      requiresPro: true,
       faithMode: {
         title: 'Kingdom Brand Kit',
         description: 'Manage your Kingdom brand colors, fonts, and logos'
@@ -95,6 +139,43 @@ const DesignStudioScreen: React.FC = () => {
       title: faithMode ? 'AI Kingdom Designer' : 'AI Design Assistant',
       description: faithMode 
         ? 'Generate Kingdom-focused designs with AI assistance' 
+        : 'AI-powered design generation and suggestions',
+      icon: '🤖',
+      gradient: [KingdomColors.primary.deepNavy, KingdomColors.accent.success],
+      requiresPro: true,
+      faithMode: {
+        title: 'AI Kingdom Designer',
+        description: 'Generate Kingdom-focused designs with AI assistance'
+      }
+    },
+    {
+      id: 'stock-photos',
+      title: faithMode ? 'Kingdom Stock Library' : 'Stock Photo Library',
+      description: faithMode 
+        ? 'Access premium Christian and faith-based stock photos' 
+        : 'Millions of high-quality stock photos and graphics',
+      icon: '📸',
+      gradient: [KingdomColors.accent.warning, KingdomColors.primary.royalPurple],
+      faithMode: {
+        title: 'Kingdom Stock Library',
+        description: 'Access premium Christian and faith-based stock photos'
+      }
+    },
+    {
+      id: 'collaboration',
+      title: faithMode ? 'Kingdom Team Collab' : 'Team Collaboration',
+      description: faithMode 
+        ? 'Collaborate with your ministry team on designs' 
+        : 'Real-time collaboration with team members',
+      icon: '👥',
+      gradient: [KingdomColors.silver.bright, KingdomColors.gold.warm],
+      requiresPro: true,
+      faithMode: {
+        title: 'Kingdom Team Collab',
+        description: 'Collaborate with your ministry team on designs'
+      }
+    }
+  ]; 
         : 'Let AI help you create professional designs instantly',
       icon: '🤖',
       gradient: [KingdomColors.accent.success, KingdomColors.primary.midnight],
@@ -188,44 +269,64 @@ const DesignStudioScreen: React.FC = () => {
     ? templates 
     : templates.filter(template => template.category === selectedCategory);
 
-  const renderDesignTool = (tool: DesignTool) => (
-    <TouchableOpacity
-      key={tool.id}
-      style={styles.toolCard}
-      onPress={() => {
-        if (tool.comingSoon) {
-          Alert.alert('Coming Soon!', `${tool.title} will be available soon!`);
-        } else {
+  const renderDesignTool = (tool: DesignTool) => {
+    const isLocked = tool.requiresPro && !checkFeatureAccess('premiumTemplates');
+    
+    return (
+      <TouchableOpacity
+        key={tool.id}
+        style={[styles.toolCard, isLocked && styles.lockedCard]}
+        onPress={async () => {
+          if (tool.comingSoon) {
+            Alert.alert('Coming Soon!', `${tool.title} will be available soon!`);
+            return;
+          }
+          
+          if (tool.requiresPro) {
+            const hasAccess = await handleFeatureAccess('premiumTemplates', `opened_${tool.id}`);
+            if (!hasAccess) return;
+          }
+          
+          // Track basic usage
+          await trackUsage('design_studio', `used_${tool.id}`);
           Alert.alert('Open Tool', `Opening ${tool.title}`);
-        }
-      }}
-      activeOpacity={0.8}
-    >
-      <LinearGradient
-        colors={tool.gradient as [string, string]}
-        style={styles.toolGradient}
-        start={{ x: 0, y: 0 }}
-        end={{ x: 1, y: 1 }}
+        }}
+        activeOpacity={0.8}
       >
-        <View style={styles.toolContent}>
-          <View style={styles.toolHeader}>
-            <Text style={styles.toolIcon}>{tool.icon}</Text>
-            {tool.comingSoon && (
-              <View style={styles.comingSoonBadge}>
-                <Text style={styles.comingSoonText}>Soon</Text>
-              </View>
-            )}
+        <LinearGradient
+          colors={isLocked ? [KingdomColors.neutral.gray, KingdomColors.neutral.lightGray] : tool.gradient as [string, string]}
+          style={styles.toolGradient}
+          start={{ x: 0, y: 0 }}
+          end={{ x: 1, y: 1 }}
+        >
+          <View style={styles.toolContent}>
+            <View style={styles.toolHeader}>
+              <Text style={[styles.toolIcon, isLocked && styles.lockedIcon]}>{tool.icon}</Text>
+              {tool.comingSoon && (
+                <View style={styles.comingSoonBadge}>
+                  <Text style={styles.comingSoonText}>Soon</Text>
+                </View>
+              )}
+              {isLocked && (
+                <View style={styles.lockedBadge}>
+                  <Text style={styles.lockedText}>🔒 {currentTier === 'seed' ? 'ROOTED+' : 'PRO'}</Text>
+                </View>
+              )}
+            </View>
+            <Text style={[styles.toolTitle, isLocked && styles.lockedText]}>
+              {faithMode && tool.faithMode ? tool.faithMode.title : tool.title}
+            </Text>
+            <Text style={[styles.toolDescription, isLocked && styles.lockedDescription]}>
+              {isLocked 
+                ? `Upgrade to ${currentTier === 'seed' ? 'Rooted' : 'Pro'} tier to unlock this feature`
+                : (faithMode && tool.faithMode ? tool.faithMode.description : tool.description)
+              }
+            </Text>
           </View>
-          <Text style={styles.toolTitle}>
-            {faithMode && tool.faithMode ? tool.faithMode.title : tool.title}
-          </Text>
-          <Text style={styles.toolDescription}>
-            {faithMode && tool.faithMode ? tool.faithMode.description : tool.description}
-          </Text>
-        </View>
-      </LinearGradient>
-    </TouchableOpacity>
-  );
+        </LinearGradient>
+      </TouchableOpacity>
+    );
+  };
 
   const renderTemplate = (template: DesignTemplate) => (
     <TouchableOpacity
@@ -263,6 +364,11 @@ const DesignStudioScreen: React.FC = () => {
             <Text style={styles.headerSubtitle}>
               {faithMode ? 'Create Kingdom-focused designs' : 'Replace Canva with AI-powered tools'}
             </Text>
+            <View style={styles.tierBadge}>
+              <Text style={styles.tierText}>
+                {currentTier.toUpperCase()} {isTrialActive ? '(TRIAL)' : ''}
+              </Text>
+            </View>
           </View>
         </View>
 
@@ -276,21 +382,27 @@ const DesignStudioScreen: React.FC = () => {
           >
             <View style={styles.statsContent}>
               <View style={styles.statItem}>
-                <Text style={styles.statNumber}>247</Text>
+                <Text style={styles.statNumber}>
+                  {usageStats?.design_studio?.total_designs || 0}
+                </Text>
                 <Text style={styles.statLabel}>
                   {faithMode ? 'Kingdom Designs' : 'Designs Created'}
                 </Text>
               </View>
               <View style={styles.statDivider} />
               <View style={styles.statItem}>
-                <Text style={styles.statNumber}>12.5K</Text>
-                <Text style={styles.statLabel}>Templates</Text>
+                <Text style={styles.statNumber}>
+                  {tierFeatures.customTemplates ? '∞' : tierFeatures.monthlyUploads}
+                </Text>
+                <Text style={styles.statLabel}>Templates Limit</Text>
               </View>
               <View style={styles.statDivider} />
               <View style={styles.statItem}>
-                <Text style={styles.statNumber}>98%</Text>
+                <Text style={styles.statNumber}>
+                  {Math.floor((usageStats?.design_studio?.total_designs || 0) / (tierFeatures.monthlyUploads || 1) * 100)}%
+                </Text>
                 <Text style={styles.statLabel}>
-                  {faithMode ? 'Kingdom Impact' : 'User Satisfaction'}
+                  {faithMode ? 'Kingdom Impact' : 'Usage This Month'}
                 </Text>
               </View>
             </View>
@@ -385,6 +497,63 @@ const DesignStudioScreen: React.FC = () => {
             </View>
           </View>
         </ScrollView>
+
+        {/* Upgrade Modal */}
+        <Modal
+          visible={showUpgradeModal}
+          transparent={true}
+          animationType="slide"
+          onRequestClose={() => setShowUpgradeModal(false)}
+        >
+          <View style={styles.modalContainer}>
+            <View style={styles.modalContent}>
+              <LinearGradient
+                colors={[KingdomColors.primary.royalPurple, KingdomColors.gold.bright]}
+                style={styles.modalGradient}
+                start={{ x: 0, y: 0 }}
+                end={{ x: 1, y: 1 }}
+              >
+                <Text style={styles.modalTitle}>
+                  {faithMode ? '✨ Unlock Kingdom Design Pro' : '✨ Upgrade to Pro'}
+                </Text>
+                <Text style={styles.modalSubtitle}>
+                  {faithMode 
+                    ? 'Access premium Kingdom design tools and templates'
+                    : 'Unlock premium design tools and unlimited templates'
+                  }
+                </Text>
+                
+                <View style={styles.modalFeatures}>
+                  <Text style={styles.modalFeature}>• Unlimited premium templates</Text>
+                  <Text style={styles.modalFeature}>• AI-powered design assistant</Text>
+                  <Text style={styles.modalFeature}>• Brand kit management</Text>
+                  <Text style={styles.modalFeature}>• Team collaboration tools</Text>
+                  <Text style={styles.modalFeature}>• Priority support</Text>
+                </View>
+
+                <View style={styles.modalButtons}>
+                  <TouchableOpacity
+                    style={styles.upgradeButton}
+                    onPress={() => {
+                      setShowUpgradeModal(false);
+                      navigation.navigate('TierSelection');
+                    }}
+                  >
+                    <Text style={styles.upgradeButtonText}>
+                      {faithMode ? 'Upgrade Kingdom Plan' : 'Upgrade Now'}
+                    </Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                    style={styles.cancelButton}
+                    onPress={() => setShowUpgradeModal(false)}
+                  >
+                    <Text style={styles.cancelButtonText}>Maybe Later</Text>
+                  </TouchableOpacity>
+                </View>
+              </LinearGradient>
+            </View>
+          </View>
+        </Modal>
       </LinearGradient>
     </SafeAreaView>
   );
@@ -628,6 +797,112 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     color: KingdomColors.text.primary,
     textAlign: 'center',
+  },
+  // Tier System Styles
+  tierBadge: {
+    backgroundColor: KingdomColors.primary.royalPurple,
+    paddingHorizontal: 8,
+    paddingVertical: 4,
+    borderRadius: 6,
+    marginTop: 4,
+    alignSelf: 'flex-start',
+  },
+  tierText: {
+    fontSize: 10,
+    fontWeight: 'bold',
+    color: KingdomColors.white,
+  },
+  lockedCard: {
+    opacity: 0.7,
+  },
+  lockedIcon: {
+    opacity: 0.5,
+  },
+  lockedBadge: {
+    backgroundColor: KingdomColors.accent.warning,
+    paddingHorizontal: 6,
+    paddingVertical: 2,
+    borderRadius: 4,
+  },
+  lockedText: {
+    fontSize: 10,
+    fontWeight: 'bold',
+    color: KingdomColors.white,
+  },
+  lockedDescription: {
+    color: KingdomColors.neutral.gray,
+    fontStyle: 'italic',
+  },
+  // Modal Styles
+  modalContainer: {
+    flex: 1,
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 20,
+  },
+  modalContent: {
+    width: '100%',
+    maxWidth: 400,
+    borderRadius: 16,
+    overflow: 'hidden',
+  },
+  modalGradient: {
+    padding: 24,
+    alignItems: 'center',
+  },
+  modalTitle: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: KingdomColors.white,
+    textAlign: 'center',
+    marginBottom: 8,
+  },
+  modalSubtitle: {
+    fontSize: 16,
+    color: KingdomColors.white,
+    textAlign: 'center',
+    marginBottom: 20,
+    opacity: 0.9,
+  },
+  modalFeatures: {
+    alignSelf: 'stretch',
+    marginBottom: 24,
+  },
+  modalFeature: {
+    fontSize: 14,
+    color: KingdomColors.white,
+    marginBottom: 8,
+    textAlign: 'left',
+  },
+  modalButtons: {
+    width: '100%',
+    gap: 12,
+  },
+  upgradeButton: {
+    backgroundColor: KingdomColors.white,
+    paddingVertical: 14,
+    paddingHorizontal: 24,
+    borderRadius: 8,
+    alignItems: 'center',
+  },
+  upgradeButtonText: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: KingdomColors.primary.royalPurple,
+  },
+  cancelButton: {
+    backgroundColor: 'transparent',
+    paddingVertical: 12,
+    paddingHorizontal: 24,
+    borderRadius: 8,
+    alignItems: 'center',
+    borderWidth: 1,
+    borderColor: KingdomColors.white,
+  },
+  cancelButtonText: {
+    fontSize: 14,
+    color: KingdomColors.white,
   },
 });
 

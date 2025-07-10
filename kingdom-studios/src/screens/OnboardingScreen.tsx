@@ -444,4 +444,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default OnboardingScreen;
+export default React.memo(OnboardingScreen);

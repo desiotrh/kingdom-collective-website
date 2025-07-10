@@ -616,4 +616,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CheckoutScreen;
+export default React.memo(CheckoutScreen);

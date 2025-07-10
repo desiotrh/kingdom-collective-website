@@ -1034,4 +1034,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default DigitalProductManagerScreen;
+export default React.memo(DigitalProductManagerScreen);

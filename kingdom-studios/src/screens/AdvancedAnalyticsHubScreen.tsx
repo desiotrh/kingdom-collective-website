@@ -500,4 +500,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AdvancedAnalyticsHubScreen;
+export default React.memo(AdvancedAnalyticsHubScreen);

@@ -505,4 +505,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default MentorshipRequestScreen;
+export default React.memo(MentorshipRequestScreen);

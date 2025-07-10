@@ -11,7 +11,9 @@ import {
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { useFaithMode } from '../contexts/FaithModeContext';
+import { useDualMode } from '../contexts/DualModeContext';
 import { KingdomColors } from '../constants/KingdomColors';
+import ModeToggle from './ModeToggle';
 
 interface NavMenuItem {
   id: string;
@@ -31,6 +33,7 @@ interface AppMenuProps {
 export const AppMenu: React.FC<AppMenuProps> = ({ visible, onClose }) => {
   const navigation = useNavigation();
   const { faithMode } = useFaithMode();
+  const { currentMode, getModeSpecificContent } = useDualMode();
   const [activeCategory, setActiveCategory] = useState<string>('content');
 
   const menuItems: NavMenuItem[] = [
@@ -231,15 +234,20 @@ export const AppMenu: React.FC<AppMenuProps> = ({ visible, onClose }) => {
         <View style={styles.header}>
           <View style={styles.headerLeft}>
             <Text style={styles.headerTitle}>
-              {faithMode ? '👑 Kingdom Studios' : '🚀 Creator Studio'}
+              {getModeSpecificContent('👑 Kingdom Studios', '🚀 Creator Studio')}
             </Text>
             <Text style={styles.headerSubtitle}>
-              {faithMode ? 'Building for eternity' : 'Create with purpose'}
+              {getModeSpecificContent('Building for eternity', 'Create with purpose')}
             </Text>
           </View>
           <TouchableOpacity style={styles.closeButton} onPress={onClose}>
             <Ionicons name="close" size={24} color={KingdomColors.text.primary} />
           </TouchableOpacity>
+        </View>
+
+        {/* Mode Toggle */}
+        <View style={styles.modeToggleContainer}>
+          <ModeToggle showDescription compact={false} />
         </View>
 
         <View style={styles.content}>
@@ -361,6 +369,12 @@ const styles = StyleSheet.create({
   closeButton: {
     padding: 8,
   },
+  modeToggleContainer: {
+    paddingHorizontal: 20,
+    paddingVertical: 12,
+    borderBottomWidth: 1,
+    borderBottomColor: KingdomColors.default.border,
+  },
   content: {
     flex: 1,
   },
@@ -469,4 +483,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AppMenu;
+export default React.memo(AppMenu);

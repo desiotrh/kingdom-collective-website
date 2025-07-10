@@ -941,4 +941,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default EcommerceStoreBuilderScreen;
+export default React.memo(EcommerceStoreBuilderScreen);

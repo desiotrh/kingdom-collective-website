@@ -710,4 +710,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AdLaunchToolScreen;
+export default React.memo(AdLaunchToolScreen);

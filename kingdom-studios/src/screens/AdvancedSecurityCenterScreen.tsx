@@ -927,4 +927,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AdvancedSecurityCenterScreen;
+export default React.memo(AdvancedSecurityCenterScreen);

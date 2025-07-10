@@ -831,4 +831,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default VisualDiscoveryScreen;
+export default React.memo(VisualDiscoveryScreen);

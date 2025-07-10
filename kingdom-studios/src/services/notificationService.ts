@@ -103,7 +103,9 @@ class NotificationService {
       })).data;
 
       this.expoPushToken = token;
-      console.log('Expo push token:', token);
+      if (__DEV__) {
+        console.log('Expo push token obtained successfully');
+      }
 
       // Configure platform-specific settings
       if (Platform.OS === 'android') {

@@ -699,4 +699,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default TestimonySubmissionScreen;
+export default React.memo(TestimonySubmissionScreen);

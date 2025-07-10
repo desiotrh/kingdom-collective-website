@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   View,
   Text,
@@ -6,19 +6,52 @@ import {
   TouchableOpacity,
   ScrollView,
   Alert,
+  Modal,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
+import { LinearGradient } from 'expo-linear-gradient';
 import { KingdomColors } from '../constants/KingdomColors';
 import { useDualMode } from '../contexts/DualModeContext';
+import { useTierSystem } from '../contexts/TierSystemContext';
 
 const VideoRecordingScreen: React.FC = () => {
   const { currentMode } = useDualMode();
+  const { 
+    currentTier, 
+    tierFeatures, 
+    checkFeatureAccess, 
+    trackUsage, 
+    isTrialActive 
+  } = useTierSystem();
   const colors = currentMode === 'faith' ? KingdomColors.faith : KingdomColors.encouragement;
   const navigation = useNavigation();
 
   const [isRecording, setIsRecording] = useState(false);
+  const [showUpgradeModal, setShowUpgradeModal] = useState(false);
+  const [recordingDuration, setRecordingDuration] = useState(0);
+
+  useEffect(() => {
+    let interval: NodeJS.Timeout;
+    if (isRecording) {
+      interval = setInterval(() => {
+        setRecordingDuration(prev => prev + 1);
+      }, 1000);
+    }
+    return () => clearInterval(interval);
+  }, [isRecording]);
+
+  const handleFeatureAccess = async (featureKey: string, action: string) => {
+    const hasAccess = await checkFeatureAccess(featureKey);
+    if (!hasAccess) {
+      setShowUpgradeModal(true);
+      return false;
+    }
+    
+    await trackUsage('video_studio', action);
+    return true;
+  };
 
   const getCurrentPrompt = () => {
     const faithPrompts = [
@@ -39,15 +72,30 @@ const VideoRecordingScreen: React.FC = () => {
     return prompts[Math.floor(Math.random() * prompts.length)];
   };
 
-  const startRecording = () => {
+  const startRecording = async () => {
+    // Check if user can record videos based on their tier
+    const hasAccess = await handleFeatureAccess('monthlyUploads', 'video_recording_started');
+    if (!hasAccess) return;
+
     setIsRecording(true);
+    setRecordingDuration(0);
     Alert.alert(
       'Recording Started',
       'Camera integration coming soon! This will include advanced video recording with faith/encouragement overlays.'
     );
   };
 
-  const stopRecording = () => {
+  const stopRecording = async () => {
+    setIsRecording(false);
+    
+    // Track video creation
+    await trackUsage('video_studio', 'video_created');
+    
+    Alert.alert(
+      'Recording Stopped',
+      `Video recorded for ${Math.floor(recordingDuration / 60)}:${(recordingDuration % 60).toString().padStart(2, '0')}. Editing features coming soon!`
+    );
+  };
     setIsRecording(false);
     Alert.alert(
       'Recording Stopped',
@@ -344,4 +392,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default VideoRecordingScreen;
+export default React.memo(VideoRecordingScreen);

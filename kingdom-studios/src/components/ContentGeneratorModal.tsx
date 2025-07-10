@@ -516,4 +516,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ContentGeneratorModal;
+export default React.memo(ContentGeneratorModal);

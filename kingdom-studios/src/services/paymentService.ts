@@ -267,7 +267,7 @@ class PaymentService {
           'Priority customer support',
           'All platform integrations',
           'Advanced automation tools',
-          'White-label options'
+          'Custom branding'
         ]
       },
       {
@@ -283,7 +283,7 @@ class PaymentService {
           'Priority customer support',
           'All platform integrations',
           'Advanced automation tools',
-          'White-label options',
+          'Custom branding',
           '2 months free!'
         ]
       },

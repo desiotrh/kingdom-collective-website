@@ -1216,4 +1216,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CRMScreen;
+export default React.memo(CRMScreen);

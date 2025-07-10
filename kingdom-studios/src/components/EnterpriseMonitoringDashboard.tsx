@@ -744,4 +744,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default EnterpriseMonitoringDashboard;
+export default React.memo(EnterpriseMonitoringDashboard);

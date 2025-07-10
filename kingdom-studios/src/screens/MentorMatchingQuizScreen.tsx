@@ -989,4 +989,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default MentorMatchingQuizScreen;
+export default React.memo(MentorMatchingQuizScreen);

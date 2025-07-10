@@ -941,4 +941,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default FaithEnhancementHubScreen;
+export default React.memo(FaithEnhancementHubScreen);

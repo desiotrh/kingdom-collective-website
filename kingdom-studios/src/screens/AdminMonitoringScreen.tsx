@@ -568,4 +568,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AdminMonitoringScreen;
+export default React.memo(AdminMonitoringScreen);

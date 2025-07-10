@@ -745,4 +745,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default LiveChatSupportScreen;
+export default React.memo(LiveChatSupportScreen);

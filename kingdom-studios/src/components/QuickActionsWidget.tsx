@@ -186,4 +186,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default QuickActionsWidget;
+export default React.memo(QuickActionsWidget);

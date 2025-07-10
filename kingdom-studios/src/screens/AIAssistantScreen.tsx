@@ -999,4 +999,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AIAssistantScreen;
+export default React.memo(AIAssistantScreen);

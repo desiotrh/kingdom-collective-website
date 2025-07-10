@@ -189,11 +189,13 @@ export class AnalyticsTracker {
     });
   }
 
-  public trackAIContentGenerated(contentType: string, wordCount: number): void {
-    this.analyticsService.trackEvent('ai_content_generated', wordCount, {
-      type: 'ai',
+  public trackAIContentGenerated(contentType: string, success: boolean, platform?: string): void {
+    this.analyticsService.trackEvent('ai_content_generated', 1, {
+      type: 'ai_generation',
       contentType,
-      category: 'generation',
+      success,
+      platform,
+      category: 'content_creation',
     });
   }
 
@@ -276,6 +278,190 @@ export class AnalyticsTracker {
       type: 'custom',
       ...properties,
     });
+  }
+
+  // Social Media tracking methods
+  public trackSocialMediaPost(platform: string, contentType: string, metrics?: any): void {
+    this.analyticsService.trackEvent('social_media_post', 1, {
+      type: 'social_post',
+      platform,
+      contentType,
+      metrics,
+      category: 'social_media',
+    });
+  }
+
+  public trackPlatformConnection(platform: string, success: boolean): void {
+    this.analyticsService.trackEvent('platform_connection', 1, {
+      type: 'connection',
+      platform,
+      success,
+      category: 'social_media',
+    });
+  }
+
+  public trackMultiPlatformPost(platforms: string[], contentType: string, results: any[]): void {
+    const successCount = results.filter(r => r.success).length;
+    this.analyticsService.trackEvent('multi_platform_post', successCount, {
+      type: 'multi_post',
+      platforms,
+      contentType,
+      results,
+      successCount,
+      totalCount: results.length,
+      category: 'social_media',
+    });
+  }
+
+  public trackScheduledPost(platforms: string[], scheduledTime: Date): void {
+    this.analyticsService.trackEvent('post_scheduled', 1, {
+      type: 'scheduling',
+      platforms,
+      scheduledTime: scheduledTime.toISOString(),
+      category: 'social_media',
+    });
+  }
+
+  public trackAIContentGeneration(contentType: string, platform?: string, success?: boolean): void {
+    this.analyticsService.trackEvent('ai_content_generated', 1, {
+      type: 'ai_generation',
+      contentType,
+      platform,
+      success,
+      category: 'content_creation',
+    });
+  }
+
+  // Email Marketing tracking methods
+  public trackEmailSubscription(source: string): void {
+    this.analyticsService.trackEvent('email_subscription', 1, {
+      type: 'subscription',
+      source,
+      category: 'email_marketing',
+    });
+  }
+
+  public trackEmailUnsubscription(): void {
+    this.analyticsService.trackEvent('email_unsubscription', 1, {
+      type: 'unsubscription',
+      category: 'email_marketing',
+    });
+  }
+
+  public trackEmailTemplateCreated(category: string): void {
+    this.analyticsService.trackEvent('email_template_created', 1, {
+      type: 'template_creation',
+      category,
+      templateCategory: 'email_marketing',
+    });
+  }
+
+  public trackEmailCampaignCreated(recipientCount: number): void {
+    this.analyticsService.trackEvent('email_campaign_created', 1, {
+      type: 'campaign_creation',
+      recipientCount,
+      category: 'email_marketing',
+    });
+  }
+
+  public trackEmailCampaignSent(campaignId: string, recipientCount: number): void {
+    this.analyticsService.trackEvent('email_campaign_sent', recipientCount, {
+      type: 'campaign_sent',
+      campaignId,
+      recipientCount,
+      category: 'email_marketing',
+    });
+  }
+
+  public trackEmailAutomationCreated(triggerType: string, emailCount: number): void {
+    this.analyticsService.trackEvent('email_automation_created', 1, {
+      type: 'automation_creation',
+      triggerType,
+      emailCount,
+      category: 'email_marketing',
+    });
+  }
+
+  // Advanced Analytics Dashboard tracking
+  public trackAnalyticsDashboardView(timeframe: any): void {
+    this.analyticsService.trackEvent('analytics_dashboard_viewed', 1, {
+      type: 'dashboard_view',
+      timeframeDays: this.calculateTimeframeDays(timeframe),
+      category: 'analytics',
+    });
+  }
+
+  public trackAnalyticsExport(format: 'pdf' | 'csv' | 'excel', timeframe: any): void {
+    this.analyticsService.trackEvent('analytics_exported', 1, {
+      type: 'export',
+      format,
+      timeframeDays: this.calculateTimeframeDays(timeframe),
+      category: 'analytics',
+    });
+  }
+
+  public trackAnalyticsInsightViewed(insightType: string, category: string): void {
+    this.analyticsService.trackEvent('analytics_insight_viewed', 1, {
+      type: 'insight_view',
+      insightType,
+      category: 'analytics',
+      subcategory: category,
+    });
+  }
+
+  public trackAnalyticsRecommendationActioned(recommendationCategory: string, priority: string): void {
+    this.analyticsService.trackEvent('analytics_recommendation_actioned', 1, {
+      type: 'recommendation_action',
+      recommendationCategory,
+      priority,
+      category: 'analytics',
+    });
+  }
+
+  public trackRealtimeMetricsViewed(): void {
+    this.analyticsService.trackEvent('realtime_metrics_viewed', 1, {
+      type: 'realtime_view',
+      category: 'analytics',
+    });
+  }
+
+  public trackAnalyticsTimeframeChanged(newTimeframeDays: number): void {
+    this.analyticsService.trackEvent('analytics_timeframe_changed', 1, {
+      type: 'timeframe_change',
+      timeframeDays: newTimeframeDays,
+      category: 'analytics',
+    });
+  }
+
+  public trackAnalyticsMetricFocused(metricType: 'content' | 'social' | 'email' | 'engagement' | 'revenue'): void {
+    this.analyticsService.trackEvent('analytics_metric_focused', 1, {
+      type: 'metric_focus',
+      metricType,
+      category: 'analytics',
+    });
+  }
+
+  public trackAnalyticsChartInteraction(chartType: string, interactionType: string): void {
+    this.analyticsService.trackEvent('analytics_chart_interaction', 1, {
+      type: 'chart_interaction',
+      chartType,
+      interactionType,
+      category: 'analytics',
+    });
+  }
+
+  // Helper method to calculate timeframe in days
+  private calculateTimeframeDays(timeframe: any): number {
+    if (!timeframe || !timeframe.start || !timeframe.end) {
+      return 30; // Default to 30 days
+    }
+    
+    const start = new Date(timeframe.start);
+    const end = new Date(timeframe.end);
+    const diffTime = Math.abs(end.getTime() - start.getTime());
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+    
+    return diffDays;
   }
 }
 

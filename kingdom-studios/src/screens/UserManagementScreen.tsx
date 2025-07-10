@@ -788,4 +788,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default UserManagementScreen;
+export default React.memo(UserManagementScreen);

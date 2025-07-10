@@ -90,8 +90,8 @@ export const useAnalytics = () => {
     tracker.trackAIAssistantQuery(queryType, category);
   }, [tracker]);
 
-  const trackAIContentGenerated = useCallback((contentType: string, wordCount: number) => {
-    tracker.trackAIContentGenerated(contentType, wordCount);
+  const trackAIContentGenerated = useCallback((contentType: string, success: boolean = true) => {
+    tracker.trackAIContentGenerated(contentType, success);
   }, [tracker]);
 
   const trackAutomationUsed = useCallback((automationType: string, platform: string) => {
@@ -136,6 +136,53 @@ export const useAnalytics = () => {
   // Custom event tracking hook
   const trackCustomEvent = useCallback((eventName: string, value: number, properties?: Record<string, any>) => {
     tracker.trackCustomEvent(eventName, value, properties);
+  }, [tracker]);
+
+  // Social Media tracking hooks
+  const trackSocialMediaPost = useCallback((platform: string, contentType: string, metrics?: any) => {
+    tracker.trackSocialMediaPost(platform, contentType, metrics);
+  }, [tracker]);
+
+  const trackPlatformConnection = useCallback((platform: string, success: boolean) => {
+    tracker.trackPlatformConnection(platform, success);
+  }, [tracker]);
+
+  const trackMultiPlatformPost = useCallback((platforms: string[], contentType: string, results: any[]) => {
+    tracker.trackMultiPlatformPost(platforms, contentType, results);
+  }, [tracker]);
+
+  const trackScheduledPost = useCallback((platforms: string[], scheduledTime: Date) => {
+    tracker.trackScheduledPost(platforms, scheduledTime);
+  }, [tracker]);
+
+  // AI Content Generation tracking
+  const trackAIContentGeneration = useCallback((contentType: string, platform?: string, success?: boolean) => {
+    tracker.trackAIContentGeneration(contentType, platform, success);
+  }, [tracker]);
+
+  // Email Marketing tracking
+  const trackEmailSubscription = useCallback((source: string) => {
+    tracker.trackEmailSubscription(source);
+  }, [tracker]);
+
+  const trackEmailUnsubscription = useCallback(() => {
+    tracker.trackEmailUnsubscription();
+  }, [tracker]);
+
+  const trackEmailTemplateCreated = useCallback((category: string) => {
+    tracker.trackEmailTemplateCreated(category);
+  }, [tracker]);
+
+  const trackEmailCampaignCreated = useCallback((recipientCount: number) => {
+    tracker.trackEmailCampaignCreated(recipientCount);
+  }, [tracker]);
+
+  const trackEmailCampaignSent = useCallback((campaignId: string, recipientCount: number) => {
+    tracker.trackEmailCampaignSent(campaignId, recipientCount);
+  }, [tracker]);
+
+  const trackEmailAutomationCreated = useCallback((triggerType: string, emailCount: number) => {
+    tracker.trackEmailAutomationCreated(triggerType, emailCount);
   }, [tracker]);
 
   return {
@@ -189,5 +236,22 @@ export const useAnalytics = () => {
     
     // Custom event tracking
     trackCustomEvent,
+
+    // Social Media tracking
+    trackSocialMediaPost,
+    trackPlatformConnection,
+    trackMultiPlatformPost,
+    trackScheduledPost,
+
+    // AI Content Generation tracking
+    trackAIContentGeneration,
+
+    // Email Marketing tracking
+    trackEmailSubscription,
+    trackEmailUnsubscription,
+    trackEmailTemplateCreated,
+    trackEmailCampaignCreated,
+    trackEmailCampaignSent,
+    trackEmailAutomationCreated,
   };
 };

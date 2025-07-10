@@ -3,7 +3,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Ionicons } from '@expo/vector-icons';
-import { useFaithMode } from '../contexts/FaithModeContext';
+import { useDualMode } from '../contexts/DualModeContext';
 import { KingdomColors } from '../constants/KingdomColors';
 import { MainTabParamList } from '../types/navigation';
 import AppMenu from '../components/AppMenu';
@@ -70,7 +70,7 @@ const MenuIcon: React.FC<{ focused: boolean }> = ({ focused }) => {
 };
 
 const MainTabNavigator: React.FC = () => {
-  const { faithMode } = useFaithMode();
+  const { currentMode, modeConfig } = useDualMode();
 
   return (
     <Tab.Navigator
@@ -90,7 +90,7 @@ const MainTabNavigator: React.FC = () => {
             <TabIcon
               focused={focused}
               icon="👑"
-              label={faithMode ? "Kingdom" : "Dashboard"}
+              label={currentMode === 'faith' ? "Kingdom" : "Dashboard"}
             />
           ),
         }}
@@ -155,7 +155,7 @@ const MainTabNavigator: React.FC = () => {
             <TabIcon
               focused={focused}
               icon="🔥"
-              label={faithMode ? "Forge" : "Community"}
+              label={currentMode === 'faith' ? "Forge" : "Community"}
             />
           ),
         }}

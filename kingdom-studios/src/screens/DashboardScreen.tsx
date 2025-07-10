@@ -15,9 +15,11 @@ import {
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useFaithMode } from '../contexts/FaithModeContext';
+import { useDualMode } from '../contexts/DualModeContext';
 import { useAuth } from '../contexts/AuthContext';
 import { KingdomColors, KingdomShadows } from '../constants/KingdomColors';
 import KingdomLogo from '../components/KingdomLogo';
+import ModeToggle from '../components/ModeToggle';
 import { contentService, ContentStats } from '../services/contentService';
 import { realTimeService, NotificationData } from '../services/realTimeService';
 import { apiClient } from '../services/apiClient';
@@ -51,6 +53,7 @@ const DashboardScreen = () => {
   const [notifications, setNotifications] = useState<NotificationData[]>([]);
   const [connectionStatus, setConnectionStatus] = useState<'online' | 'offline' | 'connecting'>('connecting');
   const { faithMode } = useFaithMode();
+  const { currentMode, modeConfig, getModeSpecificContent } = useDualMode();
   const { user, logout, connectionStatus: authConnectionStatus } = useAuth();
 
   // Load dashboard data
@@ -304,12 +307,12 @@ const DashboardScreen = () => {
               </View>
               <View style={styles.userInfo}>
                 <Text style={styles.welcomeText}>
-                  {faithMode ? 'Kingdom Blessings' : 'Welcome back'}
+                  {getModeSpecificContent('Kingdom Blessings', 'Welcome back')}
                 </Text>
                 <Text style={styles.userName}>
                   {user?.name || user?.email?.split('@')[0] || 'Creator'}
                 </Text>
-                {user?.faithMode && (
+                {currentMode === 'faith' && (
                   <Text style={styles.faithModeIndicator}>✝️ Faith Mode</Text>
                 )}
               </View>
@@ -336,6 +339,9 @@ const DashboardScreen = () => {
           </View>
           
           <KingdomLogo size="small" style={styles.headerLogo} />
+          
+          {/* Mode Toggle */}
+          <ModeToggle compact style={styles.modeToggle} />
         </View>
       </LinearGradient>
 
@@ -353,7 +359,7 @@ const DashboardScreen = () => {
         {/* Analytics Cards Grid */}
         <View style={styles.analyticsSection}>
           <Text style={styles.sectionTitle}>
-            {faithMode ? 'Kingdom Analytics' : 'Business Analytics'}
+            {getModeSpecificContent('Kingdom Analytics', 'Creator Analytics')}
           </Text>
           <View style={styles.analyticsGrid}>
             {analyticsData.map((data, index) => renderAnalyticsCard(data, index))}
@@ -566,6 +572,10 @@ const styles = StyleSheet.create({
   headerLogo: {
     alignSelf: 'center',
     marginTop: 10,
+  },
+  modeToggle: {
+    alignSelf: 'center',
+    marginTop: 8,
   },
   
   // Scroll Container
@@ -851,4 +861,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default DashboardScreen;
+export default React.memo(DashboardScreen);

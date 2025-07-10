@@ -566,4 +566,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default MentorProfileScreen;
+export default React.memo(MentorProfileScreen);

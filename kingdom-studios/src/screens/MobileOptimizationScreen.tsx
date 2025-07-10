@@ -873,4 +873,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default MobileOptimizationScreen;
+export default React.memo(MobileOptimizationScreen);

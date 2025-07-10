@@ -651,4 +651,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default TestimonyWallScreen;
+export default React.memo(TestimonyWallScreen);

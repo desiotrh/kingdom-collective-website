@@ -137,7 +137,9 @@ class AnalyticsTrackingService {
       this.mixpanel = {
         init: (token: string) => {
           if (Environment.isDebugEnabled()) {
-            console.log('[Mixpanel] Initialized with token:', token);
+            if (__DEV__) {
+                console.log('[Mixpanel] Initialized successfully');
+            }
           }
         },
         track: (eventName: string, properties: any) => {

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   View,
   Text,
@@ -14,9 +14,12 @@ import {
 import { LinearGradient } from 'expo-linear-gradient';
 import { useAppNavigation } from '../../utils/navigationUtils';
 import { useFaithMode } from '../../contexts/FaithModeContext';
+import { useDualMode } from '../../contexts/DualModeContext';
 import { useAuth } from '../../contexts/AuthContext';
+import { useTierSystem } from '../../contexts/TierSystemContext';
 import { KingdomColors, KingdomShadows } from '../../constants/KingdomColors';
 import KingdomLogo from '../../components/KingdomLogo';
+import ModeToggle from '../../components/ModeToggle';
 import contentGenerationService, { GeneratedContent } from '../../services/contentGenerationService';
 import advancedAnalyticsService from '../../services/advancedAnalyticsService';
 
@@ -29,6 +32,7 @@ interface AIStudioModule {
   icon: string;
   gradient: string[];
   route: string;
+  requiresPro?: boolean;
   faithMode?: {
     title: string;
     description: string;
@@ -38,12 +42,50 @@ interface AIStudioModule {
 const AIStudioScreen: React.FC = () => {
   const navigation = useAppNavigation();
   const { faithMode } = useFaithMode();
+  const { currentMode, modeConfig, getModeSpecificContent, shouldShowScriptures } = useDualMode();
   const { user } = useAuth();
+  const { 
+    currentTier, 
+    tierFeatures, 
+    checkFeatureAccess, 
+    trackUsage, 
+    getUsageStats,
+    isTrialActive 
+  } = useTierSystem();
+  
   const [loading, setLoading] = useState(false);
   const [showQuickGenerate, setShowQuickGenerate] = useState(false);
   const [quickPrompt, setQuickPrompt] = useState('');
   const [quickType, setQuickType] = useState<'social' | 'email' | 'hashtags' | 'seo'>('social');
   const [generatedContent, setGeneratedContent] = useState<GeneratedContent | null>(null);
+  const [showUpgradeModal, setShowUpgradeModal] = useState(false);
+  const [usageStats, setUsageStats] = useState<any>(null);
+
+  useEffect(() => {
+    loadUsageStats();
+  }, []);
+
+  const loadUsageStats = async () => {
+    try {
+      const stats = await getUsageStats();
+      setUsageStats(stats);
+    } catch (error) {
+      console.error('Failed to load usage stats:', error);
+    }
+  };
+
+  const handleFeatureAccess = async (featureKey: string, action: string) => {
+    const hasAccess = await checkFeatureAccess(featureKey);
+    if (!hasAccess) {
+      setShowUpgradeModal(true);
+      return false;
+    }
+    
+    // Track usage for this feature
+    await trackUsage('ai_studio', action);
+    await loadUsageStats();
+    return true;
+  };
 
   const aiModules: AIStudioModule[] = [
     {
@@ -69,6 +111,7 @@ const AIStudioScreen: React.FC = () => {
       icon: '👕',
       gradient: [KingdomColors.gold.warm, KingdomColors.primary.deepNavy],
       route: 'TShirtDesigner',
+      requiresPro: true,
       faithMode: {
         title: 'Faith-Based Design Generator',
         description: 'Create inspiring Christian t-shirt designs with AI'
@@ -83,6 +126,7 @@ const AIStudioScreen: React.FC = () => {
       icon: '📧',
       gradient: [KingdomColors.accent.info, KingdomColors.silver.bright],
       route: 'EmailSequencer',
+      requiresPro: true,
       faithMode: {
         title: 'Ministry Email Builder',
         description: 'Craft compelling email sequences for your ministry audience'
@@ -97,6 +141,7 @@ const AIStudioScreen: React.FC = () => {
       icon: '🔍',
       gradient: [KingdomColors.accent.success, KingdomColors.primary.midnight],
       route: 'SEOPlanner',
+      requiresPro: true,
       faithMode: {
         title: 'Kingdom SEO Strategist',
         description: 'Optimize your Kingdom content for search engines'
@@ -125,6 +170,7 @@ const AIStudioScreen: React.FC = () => {
       icon: '🎬',
       gradient: [KingdomColors.primary.deepNavy, KingdomColors.gold.bright],
       route: 'ScriptWriter',
+      requiresPro: true,
       faithMode: {
         title: 'Sermon & Teaching Scripts',
         description: 'Generate powerful sermon outlines and teaching scripts'
@@ -146,10 +192,20 @@ const AIStudioScreen: React.FC = () => {
     },
   ];
 
-  const handleModulePress = (module: AIStudioModule) => {
+  const handleModulePress = async (module: AIStudioModule) => {
+    if (module.requiresPro) {
+      const hasAccess = await handleFeatureAccess('bulkGeneration', `opened_${module.id}`);
+      if (!hasAccess) return;
+    }
+    
     if (module.id === 'quick-generate') {
-      setShowQuickGenerate(true);
+      // Check daily AI generation limit
+      const hasAccess = await handleFeatureAccess('aiGenerations', 'quick_generate');
+      if (hasAccess) {
+        setShowQuickGenerate(true);
+      }
     } else {
+      await trackUsage('ai_studio', `opened_${module.id}`);
       Alert.alert(
         'Coming Soon!',
         `${module.title} will be available in the next update.`,

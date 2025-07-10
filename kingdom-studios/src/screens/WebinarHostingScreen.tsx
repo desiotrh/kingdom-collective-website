@@ -952,4 +952,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default WebinarHostingScreen;
+export default React.memo(WebinarHostingScreen);

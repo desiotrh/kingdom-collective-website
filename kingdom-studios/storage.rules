@@ -1,0 +1,94 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    
+    // Helper functions
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+    
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+    
+    function isAdmin() {
+      return isAuthenticated() && 
+             firestore.exists(/databases/(default)/documents/users/$(request.auth.uid)) &&
+             firestore.get(/databases/(default)/documents/users/$(request.auth.uid)).data.role in ['super_admin', 'team_admin'];
+    }
+    
+    function isValidImageFile() {
+      return request.resource.contentType.matches('image/.*');
+    }
+    
+    function isValidVideoFile() {
+      return request.resource.contentType.matches('video/.*');
+    }
+    
+    function isValidAudioFile() {
+      return request.resource.contentType.matches('audio/.*');
+    }
+    
+    function isValidFileSize(maxSizeMB) {
+      return request.resource.size < maxSizeMB * 1024 * 1024;
+    }
+    
+    // User profile images
+    match /users/{userId}/profile/{fileName} {
+      allow read: if true; // Public read for profile images
+      allow write: if isOwner(userId) && 
+                      isValidImageFile() && 
+                      isValidFileSize(5); // 5MB limit for profile images
+    }
+    
+    // Product images
+    match /products/{userId}/{productId}/{fileName} {
+      allow read: if true; // Public read for product images
+      allow write: if isOwner(userId) && 
+                      isValidImageFile() && 
+                      isValidFileSize(10); // 10MB limit for product images
+    }
+    
+    // Content media (posts, stories, etc.)
+    match /content/{userId}/{postId}/{fileName} {
+      allow read: if isOwner(userId) || isAdmin();
+      allow write: if isOwner(userId) && 
+                      (isValidImageFile() || isValidVideoFile()) && 
+                      isValidFileSize(50); // 50MB limit for content media
+    }
+    
+    // AI generated content
+    match /ai-generated/{userId}/{generationId}/{fileName} {
+      allow read: if isOwner(userId) || isAdmin();
+      allow write: if isOwner(userId) && 
+                      (isValidImageFile() || isValidAudioFile()) && 
+                      isValidFileSize(25); // 25MB limit for AI generated content
+    }
+    
+    // Community content
+    match /community/{postId}/{fileName} {
+      allow read: if isAuthenticated();
+      allow write: if isAuthenticated() && 
+                      isValidImageFile() && 
+                      isValidFileSize(5); // 5MB limit for community images
+    }
+    
+    // Admin uploads
+    match /admin/{fileName} {
+      allow read: if isAuthenticated();
+      allow write: if isAdmin() && isValidFileSize(100); // 100MB limit for admin files
+    }
+    
+    // Templates and assets
+    match /templates/{category}/{fileName} {
+      allow read: if isAuthenticated();
+      allow write: if isAdmin();
+    }
+    
+    // Backup and exports
+    match /exports/{userId}/{fileName} {
+      allow read: if isOwner(userId) || isAdmin();
+      allow write: if isAdmin();
+    }
+  }
+}

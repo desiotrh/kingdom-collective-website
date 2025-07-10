@@ -998,4 +998,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AdvancedEcommerceScreen;
+export default React.memo(AdvancedEcommerceScreen);

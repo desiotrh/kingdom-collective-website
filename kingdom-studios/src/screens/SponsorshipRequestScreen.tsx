@@ -96,8 +96,8 @@ Faith Mode: ${faithMode ? 'Enabled' : 'Disabled'}
       Alert.alert(
         faithMode ? 'Prayer Sent! 🙏' : 'Request Sent! ✨',
         faithMode 
-          ? 'Your sponsorship request has been sent to Desirea@ontheroadhomeministries.com. Trust that God will provide the right sponsor for your journey!'
-          : 'Your sponsorship request has been sent to Desirea@ontheroadhomeministries.com. We\'ll help you find the right sponsor for your creative journey!',
+          ? 'Your sponsorship request has been sent to support@kingdomstudiosapp.com. Trust that God will provide the right sponsor for your journey!'
+          : 'Your sponsorship request has been sent to support@kingdomstudiosapp.com. We\'ll help you find the right sponsor for your creative journey!',
         [
           {
             text: 'OK',
@@ -303,8 +303,8 @@ Faith Mode: ${faithMode ? 'Enabled' : 'Disabled'}
               >
                 <Text style={styles.contactTitle}>📞 Questions?</Text>
                 <Text style={styles.contactText}>
-                  Contact Desirea directly at{' '}
-                  <Text style={styles.contactEmail}>Desirea@ontheroadhomeministries.com</Text>
+                  Contact our support team at{' '}
+                  <Text style={styles.contactEmail}>support@kingdomstudiosapp.com</Text>
                 </Text>
               </LinearGradient>
             </BlurView>
@@ -580,4 +580,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SponsorshipRequestScreen;
+export default React.memo(SponsorshipRequestScreen);

@@ -611,4 +611,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AdminDashboardScreen;
+export default React.memo(AdminDashboardScreen);

@@ -352,7 +352,7 @@ export default function SponsorshipsScreen() {
                   }
                 </Text>
                 <TouchableOpacity style={styles.contactButton}>
-                  <Text style={styles.contactEmail}>Desirea@ontheroadhomeministries.com</Text>
+                  <Text style={styles.contactEmail}>support@kingdomstudiosapp.com</Text>
                 </TouchableOpacity>
               </LinearGradient>
             </BlurView>

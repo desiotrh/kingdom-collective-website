@@ -303,4 +303,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default WelcomeGuide;
+export default React.memo(WelcomeGuide);
