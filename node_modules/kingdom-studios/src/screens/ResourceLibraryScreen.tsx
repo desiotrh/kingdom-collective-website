@@ -695,4 +695,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ResourceLibraryScreen;
+export default React.memo(ResourceLibraryScreen);

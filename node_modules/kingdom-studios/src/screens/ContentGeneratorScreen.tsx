@@ -17,9 +17,12 @@ import {
 import { LinearGradient } from 'expo-linear-gradient';
 import { useAppNavigation } from '../utils/navigationUtils';
 import { useFaithMode } from '../contexts/FaithModeContext';
+import { useDualMode } from '../contexts/DualModeContext';
 import { useAuth } from '../contexts/AuthContext';
+import { useTierSystem } from '../contexts/TierSystemContext';
 import { KingdomColors, KingdomShadows } from '../constants/KingdomColors';
 import KingdomLogo from '../components/KingdomLogo';
+import ModeToggle from '../components/ModeToggle';
 import backendAPI, { 
   type ContentGenerationRequest, 
   type ContentGenerationResponse 
@@ -119,6 +122,15 @@ const ContentGeneratorScreen = () => {
   const navigation = useAppNavigation();
   const { faithMode } = useFaithMode();
   const { user } = useAuth();
+  const { 
+    currentTier, 
+    tierFeatures, 
+    checkFeatureAccess, 
+    trackUsage, 
+    getUsageStats,
+    isTrialActive 
+  } = useTierSystem();
+
   // Content generation state
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [modalVisible, setModalVisible] = useState(false);
@@ -146,11 +158,37 @@ const ContentGeneratorScreen = () => {
   const [contentSubtype, setContentSubtype] = useState<string>('post');
   const [showAdvancedOptions, setShowAdvancedOptions] = useState(false);
 
+  // Tier system state
+  const [showUpgradeModal, setShowUpgradeModal] = useState(false);
+  const [usageStats, setUsageStats] = useState<any>(null);
+
   // Load products on component mount
   useEffect(() => {
     loadProducts();
     loadTemplates();
+    loadUsageStats();
   }, []);
+
+  const loadUsageStats = async () => {
+    try {
+      const stats = await getUsageStats();
+      setUsageStats(stats);
+    } catch (error) {
+      console.error('Failed to load usage stats:', error);
+    }
+  };
+
+  const handleFeatureAccess = async (featureKey: string, action: string) => {
+    const hasAccess = await checkFeatureAccess(featureKey);
+    if (!hasAccess) {
+      setShowUpgradeModal(true);
+      return false;
+    }
+    
+    await trackUsage('content_generator', action);
+    await loadUsageStats();
+    return true;
+  };
 
   const loadProducts = async () => {
     setLoadingProducts(true);
@@ -251,6 +289,16 @@ const ContentGeneratorScreen = () => {
   const handleGenerateContent = async (type: 'post' | 'caption' | 'reelIdea') => {
     if (!selectedProduct || !user) return;
 
+    // Check feature access based on tier
+    const hasAccess = await handleFeatureAccess('aiGenerationsPerDay', `generate_${type}`);
+    if (!hasAccess) return;
+
+    // Check if bulk generation is available (for advanced content types)
+    if (type === 'reelIdea' && !tierFeatures.bulkGeneration) {
+      const hasAdvancedAccess = await handleFeatureAccess('bulkGeneration', 'advanced_content_generation');
+      if (!hasAdvancedAccess) return;
+    }
+
     setContentGeneration({
       isLoading: true,
       error: null,
@@ -265,6 +313,7 @@ const ContentGeneratorScreen = () => {
         platform: selectedPlatform,
         userId: user.id,
         faithMode: faithMode,
+        tier: currentTier,
       });
 
       // Track with backend API as well for backwards compatibility
@@ -292,23 +341,28 @@ const ContentGeneratorScreen = () => {
         customPrompt: customPrompt || undefined,
       };
 
-      // Try enterprise content service first for better performance
+      // Try enterprise content service first for better performance (if available)
       let response: ContentGenerationResponse;
       try {
-        // Use enterprise content service for enhanced performance
-        const enterpriseResponse = await contentService.generateContent({
-          contentType: type,
-          platform: selectedPlatform,
-          prompt: basePrompt,
-          tone: selectedTone,
-          length: selectedLength,
-          subtype: contentSubtype,
-          customPrompt: customPrompt || undefined,
-          faithMode: faithMode,
-        });
-        
-        // Convert to expected format from API response
-        response = enterpriseResponse.data;
+        // Use enterprise content service for enhanced performance (premium tiers)
+        if (tierFeatures.prioritySupport) {
+          const enterpriseResponse = await contentService.generateContent({
+            contentType: type,
+            platform: selectedPlatform,
+            prompt: basePrompt,
+            tone: selectedTone,
+            length: selectedLength,
+            subtype: contentSubtype,
+            customPrompt: customPrompt || undefined,
+            faithMode: faithMode,
+          });
+          
+          // Convert to expected format from API response
+          response = enterpriseResponse.data;
+        } else {
+          // Use standard API for basic tiers
+          response = await backendAPI.generateContent(contentRequest);
+        }
       } catch (enterpriseError) {
         // Fall back to direct backend API if enterprise service fails
         console.log('Enterprise service unavailable, falling back to direct API');
@@ -321,12 +375,13 @@ const ContentGeneratorScreen = () => {
         content: response,
       });
 
-      // Track successful generation
+      // Track successful generation with tier information
       AnalyticsService.getInstance().trackEvent('content_generation_success', 1, {
         contentType: type,
         platform: selectedPlatform,
         userId: user.id,
         faithMode: faithMode,
+        tier: currentTier,
         wordCount: response.metadata?.wordCount,
       });
 
@@ -351,6 +406,7 @@ const ContentGeneratorScreen = () => {
         userId: user.id,
         error: errorMessage,
         faithMode: faithMode,
+        tier: currentTier,
       });
 
       // Track error (simplified for backend API)
@@ -930,6 +986,63 @@ const ContentGeneratorScreen = () => {
       </ScrollView>
 
       {renderGenerationModal()}
+
+      {/* Upgrade Modal */}
+      <Modal
+        visible={showUpgradeModal}
+        transparent={true}
+        animationType="slide"
+        onRequestClose={() => setShowUpgradeModal(false)}
+      >
+        <View style={styles.modalContainer}>
+          <View style={styles.modalContent}>
+            <LinearGradient
+              colors={[KingdomColors.primary.royalPurple, KingdomColors.gold.bright]}
+              style={styles.modalGradient}
+              start={{ x: 0, y: 0 }}
+              end={{ x: 1, y: 1 }}
+            >
+              <Text style={styles.modalTitle}>
+                {faithMode ? '✨ Unlock Kingdom Content Pro' : '✨ Upgrade for More Content'}
+              </Text>
+              <Text style={styles.modalSubtitle}>
+                {faithMode 
+                  ? 'Generate unlimited Kingdom-focused content for your ministry'
+                  : 'Create unlimited content and access premium features'
+                }
+              </Text>
+              
+              <View style={styles.modalFeatures}>
+                <Text style={styles.modalFeature}>• {tierFeatures.aiGenerationsPerDay} daily AI generations → Unlimited</Text>
+                <Text style={styles.modalFeature}>• Premium content templates</Text>
+                <Text style={styles.modalFeature}>• Bulk content generation</Text>
+                <Text style={styles.modalFeature}>• Advanced customization options</Text>
+                <Text style={styles.modalFeature}>• Priority content processing</Text>
+              </View>
+
+              <View style={styles.modalButtons}>
+                <TouchableOpacity
+                  style={styles.upgradeButton}
+                  onPress={() => {
+                    setShowUpgradeModal(false);
+                    navigation.navigate('TierSelection');
+                  }}
+                >
+                  <Text style={styles.upgradeButtonText}>
+                    {faithMode ? 'Upgrade Kingdom Plan' : 'Upgrade Now'}
+                  </Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={styles.cancelButton}
+                  onPress={() => setShowUpgradeModal(false)}
+                >
+                  <Text style={styles.cancelButtonText}>Maybe Later</Text>
+                </TouchableOpacity>
+              </View>
+            </LinearGradient>
+          </View>
+        </View>
+      </Modal>
     </SafeAreaView>
   );
 };
@@ -1465,6 +1578,77 @@ const styles = StyleSheet.create({
     color: '#ffffff',
     textAlign: 'center',
   },
+  // Upgrade Modal Styles
+  modalContainer: {
+    flex: 1,
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 20,
+  },
+  modalContent: {
+    width: '100%',
+    maxWidth: 400,
+    borderRadius: 16,
+    overflow: 'hidden',
+  },
+  modalGradient: {
+    padding: 24,
+    alignItems: 'center',
+  },
+  modalTitle: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: KingdomColors.white,
+    textAlign: 'center',
+    marginBottom: 8,
+  },
+  modalSubtitle: {
+    fontSize: 16,
+    color: KingdomColors.white,
+    textAlign: 'center',
+    marginBottom: 20,
+    opacity: 0.9,
+  },
+  modalFeatures: {
+    alignSelf: 'stretch',
+    marginBottom: 24,
+  },
+  modalFeature: {
+    fontSize: 14,
+    color: KingdomColors.white,
+    marginBottom: 8,
+    textAlign: 'left',
+  },
+  modalButtons: {
+    width: '100%',
+    gap: 12,
+  },
+  upgradeButton: {
+    backgroundColor: KingdomColors.white,
+    paddingVertical: 14,
+    paddingHorizontal: 24,
+    borderRadius: 8,
+    alignItems: 'center',
+  },
+  upgradeButtonText: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: KingdomColors.primary.royalPurple,
+  },
+  cancelButton: {
+    backgroundColor: 'transparent',
+    paddingVertical: 12,
+    paddingHorizontal: 24,
+    borderRadius: 8,
+    alignItems: 'center',
+    borderWidth: 1,
+    borderColor: KingdomColors.white,
+  },
+  cancelButtonText: {
+    fontSize: 14,
+    color: KingdomColors.white,
+  },
 });
 
-export default ContentGeneratorScreen;
+export default React.memo(ContentGeneratorScreen);

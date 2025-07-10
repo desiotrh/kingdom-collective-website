@@ -1147,4 +1147,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ProductContentTemplatesScreen;
+export default React.memo(ProductContentTemplatesScreen);

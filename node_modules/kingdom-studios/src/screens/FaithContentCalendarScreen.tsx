@@ -1578,4 +1578,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default FaithContentCalendarScreen;
+export default React.memo(FaithContentCalendarScreen);

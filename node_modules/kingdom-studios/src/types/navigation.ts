@@ -22,11 +22,23 @@ export type RootStackParamList = {
   Onboarding: undefined;
   SponsorshipRequest: undefined;
   Pricing: undefined;
+  // Tier System
+  TierSystem: undefined;
+  FAQ: undefined;
+  ContactSales: undefined;
   // Admin Screens
   AdminMonitoring: undefined;
+  AdminDashboard: undefined;
+  AdminUserManagement: undefined;
+  AdminAnalytics: undefined;
+  AdminBilling: undefined;
+  AdminSettings: undefined;
   // AI Studio Screens
   AIStudio: undefined;
+  AIGenerationTest: undefined; // For testing AI features
   SocialMediaGenerator: undefined;
+  SocialMediaManagement: undefined; // Social media integration hub
+  EmailMarketingManagement: undefined; // Email marketing hub
   TShirtDesigner: undefined;
   EmailSequencer: undefined;
   SEOPlanner: undefined;
@@ -127,12 +139,10 @@ export type RootStackParamList = {
   AdvancedEcommerce: undefined;
   MobileOptimization: undefined;
   // Admin/Safety Tools
-  AdminDashboard: undefined;
   ContentModeration: undefined;
   UserManagement: undefined;
   FlagReview: undefined;
   ModerationAlerts: undefined;
-  AdminSettings: undefined;
   // Advanced Features
   AdvancedProjectManagement: undefined;
   MultiLanguageSupport: undefined;
@@ -156,6 +166,8 @@ export type RootStackParamList = {
   PaymentFailed: { error: string };
   // Settings & Configuration
   APIConfiguration: undefined;
+  NotificationSettings: undefined;
+  SubscriptionUpgrade: undefined;
 };
 
 // Main Tab Navigator Type

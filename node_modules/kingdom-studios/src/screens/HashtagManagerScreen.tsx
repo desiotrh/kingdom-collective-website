@@ -826,4 +826,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default HashtagManagerScreen;
+export default React.memo(HashtagManagerScreen);

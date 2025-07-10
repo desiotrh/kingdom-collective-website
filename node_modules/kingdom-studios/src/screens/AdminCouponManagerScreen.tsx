@@ -573,4 +573,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AdminCouponManagerScreen;
+export default React.memo(AdminCouponManagerScreen);

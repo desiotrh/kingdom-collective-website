@@ -3,6 +3,13 @@
 # dependencies
 node_modules/
 
+# Environment files - SECURITY CRITICAL
+.env.local
+.env.production
+.env.staging
+.env
+*.env
+
 # Expo
 .expo/
 dist/

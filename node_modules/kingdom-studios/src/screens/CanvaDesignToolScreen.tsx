@@ -880,4 +880,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CanvaDesignToolScreen;
+export default React.memo(CanvaDesignToolScreen);

@@ -34,7 +34,15 @@ export default {
       favicon: './assets/favicon.png',
     },
     plugins: [
-      'expo-facebook'
+      'expo-facebook',
+      [
+        'expo-notifications',
+        {
+          icon: './assets/adaptive-icon.png',
+          color: '#ffffff',
+          defaultChannel: 'default',
+        },
+      ],
     ],
     extra: {
       // Firebase Configuration
@@ -107,6 +115,15 @@ export default {
       // Development Settings
       debugMode: process.env.EXPO_PUBLIC_DEBUG_MODE === 'true',
       enableMocks: process.env.EXPO_PUBLIC_ENABLE_MOCKS === 'true',
+      
+      // Legal Pages & Developer Information
+      termsOfServiceUrl: 'https://kingdomstudiosapp.com/terms',
+      privacyPolicyUrl: 'https://kingdomstudiosapp.com/privacy',
+      supportEmail: 'support@kingdomstudiosapp.com',
+      
+      // App Store Metadata
+      appStoreTermsUrl: 'https://kingdomstudiosapp.com/terms',
+      appStorePrivacyUrl: 'https://kingdomstudiosapp.com/privacy',
     },
   },
 };

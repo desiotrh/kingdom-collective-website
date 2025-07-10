@@ -744,4 +744,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default RefinersFireScreen;
+export default React.memo(RefinersFireScreen);

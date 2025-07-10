@@ -13,8 +13,10 @@ import {
 import { useAuth } from '../contexts/AuthContext';
 import { useAppNavigation } from '../utils/navigationUtils';
 import { useFaithMode } from '../contexts/FaithModeContext';
+import { useDualMode } from '../contexts/DualModeContext';
 import QuickActionsWidget from '../components/QuickActionsWidget';
 import KingdomLogo from '../components/KingdomLogo';
+import ModeToggle from '../components/ModeToggle';
 import { KingdomColors } from '../constants/KingdomColors';
 import { AnalyticsService } from '../services/AnalyticsService';
 import { apiClient } from '../services/apiClient';
@@ -163,6 +165,7 @@ const toolCards: ToolCard[] = [
 const CreatorDashboardScreen = () => {
   const { user, logout } = useAuth();
   const { faithMode } = useFaithMode();
+  const { currentMode, modeConfig, getModeSpecificContent } = useDualMode();
   const navigation = useAppNavigation();
   const [isLoggingOut, setIsLoggingOut] = useState(false);
 
@@ -171,11 +174,12 @@ const CreatorDashboardScreen = () => {
     if (user) {
       AnalyticsService.getInstance().trackEvent('creator_dashboard_viewed', 1, {
         faithMode: faithMode,
+        currentMode: currentMode,
         userRole: user.email?.includes('admin') ? 'admin' : 'creator',
         userId: user.id,
       });
     }
-  }, [user, faithMode]);
+  }, [user, faithMode, currentMode]);
 
   // Mock admin check - in a real app, this would come from user profile/database
   const isAdmin = user?.email === 'admin@kingdomstudios.com' || user?.email?.includes('admin');
@@ -493,4 +497,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CreatorDashboardScreen;
+export default React.memo(CreatorDashboardScreen);

@@ -733,4 +733,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AdvancedAnalyticsDashboardScreen;
+export default React.memo(AdvancedAnalyticsDashboardScreen);

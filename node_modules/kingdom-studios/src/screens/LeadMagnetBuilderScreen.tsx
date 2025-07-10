@@ -1013,4 +1013,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default LeadMagnetBuilderScreen;
+export default React.memo(LeadMagnetBuilderScreen);

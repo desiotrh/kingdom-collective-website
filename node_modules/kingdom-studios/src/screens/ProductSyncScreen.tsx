@@ -509,4 +509,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ProductSyncScreen;
+export default React.memo(ProductSyncScreen);

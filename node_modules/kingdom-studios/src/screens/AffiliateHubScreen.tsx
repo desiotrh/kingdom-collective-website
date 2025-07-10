@@ -1485,4 +1485,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AffiliateHubScreen;
+export default React.memo(AffiliateHubScreen);

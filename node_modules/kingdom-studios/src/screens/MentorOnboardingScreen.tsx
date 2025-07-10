@@ -805,4 +805,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default MentorOnboardingScreen;
+export default React.memo(MentorOnboardingScreen);

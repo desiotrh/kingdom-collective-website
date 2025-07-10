@@ -53,7 +53,7 @@ Kingdom Studios is a comprehensive mobile app designed to empower faith-based cr
 
 - **Sponsorship Requests**: Apply for Forge Access sponsorship
 - **Tier Management**: Free, Pro, and Sponsored access levels
-- **Contact Integration**: Direct communication with Desirea@ontheroadhomeministries.com
+- **Contact Integration**: Direct communication with support@kingdomstudiosapp.com
 - **Auto-Activation**: Seamless sponsored access activation
 - **Subscription Management**: Flexible pricing and upgrade options
 
@@ -275,7 +275,7 @@ kingdom-studios/
 
 1. Visit Sponsorships → Request Access
 2. Fill application form
-3. Submit to Desirea@ontheroadhomeministries.com
+3. Submit to support@kingdomstudiosapp.com
 4. Receive activation notification
 5. Access premium features
 
@@ -311,7 +311,7 @@ kingdom-studios/
 
 ### **Sponsorship Inquiries**
 
-- **Contact**: Desirea@ontheroadhomeministries.com
+- **Contact**: support@kingdomstudiosapp.com
 - **Subject**: Kingdom Studios Sponsorship Request
 
 ### **Community**

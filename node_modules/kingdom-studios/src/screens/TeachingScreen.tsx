@@ -745,4 +745,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default TeachingScreen;
+export default React.memo(TeachingScreen);

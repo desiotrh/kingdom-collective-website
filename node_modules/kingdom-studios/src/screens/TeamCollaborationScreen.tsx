@@ -1047,4 +1047,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default TeamCollaborationScreen;
+export default React.memo(TeamCollaborationScreen);

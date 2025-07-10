@@ -409,4 +409,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AnalyticsOverviewScreen;
+export default React.memo(AnalyticsOverviewScreen);

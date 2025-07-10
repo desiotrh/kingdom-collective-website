@@ -708,4 +708,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default UserSuggestionScreen;
+export default React.memo(UserSuggestionScreen);

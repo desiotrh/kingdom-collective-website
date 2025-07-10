@@ -452,4 +452,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default MonetizationScreen;
+export default React.memo(MonetizationScreen);

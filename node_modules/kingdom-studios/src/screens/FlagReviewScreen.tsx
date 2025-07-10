@@ -650,4 +650,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default FlagReviewScreen;
+export default React.memo(FlagReviewScreen);

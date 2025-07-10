@@ -829,4 +829,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default LinkInBioBuilderScreen;
+export default React.memo(LinkInBioBuilderScreen);

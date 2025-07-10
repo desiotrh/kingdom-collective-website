@@ -1509,4 +1509,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ForgeCommunityScreen;
+export default React.memo(ForgeCommunityScreen);

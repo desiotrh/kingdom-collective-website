@@ -1066,4 +1066,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default EmailMarketingScreen;
+export default React.memo(EmailMarketingScreen);

@@ -21,15 +21,25 @@ import { getAuth } from 'firebase/auth';
 import { app } from '../config/firebase';
 import { useAuth } from '../contexts/AuthContext';
 import { useFaithMode } from '../contexts/FaithModeContext';
+import { useDualMode } from '../contexts/DualModeContext';
 import { useAppNavigation } from '../utils/navigationUtils';
 import { KingdomColors, KingdomShadows } from '../constants/KingdomColors';
 import KingdomLogo from '../components/KingdomLogo';
+import ModeToggle from '../components/ModeToggle';
 
 const { width } = Dimensions.get('window');
 
 const SettingsScreen = () => {
   const { user } = useAuth();
   const { faithMode, setFaithMode } = useFaithMode();
+  const { 
+    currentMode, 
+    userTier, 
+    modeConfig, 
+    getModeSpecificContent,
+    isDualMode,
+    setDualMode 
+  } = useDualMode();
   const navigation = useAppNavigation();
   const auth = getAuth(app);
   
@@ -120,9 +130,9 @@ const SettingsScreen = () => {
   };
 
   const handleContactSupport = () => {
-    const email = 'Desirea@ontheroadhomeministries.com';
+    const email = 'support@kingdomstudiosapp.com';
     const subject = 'Kingdom Studios App Support';
-    const body = 'Hello Desirea,\n\nI need help with the Kingdom Studios app.\n\n';
+    const body = 'Hello Kingdom Studios Support Team,\n\nI need help with the Kingdom Studios app.\n\n';
     
     const mailtoUrl = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     
@@ -256,8 +266,34 @@ const SettingsScreen = () => {
         <Text style={styles.chevron}>›</Text>
       </TouchableOpacity>
       <Text style={styles.supportDescription}>
-        Need help? Reach out to Desirea for support with Kingdom Studios.
+        Need help? Contact our support team at support@kingdomstudiosapp.com
       </Text>
+    </View>
+  );
+
+  const renderLegalSection = () => (
+    <View style={styles.section}>
+      <Text style={styles.sectionTitle}>Legal & Privacy</Text>
+      
+      <TouchableOpacity
+        style={styles.legalButton}
+        onPress={() => Linking.openURL('https://kingdomstudiosapp.com/terms')}
+        activeOpacity={0.8}
+      >
+        <Text style={styles.legalButtonIcon}>📄</Text>
+        <Text style={styles.legalButtonText}>Terms of Service</Text>
+        <Text style={styles.chevron}>›</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity
+        style={styles.legalButton}
+        onPress={() => Linking.openURL('https://kingdomstudiosapp.com/privacy')}
+        activeOpacity={0.8}
+      >
+        <Text style={styles.legalButtonIcon}>🔒</Text>
+        <Text style={styles.legalButtonText}>Privacy Policy</Text>
+        <Text style={styles.chevron}>›</Text>
+      </TouchableOpacity>
     </View>
   );
 
@@ -441,7 +477,72 @@ const SettingsScreen = () => {
           </View>
         </View>
 
-        {/* Faith Mode Section */}
+        {/* Tier & Mode Management */}
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>
+            {getModeSpecificContent('Kingdom Configuration', 'Creator Configuration')}
+          </Text>
+          
+          {/* Current Tier Display */}
+          <TouchableOpacity 
+            style={styles.tierCard}
+            onPress={() => navigation.navigate('TierSystem')}
+            activeOpacity={0.8}
+          >
+            <LinearGradient
+              colors={[modeConfig.primaryColor, modeConfig.accentColor]}
+              style={styles.tierGradient}
+            >
+              <View style={styles.tierContent}>
+                <View style={styles.tierLeft}>
+                  <Text style={styles.tierIcon}>
+                    {userTier === 'free' ? '🌱' : userTier === 'creator' ? '⚡' : userTier === 'pro' ? '👑' : '🏛️'}
+                  </Text>
+                  <View style={styles.tierInfo}>
+                    <Text style={styles.tierTitle}>
+                      {userTier === 'free' ? getModeSpecificContent('Kingdom Starter', 'Creator Starter') :
+                       userTier === 'creator' ? getModeSpecificContent('Kingdom Creator', 'Creator Pro') :
+                       userTier === 'pro' ? getModeSpecificContent('Kingdom Leader', 'Creator Elite') :
+                       getModeSpecificContent('Kingdom Enterprise', 'Creator Enterprise')}
+                    </Text>
+                    <Text style={styles.tierSubtitle}>
+                      {userTier === 'free' ? 'Tap to upgrade your plan' : 'Current plan • Tap to manage'}
+                    </Text>
+                  </View>
+                </View>
+                <Text style={styles.tierArrow}>→</Text>
+              </View>
+            </LinearGradient>
+          </TouchableOpacity>
+
+          {/* Mode Toggle */}
+          <View style={styles.modeToggleSection}>
+            <Text style={styles.settingSubtitle}>Content Mode</Text>
+            <ModeToggle showDescription style={styles.modeToggle} />
+            <Text style={styles.modeDescription}>
+              {getModeSpecificContent(
+                'Faith Mode includes biblical encouragement, scriptures, and Kingdom-focused language.',
+                'Encouragement Mode provides universal wisdom and motivation with a clean, professional tone.'
+              )}
+            </Text>
+          </View>
+
+          {/* Dual Mode Setting */}
+          {renderSettingCard(
+            '🔄',
+            'Dual Mode System',
+            isDualMode ? 'Switch between Faith and Encouragement modes' : 'Enable mode switching',
+            () => {},
+            <Switch
+              value={isDualMode}
+              onValueChange={setDualMode}
+              trackColor={{ false: KingdomColors.opacity.white20, true: KingdomColors.primary.royalPurple }}
+              thumbColor={isDualMode ? KingdomColors.gold.bright : KingdomColors.silver.bright}
+            />
+          )}
+        </View>
+
+        {/* Legacy Faith Mode Section */}
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>
             {faithMode ? 'Kingdom Settings' : 'App Settings'}
@@ -507,16 +608,20 @@ const SettingsScreen = () => {
           
           {renderSettingCard(
             '📋',
-            'Terms & Conditions',
+            'Terms of Service',
             'Read our terms and conditions',
-            () => Alert.alert('Coming Soon', 'Terms & Conditions coming soon!')
+            () => Linking.openURL('https://kingdomstudiosapp.com/terms').catch(() => 
+              Alert.alert('Error', 'Unable to open Terms of Service')
+            )
           )}
           
           {renderSettingCard(
             '🛡️',
             'Privacy Policy',
             'View our privacy policy',
-            () => Alert.alert('Coming Soon', 'Privacy Policy coming soon!')
+            () => Linking.openURL('https://kingdomstudiosapp.com/privacy').catch(() => 
+              Alert.alert('Error', 'Unable to open Privacy Policy')
+            )
           )}
         </View>
 
@@ -726,6 +831,70 @@ const styles = StyleSheet.create({
     color: '#FFD700',
     fontWeight: '600',
   },
+  // Tier Management Styles
+  tierCard: {
+    borderRadius: 16,
+    overflow: 'hidden',
+    marginBottom: 16,
+    ...KingdomShadows.medium,
+  },
+  tierGradient: {
+    padding: 20,
+  },
+  tierContent: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  tierLeft: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    flex: 1,
+  },
+  tierIcon: {
+    fontSize: 32,
+    marginRight: 16,
+  },
+  tierInfo: {
+    flex: 1,
+  },
+  tierTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#FFFFFF',
+    marginBottom: 4,
+  },
+  tierSubtitle: {
+    fontSize: 14,
+    color: 'rgba(255, 255, 255, 0.8)',
+  },
+  tierArrow: {
+    fontSize: 20,
+    color: '#FFFFFF',
+    fontWeight: 'bold',
+  },
+  // Mode Toggle Styles
+  modeToggleSection: {
+    backgroundColor: 'rgba(255, 255, 255, 0.05)',
+    borderRadius: 16,
+    padding: 20,
+    marginBottom: 16,
+  },
+  settingSubtitle: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: KingdomColors.text.primary,
+    marginBottom: 12,
+  },
+  modeToggle: {
+    marginBottom: 12,
+  },
+  modeDescription: {
+    fontSize: 14,
+    color: KingdomColors.text.secondary,
+    lineHeight: 20,
+    textAlign: 'center',
+  },
   accountInfo: {
     backgroundColor: '#111111',
     borderRadius: 12,
@@ -903,6 +1072,33 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginTop: 12,
   },
+  // Legal button styles
+  legalButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#ffffff',
+    paddingHorizontal: 16,
+    paddingVertical: 14,
+    borderRadius: 12,
+    marginBottom: 8,
+    shadowColor: '#000000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 2,
+  },
+  legalButtonIcon: {
+    fontSize: 18,
+    marginRight: 12,
+    width: 24,
+    textAlign: 'center',
+  },
+  legalButtonText: {
+    flex: 1,
+    fontSize: 16,
+    fontWeight: '500',
+    color: '#1a202c',
+  },
 });
 
-export default SettingsScreen;
+export default React.memo(SettingsScreen);

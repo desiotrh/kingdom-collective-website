@@ -908,4 +908,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default PodcastShortsHubScreen;
+export default React.memo(PodcastShortsHubScreen);

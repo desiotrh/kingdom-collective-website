@@ -690,4 +690,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default PrayerRoomScreen;
+export default React.memo(PrayerRoomScreen);

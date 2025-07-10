@@ -933,4 +933,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default WorkflowAutomationScreen;
+export default React.memo(WorkflowAutomationScreen);

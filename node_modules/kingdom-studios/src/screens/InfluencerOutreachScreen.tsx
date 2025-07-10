@@ -1310,4 +1310,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default InfluencerOutreachScreen;
+export default React.memo(InfluencerOutreachScreen);

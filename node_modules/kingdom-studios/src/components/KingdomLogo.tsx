@@ -93,4 +93,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default KingdomLogo;
+export default React.memo(KingdomLogo);

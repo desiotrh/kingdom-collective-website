@@ -641,4 +641,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default NotificationCenterScreen;
+export default React.memo(NotificationCenterScreen);

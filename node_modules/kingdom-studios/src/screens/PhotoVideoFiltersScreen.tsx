@@ -816,4 +816,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default PhotoVideoFiltersScreen;
+export default React.memo(PhotoVideoFiltersScreen);

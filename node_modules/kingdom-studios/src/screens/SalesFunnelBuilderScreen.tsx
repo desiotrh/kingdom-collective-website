@@ -856,4 +856,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SalesFunnelBuilderScreen;
+export default React.memo(SalesFunnelBuilderScreen);

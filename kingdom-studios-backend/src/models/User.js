@@ -223,7 +223,7 @@ userSchema.methods.canAccessFeature = function(feature) {
   const featureAccess = {
     free: ['basic_content', 'limited_analytics'],
     pro: ['basic_content', 'advanced_content', 'platform_sync', 'analytics', 'priority_support'],
-    enterprise: ['all_features', 'custom_integrations', 'dedicated_support', 'white_label'],
+    enterprise: ['all_features', 'custom_integrations', 'dedicated_support', 'custom_branding'],
     lifetime: ['all_features', 'custom_integrations', 'dedicated_support']
   };
   
