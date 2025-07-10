@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, Animated, Dimensions } from 'react-native';
+import { View, Text, StyleSheet, Animated, Dimensions, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useAuth } from '../contexts/AuthContext';
 import { useTierSystem } from '../contexts/TierSystemContext';
@@ -111,10 +111,10 @@ export const EnhancedOnboardingScreen: React.FC = () => {
         
         {step.id === 'tier-selection' && (
           <View style={styles.tierContainer}>
-            {availableTiers.map((tier) => (
-              <View key={tier.id} style={styles.tierCard}>
+            {Object.entries(availableTiers).map(([tierKey, tier]) => (
+              <View key={tierKey} style={styles.tierCard}>
                 <Text style={styles.tierName}>{tier.name}</Text>
-                <Text style={styles.tierPrice}>{tier.price}</Text>
+                <Text style={styles.tierPrice}>${tier.monthlyPrice}/month</Text>
                 <Text style={styles.tierDescription}>{tier.description}</Text>
               </View>
             ))}

@@ -1,5 +1,5 @@
 import { Environment } from '../config/environment';
-import { BackendAPI } from './backendAPI';
+import { backendAPI } from './backendAPI';
 
 /**
  * Advanced Analytics Tracking Service
@@ -502,12 +502,14 @@ class AnalyticsTrackingService {
   // Backend Communication
   private async sendToBackend(eventType: string, data: any): Promise<void> {
     try {
-      await BackendAPI.trackEvent({
-        name: eventType,
-        properties: data,
-        userId: this.userId,
-        timestamp: Date.now(),
-      });
+      // TODO: Implement backend analytics endpoint
+      // await backendAPI.trackEvent({
+      //   name: eventType,
+      //   properties: data,
+      //   userId: this.userId,
+      //   timestamp: Date.now(),
+      // });
+      console.log('[Analytics] Backend tracking:', eventType, data);
     } catch (error) {
       if (Environment.isDebugEnabled()) {
         console.error('[Analytics] Backend send error:', error);

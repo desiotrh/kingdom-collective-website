@@ -215,4 +215,4 @@ export const getCollectionPath = (collection: CollectionName): string => {
 
 export const getUserCollectionPath = (userId: string, subcollection: string): string => {
   return `${COLLECTIONS.USERS}/${userId}/${subcollection}`;
-};m
+};
