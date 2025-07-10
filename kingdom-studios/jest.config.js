@@ -12,7 +12,7 @@ module.exports = {
     '!src/**/index.{ts,tsx}',
   ],
   coverageReporters: ['html', 'text', 'lcov'],
-  moduleNameMapping: {
+  moduleNameMapper: {
     '\\.(jpg|jpeg|png|gif|svg)$': 'identity-obj-proxy',
   },
   testMatch: [

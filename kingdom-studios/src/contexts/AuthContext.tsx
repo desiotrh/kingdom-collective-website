@@ -7,6 +7,8 @@ export interface User {
   id: string;
   email: string;
   name: string;
+  displayName?: string;
+  photoURL?: string;
   faithMode?: boolean;
   profile?: {
     bio?: string;

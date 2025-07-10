@@ -94,29 +94,25 @@ export const OptimizedButton = memo<{
   size?: 'small' | 'medium' | 'large';
 }>(({ title, onPress, disabled, variant = 'primary', size = 'medium' }) => {
   const buttonStyle = useMemo(() => {
-    const baseStyles = [styles.button];
-    
-    if (variant === 'primary') baseStyles.push(styles.buttonPrimary);
-    if (variant === 'secondary') baseStyles.push(styles.buttonSecondary);
-    if (variant === 'danger') baseStyles.push(styles.buttonDanger);
-    
-    if (size === 'small') baseStyles.push(styles.buttonSmall);
-    if (size === 'medium') baseStyles.push(styles.buttonMedium);
-    if (size === 'large') baseStyles.push(styles.buttonLarge);
-    
-    if (disabled) baseStyles.push(styles.buttonDisabled);
-    
-    return baseStyles;
+    return [
+      styles.button,
+      variant === 'primary' && styles.buttonPrimary,
+      variant === 'secondary' && styles.buttonSecondary,
+      variant === 'danger' && styles.buttonDanger,
+      size === 'small' && styles.buttonSmall,
+      size === 'medium' && styles.buttonMedium,
+      size === 'large' && styles.buttonLarge,
+      disabled && styles.buttonDisabled,
+    ].filter(Boolean);
   }, [variant, size, disabled]);
 
   const textStyle = useMemo(() => {
-    const baseStyles = [styles.buttonText];
-    
-    if (variant === 'primary') baseStyles.push(styles.buttonTextPrimary);
-    if (variant === 'secondary') baseStyles.push(styles.buttonTextSecondary);
-    if (variant === 'danger') baseStyles.push(styles.buttonTextDanger);
-    
-    return baseStyles;
+    return [
+      styles.buttonText,
+      variant === 'primary' && styles.buttonTextPrimary,
+      variant === 'secondary' && styles.buttonTextSecondary,
+      variant === 'danger' && styles.buttonTextDanger,
+    ].filter(Boolean);
   }, [variant]);
 
   return (
