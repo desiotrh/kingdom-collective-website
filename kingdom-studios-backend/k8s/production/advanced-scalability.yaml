@@ -1,0 +1,649 @@
+# ==============================================
+# KINGDOM STUDIOS - ADVANCED SCALABILITY CONFIGURATION
+# Kubernetes configurations for 10K-100K+ concurrent users
+# ==============================================
+
+---
+# ==============================================
+# ADVANCED HORIZONTAL POD AUTOSCALER
+# ==============================================
+
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: kingdom-studios-backend-hpa-advanced
+  namespace: production
+  labels:
+    app: kingdom-studios-backend
+    version: v2.0.0
+    tier: backend
+    environment: production
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: kingdom-studios-backend
+  minReplicas: 5
+  maxReplicas: 100
+  metrics:
+    # CPU-based scaling
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 65
+    # Memory-based scaling
+    - type: Resource
+      resource:
+        name: memory
+        target:
+          type: Utilization
+          averageUtilization: 75
+    # Custom metrics for request rate
+    - type: Object
+      object:
+        metric:
+          name: requests-per-second
+        describedObject:
+          apiVersion: v1
+          kind: Service
+          name: kingdom-studios-backend-service
+        target:
+          type: AverageValue
+          averageValue: 1000
+    # Custom metrics for response time
+    - type: Object
+      object:
+        metric:
+          name: response-time-p95
+        describedObject:
+          apiVersion: v1
+          kind: Service
+          name: kingdom-studios-backend-service
+        target:
+          type: AverageValue
+          averageValue: 500
+  behavior:
+    scaleUp:
+      stabilizationWindowSeconds: 60
+      policies:
+        - type: Percent
+          value: 100
+          periodSeconds: 15
+        - type: Pods
+          value: 10
+          periodSeconds: 60
+      selectPolicy: Max
+    scaleDown:
+      stabilizationWindowSeconds: 300
+      policies:
+        - type: Percent
+          value: 10
+          periodSeconds: 60
+        - type: Pods
+          value: 2
+          periodSeconds: 60
+      selectPolicy: Min
+
+---
+# ==============================================
+# VERTICAL POD AUTOSCALER
+# ==============================================
+
+apiVersion: autoscaling.k8s.io/v1
+kind: VerticalPodAutoscaler
+metadata:
+  name: kingdom-studios-backend-vpa
+  namespace: production
+spec:
+  targetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: kingdom-studios-backend
+  updatePolicy:
+    updateMode: "Auto"
+  resourcePolicy:
+    containerPolicies:
+      - containerName: kingdom-studios-backend
+        minAllowed:
+          cpu: 100m
+          memory: 256Mi
+        maxAllowed:
+          cpu: 4000m
+          memory: 8Gi
+        controlledResources: ["cpu", "memory"]
+        controlledValues: RequestsAndLimits
+
+---
+# ==============================================
+# ADVANCED LOAD BALANCER SERVICE
+# ==============================================
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: kingdom-studios-backend-service-advanced
+  namespace: production
+  labels:
+    app: kingdom-studios-backend
+    version: v2.0.0
+    tier: backend
+    environment: production
+  annotations:
+    service.beta.kubernetes.io/aws-load-balancer-type: "nlb"
+    service.beta.kubernetes.io/aws-load-balancer-cross-zone-load-balancing-enabled: "true"
+    service.beta.kubernetes.io/aws-load-balancer-health-check-healthy-threshold: "2"
+    service.beta.kubernetes.io/aws-load-balancer-health-check-unhealthy-threshold: "2"
+    service.beta.kubernetes.io/aws-load-balancer-health-check-timeout: "5"
+    service.beta.kubernetes.io/aws-load-balancer-health-check-interval: "30"
+    service.beta.kubernetes.io/aws-load-balancer-health-check-path: "/health"
+    service.beta.kubernetes.io/aws-load-balancer-health-check-port: "3000"
+spec:
+  type: LoadBalancer
+  ports:
+    - name: http
+      port: 80
+      targetPort: 3000
+      protocol: TCP
+    - name: https
+      port: 443
+      targetPort: 3000
+      protocol: TCP
+  selector:
+    app: kingdom-studios-backend
+  sessionAffinity: ClientIP
+  sessionAffinityConfig:
+    clientIP:
+      timeoutSeconds: 3600
+  externalTrafficPolicy: Local
+  loadBalancerSourceRanges:
+    - 0.0.0.0/0
+
+---
+# ==============================================
+# CLUSTER AUTOSCALER
+# ==============================================
+
+apiVersion: autoscaling.k8s.io/v1
+kind: ClusterAutoscaler
+metadata:
+  name: kingdom-studios-cluster-autoscaler
+  namespace: kube-system
+spec:
+  scaleDown:
+    enabled: true
+    delayAfterAdd: 10m
+    delayAfterDelete: 10s
+    delayAfterFailure: 3m
+    unneededTime: 10m
+  scaleDownUnneeded: true
+  maxNodeProvisionTime: 15m
+  nodeGroups:
+    - minSize: 3
+      maxSize: 20
+      name: kingdom-studios-node-group
+
+---
+# ==============================================
+# NETWORK POLICY
+# ==============================================
+
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: kingdom-studios-backend-network-policy
+  namespace: production
+spec:
+  podSelector:
+    matchLabels:
+      app: kingdom-studios-backend
+  policyTypes:
+    - Ingress
+    - Egress
+  ingress:
+    - from:
+        - namespaceSelector:
+            matchLabels:
+              name: ingress-nginx
+      ports:
+        - protocol: TCP
+          port: 3000
+    - from:
+        - podSelector:
+            matchLabels:
+              app: kingdom-studios-frontend
+      ports:
+        - protocol: TCP
+          port: 3000
+  egress:
+    - to:
+        - namespaceSelector:
+            matchLabels:
+              name: database
+      ports:
+        - protocol: TCP
+          port: 27017
+    - to:
+        - namespaceSelector:
+            matchLabels:
+              name: redis
+      ports:
+        - protocol: TCP
+          port: 6379
+    - to: []
+      ports:
+        - protocol: TCP
+          port: 443
+        - protocol: TCP
+          port: 80
+
+---
+# ==============================================
+# RESOURCE QUOTAS
+# ==============================================
+
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: kingdom-studios-production-quota
+  namespace: production
+spec:
+  hard:
+    requests.cpu: "100"
+    requests.memory: 200Gi
+    limits.cpu: "200"
+    limits.memory: 400Gi
+    persistentvolumeclaims: "50"
+    services.loadbalancers: "10"
+    services.nodeports: "20"
+
+---
+# ==============================================
+# LIMIT RANGES
+# ==============================================
+
+apiVersion: v1
+kind: LimitRange
+metadata:
+  name: kingdom-studios-limit-range
+  namespace: production
+spec:
+  limits:
+    - type: Container
+      default:
+        cpu: 1000m
+        memory: 2Gi
+      defaultRequest:
+        cpu: 250m
+        memory: 512Mi
+      min:
+        cpu: 100m
+        memory: 128Mi
+      max:
+        cpu: 4000m
+        memory: 8Gi
+      maxLimitRequestRatio:
+        cpu: 4
+        memory: 4
+
+---
+# ==============================================
+# POD DISRUPTION BUDGET
+# ==============================================
+
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: kingdom-studios-backend-pdb
+  namespace: production
+spec:
+  minAvailable: 3
+  selector:
+    matchLabels:
+      app: kingdom-studios-backend
+
+---
+# ==============================================
+# PRIORITY CLASS
+# ==============================================
+
+apiVersion: scheduling.k8s.io/v1
+kind: PriorityClass
+metadata:
+  name: kingdom-studios-high-priority
+value: 1000000
+globalDefault: false
+description: "High priority for Kingdom Studios backend pods"
+
+---
+# ==============================================
+# CONFIGMAP FOR SCALABILITY SETTINGS
+# ==============================================
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: kingdom-studios-scalability-config
+  namespace: production
+data:
+  # Load balancer settings
+  LOAD_BALANCER_ALGORITHM: "least-connections"
+  MAX_CONNECTIONS: "10000"
+  CONNECTION_TIMEOUT: "30000"
+  REQUEST_TIMEOUT: "60000"
+  
+  # Auto-scaling settings
+  AUTO_SCALING_ENABLED: "true"
+  MIN_REPLICAS: "5"
+  MAX_REPLICAS: "100"
+  CPU_THRESHOLD: "65"
+  MEMORY_THRESHOLD: "75"
+  
+  # Performance monitoring
+  PERFORMANCE_MONITORING_ENABLED: "true"
+  METRICS_COLLECTION_INTERVAL: "5000"
+  ALERT_COOLDOWN: "300000"
+  
+  # Cache settings
+  CACHE_ENABLED: "true"
+  CACHE_TTL: "3600"
+  CACHE_MAX_SIZE: "1000"
+  
+  # Database optimization
+  DB_CONNECTION_POOL_SIZE: "100"
+  DB_QUERY_TIMEOUT: "30000"
+  DB_SLOW_QUERY_THRESHOLD: "1000"
+  
+  # Queue settings
+  QUEUE_MAX_CONCURRENT_JOBS: "50"
+  QUEUE_RETRY_ATTEMPTS: "3"
+  QUEUE_BACKOFF_DELAY: "2000"
+
+---
+# ==============================================
+# SECRET FOR SCALABILITY CREDENTIALS
+# ==============================================
+
+apiVersion: v1
+kind: Secret
+metadata:
+  name: kingdom-studios-scalability-secrets
+  namespace: production
+type: Opaque
+data:
+  # Base64 encoded values
+  REDIS_PASSWORD: "cmVkaXNfcGFzc3dvcmQ="
+  MONITORING_API_KEY: "bW9uaXRvcmluZ19hcGlfa2V5"
+  ALERT_WEBHOOK_URL: "aHR0cHM6Ly9ob29rcy5zbGFjay5jb20vc2VydmljZXMvdGVzdA=="
+  METRICS_ENDPOINT: "aHR0cHM6Ly9tZXRyaWNzLmNvbS9hcGkvdjEvd3JpdGU="
+
+---
+# ==============================================
+# CUSTOM METRICS API SERVICE
+# ==============================================
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: kingdom-studios-metrics-service
+  namespace: production
+spec:
+  selector:
+    app: kingdom-studios-metrics
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+  type: ClusterIP
+
+---
+# ==============================================
+# METRICS SERVER DEPLOYMENT
+# ==============================================
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kingdom-studios-metrics-server
+  namespace: production
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: kingdom-studios-metrics
+  template:
+    metadata:
+      labels:
+        app: kingdom-studios-metrics
+    spec:
+      containers:
+        - name: metrics-server
+          image: kingdom-studios/metrics-server:latest
+          ports:
+            - containerPort: 8080
+          env:
+            - name: METRICS_ENDPOINT
+              valueFrom:
+                secretKeyRef:
+                  name: kingdom-studios-scalability-secrets
+                  key: METRICS_ENDPOINT
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "100m"
+            limits:
+              memory: "256Mi"
+              cpu: "200m"
+
+---
+# ==============================================
+# PROMETHEUS SERVICE MONITOR
+# ==============================================
+
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: kingdom-studios-backend-monitor
+  namespace: production
+spec:
+  selector:
+    matchLabels:
+      app: kingdom-studios-backend
+  endpoints:
+    - port: http
+      path: /metrics
+      interval: 30s
+      scrapeTimeout: 10s
+  namespaceSelector:
+    matchNames:
+      - production
+
+---
+# ==============================================
+# ALERTING RULES
+# ==============================================
+
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: kingdom-studios-alerts
+  namespace: production
+spec:
+  groups:
+    - name: kingdom-studios.rules
+      rules:
+        - alert: HighCPUUsage
+          expr: container_cpu_usage_seconds_total{container="kingdom-studios-backend"} > 0.8
+          for: 5m
+          labels:
+            severity: warning
+          annotations:
+            summary: "High CPU usage detected"
+            description: "CPU usage is above 80% for 5 minutes"
+        
+        - alert: HighMemoryUsage
+          expr: container_memory_usage_bytes{container="kingdom-studios-backend"} / container_spec_memory_limit_bytes{container="kingdom-studios-backend"} > 0.8
+          for: 5m
+          labels:
+            severity: warning
+          annotations:
+            summary: "High memory usage detected"
+            description: "Memory usage is above 80% for 5 minutes"
+        
+        - alert: HighResponseTime
+          expr: http_request_duration_seconds{quantile="0.95"} > 1
+          for: 5m
+          labels:
+            severity: warning
+          annotations:
+            summary: "High response time detected"
+            description: "95th percentile response time is above 1 second"
+        
+        - alert: HighErrorRate
+          expr: rate(http_requests_total{status=~"5.."}[5m]) / rate(http_requests_total[5m]) > 0.05
+          for: 5m
+          labels:
+            severity: critical
+          annotations:
+            summary: "High error rate detected"
+            description: "Error rate is above 5% for 5 minutes"
+        
+        - alert: PodRestarting
+          expr: increase(kube_pod_container_status_restarts_total{container="kingdom-studios-backend"}[5m]) > 0
+          for: 1m
+          labels:
+            severity: warning
+          annotations:
+            summary: "Pod is restarting frequently"
+            description: "Pod has restarted in the last 5 minutes"
+
+---
+# ==============================================
+# INGRESS CONFIGURATION
+# ==============================================
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: kingdom-studios-backend-ingress
+  namespace: production
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/proxy-body-size: "10m"
+    nginx.ingress.kubernetes.io/proxy-connect-timeout: "30"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "60"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "60"
+    nginx.ingress.kubernetes.io/proxy-buffer-size: "16k"
+    nginx.ingress.kubernetes.io/proxy-buffers-number: "4"
+    nginx.ingress.kubernetes.io/rate-limit: "1000"
+    nginx.ingress.kubernetes.io/rate-limit-window: "1m"
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+spec:
+  tls:
+    - hosts:
+        - api.kingdomstudios.app
+      secretName: kingdom-studios-tls
+  rules:
+    - host: api.kingdomstudios.app
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: kingdom-studios-backend-service-advanced
+                port:
+                  number: 80
+
+---
+# ==============================================
+# POD ANTI-AFFINITY FOR HIGH AVAILABILITY
+# ==============================================
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kingdom-studios-backend-ha
+  namespace: production
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: kingdom-studios-backend
+  template:
+    metadata:
+      labels:
+        app: kingdom-studios-backend
+    spec:
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                  - key: app
+                    operator: In
+                    values:
+                      - kingdom-studios-backend
+              topologyKey: kubernetes.io/hostname
+        podAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 100
+              podAffinityTerm:
+                labelSelector:
+                  matchExpressions:
+                    - key: app
+                      operator: In
+                      values:
+                        - kingdom-studios-backend
+                topologyKey: topology.kubernetes.io/zone
+      containers:
+        - name: kingdom-studios-backend
+          image: kingdom-studios/backend:latest
+          ports:
+            - containerPort: 3000
+          resources:
+            requests:
+              memory: "512Mi"
+              cpu: "250m"
+            limits:
+              memory: "2Gi"
+              cpu: "1000m"
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 3000
+            initialDelaySeconds: 30
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 3000
+            initialDelaySeconds: 10
+            periodSeconds: 5
+
+---
+# ==============================================
+# NAMESPACE RESOURCE QUOTAS
+# ==============================================
+
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: production-quota
+  namespace: production
+spec:
+  hard:
+    requests.cpu: "200"
+    requests.memory: 400Gi
+    limits.cpu: "400"
+    limits.memory: 800Gi
+    persistentvolumeclaims: "100"
+    services.loadbalancers: "20"
+    services.nodeports: "50"
+    count/pods: "200"
+    count/services: "50"
+    count/deployments.apps: "20"
+    count/statefulsets.apps: "10" 

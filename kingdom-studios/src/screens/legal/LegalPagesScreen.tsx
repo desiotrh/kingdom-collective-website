@@ -102,7 +102,7 @@ export const TermsOfServiceScreen = () => {
           <Text style={styles.paragraph}>
             If you have any questions about these Terms of Service, please contact us at:
           </Text>
-          <Text style={styles.contactInfo}>support@kingdomstudiosapp.com</Text>
+          <Text style={styles.contactInfo}>support@kingdomcollective.pro</Text>
         </View>
 
         <View style={styles.footer}>
@@ -215,7 +215,7 @@ export const PrivacyPolicyScreen = () => {
           <Text style={styles.paragraph}>
             If you have any questions about this Privacy Policy, please contact us at:
           </Text>
-          <Text style={styles.contactInfo}>support@kingdomstudiosapp.com</Text>
+          <Text style={styles.contactInfo}>support@kingdomcollective.pro</Text>
         </View>
 
         <View style={styles.footer}>

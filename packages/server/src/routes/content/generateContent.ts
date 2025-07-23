@@ -1,0 +1,1 @@
+import { logUserInteraction } from '../../services/dataCapture/logUserInteraction';

@@ -1,0 +1,619 @@
+# ==============================================
+# KINGDOM STUDIOS - APP-SPECIFIC AUTOSCALING RULES
+# Detailed autoscaling configuration for all five apps
+# ==============================================
+
+---
+# ==============================================
+# KINGDOM LENS AUTOSCALING (Photography Platform)
+# ==============================================
+
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: kingdom-lens-hpa-detailed
+  namespace: production
+  labels:
+    app: kingdom-lens-backend
+    version: v1.0.0
+    tier: backend
+    environment: production
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: kingdom-lens-backend
+  minReplicas: 5
+  maxReplicas: 50
+  metrics:
+    # CPU-based scaling
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 70
+    # Memory-based scaling
+    - type: Resource
+      resource:
+        name: memory
+        target:
+          type: Utilization
+          averageUtilization: 80
+    # Custom metrics for photo processing
+    - type: Object
+      object:
+        metric:
+          name: photo-processing-queue
+        describedObject:
+          apiVersion: v1
+          kind: Service
+          name: kingdom-lens-service
+        target:
+          type: AverageValue
+          averageValue: 100
+    # Custom metrics for AI composition
+    - type: Object
+      object:
+        metric:
+          name: ai-composition-requests
+        describedObject:
+          apiVersion: v1
+          kind: Service
+          name: kingdom-lens-service
+        target:
+          type: AverageValue
+          averageValue: 50
+  behavior:
+    scaleUp:
+      stabilizationWindowSeconds: 60
+      policies:
+        - type: Percent
+          value: 100
+          periodSeconds: 15
+        - type: Pods
+          value: 5
+          periodSeconds: 60
+      selectPolicy: Max
+    scaleDown:
+      stabilizationWindowSeconds: 300
+      policies:
+        - type: Percent
+          value: 10
+          periodSeconds: 60
+        - type: Pods
+          value: 2
+          periodSeconds: 60
+      selectPolicy: Min
+
+---
+# KINGDOM LENS VPA (Vertical Pod Autoscaler)
+apiVersion: autoscaling.k8s.io/v1
+kind: VerticalPodAutoscaler
+metadata:
+  name: kingdom-lens-vpa
+  namespace: production
+spec:
+  targetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: kingdom-lens-backend
+  updatePolicy:
+    updateMode: "Auto"
+  resourcePolicy:
+    containerPolicies:
+      - containerName: kingdom-lens-backend
+        minAllowed:
+          cpu: 500m
+          memory: 1Gi
+        maxAllowed:
+          cpu: 4000m
+          memory: 8Gi
+        controlledResources: ["cpu", "memory"]
+        controlledValues: RequestsAndLimits
+
+---
+# ==============================================
+# KINGDOM LAUNCHPAD AUTOSCALING (Content Creation)
+# ==============================================
+
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: kingdom-launchpad-hpa-detailed
+  namespace: production
+  labels:
+    app: kingdom-launchpad-backend
+    version: v1.0.0
+    tier: backend
+    environment: production
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: kingdom-launchpad-backend
+  minReplicas: 8
+  maxReplicas: 100
+  metrics:
+    # CPU-based scaling
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 65
+    # Memory-based scaling
+    - type: Resource
+      resource:
+        name: memory
+        target:
+          type: Utilization
+          averageUtilization: 75
+    # Custom metrics for content generation
+    - type: Object
+      object:
+        metric:
+          name: content-generation-requests
+        describedObject:
+          apiVersion: v1
+          kind: Service
+          name: kingdom-launchpad-service
+        target:
+          type: AverageValue
+          averageValue: 200
+    # Custom metrics for social posting
+    - type: Object
+      object:
+        metric:
+          name: social-posting-requests
+        describedObject:
+          apiVersion: v1
+          kind: Service
+          name: kingdom-launchpad-service
+        target:
+          type: AverageValue
+          averageValue: 150
+  behavior:
+    scaleUp:
+      stabilizationWindowSeconds: 60
+      policies:
+        - type: Percent
+          value: 100
+          periodSeconds: 15
+        - type: Pods
+          value: 10
+          periodSeconds: 60
+      selectPolicy: Max
+    scaleDown:
+      stabilizationWindowSeconds: 300
+      policies:
+        - type: Percent
+          value: 10
+          periodSeconds: 60
+        - type: Pods
+          value: 3
+          periodSeconds: 60
+      selectPolicy: Min
+
+---
+# KINGDOM LAUNCHPAD VPA
+apiVersion: autoscaling.k8s.io/v1
+kind: VerticalPodAutoscaler
+metadata:
+  name: kingdom-launchpad-vpa
+  namespace: production
+spec:
+  targetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: kingdom-launchpad-backend
+  updatePolicy:
+    updateMode: "Auto"
+  resourcePolicy:
+    containerPolicies:
+      - containerName: kingdom-launchpad-backend
+        minAllowed:
+          cpu: 250m
+          memory: 512Mi
+        maxAllowed:
+          cpu: 2000m
+          memory: 4Gi
+        controlledResources: ["cpu", "memory"]
+        controlledValues: RequestsAndLimits
+
+---
+# ==============================================
+# KINGDOM CLIPS AUTOSCALING (Video Editing)
+# ==============================================
+
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: kingdom-clips-hpa-detailed
+  namespace: production
+  labels:
+    app: kingdom-clips-backend
+    version: v1.0.0
+    tier: backend
+    environment: production
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: kingdom-clips-backend
+  minReplicas: 3
+  maxReplicas: 30
+  metrics:
+    # CPU-based scaling
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 75
+    # Memory-based scaling
+    - type: Resource
+      resource:
+        name: memory
+        target:
+          type: Utilization
+          averageUtilization: 85
+    # Custom metrics for video rendering
+    - type: Object
+      object:
+        metric:
+          name: video-rendering-queue
+        describedObject:
+          apiVersion: v1
+          kind: Service
+          name: kingdom-clips-service
+        target:
+          type: AverageValue
+          averageValue: 20
+    # Custom metrics for video processing
+    - type: Object
+      object:
+        metric:
+          name: video-processing-requests
+        describedObject:
+          apiVersion: v1
+          kind: Service
+          name: kingdom-clips-service
+        target:
+          type: AverageValue
+          averageValue: 30
+  behavior:
+    scaleUp:
+      stabilizationWindowSeconds: 120
+      policies:
+        - type: Percent
+          value: 100
+          periodSeconds: 30
+        - type: Pods
+          value: 3
+          periodSeconds: 120
+      selectPolicy: Max
+    scaleDown:
+      stabilizationWindowSeconds: 600
+      policies:
+        - type: Percent
+          value: 10
+          periodSeconds: 120
+        - type: Pods
+          value: 1
+          periodSeconds: 120
+      selectPolicy: Min
+
+---
+# KINGDOM CLIPS VPA
+apiVersion: autoscaling.k8s.io/v1
+kind: VerticalPodAutoscaler
+metadata:
+  name: kingdom-clips-vpa
+  namespace: production
+spec:
+  targetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: kingdom-clips-backend
+  updatePolicy:
+    updateMode: "Auto"
+  resourcePolicy:
+    containerPolicies:
+      - containerName: kingdom-clips-backend
+        minAllowed:
+          cpu: 1000m
+          memory: 2Gi
+        maxAllowed:
+          cpu: 8000m
+          memory: 16Gi
+        controlledResources: ["cpu", "memory"]
+        controlledValues: RequestsAndLimits
+
+---
+# ==============================================
+# KINGDOM CIRCLE AUTOSCALING (Community Platform)
+# ==============================================
+
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: kingdom-circle-hpa-detailed
+  namespace: production
+  labels:
+    app: kingdom-circle-backend
+    version: v1.0.0
+    tier: backend
+    environment: production
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: kingdom-circle-backend
+  minReplicas: 6
+  maxReplicas: 75
+  metrics:
+    # CPU-based scaling
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 65
+    # Memory-based scaling
+    - type: Resource
+      resource:
+        name: memory
+        target:
+          type: Utilization
+          averageUtilization: 75
+    # Custom metrics for active users
+    - type: Object
+      object:
+        metric:
+          name: active-users
+        describedObject:
+          apiVersion: v1
+          kind: Service
+          name: kingdom-circle-service
+        target:
+          type: AverageValue
+          averageValue: 1000
+    # Custom metrics for message rate
+    - type: Object
+      object:
+        metric:
+          name: messages-per-second
+        describedObject:
+          apiVersion: v1
+          kind: Service
+          name: kingdom-circle-service
+        target:
+          type: AverageValue
+          averageValue: 100
+  behavior:
+    scaleUp:
+      stabilizationWindowSeconds: 60
+      policies:
+        - type: Percent
+          value: 100
+          periodSeconds: 15
+        - type: Pods
+          value: 5
+          periodSeconds: 60
+      selectPolicy: Max
+    scaleDown:
+      stabilizationWindowSeconds: 300
+      policies:
+        - type: Percent
+          value: 10
+          periodSeconds: 60
+        - type: Pods
+          value: 2
+          periodSeconds: 60
+      selectPolicy: Min
+
+---
+# KINGDOM CIRCLE VPA
+apiVersion: autoscaling.k8s.io/v1
+kind: VerticalPodAutoscaler
+metadata:
+  name: kingdom-circle-vpa
+  namespace: production
+spec:
+  targetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: kingdom-circle-backend
+  updatePolicy:
+    updateMode: "Auto"
+  resourcePolicy:
+    containerPolicies:
+      - containerName: kingdom-circle-backend
+        minAllowed:
+          cpu: 250m
+          memory: 512Mi
+        maxAllowed:
+          cpu: 2000m
+          memory: 4Gi
+        controlledResources: ["cpu", "memory"]
+        controlledValues: RequestsAndLimits
+
+---
+# ==============================================
+# KINGDOM VOICE AUTOSCALING (Audio Platform)
+# ==============================================
+
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: kingdom-voice-hpa-detailed
+  namespace: production
+  labels:
+    app: kingdom-voice-backend
+    version: v1.0.0
+    tier: backend
+    environment: production
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: kingdom-voice-backend
+  minReplicas: 4
+  maxReplicas: 40
+  metrics:
+    # CPU-based scaling
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 70
+    # Memory-based scaling
+    - type: Resource
+      resource:
+        name: memory
+        target:
+          type: Utilization
+          averageUtilization: 80
+    # Custom metrics for audio processing
+    - type: Object
+      object:
+        metric:
+          name: audio-processing-queue
+        describedObject:
+          apiVersion: v1
+          kind: Service
+          name: kingdom-voice-service
+        target:
+          type: AverageValue
+          averageValue: 50
+    # Custom metrics for podcast generation
+    - type: Object
+      object:
+        metric:
+          name: podcast-generation-requests
+        describedObject:
+          apiVersion: v1
+          kind: Service
+          name: kingdom-voice-service
+        target:
+          type: AverageValue
+          averageValue: 25
+  behavior:
+    scaleUp:
+      stabilizationWindowSeconds: 90
+      policies:
+        - type: Percent
+          value: 100
+          periodSeconds: 20
+        - type: Pods
+          value: 4
+          periodSeconds: 90
+      selectPolicy: Max
+    scaleDown:
+      stabilizationWindowSeconds: 300
+      policies:
+        - type: Percent
+          value: 10
+          periodSeconds: 90
+        - type: Pods
+          value: 2
+          periodSeconds: 90
+      selectPolicy: Min
+
+---
+# KINGDOM VOICE VPA
+apiVersion: autoscaling.k8s.io/v1
+kind: VerticalPodAutoscaler
+metadata:
+  name: kingdom-voice-vpa
+  namespace: production
+spec:
+  targetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: kingdom-voice-backend
+  updatePolicy:
+    updateMode: "Auto"
+  resourcePolicy:
+    containerPolicies:
+      - containerName: kingdom-voice-backend
+        minAllowed:
+          cpu: 500m
+          memory: 1Gi
+        maxAllowed:
+          cpu: 4000m
+          memory: 8Gi
+        controlledResources: ["cpu", "memory"]
+        controlledValues: RequestsAndLimits
+
+---
+# ==============================================
+# BURST CAPACITY CONFIGURATIONS
+# ==============================================
+
+# Kingdom Lens Burst Configuration
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: kingdom-lens-burst-config
+  namespace: production
+data:
+  BURST_MULTIPLIER: "2.0"
+  BURST_DURATION: "300"
+  BURST_CPU_LIMIT: "8000m"
+  BURST_MEMORY_LIMIT: "16Gi"
+  BURST_ENABLED: "true"
+
+# Kingdom Launchpad Burst Configuration
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: kingdom-launchpad-burst-config
+  namespace: production
+data:
+  BURST_MULTIPLIER: "1.5"
+  BURST_DURATION: "600"
+  BURST_CPU_LIMIT: "3000m"
+  BURST_MEMORY_LIMIT: "6Gi"
+  BURST_ENABLED: "true"
+
+# Kingdom Clips Burst Configuration
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: kingdom-clips-burst-config
+  namespace: production
+data:
+  BURST_MULTIPLIER: "2.5"
+  BURST_DURATION: "900"
+  BURST_CPU_LIMIT: "16000m"
+  BURST_MEMORY_LIMIT: "32Gi"
+  BURST_ENABLED: "true"
+
+# Kingdom Circle Burst Configuration
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: kingdom-circle-burst-config
+  namespace: production
+data:
+  BURST_MULTIPLIER: "1.8"
+  BURST_DURATION: "300"
+  BURST_CPU_LIMIT: "3600m"
+  BURST_MEMORY_LIMIT: "7Gi"
+  BURST_ENABLED: "true"
+
+# Kingdom Voice Burst Configuration
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: kingdom-voice-burst-config
+  namespace: production
+data:
+  BURST_MULTIPLIER: "2.2"
+  BURST_DURATION: "600"
+  BURST_CPU_LIMIT: "8000m"
+  BURST_MEMORY_LIMIT: "16Gi"
+  BURST_ENABLED: "true" 

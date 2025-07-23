@@ -1,17 +1,18 @@
-import { 
-  collection, 
-  doc, 
-  addDoc, 
-  updateDoc, 
-  deleteDoc, 
-  getDocs, 
-  getDoc, 
-  query, 
-  where, 
-  orderBy, 
+import {
+  collection,
+  doc,
+  addDoc,
+  updateDoc,
+  deleteDoc,
+  getDocs,
+  getDoc,
+  query,
+  where,
+  orderBy,
   limit,
   onSnapshot,
-  Timestamp 
+  Timestamp,
+  setDoc
 } from 'firebase/firestore';
 import { ref, uploadBytes, getDownloadURL, deleteObject } from 'firebase/storage';
 import { db, storage } from '../config/firebase';
@@ -95,10 +96,22 @@ export interface LeadMagnet {
   updatedAt: Date;
 }
 
+export interface PlatformConnection {
+  platformId: string;
+  accountId: string;
+  username: string;
+  accessToken: string;
+  refreshToken?: string;
+  expiresAt?: Date;
+  name: string;
+  icon: string;
+  color: string;
+}
+
 class FirebaseService {
   private static instance: FirebaseService;
 
-  private constructor() {}
+  private constructor() { }
 
   static getInstance(): FirebaseService {
     if (!FirebaseService.instance) {
@@ -126,14 +139,14 @@ class FirebaseService {
     try {
       const q = query(collection(db, 'users'), where('uid', '==', uid));
       const querySnapshot = await getDocs(q);
-      
+
       if (querySnapshot.empty) {
         return null;
       }
-      
+
       const doc = querySnapshot.docs[0];
       const data = doc.data();
-      
+
       return {
         ...data,
         createdAt: data.createdAt.toDate(),
@@ -149,7 +162,7 @@ class FirebaseService {
     try {
       const q = query(collection(db, 'users'), where('uid', '==', uid));
       const querySnapshot = await getDocs(q);
-      
+
       if (!querySnapshot.empty) {
         const docRef = querySnapshot.docs[0].ref;
         await updateDoc(docRef, {
@@ -182,7 +195,7 @@ class FirebaseService {
         orderBy('lastSync', 'desc')
       );
       const querySnapshot = await getDocs(q);
-      
+
       return querySnapshot.docs.map(doc => ({
         id: doc.id,
         ...doc.data(),
@@ -217,7 +230,7 @@ class FirebaseService {
         orderBy('createdAt', 'desc')
       );
       const querySnapshot = await getDocs(q);
-      
+
       return querySnapshot.docs.map(doc => {
         const data = doc.data();
         return {
@@ -259,7 +272,7 @@ class FirebaseService {
         orderBy('createdAt', 'desc')
       );
       const querySnapshot = await getDocs(q);
-      
+
       return querySnapshot.docs.map(doc => {
         const data = doc.data();
         return {
@@ -291,15 +304,57 @@ class FirebaseService {
     }
   }
 
+  // Platform Connections Management
+  async savePlatformConnection(userId: string, platformId: string, account: PlatformConnection): Promise<void> {
+    try {
+      const docRef = doc(db, 'users', userId, 'platformConnections', `${platformId}_${account.accountId}`);
+      await setDoc(docRef, {
+        ...account,
+        updatedAt: Timestamp.fromDate(new Date()),
+      });
+    } catch (error) {
+      console.error('Error saving platform connection:', error);
+      throw error;
+    }
+  }
+
+  async removePlatformConnection(userId: string, platformId: string, accountId: string): Promise<void> {
+    try {
+      const docRef = doc(db, 'users', userId, 'platformConnections', `${platformId}_${accountId}`);
+      await deleteDoc(docRef);
+    } catch (error) {
+      console.error('Error removing platform connection:', error);
+      throw error;
+    }
+  }
+
+  async getPlatformConnections(userId: string): Promise<Record<string, PlatformConnection[]> | null> {
+    try {
+      const q = collection(db, 'users', userId, 'platformConnections');
+      const querySnapshot = await getDocs(q);
+      if (querySnapshot.empty) return null;
+      const connections: Record<string, PlatformConnection[]> = {};
+      querySnapshot.forEach(docSnap => {
+        const data = docSnap.data();
+        if (!connections[data.platformId]) connections[data.platformId] = [];
+        connections[data.platformId].push({ ...data, expiresAt: data.expiresAt ? data.expiresAt.toDate() : undefined });
+      });
+      return connections;
+    } catch (error) {
+      console.error('Error getting platform connections:', error);
+      return null;
+    }
+  }
+
   // File Upload Management
   async uploadFile(uri: string, path: string): Promise<string> {
     try {
       const response = await fetch(uri);
       const blob = await response.blob();
-      
+
       const storageRef = ref(storage, path);
       await uploadBytes(storageRef, blob);
-      
+
       return await getDownloadURL(storageRef);
     } catch (error) {
       console.error('Error uploading file:', error);
@@ -324,7 +379,7 @@ class FirebaseService {
       where('userId', '==', userId),
       orderBy('lastSync', 'desc')
     );
-    
+
     return onSnapshot(q, (querySnapshot) => {
       const products = querySnapshot.docs.map(doc => ({
         id: doc.id,

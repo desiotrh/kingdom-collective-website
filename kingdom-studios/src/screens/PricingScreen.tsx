@@ -68,7 +68,7 @@ const PricingScreen = () => {
       period: 'By supporter',
       sponsored: true,
       icon: faithMode ? '🙏' : '✨',
-      description: faithMode 
+      description: faithMode
         ? 'Blessed by your church, mentor, or ministry supporter'
         : 'Backed by your mentor, business, or community supporter',
       features: [
@@ -194,11 +194,11 @@ const PricingScreen = () => {
     ]}>
       <LinearGradient
         colors={
-          tier.popular 
+          tier.popular
             ? ['rgba(255, 215, 0, 0.2)', 'rgba(255, 215, 0, 0.1)'] as const
             : tier.sponsored
-            ? ['rgba(16, 185, 129, 0.2)', 'rgba(16, 185, 129, 0.1)'] as const
-            : ['rgba(26, 26, 58, 0.8)', 'rgba(45, 27, 105, 0.6)'] as const
+              ? ['rgba(16, 185, 129, 0.2)', 'rgba(16, 185, 129, 0.1)'] as const
+              : ['rgba(26, 26, 58, 0.8)', 'rgba(45, 27, 105, 0.6)'] as const
         }
         style={styles.cardGradient}
       >
@@ -212,7 +212,7 @@ const PricingScreen = () => {
             </LinearGradient>
           </View>
         )}
-        
+
         {tier.sponsored && (
           <View style={styles.sponsoredBadge}>
             <LinearGradient
@@ -232,7 +232,7 @@ const PricingScreen = () => {
             <Text style={styles.tierName}>{tier.name}</Text>
           </View>
           <Text style={styles.tierDescription}>{tier.description}</Text>
-          
+
           <View style={styles.priceContainer}>
             <Text style={styles.price}>{tier.price}</Text>
             <Text style={styles.period}>{tier.period}</Text>
@@ -255,11 +255,11 @@ const PricingScreen = () => {
         >
           <LinearGradient
             colors={
-              tier.popular 
+              tier.popular
                 ? ['#FFD700', '#FFC107', '#FF8F00'] as const
                 : tier.sponsored
-                ? ['#10B981', '#059669'] as const
-                : ['rgba(255, 255, 255, 0.1)', 'rgba(255, 255, 255, 0.05)'] as const
+                  ? ['#10B981', '#059669'] as const
+                  : ['rgba(255, 255, 255, 0.1)', 'rgba(255, 255, 255, 0.05)'] as const
             }
             style={styles.buttonGradient}
           >
@@ -269,11 +269,11 @@ const PricingScreen = () => {
                 (tier.popular || tier.sponsored) && styles.selectButtonTextActive,
               ]}
             >
-              {tier.sponsored 
+              {tier.sponsored
                 ? (faithMode ? 'Request Blessing 🙏' : 'Request Sponsor ✨')
-                : tier.id === 'free' 
-                ? 'Current Plan'
-                : 'Choose Plan'
+                : tier.id === 'free'
+                  ? 'Current Plan'
+                  : 'Choose Plan'
               }
             </Text>
           </LinearGradient>
@@ -322,7 +322,7 @@ const PricingScreen = () => {
                   {faithMode ? '✨ Kingdom Pricing Plans' : '👑 Creator Pricing Plans'}
                 </Text>
                 <Text style={styles.heroSubtitle}>
-                  {faithMode 
+                  {faithMode
                     ? "Choose your path to digital ministry success. Every plan is designed to help you share God's love through your creative work."
                     : "Choose the perfect plan to scale your creative business. From startup to empire, we've got you covered."
                   }
@@ -342,7 +342,7 @@ const PricingScreen = () => {
                   {appState.subscriptionTier === 'pro' && '👑 Creator Pro'}
                   {appState.subscriptionTier === 'sponsored' && (faithMode ? '🙏 Forge Sponsored' : '✨ Community Sponsored')}
                 </Text>
-                
+
                 <View style={styles.limitsContainer}>
                   <Text style={styles.limitsTitle}>Current Limits:</Text>
                   <View style={styles.limitRow}>
@@ -393,12 +393,12 @@ const PricingScreen = () => {
                   {faithMode ? '🙏 About Forge Sponsorship' : '✨ About Community Sponsorship'}
                 </Text>
                 <Text style={styles.sponsorshipText}>
-                  {faithMode 
+                  {faithMode
                     ? "Churches, mentors, and ministry leaders can sponsor your Kingdom Studios access. It's about community investing in kingdom builders and creative entrepreneurs who are sharing the Gospel through their work."
                     : "Mentors, businesses, and community leaders can sponsor your Kingdom Studios access. It's about investing in creators and entrepreneurs who are making a positive impact."
                   }
                 </Text>
-                
+
                 <TouchableOpacity
                   style={styles.sponsorshipButton}
                   onPress={handleRequestSponsorship}
@@ -425,7 +425,7 @@ const PricingScreen = () => {
                 <Text style={styles.contactTitle}>💬 Questions?</Text>
                 <Text style={styles.contactText}>
                   Contact our support team at{' '}
-                  <Text style={styles.contactEmail}>support@kingdomstudiosapp.com</Text>
+                  <Text style={styles.contactEmail}>support@kingdomcollective.pro</Text>
                 </Text>
               </LinearGradient>
             </BlurView>

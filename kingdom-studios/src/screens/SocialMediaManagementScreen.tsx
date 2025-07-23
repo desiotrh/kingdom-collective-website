@@ -27,6 +27,11 @@ const SocialMediaManagementScreen: React.FC = () => {
   const {
     supportedPlatforms,
     connectedPlatforms,
+    getAccountsForPlatform,
+    addPlatformAccount,
+    removePlatformAccount,
+    setActiveAccount,
+    getActiveAccount,
     connectPlatform,
     disconnectPlatform,
     postToMultiplePlatforms,
@@ -43,6 +48,8 @@ const SocialMediaManagementScreen: React.FC = () => {
   const [showConnectModal, setShowConnectModal] = useState(false);
   const [showPostModal, setShowPostModal] = useState(false);
   const [selectedPlatform, setSelectedPlatform] = useState<string | null>(null);
+  const [selectedAccountIds, setSelectedAccountIds] = useState<{ [platformId: string]: string }>({});
+  const [showAccountModal, setShowAccountModal] = useState<{ platformId: string | null }>({ platformId: null });
 
   // Post creation state
   const [postContent, setPostContent] = useState<PostContent>({
@@ -101,15 +108,46 @@ const SocialMediaManagementScreen: React.FC = () => {
     );
   };
 
+  // Add account handler
+  const handleAddAccount = async (platformId: string) => {
+    // In a real implementation, this would open platform-specific OAuth flow
+    const mockAuthData = {
+      username: `user_${platformId}_${Date.now()}`,
+      accountId: `account_${Date.now()}`,
+      accessToken: `token_${Date.now()}`,
+      refreshToken: `refresh_${Date.now()}`,
+      expiresAt: new Date(Date.now() + 3600000)
+    };
+    await addPlatformAccount(platformId, mockAuthData);
+    setShowAccountModal({ platformId: null });
+  };
+
+  // Remove account handler
+  const handleRemoveAccount = async (platformId: string, accountId: string) => {
+    await removePlatformAccount(platformId, accountId);
+    // Remove from selected if it was active
+    setSelectedAccountIds(prev => {
+      const copy = { ...prev };
+      if (copy[platformId] === accountId) delete copy[platformId];
+      return copy;
+    });
+  };
+
+  // Set active account handler
+  const handleSetActiveAccount = (platformId: string, accountId: string) => {
+    setActiveAccount(platformId, accountId);
+    setSelectedAccountIds(prev => ({ ...prev, [platformId]: accountId }));
+  };
+
   // Post creation handler
   const handleCreatePost = async () => {
     if (!postContent.text.trim()) {
       Alert.alert('Error', 'Please enter post content');
       return;
     }
-
+    const selectedPlatforms = Object.keys(selectedAccountIds).filter(pid => selectedAccountIds[pid]);
     if (selectedPlatforms.length === 0) {
-      Alert.alert('Error', 'Please select at least one platform');
+      Alert.alert('Error', 'Please select at least one account');
       return;
     }
 
@@ -127,7 +165,7 @@ const SocialMediaManagementScreen: React.FC = () => {
 
       // Reset form
       setPostContent({ text: '', hashtags: [], mentions: [] });
-      setSelectedPlatforms([]);
+      setSelectedAccountIds({});
       setIsScheduled(false);
       setShowPostModal(false);
     } catch (err) {
@@ -137,53 +175,56 @@ const SocialMediaManagementScreen: React.FC = () => {
 
   // Platform toggle handler
   const togglePlatformSelection = (platformId: string) => {
-    setSelectedPlatforms(prev => 
+    setSelectedPlatforms(prev =>
       prev.includes(platformId)
         ? prev.filter(id => id !== platformId)
         : [...prev, platformId]
     );
   };
 
-  const renderPlatformCard = (platform: any) => (
-    <TouchableOpacity
-      key={platform.id}
-      style={[styles.platformCard, platform.isConnected && styles.connectedPlatform]}
-      onPress={() => {
-        if (platform.isConnected) {
-          handleDisconnectPlatform(platform.id);
-        } else {
-          setSelectedPlatform(platform.id);
-          setShowConnectModal(true);
-        }
-      }}
-    >
-      <View style={styles.platformHeader}>
-        <Text style={styles.platformIcon}>{platform.icon}</Text>
-        <View style={styles.platformInfo}>
-          <Text style={styles.platformName}>{platform.name}</Text>
-          {platform.isConnected && platform.username && (
-            <Text style={styles.platformUsername}>@{platform.username}</Text>
-          )}
+  const renderPlatformCard = (platform: any) => {
+    const accounts = getAccountsForPlatform(platform.id);
+    return (
+      <View key={platform.id} style={[styles.platformCard, accounts.length > 0 && styles.connectedPlatform]}>
+        <View style={styles.platformHeader}>
+          <Text style={styles.platformIcon}>{platform.icon}</Text>
+          <View style={styles.platformInfo}>
+            <Text style={styles.platformName}>{platform.name}</Text>
+            {accounts.length === 0 && <Text style={styles.platformUsername}>No accounts connected</Text>}
+          </View>
         </View>
-        <View style={[
-          styles.statusIndicator,
-          { backgroundColor: platform.isConnected ? '#10B981' : '#EF4444' }
-        ]} />
+        {accounts.length > 0 && (
+          <View style={{ marginBottom: 8 }}>
+            {accounts.map(account => (
+              <View key={account.accountId} style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 4 }}>
+                <Text style={{ fontWeight: selectedAccountIds[platform.id] === account.accountId ? 'bold' : 'normal' }}>
+                  @{account.username} ({account.accountId})
+                </Text>
+                <TouchableOpacity
+                  style={{ marginLeft: 8, backgroundColor: '#ef4444', borderRadius: 4, paddingHorizontal: 6, paddingVertical: 2 }}
+                  onPress={() => handleRemoveAccount(platform.id, account.accountId)}
+                >
+                  <Text style={{ color: '#fff', fontSize: 12 }}>Remove</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={{ marginLeft: 8, backgroundColor: selectedAccountIds[platform.id] === account.accountId ? '#10B981' : '#3b82f6', borderRadius: 4, paddingHorizontal: 6, paddingVertical: 2 }}
+                  onPress={() => handleSetActiveAccount(platform.id, account.accountId)}
+                >
+                  <Text style={{ color: '#fff', fontSize: 12 }}>{selectedAccountIds[platform.id] === account.accountId ? 'Active' : 'Set Active'}</Text>
+                </TouchableOpacity>
+              </View>
+            ))}
+          </View>
+        )}
+        <TouchableOpacity
+          style={[styles.actionButton, styles.connectButton]}
+          onPress={() => setShowAccountModal({ platformId: platform.id })}
+        >
+          <Text style={styles.actionButtonText}>Add Account</Text>
+        </TouchableOpacity>
       </View>
-      
-      <TouchableOpacity
-        style={[
-          styles.actionButton,
-          platform.isConnected ? styles.disconnectButton : styles.connectButton
-        ]}
-        disabled={isConnecting}
-      >
-        <Text style={styles.actionButtonText}>
-          {platform.isConnected ? 'Disconnect' : 'Connect'}
-        </Text>
-      </TouchableOpacity>
-    </TouchableOpacity>
-  );
+    );
+  };
 
   const renderScheduledPost = (post: any) => (
     <View key={post.id} style={styles.scheduledPostCard}>
@@ -198,7 +239,7 @@ const SocialMediaManagementScreen: React.FC = () => {
           <Text style={styles.cancelButtonText}>Cancel</Text>
         </TouchableOpacity>
       </View>
-      
+
       <View style={styles.scheduledPostMeta}>
         <Text style={styles.scheduledTime}>
           {post.scheduledTime.toLocaleDateString()} at {post.scheduledTime.toLocaleTimeString()}
@@ -248,7 +289,7 @@ const SocialMediaManagementScreen: React.FC = () => {
               <Text style={styles.quickActionIcon}>✨</Text>
               <Text style={styles.quickActionText}>Create Post</Text>
             </TouchableOpacity>
-            
+
             <TouchableOpacity
               style={styles.quickActionButton}
               onPress={refreshData}
@@ -307,7 +348,7 @@ const SocialMediaManagementScreen: React.FC = () => {
             <Text style={styles.modalSubtitle}>
               Connect your {selectedPlatform} account to start posting
             </Text>
-            
+
             <View style={styles.modalActions}>
               <TouchableOpacity
                 style={styles.modalButton}
@@ -315,7 +356,7 @@ const SocialMediaManagementScreen: React.FC = () => {
               >
                 <Text style={styles.modalButtonText}>Cancel</Text>
               </TouchableOpacity>
-              
+
               <TouchableOpacity
                 style={[styles.modalButton, styles.primaryButton]}
                 onPress={() => selectedPlatform && handleConnectPlatform(selectedPlatform)}
@@ -340,7 +381,7 @@ const SocialMediaManagementScreen: React.FC = () => {
         <BlurView intensity={50} style={styles.modalOverlay}>
           <View style={styles.postModalContainer}>
             <Text style={styles.modalTitle}>Create Post</Text>
-            
+
             <ScrollView style={styles.postForm}>
               {/* Post Content */}
               <Text style={styles.formLabel}>Content</Text>
@@ -354,21 +395,30 @@ const SocialMediaManagementScreen: React.FC = () => {
               />
 
               {/* Platform Selection */}
-              <Text style={styles.formLabel}>Select Platforms</Text>
+              <Text style={styles.formLabel}>Select Accounts for Platforms</Text>
               <View style={styles.platformSelector}>
-                {connectedPlatforms.map(platform => (
-                  <TouchableOpacity
-                    key={platform.id}
-                    style={[
-                      styles.platformSelectorItem,
-                      selectedPlatforms.includes(platform.id) && styles.selectedPlatform
-                    ]}
-                    onPress={() => togglePlatformSelection(platform.id)}
-                  >
-                    <Text style={styles.platformIcon}>{platform.icon}</Text>
-                    <Text style={styles.platformSelectorText}>{platform.name}</Text>
-                  </TouchableOpacity>
-                ))}
+                {supportedPlatforms.map(platform => {
+                  const accounts = getAccountsForPlatform(platform.id);
+                  if (accounts.length === 0) return null;
+                  return (
+                    <View key={platform.id} style={{ marginBottom: 8 }}>
+                      <Text style={{ fontWeight: 'bold' }}>{platform.name}</Text>
+                      {accounts.map(account => (
+                        <TouchableOpacity
+                          key={account.accountId}
+                          style={[
+                            styles.platformSelectorItem,
+                            selectedAccountIds[platform.id] === account.accountId && styles.selectedPlatform
+                          ]}
+                          onPress={() => handleSetActiveAccount(platform.id, account.accountId)}
+                        >
+                          <Text style={styles.platformIcon}>{platform.icon}</Text>
+                          <Text style={styles.platformSelectorText}>@{account.username} ({account.accountId})</Text>
+                        </TouchableOpacity>
+                      ))}
+                    </View>
+                  );
+                })}
               </View>
 
               {/* Schedule Toggle */}
@@ -400,7 +450,7 @@ const SocialMediaManagementScreen: React.FC = () => {
               >
                 <Text style={styles.modalButtonText}>Cancel</Text>
               </TouchableOpacity>
-              
+
               <TouchableOpacity
                 style={[styles.modalButton, styles.primaryButton]}
                 onPress={handleCreatePost}
@@ -409,6 +459,37 @@ const SocialMediaManagementScreen: React.FC = () => {
                 <Text style={[styles.modalButtonText, styles.primaryButtonText]}>
                   {isPosting ? 'Posting...' : isScheduled ? 'Schedule' : 'Post Now'}
                 </Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </BlurView>
+      </Modal>
+
+      {/* Add Account Modal */}
+      <Modal
+        visible={!!showAccountModal.platformId}
+        transparent
+        animationType="slide"
+        onRequestClose={() => setShowAccountModal({ platformId: null })}
+      >
+        <BlurView intensity={50} style={styles.modalOverlay}>
+          <View style={styles.modalContainer}>
+            <Text style={styles.modalTitle}>Add Account</Text>
+            <Text style={styles.modalSubtitle}>
+              Connect a new account for {showAccountModal.platformId}
+            </Text>
+            <View style={styles.modalActions}>
+              <TouchableOpacity
+                style={styles.modalButton}
+                onPress={() => setShowAccountModal({ platformId: null })}
+              >
+                <Text style={styles.modalButtonText}>Cancel</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={[styles.modalButton, styles.primaryButton]}
+                onPress={() => showAccountModal.platformId && handleAddAccount(showAccountModal.platformId)}
+              >
+                <Text style={[styles.modalButtonText, styles.primaryButtonText]}>Add</Text>
               </TouchableOpacity>
             </View>
           </View>

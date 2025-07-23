@@ -7,6 +7,8 @@ import { Platform } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import notificationService from './notificationService';
 import { AnalyticsTracker } from './AnalyticsTracker';
+import firebaseService from './firebaseService';
+import { getAuth } from 'firebase/auth';
 
 // Social Media Platform Types
 export interface SocialMediaPlatform {
@@ -51,9 +53,13 @@ export interface ScheduledPost {
 
 class SocialMediaService {
   private static instance: SocialMediaService;
-  private connectedPlatforms: Map<string, SocialMediaPlatform> = new Map();
+  // Change connectedPlatforms to Map<string, SocialMediaPlatform[]>
+  private connectedPlatforms: Map<string, SocialMediaPlatform[]> = new Map();
   private scheduledPosts: ScheduledPost[] = [];
   private analyticsTracker: AnalyticsTracker;
+
+  // New: Set active account for a platform
+  private activeAccounts: Map<string, string> = new Map(); // platformId -> accountId
 
   private constructor() {
     this.analyticsTracker = AnalyticsTracker.getInstance();
@@ -70,75 +76,34 @@ class SocialMediaService {
 
   // Platform Management
   public getSupportedPlatforms(): SocialMediaPlatform[] {
-    return [
-      {
-        id: 'instagram',
-        name: 'Instagram',
-        icon: '📷',
-        color: '#E4405F',
-        isConnected: this.connectedPlatforms.has('instagram'),
-        ...this.connectedPlatforms.get('instagram')
-      },
-      {
-        id: 'facebook',
-        name: 'Facebook',
-        icon: '📘',
-        color: '#1877F2',
-        isConnected: this.connectedPlatforms.has('facebook'),
-        ...this.connectedPlatforms.get('facebook')
-      },
-      {
-        id: 'twitter',
-        name: 'Twitter/X',
-        icon: '🐦',
-        color: '#1DA1F2',
-        isConnected: this.connectedPlatforms.has('twitter'),
-        ...this.connectedPlatforms.get('twitter')
-      },
-      {
-        id: 'linkedin',
-        name: 'LinkedIn',
-        icon: '💼',
-        color: '#0A66C2',
-        isConnected: this.connectedPlatforms.has('linkedin'),
-        ...this.connectedPlatforms.get('linkedin')
-      },
-      {
-        id: 'tiktok',
-        name: 'TikTok',
-        icon: '🎵',
-        color: '#000000',
-        isConnected: this.connectedPlatforms.has('tiktok'),
-        ...this.connectedPlatforms.get('tiktok')
-      },
-      {
-        id: 'youtube',
-        name: 'YouTube',
-        icon: '📺',
-        color: '#FF0000',
-        isConnected: this.connectedPlatforms.has('youtube'),
-        ...this.connectedPlatforms.get('youtube')
-      },
-      {
-        id: 'pinterest',
-        name: 'Pinterest',
-        icon: '📌',
-        color: '#BD081C',
-        isConnected: this.connectedPlatforms.has('pinterest'),
-        ...this.connectedPlatforms.get('pinterest')
-      }
+    const platforms = [
+      { id: 'instagram', name: 'Instagram', icon: '📷', color: '#E4405F' },
+      { id: 'facebook', name: 'Facebook', icon: '📘', color: '#1877F2' },
+      { id: 'twitter', name: 'Twitter/X', icon: '🐦', color: '#1DA1F2' },
+      { id: 'linkedin', name: 'LinkedIn', icon: '💼', color: '#0A66C2' },
+      { id: 'tiktok', name: 'TikTok', icon: '🎵', color: '#000000' },
+      { id: 'youtube', name: 'YouTube', icon: '📺', color: '#FF0000' },
+      { id: 'pinterest', name: 'Pinterest', icon: '📌', color: '#BD081C' },
     ];
+    return platforms.map(p => ({
+      ...p,
+      isConnected: (this.connectedPlatforms.get(p.id)?.length ?? 0) > 0
+    }));
   }
 
   public getConnectedPlatforms(): SocialMediaPlatform[] {
     return this.getSupportedPlatforms().filter(platform => platform.isConnected);
   }
 
-  // Platform Connection Management
-  public async connectPlatform(platformId: string, authData: any): Promise<boolean> {
+  // New: Get all accounts for a platform
+  public getAccountsForPlatform(platformId: string): SocialMediaPlatform[] {
+    return this.connectedPlatforms.get(platformId) || [];
+  }
+
+  // New: Add an account for a platform
+  public async addPlatformAccount(platformId: string, authData: any): Promise<boolean> {
     try {
-      // Validate auth data and store connection
-      const platform: SocialMediaPlatform = {
+      const account: SocialMediaPlatform = {
         id: platformId,
         name: this.getPlatformName(platformId),
         icon: this.getPlatformIcon(platformId),
@@ -150,49 +115,66 @@ class SocialMediaService {
         refreshToken: authData.refreshToken,
         expiresAt: authData.expiresAt ? new Date(authData.expiresAt) : undefined
       };
-
-      this.connectedPlatforms.set(platformId, platform);
+      const accounts = this.connectedPlatforms.get(platformId) || [];
+      // Prevent duplicate accountId
+      if (accounts.some(a => a.accountId === account.accountId)) return false;
+      accounts.push(account);
+      this.connectedPlatforms.set(platformId, accounts);
       await this.saveConnectedPlatforms();
-
-      // Track platform connection
       this.analyticsTracker.trackPlatformConnection(platformId, true);
-
-      // Send success notification
       await notificationService.sendLocalNotification({
         id: `platform_connected_${Date.now()}`,
         title: 'Platform Connected! 🎉',
-        body: `Successfully connected ${platform.name}`,
-        data: { type: 'platform_connected', platformId }
+        body: `Successfully connected ${account.name} (@${account.username})`,
+        data: { type: 'platform_connected', platformId, accountId: account.accountId }
       });
-
+      const user = getAuth().currentUser;
+      if (user) {
+        await firebaseService.savePlatformConnection(user.uid, platformId, account);
+      }
       return true;
     } catch (error) {
-      console.error('Error connecting platform:', error);
+      console.error('Error adding platform account:', error);
       return false;
     }
   }
 
-  public async disconnectPlatform(platformId: string): Promise<boolean> {
+  // New: Remove an account for a platform
+  public async removePlatformAccount(platformId: string, accountId: string): Promise<boolean> {
     try {
-      this.connectedPlatforms.delete(platformId);
+      let accounts = this.connectedPlatforms.get(platformId) || [];
+      accounts = accounts.filter(a => a.accountId !== accountId);
+      if (accounts.length === 0) {
+        this.connectedPlatforms.delete(platformId);
+      } else {
+        this.connectedPlatforms.set(platformId, accounts);
+      }
       await this.saveConnectedPlatforms();
-
-      // Track platform disconnection
       this.analyticsTracker.trackPlatformConnection(platformId, false);
-
-      // Send notification
       await notificationService.sendLocalNotification({
         id: `platform_disconnected_${Date.now()}`,
         title: 'Platform Disconnected',
-        body: `Disconnected ${this.getPlatformName(platformId)}`,
-        data: { type: 'platform_disconnected', platformId }
+        body: `Disconnected account from ${this.getPlatformName(platformId)}`,
+        data: { type: 'platform_disconnected', platformId, accountId }
       });
-
+      const user = getAuth().currentUser;
+      if (user) {
+        await firebaseService.removePlatformConnection(user.uid, platformId, accountId);
+      }
       return true;
     } catch (error) {
-      console.error('Error disconnecting platform:', error);
+      console.error('Error removing platform account:', error);
       return false;
     }
+  }
+
+  // New: Set active account for a platform
+  public setActiveAccount(platformId: string, accountId: string) {
+    this.activeAccounts.set(platformId, accountId);
+  }
+  public getActiveAccount(platformId: string): SocialMediaPlatform | undefined {
+    const accountId = this.activeAccounts.get(platformId);
+    return this.getAccountsForPlatform(platformId).find(a => a.accountId === accountId);
   }
 
   // Content Posting
@@ -233,27 +215,26 @@ class SocialMediaService {
   }
 
   private async postToPlatform(platformId: string, content: PostContent): Promise<PostResult> {
-    const platform = this.connectedPlatforms.get(platformId);
-    if (!platform) {
-      throw new Error(`Platform ${platformId} not connected`);
+    const account = this.getActiveAccount(platformId) || this.getAccountsForPlatform(platformId)[0];
+    if (!account) {
+      throw new Error(`No account connected for platform ${platformId}`);
     }
-
     // Platform-specific posting logic
     switch (platformId) {
       case 'instagram':
-        return await this.postToInstagram(content, platform);
+        return await this.postToInstagram(content, account);
       case 'facebook':
-        return await this.postToFacebook(content, platform);
+        return await this.postToFacebook(content, account);
       case 'twitter':
-        return await this.postToTwitter(content, platform);
+        return await this.postToTwitter(content, account);
       case 'linkedin':
-        return await this.postToLinkedIn(content, platform);
+        return await this.postToLinkedIn(content, account);
       case 'tiktok':
-        return await this.postToTikTok(content, platform);
+        return await this.postToTikTok(content, account);
       case 'youtube':
-        return await this.postToYouTube(content, platform);
+        return await this.postToYouTube(content, account);
       case 'pinterest':
-        return await this.postToPinterest(content, platform);
+        return await this.postToPinterest(content, account);
       default:
         throw new Error(`Unsupported platform: ${platformId}`);
     }
@@ -364,7 +345,7 @@ class SocialMediaService {
   }
 
   public getScheduledPosts(): ScheduledPost[] {
-    return [...this.scheduledPosts].sort((a, b) => 
+    return [...this.scheduledPosts].sort((a, b) =>
       a.scheduledTime.getTime() - b.scheduledTime.getTime()
     );
   }
@@ -421,7 +402,10 @@ class SocialMediaService {
   // Storage Methods
   private async saveConnectedPlatforms(): Promise<void> {
     try {
-      const data = Object.fromEntries(this.connectedPlatforms);
+      const data: Record<string, SocialMediaPlatform[]> = {};
+      for (const [platformId, accounts] of this.connectedPlatforms.entries()) {
+        data[platformId] = accounts;
+      }
       await AsyncStorage.setItem('social_media_platforms', JSON.stringify(data));
     } catch (error) {
       console.error('Error saving connected platforms:', error);
@@ -432,8 +416,15 @@ class SocialMediaService {
     try {
       const data = await AsyncStorage.getItem('social_media_platforms');
       if (data) {
-        const platforms = JSON.parse(data);
-        this.connectedPlatforms = new Map(Object.entries(platforms));
+        const parsed: Record<string, SocialMediaPlatform[]> = JSON.parse(data);
+        this.connectedPlatforms = new Map(Object.entries(parsed));
+      }
+      const user = getAuth().currentUser;
+      if (user) {
+        const cloudConnections = await firebaseService.getPlatformConnections(user.uid);
+        if (cloudConnections) {
+          this.connectedPlatforms = new Map(Object.entries(cloudConnections));
+        }
       }
     } catch (error) {
       console.error('Error loading connected platforms:', error);

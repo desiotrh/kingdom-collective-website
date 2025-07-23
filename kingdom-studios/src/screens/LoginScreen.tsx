@@ -10,10 +10,12 @@ import {
   Image,
   Dimensions,
   StatusBar,
+  ScrollView,
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Ionicons } from '@expo/vector-icons';
-import { KingdomColors } from '../constants/KingdomColors';
+import { KingdomColors, KingdomShadows } from '../constants/KingdomColors';
+import { useAuth } from '../contexts/AuthContext';
 import {
   signInWithGoogle,
   signInWithFacebook,
@@ -28,6 +30,7 @@ const LoginScreen = () => {
   const [googleLoading, setGoogleLoading] = useState(false);
   const [facebookLoading, setFacebookLoading] = useState(false);
   
+  const { continueAsGuest } = useAuth();
   const [request, response, promptAsync] = useGoogleAuthRequest();
 
   // Initialize Facebook SDK on mount
@@ -88,327 +91,245 @@ const LoginScreen = () => {
     }
   };
 
+  const handleGuestPress = () => {
+    continueAsGuest();
+  };
+
   const isLoading = loading || googleLoading || facebookLoading;
 
   return (
-    <>
+    <SafeAreaView style={styles.container}>
       <StatusBar barStyle="light-content" backgroundColor="transparent" translucent />
       <LinearGradient
-        colors={KingdomColors.gradients.royalBackground}
-        style={styles.container}
+        colors={KingdomColors.gradients.refinedFlame as [string, string]}
+        style={styles.backgroundGradient}
       >
-        {/* Background Pattern Overlay */}
-        <View style={styles.backgroundPattern} />
-        
-        {/* 3D Ribbon Effect */}
-        <View style={styles.ribbonContainer}>
-          <LinearGradient
-            colors={KingdomColors.gradients.goldShimmer}
-            style={styles.ribbon}
-            start={{ x: 0, y: 0 }}
-            end={{ x: 1, y: 1 }}
-          >
-            <View style={styles.ribbonShadow} />
-            <Text style={styles.ribbonText}>KINGDOM STUDIOS</Text>
-          </LinearGradient>
-        </View>
-
-        <SafeAreaView style={styles.safeArea}>
-          <View style={styles.content}>
-            {/* Logo Section */}
-            <View style={styles.logoContainer}>
-              <LinearGradient
-                colors={KingdomColors.gradients.goldShimmer}
-                style={styles.logoBackground}
-              >
-                <Image
-                  source={require('../../assets/KingdomStudiosLogo.png')}
-                  style={styles.logo}
-                  resizeMode="contain"
-                />
-              </LinearGradient>
-            </View>
-
-            {/* Title Section */}
-            <View style={styles.titleContainer}>
-              <LinearGradient
-                colors={KingdomColors.gradients.goldShimmer}
-                style={styles.titleGradient}
-              >
-                <Text style={styles.title}>Kingdom Studios</Text>
-              </LinearGradient>
-              <Text style={styles.subtitle}>
-                Create • Inspire • Build Your Digital Kingdom
-              </Text>
-            </View>
-
-            {/* Login Buttons Section */}
-            <View style={styles.buttonContainer}>
-              {/* Google Sign In */}
-              <TouchableOpacity
-                style={styles.button}
-                onPress={handleGooglePress}
-                disabled={isLoading}
-                activeOpacity={0.8}
-              >
-                <LinearGradient
-                  colors={[KingdomColors.primary.royalPurple, KingdomColors.primary.deepNavy]}
-                  style={styles.buttonGradient}
-                >
-                  <View style={styles.buttonContent}>
-                    <Ionicons name="logo-google" size={24} color={KingdomColors.gold.bright} />
-                    {googleLoading ? (
-                      <ActivityIndicator color={KingdomColors.gold.bright} size="small" style={styles.loader} />
-                    ) : (
-                      <Text style={styles.buttonText}>Continue with Google</Text>
-                    )}
-                  </View>
-                  <View style={styles.buttonShine} />
-                </LinearGradient>
-              </TouchableOpacity>
-
-              {/* Facebook Sign In */}
-              <TouchableOpacity
-                style={styles.button}
-                onPress={handleFacebookPress}
-                disabled={isLoading}
-                activeOpacity={0.8}
-              >
-                <LinearGradient
-                  colors={[KingdomColors.primary.deepNavy, KingdomColors.primary.midnight]}
-                  style={styles.buttonGradient}
-                >
-                  <View style={styles.buttonContent}>
-                    <Ionicons name="logo-facebook" size={24} color={KingdomColors.gold.bright} />
-                    {facebookLoading ? (
-                      <ActivityIndicator color={KingdomColors.gold.bright} size="small" style={styles.loader} />
-                    ) : (
-                      <Text style={styles.buttonText}>Continue with Facebook</Text>
-                    )}
-                  </View>
-                  <View style={styles.buttonShine} />
-                </LinearGradient>
-              </TouchableOpacity>
-            </View>
-
-            {/* Bottom Section */}
-            <View style={styles.bottomSection}>
-              <Text style={styles.bottomText}>
-                By continuing, you agree to our Terms of Service and Privacy Policy
-              </Text>
-            </View>
+        <View style={styles.mainContent}>
+          {/* Welcome Header */}
+          <View style={styles.welcomeSection}>
+            <Text style={styles.welcomeTitle}>Welcome Back</Text>
+            <Text style={styles.welcomeSubtitle}>Sign in to access your creative workspace</Text>
           </View>
-        </SafeAreaView>
 
-        {/* Floating Decorative Elements */}
-        <View style={styles.floatingElement1} />
-        <View style={styles.floatingElement2} />
-        <View style={styles.floatingElement3} />
+          {/* Authentication Buttons */}
+          <View style={styles.authSection}>
+            {/* Google Sign In */}
+            <TouchableOpacity
+              style={styles.authButton}
+              onPress={handleGooglePress}
+              disabled={isLoading}
+              activeOpacity={0.8}
+            >
+              <LinearGradient
+                colors={KingdomColors.gradients.royalGold as [string, string]}
+                style={styles.authButtonGradient}
+                start={{ x: 0, y: 0 }}
+                end={{ x: 1, y: 0 }}
+              >
+                <View style={styles.authButtonContent}>
+                  <View style={styles.authIconContainer}>
+                    <Ionicons name="logo-google" size={24} color={KingdomColors.refined.black} />
+                  </View>
+                  {googleLoading ? (
+                    <ActivityIndicator color={KingdomColors.refined.black} size="small" />
+                  ) : (
+                    <Text style={styles.authButtonText}>Continue with Google</Text>
+                  )}
+                </View>
+              </LinearGradient>
+            </TouchableOpacity>
+
+            {/* Facebook Sign In */}
+            <TouchableOpacity
+              style={styles.authButton}
+              onPress={handleFacebookPress}
+              disabled={isLoading}
+              activeOpacity={0.8}
+            >
+              <LinearGradient
+                colors={KingdomColors.gradients.darkDepth as [string, string]}
+                style={[styles.authButtonGradient, styles.secondaryButton]}
+                start={{ x: 0, y: 0 }}
+                end={{ x: 1, y: 0 }}
+              >
+                <View style={styles.authButtonContent}>
+                  <View style={[styles.authIconContainer, styles.secondaryIconContainer]}>
+                    <Ionicons name="logo-facebook" size={24} color={KingdomColors.refined.gold} />
+                  </View>
+                  {facebookLoading ? (
+                    <ActivityIndicator color={KingdomColors.refined.gold} size="small" />
+                  ) : (
+                    <Text style={[styles.authButtonText, styles.secondaryButtonText]}>Continue with Facebook</Text>
+                  )}
+                </View>
+              </LinearGradient>
+            </TouchableOpacity>
+
+            {/* Guest Access */}
+            <TouchableOpacity
+              style={[styles.authButton, styles.guestButton]}
+              onPress={handleGuestPress}
+              disabled={isLoading}
+              activeOpacity={0.8}
+            >
+              <LinearGradient
+                colors={KingdomColors.gradients.refinedFlame as [string, string]}
+                style={[styles.authButtonGradient, styles.guestButtonGradient]}
+                start={{ x: 0, y: 0 }}
+                end={{ x: 1, y: 1 }}
+              >
+                <View style={styles.authButtonContent}>
+                  <View style={[styles.authIconContainer, styles.guestIconContainer]}>
+                    <Ionicons name="eye-outline" size={24} color={KingdomColors.refined.softGold} />
+                  </View>
+                  <Text style={[styles.authButtonText, styles.guestButtonText]}>Continue as Guest</Text>
+                </View>
+              </LinearGradient>
+            </TouchableOpacity>
+          </View>
+
+          {/* Footer */}
+          <View style={styles.footer}>
+            <Text style={styles.footerText}>
+              By continuing, you agree to our{' '}
+              <Text style={styles.footerLink}>Terms of Service</Text>
+              {' '}and{' '}
+              <Text style={styles.footerLink}>Privacy Policy</Text>
+            </Text>
+          </View>
+        </View>
       </LinearGradient>
-    </>
+    </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: KingdomColors.refined.maroon,
   },
-  backgroundPattern: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    opacity: 0.1,
-    backgroundColor: 'transparent',
+  backgroundGradient: {
+    flex: 1,
   },
-  ribbonContainer: {
-    position: 'absolute',
-    top: 60,
-    left: -50,
-    right: -50,
-    height: 80,
-    transform: [{ rotate: '-5deg' }],
-    zIndex: 1,
-  },
-  ribbon: {
+  mainContent: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center',
-    shadowColor: KingdomColors.black,
-    shadowOffset: { width: 0, height: 8 },
-    shadowOpacity: 0.5,
-    shadowRadius: 15,
-    elevation: 10,
+    paddingHorizontal: 32,
+    paddingVertical: 40,
   },
-  ribbonShadow: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    backgroundColor: 'rgba(0, 0, 0, 0.2)',
-    transform: [{ translateY: 3 }],
-  },
-  ribbonText: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    color: KingdomColors.primary.midnight,
-    letterSpacing: 3,
-    textShadowColor: 'rgba(0, 0, 0, 0.5)',
-    textShadowOffset: { width: 1, height: 1 },
-    textShadowRadius: 2,
-  },
-  safeArea: {
-    flex: 1,
-    paddingTop: StatusBar.currentHeight || 0,
-  },
-  content: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    paddingHorizontal: 30,
-    paddingTop: 120,
-  },
-  logoContainer: {
-    marginBottom: 40,
-    alignItems: 'center',
-  },
-  logoBackground: {
-    width: 120,
-    height: 120,
-    borderRadius: 60,
-    justifyContent: 'center',
-    alignItems: 'center',
-    shadowColor: KingdomColors.gold.bright,
-    shadowOffset: { width: 0, height: 8 },
-    shadowOpacity: 0.6,
-    shadowRadius: 20,
-    elevation: 15,
-  },
-  logo: {
-    width: 80,
-    height: 80,
-  },
-  titleContainer: {
-    alignItems: 'center',
+
+  // ===========================================
+  // � WELCOME SECTION
+  // ===========================================
+  welcomeSection: {
     marginBottom: 60,
+    alignItems: 'center',
   },
-  titleGradient: {
-    paddingHorizontal: 20,
-    paddingVertical: 5,
-    borderRadius: 25,
-    marginBottom: 15,
-  },
-  title: {
-    fontSize: 32,
+  welcomeTitle: {
+    fontSize: 36,
     fontWeight: 'bold',
-    color: KingdomColors.primary.midnight,
+    color: KingdomColors.refined.gold,
     textAlign: 'center',
-    letterSpacing: 1,
+    marginBottom: 16,
+    fontFamily: 'serif',
+    letterSpacing: 2,
+    textShadowColor: 'rgba(0, 0, 0, 0.5)',
+    textShadowOffset: { width: 2, height: 2 },
+    textShadowRadius: 4,
+  },
+  welcomeSubtitle: {
+    fontSize: 18,
+    color: KingdomColors.refined.softSand,
+    textAlign: 'center',
+    lineHeight: 26,
+    maxWidth: width * 0.8,
     textShadowColor: 'rgba(0, 0, 0, 0.3)',
     textShadowOffset: { width: 1, height: 1 },
     textShadowRadius: 2,
   },
-  subtitle: {
-    fontSize: 16,
-    color: KingdomColors.text.secondary,
-    textAlign: 'center',
-    lineHeight: 22,
-    fontWeight: '500',
-  },
-  buttonContainer: {
-    width: '100%',
-    maxWidth: 320,
+
+  // ===========================================
+  // 🔐 AUTH SECTION
+  // ===========================================
+  authSection: {
     marginBottom: 40,
   },
-  button: {
+  authButton: {
     marginBottom: 20,
-    borderRadius: 15,
+    borderRadius: 16,
     overflow: 'hidden',
-    shadowColor: KingdomColors.black,
-    shadowOffset: { width: 0, height: 6 },
-    shadowOpacity: 0.3,
-    shadowRadius: 12,
-    elevation: 8,
+    ...KingdomShadows.medium,
   },
-  buttonGradient: {
+  authButtonGradient: {
     paddingVertical: 18,
-    paddingHorizontal: 25,
-    borderRadius: 15,
-    borderWidth: 1,
-    borderColor: KingdomColors.gold.bright,
-    position: 'relative',
-    overflow: 'hidden',
+    paddingHorizontal: 24,
+    borderRadius: 16,
   },
-  buttonContent: {
+  secondaryButton: {
+    borderWidth: 2,
+    borderColor: KingdomColors.refined.gold,
+  },
+  authButtonContent: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    zIndex: 2,
   },
-  buttonText: {
-    color: KingdomColors.text.primary,
+  authIconContainer: {
+    width: 36,
+    height: 36,
+    borderRadius: 18,
+    backgroundColor: 'rgba(0, 0, 0, 0.2)',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginRight: 16,
+  },
+  secondaryIconContainer: {
+    backgroundColor: 'rgba(212, 175, 55, 0.2)',
+  },
+  authButtonText: {
+    color: KingdomColors.refined.black,
     fontSize: 18,
     fontWeight: '600',
-    marginLeft: 12,
     letterSpacing: 0.5,
   },
-  loader: {
-    marginLeft: 12,
+  secondaryButtonText: {
+    color: KingdomColors.refined.gold,
   },
-  buttonShine: {
-    position: 'absolute',
-    top: 0,
-    left: -100,
-    width: 50,
-    height: '100%',
-    backgroundColor: 'rgba(255, 255, 255, 0.3)',
-    transform: [{ skewX: '-20deg' }],
+  guestButton: {
+    marginTop: 16,
+    borderWidth: 1,
+    borderColor: 'rgba(212, 175, 55, 0.3)',
   },
-  bottomSection: {
-    paddingHorizontal: 20,
+  guestButtonGradient: {
+    opacity: 0.7,
+  },
+  guestIconContainer: {
+    backgroundColor: 'rgba(212, 175, 55, 0.15)',
+  },
+  guestButtonText: {
+    color: KingdomColors.refined.softGold,
+    fontSize: 16,
+    fontWeight: '500',
+  },
+
+  // ===========================================
+  // 📐 FOOTER SECTION
+  // ===========================================
+  footer: {
+    paddingTop: 32,
+    paddingHorizontal: 8,
     alignItems: 'center',
   },
-  bottomText: {
+  footerText: {
     fontSize: 12,
-    color: KingdomColors.text.muted,
+    color: KingdomColors.refined.dustyGold,
     textAlign: 'center',
     lineHeight: 18,
+    opacity: 0.8,
   },
-  // Floating decorative elements
-  floatingElement1: {
-    position: 'absolute',
-    top: '20%',
-    right: 30,
-    width: 60,
-    height: 60,
-    borderRadius: 30,
-    backgroundColor: KingdomColors.opacity.gold10,
-    borderWidth: 1,
-    borderColor: KingdomColors.opacity.gold20,
-  },
-  floatingElement2: {
-    position: 'absolute',
-    bottom: '25%',
-    left: 20,
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-    backgroundColor: KingdomColors.opacity.silver10,
-    borderWidth: 1,
-    borderColor: KingdomColors.opacity.silver20,
-  },
-  floatingElement3: {
-    position: 'absolute',
-    top: '35%',
-    left: 40,
-    width: 20,
-    height: 20,
-    borderRadius: 10,
-    backgroundColor: KingdomColors.opacity.white10,
-    borderWidth: 1,
-    borderColor: KingdomColors.opacity.white20,
+  footerLink: {
+    color: KingdomColors.refined.gold,
+    fontWeight: '600',
   },
 });
 

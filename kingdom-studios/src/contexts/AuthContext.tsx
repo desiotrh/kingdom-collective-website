@@ -1,4 +1,10 @@
-import React, { createContext, useContext, useEffect, useState, ReactNode } from 'react';
+import React, { createContext, useContext,export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+  const [user, setUser] = useState<User | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isGuestMode, setIsGuestMode] = useState(false);
+  const [connectionStatus, setConnectionStatus] = useState<'online' | 'offline' | 'connecting'>('connecting');
+
+  console.log('AuthProvider initializing:', { user: !!user, isLoading, isGuestMode, connectionStatus });ffect, useState, ReactNode } from 'react';
 import * as SecureStore from 'expo-secure-store';
 import { apiClient, ApiResponse } from '../services/apiClient';
 
@@ -20,9 +26,11 @@ interface AuthContextType {
   user: User | null;
   isLoading: boolean;
   isAuthenticated: boolean;
+  isGuestMode: boolean;
   connectionStatus: 'online' | 'offline' | 'connecting';
   login: (email: string, password: string) => Promise<{ success: boolean; error?: string }>;
   register: (email: string, password: string, firstName: string, lastName: string, faithMode?: boolean) => Promise<{ success: boolean; error?: string }>;
+  continueAsGuest: () => void;
   logout: () => Promise<void>;
   refreshProfile: () => Promise<void>;
   checkConnection: () => Promise<boolean>;
@@ -41,6 +49,7 @@ const USER_KEY = 'kingdom_studios_user';
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [isGuestMode, setIsGuestMode] = useState(false);
   const [connectionStatus, setConnectionStatus] = useState<'online' | 'offline' | 'connecting'>('connecting');
 
   // Check backend connection status
@@ -202,6 +211,14 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     }
   };
 
+  // Continue as guest function
+  const continueAsGuest = (): void => {
+    console.log('continueAsGuest called');
+    setIsGuestMode(true);
+    setIsLoading(false);
+    console.log('Guest mode enabled - limited app access');
+  };
+
   // Logout function
   const logout = async (): Promise<void> => {
     try {
@@ -216,8 +233,9 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         }
       }
       
-      // Clear local storage
+      // Clear local storage and guest mode
       await clearStoredAuth();
+      setIsGuestMode(false);
     } catch (error) {
       console.error('Logout error:', error);
     } finally {
@@ -247,10 +265,12 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     user,
     isLoading,
     isAuthenticated,
+    isGuestMode,
     connectionStatus,
     login,
     register,
     logout,
+    continueAsGuest,
     refreshProfile,
     checkConnection,
   };

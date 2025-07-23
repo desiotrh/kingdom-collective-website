@@ -22,8 +22,8 @@ filesToCheck.forEach(file => {
   if (fs.existsSync(file)) {
     const content = fs.readFileSync(file, 'utf8');
     const hasOldEmail = content.includes('Desirea@ontheroadhomeministries.com');
-    const hasNewEmail = content.includes('support@kingdomstudiosapp.com');
-    
+    const hasNewEmail = content.includes('support@kingdomcollective.pro');
+
     console.log(`${hasOldEmail ? '❌' : '✅'} ${file}: ${hasOldEmail ? 'Still has old email' : 'Updated'}`);
     if (hasOldEmail) emailUpdatesComplete = false;
   } else {
@@ -64,11 +64,11 @@ if (fs.existsSync('app.config.js')) {
   const hasTermsUrl = appConfig.includes('termsOfServiceUrl');
   const hasPrivacyUrl = appConfig.includes('privacyPolicyUrl');
   const hasSupportEmail = appConfig.includes('supportEmail');
-  
+
   console.log(`${hasTermsUrl ? '✅' : '❌'} Terms of Service URL configured`);
   console.log(`${hasPrivacyUrl ? '✅' : '❌'} Privacy Policy URL configured`);
   console.log(`${hasSupportEmail ? '✅' : '❌'} Support email configured`);
-  
+
   const appConfigComplete = hasTermsUrl && hasPrivacyUrl && hasSupportEmail;
   console.log(`\n⚙️ App Configuration: ${appConfigComplete ? 'Complete ✅' : 'Incomplete ❌'}`);
 } else {
@@ -82,7 +82,7 @@ console.log('=======================');
 const requiredUrls = [
   'https://kingdomstudiosapp.com/terms',
   'https://kingdomstudiosapp.com/privacy',
-  'support@kingdomstudiosapp.com'
+  'support@kingdomcollective.pro'
 ];
 
 console.log('Required URLs for social media API applications:');
@@ -93,7 +93,7 @@ requiredUrls.forEach(url => {
 // Email setup
 console.log('\n📨 EMAIL SETUP:');
 console.log('================');
-console.log('✅ Primary: support@kingdomstudiosapp.com');
+console.log('✅ Primary: support@kingdomcollective.pro');
 console.log('ℹ️ Configure mailbox in domain provider dashboard');
 
 // Social media API configuration
@@ -137,7 +137,7 @@ const apiConfigs = [
     requirements: [
       'Privacy Policy: https://kingdomstudiosapp.com/privacy',
       'Terms of Service: https://kingdomstudiosapp.com/terms',
-      'Contact: support@kingdomstudiosapp.com'
+      'Contact: support@kingdomcollective.pro'
     ]
   }
 ];
@@ -152,7 +152,7 @@ apiConfigs.forEach(config => {
 // App store requirements
 console.log('\n🏪 APP STORE REQUIREMENTS:');
 console.log('===========================');
-console.log('✅ Support email: support@kingdomstudiosapp.com');
+console.log('✅ Support email: support@kingdomcollective.pro');
 console.log('✅ Terms of Service: https://kingdomstudiosapp.com/terms');
 console.log('✅ Privacy Policy: https://kingdomstudiosapp.com/privacy');
 console.log('ℹ️ URLs must be publicly accessible when submitted');
@@ -161,7 +161,7 @@ console.log('ℹ️ URLs must be publicly accessible when submitted');
 console.log('\n📋 NEXT STEPS:');
 console.log('===============');
 console.log('1. 🌐 Deploy legal pages to https://kingdomstudiosapp.com');
-console.log('2. 📧 Set up email mailbox for support@kingdomstudiosapp.com');
+console.log('2. 📧 Set up email mailbox for support@kingdomcollective.pro');
 console.log('3. 🧪 Test email delivery works');
 console.log('4. 🔗 Verify legal page URLs are accessible');
 console.log('5. 📱 Apply for social media API access using these URLs');
@@ -170,7 +170,7 @@ console.log('6. 🏪 Update app store listings with legal URLs');
 console.log('\n✅ CONFIGURATION COMPLETE!');
 console.log('===========================');
 console.log('Your Kingdom Studios app is now configured with:');
-console.log('• ✅ Updated email references (support@kingdomstudiosapp.com)');
+console.log('• ✅ Updated email references (support@kingdomcollective.pro)');
 console.log('• ✅ Legal pages and agreement flow');
 console.log('• ✅ Web routes for /terms and /privacy');
 console.log('• ✅ App configuration with legal URLs');
@@ -178,4 +178,4 @@ console.log('• ✅ Email forwarding setup guide');
 console.log('• ✅ Social media API configuration guide');
 
 console.log('\n💡 Ready for developer API applications!');
-console.log('� Support email: support@kingdomstudiosapp.com');
+console.log('� Support email: support@kingdomcollective.pro');

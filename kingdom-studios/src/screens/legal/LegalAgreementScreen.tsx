@@ -101,11 +101,11 @@ export const LegalAgreementScreen: React.FC<LegalAgreementProps> = ({ onAccept, 
         <View style={styles.contactSection}>
           <Text style={styles.contactText}>
             Questions? Contact us at{' '}
-            <Text 
+            <Text
               style={styles.link}
-              onPress={() => Linking.openURL('mailto:support@kingdomstudiosapp.com')}
+              onPress={() => Linking.openURL('mailto:support@kingdomcollective.pro')}
             >
-              support@kingdomstudiosapp.com
+              support@kingdomcollective.pro
             </Text>
           </Text>
         </View>

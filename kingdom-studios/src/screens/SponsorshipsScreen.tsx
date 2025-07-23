@@ -111,7 +111,7 @@ export default function SponsorshipsScreen() {
       await new Promise(resolve => setTimeout(resolve, 1500));
       Alert.alert(
         'Request Sent',
-        faithMode 
+        faithMode
           ? 'Thank you for your sponsorship request. We will get back to you soon with blessings and next steps.'
           : 'Thank you for your sponsorship request. We will get back to you soon with next steps.'
       );
@@ -174,7 +174,7 @@ export default function SponsorshipsScreen() {
             <StatusBadge status={sponsorship.status} />
           </View>
         </View>
-        
+
         <View style={styles.cardDetails}>
           <View style={styles.dateRow}>
             <Text style={styles.dateLabel}>Start Date</Text>
@@ -208,7 +208,7 @@ export default function SponsorshipsScreen() {
             <View style={styles.headerRight} />
           </View>
 
-          <ScrollView 
+          <ScrollView
             contentContainerStyle={styles.scrollContainer}
             showsVerticalScrollIndicator={false}
           >
@@ -222,7 +222,7 @@ export default function SponsorshipsScreen() {
                   {faithMode ? '✨ Blessed Partnerships' : '🤝 Premium Partnerships'}
                 </Text>
                 <Text style={styles.welcomeDescription}>
-                  {faithMode 
+                  {faithMode
                     ? "Join a faith-filled community of creators and brands working together for God's glory and purpose."
                     : "Connect with premium brands and unlock new revenue opportunities in the creator economy."
                   }
@@ -266,7 +266,7 @@ export default function SponsorshipsScreen() {
                   style={styles.formGradient}
                 >
                   <Text style={styles.formTitle}>Request New Sponsorship</Text>
-                  
+
                   <KeyboardAvoidingView
                     behavior={Platform.OS === 'ios' ? 'padding' : undefined}
                   >
@@ -324,7 +324,7 @@ export default function SponsorshipsScreen() {
                             <Text style={styles.buttonText}>Send Request</Text>
                           </LinearGradient>
                         </TouchableOpacity>
-                        
+
                         <TouchableOpacity
                           style={styles.cancelButton}
                           onPress={() => setRequesting(false)}
@@ -346,13 +346,13 @@ export default function SponsorshipsScreen() {
               >
                 <Text style={styles.contactTitle}>Need Assistance?</Text>
                 <Text style={styles.contactDescription}>
-                  {faithMode 
+                  {faithMode
                     ? "Our team is here to bless you with guidance on sponsorship opportunities."
                     : "Our team is here to help you maximize your sponsorship potential."
                   }
                 </Text>
                 <TouchableOpacity style={styles.contactButton}>
-                  <Text style={styles.contactEmail}>support@kingdomstudiosapp.com</Text>
+                  <Text style={styles.contactEmail}>support@kingdomcollective.pro</Text>
                 </TouchableOpacity>
               </LinearGradient>
             </BlurView>

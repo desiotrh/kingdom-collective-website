@@ -1,233 +1,162 @@
-import React, { useState } from 'react';
+/**
+ * 📱 Main Tab Navigator - Updated with Enhanced Features
+ * Includes tier-based access control and Faith Mode support
+ */
+
+import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
-import { Ionicons } from '@expo/vector-icons';
-import { useDualMode } from '../contexts/DualModeContext';
+import { useAuth } from '../contexts/AuthContext';
+import { useFaithMode } from '../contexts/FaithModeContext';
 import { KingdomColors } from '../constants/KingdomColors';
-import { MainTabParamList } from '../types/navigation';
-import AppMenu from '../components/AppMenu';
 
 // Import screens
 import DashboardScreen from '../screens/DashboardScreen';
-import AIStudioScreen from '../screens/ai-studio/AIStudioScreen';
-import ProductsScreen from '../screens/products/ProductsScreen';
-import DesignStudioScreen from '../screens/design-studio/DesignStudioScreen';
-import StorefrontScreen from '../screens/storefront/StorefrontScreen';
-import ForgeCommunityScreen from '../screens/ForgeCommunityScreen';
+import ContentCreationScreen from '../screens/ContentCreationScreen';
+import CommunityScreen from '../screens/CommunityScreen';
+import AnalyticsScreen from '../screens/analytics/AnalyticsScreen';
+import EnhancedFeaturesScreen from '../screens/EnhancedFeaturesScreen';
+import ProfileScreen from '../screens/ProfileScreen';
 
-const Tab = createBottomTabNavigator<MainTabParamList>();
+// Import icons (you'll need to install react-native-vector-icons)
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-interface TabIconProps {
-  focused: boolean;
-  icon: string;
-  label: string;
-}
-
-const TabIcon: React.FC<TabIconProps> = ({ focused, icon, label }) => (
-  <View style={styles.tabIconContainer}>
-    {focused && (
-      <LinearGradient
-        colors={[KingdomColors.primary.royalPurple, KingdomColors.gold.bright]}
-        style={styles.tabIconGradient}
-      />
-    )}
-    <Text style={[styles.tabIcon, focused && styles.tabIconFocused]}>
-      {icon}
-    </Text>
-    <Text style={[styles.tabLabel, focused && styles.tabLabelFocused]}>
-      {label}
-    </Text>
-  </View>
-);
-
-const MenuIcon: React.FC<{ focused: boolean }> = ({ focused }) => {
-  const [menuVisible, setMenuVisible] = useState(false);
-
-  return (
-    <>
-      <TouchableOpacity onPress={() => setMenuVisible(true)}>
-        <View style={styles.tabIconContainer}>
-          {focused && (
-            <LinearGradient
-              colors={[KingdomColors.primary.royalPurple, KingdomColors.gold.bright]}
-              style={styles.tabIconGradient}
-            />
-          )}
-          <Ionicons 
-            name="grid-outline" 
-            size={20} 
-            color={focused ? KingdomColors.primary.royalPurple : KingdomColors.text.secondary} 
-          />
-          <Text style={[styles.tabLabel, focused && styles.tabLabelFocused]}>
-            More
-          </Text>
-        </View>
-      </TouchableOpacity>
-      <AppMenu visible={menuVisible} onClose={() => setMenuVisible(false)} />
-    </>
-  );
-};
+const Tab = createBottomTabNavigator();
 
 const MainTabNavigator: React.FC = () => {
-  const { currentMode, modeConfig } = useDualMode();
+  const { user, isGuest } = useAuth();
+  const { isFaithMode } = useFaithMode();
+
+  const getUserTier = (): 'free' | 'pro' | 'enterprise' => {
+    if (isGuest) return 'free';
+    return user?.tier || 'free';
+  };
+
+  const canAccessFeature = (requiredTier: 'free' | 'pro' | 'enterprise'): boolean => {
+    const userTier = getUserTier();
+    const tierOrder = { free: 0, pro: 1, enterprise: 2 };
+    return tierOrder[userTier] >= tierOrder[requiredTier];
+  };
 
   return (
     <Tab.Navigator
-      screenOptions={{
-        headerShown: false,
-        tabBarStyle: styles.tabBar,
-        tabBarShowLabel: false,
-        tabBarActiveTintColor: KingdomColors.primary.royalPurple,
-        tabBarInactiveTintColor: KingdomColors.text.secondary,
-      }}
+      screenOptions={({ route }) => ({
+        tabBarIcon: ({ focused, color, size }) => {
+          let iconName: string;
+
+          switch (route.name) {
+            case 'Dashboard':
+              iconName = 'view-dashboard';
+              break;
+            case 'Create':
+              iconName = 'plus-circle';
+              break;
+            case 'Community':
+              iconName = 'account-group';
+              break;
+            case 'Analytics':
+              iconName = 'chart-line';
+              break;
+            case 'Enhanced':
+              iconName = 'rocket-launch';
+              break;
+            case 'Profile':
+              iconName = 'account';
+              break;
+            default:
+              iconName = 'circle';
+          }
+
+          return <Icon name={iconName} size={size} color={color} />;
+        },
+        tabBarActiveTintColor: KingdomColors.primary,
+        tabBarInactiveTintColor: KingdomColors.textSecondary,
+        tabBarStyle: {
+          backgroundColor: KingdomColors.surface,
+          borderTopColor: KingdomColors.border,
+          borderTopWidth: 1,
+          paddingBottom: 5,
+          paddingTop: 5,
+          height: 60,
+        },
+        tabBarLabelStyle: {
+          fontSize: 12,
+          fontWeight: '600',
+        },
+        headerStyle: {
+          backgroundColor: KingdomColors.surface,
+          borderBottomColor: KingdomColors.border,
+          borderBottomWidth: 1,
+        },
+        headerTintColor: KingdomColors.text,
+        headerTitleStyle: {
+          fontWeight: 'bold',
+        },
+      })}
     >
       <Tab.Screen
         name="Dashboard"
         component={DashboardScreen}
         options={{
-          tabBarIcon: ({ focused }: { focused: boolean }) => (
-            <TabIcon
-              focused={focused}
-              icon="👑"
-              label={currentMode === 'faith' ? "Kingdom" : "Dashboard"}
-            />
-          ),
+          title: 'Dashboard',
+          tabBarLabel: 'Home',
         }}
       />
+
       <Tab.Screen
-        name="AIStudio"
-        component={AIStudioScreen}
+        name="Create"
+        component={ContentCreationScreen}
         options={{
-          tabBarIcon: ({ focused }: { focused: boolean }) => (
-            <TabIcon
-              focused={focused}
-              icon="🤖"
-              label="AI Studio"
-            />
-          ),
+          title: 'Create Content',
+          tabBarLabel: 'Create',
         }}
       />
-      <Tab.Screen
-        name="Products"
-        component={ProductsScreen}
-        options={{
-          tabBarIcon: ({ focused }: { focused: boolean }) => (
-            <TabIcon
-              focused={focused}
-              icon="📦"
-              label="Products"
-            />
-          ),
-        }}
-      />
-      <Tab.Screen
-        name="Design"
-        component={DesignStudioScreen}
-        options={{
-          tabBarIcon: ({ focused }: { focused: boolean }) => (
-            <TabIcon
-              focused={focused}
-              icon="🎨"
-              label="Design"
-            />
-          ),
-        }}
-      />
-      <Tab.Screen
-        name="Storefront"
-        component={StorefrontScreen}
-        options={{
-          tabBarIcon: ({ focused }: { focused: boolean }) => (
-            <TabIcon
-              focused={focused}
-              icon="🛍️"
-              label="Store"
-            />
-          ),
-        }}
-      />
+
       <Tab.Screen
         name="Community"
-        component={ForgeCommunityScreen}
+        component={CommunityScreen}
         options={{
-          tabBarIcon: ({ focused }: { focused: boolean }) => (
-            <TabIcon
-              focused={focused}
-              icon="🔥"
-              label={currentMode === 'faith' ? "Forge" : "Community"}
+          title: 'Community',
+          tabBarLabel: 'Community',
+        }}
+      />
+
+      {canAccessFeature('pro') && (
+        <Tab.Screen
+          name="Analytics"
+          component={AnalyticsScreen}
+          options={{
+            title: 'Analytics',
+            tabBarLabel: 'Analytics',
+          }}
+        />
+      )}
+
+      <Tab.Screen
+        name="Enhanced"
+        component={EnhancedFeaturesScreen}
+        options={{
+          title: 'Enhanced Features',
+          tabBarLabel: 'Enhanced',
+          tabBarIcon: ({ focused, color, size }) => (
+            <Icon
+              name="rocket-launch"
+              size={size}
+              color={focused ? KingdomColors.primary : color}
             />
           ),
         }}
       />
+
       <Tab.Screen
-        name="More"
-        component={View} // Placeholder component since we handle navigation in the icon
+        name="Profile"
+        component={ProfileScreen}
         options={{
-          tabBarIcon: ({ focused }: { focused: boolean }) => (
-            <MenuIcon focused={focused} />
-          ),
-        }}
-        listeners={{
-          tabPress: (e) => {
-            // Custom navigation handling can be added here
-            // e.preventDefault();
-          },
+          title: 'Profile',
+          tabBarLabel: 'Profile',
         }}
       />
     </Tab.Navigator>
   );
 };
-
-const styles = StyleSheet.create({
-  tabBar: {
-    backgroundColor: KingdomColors.background.primary,
-    borderTopWidth: 1,
-    borderTopColor: KingdomColors.gray,
-    height: 90,
-    paddingBottom: 20,
-    paddingTop: 10,
-    elevation: 10,
-    shadowColor: KingdomColors.primary.royalPurple,
-    shadowOffset: { width: 0, height: -2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 10,
-  },
-  tabIconContainer: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingVertical: 8,
-    paddingHorizontal: 12,
-    borderRadius: 12,
-    position: 'relative',
-    minWidth: 60,
-  },
-  tabIconGradient: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    borderRadius: 12,
-    opacity: 0.1,
-  },
-  tabIcon: {
-    fontSize: 20,
-    marginBottom: 4,
-  },
-  tabIconFocused: {
-    transform: [{ scale: 1.1 }],
-  },
-  tabLabel: {
-    fontSize: 10,
-    fontWeight: '500',
-    color: KingdomColors.text.secondary,
-    textAlign: 'center',
-  },
-  tabLabelFocused: {
-    color: KingdomColors.primary.royalPurple,
-    fontWeight: '600',
-  },
-});
 
 export default MainTabNavigator;

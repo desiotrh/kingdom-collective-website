@@ -20,7 +20,7 @@ export const AppFooter: React.FC<AppFooterProps> = ({ style, showAllLinks = true
   };
 
   const openSupport = () => {
-    Linking.openURL('mailto:support@kingdomstudiosapp.com').catch(() => {
+    Linking.openURL('mailto:support@kingdomcollective.pro').catch(() => {
       console.warn('Unable to open email client');
     });
   };
@@ -37,13 +37,13 @@ export const AppFooter: React.FC<AppFooterProps> = ({ style, showAllLinks = true
         <TouchableOpacity onPress={openTermsOfService} style={styles.link}>
           <Text style={styles.linkText}>Terms of Service</Text>
         </TouchableOpacity>
-        
+
         <Text style={styles.separator}>•</Text>
-        
+
         <TouchableOpacity onPress={openPrivacyPolicy} style={styles.link}>
           <Text style={styles.linkText}>Privacy Policy</Text>
         </TouchableOpacity>
-        
+
         {showAllLinks && (
           <>
             <Text style={styles.separator}>•</Text>
@@ -53,13 +53,13 @@ export const AppFooter: React.FC<AppFooterProps> = ({ style, showAllLinks = true
           </>
         )}
       </View>
-      
+
       {showAllLinks && (
         <TouchableOpacity onPress={openWebsite} style={styles.websiteLink}>
           <Text style={styles.websiteText}>kingdomstudiosapp.com</Text>
         </TouchableOpacity>
       )}
-      
+
       <Text style={styles.copyright}>
         © 2025 Kingdom Studios. All rights reserved.
       </Text>

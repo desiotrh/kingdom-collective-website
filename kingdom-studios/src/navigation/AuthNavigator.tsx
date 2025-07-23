@@ -18,8 +18,8 @@ import { RootStackParamList } from '../types/navigation';
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 const AuthNavigator: React.FC = () => {
-  const { user, isLoading } = useAuth();
-  const isAuthenticated = !!user;
+  const { user, isLoading, isGuestMode } = useAuth();
+  const isAuthenticated = !!user || isGuestMode;
 
   if (isLoading) {
     return <LoadingScreen />;

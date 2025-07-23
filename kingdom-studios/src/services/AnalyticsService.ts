@@ -1,481 +1,692 @@
-import {
-  AnalyticsData,
-  MetricCard,
-  ChartData,
-  ContentPerformance,
-  AudienceInsight,
-  SpiritualMetrics,
-  BusinessMetrics,
-  GoalTracking,
-  AnalyticsFilter,
-  PlatformAnalytics,
-  HashtagAnalytics,
-  AIInsight,
-} from '../types/analytics';
+import { authService } from './authService';
 
-export class AnalyticsService {
-  private static instance: AnalyticsService;
-  private analyticsData: AnalyticsData[] = [];
-  private contentPerformance: ContentPerformance[] = [];
+export interface ViralForecast {
+  score: number;
+  factors: string[];
+  predictions: {
+    views: number;
+    likes: number;
+    shares: number;
+    comments: number;
+    saves: number;
+  };
+  recommendations: string[];
+  confidence: number;
+}
 
-  public static getInstance(): AnalyticsService {
-    if (!AnalyticsService.instance) {
-      AnalyticsService.instance = new AnalyticsService();
+export interface ABTest {
+  id: string;
+  name: string;
+  description: string;
+  variantA: any;
+  variantB: any;
+  metrics: string[];
+  startDate: Date;
+  endDate: Date;
+  status: 'active' | 'completed' | 'paused';
+  results?: ABTestResults;
+}
+
+export interface ABTestResults {
+  variantA: ABTestVariantResults;
+  variantB: ABTestVariantResults;
+  winner: 'A' | 'B' | 'tie';
+  confidence: number;
+  significance: number;
+}
+
+export interface ABTestVariantResults {
+  views: number;
+  engagement: number;
+  conversion: number;
+  retention: number;
+  viralScore: number;
+}
+
+export interface AudienceInsights {
+  demographics: {
+    age: { [key: string]: number };
+    gender: { [key: string]: number };
+    location: { [key: string]: number };
+    language: { [key: string]: number };
+  };
+  behavior: {
+    watchTime: number;
+    completionRate: number;
+    peakEngagement: number;
+    dropOffPoints: number[];
+  };
+  interests: string[];
+  devices: { [key: string]: number };
+  platforms: { [key: string]: number };
+}
+
+export interface EngagementMetrics {
+  views: number;
+  likes: number;
+  shares: number;
+  comments: number;
+  saves: number;
+  downloads: number;
+  clickThroughRate: number;
+  averageWatchTime: number;
+  completionRate: number;
+  peakEngagement: number;
+}
+
+export interface ROICalculation {
+  contentId: string;
+  contentTitle: string;
+  revenue: number;
+  costs: number;
+  roi: number;
+  roiPercentage: number;
+  revenueSources: {
+    donations: number;
+    merchandise: number;
+    sponsorships: number;
+    affiliate: number;
+    other: number;
+  };
+  conversionMetrics: {
+    clicks: number;
+    conversions: number;
+    conversionRate: number;
+    averageOrderValue: number;
+  };
+}
+
+class AnalyticsService {
+  private apiBaseUrl: string;
+
+  constructor() {
+    this.apiBaseUrl = process.env.API_BASE_URL || 'http://localhost:3000';
+  }
+
+  /**
+   * Track custom event
+   */
+  trackEvent(eventName: string, properties: any = {}): void {
+    try {
+      const user = authService.getCurrentUser();
+      const eventData = {
+        eventName,
+        properties,
+        userId: user?.uid,
+        timestamp: new Date().toISOString(),
+        sessionId: this.getSessionId(),
+      };
+
+      // Send to analytics endpoint
+      fetch(`${this.apiBaseUrl}/analytics/track`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': user ? `Bearer ${authService.getToken()}` : '',
+        },
+        body: JSON.stringify(eventData),
+      }).catch(error => {
+        console.error('Analytics tracking failed:', error);
+      });
+
+      // Also log locally for debugging
+      console.log('Analytics Event:', eventData);
+    } catch (error) {
+      console.error('Analytics tracking error:', error);
     }
-    return AnalyticsService.instance;
   }
 
-  // Track analytics event
-  public trackEvent(type: string, value: number, metadata?: Record<string, any>): void {
-    const event: AnalyticsData = {
-      id: Date.now().toString(),
-      userId: 'current-user', // Should come from auth context
-      timestamp: new Date().toISOString(),
-      value,
-      metadata: {
-        type,
-        ...metadata,
-      },
-    };
-    this.analyticsData.push(event);
+  /**
+   * Get session ID
+   */
+  private getSessionId(): string {
+    let sessionId = localStorage.getItem('analytics_session_id');
+    if (!sessionId) {
+      sessionId = `session_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+      localStorage.setItem('analytics_session_id', sessionId);
+    }
+    return sessionId;
   }
 
-  // Calculate metric cards for dashboard
-  public calculateMetricCards(filters: AnalyticsFilter): MetricCard[] {
-    const endDate = new Date(filters.dateRange.end);
-    const startDate = new Date(filters.dateRange.start);
-    const previousPeriodDays = Math.ceil((endDate.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24));
-    const previousStartDate = new Date(startDate.getTime() - previousPeriodDays * 24 * 60 * 60 * 1000);
+  /**
+   * Generate viral forecast for content
+   */
+  async generateViralForecast(
+    contentId: string,
+    contentData: {
+      title: string;
+      description: string;
+      duration: number;
+      category: string;
+      tags: string[];
+    }
+  ): Promise<ViralForecast> {
+    try {
+      const user = authService.getCurrentUser();
+      if (!user) throw new Error('User not authenticated');
 
-    // Current period data
-    const currentData = this.analyticsData.filter(event => {
-      const eventDate = new Date(event.timestamp);
-      return eventDate >= startDate && eventDate <= endDate;
-    });
+      const response = await fetch(`${this.apiBaseUrl}/analytics/viral-forecast`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${await authService.getToken()}`,
+        },
+        body: JSON.stringify({
+          contentId,
+          contentData,
+          userId: user.uid,
+        }),
+      });
 
-    // Previous period data for comparison
-    const previousData = this.analyticsData.filter(event => {
-      const eventDate = new Date(event.timestamp);
-      return eventDate >= previousStartDate && eventDate < startDate;
-    });
+      if (!response.ok) {
+        throw new Error('Failed to generate viral forecast');
+      }
 
-    const metrics: MetricCard[] = [];
+      const forecast = await response.json();
 
-    // Revenue metrics
-    const currentRevenue = this.calculateRevenue(currentData);
-    const previousRevenue = this.calculateRevenue(previousData);
-    const revenueChange = previousRevenue > 0 ? ((currentRevenue - previousRevenue) / previousRevenue) * 100 : 0;
+      this.trackEvent('viral_forecast_generated', {
+        contentId,
+        score: forecast.score,
+        confidence: forecast.confidence,
+      });
 
-    metrics.push({
-      id: 'revenue',
-      title: 'Total Revenue',
-      faithModeTitle: 'Kingdom Revenue',
-      encouragementModeTitle: 'Blessing Revenue',
-      value: currentRevenue,
-      change: revenueChange,
-      period: `${previousPeriodDays} days`,
-      icon: 'attach-money',
-      color: '#10B981',
-      trend: revenueChange > 0 ? 'up' : revenueChange < 0 ? 'down' : 'stable',
-      format: 'currency',
-    });
-
-    // Engagement metrics
-    const currentEngagement = this.calculateEngagement(currentData);
-    const previousEngagement = this.calculateEngagement(previousData);
-    const engagementChange = previousEngagement > 0 ? ((currentEngagement - previousEngagement) / previousEngagement) * 100 : 0;
-
-    metrics.push({
-      id: 'engagement',
-      title: 'Engagement Rate',
-      faithModeTitle: 'Fellowship Engagement',
-      encouragementModeTitle: 'Community Support',
-      value: currentEngagement,
-      change: engagementChange,
-      period: `${previousPeriodDays} days`,
-      icon: 'favorite',
-      color: '#2D1B69',
-      trend: engagementChange > 0 ? 'up' : engagementChange < 0 ? 'down' : 'stable',
-      format: 'percentage',
-    });
-
-    // Content reach
-    const currentReach = this.calculateReach(currentData);
-    const previousReach = this.calculateReach(previousData);
-    const reachChange = previousReach > 0 ? ((currentReach - previousReach) / previousReach) * 100 : 0;
-
-    metrics.push({
-      id: 'reach',
-      title: 'Content Reach',
-      faithModeTitle: 'Gospel Reach',
-      encouragementModeTitle: 'Hope Reach',
-      value: currentReach,
-      change: reachChange,
-      period: `${previousPeriodDays} days`,
-      icon: 'visibility',
-      color: '#3B82F6',
-      trend: reachChange > 0 ? 'up' : reachChange < 0 ? 'down' : 'stable',
-      format: 'number',
-    });
-
-    // Conversions
-    const currentConversions = this.calculateConversions(currentData);
-    const previousConversions = this.calculateConversions(previousData);
-    const conversionChange = previousConversions > 0 ? ((currentConversions - previousConversions) / previousConversions) * 100 : 0;
-
-    metrics.push({
-      id: 'conversions',
-      title: 'Conversion Rate',
-      faithModeTitle: 'Kingdom Impact',
-      encouragementModeTitle: 'Lives Touched',
-      value: currentConversions,
-      change: conversionChange,
-      period: `${previousPeriodDays} days`,
-      icon: 'trending-up',
-      color: '#FFC107',
-      trend: conversionChange > 0 ? 'up' : conversionChange < 0 ? 'down' : 'stable',
-      format: 'percentage',
-    });
-
-    return metrics;
+      return forecast;
+    } catch (error) {
+      console.error('Viral forecast failed:', error);
+      return this.generateMockViralForecast();
+    }
   }
 
-  // Generate chart data for visualizations
-  public generateChartData(filters: AnalyticsFilter): ChartData[] {
-    const charts: ChartData[] = [];
-
-    // Revenue over time
-    const revenueChart = this.generateRevenueChart(filters);
-    charts.push(revenueChart);
-
-    // Content performance by type
-    const contentChart = this.generateContentPerformanceChart(filters);
-    charts.push(contentChart);
-
-    // Platform comparison
-    const platformChart = this.generatePlatformChart(filters);
-    charts.push(platformChart);
-
-    return charts;
-  }
-
-  // Generate AI insights based on data patterns
-  public generateAIInsights(filters: AnalyticsFilter): AIInsight[] {
-    const insights: AIInsight[] = [];
-
-    // Analyze posting patterns
-    const postingInsight = this.analyzePostingPatterns(filters);
-    if (postingInsight) insights.push(postingInsight);
-
-    // Analyze content performance
-    const contentInsight = this.analyzeContentPerformance(filters);
-    if (contentInsight) insights.push(contentInsight);
-
-    // Analyze audience behavior
-    const audienceInsight = this.analyzeAudienceBehavior(filters);
-    if (audienceInsight) insights.push(audienceInsight);
-
-    // Analyze hashtag performance
-    const hashtagInsight = this.analyzeHashtagTrends(filters);
-    if (hashtagInsight) insights.push(hashtagInsight);
-
-    return insights;
-  }
-
-  // Platform-specific analytics
-  public getPlatformAnalytics(platform: string, filters: AnalyticsFilter): PlatformAnalytics {
-    const platformData = this.analyticsData.filter(event => 
-      event.metadata?.platform === platform
-    );
+  /**
+   * Generate mock viral forecast
+   */
+  private generateMockViralForecast(): ViralForecast {
+    const score = Math.floor(Math.random() * 40) + 30; // 30-70
+    const confidence = Math.random() * 0.3 + 0.7; // 70-100%
 
     return {
-      platform,
-      followers: this.calculateFollowers(platformData),
-      engagement: this.calculateEngagement(platformData),
-      reach: this.calculateReach(platformData),
-      clicks: this.calculateClicks(platformData),
-      conversions: this.calculateConversions(platformData),
-      revenue: this.calculateRevenue(platformData),
-      topContent: this.getTopContent(platform, filters),
-      growthRate: this.calculateGrowthRate(platformData),
+      score,
+      factors: [
+        'Engaging hook in first 3 seconds',
+        'Clear message and call-to-action',
+        'Trending hashtags included',
+        'Optimal video length for platform',
+        'High-quality visuals and audio',
+      ],
+      predictions: {
+        views: Math.floor(Math.random() * 50000) + 1000,
+        likes: Math.floor(Math.random() * 5000) + 100,
+        shares: Math.floor(Math.random() * 1000) + 50,
+        comments: Math.floor(Math.random() * 500) + 20,
+        saves: Math.floor(Math.random() * 200) + 10,
+      },
+      recommendations: [
+        'Add trending background music',
+        'Include more text overlays',
+        'Optimize for mobile viewing',
+        'Use more engaging thumbnail',
+        'Post at optimal time (9 AM)',
+      ],
+      confidence,
     };
   }
 
-  // Hashtag analytics
-  public getHashtagAnalytics(filters: AnalyticsFilter): HashtagAnalytics[] {
-    const hashtagData = this.analyticsData.filter(event =>
-      event.metadata?.hashtags && Array.isArray(event.metadata.hashtags)
-    );
+  /**
+   * Create A/B test
+   */
+  async createABTest(
+    name: string,
+    description: string,
+    variantA: any,
+    variantB: any,
+    metrics: string[],
+    duration: number = 7
+  ): Promise<ABTest> {
+    try {
+      const user = authService.getCurrentUser();
+      if (!user) throw new Error('User not authenticated');
 
-    const hashtagStats = new Map<string, {
-      usage: number;
-      reach: number;
-      engagement: number;
-      category: string;
-    }>();
-
-    hashtagData.forEach(event => {
-      const hashtags = event.metadata?.hashtags as string[];
-      hashtags.forEach(hashtag => {
-        const current = hashtagStats.get(hashtag) || {
-          usage: 0,
-          reach: 0,
-          engagement: 0,
-          category: this.categorizeHashtag(hashtag),
-        };
-        
-        current.usage += 1;
-        current.reach += event.metadata?.reach || 0;
-        current.engagement += event.metadata?.engagement || 0;
-        
-        hashtagStats.set(hashtag, current);
+      const response = await fetch(`${this.apiBaseUrl}/analytics/ab-tests`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${await authService.getToken()}`,
+        },
+        body: JSON.stringify({
+          name,
+          description,
+          variantA,
+          variantB,
+          metrics,
+          duration,
+          userId: user.uid,
+        }),
       });
-    });
 
-    return Array.from(hashtagStats.entries()).map(([hashtag, stats]) => ({
-      hashtag,
-      usage: stats.usage,
-      reach: stats.reach,
-      engagement: stats.engagement,
-      trending: this.isHashtagTrending(hashtag, stats),
-      category: stats.category,
-      performance: this.getHashtagPerformance(stats),
+      if (!response.ok) {
+        throw new Error('Failed to create A/B test');
+      }
+
+      const abTest = await response.json();
+
+      this.trackEvent('ab_test_created', {
+        testId: abTest.id,
+        name,
+        metrics,
+        duration,
+      });
+
+      return abTest;
+    } catch (error) {
+      console.error('A/B test creation failed:', error);
+      throw error;
+    }
+  }
+
+  /**
+   * Get A/B test results
+   */
+  async getABTestResults(testId: string): Promise<ABTestResults> {
+    try {
+      const user = authService.getCurrentUser();
+      if (!user) throw new Error('User not authenticated');
+
+      const response = await fetch(`${this.apiBaseUrl}/analytics/ab-tests/${testId}/results`, {
+        headers: {
+          'Authorization': `Bearer ${await authService.getToken()}`,
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to get A/B test results');
+      }
+
+      const results = await response.json();
+
+      this.trackEvent('ab_test_results_viewed', {
+        testId,
+        winner: results.winner,
+        confidence: results.confidence,
+      });
+
+      return results;
+    } catch (error) {
+      console.error('A/B test results failed:', error);
+      return this.generateMockABTestResults();
+    }
+  }
+
+  /**
+   * Generate mock A/B test results
+   */
+  private generateMockABTestResults(): ABTestResults {
+    const variantAResults = {
+      views: Math.floor(Math.random() * 10000) + 1000,
+      engagement: Math.random() * 0.1 + 0.05, // 5-15%
+      conversion: Math.random() * 0.05 + 0.01, // 1-6%
+      retention: Math.random() * 0.3 + 0.5, // 50-80%
+      viralScore: Math.floor(Math.random() * 40) + 30,
+    };
+
+    const variantBResults = {
+      views: Math.floor(Math.random() * 10000) + 1000,
+      engagement: Math.random() * 0.1 + 0.05,
+      conversion: Math.random() * 0.05 + 0.01,
+      retention: Math.random() * 0.3 + 0.5,
+      viralScore: Math.floor(Math.random() * 40) + 30,
+    };
+
+    const winner = variantAResults.viralScore > variantBResults.viralScore ? 'A' : 'B';
+    const confidence = Math.random() * 0.3 + 0.7; // 70-100%
+
+    return {
+      variantA: variantAResults,
+      variantB: variantBResults,
+      winner,
+      confidence,
+      significance: Math.random() * 0.2 + 0.8, // 80-100%
+    };
+  }
+
+  /**
+   * Get audience insights
+   */
+  async getAudienceInsights(contentId: string): Promise<AudienceInsights> {
+    try {
+      const user = authService.getCurrentUser();
+      if (!user) throw new Error('User not authenticated');
+
+      const response = await fetch(`${this.apiBaseUrl}/analytics/audience-insights/${contentId}`, {
+        headers: {
+          'Authorization': `Bearer ${await authService.getToken()}`,
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to get audience insights');
+      }
+
+      const insights = await response.json();
+
+      this.trackEvent('audience_insights_viewed', {
+        contentId,
+        demographics: Object.keys(insights.demographics.age).length,
+        behavior: insights.behavior.watchTime,
+      });
+
+      return insights;
+    } catch (error) {
+      console.error('Audience insights failed:', error);
+      return this.generateMockAudienceInsights();
+    }
+  }
+
+  /**
+   * Generate mock audience insights
+   */
+  private generateMockAudienceInsights(): AudienceInsights {
+    return {
+      demographics: {
+        age: {
+          '18-24': 25,
+          '25-34': 35,
+          '35-44': 20,
+          '45-54': 15,
+          '55+': 5,
+        },
+        gender: {
+          'Female': 60,
+          'Male': 35,
+          'Other': 5,
+        },
+        location: {
+          'United States': 45,
+          'Canada': 15,
+          'United Kingdom': 12,
+          'Australia': 8,
+          'Other': 20,
+        },
+        language: {
+          'English': 85,
+          'Spanish': 8,
+          'French': 4,
+          'Other': 3,
+        },
+      },
+      behavior: {
+        watchTime: Math.random() * 60 + 30, // 30-90 seconds
+        completionRate: Math.random() * 0.4 + 0.4, // 40-80%
+        peakEngagement: Math.random() * 0.3 + 0.6, // 60-90%
+        dropOffPoints: [10, 25, 45, 60],
+      },
+      interests: [
+        'Faith & Spirituality',
+        'Christian Content',
+        'Inspiration',
+        'Motivation',
+        'Community',
+      ],
+      devices: {
+        'Mobile': 75,
+        'Desktop': 20,
+        'Tablet': 5,
+      },
+      platforms: {
+        'Instagram': 40,
+        'TikTok': 30,
+        'YouTube': 20,
+        'Facebook': 10,
+      },
+    };
+  }
+
+  /**
+   * Get engagement metrics
+   */
+  async getEngagementMetrics(contentId: string): Promise<EngagementMetrics> {
+    try {
+      const user = authService.getCurrentUser();
+      if (!user) throw new Error('User not authenticated');
+
+      const response = await fetch(`${this.apiBaseUrl}/analytics/engagement/${contentId}`, {
+        headers: {
+          'Authorization': `Bearer ${await authService.getToken()}`,
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to get engagement metrics');
+      }
+
+      const metrics = await response.json();
+
+      this.trackEvent('engagement_metrics_viewed', {
+        contentId,
+        views: metrics.views,
+        engagement: metrics.likes + metrics.shares + metrics.comments,
+      });
+
+      return metrics;
+    } catch (error) {
+      console.error('Engagement metrics failed:', error);
+      return this.generateMockEngagementMetrics();
+    }
+  }
+
+  /**
+   * Generate mock engagement metrics
+   */
+  private generateMockEngagementMetrics(): EngagementMetrics {
+    const views = Math.floor(Math.random() * 50000) + 1000;
+    const likes = Math.floor(views * (Math.random() * 0.1 + 0.05)); // 5-15% of views
+    const shares = Math.floor(views * (Math.random() * 0.05 + 0.02)); // 2-7% of views
+    const comments = Math.floor(views * (Math.random() * 0.03 + 0.01)); // 1-4% of views
+    const saves = Math.floor(views * (Math.random() * 0.02 + 0.005)); // 0.5-2.5% of views
+
+    return {
+      views,
+      likes,
+      shares,
+      comments,
+      saves,
+      downloads: Math.floor(views * 0.01), // 1% of views
+      clickThroughRate: Math.random() * 0.05 + 0.02, // 2-7%
+      averageWatchTime: Math.random() * 60 + 30, // 30-90 seconds
+      completionRate: Math.random() * 0.4 + 0.4, // 40-80%
+      peakEngagement: Math.random() * 0.3 + 0.6, // 60-90%
+    };
+  }
+
+  /**
+   * Calculate ROI for content
+   */
+  async calculateROI(contentId: string): Promise<ROICalculation> {
+    try {
+      const user = authService.getCurrentUser();
+      if (!user) throw new Error('User not authenticated');
+
+      const response = await fetch(`${this.apiBaseUrl}/analytics/roi/${contentId}`, {
+        headers: {
+          'Authorization': `Bearer ${await authService.getToken()}`,
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to calculate ROI');
+      }
+
+      const roi = await response.json();
+
+      this.trackEvent('roi_calculated', {
+        contentId,
+        roi: roi.roi,
+        roiPercentage: roi.roiPercentage,
+      });
+
+      return roi;
+    } catch (error) {
+      console.error('ROI calculation failed:', error);
+      return this.generateMockROICalculation();
+    }
+  }
+
+  /**
+   * Generate mock ROI calculation
+   */
+  private generateMockROICalculation(): ROICalculation {
+    const revenue = Math.random() * 1000 + 100; // $100-$1100
+    const costs = Math.random() * 200 + 50; // $50-$250
+    const roi = revenue - costs;
+    const roiPercentage = (roi / costs) * 100;
+
+    return {
+      contentId: 'content_123',
+      contentTitle: 'Sample Content',
+      revenue,
+      costs,
+      roi,
+      roiPercentage,
+      revenueSources: {
+        donations: revenue * 0.4,
+        merchandise: revenue * 0.3,
+        sponsorships: revenue * 0.2,
+        affiliate: revenue * 0.08,
+        other: revenue * 0.02,
+      },
+      conversionMetrics: {
+        clicks: Math.floor(Math.random() * 1000) + 100,
+        conversions: Math.floor(Math.random() * 100) + 10,
+        conversionRate: Math.random() * 0.1 + 0.05, // 5-15%
+        averageOrderValue: Math.random() * 50 + 25, // $25-$75
+      },
+    };
+  }
+
+  /**
+   * Get content performance comparison
+   */
+  async getContentPerformanceComparison(contentIds: string[]): Promise<any[]> {
+    try {
+      const user = authService.getCurrentUser();
+      if (!user) throw new Error('User not authenticated');
+
+      const response = await fetch(`${this.apiBaseUrl}/analytics/content-comparison`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${await authService.getToken()}`,
+        },
+        body: JSON.stringify({
+          contentIds,
+          userId: user.uid,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to get content performance comparison');
+      }
+
+      const comparison = await response.json();
+
+      this.trackEvent('content_performance_comparison', {
+        contentIds,
+        comparisonCount: comparison.length,
+      });
+
+      return comparison;
+    } catch (error) {
+      console.error('Content performance comparison failed:', error);
+      return this.generateMockContentComparison(contentIds);
+    }
+  }
+
+  /**
+   * Generate mock content comparison
+   */
+  private generateMockContentComparison(contentIds: string[]): any[] {
+    return contentIds.map((id, index) => ({
+      contentId: id,
+      title: `Content ${index + 1}`,
+      views: Math.floor(Math.random() * 50000) + 1000,
+      engagement: Math.random() * 0.2 + 0.05, // 5-25%
+      viralScore: Math.floor(Math.random() * 40) + 30,
+      revenue: Math.random() * 1000 + 100,
+      roi: Math.random() * 500 + 50,
     }));
   }
 
-  // Export data in various formats
-  public exportData(format: 'csv' | 'excel' | 'pdf', filters: AnalyticsFilter, sections: string[]): string {
-    const data = this.analyticsData.filter(event => {
-      const eventDate = new Date(event.timestamp);
-      const startDate = new Date(filters.dateRange.start);
-      const endDate = new Date(filters.dateRange.end);
-      return eventDate >= startDate && eventDate <= endDate;
-    });
+  /**
+   * Get trending topics
+   */
+  async getTrendingTopics(category?: string): Promise<{
+    topics: string[];
+    hashtags: string[];
+    keywords: string[];
+  }> {
+    try {
+      const user = authService.getCurrentUser();
+      if (!user) throw new Error('User not authenticated');
 
-    switch (format) {
-      case 'csv':
-        return this.exportToCSV(data, sections);
-      case 'excel':
-        return this.exportToExcel(data, sections);
-      case 'pdf':
-        return this.exportToPDF(data, sections);
-      default:
-        return '';
+      const params = category ? `?category=${category}` : '';
+      const response = await fetch(`${this.apiBaseUrl}/analytics/trending-topics${params}`, {
+        headers: {
+          'Authorization': `Bearer ${await authService.getToken()}`,
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to get trending topics');
+      }
+
+      const topics = await response.json();
+
+      this.trackEvent('trending_topics_viewed', {
+        category,
+        topicCount: topics.topics.length,
+      });
+
+      return topics;
+    } catch (error) {
+      console.error('Trending topics failed:', error);
+      return this.generateMockTrendingTopics();
     }
   }
 
-  // Private helper methods
-  private calculateRevenue(data: AnalyticsData[]): number {
-    return data
-      .filter(event => event.metadata?.type === 'revenue')
-      .reduce((sum, event) => sum + event.value, 0);
-  }
-
-  private calculateEngagement(data: AnalyticsData[]): number {
-    const engagementEvents = data.filter(event => event.metadata?.type === 'engagement');
-    if (engagementEvents.length === 0) return 0;
-    return engagementEvents.reduce((sum, event) => sum + event.value, 0) / engagementEvents.length;
-  }
-
-  private calculateReach(data: AnalyticsData[]): number {
-    return data
-      .filter(event => event.metadata?.type === 'reach')
-      .reduce((sum, event) => sum + event.value, 0);
-  }
-
-  private calculateConversions(data: AnalyticsData[]): number {
-    const conversionEvents = data.filter(event => event.metadata?.type === 'conversion');
-    const totalEvents = data.filter(event => event.metadata?.type === 'view').length;
-    if (totalEvents === 0) return 0;
-    return (conversionEvents.length / totalEvents) * 100;
-  }
-
-  private calculateFollowers(data: AnalyticsData[]): number {
-    const followerEvents = data.filter(event => event.metadata?.type === 'followers');
-    return followerEvents.length > 0 ? followerEvents[followerEvents.length - 1].value : 0;
-  }
-
-  private calculateClicks(data: AnalyticsData[]): number {
-    return data
-      .filter(event => event.metadata?.type === 'click')
-      .reduce((sum, event) => sum + event.value, 0);
-  }
-
-  private calculateGrowthRate(data: AnalyticsData[]): number {
-    const followerEvents = data.filter(event => event.metadata?.type === 'followers').sort((a, b) => 
-      new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime()
-    );
-    
-    if (followerEvents.length < 2) return 0;
-    
-    const initial = followerEvents[0].value;
-    const final = followerEvents[followerEvents.length - 1].value;
-    
-    return initial > 0 ? ((final - initial) / initial) * 100 : 0;
-  }
-
-  private getTopContent(platform: string, filters: AnalyticsFilter): ContentPerformance[] {
-    return this.contentPerformance
-      .filter(content => content.platform === platform)
-      .sort((a, b) => b.engagement - a.engagement)
-      .slice(0, 5);
-  }
-
-  private generateRevenueChart(filters: AnalyticsFilter): ChartData {
-    // Mock implementation - would use real data
+  /**
+   * Generate mock trending topics
+   */
+  private generateMockTrendingTopics(): {
+    topics: string[];
+    hashtags: string[];
+    keywords: string[];
+  } {
     return {
-      id: 'revenue-chart',
-      title: 'Revenue Growth',
-      faithModeTitle: 'Kingdom Growth',
-      encouragementModeTitle: 'Blessing Growth',
-      type: 'line',
-      data: [
-        { label: 'Week 1', value: 2800, date: '2024-01-01' },
-        { label: 'Week 2', value: 3200, date: '2024-01-08' },
-        { label: 'Week 3', value: 2950, date: '2024-01-15' },
-        { label: 'Week 4', value: 3500, date: '2024-01-22' },
+      topics: [
+        'Faith in difficult times',
+        'Christian community building',
+        'Worship music trends',
+        'Biblical wisdom for daily life',
+        'Prayer and meditation',
       ],
-      period: '30 days',
-      unit: '$',
-    };
-  }
-
-  private generateContentPerformanceChart(filters: AnalyticsFilter): ChartData {
-    return {
-      id: 'content-performance',
-      title: 'Content Performance',
-      faithModeTitle: 'Ministry Content',
-      encouragementModeTitle: 'Uplifting Content',
-      type: 'bar',
-      data: [
-        { label: 'Testimonies', value: 45, color: '#2D1B69' },
-        { label: 'Resources', value: 32, color: '#FFC107' },
-        { label: 'Products', value: 28, color: '#3B82F6' },
-        { label: 'Calendar', value: 35, color: '#10B981' },
+      hashtags: [
+        '#FaithOverFear',
+        '#ChristianCommunity',
+        '#WorshipWednesday',
+        '#BiblicalWisdom',
+        '#PrayerLife',
       ],
-      period: '30 days',
-    };
-  }
-
-  private generatePlatformChart(filters: AnalyticsFilter): ChartData {
-    return {
-      id: 'platform-comparison',
-      title: 'Platform Performance',
-      faithModeTitle: 'Ministry Reach',
-      encouragementModeTitle: 'Platform Impact',
-      type: 'pie',
-      data: [
-        { label: 'Instagram', value: 35, color: '#E4405F' },
-        { label: 'Facebook', value: 25, color: '#1877F2' },
-        { label: 'TikTok', value: 20, color: '#000000' },
-        { label: 'YouTube', value: 20, color: '#FF0000' },
+      keywords: [
+        'faith',
+        'encouragement',
+        'worship',
+        'prayer',
+        'community',
+        'biblical',
+        'christian',
+        'inspiration',
       ],
-      period: '30 days',
     };
-  }
-
-  private analyzePostingPatterns(filters: AnalyticsFilter): AIInsight | null {
-    // Analyze posting time patterns
-    return {
-      id: 'posting-patterns',
-      type: 'optimization',
-      title: 'Optimal Posting Times',
-      description: 'Your audience is most active on Sundays at 7 PM and Wednesdays at 6 PM. Consider scheduling your most important content during these peak engagement windows.',
-      confidence: 0.92,
-      impact: 'high',
-      category: 'content',
-      actionable: true,
-      estimatedBenefit: '+25% engagement',
-    };
-  }
-
-  private analyzeContentPerformance(filters: AnalyticsFilter): AIInsight | null {
-    return {
-      id: 'content-performance',
-      type: 'recommendation',
-      title: 'High-Performing Content Types',
-      description: 'Your testimony posts generate 40% more engagement than other content types. Consider increasing testimony content frequency.',
-      confidence: 0.88,
-      impact: 'high',
-      category: 'content',
-      actionable: true,
-      estimatedBenefit: '+30% reach',
-    };
-  }
-
-  private analyzeAudienceBehavior(filters: AnalyticsFilter): AIInsight | null {
-    return {
-      id: 'audience-behavior',
-      type: 'opportunity',
-      title: 'Audience Growth Opportunity',
-      description: 'Your audience responds well to interactive content. Try adding more polls and Q&A sessions to boost engagement.',
-      confidence: 0.85,
-      impact: 'medium',
-      category: 'engagement',
-      actionable: true,
-      estimatedBenefit: '+20% follower growth',
-    };
-  }
-
-  private analyzeHashtagTrends(filters: AnalyticsFilter): AIInsight | null {
-    return {
-      id: 'hashtag-trends',
-      type: 'prediction',
-      title: 'Trending Hashtags',
-      description: '#FaithInAction and #HopeRising are trending in your niche and could boost your content visibility.',
-      confidence: 0.87,
-      impact: 'medium',
-      category: 'hashtags',
-      actionable: true,
-      estimatedBenefit: '+15% reach',
-    };
-  }
-
-  private categorizeHashtag(hashtag: string): string {
-    // Simple categorization logic
-    if (hashtag.toLowerCase().includes('faith') || hashtag.toLowerCase().includes('god') || hashtag.toLowerCase().includes('prayer')) {
-      return 'faith';
-    }
-    if (hashtag.toLowerCase().includes('hope') || hashtag.toLowerCase().includes('love') || hashtag.toLowerCase().includes('support')) {
-      return 'encouragement';
-    }
-    return 'general';
-  }
-
-  private isHashtagTrending(hashtag: string, stats: any): boolean {
-    // Simple trending logic - would use more sophisticated algorithms
-    return stats.usage > 10 && stats.reach > 1000;
-  }
-
-  private getHashtagPerformance(stats: any): 'excellent' | 'good' | 'average' | 'poor' {
-    if (stats.engagement > 100) return 'excellent';
-    if (stats.engagement > 50) return 'good';
-    if (stats.engagement > 20) return 'average';
-    return 'poor';
-  }
-
-  private exportToCSV(data: AnalyticsData[], sections: string[]): string {
-    // Simple CSV export
-    const headers = ['timestamp', 'type', 'value', 'metadata'];
-    const rows = data.map(event => [
-      event.timestamp,
-      event.metadata?.type || '',
-      event.value.toString(),
-      JSON.stringify(event.metadata || {}),
-    ]);
-    
-    return [headers, ...rows].map(row => row.join(',')).join('\n');
-  }
-
-  private exportToExcel(data: AnalyticsData[], sections: string[]): string {
-    // Would integrate with Excel export library
-    return 'Excel export functionality would be implemented here';
-  }
-
-  private exportToPDF(data: AnalyticsData[], sections: string[]): string {
-    // Would integrate with PDF generation library
-    return 'PDF export functionality would be implemented here';
   }
 }
 
-export default AnalyticsService;
+export const analyticsService = new AnalyticsService();

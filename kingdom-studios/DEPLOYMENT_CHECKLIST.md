@@ -55,7 +55,7 @@
 
 - [x] Sponsorship request system
 - [x] Pricing tiers (Free, Pro, Sponsored)
-- [x] Contact integration with support@kingdomstudiosapp.com
+- [x] Contact integration with support@kingdomcollective.pro
 - [x] Auto-activation messaging
 - [x] Subscription status management
 - [x] Sponsorship dashboard

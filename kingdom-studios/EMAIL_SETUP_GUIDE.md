@@ -4,7 +4,7 @@
 
 ### Primary Support Email
 
-- **Primary Email**: support@kingdomstudiosapp.com
+- **Primary Email**: support@kingdomcollective.pro
 
 ### Email Setup
 
@@ -12,7 +12,7 @@
 
 1. Log into your domain provider (e.g., GoDaddy, Namecheap, Google Workspace)
 2. Navigate to Email settings
-3. Create email address: support@kingdomstudiosapp.com
+3. Create email address: support@kingdomcollective.pro
 4. Configure email mailbox or set up with your preferred email client
 
 #### Option 2: Using cPanel (if available)
@@ -20,14 +20,14 @@
 1. Log into cPanel for kingdomstudiosapp.com
 2. Go to "Email Accounts"
 3. Click "Create"
-4. Enter: support@kingdomstudiosapp.com
+4. Enter: support@kingdomcollective.pro
 5. Set password and configure mailbox
 
 #### Option 3: Using Google Workspace
 
 1. Go to Google Admin Console
 2. Navigate to Users
-3. Add user: support@kingdomstudiosapp.com
+3. Add user: support@kingdomcollective.pro
 4. Configure as shared mailbox or assign to team member
 
 ### Developer API Requirements
@@ -38,7 +38,7 @@ For social media API applications, you'll need these URLs:
 
 - **Terms of Service**: https://kingdomstudiosapp.com/terms
 - **Privacy Policy**: https://kingdomstudiosapp.com/privacy
-- **Support Contact**: support@kingdomstudiosapp.com
+- **Support Contact**: support@kingdomcollective.pro
 
 #### Social Media API Applications
 
@@ -55,7 +55,7 @@ For social media API applications, you'll need these URLs:
 - App Domains: kingdomstudiosapp.com
 - Privacy Policy URL: https://kingdomstudiosapp.com/privacy
 - Terms of Service URL: https://kingdomstudiosapp.com/terms
-- Contact Email: support@kingdomstudiosapp.com
+- Contact Email: support@kingdomcollective.pro
 
 **Twitter/X API**
 
@@ -73,7 +73,7 @@ For social media API applications, you'll need these URLs:
 
 - Privacy Policy: https://kingdomstudiosapp.com/privacy
 - Terms of Service: https://kingdomstudiosapp.com/terms
-- Contact Information: support@kingdomstudiosapp.com
+- Contact Information: support@kingdomcollective.pro
 
 **Instagram Basic Display API**
 
@@ -83,7 +83,7 @@ For social media API applications, you'll need these URLs:
 
 ### Email Templates
 
-#### Auto-Reply Template for support@kingdomstudiosapp.com
+#### Auto-Reply Template for support@kingdomcollective.pro
 
 ```
 Subject: Thank you for contacting Kingdom Studios Support
@@ -100,7 +100,7 @@ https://kingdomstudiosapp.com/faq
 
 Best regards,
 Kingdom Studios Support Team
-support@kingdomstudiosapp.com
+support@kingdomcollective.pro
 ```
 
 ### DNS Configuration
@@ -126,7 +126,7 @@ Value: [your-provider-autoconfig]
 
 After setup, test the email:
 
-1. Send test email to: support@kingdomstudiosapp.com
+1. Send test email to: support@kingdomcollective.pro
 2. Check that email is received in the configured mailbox
 3. Verify auto-reply works (if configured)
 4. Test from different email providers (Gmail, Outlook, Yahoo)
@@ -142,7 +142,7 @@ After setup, test the email:
 
 Both Apple App Store and Google Play Store require:
 
-- Working support email: support@kingdomstudiosapp.com
+- Working support email: support@kingdomcollective.pro
 - Accessible Terms of Service: https://kingdomstudiosapp.com/terms
 - Accessible Privacy Policy: https://kingdomstudiosapp.com/privacy
 
@@ -153,4 +153,4 @@ These URLs must be publicly accessible and return proper content (not 404 errors
 - Email configuration updated throughout the app codebase
 - Legal pages are now implemented in the app
 - URLs are configured for web deployment
-- All email references now point to support@kingdomstudiosapp.com
+- All email references now point to support@kingdomcollective.pro

@@ -27,7 +27,7 @@ const SponsorshipRequestScreen = () => {
   const { faithMode } = useFaithMode();
   const { requestSponsorship } = useApp();
   const { user } = useAuth();
-  
+
   const [formData, setFormData] = useState({
     name: user?.displayName || '',
     email: user?.email || '',
@@ -37,33 +37,33 @@ const SponsorshipRequestScreen = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const sponsorTypes = [
-    { 
-      id: 'church', 
-      label: 'Church/Ministry', 
+    {
+      id: 'church',
+      label: 'Church/Ministry',
       description: 'A church or ministry wants to sponsor me',
       icon: '⛪'
     },
-    { 
-      id: 'mentor', 
-      label: 'Mentor/Leader', 
+    {
+      id: 'mentor',
+      label: 'Mentor/Leader',
       description: 'A mentor or leader wants to support my journey',
       icon: '🌟'
     },
-    { 
-      id: 'business', 
-      label: 'Business Partner', 
+    {
+      id: 'business',
+      label: 'Business Partner',
       description: 'A business partner or collaborator',
       icon: '🤝'
     },
-    { 
-      id: 'family', 
-      label: 'Family/Friend', 
+    {
+      id: 'family',
+      label: 'Family/Friend',
       description: 'Family member or friend sponsorship',
       icon: '❤️'
     },
-    { 
-      id: 'other', 
-      label: 'Other', 
+    {
+      id: 'other',
+      label: 'Other',
       description: 'Other sponsorship arrangement',
       icon: '✨'
     },
@@ -92,12 +92,12 @@ Faith Mode: ${faithMode ? 'Enabled' : 'Disabled'}
       `;
 
       await requestSponsorship(formData.email, fullMessage);
-      
+
       Alert.alert(
         faithMode ? 'Prayer Sent! 🙏' : 'Request Sent! ✨',
-        faithMode 
-          ? 'Your sponsorship request has been sent to support@kingdomstudiosapp.com. Trust that God will provide the right sponsor for your journey!'
-          : 'Your sponsorship request has been sent to support@kingdomstudiosapp.com. We\'ll help you find the right sponsor for your creative journey!',
+        faithMode
+          ? 'Your sponsorship request has been sent to support@kingdomcollective.pro. Trust that God will provide the right sponsor for your journey!'
+          : 'Your sponsorship request has been sent to support@kingdomcollective.pro. We\'ll help you find the right sponsor for your creative journey!',
         [
           {
             text: 'OK',
@@ -108,7 +108,7 @@ Faith Mode: ${faithMode ? 'Enabled' : 'Disabled'}
     } catch (error) {
       Alert.alert(
         'Error',
-        faithMode 
+        faithMode
           ? 'Trust that God will work this out for good. Please try again.'
           : 'Something went wrong. Please try again.'
       );
@@ -130,7 +130,7 @@ Faith Mode: ${faithMode ? 'Enabled' : 'Disabled'}
       <BlurView intensity={15} style={styles.cardBlur}>
         <LinearGradient
           colors={
-            formData.sponsorType === type.id 
+            formData.sponsorType === type.id
               ? ['rgba(255, 215, 0, 0.2)', 'rgba(255, 215, 0, 0.1)'] as const
               : ['rgba(26, 26, 58, 0.8)', 'rgba(45, 27, 105, 0.6)'] as const
           }
@@ -184,7 +184,7 @@ Faith Mode: ${faithMode ? 'Enabled' : 'Disabled'}
                   {faithMode ? '🙏' : '✨'}
                 </Text>
                 <Text style={styles.faithText}>
-                  {faithMode 
+                  {faithMode
                     ? "\"And my God will meet all your needs according to the riches of his glory in Christ Jesus.\" - Philippians 4:19"
                     : "Great things are ahead! Let's connect you with someone who believes in your vision."
                   }
@@ -200,12 +200,12 @@ Faith Mode: ${faithMode ? 'Enabled' : 'Disabled'}
               >
                 <Text style={styles.sectionTitle}>✨ What is Forge Sponsorship?</Text>
                 <Text style={styles.infoText}>
-                  {faithMode 
+                  {faithMode
                     ? "Forge Sponsorship allows churches, mentors, or supporters to cover your Kingdom Studios Pro access. It's about community investing in kingdom builders and creative entrepreneurs."
                     : "Forge Sponsorship allows mentors, businesses, or supporters to cover your Kingdom Studios Pro access. It's about community investing in creators and entrepreneurs."
                   }
                 </Text>
-                
+
                 <View style={styles.benefitsList}>
                   <Text style={styles.benefitsTitle}>Premium Benefits Include:</Text>
                   <Text style={styles.benefitItem}>✓ Unlimited product management</Text>
@@ -224,7 +224,7 @@ Faith Mode: ${faithMode ? 'Enabled' : 'Disabled'}
                 style={styles.sectionGradient}
               >
                 <Text style={styles.sectionTitle}>📋 Your Information</Text>
-                
+
                 <View style={styles.inputGroup}>
                   <Text style={styles.inputLabel}>Full Name *</Text>
                   <TextInput
@@ -259,7 +259,7 @@ Faith Mode: ${faithMode ? 'Enabled' : 'Disabled'}
               >
                 <Text style={styles.sectionTitle}>🤝 Type of Sponsorship *</Text>
                 <Text style={styles.sectionSubtitle}>Who might sponsor your access?</Text>
-                
+
                 <View style={styles.sponsorTypesContainer}>
                   {sponsorTypes.map(renderSponsorTypeCard)}
                 </View>
@@ -274,17 +274,17 @@ Faith Mode: ${faithMode ? 'Enabled' : 'Disabled'}
               >
                 <Text style={styles.sectionTitle}>💬 Additional Message</Text>
                 <Text style={styles.sectionSubtitle}>
-                  {faithMode 
+                  {faithMode
                     ? "Share your heart and vision (optional)"
                     : "Tell us about your creative goals (optional)"
                   }
                 </Text>
-                
+
                 <TextInput
                   style={[styles.input, styles.textArea]}
                   value={formData.message}
                   onChangeText={(text) => setFormData({ ...formData, message: text })}
-                  placeholder={faithMode 
+                  placeholder={faithMode
                     ? "Share your testimony, goals, or why you're seeking sponsorship..."
                     : "Share your vision, goals, or why you're seeking sponsorship..."
                   }
@@ -304,7 +304,7 @@ Faith Mode: ${faithMode ? 'Enabled' : 'Disabled'}
                 <Text style={styles.contactTitle}>📞 Questions?</Text>
                 <Text style={styles.contactText}>
                   Contact our support team at{' '}
-                  <Text style={styles.contactEmail}>support@kingdomstudiosapp.com</Text>
+                  <Text style={styles.contactEmail}>support@kingdomcollective.pro</Text>
                 </Text>
               </LinearGradient>
             </BlurView>
@@ -320,7 +320,7 @@ Faith Mode: ${faithMode ? 'Enabled' : 'Disabled'}
             >
               <LinearGradient
                 colors={
-                  isSubmitting 
+                  isSubmitting
                     ? ['#6B7280', '#4B5563'] as const
                     : ['#FFD700', '#FFC107', '#FF8F00'] as const
                 }

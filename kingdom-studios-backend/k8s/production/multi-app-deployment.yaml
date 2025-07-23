@@ -1,0 +1,840 @@
+# ==============================================
+# KINGDOM STUDIOS - MULTI-APP KUBERNETES DEPLOYMENT
+# Production deployment for all five Kingdom Studios apps
+# ==============================================
+
+---
+# ==============================================
+# KINGDOM LENS DEPLOYMENT (Photography Platform)
+# ==============================================
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kingdom-lens-backend
+  namespace: production
+  labels:
+    app: kingdom-lens-backend
+    version: v1.0.0
+    tier: backend
+    environment: production
+spec:
+  replicas: 5
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 2
+      maxUnavailable: 1
+  selector:
+    matchLabels:
+      app: kingdom-lens-backend
+  template:
+    metadata:
+      labels:
+        app: kingdom-lens-backend
+        version: v1.0.0
+        tier: backend
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "3000"
+        prometheus.io/path: "/metrics"
+    spec:
+      containers:
+        - name: kingdom-lens-backend
+          image: kingdom-studios/backend:latest
+          ports:
+            - containerPort: 3000
+          env:
+            - name: APP_ID
+              value: "kingdom-lens"
+            - name: APP_TYPE
+              value: "photography"
+            - name: RESOURCE_INTENSIVE
+              value: "true"
+            - name: MAX_CONCURRENT_USERS
+              value: "50000"
+          resources:
+            requests:
+              memory: "1Gi"
+              cpu: "500m"
+            limits:
+              memory: "4Gi"
+              cpu: "2000m"
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 3000
+            initialDelaySeconds: 30
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 3000
+            initialDelaySeconds: 10
+            periodSeconds: 5
+
+---
+# KINGDOM LENS SERVICE
+apiVersion: v1
+kind: Service
+metadata:
+  name: kingdom-lens-service
+  namespace: production
+spec:
+  selector:
+    app: kingdom-lens-backend
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 3000
+  type: ClusterIP
+
+---
+# KINGDOM LENS HPA
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: kingdom-lens-hpa
+  namespace: production
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: kingdom-lens-backend
+  minReplicas: 5
+  maxReplicas: 50
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 70
+    - type: Resource
+      resource:
+        name: memory
+        target:
+          type: Utilization
+          averageUtilization: 80
+
+---
+# ==============================================
+# KINGDOM LAUNCHPAD DEPLOYMENT (Content Creation)
+# ==============================================
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kingdom-launchpad-backend
+  namespace: production
+  labels:
+    app: kingdom-launchpad-backend
+    version: v1.0.0
+    tier: backend
+    environment: production
+spec:
+  replicas: 8
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 3
+      maxUnavailable: 2
+  selector:
+    matchLabels:
+      app: kingdom-launchpad-backend
+  template:
+    metadata:
+      labels:
+        app: kingdom-launchpad-backend
+        version: v1.0.0
+        tier: backend
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "3000"
+        prometheus.io/path: "/metrics"
+    spec:
+      containers:
+        - name: kingdom-launchpad-backend
+          image: kingdom-studios/backend:latest
+          ports:
+            - containerPort: 3000
+          env:
+            - name: APP_ID
+              value: "kingdom-launchpad"
+            - name: APP_TYPE
+              value: "content-creation"
+            - name: RESOURCE_INTENSIVE
+              value: "false"
+            - name: MAX_CONCURRENT_USERS
+              value: "100000"
+          resources:
+            requests:
+              memory: "512Mi"
+              cpu: "250m"
+            limits:
+              memory: "2Gi"
+              cpu: "1000m"
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 3000
+            initialDelaySeconds: 30
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 3000
+            initialDelaySeconds: 10
+            periodSeconds: 5
+
+---
+# KINGDOM LAUNCHPAD SERVICE
+apiVersion: v1
+kind: Service
+metadata:
+  name: kingdom-launchpad-service
+  namespace: production
+spec:
+  selector:
+    app: kingdom-launchpad-backend
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 3000
+  type: ClusterIP
+
+---
+# KINGDOM LAUNCHPAD HPA
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: kingdom-launchpad-hpa
+  namespace: production
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: kingdom-launchpad-backend
+  minReplicas: 8
+  maxReplicas: 100
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 65
+    - type: Resource
+      resource:
+        name: memory
+        target:
+          type: Utilization
+          averageUtilization: 75
+
+---
+# ==============================================
+# KINGDOM CLIPS DEPLOYMENT (Video Editing)
+# ==============================================
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kingdom-clips-backend
+  namespace: production
+  labels:
+    app: kingdom-clips-backend
+    version: v1.0.0
+    tier: backend
+    environment: production
+spec:
+  replicas: 3
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  selector:
+    matchLabels:
+      app: kingdom-clips-backend
+  template:
+    metadata:
+      labels:
+        app: kingdom-clips-backend
+        version: v1.0.0
+        tier: backend
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "3000"
+        prometheus.io/path: "/metrics"
+    spec:
+      containers:
+        - name: kingdom-clips-backend
+          image: kingdom-studios/backend:latest
+          ports:
+            - containerPort: 3000
+          env:
+            - name: APP_ID
+              value: "kingdom-clips"
+            - name: APP_TYPE
+              value: "video-editing"
+            - name: RESOURCE_INTENSIVE
+              value: "true"
+            - name: MAX_CONCURRENT_USERS
+              value: "30000"
+          resources:
+            requests:
+              memory: "2Gi"
+              cpu: "1000m"
+            limits:
+              memory: "8Gi"
+              cpu: "4000m"
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 3000
+            initialDelaySeconds: 60
+            periodSeconds: 15
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 3000
+            initialDelaySeconds: 30
+            periodSeconds: 10
+
+---
+# KINGDOM CLIPS SERVICE
+apiVersion: v1
+kind: Service
+metadata:
+  name: kingdom-clips-service
+  namespace: production
+spec:
+  selector:
+    app: kingdom-clips-backend
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 3000
+  type: ClusterIP
+
+---
+# KINGDOM CLIPS HPA
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: kingdom-clips-hpa
+  namespace: production
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: kingdom-clips-backend
+  minReplicas: 3
+  maxReplicas: 30
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 75
+    - type: Resource
+      resource:
+        name: memory
+        target:
+          type: Utilization
+          averageUtilization: 85
+
+---
+# ==============================================
+# KINGDOM CIRCLE DEPLOYMENT (Community Platform)
+# ==============================================
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kingdom-circle-backend
+  namespace: production
+  labels:
+    app: kingdom-circle-backend
+    version: v1.0.0
+    tier: backend
+    environment: production
+spec:
+  replicas: 6
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 2
+      maxUnavailable: 1
+  selector:
+    matchLabels:
+      app: kingdom-circle-backend
+  template:
+    metadata:
+      labels:
+        app: kingdom-circle-backend
+        version: v1.0.0
+        tier: backend
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "3000"
+        prometheus.io/path: "/metrics"
+    spec:
+      containers:
+        - name: kingdom-circle-backend
+          image: kingdom-studios/backend:latest
+          ports:
+            - containerPort: 3000
+          env:
+            - name: APP_ID
+              value: "kingdom-circle"
+            - name: APP_TYPE
+              value: "community"
+            - name: RESOURCE_INTENSIVE
+              value: "false"
+            - name: MAX_CONCURRENT_USERS
+              value: "75000"
+          resources:
+            requests:
+              memory: "512Mi"
+              cpu: "250m"
+            limits:
+              memory: "2Gi"
+              cpu: "1000m"
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 3000
+            initialDelaySeconds: 30
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 3000
+            initialDelaySeconds: 10
+            periodSeconds: 5
+
+---
+# KINGDOM CIRCLE SERVICE
+apiVersion: v1
+kind: Service
+metadata:
+  name: kingdom-circle-service
+  namespace: production
+spec:
+  selector:
+    app: kingdom-circle-backend
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 3000
+  type: ClusterIP
+
+---
+# KINGDOM CIRCLE HPA
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: kingdom-circle-hpa
+  namespace: production
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: kingdom-circle-backend
+  minReplicas: 6
+  maxReplicas: 75
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 65
+    - type: Resource
+      resource:
+        name: memory
+        target:
+          type: Utilization
+          averageUtilization: 75
+
+---
+# ==============================================
+# KINGDOM VOICE DEPLOYMENT (Audio Platform)
+# ==============================================
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kingdom-voice-backend
+  namespace: production
+  labels:
+    app: kingdom-voice-backend
+    version: v1.0.0
+    tier: backend
+    environment: production
+spec:
+  replicas: 4
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 2
+      maxUnavailable: 1
+  selector:
+    matchLabels:
+      app: kingdom-voice-backend
+  template:
+    metadata:
+      labels:
+        app: kingdom-voice-backend
+        version: v1.0.0
+        tier: backend
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "3000"
+        prometheus.io/path: "/metrics"
+    spec:
+      containers:
+        - name: kingdom-voice-backend
+          image: kingdom-studios/backend:latest
+          ports:
+            - containerPort: 3000
+          env:
+            - name: APP_ID
+              value: "kingdom-voice"
+            - name: APP_TYPE
+              value: "audio"
+            - name: RESOURCE_INTENSIVE
+              value: "true"
+            - name: MAX_CONCURRENT_USERS
+              value: "25000"
+          resources:
+            requests:
+              memory: "1Gi"
+              cpu: "500m"
+            limits:
+              memory: "4Gi"
+              cpu: "2000m"
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 3000
+            initialDelaySeconds: 45
+            periodSeconds: 15
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 3000
+            initialDelaySeconds: 20
+            periodSeconds: 10
+
+---
+# KINGDOM VOICE SERVICE
+apiVersion: v1
+kind: Service
+metadata:
+  name: kingdom-voice-service
+  namespace: production
+spec:
+  selector:
+    app: kingdom-voice-backend
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 3000
+  type: ClusterIP
+
+---
+# KINGDOM VOICE HPA
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: kingdom-voice-hpa
+  namespace: production
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: kingdom-voice-backend
+  minReplicas: 4
+  maxReplicas: 40
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 70
+    - type: Resource
+      resource:
+        name: memory
+        target:
+          type: Utilization
+          averageUtilization: 80
+
+---
+# ==============================================
+# MULTI-APP INGRESS CONFIGURATION
+# ==============================================
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: kingdom-studios-multi-app-ingress
+  namespace: production
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/proxy-body-size: "50m"
+    nginx.ingress.kubernetes.io/proxy-connect-timeout: "60"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "120"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "120"
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+spec:
+  tls:
+    - hosts:
+        - lens.kingdomstudios.app
+        - launchpad.kingdomstudios.app
+        - clips.kingdomstudios.app
+        - circle.kingdomstudios.app
+        - voice.kingdomstudios.app
+      secretName: kingdom-studios-tls
+  rules:
+    # Kingdom Lens
+    - host: lens.kingdomstudios.app
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: kingdom-lens-service
+                port:
+                  number: 80
+    
+    # Kingdom Launchpad
+    - host: launchpad.kingdomstudios.app
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: kingdom-launchpad-service
+                port:
+                  number: 80
+    
+    # Kingdom Clips
+    - host: clips.kingdomstudios.app
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: kingdom-clips-service
+                port:
+                  number: 80
+    
+    # Kingdom Circle
+    - host: circle.kingdomstudios.app
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: kingdom-circle-service
+                port:
+                  number: 80
+    
+    # Kingdom Voice
+    - host: voice.kingdomstudios.app
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: kingdom-voice-service
+                port:
+                  number: 80
+
+---
+# ==============================================
+# MULTI-APP RESOURCE QUOTAS
+# ==============================================
+
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: kingdom-studios-multi-app-quota
+  namespace: production
+spec:
+  hard:
+    requests.cpu: "200"
+    requests.memory: 400Gi
+    limits.cpu: "400"
+    limits.memory: 800Gi
+    persistentvolumeclaims: "100"
+    services.loadbalancers: "20"
+    services.nodeports: "50"
+    count/pods: "300"
+    count/services: "100"
+    count/deployments.apps: "50"
+
+---
+# ==============================================
+# MULTI-APP NETWORK POLICIES
+# ==============================================
+
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: kingdom-studios-multi-app-network-policy
+  namespace: production
+spec:
+  podSelector:
+    matchLabels:
+      tier: backend
+  policyTypes:
+    - Ingress
+    - Egress
+  ingress:
+    - from:
+        - namespaceSelector:
+            matchLabels:
+              name: ingress-nginx
+      ports:
+        - protocol: TCP
+          port: 3000
+  egress:
+    - to:
+        - namespaceSelector:
+            matchLabels:
+              name: database
+      ports:
+        - protocol: TCP
+          port: 27017
+    - to:
+        - namespaceSelector:
+            matchLabels:
+              name: redis
+      ports:
+        - protocol: TCP
+          port: 6379
+    - to: []
+      ports:
+        - protocol: TCP
+          port: 443
+        - protocol: TCP
+          port: 80
+
+---
+# ==============================================
+# MULTI-APP MONITORING CONFIGURATION
+# ==============================================
+
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: kingdom-studios-multi-app-monitor
+  namespace: production
+spec:
+  selector:
+    matchLabels:
+      tier: backend
+  endpoints:
+    - port: http
+      path: /metrics
+      interval: 30s
+      scrapeTimeout: 10s
+  namespaceSelector:
+    matchNames:
+      - production
+
+---
+# ==============================================
+# MULTI-APP ALERTING RULES
+# ==============================================
+
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: kingdom-studios-multi-app-alerts
+  namespace: production
+spec:
+  groups:
+    - name: kingdom-studios.multi-app.rules
+      rules:
+        # App-specific alerts
+        - alert: KingdomLensHighCPU
+          expr: container_cpu_usage_seconds_total{container="kingdom-lens-backend"} > 0.8
+          for: 5m
+          labels:
+            severity: warning
+            app: "kingdom-lens"
+          annotations:
+            summary: "Kingdom Lens high CPU usage"
+            description: "CPU usage is above 80% for 5 minutes"
+        
+        - alert: KingdomLaunchpadHighCPU
+          expr: container_cpu_usage_seconds_total{container="kingdom-launchpad-backend"} > 0.7
+          for: 5m
+          labels:
+            severity: warning
+            app: "kingdom-launchpad"
+          annotations:
+            summary: "Kingdom Launchpad high CPU usage"
+            description: "CPU usage is above 70% for 5 minutes"
+        
+        - alert: KingdomClipsHighCPU
+          expr: container_cpu_usage_seconds_total{container="kingdom-clips-backend"} > 0.8
+          for: 5m
+          labels:
+            severity: warning
+            app: "kingdom-clips"
+          annotations:
+            summary: "Kingdom Clips high CPU usage"
+            description: "CPU usage is above 80% for 5 minutes"
+        
+        - alert: KingdomCircleHighCPU
+          expr: container_cpu_usage_seconds_total{container="kingdom-circle-backend"} > 0.7
+          for: 5m
+          labels:
+            severity: warning
+            app: "kingdom-circle"
+          annotations:
+            summary: "Kingdom Circle high CPU usage"
+            description: "CPU usage is above 70% for 5 minutes"
+        
+        - alert: KingdomVoiceHighCPU
+          expr: container_cpu_usage_seconds_total{container="kingdom-voice-backend"} > 0.8
+          for: 5m
+          labels:
+            severity: warning
+            app: "kingdom-voice"
+          annotations:
+            summary: "Kingdom Voice high CPU usage"
+            description: "CPU usage is above 80% for 5 minutes"
+        
+        # Cross-app alerts
+        - alert: MultiAppHighLoad
+          expr: sum(container_cpu_usage_seconds_total{tier="backend"}) > 50
+          for: 5m
+          labels:
+            severity: critical
+          annotations:
+            summary: "Multi-app high load detected"
+            description: "Total CPU usage across all apps is above 50 cores"
+        
+        - alert: MultiAppHighMemory
+          expr: sum(container_memory_usage_bytes{tier="backend"}) > 100000000000
+          for: 5m
+          labels:
+            severity: warning
+          annotations:
+            summary: "Multi-app high memory usage"
+            description: "Total memory usage across all apps is above 100GB" 

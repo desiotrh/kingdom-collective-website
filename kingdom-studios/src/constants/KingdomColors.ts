@@ -1,214 +1,111 @@
-// Kingdom Studios Color Palette
-// Elegant royal colors with gold, silver, and sophisticated gradients
+/**
+ * 🎨 Kingdom Colors - Updated Warm Color Scheme
+ * No purple, no dark overload, warm and inviting palette
+ */
 
 export const KingdomColors = {
-  // Primary Kingdom Colors
-  primary: {
-    royalPurple: '#2D1B69',
-    deepNavy: '#1A1A3A',
-    midnight: '#0F0F23',
-  },
+  // Primary Colors - Warm and Inviting
+  primary: '#8B4513', // Saddle Brown - Warm, earthy primary
+  secondary: '#D2691E', // Chocolate - Complementary warm tone
+  accent: '#FF8C00', // Dark Orange - Energetic accent
 
-  // Gold Palette
-  gold: {
-    bright: '#FFD700',    // Pure gold
-    warm: '#FFC107',      // Warm gold
-    amber: '#FF8F00',     // Deep amber
-    pale: '#FFF8DC',      // Pale gold
-  },
+  // Faith Mode Colors - Encouraging and Uplifting
+  faith: '#2E8B57', // Sea Green - Calming faith color
+  faithLight: '#90EE90', // Light Green - Soft faith accent
+  faithDark: '#228B22', // Forest Green - Deep faith tone
 
-  // Silver Palette
-  silver: {
-    bright: '#C0C0C0',    // Pure silver
-    light: '#E8E8E8',     // Light silver
-    platinum: '#F5F5F5',  // Platinum
-    steel: '#708090',     // Steel blue-silver
-  },
+  // Surface Colors - Warm and Welcoming
+  background: '#FFF8DC', // Cornsilk - Warm, light background
+  surface: '#FAF0E6', // Linen - Soft surface color
+  card: '#FFFFFF', // Pure White - Clean card background
 
-  // Text Colors
-  text: {
-    primary: '#FFFFFF',
-    secondary: '#E5E7EB',
-    muted: '#9CA3AF',
-    disabled: '#6B7280',
-    inverse: '#1A1A3A',
-  },
+  // Text Colors - High Contrast and Readable
+  text: '#2F2F2F', // Dark Gray - Primary text
+  textSecondary: '#6B6B6B', // Medium Gray - Secondary text
+  textTertiary: '#9B9B9B', // Light Gray - Tertiary text
+  textInverse: '#FFFFFF', // White - Text on dark backgrounds
 
-  // Background Colors
-  background: {
-    primary: '#0F0F23',
-    secondary: '#1A1A3A',
-    tertiary: '#2D1B69',
-    overlay: 'rgba(15, 15, 35, 0.9)',
-  },
+  // Status Colors - Clear and Accessible
+  success: '#4CAF50', // Green - Success states
+  warning: '#FF9800', // Orange - Warning states
+  error: '#F44336', // Red - Error states
+  info: '#2196F3', // Blue - Information states
 
-  // Gradient Combinations
-  gradients: {
-    royalGold: ['#0F0F23', '#1A1A3A', '#2D1B69'],
-    goldShimmer: ['#FFD700', '#FFC107', '#FF8F00'],
-    silverShimmer: ['#C0C0C0', '#E8E8E8', '#F5F5F5'],
-    elegantPurple: ['#2D1B69', '#4C1D95', '#6B46C1'],
-    darkElegance: ['#000000', '#1A1A3A', '#2D1B69'],
-    primary: ['#2D1B69', '#4C1D95', '#6B46C1'],
-    secondary: ['#1A1A3A', '#2D1B69', '#4C1D95'],
-    tertiary: ['#0F0F23', '#1A1A3A', '#2D1B69'],
-    accent: ['#FFD700', '#FFC107', '#FF8F00'],
-    cardBackground: ['rgba(26, 26, 58, 0.8)', 'rgba(45, 27, 105, 0.6)'],
-    royalBackground: ['#000000', '#0F0F23', '#1A1A3A'],
-  },
+  // Tier Colors - Premium Feel
+  premium: '#FFD700', // Gold - Premium tier
+  premiumLight: '#FFF8DC', // Light gold
+  premiumDark: '#B8860B', // Dark gold
 
-  // Accent Colors
-  accent: {
-    success: '#10B981',
-    warning: '#F59E0B',
-    error: '#EF4444',
-    info: '#3B82F6',
-  },
+  // Border and Divider Colors
+  border: '#E0E0E0', // Light Gray - Subtle borders
+  divider: '#F5F5F5', // Very Light Gray - Dividers
 
-  // Basic Colors for compatibility
-  black: '#000000',
+  // Interactive States
+  pressed: '#E8E8E8', // Light Gray - Pressed state
+  hover: '#F0F0F0', // Very Light Gray - Hover state
+  selected: '#FFF3E0', // Light Orange - Selected state
+
+  // Gradient Colors
+  gradientStart: '#8B4513', // Primary
+  gradientEnd: '#D2691E', // Secondary
+  faithGradientStart: '#2E8B57', // Faith
+  faithGradientEnd: '#90EE90', // Faith Light
+
+  // Shadow Colors
+  shadow: 'rgba(139, 69, 19, 0.1)', // Primary with opacity
+  shadowLight: 'rgba(139, 69, 19, 0.05)', // Light shadow
+  shadowDark: 'rgba(139, 69, 19, 0.2)', // Dark shadow
+
+  // Overlay Colors
+  overlay: 'rgba(0, 0, 0, 0.5)', // Dark overlay
+  overlayLight: 'rgba(0, 0, 0, 0.3)', // Light overlay
+
+  // Special Purpose Colors
   white: '#FFFFFF',
-  gray: '#6B7280',
-  lightGray: '#9CA3AF',
-  darkGray: '#374151',
-  red: '#EF4444',
-  green: '#10B981',
-  blue: '#3B82F6',
-  purple: '#8B5CF6',
+  black: '#000000',
+  transparent: 'transparent',
 
-  // Opacity Variations
-  opacity: {
-    gold10: 'rgba(255, 215, 0, 0.1)',
-    gold20: 'rgba(255, 215, 0, 0.2)',
-    gold30: 'rgba(255, 215, 0, 0.3)',
-    silver10: 'rgba(192, 192, 192, 0.1)',
-    silver20: 'rgba(192, 192, 192, 0.2)',
-    white10: 'rgba(255, 255, 255, 0.1)',
-    white20: 'rgba(255, 255, 255, 0.2)',
-  },
+  // Accessibility Colors
+  accessibilityFocus: '#FF6B35', // High contrast focus color
+  accessibilityText: '#1A1A1A', // High contrast text
 
-  // Mode-specific color schemes
-  faith: {
-    primary: '#2D1B69',
-    secondary: '#4C1D95',
-    accent: '#FFD700',
-    background: '#0F0F23',
-    surface: '#1A1A3A',
-    text: '#FFFFFF',
-    textSecondary: '#E5E7EB',
-    border: '#374151',
-    success: '#10B981',
-    warning: '#F59E0B',
-    error: '#EF4444',
-    info: '#3B82F6',
-  },
+  // Animation Colors
+  animationPrimary: '#8B4513',
+  animationSecondary: '#D2691E',
+  animationFaith: '#2E8B57',
 
-  encouragement: {
-    primary: '#4C1D95',
-    secondary: '#6B46C1',
-    accent: '#FFC107',
-    background: '#1A1A3A',
-    surface: '#2D1B69',
-    text: '#FFFFFF',
-    textSecondary: '#E5E7EB',
-    border: '#374151',
-    success: '#10B981',
-    warning: '#F59E0B',
-    error: '#EF4444',
-    info: '#3B82F6',
-  },
-
-  default: {
-    primary: '#2D1B69',
-    secondary: '#1A1A3A',
-    accent: '#FFD700',
-    background: '#0F0F23',
-    surface: '#1A1A3A',
-    text: '#FFFFFF',
-    textSecondary: '#E5E7EB',
-    border: '#374151',
-    success: '#10B981',
-    warning: '#F59E0B',
-    error: '#EF4444',
-    info: '#3B82F6',
-  },
-
-  // Social Platform Colors (with kingdom twist)
-  social: {
-    google: '#EA4335',
-    facebook: '#1877F2',
-    apple: '#000000',
-    instagram: '#E4405F',
-    tiktok: '#000000',
-    youtube: '#FF0000',
-    twitter: '#1DA1F2',
-    pinterest: '#BD081C',
-    threads: '#000000',
-    lemon8: '#FFD700',
-    truthSocial: '#FF6B35',
-  },
+  // Legacy Support (for backward compatibility)
+  oldPrimary: '#8B4513',
+  oldSecondary: '#D2691E',
+  oldAccent: '#FF8C00',
 };
 
-// Helper functions for creating gradients
-export const createGradient = (colors: string[], direction = { x: 0, y: 0 }, end = { x: 1, y: 1 }) => ({
-  colors,
-  start: direction,
-  end,
-});
-
-// Common gradient presets
-export const KingdomGradients = {
-  loginBackground: createGradient(KingdomColors.gradients.royalGold),
-  goldButton: createGradient(KingdomColors.gradients.goldShimmer),
-  silverButton: createGradient(KingdomColors.gradients.silverShimmer),
-  cardBackground: createGradient(['rgba(26, 26, 58, 0.8)', 'rgba(45, 27, 105, 0.6)']),
-  royalOverlay: createGradient(['rgba(15, 15, 35, 0.95)', 'rgba(26, 26, 58, 0.9)']),
+// Color utility functions
+export const getColorWithOpacity = (color: string, opacity: number): string => {
+  const hex = color.replace('#', '');
+  const r = parseInt(hex.substr(0, 2), 16);
+  const g = parseInt(hex.substr(2, 2), 16);
+  const b = parseInt(hex.substr(4, 2), 16);
+  return `rgba(${r}, ${g}, ${b}, ${opacity})`;
 };
 
-// Shadow presets for elevation
-export const KingdomShadows = {
-  small: {
-    shadowColor: '#000000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 3,
-  },
-  medium: {
-    shadowColor: '#000000',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.15,
-    shadowRadius: 8,
-    elevation: 6,
-  },
-  large: {
-    shadowColor: '#000000',
-    shadowOffset: { width: 0, height: 8 },
-    shadowOpacity: 0.2,
-    shadowRadius: 16,
-    elevation: 12,
-  },
-  gold: {
-    shadowColor: KingdomColors.gold.bright,
-    shadowOffset: { width: 0, height: 8 },
-    shadowOpacity: 0.25,
-    shadowRadius: 15,
-    elevation: 12,
-  },
-  silver: {
-    shadowColor: KingdomColors.silver.bright,
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.15,
-    shadowRadius: 10,
-    elevation: 8,
-  },
-  elegant: {
-    shadowColor: '#000000',
-    shadowOffset: { width: 0, height: 10 },
-    shadowOpacity: 0.3,
-    shadowRadius: 20,
-    elevation: 15,
-  },
+export const getTierColor = (tier: 'free' | 'pro' | 'enterprise'): string => {
+  switch (tier) {
+    case 'free':
+      return KingdomColors.success;
+    case 'pro':
+      return KingdomColors.primary;
+    case 'enterprise':
+      return KingdomColors.premium;
+    default:
+      return KingdomColors.textSecondary;
+  }
 };
 
-export default KingdomColors;
+export const getFaithModeColor = (isActive: boolean): string => {
+  return isActive ? KingdomColors.faith : KingdomColors.textSecondary;
+};
+
+export const getAccessibilityColor = (isHighContrast: boolean): string => {
+  return isHighContrast ? KingdomColors.accessibilityText : KingdomColors.text;
+};

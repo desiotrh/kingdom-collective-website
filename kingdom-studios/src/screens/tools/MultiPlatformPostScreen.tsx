@@ -17,6 +17,7 @@ import { useAppNavigation } from '../../utils/navigationUtils';
 import { useProducts, Product } from '../../contexts/ProductContext';
 import { RootStackParamList } from '../../types/navigation';
 import ContentGeneratorModal from '../../components/ContentGeneratorModal';
+import { useSocialMedia } from '../../hooks/useSocialMedia';
 
 type MultiPlatformPostRouteProp = RouteProp<RootStackParamList, 'MultiPlatformPost'>;
 
@@ -42,7 +43,8 @@ const MultiPlatformPostScreen = () => {
   const navigation = useAppNavigation();
   const route = useRoute<MultiPlatformPostRouteProp>();
   const { getProductById } = useProducts();
-  
+  const { supportedPlatforms, getAccountsForPlatform, setActiveAccount, getActiveAccount } = useSocialMedia();
+
   // Get product data if productId is provided
   const { productId } = route.params || {};
   const product = productId ? getProductById(productId) : null;
@@ -54,9 +56,10 @@ const MultiPlatformPostScreen = () => {
   const [scheduledDateTime, setScheduledDateTime] = useState<Date>(new Date());
   const [imageUri, setImageUri] = useState<string>('');
   const [videoUri, setVideoUri] = useState<string>('');
-  
+
   // AI Content Generator Modal state
   const [showContentGenerator, setShowContentGenerator] = useState(false);
+  const [selectedAccountIds, setSelectedAccountIds] = useState<{ [platformId: string]: string }>({});
 
   // Generate content from product data
   const generateProductCaption = (product: Product): string => {
@@ -70,10 +73,10 @@ const MultiPlatformPostScreen = () => {
       '🎯 Launching:',
       '🚀 Introducing:',
     ];
-    
+
     const faithCallToActions = [
       '— perfect for bold believers',
-      '— made for kingdom builders', 
+      '— made for kingdom builders',
       '— designed with faith in mind',
       '— crafted for the faithful',
       '— built for believers',
@@ -126,19 +129,19 @@ const MultiPlatformPostScreen = () => {
     const randomMessage = messages[Math.floor(Math.random() * messages.length)];
     const randomCTA = callToActions[Math.floor(Math.random() * callToActions.length)];
     const randomClosing = closingMessages[Math.floor(Math.random() * closingMessages.length)];
-    
+
     return `${randomMessage} ${product.title} ${randomCTA}.\n\nOnly $${product.price.toFixed(2)} • Available on ${product.platform} ${getPlatformIcon(product.platform)}\n\n${randomClosing}`;
   };
 
   const generateHashtagsFromProduct = (product: Product): string[] => {
     const faithHashtags = ['faith', 'blessed', 'kingdombusiness', 'faithbased', 'christian'];
     const encouragementHashtags = ['inspiration', 'purpose', 'motivation', 'entrepreneur', 'positive'];
-    
+
     const baseHashtags = faithMode ? faithHashtags : encouragementHashtags;
     const productHashtags = product.tags.map(tag => tag.toLowerCase().replace(/[\s-]/g, ''));
     const platformHashtag = product.platform.toLowerCase();
     const categoryHashtag = product.category.toLowerCase().replace(/[\s&]/g, '');
-    
+
     // Create a comprehensive hashtag list
     const allHashtags = [
       ...baseHashtags.slice(0, 3), // Take first 3 base hashtags
@@ -177,10 +180,10 @@ const MultiPlatformPostScreen = () => {
     if (product) {
       const generatedCaption = generateProductCaption(product);
       const hashtags = generateHashtagsFromProduct(product);
-      
+
       setCaption(generatedCaption + '\n\n' + hashtags.map(tag => `#${tag}`).join(' '));
       setImageUri(product.imageUri || product.imageUrl || '');
-      
+
       // Auto-select relevant platforms based on product platform
       const recommendedPlatforms = ['instagram', 'facebook'];
       if (product.platform === 'Etsy') {
@@ -213,14 +216,14 @@ const MultiPlatformPostScreen = () => {
           <Text style={styles.editProductButtonText}>Edit Product</Text>
         </TouchableOpacity>
       </View>
-      
+
       <View style={styles.productPreviewContent}>
         <Image
           source={{ uri: product.imageUri || product.imageUrl }}
           style={styles.productPreviewImage}
           resizeMode="cover"
         />
-        
+
         <View style={styles.productPreviewInfo}>
           <View style={styles.productPreviewTop}>
             <Text style={styles.productPreviewName} numberOfLines={2}>
@@ -234,9 +237,9 @@ const MultiPlatformPostScreen = () => {
               <Text style={styles.productPlatformText}>{product.platform}</Text>
             </View>
           </View>
-          
+
           <Text style={styles.productPreviewPrice}>${product.price.toFixed(2)}</Text>
-          
+
           <View style={styles.productPreviewTags}>
             {product.tags.slice(0, 3).map((tag, index) => (
               <View key={index} style={styles.productTag}>
@@ -317,7 +320,7 @@ const MultiPlatformPostScreen = () => {
   ];
 
   const togglePlatform = (platformId: string) => {
-    setSelectedPlatforms(prev => 
+    setSelectedPlatforms(prev =>
       prev.includes(platformId)
         ? prev.filter(id => id !== platformId)
         : [...prev, platformId]
@@ -326,12 +329,12 @@ const MultiPlatformPostScreen = () => {
 
   const getCharacterLimit = () => {
     if (selectedPlatforms.length === 0) return null;
-    
+
     const selectedPlatformObjects = platforms.filter(p => selectedPlatforms.includes(p.id));
     const limits = selectedPlatformObjects
       .map(p => p.characterLimit)
       .filter(limit => limit !== undefined) as number[];
-    
+
     return limits.length > 0 ? Math.min(...limits) : null;
   };
 
@@ -369,15 +372,22 @@ const MultiPlatformPostScreen = () => {
     );
   };
 
+  // When posting, only allow if an account is selected for each platform
   const handlePost = () => {
     if (!caption.trim()) {
       Alert.alert('Missing Caption', 'Please enter a caption for your post.');
       return;
     }
-
     if (selectedPlatforms.length === 0) {
       Alert.alert('No Platforms Selected', 'Please select at least one platform to post to.');
       return;
+    }
+    // Check that an account is selected for each platform
+    for (const platformId of selectedPlatforms) {
+      if (!selectedAccountIds[platformId]) {
+        Alert.alert('Account Required', `Please select an account for ${platformId}.`);
+        return;
+      }
     }
 
     const postData: PostData = {
@@ -459,7 +469,7 @@ const MultiPlatformPostScreen = () => {
         {/* Post Composer */}
         <View style={styles.composerCard}>
           <Text style={styles.sectionTitle}>🖊️ Compose Your Post</Text>
-          
+
           <TextInput
             style={[
               styles.captionInput,
@@ -491,15 +501,15 @@ const MultiPlatformPostScreen = () => {
 
           {/* Media Upload Buttons */}
           <View style={styles.mediaButtonsContainer}>
-            <TouchableOpacity 
+            <TouchableOpacity
               style={styles.mediaButton}
               onPress={handleImageUpload}
               activeOpacity={0.8}
             >
               <Text style={styles.mediaButtonText}>📷 Add Image</Text>
             </TouchableOpacity>
-            
-            <TouchableOpacity 
+
+            <TouchableOpacity
               style={styles.mediaButton}
               onPress={handleVideoUpload}
               activeOpacity={0.8}
@@ -515,7 +525,7 @@ const MultiPlatformPostScreen = () => {
           <Text style={styles.sectionSubtitle}>
             Choose where to publish your content
           </Text>
-          
+
           <View style={styles.platformGrid}>
             {platforms.map((platform) => (
               <TouchableOpacity
@@ -553,10 +563,44 @@ const MultiPlatformPostScreen = () => {
           )}
         </View>
 
+        {/* Account Selection for Selected Platforms */}
+        <View style={styles.accountSelectionCard}>
+          <Text style={styles.sectionTitle}>👤 Select Accounts</Text>
+          <Text style={styles.sectionSubtitle}>
+            Choose which account to post from for each platform
+          </Text>
+          {selectedPlatforms.map(platformId => {
+            const platform = supportedPlatforms.find(p => p.id === platformId);
+            const accounts = getAccountsForPlatform(platformId);
+            if (!platform || accounts.length === 0) return null;
+            return (
+              <View key={platformId} style={{ marginBottom: 8 }}>
+                <Text style={{ fontWeight: 'bold' }}>{platform.name}</Text>
+                {accounts.map(account => (
+                  <TouchableOpacity
+                    key={account.accountId}
+                    style={[
+                      styles.platformSelectorItem,
+                      selectedAccountIds[platformId] === account.accountId && styles.selectedPlatform
+                    ]}
+                    onPress={() => {
+                      setActiveAccount(platformId, account.accountId);
+                      setSelectedAccountIds(prev => ({ ...prev, [platformId]: account.accountId }));
+                    }}
+                  >
+                    <Text style={styles.platformIcon}>{platform.icon}</Text>
+                    <Text style={styles.platformSelectorText}>@{account.username} ({account.accountId})</Text>
+                  </TouchableOpacity>
+                ))}
+              </View>
+            );
+          })}
+        </View>
+
         {/* Schedule Option */}
         <View style={styles.scheduleCard}>
           <Text style={styles.sectionTitle}>⏰ Posting Schedule</Text>
-          
+
           <View style={styles.scheduleToggleContainer}>
             <View style={styles.scheduleToggleContent}>
               <Text style={styles.scheduleToggleLabel}>
@@ -801,6 +845,43 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: '500',
     textAlign: 'center',
+  },
+  accountSelectionCard: {
+    backgroundColor: '#1a1a1a',
+    borderRadius: 12,
+    padding: 20,
+    marginBottom: 20,
+    borderWidth: 1,
+    borderColor: '#333333',
+  },
+  formLabel: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: '#ffffff',
+    marginBottom: 10,
+  },
+  platformSelector: {
+    // Add styles for the container if needed
+  },
+  platformSelectorItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingVertical: 10,
+    paddingHorizontal: 15,
+    borderRadius: 8,
+    backgroundColor: '#2a2a2a',
+    borderWidth: 1,
+    borderColor: '#333333',
+    marginBottom: 5,
+  },
+  selectedPlatform: {
+    backgroundColor: '#1a2a3a',
+    borderColor: '#3b82f6',
+  },
+  platformSelectorText: {
+    fontSize: 14,
+    color: '#cccccc',
+    marginLeft: 10,
   },
   scheduleCard: {
     backgroundColor: '#1a1a1a',

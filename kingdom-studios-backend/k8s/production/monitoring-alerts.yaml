@@ -1,0 +1,442 @@
+# ==============================================
+# KINGDOM STUDIOS - COMPREHENSIVE MONITORING ALERTS
+# Monitoring alerts for all five apps with specific thresholds
+# ==============================================
+
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: kingdom-studios-comprehensive-alerts
+  namespace: production
+spec:
+  groups:
+    - name: kingdom-studios.critical.alerts
+      rules:
+        # ==============================================
+        # HIGH MEMORY ALERTS (All Apps)
+        # ==============================================
+        
+        # Kingdom Lens - High Memory
+        - alert: KingdomLensHighMemory
+          expr: container_memory_usage_bytes{container="kingdom-lens-backend"} / container_spec_memory_limit_bytes{container="kingdom-lens-backend"} > 0.85
+          for: 5m
+          labels:
+            severity: critical
+            app: "kingdom-lens"
+            alert_type: "high_memory"
+          annotations:
+            summary: "Kingdom Lens high memory usage"
+            description: "Memory usage is above 85% for 5 minutes"
+            runbook_url: "https://docs.kingdomstudios.app/alerts/high-memory"
+        
+        # Kingdom Launchpad - High Memory
+        - alert: KingdomLaunchpadHighMemory
+          expr: container_memory_usage_bytes{container="kingdom-launchpad-backend"} / container_spec_memory_limit_bytes{container="kingdom-launchpad-backend"} > 0.80
+          for: 5m
+          labels:
+            severity: critical
+            app: "kingdom-launchpad"
+            alert_type: "high_memory"
+          annotations:
+            summary: "Kingdom Launchpad high memory usage"
+            description: "Memory usage is above 80% for 5 minutes"
+            runbook_url: "https://docs.kingdomstudios.app/alerts/high-memory"
+        
+        # Kingdom Clips - High Memory
+        - alert: KingdomClipsHighMemory
+          expr: container_memory_usage_bytes{container="kingdom-clips-backend"} / container_spec_memory_limit_bytes{container="kingdom-clips-backend"} > 0.90
+          for: 5m
+          labels:
+            severity: critical
+            app: "kingdom-clips"
+            alert_type: "high_memory"
+          annotations:
+            summary: "Kingdom Clips high memory usage"
+            description: "Memory usage is above 90% for 5 minutes"
+            runbook_url: "https://docs.kingdomstudios.app/alerts/high-memory"
+        
+        # Kingdom Circle - High Memory
+        - alert: KingdomCircleHighMemory
+          expr: container_memory_usage_bytes{container="kingdom-circle-backend"} / container_spec_memory_limit_bytes{container="kingdom-circle-backend"} > 0.80
+          for: 5m
+          labels:
+            severity: critical
+            app: "kingdom-circle"
+            alert_type: "high_memory"
+          annotations:
+            summary: "Kingdom Circle high memory usage"
+            description: "Memory usage is above 80% for 5 minutes"
+            runbook_url: "https://docs.kingdomstudios.app/alerts/high-memory"
+        
+        # Kingdom Voice - High Memory
+        - alert: KingdomVoiceHighMemory
+          expr: container_memory_usage_bytes{container="kingdom-voice-backend"} / container_spec_memory_limit_bytes{container="kingdom-voice-backend"} > 0.85
+          for: 5m
+          labels:
+            severity: critical
+            app: "kingdom-voice"
+            alert_type: "high_memory"
+          annotations:
+            summary: "Kingdom Voice high memory usage"
+            description: "Memory usage is above 85% for 5 minutes"
+            runbook_url: "https://docs.kingdomstudios.app/alerts/high-memory"
+        
+        # ==============================================
+        # HIGH CPU ALERTS (All Apps)
+        # ==============================================
+        
+        # Kingdom Lens - High CPU
+        - alert: KingdomLensHighCPU
+          expr: container_cpu_usage_seconds_total{container="kingdom-lens-backend"} / container_spec_cpu_quota{container="kingdom-lens-backend"} * 100 > 80
+          for: 5m
+          labels:
+            severity: critical
+            app: "kingdom-lens"
+            alert_type: "high_cpu"
+          annotations:
+            summary: "Kingdom Lens high CPU usage"
+            description: "CPU usage is above 80% for 5 minutes"
+            runbook_url: "https://docs.kingdomstudios.app/alerts/high-cpu"
+        
+        # Kingdom Launchpad - High CPU
+        - alert: KingdomLaunchpadHighCPU
+          expr: container_cpu_usage_seconds_total{container="kingdom-launchpad-backend"} / container_spec_cpu_quota{container="kingdom-launchpad-backend"} * 100 > 75
+          for: 5m
+          labels:
+            severity: critical
+            app: "kingdom-launchpad"
+            alert_type: "high_cpu"
+          annotations:
+            summary: "Kingdom Launchpad high CPU usage"
+            description: "CPU usage is above 75% for 5 minutes"
+            runbook_url: "https://docs.kingdomstudios.app/alerts/high-cpu"
+        
+        # Kingdom Clips - High CPU
+        - alert: KingdomClipsHighCPU
+          expr: container_cpu_usage_seconds_total{container="kingdom-clips-backend"} / container_spec_cpu_quota{container="kingdom-clips-backend"} * 100 > 85
+          for: 5m
+          labels:
+            severity: critical
+            app: "kingdom-clips"
+            alert_type: "high_cpu"
+          annotations:
+            summary: "Kingdom Clips high CPU usage"
+            description: "CPU usage is above 85% for 5 minutes"
+            runbook_url: "https://docs.kingdomstudios.app/alerts/high-cpu"
+        
+        # Kingdom Circle - High CPU
+        - alert: KingdomCircleHighCPU
+          expr: container_cpu_usage_seconds_total{container="kingdom-circle-backend"} / container_spec_cpu_quota{container="kingdom-circle-backend"} * 100 > 75
+          for: 5m
+          labels:
+            severity: critical
+            app: "kingdom-circle"
+            alert_type: "high_cpu"
+          annotations:
+            summary: "Kingdom Circle high CPU usage"
+            description: "CPU usage is above 75% for 5 minutes"
+            runbook_url: "https://docs.kingdomstudios.app/alerts/high-cpu"
+        
+        # Kingdom Voice - High CPU
+        - alert: KingdomVoiceHighCPU
+          expr: container_cpu_usage_seconds_total{container="kingdom-voice-backend"} / container_spec_cpu_quota{container="kingdom-voice-backend"} * 100 > 80
+          for: 5m
+          labels:
+            severity: critical
+            app: "kingdom-voice"
+            alert_type: "high_cpu"
+          annotations:
+            summary: "Kingdom Voice high CPU usage"
+            description: "CPU usage is above 80% for 5 minutes"
+            runbook_url: "https://docs.kingdomstudios.app/alerts/high-cpu"
+        
+        # ==============================================
+        # LATENCY ALERTS (> 500ms)
+        # ==============================================
+        
+        # Kingdom Lens - High Latency
+        - alert: KingdomLensHighLatency
+          expr: histogram_quantile(0.95, rate(http_request_duration_seconds{app="kingdom-lens"}[5m])) > 0.5
+          for: 3m
+          labels:
+            severity: warning
+            app: "kingdom-lens"
+            alert_type: "high_latency"
+          annotations:
+            summary: "Kingdom Lens high latency detected"
+            description: "95th percentile response time is above 500ms"
+            runbook_url: "https://docs.kingdomstudios.app/alerts/high-latency"
+        
+        # Kingdom Launchpad - High Latency
+        - alert: KingdomLaunchpadHighLatency
+          expr: histogram_quantile(0.95, rate(http_request_duration_seconds{app="kingdom-launchpad"}[5m])) > 0.5
+          for: 3m
+          labels:
+            severity: warning
+            app: "kingdom-launchpad"
+            alert_type: "high_latency"
+          annotations:
+            summary: "Kingdom Launchpad high latency detected"
+            description: "95th percentile response time is above 500ms"
+            runbook_url: "https://docs.kingdomstudios.app/alerts/high-latency"
+        
+        # Kingdom Clips - High Latency
+        - alert: KingdomClipsHighLatency
+          expr: histogram_quantile(0.95, rate(http_request_duration_seconds{app="kingdom-clips"}[5m])) > 0.5
+          for: 3m
+          labels:
+            severity: warning
+            app: "kingdom-clips"
+            alert_type: "high_latency"
+          annotations:
+            summary: "Kingdom Clips high latency detected"
+            description: "95th percentile response time is above 500ms"
+            runbook_url: "https://docs.kingdomstudios.app/alerts/high-latency"
+        
+        # Kingdom Circle - High Latency
+        - alert: KingdomCircleHighLatency
+          expr: histogram_quantile(0.95, rate(http_request_duration_seconds{app="kingdom-circle"}[5m])) > 0.5
+          for: 3m
+          labels:
+            severity: warning
+            app: "kingdom-circle"
+            alert_type: "high_latency"
+          annotations:
+            summary: "Kingdom Circle high latency detected"
+            description: "95th percentile response time is above 500ms"
+            runbook_url: "https://docs.kingdomstudios.app/alerts/high-latency"
+        
+        # Kingdom Voice - High Latency
+        - alert: KingdomVoiceHighLatency
+          expr: histogram_quantile(0.95, rate(http_request_duration_seconds{app="kingdom-voice"}[5m])) > 0.5
+          for: 3m
+          labels:
+            severity: warning
+            app: "kingdom-voice"
+            alert_type: "high_latency"
+          annotations:
+            summary: "Kingdom Voice high latency detected"
+            description: "95th percentile response time is above 500ms"
+            runbook_url: "https://docs.kingdomstudios.app/alerts/high-latency"
+        
+        # ==============================================
+        # 5XX ERROR RATE ALERTS
+        # ==============================================
+        
+        # Kingdom Lens - High Error Rate
+        - alert: KingdomLensHighErrorRate
+          expr: rate(http_requests_total{app="kingdom-lens", status=~"5.."}[5m]) / rate(http_requests_total{app="kingdom-lens"}[5m]) > 0.05
+          for: 3m
+          labels:
+            severity: critical
+            app: "kingdom-lens"
+            alert_type: "high_error_rate"
+          annotations:
+            summary: "Kingdom Lens high 5xx error rate"
+            description: "5xx error rate is above 5% for 3 minutes"
+            runbook_url: "https://docs.kingdomstudios.app/alerts/high-error-rate"
+        
+        # Kingdom Launchpad - High Error Rate
+        - alert: KingdomLaunchpadHighErrorRate
+          expr: rate(http_requests_total{app="kingdom-launchpad", status=~"5.."}[5m]) / rate(http_requests_total{app="kingdom-launchpad"}[5m]) > 0.05
+          for: 3m
+          labels:
+            severity: critical
+            app: "kingdom-launchpad"
+            alert_type: "high_error_rate"
+          annotations:
+            summary: "Kingdom Launchpad high 5xx error rate"
+            description: "5xx error rate is above 5% for 3 minutes"
+            runbook_url: "https://docs.kingdomstudios.app/alerts/high-error-rate"
+        
+        # Kingdom Clips - High Error Rate
+        - alert: KingdomClipsHighErrorRate
+          expr: rate(http_requests_total{app="kingdom-clips", status=~"5.."}[5m]) / rate(http_requests_total{app="kingdom-clips"}[5m]) > 0.05
+          for: 3m
+          labels:
+            severity: critical
+            app: "kingdom-clips"
+            alert_type: "high_error_rate"
+          annotations:
+            summary: "Kingdom Clips high 5xx error rate"
+            description: "5xx error rate is above 5% for 3 minutes"
+            runbook_url: "https://docs.kingdomstudios.app/alerts/high-error-rate"
+        
+        # Kingdom Circle - High Error Rate
+        - alert: KingdomCircleHighErrorRate
+          expr: rate(http_requests_total{app="kingdom-circle", status=~"5.."}[5m]) / rate(http_requests_total{app="kingdom-circle"}[5m]) > 0.05
+          for: 3m
+          labels:
+            severity: critical
+            app: "kingdom-circle"
+            alert_type: "high_error_rate"
+          annotations:
+            summary: "Kingdom Circle high 5xx error rate"
+            description: "5xx error rate is above 5% for 3 minutes"
+            runbook_url: "https://docs.kingdomstudios.app/alerts/high-error-rate"
+        
+        # Kingdom Voice - High Error Rate
+        - alert: KingdomVoiceHighErrorRate
+          expr: rate(http_requests_total{app="kingdom-voice", status=~"5.."}[5m]) / rate(http_requests_total{app="kingdom-voice"}[5m]) > 0.05
+          for: 3m
+          labels:
+            severity: critical
+            app: "kingdom-voice"
+            alert_type: "high_error_rate"
+          annotations:
+            summary: "Kingdom Voice high 5xx error rate"
+            description: "5xx error rate is above 5% for 3 minutes"
+            runbook_url: "https://docs.kingdomstudios.app/alerts/high-error-rate"
+        
+        # ==============================================
+        # ADDITIONAL CRITICAL ALERTS
+        # ==============================================
+        
+        # Pod Restarting Frequently
+        - alert: PodRestartingFrequently
+          expr: increase(kube_pod_container_status_restarts_total{tier="backend"}[5m]) > 0
+          for: 2m
+          labels:
+            severity: warning
+            alert_type: "pod_restart"
+          annotations:
+            summary: "Pod is restarting frequently"
+            description: "Pod has restarted in the last 5 minutes"
+            runbook_url: "https://docs.kingdomstudios.app/alerts/pod-restart"
+        
+        # High Disk Usage
+        - alert: HighDiskUsage
+          expr: (node_filesystem_size_bytes - node_filesystem_avail_bytes) / node_filesystem_size_bytes > 0.85
+          for: 5m
+          labels:
+            severity: warning
+            alert_type: "high_disk_usage"
+          annotations:
+            summary: "High disk usage detected"
+            description: "Disk usage is above 85%"
+            runbook_url: "https://docs.kingdomstudios.app/alerts/high-disk-usage"
+        
+        # Database Connection Issues
+        - alert: DatabaseConnectionIssues
+          expr: rate(database_connection_errors_total[5m]) > 0.1
+          for: 3m
+          labels:
+            severity: critical
+            alert_type: "database_connection"
+          annotations:
+            summary: "Database connection issues detected"
+            description: "High rate of database connection errors"
+            runbook_url: "https://docs.kingdomstudios.app/alerts/database-connection"
+        
+        # Redis Connection Issues
+        - alert: RedisConnectionIssues
+          expr: rate(redis_connection_errors_total[5m]) > 0.1
+          for: 3m
+          labels:
+            severity: critical
+            alert_type: "redis_connection"
+          annotations:
+            summary: "Redis connection issues detected"
+            description: "High rate of Redis connection errors"
+            runbook_url: "https://docs.kingdomstudios.app/alerts/redis-connection"
+        
+        # ==============================================
+        # WARNING ALERTS (Less Critical)
+        # ==============================================
+        
+        # Kingdom Lens - Warning CPU
+        - alert: KingdomLensWarningCPU
+          expr: container_cpu_usage_seconds_total{container="kingdom-lens-backend"} / container_spec_cpu_quota{container="kingdom-lens-backend"} * 100 > 70
+          for: 10m
+          labels:
+            severity: warning
+            app: "kingdom-lens"
+            alert_type: "warning_cpu"
+          annotations:
+            summary: "Kingdom Lens CPU usage warning"
+            description: "CPU usage is above 70% for 10 minutes"
+        
+        # Kingdom Launchpad - Warning CPU
+        - alert: KingdomLaunchpadWarningCPU
+          expr: container_cpu_usage_seconds_total{container="kingdom-launchpad-backend"} / container_spec_cpu_quota{container="kingdom-launchpad-backend"} * 100 > 65
+          for: 10m
+          labels:
+            severity: warning
+            app: "kingdom-launchpad"
+            alert_type: "warning_cpu"
+          annotations:
+            summary: "Kingdom Launchpad CPU usage warning"
+            description: "CPU usage is above 65% for 10 minutes"
+        
+        # Kingdom Clips - Warning CPU
+        - alert: KingdomClipsWarningCPU
+          expr: container_cpu_usage_seconds_total{container="kingdom-clips-backend"} / container_spec_cpu_quota{container="kingdom-clips-backend"} * 100 > 75
+          for: 10m
+          labels:
+            severity: warning
+            app: "kingdom-clips"
+            alert_type: "warning_cpu"
+          annotations:
+            summary: "Kingdom Clips CPU usage warning"
+            description: "CPU usage is above 75% for 10 minutes"
+        
+        # Kingdom Circle - Warning CPU
+        - alert: KingdomCircleWarningCPU
+          expr: container_cpu_usage_seconds_total{container="kingdom-circle-backend"} / container_spec_cpu_quota{container="kingdom-circle-backend"} * 100 > 65
+          for: 10m
+          labels:
+            severity: warning
+            app: "kingdom-circle"
+            alert_type: "warning_cpu"
+          annotations:
+            summary: "Kingdom Circle CPU usage warning"
+            description: "CPU usage is above 65% for 10 minutes"
+        
+        # Kingdom Voice - Warning CPU
+        - alert: KingdomVoiceWarningCPU
+          expr: container_cpu_usage_seconds_total{container="kingdom-voice-backend"} / container_spec_cpu_quota{container="kingdom-voice-backend"} * 100 > 70
+          for: 10m
+          labels:
+            severity: warning
+            app: "kingdom-voice"
+            alert_type: "warning_cpu"
+          annotations:
+            summary: "Kingdom Voice CPU usage warning"
+            description: "CPU usage is above 70% for 10 minutes"
+        
+        # ==============================================
+        # INFO ALERTS (Informational)
+        # ==============================================
+        
+        # High Request Rate
+        - alert: HighRequestRate
+          expr: rate(http_requests_total[5m]) > 1000
+          for: 5m
+          labels:
+            severity: info
+            alert_type: "high_request_rate"
+          annotations:
+            summary: "High request rate detected"
+            description: "Request rate is above 1000 requests per second"
+        
+        # Low Cache Hit Rate
+        - alert: LowCacheHitRate
+          expr: cache_hit_rate < 0.6
+          for: 10m
+          labels:
+            severity: info
+            alert_type: "low_cache_hit_rate"
+          annotations:
+            summary: "Low cache hit rate detected"
+            description: "Cache hit rate is below 60%"
+        
+        # High Response Time Trend
+        - alert: HighResponseTimeTrend
+          expr: increase(http_request_duration_seconds_sum[5m]) / increase(http_request_duration_seconds_count[5m]) > 0.3
+          for: 5m
+          labels:
+            severity: info
+            alert_type: "high_response_time_trend"
+          annotations:
+            summary: "High response time trend detected"
+            description: "Average response time is increasing" 

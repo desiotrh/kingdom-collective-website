@@ -32,17 +32,17 @@ const { width } = Dimensions.get('window');
 const SettingsScreen = () => {
   const { user } = useAuth();
   const { faithMode, setFaithMode } = useFaithMode();
-  const { 
-    currentMode, 
-    userTier, 
-    modeConfig, 
+  const {
+    currentMode,
+    userTier,
+    modeConfig,
     getModeSpecificContent,
     isDualMode,
-    setDualMode 
+    setDualMode
   } = useDualMode();
   const navigation = useAppNavigation();
   const auth = getAuth(app);
-  
+
   const [loading, setLoading] = useState(false);
   const [apiConfig, setApiConfig] = useState<APIConfiguration>({
     openaiApiKey: '',
@@ -114,12 +114,12 @@ const SettingsScreen = () => {
   const handleFaithModeToggle = async (value: boolean) => {
     try {
       await setFaithMode(value);
-      
+
       // Show feedback to user
       Alert.alert(
         'Faith Mode Updated',
-        value 
-          ? 'You will now receive faith-based encouragement throughout the app.' 
+        value
+          ? 'You will now receive faith-based encouragement throughout the app.'
           : 'Faith Mode has been disabled. You will see neutral guidance.',
         [{ text: 'OK' }]
       );
@@ -130,12 +130,12 @@ const SettingsScreen = () => {
   };
 
   const handleContactSupport = () => {
-    const email = 'support@kingdomstudiosapp.com';
+    const email = 'support@kingdomcollective.pro';
     const subject = 'Kingdom Studios App Support';
     const body = 'Hello Kingdom Studios Support Team,\n\nI need help with the Kingdom Studios app.\n\n';
-    
+
     const mailtoUrl = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    
+
     Linking.openURL(mailtoUrl).catch(() => {
       Alert.alert(
         'Email App Not Found',
@@ -209,7 +209,7 @@ const SettingsScreen = () => {
         <View style={styles.settingContent}>
           <Text style={styles.settingLabel}>Faith Mode</Text>
           <Text style={styles.settingDescription}>
-            {faithMode 
+            {faithMode
               ? 'Receive faith-based encouragement and scripture throughout the app.'
               : 'Use the app in Creator Mode with neutral guidance.'
             }
@@ -242,7 +242,7 @@ const SettingsScreen = () => {
             {user?.email || 'Not set'}
           </Text>
         </View>
-        <TouchableOpacity 
+        <TouchableOpacity
           style={styles.editProfileButton}
           onPress={() => Alert.alert('Coming Soon', 'Edit Profile feature will be available soon!')}
           activeOpacity={0.8}
@@ -266,7 +266,7 @@ const SettingsScreen = () => {
         <Text style={styles.chevron}>›</Text>
       </TouchableOpacity>
       <Text style={styles.supportDescription}>
-        Need help? Contact our support team at support@kingdomstudiosapp.com
+        Need help? Contact our support team at support@kingdomcollective.pro
       </Text>
     </View>
   );
@@ -274,7 +274,7 @@ const SettingsScreen = () => {
   const renderLegalSection = () => (
     <View style={styles.section}>
       <Text style={styles.sectionTitle}>Legal & Privacy</Text>
-      
+
       <TouchableOpacity
         style={styles.legalButton}
         onPress={() => Linking.openURL('https://kingdomstudiosapp.com/terms')}
@@ -358,7 +358,7 @@ const SettingsScreen = () => {
   const renderAPIConfigurationSection = () => (
     <View style={styles.section}>
       <Text style={styles.sectionTitle}>API Configuration</Text>
-      
+
       {apiConfig ? (
         <View style={styles.apiConfigContainer}>
           <TextInput
@@ -436,15 +436,15 @@ const SettingsScreen = () => {
         <TouchableOpacity style={styles.backButton} onPress={handleGoBack}>
           <Text style={styles.backButtonText}>← Back</Text>
         </TouchableOpacity>
-        
+
         <View style={styles.headerCenter}>
           <KingdomLogo size="small" />
           <Text style={styles.headerTitle}>Settings</Text>
         </View>
-        
+
         <View style={styles.headerSpacer} />
       </LinearGradient>
-      
+
       <ScrollView
         style={styles.scrollView}
         contentContainerStyle={styles.scrollContent}
@@ -482,9 +482,9 @@ const SettingsScreen = () => {
           <Text style={styles.sectionTitle}>
             {getModeSpecificContent('Kingdom Configuration', 'Creator Configuration')}
           </Text>
-          
+
           {/* Current Tier Display */}
-          <TouchableOpacity 
+          <TouchableOpacity
             style={styles.tierCard}
             onPress={() => navigation.navigate('TierSystem')}
             activeOpacity={0.8}
@@ -501,9 +501,9 @@ const SettingsScreen = () => {
                   <View style={styles.tierInfo}>
                     <Text style={styles.tierTitle}>
                       {userTier === 'free' ? getModeSpecificContent('Kingdom Starter', 'Creator Starter') :
-                       userTier === 'creator' ? getModeSpecificContent('Kingdom Creator', 'Creator Pro') :
-                       userTier === 'pro' ? getModeSpecificContent('Kingdom Leader', 'Creator Elite') :
-                       getModeSpecificContent('Kingdom Enterprise', 'Creator Enterprise')}
+                        userTier === 'creator' ? getModeSpecificContent('Kingdom Creator', 'Creator Pro') :
+                          userTier === 'pro' ? getModeSpecificContent('Kingdom Leader', 'Creator Elite') :
+                            getModeSpecificContent('Kingdom Enterprise', 'Creator Enterprise')}
                     </Text>
                     <Text style={styles.tierSubtitle}>
                       {userTier === 'free' ? 'Tap to upgrade your plan' : 'Current plan • Tap to manage'}
@@ -532,7 +532,7 @@ const SettingsScreen = () => {
             '🔄',
             'Dual Mode System',
             isDualMode ? 'Switch between Faith and Encouragement modes' : 'Enable mode switching',
-            () => {},
+            () => { },
             <Switch
               value={isDualMode}
               onValueChange={setDualMode}
@@ -547,12 +547,12 @@ const SettingsScreen = () => {
           <Text style={styles.sectionTitle}>
             {faithMode ? 'Kingdom Settings' : 'App Settings'}
           </Text>
-          
+
           {renderSettingCard(
             faithMode ? '🙏' : '⚙️',
             faithMode ? 'Kingdom Faith Mode' : 'Faith Mode',
             faithMode ? 'Receiving faith-based encouragement' : 'Enable faith-based guidance',
-            () => {},
+            () => { },
             <Switch
               value={faithMode}
               onValueChange={handleFaithModeToggle}
@@ -565,28 +565,28 @@ const SettingsScreen = () => {
         {/* Account Section */}
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Account</Text>
-          
+
           {renderSettingCard(
             '👤',
             'Edit Profile',
             'Update your profile information',
             () => Alert.alert('Coming Soon', 'Profile editing coming soon!')
           )}
-          
+
           {renderSettingCard(
             faithMode ? '✝️' : '🤝',
             faithMode ? 'Become a Forge Guide' : 'Become a Mentor',
             faithMode ? 'Share your calling to guide others' : 'Help others grow their skills',
             () => navigation.navigate('MentorOnboarding')
           )}
-          
+
           {renderSettingCard(
             '🔔',
             'Notifications',
             'Manage your notification preferences',
             () => Alert.alert('Coming Soon', 'Notification settings coming soon!')
           )}
-          
+
           {renderSettingCard(
             '🔒',
             'Privacy & Security',
@@ -598,28 +598,28 @@ const SettingsScreen = () => {
         {/* Support Section */}
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Support</Text>
-          
+
           {renderSettingCard(
             '📧',
             'Contact Support',
             'Get help from our team',
             handleContactSupport
           )}
-          
+
           {renderSettingCard(
             '📋',
             'Terms of Service',
             'Read our terms and conditions',
-            () => Linking.openURL('https://kingdomstudiosapp.com/terms').catch(() => 
+            () => Linking.openURL('https://kingdomstudiosapp.com/terms').catch(() =>
               Alert.alert('Error', 'Unable to open Terms of Service')
             )
           )}
-          
+
           {renderSettingCard(
             '🛡️',
             'Privacy Policy',
             'View our privacy policy',
-            () => Linking.openURL('https://kingdomstudiosapp.com/privacy').catch(() => 
+            () => Linking.openURL('https://kingdomstudiosapp.com/privacy').catch(() =>
               Alert.alert('Error', 'Unable to open Privacy Policy')
             )
           )}
@@ -628,7 +628,7 @@ const SettingsScreen = () => {
         {/* App Info */}
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>App Information</Text>
-          
+
           <View style={styles.infoCard}>
             <LinearGradient
               colors={[KingdomColors.background.secondary, KingdomColors.primary.deepNavy]}
@@ -663,7 +663,7 @@ const SettingsScreen = () => {
             </LinearGradient>
           </TouchableOpacity>
         </View>
-        
+
         {/* Footer spacing */}
         <View style={styles.footer} />
       </ScrollView>
