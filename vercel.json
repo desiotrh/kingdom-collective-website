@@ -7,18 +7,18 @@
             "use": "@vercel/next"
         }
     ],
-    "routes": [
+    "rewrites": [
         {
-            "src": "/privacy",
-            "dest": "/privacy"
+            "source": "/privacy",
+            "destination": "/privacy"
         },
         {
-            "src": "/terms",
-            "dest": "/terms"
+            "source": "/terms",
+            "destination": "/terms"
         },
         {
-            "src": "/(.*)",
-            "dest": "/"
+            "source": "/(.*)",
+            "destination": "/"
         }
     ],
     "headers": [
