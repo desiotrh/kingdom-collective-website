@@ -22,7 +22,7 @@ export default function PrivacyPolicy() {
                         <div className="bg-kingdom-darker/50 rounded-2xl p-8 border border-kingdom-violet/20">
                             <h2 className="text-2xl font-playfair font-semibold text-white mb-6">1. Introduction</h2>
                             <p className="text-gray-300 mb-6">
-                                Kingdom Collective ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our services, including our mobile applications and website.
+                                Kingdom Collective (&ldquo;we,&rdquo; &ldquo;our,&rdquo; or &ldquo;us&rdquo;) is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our services, including our mobile applications and website.
                             </p>
 
                             <h2 className="text-2xl font-playfair font-semibold text-white mb-6">2. Information We Collect</h2>
@@ -102,7 +102,7 @@ export default function PrivacyPolicy() {
                                 Our services may contain links to third-party websites or integrate with third-party services. We are not responsible for the privacy practices of these third parties. We encourage you to review their privacy policies.
                             </p>
 
-                            <h2 className="text-2xl font-playfair font-semibold text-white mb-6">9. Children's Privacy</h2>
+                            <h2 className="text-2xl font-playfair font-semibold text-white mb-6">9. Children&apos;s Privacy</h2>
                             <p className="text-gray-300 mb-6">
                                 Our services are not intended for children under 13 years of age. We do not knowingly collect personal information from children under 13. If you believe we have collected information from a child under 13, please contact us.
                             </p>
@@ -114,7 +114,7 @@ export default function PrivacyPolicy() {
 
                             <h2 className="text-2xl font-playfair font-semibold text-white mb-6">11. Changes to This Privacy Policy</h2>
                             <p className="text-gray-300 mb-6">
-                                We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the "Last updated" date.
+                                We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the &ldquo;Last updated&rdquo; date.
                             </p>
 
                             <h2 className="text-2xl font-playfair font-semibold text-white mb-6">12. Contact Us</h2>

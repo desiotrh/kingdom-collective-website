@@ -22,7 +22,7 @@ export default function TermsOfService() {
                         <div className="bg-kingdom-darker/50 rounded-2xl p-8 border border-kingdom-violet/20">
                             <h2 className="text-2xl font-playfair font-semibold text-white mb-6">1. Acceptance of Terms</h2>
                             <p className="text-gray-300 mb-6">
-                                By accessing and using Kingdom Collective's services, including our mobile applications, website, and related services (collectively, the "Services"), you accept and agree to be bound by the terms and conditions of this agreement. If you do not agree to abide by the above, please do not use this service.
+                                By accessing and using Kingdom Collective&apos;s services, including our mobile applications, website, and related services (collectively, the &ldquo;Services&rdquo;), you accept and agree to be bound by the terms and conditions of this agreement. If you do not agree to abide by the above, please do not use this service.
                             </p>
 
                             <h2 className="text-2xl font-playfair font-semibold text-white mb-6">2. Description of Service</h2>
@@ -113,7 +113,7 @@ export default function TermsOfService() {
                             <h2 className="text-2xl font-playfair font-semibold text-white mb-6">10. Disclaimers and Limitations</h2>
                             <h3 className="text-xl font-semibold text-kingdom-violet mb-4">10.1 Service Disclaimers</h3>
                             <p className="text-gray-300 mb-6">
-                                THE SERVICES ARE PROVIDED "AS IS" AND "AS AVAILABLE" WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT.
+                                THE SERVICES ARE PROVIDED &ldquo;AS IS&rdquo; AND &ldquo;AS AVAILABLE&rdquo; WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT.
                             </p>
 
                             <h3 className="text-xl font-semibold text-kingdom-violet mb-4">10.2 Limitation of Liability</h3>
@@ -138,7 +138,7 @@ export default function TermsOfService() {
 
                             <h2 className="text-2xl font-playfair font-semibold text-white mb-6">14. Changes to Terms</h2>
                             <p className="text-gray-300 mb-6">
-                                We reserve the right to modify these Terms at any time. We will notify users of any material changes by posting the new Terms on our website and updating the "Last updated" date.
+                                We reserve the right to modify these Terms at any time. We will notify users of any material changes by posting the new Terms on our website and updating the &ldquo;Last updated&rdquo; date.
                             </p>
 
                             <h2 className="text-2xl font-playfair font-semibold text-white mb-6">15. Contact Information</h2>

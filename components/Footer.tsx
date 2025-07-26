@@ -18,7 +18,7 @@ export default function Footer() {
                             Create with Purpose. Share with Authority. Build What Matters.
                         </p>
                         <div className="text-sm text-gray-500 italic">
-                            "Unless the Lord builds the house, the builders labor in vain." - Psalm 127:1
+                            &ldquo;Unless the Lord builds the house, the builders labor in vain.&rdquo; - Psalm 127:1
                         </div>
                     </div>
 
