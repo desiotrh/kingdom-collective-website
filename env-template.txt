@@ -1,0 +1,61 @@
+# Kingdom Collective Website - Environment Variables Template
+# Copy this file to .env.local and fill in your actual values
+
+# OpenAI Configuration
+NEXT_PUBLIC_OPENAI_API_KEY=your_openai_api_key_here
+NEXT_PUBLIC_OPENAI_ORGANIZATION=your_openai_organization_id_here
+
+# Firebase Configuration
+NEXT_PUBLIC_FIREBASE_API_KEY=your_firebase_api_key_here
+NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=your_project.firebaseapp.com
+NEXT_PUBLIC_FIREBASE_PROJECT_ID=your_project_id_here
+NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=your_project.appspot.com
+NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=your_sender_id_here
+NEXT_PUBLIC_FIREBASE_APP_ID=your_app_id_here
+
+# Stripe Configuration
+NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_test_your_stripe_publishable_key_here
+STRIPE_SECRET_KEY=sk_test_your_stripe_secret_key_here
+STRIPE_WEBHOOK_SECRET=whsec_your_webhook_secret_here
+
+# Analytics and Tracking
+NEXT_PUBLIC_GOOGLE_ANALYTICS_ID=G-XXXXXXXXXX
+NEXT_PUBLIC_FACEBOOK_PIXEL_ID=XXXXXXXXXX
+NEXT_PUBLIC_TIKTOK_PIXEL_ID=XXXXXXXXXX
+
+# Social Media APIs
+NEXT_PUBLIC_TWITTER_API_KEY=your_twitter_api_key_here
+NEXT_PUBLIC_TWITTER_API_SECRET=your_twitter_api_secret_here
+NEXT_PUBLIC_INSTAGRAM_ACCESS_TOKEN=your_instagram_access_token_here
+NEXT_PUBLIC_LINKEDIN_CLIENT_ID=your_linkedin_client_id_here
+
+# Email Configuration
+NEXT_PUBLIC_SENDGRID_API_KEY=your_sendgrid_api_key_here
+NEXT_PUBLIC_EMAIL_FROM=noreply@kingdomcollective.pro
+
+# Database Configuration
+NEXT_PUBLIC_MONGODB_URI=your_mongodb_connection_string_here
+NEXT_PUBLIC_REDIS_URL=your_redis_connection_string_here
+
+# JWT Configuration
+JWT_SECRET=your_jwt_secret_here
+JWT_EXPIRES_IN=7d
+
+# App Configuration
+NEXT_PUBLIC_APP_URL=https://kingdomcollective.pro
+NEXT_PUBLIC_API_URL=https://api.kingdomcollective.pro
+NEXT_PUBLIC_STORE_URL=https://desitotrh.com
+
+# Subdomain Configuration
+NEXT_PUBLIC_APP_SUBDOMAIN=https://app.kingdomcollective.pro
+NEXT_PUBLIC_CLIPS_SUBDOMAIN=https://clips.kingdomcollective.pro
+NEXT_PUBLIC_VOICE_SUBDOMAIN=https://voice.kingdomcollective.pro
+NEXT_PUBLIC_LAUNCHPAD_SUBDOMAIN=https://launchpad.kingdomcollective.pro
+NEXT_PUBLIC_CIRCLE_SUBDOMAIN=https://circle.kingdomcollective.pro
+NEXT_PUBLIC_LENS_SUBDOMAIN=https://lens.kingdomcollective.pro
+NEXT_PUBLIC_MANTLE_SUBDOMAIN=https://mantle.kingdomcollective.pro
+NEXT_PUBLIC_CHATBOTS_SUBDOMAIN=https://chatbots.kingdomcollective.pro
+
+# Development Configuration
+NODE_ENV=development
+NEXT_PUBLIC_DEBUG_MODE=true 
