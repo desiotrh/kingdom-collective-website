@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 import Layout from '../components/Layout';
 import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
@@ -144,12 +145,12 @@ export default function Apps() {
                                     </div>
 
                                     <div className="mt-8 pt-6 border-t border-kingdom-gold/20">
-                                        <a
+                                        <Link
                                             href={`/pricing#${app.name.toLowerCase().replace(' ', '-')}`}
                                             className="button-secondary w-full text-center"
                                         >
                                             Learn More
-                                        </a>
+                                        </Link>
                                     </div>
                                 </div>
                             ))}
@@ -164,12 +165,12 @@ export default function Apps() {
                                 Choose the perfect plan for your needs and start building with purpose.
                             </p>
                             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                                <a href="/pricing" className="button-primary">
+                                <Link href="/pricing" className="button-primary">
                                     View Pricing
-                                </a>
-                                <a href="/store" className="button-secondary">
+                                </Link>
+                                <Link href="/store" className="button-secondary">
                                     Visit Store
-                                </a>
+                                </Link>
                             </div>
                         </div>
                     </div>

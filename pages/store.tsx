@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 import Layout from '../components/Layout';
 import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
@@ -196,9 +197,9 @@ export default function Store() {
                                 <a href="https://desitotrh.com" className="button-primary">
                                     Visit Store
                                 </a>
-                                <a href="/pricing" className="button-secondary">
+                                <Link href="/pricing" className="button-secondary">
                                     View Pricing
-                                </a>
+                                </Link>
                             </div>
                         </div>
                     </div>

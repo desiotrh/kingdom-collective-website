@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 import Layout from '../components/Layout';
 import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
@@ -78,7 +79,7 @@ export default function FAQ() {
                                 Still Have <span className="gold-accent">Questions?</span>
                             </h2>
                             <p className="text-gray-300 mb-8">
-                                Can't find what you're looking for? We're here to help.
+                                Can&apos;t find what you&apos;re looking for? We&apos;re here to help.
                             </p>
                             <div className="flex flex-col sm:flex-row gap-4 justify-center">
                                 <a
@@ -87,12 +88,12 @@ export default function FAQ() {
                                 >
                                     Contact Support
                                 </a>
-                                <a
+                                <Link
                                     href="/pricing"
                                     className="button-secondary"
                                 >
                                     View Pricing
-                                </a>
+                                </Link>
                             </div>
                         </div>
                     </div>
