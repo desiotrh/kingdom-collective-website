@@ -76,7 +76,7 @@ export default function Home() {
               Our <span className="text-blue-400">Apps</span>
             </h2>
             <p className="text-xl text-gray-300 mb-8 leading-relaxed max-w-3xl mx-auto">
-              Kingdom Collective is more than just a suite of apps—it's a movement
+              Kingdom Collective is more than just a suite of apps—it&apos;s a movement
               dedicated to empowering creators, entrepreneurs, and community builders
               to create with purpose, share with authority, and build what truly
               matters.
@@ -110,8 +110,8 @@ export default function Home() {
           <p className="text-lg text-gray-300 leading-relaxed">
             Our mission is to provide the tools, resources, and community support
             needed to help you make a lasting impact in your sphere of influence.
-            Whether you're creating content, building a business, or fostering
-            community, we're here to support your journey every step of the way.
+            Whether you&apos;re creating content, building a business, or fostering
+            community, we&apos;re here to support your journey every step of the way.
           </p>
         </div>
       </section>
