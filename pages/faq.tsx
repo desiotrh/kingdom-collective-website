@@ -46,12 +46,12 @@ export default function FAQ() {
 
             <div className="pt-16">
                 {/* Hero Section */}
-                <section className="py-20 px-4 sm:px-6 lg:px-8 navy-gradient">
+                <section className="py-20 px-4 sm:px-6 lg:px-8 ribbon-bg">
                     <div className="max-w-4xl mx-auto text-center">
-                        <h1 className="text-4xl sm:text-5xl font-playfair font-bold text-white mb-6">
+                        <h1 className="text-4xl sm:text-5xl font-playfair font-bold text-white mb-6 drop-shadow-lg">
                             Frequently Asked <span className="gold-accent">Questions</span>
                         </h1>
-                        <p className="text-xl text-gray-300">
+                        <p className="text-xl text-blue-200 drop-shadow-md">
                             Find answers to common questions about Kingdom Collective apps and services.
                         </p>
                     </div>

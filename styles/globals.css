@@ -74,4 +74,39 @@
         @apply absolute top-0 right-0 w-16 h-16 bg-gradient-to-br from-kingdom-gold to-kingdom-goldLight opacity-60;
         clip-path: polygon(0 0, 100% 0, 100% 100%, 0 70%);
     }
+
+    /* Ribbon Background Animation */
+    @keyframes wave {
+        0% {
+            background-position: 0 50%;
+        }
+
+        100% {
+            background-position: 100% 50%;
+        }
+    }
+
+    .ribbon-bg {
+        background: url('/blue-gold-wave.svg') repeat-x;
+        background-size: 1200px 200px;
+        animation: wave 30s linear infinite;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .ribbon-bg::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(135deg, rgba(20, 78, 156, 0.8) 0%, rgba(15, 31, 61, 0.9) 50%, rgba(10, 20, 40, 0.95) 100%);
+        z-index: 1;
+    }
+
+    .ribbon-bg>* {
+        position: relative;
+        z-index: 2;
+    }
 }

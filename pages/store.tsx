@@ -11,12 +11,12 @@ export default function Store() {
 
             <div className="pt-16">
                 {/* Hero Section */}
-                <section className="py-20 px-4 sm:px-6 lg:px-8 navy-gradient">
+                <section className="py-20 px-4 sm:px-6 lg:px-8 ribbon-bg">
                     <div className="max-w-6xl mx-auto text-center">
-                        <h1 className="text-4xl sm:text-5xl font-playfair font-bold text-white mb-6">
+                        <h1 className="text-4xl sm:text-5xl font-playfair font-bold text-white mb-6 drop-shadow-lg">
                             Kingdom <span className="gold-accent">Store</span>
                         </h1>
-                        <p className="text-xl text-gray-300 max-w-4xl mx-auto">
+                        <p className="text-xl text-blue-200 max-w-4xl mx-auto drop-shadow-md">
                             Discover exclusive products, courses, and resources designed to accelerate your creative journey
                             and help you build what truly matters.
                         </p>

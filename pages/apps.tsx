@@ -98,12 +98,12 @@ export default function Apps() {
 
             <div className="pt-16">
                 {/* Hero Section */}
-                <section className="py-20 px-4 sm:px-6 lg:px-8 navy-gradient">
+                <section className="py-20 px-4 sm:px-6 lg:px-8 ribbon-bg">
                     <div className="max-w-6xl mx-auto text-center">
-                        <h1 className="text-4xl sm:text-5xl font-playfair font-bold text-white mb-6">
+                        <h1 className="text-4xl sm:text-5xl font-playfair font-bold text-white mb-6 drop-shadow-lg">
                             Our <span className="gold-accent">Apps</span>
                         </h1>
-                        <p className="text-xl text-gray-300 max-w-4xl mx-auto">
+                        <p className="text-xl text-blue-200 max-w-4xl mx-auto drop-shadow-md">
                             A comprehensive ecosystem of tools designed to empower creators, entrepreneurs, and community builders
                             to create with purpose, share with authority, and build what truly matters.
                         </p>

@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 export default function Hero() {
     return (
-        <section className="relative min-h-screen flex items-center justify-center overflow-hidden navy-gradient">
+        <section className="relative min-h-screen flex items-center justify-center overflow-hidden ribbon-bg">
             {/* Animated Ribbon Background Elements */}
             <div className="ribbon-element ribbon-wave w-96 h-4 top-20 left-10 opacity-30"></div>
             <div className="ribbon-element ribbon-float w-64 h-3 top-40 right-20 opacity-25" style={{ animationDelay: '2s' }}></div>
@@ -20,12 +20,12 @@ export default function Hero() {
                 {/* Glowing Ribbon Behind Tagline */}
                 <div className="relative mb-8">
                     <div className="ribbon-element ribbon-wave w-full h-8 top-1/2 transform -translate-y-1/2 opacity-40"></div>
-                    <h1 className="relative text-5xl sm:text-7xl font-playfair font-bold text-white mb-6">
+                    <h1 className="relative text-5xl sm:text-7xl font-playfair font-bold text-white mb-6 drop-shadow-lg">
                         Kingdom <span className="glow-text">Collective</span>
                     </h1>
                 </div>
 
-                <p className="text-xl sm:text-2xl text-gray-300 mb-8 max-w-4xl mx-auto leading-relaxed">
+                <p className="text-xl sm:text-2xl text-blue-200 mb-8 max-w-4xl mx-auto leading-relaxed drop-shadow-md">
                     Create with Purpose. Share with Authority. Build What Matters.
                 </p>
 
