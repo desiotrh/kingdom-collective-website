@@ -12,9 +12,9 @@ export default function Footer() {
               <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center">
                 <div className="w-4 h-4 bg-blue-500 rounded-full"></div>
               </div>
-              <span className="text-white font-bold text-xl">Kingdom</span>
+              <span className="text-white font-bold text-xl">Kingdom Collective</span>
             </div>
-            <p className="text-gray-300 text-sm leading-relaxed max-w-md">
+            <p className="text-white text-sm leading-relaxed max-w-md">
               Empowering creators, entrepreneurs, and community builders to create
               with purpose, share with authority, and build what truly matters.
             </p>
@@ -27,7 +27,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/apps"
-                  className="text-gray-300 hover:text-blue-400 transition-colors duration-200 text-sm"
+                  className="text-white hover:text-blue-400 transition-colors duration-200 text-sm"
                 >
                   Apps
                 </Link>
@@ -35,7 +35,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/features"
-                  className="text-gray-300 hover:text-blue-400 transition-colors duration-200 text-sm"
+                  className="text-white hover:text-blue-400 transition-colors duration-200 text-sm"
                 >
                   Features
                 </Link>
@@ -43,7 +43,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/pricing"
-                  className="text-gray-300 hover:text-blue-400 transition-colors duration-200 text-sm"
+                  className="text-white hover:text-blue-400 transition-colors duration-200 text-sm"
                 >
                   Pricing
                 </Link>
@@ -58,7 +58,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/about"
-                  className="text-gray-300 hover:text-blue-400 transition-colors duration-200 text-sm"
+                  className="text-white hover:text-blue-400 transition-colors duration-200 text-sm"
                 >
                   About
                 </Link>
@@ -66,7 +66,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/mission"
-                  className="text-gray-300 hover:text-blue-400 transition-colors duration-200 text-sm"
+                  className="text-white hover:text-blue-400 transition-colors duration-200 text-sm"
                 >
                   Mission
                 </Link>
@@ -74,7 +74,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/contact"
-                  className="text-gray-300 hover:text-blue-400 transition-colors duration-200 text-sm"
+                  className="text-white hover:text-blue-400 transition-colors duration-200 text-sm"
                 >
                   Contact
                 </Link>
@@ -85,25 +85,25 @@ export default function Footer() {
 
         {/* Bottom Bar */}
         <div className="mt-12 pt-8 border-t border-gray-800/50 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-gray-400 text-sm">
+          <p className="text-white text-sm">
             © 2024 Kingdom Collective. All rights reserved.
           </p>
           <div className="flex space-x-6 mt-4 md:mt-0">
             <Link
               href="/privacy"
-              className="text-gray-400 hover:text-blue-400 transition-colors duration-200 text-sm"
+              className="text-white hover:text-blue-400 transition-colors duration-200 text-sm"
             >
               Privacy
             </Link>
             <Link
               href="/terms"
-              className="text-gray-400 hover:text-blue-400 transition-colors duration-200 text-sm"
+              className="text-white hover:text-blue-400 transition-colors duration-200 text-sm"
             >
               Terms
             </Link>
             <Link
               href="/cookies"
-              className="text-gray-400 hover:text-blue-400 transition-colors duration-200 text-sm"
+              className="text-white hover:text-blue-400 transition-colors duration-200 text-sm"
             >
               Cookies
             </Link>

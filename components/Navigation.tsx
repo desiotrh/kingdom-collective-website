@@ -14,7 +14,7 @@ export default function Navigation() {
               <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center">
                 <div className="w-4 h-4 bg-blue-500 rounded-full"></div>
               </div>
-              <span className="text-white font-bold text-xl">Kingdom</span>
+              <span className="text-white font-bold text-xl">Kingdom Collective</span>
             </Link>
           </div>
 

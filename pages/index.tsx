@@ -53,12 +53,21 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-black relative overflow-hidden">
-      {/* Animated Background Elements */}
+      {/* Animated Background Elements with 3D shapes */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-full">
+          {/* 3D Glowing Orbs */}
           <div className="absolute top-20 left-10 w-72 h-72 bg-blue-500/20 rounded-full blur-3xl animate-pulse"></div>
           <div className="absolute top-40 right-20 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
           <div className="absolute bottom-20 left-1/4 w-80 h-80 bg-pink-500/20 rounded-full blur-3xl animate-pulse delay-2000"></div>
+          
+          {/* 3D Geometric Shapes */}
+          <div className="absolute top-1/4 right-1/3 w-64 h-64 bg-gradient-to-br from-blue-400/30 to-purple-600/30 transform rotate-45 animate-pulse delay-500"></div>
+          <div className="absolute bottom-1/3 left-1/4 w-48 h-48 bg-gradient-to-tr from-purple-400/30 to-pink-600/30 transform -rotate-12 animate-pulse delay-1500"></div>
+          
+          {/* Floating 3D Elements */}
+          <div className="absolute top-1/2 left-1/2 w-32 h-32 bg-gradient-to-r from-blue-500/20 to-cyan-500/20 transform rotate-12 animate-float"></div>
+          <div className="absolute top-1/3 right-1/4 w-24 h-24 bg-gradient-to-l from-purple-500/20 to-pink-500/20 transform -rotate-45 animate-float delay-1000"></div>
         </div>
       </div>
 
@@ -75,7 +84,7 @@ export default function Home() {
             <h2 className="text-4xl sm:text-5xl font-bold text-white mb-6">
               Our <span className="text-blue-400">Apps</span>
             </h2>
-            <p className="text-xl text-gray-300 mb-8 leading-relaxed max-w-3xl mx-auto">
+            <p className="text-xl text-white mb-8 leading-relaxed max-w-3xl mx-auto">
               Kingdom Collective is more than just a suite of apps—it&apos;s a movement
               dedicated to empowering creators, entrepreneurs, and community builders
               to create with purpose, share with authority, and build what truly
@@ -107,7 +116,7 @@ export default function Home() {
           <h2 className="text-4xl font-bold text-white mb-8">
             About <span className="text-blue-400">Kingdom Collective</span>
           </h2>
-          <p className="text-lg text-gray-300 leading-relaxed">
+          <p className="text-lg text-white leading-relaxed">
             Our mission is to provide the tools, resources, and community support
             needed to help you make a lasting impact in your sphere of influence.
             Whether you&apos;re creating content, building a business, or fostering
@@ -123,7 +132,7 @@ export default function Home() {
             <h2 className="text-4xl font-bold text-white mb-6">
               Visit Our <span className="text-blue-400">Store</span>
             </h2>
-            <p className="text-xl text-gray-300 mb-8">
+            <p className="text-xl text-white mb-8">
               Discover exclusive products, courses, and resources to enhance your
               creative journey.
             </p>

@@ -5,8 +5,8 @@ export default function Hero() {
     <section className="relative z-10 min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8">
       <div className="max-w-4xl mx-auto text-center">
         {/* Small headline */}
-        <p className="text-sm text-gray-400 mb-4 uppercase tracking-wider">
-          BUILD A NO-CODE AI APP IN MINUTES
+        <p className="text-sm text-white mb-4 uppercase tracking-wider">
+          BUILD WITH THE HOLY SPIRIT
         </p>
 
         {/* Main title */}
@@ -36,13 +36,6 @@ export default function Hero() {
               </svg>
             </div>
           </div>
-        </div>
-
-        {/* Video demo link */}
-        <div className="mt-12">
-          <button className="text-white hover:text-blue-400 transition-colors duration-200 text-sm">
-            Play Video Demo
-          </button>
         </div>
       </div>
     </section>
