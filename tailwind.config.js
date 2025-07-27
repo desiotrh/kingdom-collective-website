@@ -8,6 +8,12 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        // Design system colors
+        navy: '#0b1120',
+        blue: '#1e3a8a',
+        'electric-blue': '#3b82f6',
+        gold: '#fcd34d',
+        gray: '#d1d5db',
         // Modern color palette
         primary: {
           50: '#eff6ff',
@@ -36,6 +42,7 @@ module.exports = {
       },
       fontFamily: {
         sans: ['Inter', 'sans-serif'],
+        playfair: ['Playfair Display', 'serif'],
       },
       animation: {
         'fade-in': 'fadeIn 0.5s ease-in-out',

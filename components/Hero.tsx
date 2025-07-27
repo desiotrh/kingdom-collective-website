@@ -2,41 +2,23 @@ import React from 'react';
 
 export default function Hero() {
   return (
-    <section className="relative z-10 min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8">
-      <div className="max-w-4xl mx-auto text-center">
-        {/* Small headline */}
-        <p className="text-sm text-white mb-4 uppercase tracking-wider">
-          BUILD WITH THE HOLY SPIRIT
-        </p>
-
-        {/* Main title */}
-        <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white mb-8 leading-tight">
-          A new way to think and create with computers
+    <section className="flex justify-center items-center h-screen bg-navy text-white relative text-center px-8">
+      {/* Background overlay */}
+      <div className="absolute inset-0 bg-navy/60 backdrop-blur-sm"></div>
+      
+      {/* Hero content */}
+      <div className="relative z-10 max-w-4xl">
+        <h1 className="text-5xl sm:text-6xl lg:text-7xl font-playfair font-bold text-white mb-6 leading-tight">
+          Create with Purpose. Share with Authority. Build What Matters.
         </h1>
-
-        {/* Call to action bar */}
-        <div className="max-w-md mx-auto">
-          <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg p-4 flex items-center justify-between">
-            <span className="text-white text-sm">
-              You will receive confirmation by email.
-            </span>
-            <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center">
-              <svg
-                className="w-4 h-4 text-white"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M5 13l4 4L19 7"
-                />
-              </svg>
-            </div>
-          </div>
-        </div>
+        
+        <p className="text-xl sm:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto">
+          Empowering digital creators to lead with boldness and build what lasts.
+        </p>
+        
+        <button className="px-8 py-4 text-lg bg-transparent border-2 border-gold text-gold rounded-lg transition-all duration-300 hover:bg-gold hover:text-black shadow-lg shadow-gold/20 hover:shadow-gold/40 font-semibold">
+          Get Early Access
+        </button>
       </div>
     </section>
   );
