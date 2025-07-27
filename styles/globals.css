@@ -11,7 +11,7 @@
 
     body {
         font-family: 'Inter', sans-serif;
-        background: linear-gradient(135deg, #0a1428 0%, #0f1f3d 50%, #144e9c 100%);
+        background-color: #0a0a0f;
         color: #ffffff;
     }
 }
@@ -59,7 +59,7 @@
     }
 
     .premium-card {
-        @apply bg-gradient-to-br from-kingdom-darker/80 to-kingdom-dark/80 backdrop-blur-sm border border-kingdom-gold/20 rounded-2xl;
+        @apply bg-kingdom-darker border border-kingdom-dark/30 rounded-xl shadow-lg shadow-kingdom-gold/8 transition-all duration-300 hover:bg-kingdom-dark hover:shadow-kingdom-gold/30;
     }
 
     .navy-gradient {
@@ -75,38 +75,55 @@
         clip-path: polygon(0 0, 100% 0, 100% 100%, 0 70%);
     }
 
-    /* Ribbon Background Animation */
-    @keyframes wave {
+    /* Improved Ribbon Background Animation */
+    @keyframes flow {
         0% {
-            background-position: 0 50%;
+            left: -50%;
         }
 
         100% {
-            background-position: 100% 50%;
+            left: 0%;
         }
     }
 
     .ribbon-bg {
-        background: url('/blue-gold-wave.svg') repeat-x;
-        background-size: 1200px 200px;
-        animation: wave 30s linear infinite;
         position: relative;
         overflow: hidden;
+        background: linear-gradient(to bottom right, #0a0a0f, #11183c);
     }
 
     .ribbon-bg::before {
         content: '';
         position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: linear-gradient(135deg, rgba(20, 78, 156, 0.8) 0%, rgba(15, 31, 61, 0.9) 50%, rgba(10, 20, 40, 0.95) 100%);
-        z-index: 1;
+        width: 200%;
+        height: 300px;
+        background: linear-gradient(90deg, #144e9c, #f1c376, #144e9c);
+        top: -100px;
+        left: -50%;
+        opacity: 0.07;
+        transform: rotate(-8deg);
+        animation: flow 20s linear infinite;
     }
 
     .ribbon-bg>* {
         position: relative;
         z-index: 2;
+    }
+
+    /* Dark theme colors */
+    .dark-card {
+        @apply bg-kingdom-darker border border-kingdom-dark/30 rounded-xl shadow-lg shadow-kingdom-gold/8;
+    }
+
+    .dark-card:hover {
+        @apply bg-kingdom-dark shadow-kingdom-gold/30;
+    }
+
+    .text-glow {
+        text-shadow: 0 0 12px #144e9c;
+    }
+
+    .text-soft-blue {
+        @apply text-blue-200;
     }
 }

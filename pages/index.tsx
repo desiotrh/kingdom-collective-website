@@ -10,42 +10,42 @@ export default function Home() {
     const apps = [
         {
             title: 'Kingdom Studios',
-            description: 'Professional video creation and editing suite with AI-powered tools for content creators.',
+            description: 'Content & creator hub for faith-driven visionaries.',
             icon: '🎬',
             color: 'kingdom-gold',
             href: '/apps#kingdom-studios'
         },
         {
             title: 'Kingdom Clips',
-            description: 'Short-form video creation and social media content management platform.',
+            description: 'AI video editing for Reels, Shorts, and TikTok.',
             icon: '📱',
             color: 'kingdom-gold',
             href: '/apps#kingdom-clips'
         },
         {
             title: 'Kingdom Voice',
-            description: 'Audio recording, podcasting, and voice-over creation with AI enhancement.',
+            description: 'Healing, journaling, and Holy Spirit-led expression.',
             icon: '🎤',
             color: 'kingdom-gold',
             href: '/apps#kingdom-voice'
         },
         {
             title: 'Kingdom Launchpad',
-            description: 'Business launch and growth platform with tools for entrepreneurs and startups.',
+            description: 'Digital product launch tools rooted in wisdom.',
             icon: '🚀',
             color: 'kingdom-gold',
             href: '/apps#kingdom-launchpad'
         },
         {
             title: 'Kingdom Circle',
-            description: 'Community building and engagement platform for creators and their audiences.',
+            description: 'Mentorship and Kingdom community at your fingertips.',
             icon: '👥',
             color: 'kingdom-gold',
             href: '/apps#kingdom-circle'
         },
         {
             title: 'Kingdom Lens',
-            description: 'Photography and visual content creation with advanced editing capabilities.',
+            description: 'Photography and planning for creatives of faith.',
             icon: '📸',
             color: 'kingdom-gold',
             href: '/apps#kingdom-lens'
@@ -64,7 +64,7 @@ export default function Home() {
                         <h2 className="text-4xl sm:text-5xl font-playfair font-bold text-white mb-6">
                             Our <span className="gold-accent">Apps</span>
                         </h2>
-                        <p className="text-xl text-gray-300 mb-8 leading-relaxed">
+                        <p className="text-xl text-soft-blue mb-8 leading-relaxed">
                             Kingdom Collective is more than just a suite of apps—it&apos;s a movement dedicated to empowering
                             creators, entrepreneurs, and community builders to create with purpose, share with authority,
                             and build what truly matters.
@@ -87,7 +87,7 @@ export default function Home() {
             </section>
 
             {/* About Section */}
-            <section id="about" className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-kingdom-darker to-kingdom-dark">
+            <section id="about" className="py-20 px-4 sm:px-6 lg:px-8 bg-kingdom-darker">
                 <div className="max-w-4xl mx-auto text-center">
                     <h2 className="text-4xl font-playfair font-bold text-white mb-8">
                         About <span className="gold-accent">Kingdom Collective</span>
@@ -107,12 +107,12 @@ export default function Home() {
                         <h2 className="text-4xl font-playfair font-bold text-white mb-6">
                             Visit Our <span className="gold-accent">Store</span>
                         </h2>
-                        <p className="text-xl text-gray-300 mb-8">
+                        <p className="text-xl text-soft-blue mb-8">
                             Discover exclusive products, courses, and resources to enhance your creative journey.
                         </p>
                     </div>
 
-                    <div className="bg-gradient-to-br from-kingdom-darker/80 to-kingdom-dark/80 backdrop-blur-sm border border-kingdom-gold/20 rounded-2xl p-8">
+                    <div className="dark-card p-8">
                         <iframe
                             src="https://desitotrh.com"
                             className="w-full h-96 rounded-lg"
