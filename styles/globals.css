@@ -1,9 +1,8 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
 
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
 
 @layer base {
     html {
@@ -11,32 +10,68 @@
     }
 
     body {
-        @apply bg-kingdom-dark text-white font-inter;
+        font-family: 'Inter', sans-serif;
+        background: linear-gradient(135deg, #0a1428 0%, #0f1f3d 50%, #144e9c 100%);
+        color: #ffffff;
     }
 }
 
 @layer components {
     .glow-text {
-        @apply text-kingdom-royal animate-glow;
+        @apply text-kingdom-gold animate-glow;
     }
 
     .glow-border {
-        @apply border border-kingdom-royal/30 animate-glow;
+        @apply border border-kingdom-gold/30 animate-glow;
     }
 
     .gradient-bg {
-        background: linear-gradient(135deg, #1e3a8a 0%, #1e293b 50%, #0f172a 100%);
+        background: linear-gradient(135deg, #144e9c 0%, #0f1f3d 50%, #0a1428 100%);
     }
 
     .card-hover {
-        @apply transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-kingdom-royal/20;
+        @apply transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-kingdom-gold/20;
     }
 
     .button-primary {
-        @apply bg-gradient-to-r from-kingdom-royal to-kingdom-blue text-white px-8 py-3 rounded-full font-semibold hover:shadow-lg hover:shadow-kingdom-royal/30 transition-all duration-300;
+        @apply bg-gradient-to-r from-kingdom-gold to-kingdom-goldDark text-kingdom-dark px-8 py-3 rounded-full font-semibold hover:shadow-lg hover:shadow-kingdom-gold/30 transition-all duration-300;
     }
 
     .button-secondary {
         @apply border-2 border-kingdom-gold text-kingdom-gold px-8 py-3 rounded-full font-semibold hover:bg-kingdom-gold hover:text-kingdom-dark transition-all duration-300;
+    }
+
+    .ribbon-element {
+        @apply absolute bg-gradient-to-r from-kingdom-gold to-kingdom-goldLight opacity-20;
+        clip-path: polygon(0 0, 100% 0, 95% 100%, 5% 100%);
+    }
+
+    .ribbon-wave {
+        @apply animate-ribbon-wave;
+    }
+
+    .ribbon-slide {
+        @apply animate-ribbon-slide;
+    }
+
+    .ribbon-float {
+        @apply animate-ribbon-float;
+    }
+
+    .premium-card {
+        @apply bg-gradient-to-br from-kingdom-darker/80 to-kingdom-dark/80 backdrop-blur-sm border border-kingdom-gold/20 rounded-2xl;
+    }
+
+    .navy-gradient {
+        background: linear-gradient(135deg, #144e9c 0%, #1e3a8a 50%, #0f1f3d 100%);
+    }
+
+    .gold-accent {
+        @apply text-kingdom-gold;
+    }
+
+    .ribbon-corner {
+        @apply absolute top-0 right-0 w-16 h-16 bg-gradient-to-br from-kingdom-gold to-kingdom-goldLight opacity-60;
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 70%);
     }
 }
