@@ -1,35 +1,50 @@
 import React from 'react';
-import Link from 'next/link';
 
 export default function Hero() {
-    return (
-        <section className="relative min-h-screen flex items-center justify-center overflow-hidden ribbon-bg">
-            {/* Main Content */}
-            <div className="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
-                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-playfair font-bold text-kingdom-gold mb-6 text-glow">
-                    Kingdom Collective
-                </h1>
+  return (
+    <section className="relative z-10 min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8">
+      <div className="max-w-4xl mx-auto text-center">
+        {/* Small headline */}
+        <p className="text-sm text-gray-400 mb-4 uppercase tracking-wider">
+          BUILD A NO-CODE AI APP IN MINUTES
+        </p>
 
-                <p className="text-xl sm:text-2xl text-soft-blue mb-8 max-w-4xl mx-auto leading-relaxed">
-                    Create with Purpose. Share with Authority. Build What Matters.
-                </p>
+        {/* Main title */}
+        <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white mb-8 leading-tight">
+          A new way to think and create with computers
+        </h1>
 
-                <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                    <Link href="/apps" className="button-primary">
-                        Explore Our Apps
-                    </Link>
-                    <Link href="/pricing" className="button-secondary">
-                        View Pricing
-                    </Link>
-                </div>
-
-                {/* Scroll Indicator */}
-                <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-                    <div className="w-6 h-10 border-2 border-kingdom-gold/50 rounded-full flex justify-center">
-                        <div className="w-1 h-3 bg-kingdom-gold rounded-full mt-2 animate-pulse"></div>
-                    </div>
-                </div>
+        {/* Call to action bar */}
+        <div className="max-w-md mx-auto">
+          <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg p-4 flex items-center justify-between">
+            <span className="text-white text-sm">
+              You will receive confirmation by email.
+            </span>
+            <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center">
+              <svg
+                className="w-4 h-4 text-white"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M5 13l4 4L19 7"
+                />
+              </svg>
             </div>
-        </section>
-    );
+          </div>
+        </div>
+
+        {/* Video demo link */}
+        <div className="mt-12">
+          <button className="text-white hover:text-blue-400 transition-colors duration-200 text-sm">
+            Play Video Demo
+          </button>
+        </div>
+      </div>
+    </section>
+  );
 } 

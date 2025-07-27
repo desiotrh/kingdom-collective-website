@@ -1,46 +1,60 @@
 import React from 'react';
+import Link from 'next/link';
 
 interface AppCardProps {
-    title: string;
-    description: string;
-    icon: string;
-    color: string;
-    href: string;
+  title: string;
+  description: string;
+  icon: string;
+  color: string;
+  href: string;
 }
 
-export default function AppCard({ title, description, icon, color, href }: AppCardProps) {
-    const CardContent = () => (
-        <div className="relative p-6 dark-card card-hover group">
-            {/* Content */}
-            <div className="relative z-10">
-                {/* Icon */}
-                <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-kingdom-gold to-kingdom-goldDark flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
-                    <span className="text-2xl">{icon}</span>
-                </div>
-
-                {/* Title */}
-                <h3 className="text-xl font-playfair font-semibold text-white mb-3 group-hover:text-kingdom-gold transition-colors duration-300">
-                    {title}
-                </h3>
-
-                {/* Description */}
-                <p className="text-gray-400 text-sm leading-relaxed mb-4">
-                    {description}
-                </p>
-
-                {/* Arrow */}
-                <div className="absolute top-6 right-6 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-2 group-hover:translate-x-0">
-                    <svg className="w-5 h-5 text-kingdom-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                    </svg>
-                </div>
-            </div>
+export default function AppCard({
+  title,
+  description,
+  icon,
+  color,
+  href,
+}: AppCardProps) {
+  return (
+    <Link href={href}>
+      <div className="group relative bg-black/30 backdrop-blur-sm border border-gray-800/50 rounded-xl p-6 hover:bg-black/50 hover:border-gray-700/50 transition-all duration-300 hover:scale-105">
+        {/* Glow effect on hover */}
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+        
+        <div className="relative z-10">
+          {/* Icon */}
+          <div className="text-4xl mb-4">{icon}</div>
+          
+          {/* Title */}
+          <h3 className="text-xl font-bold text-white mb-3 group-hover:text-blue-400 transition-colors duration-200">
+            {title}
+          </h3>
+          
+          {/* Description */}
+          <p className="text-gray-300 leading-relaxed">
+            {description}
+          </p>
+          
+          {/* Arrow indicator */}
+          <div className="mt-4 flex items-center text-blue-400 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+            <span className="text-sm font-medium">Learn more</span>
+            <svg
+              className="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform duration-200"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M9 5l7 7-7 7"
+              />
+            </svg>
+          </div>
         </div>
-    );
-
-    return (
-        <a href={href} className="block">
-            <CardContent />
-        </a>
-    );
+      </div>
+    </Link>
+  );
 } 

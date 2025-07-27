@@ -2,128 +2,82 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
 @layer base {
-    html {
-        scroll-behavior: smooth;
-    }
+  html {
+    scroll-behavior: smooth;
+  }
 
-    body {
-        font-family: 'Inter', sans-serif;
-        background-color: #0a0a0f;
-        color: #ffffff;
-    }
+  body {
+    font-family: 'Inter', sans-serif;
+    background-color: #000000;
+    color: #ffffff;
+  }
 }
 
 @layer components {
-    .glow-text {
-        @apply text-kingdom-gold animate-glow;
-    }
+  /* Glassmorphism effects */
+  .glass {
+    @apply bg-white/10 backdrop-blur-sm border border-white/20;
+  }
 
-    .glow-border {
-        @apply border border-kingdom-gold/30 animate-glow;
-    }
+  .glass-dark {
+    @apply bg-black/30 backdrop-blur-sm border border-gray-800/50;
+  }
 
-    .gradient-bg {
-        background: linear-gradient(135deg, #144e9c 0%, #0f1f3d 50%, #0a1428 100%);
-    }
+  /* Glow effects */
+  .glow-blue {
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+  }
 
-    .card-hover {
-        @apply transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-kingdom-gold/20;
-    }
+  .glow-purple {
+    box-shadow: 0 0 20px rgba(147, 51, 234, 0.3);
+  }
 
-    .button-primary {
-        @apply bg-gradient-to-r from-kingdom-gold to-kingdom-goldDark text-kingdom-dark px-8 py-3 rounded-full font-semibold hover:shadow-lg hover:shadow-kingdom-gold/30 transition-all duration-300;
-    }
+  /* Button styles */
+  .btn-primary {
+    @apply bg-white text-black px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors duration-200;
+  }
 
-    .button-secondary {
-        @apply border-2 border-kingdom-gold text-kingdom-gold px-8 py-3 rounded-full font-semibold hover:bg-kingdom-gold hover:text-kingdom-dark transition-all duration-300;
-    }
+  .btn-secondary {
+    @apply border border-white/20 text-white px-6 py-3 rounded-lg font-semibold hover:bg-white/10 transition-colors duration-200;
+  }
 
-    .ribbon-element {
-        @apply absolute bg-gradient-to-r from-kingdom-gold to-kingdom-goldLight opacity-20;
-        clip-path: polygon(0 0, 100% 0, 95% 100%, 5% 100%);
-    }
+  /* Card styles */
+  .card-hover {
+    @apply transition-all duration-300 hover:scale-105 hover:shadow-lg;
+  }
 
-    .ribbon-wave {
-        @apply animate-ribbon-wave;
-    }
+  /* Text styles */
+  .text-gradient {
+    @apply bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent;
+  }
 
-    .ribbon-slide {
-        @apply animate-ribbon-slide;
-    }
+  /* Animation delays */
+  .delay-1000 {
+    animation-delay: 1s;
+  }
 
-    .ribbon-float {
-        @apply animate-ribbon-float;
-    }
+  .delay-2000 {
+    animation-delay: 2s;
+  }
+}
 
-    .premium-card {
-        @apply bg-kingdom-darker border border-kingdom-dark/30 rounded-xl shadow-lg shadow-kingdom-gold/8 transition-all duration-300 hover:bg-kingdom-dark hover:shadow-kingdom-gold/30;
-    }
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
 
-    .navy-gradient {
-        background: linear-gradient(135deg, #144e9c 0%, #1e3a8a 50%, #0f1f3d 100%);
-    }
+::-webkit-scrollbar-track {
+  background: #000000;
+}
 
-    .gold-accent {
-        @apply text-kingdom-gold;
-    }
+::-webkit-scrollbar-thumb {
+  background: #333333;
+  border-radius: 4px;
+}
 
-    .ribbon-corner {
-        @apply absolute top-0 right-0 w-16 h-16 bg-gradient-to-br from-kingdom-gold to-kingdom-goldLight opacity-60;
-        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 70%);
-    }
-
-    /* Improved Ribbon Background Animation */
-    @keyframes flow {
-        0% {
-            left: -50%;
-        }
-
-        100% {
-            left: 0%;
-        }
-    }
-
-    .ribbon-bg {
-        position: relative;
-        overflow: hidden;
-        background: linear-gradient(to bottom right, #0a0a0f, #11183c);
-    }
-
-    .ribbon-bg::before {
-        content: '';
-        position: absolute;
-        width: 200%;
-        height: 300px;
-        background: linear-gradient(90deg, #144e9c, #f1c376, #144e9c);
-        top: -100px;
-        left: -50%;
-        opacity: 0.07;
-        transform: rotate(-8deg);
-        animation: flow 20s linear infinite;
-    }
-
-    .ribbon-bg>* {
-        position: relative;
-        z-index: 2;
-    }
-
-    /* Dark theme colors */
-    .dark-card {
-        @apply bg-kingdom-darker border border-kingdom-dark/30 rounded-xl shadow-lg shadow-kingdom-gold/8;
-    }
-
-    .dark-card:hover {
-        @apply bg-kingdom-dark shadow-kingdom-gold/30;
-    }
-
-    .text-glow {
-        text-shadow: 0 0 12px #144e9c;
-    }
-
-    .text-soft-blue {
-        @apply text-blue-200;
-    }
+::-webkit-scrollbar-thumb:hover {
+  background: #555555;
 }
