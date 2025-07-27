@@ -15,7 +15,8 @@ import { Ionicons } from '@expo/vector-icons';
 import { useAppNavigation } from '../utils/navigationUtils';
 import { useDualMode } from '../contexts/DualModeContext';
 import { useAuth } from '../contexts/AuthContext';
-import { KingdomColors, KingdomShadows } from '../constants/KingdomColors';
+import { KingdomColors } from '../constants/KingdomColors';
+import { KingdomShadows } from '../constants/KingdomShadows';
 import KingdomLogo from '../components/KingdomLogo';
 import ModeToggle from '../components/ModeToggle';
 
@@ -77,7 +78,7 @@ const TierSystemScreen: React.FC = () => {
         },
         {
           category: currentMode === 'faith' ? 'Kingdom Features' : 'Community Features',
-          items: currentMode === 'faith' 
+          items: currentMode === 'faith'
             ? ['Access to scripture database', 'Faith-based templates', 'Prayer request feature']
             : ['Community access', 'Inspirational quotes', 'Motivation tracker']
         }
@@ -125,7 +126,7 @@ const TierSystemScreen: React.FC = () => {
         },
         {
           category: currentMode === 'faith' ? 'Kingdom Features' : 'Premium Features',
-          items: currentMode === 'faith' 
+          items: currentMode === 'faith'
             ? ['Full scripture integration', 'Prophetic word generator', 'Kingdom declaration templates', 'Faith-based business tools']
             : ['Advanced motivational content', 'Success mindset tools', 'Goal tracking', 'Inspiration library']
         }
@@ -168,7 +169,7 @@ const TierSystemScreen: React.FC = () => {
         },
         {
           category: currentMode === 'faith' ? 'Kingdom Leadership' : 'Elite Features',
-          items: currentMode === 'faith' 
+          items: currentMode === 'faith'
             ? ['Ministry management tools', 'Discipleship pathways', 'Kingdom business automation', 'Prophetic content AI', 'Church growth tools']
             : ['Mentorship platform', 'Advanced coaching tools', 'Success automation', 'Elite community access', 'Personal branding suite']
         }
@@ -211,7 +212,7 @@ const TierSystemScreen: React.FC = () => {
         },
         {
           category: currentMode === 'faith' ? 'Kingdom Organization' : 'Enterprise Management',
-          items: currentMode === 'faith' 
+          items: currentMode === 'faith'
             ? ['Multi-ministry management', 'Kingdom impact tracking', 'Organizational discipleship', 'Corporate prayer tools', 'Kingdom business suite']
             : ['Multi-brand management', 'Enterprise coaching', 'Organization-wide analytics', 'Advanced mentorship', 'Corporate success tools']
         }
@@ -223,7 +224,7 @@ const TierSystemScreen: React.FC = () => {
 
   const handlePlanSelect = (planId: string) => {
     setSelectedPlan(planId);
-    
+
     if (planId === 'free') {
       // Handle free plan
       handleSubscribe(planId);
@@ -261,7 +262,7 @@ const TierSystemScreen: React.FC = () => {
     try {
       // Update user tier
       await setUserTier(planId as 'free' | 'creator' | 'pro' | 'business');
-      
+
       Alert.alert(
         'Success!',
         `You've successfully upgraded to ${tierPlans.find(p => p.id === planId)?.name}!`,
@@ -393,7 +394,7 @@ const TierSystemScreen: React.FC = () => {
             >
               <Ionicons name="arrow-back" size={24} color="#FFFFFF" />
             </TouchableOpacity>
-            
+
             <View style={styles.headerContent}>
               <KingdomLogo size="small" />
               <Text style={styles.headerTitle}>
@@ -446,8 +447,8 @@ const TierSystemScreen: React.FC = () => {
           </View>
 
           {/* Tier Cards */}
-          <ScrollView 
-            horizontal 
+          <ScrollView
+            horizontal
             showsHorizontalScrollIndicator={false}
             style={styles.tierCardsContainer}
             contentContainerStyle={styles.tierCardsContent}
@@ -464,7 +465,7 @@ const TierSystemScreen: React.FC = () => {
                 '🚀 All plans include creator support and community access'
               )}
             </Text>
-            <TouchableOpacity 
+            <TouchableOpacity
               style={styles.faqButton}
               onPress={() => navigation.navigate('FAQ')}
             >

@@ -20,12 +20,13 @@ import { useFaithMode } from '../contexts/FaithModeContext';
 import { useDualMode } from '../contexts/DualModeContext';
 import { useAuth } from '../contexts/AuthContext';
 import { useTierSystem } from '../contexts/TierSystemContext';
-import { KingdomColors, KingdomShadows } from '../constants/KingdomColors';
+import { KingdomColors } from '../constants/KingdomColors';
+import { KingdomShadows } from '../constants/KingdomShadows';
 import KingdomLogo from '../components/KingdomLogo';
 import ModeToggle from '../components/ModeToggle';
-import backendAPI, { 
-  type ContentGenerationRequest, 
-  type ContentGenerationResponse 
+import backendAPI, {
+  type ContentGenerationRequest,
+  type ContentGenerationResponse
 } from '../services/backendAPI';
 import { contentService } from '../services/contentService';
 import { AnalyticsService } from '../services/AnalyticsService';
@@ -122,13 +123,13 @@ const ContentGeneratorScreen = () => {
   const navigation = useAppNavigation();
   const { faithMode } = useFaithMode();
   const { user } = useAuth();
-  const { 
-    currentTier, 
-    tierFeatures, 
-    checkFeatureAccess, 
-    trackUsage, 
+  const {
+    currentTier,
+    tierFeatures,
+    checkFeatureAccess,
+    trackUsage,
     getUsageStats,
-    isTrialActive 
+    isTrialActive
   } = useTierSystem();
 
   // Content generation state
@@ -151,7 +152,7 @@ const ContentGeneratorScreen = () => {
   const [selectedTemplate, setSelectedTemplate] = useState<ContentTemplate | null>(null);
   const [showTemplates, setShowTemplates] = useState(false);
   const [customPrompt, setCustomPrompt] = useState('');
-  
+
   // Enhanced generation options
   const [selectedTone, setSelectedTone] = useState<string>('inspirational');
   const [selectedLength, setSelectedLength] = useState<string>('medium');
@@ -184,7 +185,7 @@ const ContentGeneratorScreen = () => {
       setShowUpgradeModal(true);
       return false;
     }
-    
+
     await trackUsage('content_generator', action);
     await loadUsageStats();
     return true;
@@ -208,11 +209,11 @@ const ContentGeneratorScreen = () => {
     try {
       // Use the backend API to get templates
       const allTemplates = await backendAPI.getContentTemplates();
-      
+
       // Filter by faith mode and platform
       let filteredTemplates = allTemplates;
       if (faithMode) {
-        filteredTemplates = allTemplates.filter(t => 
+        filteredTemplates = allTemplates.filter(t =>
           t.category === 'faith' || t.category === 'business' || t.category === 'inspiration'
         );
       }
@@ -231,7 +232,7 @@ const ContentGeneratorScreen = () => {
       })));
     } catch (error) {
       console.error('Failed to load templates from API, using fallback:', error);
-      
+
       // Fallback to mock templates
       const mockTemplates: ContentTemplate[] = [
         {
@@ -324,11 +325,10 @@ const ContentGeneratorScreen = () => {
       });
 
       // Create enhanced content generation request
-      const basePrompt = customPrompt || selectedTemplate?.prompt || 
-        `Generate a ${type} for the product "${selectedProduct.title}" priced at ${selectedProduct.price}. ${
-          faithMode 
-            ? 'Include faith-based and inspirational messaging that aligns with Christian values and biblical principles.'
-            : 'Create inspiring, engaging, and conversion-focused content.'
+      const basePrompt = customPrompt || selectedTemplate?.prompt ||
+        `Generate a ${type} for the product "${selectedProduct.title}" priced at ${selectedProduct.price}. ${faithMode
+          ? 'Include faith-based and inspirational messaging that aligns with Christian values and biblical principles.'
+          : 'Create inspiring, engaging, and conversion-focused content.'
         }`;
 
       const contentRequest: ContentGenerationRequest = {
@@ -356,7 +356,7 @@ const ContentGeneratorScreen = () => {
             customPrompt: customPrompt || undefined,
             faithMode: faithMode,
           });
-          
+
           // Convert to expected format from API response
           response = enterpriseResponse.data;
         } else {
@@ -392,7 +392,7 @@ const ContentGeneratorScreen = () => {
       });
     } catch (error) {
       const errorMessage = error instanceof Error ? error.message : 'Failed to generate content';
-      
+
       setContentGeneration({
         isLoading: false,
         error: errorMessage,
@@ -531,7 +531,7 @@ const ContentGeneratorScreen = () => {
                     Generating {contentType === 'reelIdea' ? 'reel idea' : contentType}...
                   </Text>
                   <Text style={styles.loadingSubtext}>
-                    {faithMode 
+                    {faithMode
                       ? "Creating faith-inspired content for you..."
                       : "Creating inspiring content for you..."
                     }
@@ -565,7 +565,7 @@ const ContentGeneratorScreen = () => {
                   </Text>
                   <ScrollView style={styles.contentScrollView}>
                     <Text style={styles.generatedText}>{contentGeneration.content.content}</Text>
-                    
+
                     {/* Show metadata if available */}
                     {contentGeneration.content.metadata && Object.keys(contentGeneration.content.metadata).length > 0 && (
                       <View style={styles.metadataContainer}>
@@ -585,7 +585,7 @@ const ContentGeneratorScreen = () => {
                     >
                       <Text style={styles.favoriteButtonText}>⭐ Add to Favorites</Text>
                     </TouchableOpacity>
-                    
+
                     {/* Content Refinement Options */}
                     <View style={styles.refinementSection}>
                       <Text style={styles.refinementLabel}>Refine Content:</Text>
@@ -616,7 +616,7 @@ const ContentGeneratorScreen = () => {
                         </TouchableOpacity>
                       </View>
                     </View>
-                    
+
                     <TouchableOpacity
                       style={styles.generateAgainButton}
                       onPress={() => handleGenerateContent(contentType as 'post' | 'caption' | 'reelIdea')}
@@ -634,7 +634,7 @@ const ContentGeneratorScreen = () => {
               ) : (
                 <View style={styles.optionsContainer}>
                   <Text style={styles.optionsTitle}>Generate Content:</Text>
-                  
+
                   {/* Platform Selection */}
                   <View style={styles.platformSection}>
                     <Text style={styles.sectionLabel}>Platform:</Text>
@@ -652,11 +652,11 @@ const ContentGeneratorScreen = () => {
                             styles.platformButtonText,
                             selectedPlatform === platform && styles.platformButtonTextActive
                           ]}>
-                            {platform === 'instagram' && '📸'} 
-                            {platform === 'facebook' && '📘'} 
-                            {platform === 'linkedin' && '💼'} 
-                            {platform === 'tiktok' && '🎵'} 
-                            {platform === 'twitter' && '🐦'} 
+                            {platform === 'instagram' && '📸'}
+                            {platform === 'facebook' && '📘'}
+                            {platform === 'linkedin' && '💼'}
+                            {platform === 'tiktok' && '🎵'}
+                            {platform === 'twitter' && '🐦'}
                             {platform.charAt(0).toUpperCase() + platform.slice(1)}
                           </Text>
                         </TouchableOpacity>
@@ -667,7 +667,7 @@ const ContentGeneratorScreen = () => {
                   {/* Content Type Options */}
                   <View style={styles.contentTypeSection}>
                     <Text style={styles.sectionLabel}>Content Type:</Text>
-                    
+
                     <TouchableOpacity
                       style={styles.optionButton}
                       onPress={() => handleGenerateContent('post')}
@@ -728,7 +728,7 @@ const ContentGeneratorScreen = () => {
                           </Text>
                         </TouchableOpacity>
                       </View>
-                      
+
                       {showTemplates && (
                         <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.templatesScroll}>
                           {templates.map((template) => (
@@ -774,7 +774,7 @@ const ContentGeneratorScreen = () => {
                         {showAdvancedOptions ? 'Hide' : 'Show'} Advanced Options
                       </Text>
                     </TouchableOpacity>
-                    
+
                     {showAdvancedOptions && (
                       <View style={styles.advancedOptions}>
                         {/* Tone Selection */}
@@ -866,7 +866,7 @@ const ContentGeneratorScreen = () => {
                         </View>
                       </View>
                     )}
-                    
+
                     {/* Generate with Advanced Options Button */}
                     {(showAdvancedOptions || selectedTemplate || customPrompt) && (
                       <TouchableOpacity
@@ -948,7 +948,7 @@ const ContentGeneratorScreen = () => {
         ...prev,
         isLoading: false,
       }));
-      
+
       Alert.alert(
         'Refinement Failed',
         'Failed to refine content. Please try again.',
@@ -974,7 +974,7 @@ const ContentGeneratorScreen = () => {
       >
         <Text style={styles.sectionTitle}>Select a Product</Text>
         <Text style={styles.sectionSubtitle}>
-          {faithMode 
+          {faithMode
             ? "Tap any product to generate faith-inspired content ideas"
             : "Tap any product to generate inspiring content ideas"
           }
@@ -1006,12 +1006,12 @@ const ContentGeneratorScreen = () => {
                 {faithMode ? '✨ Unlock Kingdom Content Pro' : '✨ Upgrade for More Content'}
               </Text>
               <Text style={styles.modalSubtitle}>
-                {faithMode 
+                {faithMode
                   ? 'Generate unlimited Kingdom-focused content for your ministry'
                   : 'Create unlimited content and access premium features'
                 }
               </Text>
-              
+
               <View style={styles.modalFeatures}>
                 <Text style={styles.modalFeature}>• {tierFeatures.aiGenerationsPerDay} daily AI generations → Unlimited</Text>
                 <Text style={styles.modalFeature}>• Premium content templates</Text>
@@ -1651,4 +1651,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default React.memo(ContentGeneratorScreen);
+export default ContentGeneratorScreen;

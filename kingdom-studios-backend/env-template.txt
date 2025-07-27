@@ -1,0 +1,103 @@
+# Kingdom Studios Backend - Environment Configuration Template
+# Copy this file to .env and fill in your actual values
+
+# ==============================================
+# APP CONFIGURATION
+# ==============================================
+NODE_ENV=production
+PORT=3000
+DEBUG=false
+
+# ==============================================
+# DATABASE CONFIGURATION (REQUIRED)
+# ==============================================
+MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/kingdom-studios
+REDIS_HOST=your_redis_host
+REDIS_PORT=6379
+REDIS_PASSWORD=your_redis_password
+
+# ==============================================
+# JWT SECURITY (REQUIRED)
+# ==============================================
+JWT_SECRET=your-super-secure-jwt-secret-key-here
+JWT_EXPIRES_IN=7d
+JWT_REFRESH_EXPIRES_IN=30d
+
+# ==============================================
+# AI SERVICES (REQUIRED)
+# ==============================================
+OPENAI_API_KEY=sk-your_openai_api_key_here
+OPENAI_MODEL=gpt-4
+OPENAI_MAX_TOKENS=4000
+
+# ==============================================
+# PAYMENT PROCESSING (REQUIRED)
+# ==============================================
+STRIPE_SECRET_KEY=sk_test_your_stripe_secret_key
+STRIPE_WEBHOOK_SECRET=whsec_your_webhook_secret
+STRIPE_PRICE_ID=price_your_subscription_price_id
+
+# ==============================================
+# EMAIL SERVICES
+# ==============================================
+SENDGRID_API_KEY=SG.your_sendgrid_api_key
+SENDGRID_FROM_EMAIL=noreply@kingdomstudios.com
+SENDGRID_FROM_NAME=Kingdom Studios
+
+# ==============================================
+# FILE STORAGE
+# ==============================================
+CLOUDINARY_URL=cloudinary://your_cloudinary_url
+AWS_ACCESS_KEY_ID=your_aws_access_key
+AWS_SECRET_ACCESS_KEY=your_aws_secret_key
+AWS_REGION=us-east-1
+AWS_S3_BUCKET=kingdom-studios-uploads
+
+# ==============================================
+# ANALYTICS & MONITORING
+# ==============================================
+GOOGLE_ANALYTICS_MEASUREMENT_ID=G-your_ga4_id
+MIXPANEL_PROJECT_TOKEN=your_mixpanel_token
+SENTRY_DSN=your_sentry_dsn
+AMPLITUDE_API_KEY=your_amplitude_key
+
+# ==============================================
+# SOCIAL MEDIA APIs
+# ==============================================
+FACEBOOK_APP_ID=your_facebook_app_id
+FACEBOOK_APP_SECRET=your_facebook_app_secret
+INSTAGRAM_APP_ID=your_instagram_app_id
+INSTAGRAM_APP_SECRET=your_instagram_app_secret
+TWITTER_API_KEY=your_twitter_api_key
+TWITTER_API_SECRET=your_twitter_api_secret
+TWITTER_BEARER_TOKEN=your_twitter_bearer_token
+
+# ==============================================
+# E-COMMERCE APIs
+# ==============================================
+ETSY_API_KEY=your_etsy_api_key
+PRINTIFY_API_KEY=your_printify_api_key
+SHOPIFY_API_KEY=your_shopify_api_key
+SHOPIFY_STORE_URL=your-store.myshopify.com
+
+# ==============================================
+# SECURITY & RATE LIMITING
+# ==============================================
+CORS_ORIGIN=https://your-frontend-domain.com
+RATE_LIMIT_WINDOW_MS=900000
+RATE_LIMIT_MAX_REQUESTS=100
+ENCRYPTION_KEY=your_32_character_encryption_key
+
+# ==============================================
+# PERFORMANCE & CACHING
+# ==============================================
+CACHE_TTL=3600
+SESSION_SECRET=your_session_secret
+COMPRESSION_LEVEL=6
+
+# ==============================================
+# LOGGING
+# ==============================================
+LOG_LEVEL=info
+LOG_FORMAT=json
+LOG_FILE=logs/app.log 

@@ -21,7 +21,8 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { BlurView } from 'expo-blur';
 import { useNavigation } from '@react-navigation/native';
 import { useFaithMode } from '../contexts/FaithModeContext';
-import { KingdomColors, KingdomShadows } from '../constants/KingdomColors';
+import { KingdomColors } from '../constants/KingdomColors';
+import { KingdomShadows } from '../constants/KingdomShadows';
 import KingdomLogo from '../components/KingdomLogo';
 import { MENTORSHIP_CATEGORIES } from '../types/mentorship';
 
@@ -30,7 +31,7 @@ const { width, height } = Dimensions.get('window');
 const MentorOnboardingScreen = () => {
   const navigation = useNavigation();
   const { faithMode } = useFaithMode();
-  
+
   const [formData, setFormData] = useState({
     displayName: '',
     bio: '',
@@ -44,7 +45,7 @@ const MentorOnboardingScreen = () => {
     },
     contactPreference: 'chat' as 'chat' | 'email' | 'video' | 'phone',
   });
-  
+
   const [currentStep, setCurrentStep] = useState(1);
   const [loading, setLoading] = useState(false);
 
@@ -147,10 +148,10 @@ const MentorOnboardingScreen = () => {
     try {
       // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 2000));
-      
+
       Alert.alert(
         faithMode ? 'Application Submitted! 🙏' : 'Application Submitted! 🤝',
-        faithMode 
+        faithMode
           ? 'Thank you for your heart to serve! Your application has been submitted and will be reviewed within 24-48 hours. May God bless your ministry!'
           : 'Your mentor application has been submitted successfully! You\'ll receive a response within 24-48 hours.',
         [
@@ -173,7 +174,7 @@ const MentorOnboardingScreen = () => {
         <Text style={styles.sectionTitle}>
           {faithMode ? 'Share Your Heart' : 'Basic Information'}
         </Text>
-        
+
         <View style={styles.inputGroup}>
           <Text style={styles.label}>Display Name</Text>
           <TextInput
@@ -191,7 +192,7 @@ const MentorOnboardingScreen = () => {
           </Text>
           <TextInput
             style={[styles.textInput, styles.textArea]}
-            placeholder={faithMode 
+            placeholder={faithMode
               ? 'Share your testimony, calling, and heart for mentoring others...'
               : 'Tell us about yourself and why you want to mentor...'
             }
@@ -211,7 +212,7 @@ const MentorOnboardingScreen = () => {
           </Text>
           <TextInput
             style={[styles.textInput, styles.textArea]}
-            placeholder={faithMode 
+            placeholder={faithMode
               ? 'Share your ministry experience, life lessons, what God has taught you...'
               : 'Describe your relevant experience, qualifications, achievements...'
             }
@@ -235,12 +236,12 @@ const MentorOnboardingScreen = () => {
           {faithMode ? 'Areas of Ministry' : 'Mentorship Categories'}
         </Text>
         <Text style={styles.stepDescription}>
-          {faithMode 
+          {faithMode
             ? 'Select the areas where you feel called to guide and disciple others:'
             : 'Choose the areas where you can provide valuable mentorship:'
           }
         </Text>
-        
+
         <View style={styles.categoriesGrid}>
           {MENTORSHIP_CATEGORIES.map((category) => (
             <TouchableOpacity
@@ -273,12 +274,12 @@ const MentorOnboardingScreen = () => {
           {faithMode ? 'Spiritual Giftings' : 'Skills & Strengths'}
         </Text>
         <Text style={styles.stepDescription}>
-          {faithMode 
+          {faithMode
             ? 'What spiritual gifts has God given you for ministry?'
             : 'What are your key skills and strengths for mentoring?'
           }
         </Text>
-        
+
         <View style={styles.tagsContainer}>
           {(faithMode ? spiritualGiftings : [
             'Teaching', 'Leadership', 'Strategy', 'Communication', 'Creativity',
@@ -314,7 +315,7 @@ const MentorOnboardingScreen = () => {
           <Text style={styles.stepDescription}>
             When are you typically available for mentorship sessions?
           </Text>
-          
+
           <Text style={styles.subSectionTitle}>Days of the Week</Text>
           <View style={styles.daysContainer}>
             {daysOfWeek.map((day) => (
@@ -363,8 +364,8 @@ const MentorOnboardingScreen = () => {
             placeholder="e.g., EST, PST, GMT"
             placeholderTextColor={KingdomColors.gray}
             value={formData.availability.timeZone}
-            onChangeText={(text) => setFormData(prev => ({ 
-              ...prev, 
+            onChangeText={(text) => setFormData(prev => ({
+              ...prev,
               availability: { ...prev.availability, timeZone: text }
             }))}
           />
@@ -422,8 +423,8 @@ const MentorOnboardingScreen = () => {
           <Text style={styles.progressText}>Step {currentStep} of {totalSteps}</Text>
         </View>
 
-        <KeyboardAvoidingView 
-          style={styles.flex} 
+        <KeyboardAvoidingView
+          style={styles.flex}
           behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
         >
           <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
@@ -434,7 +435,7 @@ const MentorOnboardingScreen = () => {
                   {faithMode ? 'Become a Forge Guide' : 'Become a Mentor'}
                 </Text>
                 <Text style={styles.subtitle}>
-                  {faithMode 
+                  {faithMode
                     ? 'Join our community of spirit-filled mentors helping others grow in faith and purpose.'
                     : 'Share your knowledge and experience with the next generation of creators.'
                   }
@@ -451,15 +452,15 @@ const MentorOnboardingScreen = () => {
             {/* Navigation Buttons */}
             <View style={styles.navigationContainer}>
               {currentStep > 1 && (
-                <TouchableOpacity 
+                <TouchableOpacity
                   style={styles.backNavButton}
                   onPress={() => setCurrentStep(currentStep - 1)}
                 >
                   <Text style={styles.backNavText}>← Previous</Text>
                 </TouchableOpacity>
               )}
-              
-              <TouchableOpacity 
+
+              <TouchableOpacity
                 style={[
                   styles.nextButton,
                   !canProceedToNext() && styles.nextButtonDisabled
@@ -468,16 +469,16 @@ const MentorOnboardingScreen = () => {
                 disabled={!canProceedToNext() || loading}
               >
                 <LinearGradient
-                  colors={canProceedToNext() 
+                  colors={canProceedToNext()
                     ? KingdomColors.gradients.primary as any
                     : [KingdomColors.gray, KingdomColors.darkGray]
                   }
                   style={styles.nextButtonGradient}
                 >
                   <Text style={styles.nextButtonText}>
-                    {loading 
+                    {loading
                       ? 'Submitting...'
-                      : currentStep === totalSteps 
+                      : currentStep === totalSteps
                         ? faithMode ? '🙏 Submit Application' : '🤝 Submit Application'
                         : 'Next →'
                     }

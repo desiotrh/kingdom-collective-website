@@ -1,0 +1,98 @@
+# Kingdom Studios App - Environment Configuration Template
+# Copy this file to .env.local and fill in your actual values
+
+# ==============================================
+# APP CONFIGURATION
+# ==============================================
+NODE_ENV=development
+EXPO_PUBLIC_DEBUG_MODE=true
+EXPO_PUBLIC_ENABLE_MOCKS=true
+
+# ==============================================
+# API CONFIGURATION
+# ==============================================
+EXPO_PUBLIC_API_BASE_URL=http://localhost:3000/api
+EXPO_PUBLIC_API_KEY=your_api_key_here
+
+# ==============================================
+# FIREBASE CONFIGURATION (REQUIRED)
+# ==============================================
+EXPO_PUBLIC_FIREBASE_API_KEY=your_firebase_api_key_here
+EXPO_PUBLIC_FIREBASE_AUTH_DOMAIN=kingdom-studios-dev.firebaseapp.com
+EXPO_PUBLIC_FIREBASE_PROJECT_ID=kingdom-studios-dev
+EXPO_PUBLIC_FIREBASE_STORAGE_BUCKET=kingdom-studios-dev.appspot.com
+EXPO_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=your_messaging_sender_id
+EXPO_PUBLIC_FIREBASE_APP_ID=your_firebase_app_id
+
+# ==============================================
+# GOOGLE OAUTH
+# ==============================================
+EXPO_PUBLIC_GOOGLE_CLIENT_ID=your_google_client_id
+EXPO_PUBLIC_GOOGLE_ANDROID_CLIENT_ID=your_google_android_client_id
+EXPO_PUBLIC_GOOGLE_IOS_CLIENT_ID=your_google_ios_client_id
+
+# ==============================================
+# FACEBOOK INTEGRATION
+# ==============================================
+EXPO_PUBLIC_FACEBOOK_APP_ID=your_facebook_app_id
+
+# ==============================================
+# AI SERVICES (REQUIRED)
+# ==============================================
+EXPO_PUBLIC_OPENAI_API_KEY=sk-your_openai_api_key_here
+EXPO_PUBLIC_OPENROUTER_API_KEY=your_openrouter_api_key
+
+# ==============================================
+# E-COMMERCE PLATFORMS
+# ==============================================
+EXPO_PUBLIC_ETSY_API_KEY=your_etsy_api_key
+EXPO_PUBLIC_PRINTIFY_API_KEY=your_printify_api_key
+EXPO_PUBLIC_SHOPIFY_API_KEY=your_shopify_api_key
+EXPO_PUBLIC_SHOPIFY_STORE_URL=your-store.myshopify.com
+EXPO_PUBLIC_AMAZON_ACCESS_KEY=your_amazon_access_key
+EXPO_PUBLIC_AMAZON_SECRET_KEY=your_amazon_secret_key
+EXPO_PUBLIC_AMAZON_MARKETPLACE_ID=your_amazon_marketplace_id
+
+# ==============================================
+# PAYMENT PROCESSING (REQUIRED)
+# ==============================================
+EXPO_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_test_your_stripe_publishable_key
+EXPO_PUBLIC_STRIPE_SECRET_KEY=sk_test_your_stripe_secret_key
+
+# ==============================================
+# EMAIL MARKETING
+# ==============================================
+EXPO_PUBLIC_CONVERTKIT_API_KEY=your_convertkit_api_key
+EXPO_PUBLIC_CONVERTKIT_API_SECRET=your_convertkit_api_secret
+EXPO_PUBLIC_MAILCHIMP_API_KEY=your_mailchimp_api_key
+EXPO_PUBLIC_MAILCHIMP_SERVER_PREFIX=us1
+
+# ==============================================
+# SOCIAL MEDIA
+# ==============================================
+EXPO_PUBLIC_INSTAGRAM_APP_ID=your_instagram_app_id
+EXPO_PUBLIC_INSTAGRAM_APP_SECRET=your_instagram_app_secret
+EXPO_PUBLIC_TWITTER_API_KEY=your_twitter_api_key
+EXPO_PUBLIC_TWITTER_API_SECRET=your_twitter_api_secret
+EXPO_PUBLIC_TWITTER_BEARER_TOKEN=your_twitter_bearer_token
+EXPO_PUBLIC_TIKTOK_APP_ID=your_tiktok_app_id
+EXPO_PUBLIC_TIKTOK_APP_SECRET=your_tiktok_app_secret
+
+# ==============================================
+# ANALYTICS
+# ==============================================
+EXPO_PUBLIC_GA4_MEASUREMENT_ID=your_ga4_measurement_id
+EXPO_PUBLIC_GA4_API_SECRET=your_ga4_api_secret
+EXPO_PUBLIC_GTM_CONTAINER_ID=your_gtm_container_id
+EXPO_PUBLIC_MIXPANEL_TOKEN=your_mixpanel_token
+
+# ==============================================
+# ADDITIONAL SERVICES
+# ==============================================
+EXPO_PUBLIC_SENTRY_DSN=your_sentry_dsn
+EXPO_PUBLIC_AMPLITUDE_API_KEY=your_amplitude_api_key
+EXPO_PUBLIC_REVENUECAT_API_KEY=your_revenuecat_api_key
+EXPO_PUBLIC_PUSHER_APP_ID=your_pusher_app_id
+EXPO_PUBLIC_PUSHER_KEY=your_pusher_key
+EXPO_PUBLIC_PUSHER_SECRET=your_pusher_secret
+EXPO_PUBLIC_PUSHER_CLUSTER=your_pusher_cluster 

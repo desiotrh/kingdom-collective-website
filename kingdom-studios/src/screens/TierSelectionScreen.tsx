@@ -16,7 +16,8 @@ import { useAppNavigation } from '../utils/navigationUtils';
 import { useDualMode } from '../contexts/DualModeContext';
 import { useTierSystem, TierType, BillingCycle, TIER_PLANS } from '../contexts/TierSystemContext';
 import { useAuth } from '../contexts/AuthContext';
-import { KingdomColors, KingdomShadows } from '../constants/KingdomColors';
+import { KingdomColors } from '../constants/KingdomColors';
+import { KingdomShadows } from '../constants/KingdomShadows';
 import KingdomLogo from '../components/KingdomLogo';
 import ModeToggle from '../components/ModeToggle';
 
@@ -25,19 +26,19 @@ const { width, height } = Dimensions.get('window');
 const TierSelectionScreen: React.FC = () => {
   const navigation = useAppNavigation();
   const { currentMode, getModeSpecificContent } = useDualMode();
-  const { 
-    currentTier, 
-    trialStatus, 
+  const {
+    currentTier,
+    trialStatus,
     trialDaysRemaining,
     subscription,
     availableTiers,
     startTrial,
     upgradeTier,
     isUpgrading,
-    canAccessFeature 
+    canAccessFeature
   } = useTierSystem();
   const { user } = useAuth();
-  
+
   const [billingCycle, setBillingCycle] = useState<BillingCycle>('monthly');
   const [selectedTier, setSelectedTier] = useState<TierType | null>(null);
 
@@ -113,7 +114,7 @@ const TierSelectionScreen: React.FC = () => {
   const navigateToCheckout = (tierType: TierType) => {
     const tier = TIER_PLANS[tierType];
     const price = billingCycle === 'monthly' ? tier.monthlyPrice : tier.yearlyPrice;
-    
+
     navigation.navigate('Checkout', {
       product: {
         id: tierType,
@@ -144,13 +145,13 @@ const TierSelectionScreen: React.FC = () => {
           style={styles.trialBannerGradient}
         >
           <Text style={styles.trialBannerText}>
-            {showTrialExpiredBanner 
+            {showTrialExpiredBanner
               ? '⏰ Your trial has expired - upgrade to continue'
               : `🎉 ${trialDaysRemaining} days left in your trial`
             }
           </Text>
           {showTrialBanner && (
-            <TouchableOpacity 
+            <TouchableOpacity
               style={styles.convertTrialButton}
               onPress={() => handleTierSelect('commissioned')}
             >
@@ -166,8 +167,8 @@ const TierSelectionScreen: React.FC = () => {
     const tier = TIER_PLANS[tierType];
     const isCurrentTier = currentTier === tierType;
     const price = billingCycle === 'monthly' ? tier.monthlyPrice : tier.yearlyPrice;
-    const savings = billingCycle === 'yearly' && tier.monthlyPrice > 0 
-      ? Math.round(((tier.monthlyPrice * 12) - tier.yearlyPrice) / (tier.monthlyPrice * 12) * 100) 
+    const savings = billingCycle === 'yearly' && tier.monthlyPrice > 0
+      ? Math.round(((tier.monthlyPrice * 12) - tier.yearlyPrice) / (tier.monthlyPrice * 12) * 100)
       : 0;
 
     const tierGradients = {
@@ -196,7 +197,7 @@ const TierSelectionScreen: React.FC = () => {
           end={{ x: 1, y: 1 }}
         >
           <BlurView intensity={15} style={styles.tierCardBlur}>
-            
+
             {/* Badges */}
             {tier.badge && (
               <View style={[styles.badge, { backgroundColor: tier.badgeColor }]}>
@@ -247,13 +248,13 @@ const TierSelectionScreen: React.FC = () => {
             {/* Key Features */}
             <View style={styles.featuresContainer}>
               <Text style={styles.featuresTitle}>Key Features:</Text>
-              
+
               {/* AI Generations */}
               <View style={styles.featureItem}>
                 <Ionicons name="sparkles" size={16} color={KingdomColors.gold.bright} />
                 <Text style={styles.featureText}>
-                  {tier.features.aiGenerationsPerDay === -1 
-                    ? 'Unlimited AI generations' 
+                  {tier.features.aiGenerationsPerDay === -1
+                    ? 'Unlimited AI generations'
                     : `${tier.features.aiGenerationsPerDay} AI generations/day`
                   }
                 </Text>
@@ -273,8 +274,8 @@ const TierSelectionScreen: React.FC = () => {
               <View style={styles.featureItem}>
                 <Ionicons name="cloud" size={16} color={KingdomColors.gold.bright} />
                 <Text style={styles.featureText}>
-                  {tier.features.storageGB === -1 
-                    ? 'Unlimited storage' 
+                  {tier.features.storageGB === -1
+                    ? 'Unlimited storage'
                     : `${tier.features.storageGB}GB storage`
                   }
                 </Text>
@@ -285,8 +286,8 @@ const TierSelectionScreen: React.FC = () => {
                 <View style={styles.featureItem}>
                   <Ionicons name="people" size={16} color={KingdomColors.gold.bright} />
                   <Text style={styles.featureText}>
-                    {tier.features.teamSeats === -1 
-                      ? 'Unlimited team seats' 
+                    {tier.features.teamSeats === -1
+                      ? 'Unlimited team seats'
                       : `${tier.features.teamSeats} team seats`
                     }
                   </Text>
@@ -330,9 +331,9 @@ const TierSelectionScreen: React.FC = () => {
                 styles.ctaText,
                 isCurrentTier && styles.currentTierButtonText
               ]}>
-                {isCurrentTier 
-                  ? 'Current Plan' 
-                  : tierType === 'seed' 
+                {isCurrentTier
+                  ? 'Current Plan'
+                  : tierType === 'seed'
                     ? 'Get Started Free'
                     : tierType === 'commissioned' && trialStatus === 'none' && !subscription
                       ? 'Start Free Trial'
@@ -355,7 +356,7 @@ const TierSelectionScreen: React.FC = () => {
         style={styles.background}
       >
         <SafeAreaView style={styles.safeArea}>
-          
+
           {/* Header */}
           <View style={styles.header}>
             <TouchableOpacity
@@ -365,7 +366,7 @@ const TierSelectionScreen: React.FC = () => {
             >
               <Ionicons name="arrow-back" size={24} color="#FFFFFF" />
             </TouchableOpacity>
-            
+
             <View style={styles.headerContent}>
               <KingdomLogo size="small" />
               <Text style={styles.headerTitle}>
@@ -421,12 +422,12 @@ const TierSelectionScreen: React.FC = () => {
           </View>
 
           {/* Tier Cards */}
-          <ScrollView 
+          <ScrollView
             style={styles.tierCardsContainer}
             contentContainerStyle={styles.tierCardsContent}
             showsVerticalScrollIndicator={false}
           >
-            {Object.keys(TIER_PLANS).map((tierType) => 
+            {Object.keys(TIER_PLANS).map((tierType) =>
               renderTierCard(tierType as TierType)
             )}
           </ScrollView>
@@ -439,7 +440,7 @@ const TierSelectionScreen: React.FC = () => {
                 '🚀 All plans include creator support and community access'
               )}
             </Text>
-            <TouchableOpacity 
+            <TouchableOpacity
               style={styles.helpButton}
               onPress={() => navigation.navigate('TierFAQ')}
             >

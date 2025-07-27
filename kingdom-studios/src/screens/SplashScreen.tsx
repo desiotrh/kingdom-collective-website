@@ -9,7 +9,8 @@ import {
   StatusBar,
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-import { KingdomColors, KingdomShadows } from '../constants/KingdomColors';
+import { KingdomColors } from '../constants/KingdomColors';
+import { KingdomShadows } from '../constants/KingdomShadows';
 
 const { width, height } = Dimensions.get('window');
 
@@ -106,7 +107,7 @@ const SplashScreen: React.FC<SplashScreenProps> = ({ onAnimationComplete }) => {
         style={styles.backgroundGradient}
       >
         {/* Animated 3D Silk Ribbon Effect - ENHANCED */}
-        <Animated.View 
+        <Animated.View
           style={[
             styles.ribbonContainer,
             {
@@ -131,7 +132,7 @@ const SplashScreen: React.FC<SplashScreenProps> = ({ onAnimationComplete }) => {
         </Animated.View>
 
         {/* Secondary ribbons for enhanced depth */}
-        <Animated.View 
+        <Animated.View
           style={[
             styles.ribbonContainer,
             styles.secondaryRibbon,
@@ -155,17 +156,19 @@ const SplashScreen: React.FC<SplashScreenProps> = ({ onAnimationComplete }) => {
         </Animated.View>
 
         {/* Third ribbon layer for maximum 3D effect */}
-        <Animated.View 
+        <Animated.View
           style={[
             styles.ribbonContainer,
             styles.thirdRibbon,
             {
               opacity: ribbonOpacity,
               transform: [
-                { rotate: ribbonRotation.interpolate({
-                  inputRange: [0, 1],
-                  outputRange: ['90deg', '450deg'],
-                }) },
+                {
+                  rotate: ribbonRotation.interpolate({
+                    inputRange: [0, 1],
+                    outputRange: ['90deg', '450deg'],
+                  })
+                },
                 { scale: ribbonScale }
               ]
             }
@@ -184,7 +187,7 @@ const SplashScreen: React.FC<SplashScreenProps> = ({ onAnimationComplete }) => {
         {/* Main Content */}
         <View style={styles.content}>
           {/* Logo */}
-          <Animated.View 
+          <Animated.View
             style={[
               styles.logoContainer,
               {
@@ -228,7 +231,7 @@ const styles = StyleSheet.create({
   backgroundGradient: {
     flex: 1,
   },
-  
+
   // ===========================================
   // 🎀 3D RIBBON ANIMATION - ENHANCED
   // ===========================================

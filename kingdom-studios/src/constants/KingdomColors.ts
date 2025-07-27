@@ -64,6 +64,11 @@ export const KingdomColors = {
   white: '#FFFFFF',
   black: '#000000',
   transparent: 'transparent',
+  opacity: {
+    white10: 'rgba(255,255,255,0.1)',
+    white20: 'rgba(255,255,255,0.2)',
+    white30: 'rgba(255,255,255,0.3)',
+  },
 
   // Accessibility Colors
   accessibilityFocus: '#FF6B35', // High contrast focus color
@@ -78,6 +83,29 @@ export const KingdomColors = {
   oldPrimary: '#8B4513',
   oldSecondary: '#D2691E',
   oldAccent: '#FF8C00',
+
+  // Refined Palette (for enhanced UI themes)
+  refined: {
+    maroon: '#800000',
+    gold: '#FFD700',
+    dustyGold: '#E5C07B',
+    softGold: '#FFF8DC',
+    softSand: '#F5DEB3',
+    black: '#222222',
+  },
+  gradients: {
+    refinedFlame: ['#FFD700', '#800000'],
+    goldShimmer: ['#FFD700', '#FFF8DC'],
+  },
+  gold: {
+    bright: '#FFD700',
+    warm: '#FFC300',
+  },
+  silver: {
+    bright: '#C0C0C0',
+    steel: '#B0B0B0',
+    light: '#E0E0E0',
+  },
 };
 
 // Color utility functions

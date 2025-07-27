@@ -14,7 +14,8 @@ import {
 import { LinearGradient } from 'expo-linear-gradient';
 import { useFaithMode } from '../contexts/FaithModeContext';
 import { useAuth } from '../contexts/AuthContext';
-import { KingdomColors, KingdomShadows } from '../constants/KingdomColors';
+import { KingdomColors } from '../constants/KingdomColors';
+import { KingdomShadows } from '../constants/KingdomShadows';
 import { useDebounce, usePerformanceMonitor } from '../hooks/usePerformance';
 import OptimizedBackendAPI from '../services/OptimizedBackendAPI';
 
@@ -87,7 +88,7 @@ const OptimizedContentGeneratorScreen: React.FC<OptimizedContentGeneratorScreenP
 
         const response = await OptimizedBackendAPI.generateContent(request);
         setGeneratedContent(response);
-        
+
         markEnd('generateContent', startMark);
       } catch (error) {
         console.error('Content generation error:', error);

@@ -14,7 +14,8 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { useAppNavigation } from '../../utils/navigationUtils';
 import { useFaithMode } from '../../contexts/FaithModeContext';
 import { useAuth } from '../../contexts/AuthContext';
-import { KingdomColors, KingdomShadows } from '../../constants/KingdomColors';
+import { KingdomColors } from '../../constants/KingdomColors';
+import { KingdomShadows } from '../../constants/KingdomShadows';
 import KingdomLogo from '../../components/KingdomLogo';
 
 const { width } = Dimensions.get('window');
@@ -69,8 +70,8 @@ const FunnelsScreen: React.FC = () => {
     {
       id: 'lead-magnet-builder',
       title: faithMode ? 'Kingdom Lead Magnet Builder' : 'Lead Magnet Builder',
-      description: faithMode 
-        ? 'Create powerful Kingdom resources that attract souls' 
+      description: faithMode
+        ? 'Create powerful Kingdom resources that attract souls'
         : 'Build irresistible freebies that convert visitors to leads',
       icon: '🧲',
       gradient: [KingdomColors.primary.royalPurple, KingdomColors.gold.bright],
@@ -82,8 +83,8 @@ const FunnelsScreen: React.FC = () => {
     {
       id: 'landing-page-builder',
       title: faithMode ? 'Kingdom Landing Pages' : 'Landing Page Builder',
-      description: faithMode 
-        ? 'Design Kingdom-focused landing pages that inspire action' 
+      description: faithMode
+        ? 'Design Kingdom-focused landing pages that inspire action'
         : 'Create high-converting landing pages with drag & drop',
       icon: '📄',
       gradient: [KingdomColors.gold.warm, KingdomColors.primary.deepNavy],
@@ -95,8 +96,8 @@ const FunnelsScreen: React.FC = () => {
     {
       id: 'email-automation',
       title: faithMode ? 'Kingdom Email Automation' : 'Email Automation',
-      description: faithMode 
-        ? 'Nurture souls with automated Kingdom-focused sequences' 
+      description: faithMode
+        ? 'Nurture souls with automated Kingdom-focused sequences'
         : 'Set up automated email sequences that nurture leads',
       icon: '📧',
       gradient: [KingdomColors.accent.info, KingdomColors.silver.bright],
@@ -108,8 +109,8 @@ const FunnelsScreen: React.FC = () => {
     {
       id: 'funnel-analytics',
       title: faithMode ? 'Kingdom Funnel Analytics' : 'Funnel Analytics',
-      description: faithMode 
-        ? 'Track Kingdom impact and conversion metrics' 
+      description: faithMode
+        ? 'Track Kingdom impact and conversion metrics'
         : 'Advanced analytics and optimization insights',
       icon: '📊',
       gradient: [KingdomColors.accent.success, KingdomColors.primary.midnight],
@@ -121,8 +122,8 @@ const FunnelsScreen: React.FC = () => {
     {
       id: 'webinar-builder',
       title: faithMode ? 'Kingdom Webinar Studio' : 'Webinar Builder',
-      description: faithMode 
-        ? 'Host powerful Kingdom teaching webinars' 
+      description: faithMode
+        ? 'Host powerful Kingdom teaching webinars'
         : 'Create and host automated webinar funnels',
       icon: '🎥',
       gradient: [KingdomColors.gold.amber, KingdomColors.primary.royalPurple],
@@ -135,8 +136,8 @@ const FunnelsScreen: React.FC = () => {
     {
       id: 'membership-site',
       title: faithMode ? 'Kingdom Membership Site' : 'Membership Site Builder',
-      description: faithMode 
-        ? 'Build exclusive Kingdom communities and courses' 
+      description: faithMode
+        ? 'Build exclusive Kingdom communities and courses'
         : 'Create subscription-based membership sites',
       icon: '🏰',
       gradient: [KingdomColors.primary.deepNavy, KingdomColors.gold.bright],
@@ -152,8 +153,8 @@ const FunnelsScreen: React.FC = () => {
     {
       id: '1',
       title: faithMode ? '30 Kingdom Affirmations for Entrepreneurs' : 'Success Mindset Checklist',
-      description: faithMode 
-        ? 'Powerful faith-based affirmations for Kingdom builders' 
+      description: faithMode
+        ? 'Powerful faith-based affirmations for Kingdom builders'
         : 'Daily affirmations for entrepreneurial success',
       type: 'checklist',
       downloads: 1247,
@@ -167,8 +168,8 @@ const FunnelsScreen: React.FC = () => {
     {
       id: '2',
       title: faithMode ? 'Kingdom Business Plan Template' : 'Business Plan Template',
-      description: faithMode 
-        ? 'Build your business on Kingdom principles' 
+      description: faithMode
+        ? 'Build your business on Kingdom principles'
         : 'Complete business plan template with examples',
       type: 'template',
       downloads: 856,
@@ -182,8 +183,8 @@ const FunnelsScreen: React.FC = () => {
     {
       id: '3',
       title: faithMode ? 'Faith & Finance: Kingdom Wealth Building' : 'Wealth Building eBook',
-      description: faithMode 
-        ? 'Biblical principles for building Kingdom wealth' 
+      description: faithMode
+        ? 'Biblical principles for building Kingdom wealth'
         : 'Comprehensive guide to building wealth',
       type: 'ebook',
       downloads: 423,
@@ -441,8 +442,8 @@ const FunnelsScreen: React.FC = () => {
         {faithMode ? '📋 Kingdom Funnel Templates' : '📋 Funnel Templates'}
       </Text>
       <Text style={styles.sectionSubtitle}>
-        {faithMode 
-          ? 'Pre-built Kingdom-focused funnel templates' 
+        {faithMode
+          ? 'Pre-built Kingdom-focused funnel templates'
           : 'Pre-built funnel templates for quick setup'}
       </Text>
 
@@ -545,8 +546,8 @@ const FunnelsScreen: React.FC = () => {
         </View>
 
         {/* Tab Navigation */}
-        <ScrollView 
-          horizontal 
+        <ScrollView
+          horizontal
           showsHorizontalScrollIndicator={false}
           style={styles.tabScroll}
           contentContainerStyle={styles.tabContainer}
@@ -586,7 +587,7 @@ const FunnelsScreen: React.FC = () => {
         </ScrollView>
 
         {/* Content */}
-        <ScrollView 
+        <ScrollView
           style={styles.content}
           showsVerticalScrollIndicator={false}
           contentContainerStyle={styles.contentContainer}

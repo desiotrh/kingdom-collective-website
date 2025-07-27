@@ -21,7 +21,8 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { BlurView } from 'expo-blur';
 import { useNavigation } from '@react-navigation/native';
 import { useFaithMode } from '../contexts/FaithModeContext';
-import { KingdomColors, KingdomShadows } from '../constants/KingdomColors';
+import { KingdomColors } from '../constants/KingdomColors';
+import { KingdomShadows } from '../constants/KingdomShadows';
 import { Ionicons, MaterialIcons } from '@expo/vector-icons';
 
 const { width } = Dimensions.get('window');
@@ -152,12 +153,12 @@ const EMAIL_PROVIDERS = [
 const LeadMagnetBuilderScreen = () => {
   const navigation = useNavigation();
   const { faithMode } = useFaithMode();
-  
+
   const [currentStep, setCurrentStep] = useState(1);
   const [selectedTemplate, setSelectedTemplate] = useState<LeadMagnetTemplate | null>(null);
   const [showAIAssistant, setShowAIAssistant] = useState(false);
   const [loading, setLoading] = useState(false);
-  
+
   const [formData, setFormData] = useState<LeadMagnetData>({
     title: '',
     description: '',
@@ -189,8 +190,8 @@ const LeadMagnetBuilderScreen = () => {
 
   const handleTemplateSelect = (template: LeadMagnetTemplate) => {
     setSelectedTemplate(template);
-    setFormData(prev => ({ 
-      ...prev, 
+    setFormData(prev => ({
+      ...prev,
       template: template.id,
       title: faithMode ? (template.faithModeTitle || template.name) : template.name,
     }));
@@ -202,9 +203,9 @@ const LeadMagnetBuilderScreen = () => {
     try {
       // Simulate AI content generation
       await new Promise(resolve => setTimeout(resolve, 2000));
-      
+
       const suggestions = {
-        headline: faithMode 
+        headline: faithMode
           ? `Transform Your ${formData.targetAudience} Life with God's Wisdom`
           : `The Ultimate ${formData.targetAudience} Success Blueprint`,
         subheadline: faithMode
@@ -212,17 +213,17 @@ const LeadMagnetBuilderScreen = () => {
           : `Join thousands who've already transformed their results`,
         benefits: faithMode
           ? [
-              'Biblical wisdom for real-world challenges',
-              'Prayer strategies that bring breakthrough',
-              'Faith-based action steps',
-              'Community support and accountability',
-            ]
+            'Biblical wisdom for real-world challenges',
+            'Prayer strategies that bring breakthrough',
+            'Faith-based action steps',
+            'Community support and accountability',
+          ]
           : [
-              'Proven strategies that work',
-              'Step-by-step action plan',
-              'Expert insights and tips',
-              'Bonus resources included',
-            ],
+            'Proven strategies that work',
+            'Step-by-step action plan',
+            'Expert insights and tips',
+            'Bonus resources included',
+          ],
         valueProposition: faithMode
           ? `Join our community of faith-driven ${formData.targetAudience.toLowerCase()} who are walking in God's purpose and seeing His favor in their lives.`
           : `Get the same strategies that have helped thousands of ${formData.targetAudience.toLowerCase()} achieve their goals faster.`,
@@ -261,10 +262,10 @@ const LeadMagnetBuilderScreen = () => {
     try {
       // Simulate lead magnet creation
       await new Promise(resolve => setTimeout(resolve, 2000));
-      
+
       Alert.alert(
         faithMode ? 'Lead Magnet Created! 🙏' : 'Lead Magnet Created! 🎉',
-        faithMode 
+        faithMode
           ? 'Your lead magnet has been created and is ready to help you serve others and grow God\'s kingdom!'
           : 'Your lead magnet has been created and is ready to start capturing leads!',
         [
@@ -327,15 +328,17 @@ const LeadMagnetBuilderScreen = () => {
               {template.estimatedConversion}%
             </Text>
           </View>
-          <View style={[styles.difficultyBadge, { backgroundColor: 
-            template.difficulty === 'easy' ? currentColors.success + '20' :
-            template.difficulty === 'medium' ? currentColors.warning + '20' :
-            currentColors.error + '20'
+          <View style={[styles.difficultyBadge, {
+            backgroundColor:
+              template.difficulty === 'easy' ? currentColors.success + '20' :
+                template.difficulty === 'medium' ? currentColors.warning + '20' :
+                  currentColors.error + '20'
           }]}>
-            <Text style={[styles.difficultyText, { color: 
-              template.difficulty === 'easy' ? currentColors.success :
-              template.difficulty === 'medium' ? currentColors.warning :
-              currentColors.error
+            <Text style={[styles.difficultyText, {
+              color:
+                template.difficulty === 'easy' ? currentColors.success :
+                  template.difficulty === 'medium' ? currentColors.warning :
+                    currentColors.error
             }]}>
               {template.difficulty}
             </Text>
@@ -365,7 +368,7 @@ const LeadMagnetBuilderScreen = () => {
             {faithMode ? 'Build Kingdom-Focused Lead Magnets' : 'Create High-Converting Lead Magnets'}
           </Text>
           <Text style={[styles.introDescription, { color: currentColors.textSecondary }]}>
-            {faithMode 
+            {faithMode
               ? 'Create valuable resources that serve others while growing your ministry reach. Choose a template that aligns with your calling.'
               : 'Build lead magnets that capture qualified leads and grow your audience. Choose from proven templates optimized for conversion.'
             }
@@ -376,7 +379,7 @@ const LeadMagnetBuilderScreen = () => {
       <Text style={[styles.sectionTitle, { color: currentColors.text }]}>
         Choose a Template
       </Text>
-      
+
       <View style={styles.templatesGrid}>
         {LEAD_MAGNET_TEMPLATES.map(renderTemplateCard)}
       </View>
@@ -392,7 +395,7 @@ const LeadMagnetBuilderScreen = () => {
       <View style={styles.formSection}>
         <Text style={[styles.inputLabel, { color: currentColors.text }]}>Lead Magnet Title</Text>
         <TextInput
-          style={[styles.input, { 
+          style={[styles.input, {
             borderColor: currentColors.border,
             color: currentColors.text,
             backgroundColor: currentColors.surface,
@@ -407,12 +410,12 @@ const LeadMagnetBuilderScreen = () => {
       <View style={styles.formSection}>
         <Text style={[styles.inputLabel, { color: currentColors.text }]}>Description</Text>
         <TextInput
-          style={[styles.textArea, { 
+          style={[styles.textArea, {
             borderColor: currentColors.border,
             color: currentColors.text,
             backgroundColor: currentColors.surface,
           }]}
-          placeholder={faithMode 
+          placeholder={faithMode
             ? "Describe how this resource will help people grow in faith..."
             : "Describe the value and benefits of your lead magnet..."
           }
@@ -427,7 +430,7 @@ const LeadMagnetBuilderScreen = () => {
       <View style={styles.formSection}>
         <Text style={[styles.inputLabel, { color: currentColors.text }]}>Target Audience</Text>
         <TextInput
-          style={[styles.input, { 
+          style={[styles.input, {
             borderColor: currentColors.border,
             color: currentColors.text,
             backgroundColor: currentColors.surface,
@@ -442,7 +445,7 @@ const LeadMagnetBuilderScreen = () => {
       <View style={styles.formSection}>
         <Text style={[styles.inputLabel, { color: currentColors.text }]}>Main Pain Point</Text>
         <TextInput
-          style={[styles.input, { 
+          style={[styles.input, {
             borderColor: currentColors.border,
             color: currentColors.text,
             backgroundColor: currentColors.surface,
@@ -476,7 +479,7 @@ const LeadMagnetBuilderScreen = () => {
       <View style={styles.formSection}>
         <Text style={[styles.inputLabel, { color: currentColors.text }]}>Headline</Text>
         <TextInput
-          style={[styles.input, { 
+          style={[styles.input, {
             borderColor: currentColors.border,
             color: currentColors.text,
             backgroundColor: currentColors.surface,
@@ -484,8 +487,8 @@ const LeadMagnetBuilderScreen = () => {
           placeholder="Your compelling headline..."
           placeholderTextColor={currentColors.textSecondary}
           value={formData.landingPage.headline}
-          onChangeText={(text) => setFormData(prev => ({ 
-            ...prev, 
+          onChangeText={(text) => setFormData(prev => ({
+            ...prev,
             landingPage: { ...prev.landingPage, headline: text }
           }))}
         />
@@ -494,7 +497,7 @@ const LeadMagnetBuilderScreen = () => {
       <View style={styles.formSection}>
         <Text style={[styles.inputLabel, { color: currentColors.text }]}>Subheadline</Text>
         <TextInput
-          style={[styles.input, { 
+          style={[styles.input, {
             borderColor: currentColors.border,
             color: currentColors.text,
             backgroundColor: currentColors.surface,
@@ -502,8 +505,8 @@ const LeadMagnetBuilderScreen = () => {
           placeholder="Supporting description..."
           placeholderTextColor={currentColors.textSecondary}
           value={formData.landingPage.subheadline}
-          onChangeText={(text) => setFormData(prev => ({ 
-            ...prev, 
+          onChangeText={(text) => setFormData(prev => ({
+            ...prev,
             landingPage: { ...prev.landingPage, subheadline: text }
           }))}
         />
@@ -512,7 +515,7 @@ const LeadMagnetBuilderScreen = () => {
       <View style={styles.formSection}>
         <Text style={[styles.inputLabel, { color: currentColors.text }]}>Call to Action</Text>
         <TextInput
-          style={[styles.input, { 
+          style={[styles.input, {
             borderColor: currentColors.border,
             color: currentColors.text,
             backgroundColor: currentColors.surface,
@@ -527,7 +530,7 @@ const LeadMagnetBuilderScreen = () => {
       <View style={styles.formSection}>
         <Text style={[styles.inputLabel, { color: currentColors.text }]}>Value Proposition</Text>
         <TextInput
-          style={[styles.textArea, { 
+          style={[styles.textArea, {
             borderColor: currentColors.border,
             color: currentColors.text,
             backgroundColor: currentColors.surface,
@@ -612,10 +615,10 @@ const LeadMagnetBuilderScreen = () => {
               ]}
               onPress={() => setFormData(prev => ({ ...prev, deliveryMethod: option.value as any }))}
             >
-              <Ionicons 
-                name={option.icon as any} 
-                size={20} 
-                color={formData.deliveryMethod === option.value ? currentColors.primary : currentColors.text} 
+              <Ionicons
+                name={option.icon as any}
+                size={20}
+                color={formData.deliveryMethod === option.value ? currentColors.primary : currentColors.text}
               />
               <Text style={[
                 styles.deliveryOptionText,
@@ -687,7 +690,7 @@ const LeadMagnetBuilderScreen = () => {
         <View style={[styles.progressBar, { backgroundColor: currentColors.border }]}>
           <View style={[
             styles.progressFill,
-            { 
+            {
               backgroundColor: currentColors.primary,
               width: `${(currentStep / totalSteps) * 100}%`,
             }

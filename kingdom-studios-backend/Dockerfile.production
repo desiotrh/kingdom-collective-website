@@ -88,7 +88,7 @@ CMD ["node", "src/server.js"]
 # ==============================================
 # BUILD METADATA
 # ==============================================
-LABEL maintainer="Kingdom Studios <dev@kingdomstudios.app>"
+LABEL maintainer="Kingdom Studios <dev@kingdomcollective.pro>"
 LABEL version="1.0.0"
 LABEL description="Kingdom Studios Backend - Production Ready"
 LABEL org.opencontainers.image.source="https://github.com/kingdom-studios/backend"

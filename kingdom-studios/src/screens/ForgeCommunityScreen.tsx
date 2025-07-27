@@ -16,7 +16,8 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { useAuth } from '../contexts/AuthContext';
 import { useFaithMode } from '../contexts/FaithModeContext';
 import { useAppNavigation } from '../utils/navigationUtils';
-import { KingdomColors, KingdomShadows } from '../constants/KingdomColors';
+import { KingdomColors } from '../constants/KingdomColors';
+import { KingdomShadows } from '../constants/KingdomShadows';
 import KingdomLogo from '../components/KingdomLogo';
 
 const { width, height } = Dimensions.get('window');
@@ -80,7 +81,7 @@ const ForgeCommunityScreen = () => {
   const navigation = useAppNavigation();
   const [activeTab, setActiveTab] = useState<'discover' | 'following' | 'trending'>('discover');
   const [activeContentType, setActiveContentType] = useState<'all' | 'projects' | 'reels' | 'photos' | 'resources'>('all');
-  
+
   // Mock data for trending creators
   const trendingCreators: Creator[] = [
     { id: '1', name: 'Sarah', avatar: 'https://picsum.photos/100/100?random=1', isOnline: true, points: 1250, rank: 1, badge: '👑', level: 'Kingdom Champion' },
@@ -233,17 +234,17 @@ const ForgeCommunityScreen = () => {
         <View style={styles.headerContent}>
           {/* Top Navigation */}
           <View style={styles.topNav}>
-            <TouchableOpacity 
+            <TouchableOpacity
               onPress={() => navigation.goBack()}
               style={styles.navButton}
             >
               <Text style={styles.backButton}>←</Text>
             </TouchableOpacity>
-            
+
             <View style={styles.logoContainer}>
               <KingdomLogo size="small" />
             </View>
-            
+
             <View style={styles.rightNav}>
               <TouchableOpacity style={styles.notificationButton}>
                 <View style={styles.notificationIcon}>
@@ -251,10 +252,10 @@ const ForgeCommunityScreen = () => {
                   <View style={styles.notificationBadge} />
                 </View>
               </TouchableOpacity>
-              
+
               <TouchableOpacity style={styles.profileButton}>
-                <Image 
-                  source={{ uri: user?.photoURL || 'https://picsum.photos/100/100?random=user' }} 
+                <Image
+                  source={{ uri: user?.photoURL || 'https://picsum.photos/100/100?random=user' }}
                   style={styles.profileImage}
                 />
               </TouchableOpacity>
@@ -269,7 +270,7 @@ const ForgeCommunityScreen = () => {
             <Text style={styles.headerSubtitle}>
               {faithMode ? 'Where Iron Sharpens Iron' : 'Where Creators Collaborate & Share'}
             </Text>
-            
+
             {/* Quick Stats */}
             <View style={styles.quickStats}>
               <View style={styles.statPill}>
@@ -332,7 +333,7 @@ const ForgeCommunityScreen = () => {
             </View>
           </View>
         </View>
-        
+
         {/* Decorative Elements */}
         <View style={styles.headerDecorations}>
           <View style={[styles.decoration, styles.decoration1]} />
@@ -426,7 +427,7 @@ const ForgeCommunityScreen = () => {
           <Text style={styles.statsTitle}>Your Kingdom Progress</Text>
           <Text style={styles.userRank}>Rank #7</Text>
         </View>
-        
+
         <View style={styles.statsGrid}>
           <View style={styles.statItem}>
             <Text style={styles.statValue}>645</Text>
@@ -522,9 +523,9 @@ const ForgeCommunityScreen = () => {
             <Text style={styles.categoryText}>{item.category}</Text>
           </View>
         </View>
-        
+
         <Text style={styles.contentDescription}>{item.description}</Text>
-        
+
         {/* Enhanced Engagement Metrics */}
         <View style={styles.engagementMetrics}>
           <View style={styles.metricItem}>
@@ -549,21 +550,21 @@ const ForgeCommunityScreen = () => {
               <Text style={styles.actionCount}>{item.likes}</Text>
             </View>
           </TouchableOpacity>
-          
+
           <TouchableOpacity style={[styles.actionButton, styles.enhancedActionButton]}>
             <View style={styles.actionButtonContent}>
               <Text style={styles.actionIcon}>💬</Text>
               <Text style={styles.actionCount}>{item.comments}</Text>
             </View>
           </TouchableOpacity>
-          
+
           <TouchableOpacity style={[styles.actionButton, styles.enhancedActionButton]}>
             <View style={styles.actionButtonContent}>
               <Text style={styles.actionIcon}>📤</Text>
               <Text style={styles.actionCount}>Share</Text>
             </View>
           </TouchableOpacity>
-          
+
           <TouchableOpacity style={[styles.saveButton, styles.enhancedSaveButton]}>
             <LinearGradient
               colors={[KingdomColors.opacity.gold20, KingdomColors.opacity.gold10]}
@@ -580,7 +581,7 @@ const ForgeCommunityScreen = () => {
   return (
     <SafeAreaView style={styles.container}>
       {renderHeader()}
-      
+
       <ScrollView style={styles.content} showsVerticalScrollIndicator={false}>
         {/* User Stats */}
         {renderUserStats()}
@@ -601,20 +602,20 @@ const ForgeCommunityScreen = () => {
                 </Text>
                 <View style={styles.mentorshipText}>
                   <Text style={styles.mentorshipTitle}>
-                    {faithMode 
+                    {faithMode
                       ? 'Connect with Spirit-Filled Mentors'
                       : 'Accelerate Your Creative Journey'
                     }
                   </Text>
                   <Text style={styles.mentorshipDescription}>
-                    {faithMode 
+                    {faithMode
                       ? 'Get guidance from mature believers who can help you grow in faith and creativity.'
                       : 'Learn from experienced creators who want to help you succeed faster.'
                     }
                   </Text>
                 </View>
               </View>
-              <TouchableOpacity 
+              <TouchableOpacity
                 style={styles.mentorshipButton}
                 onPress={() => navigation.navigate('MentorshipHub')}
               >
@@ -772,7 +773,7 @@ const styles = StyleSheet.create({
   activeTabText: {
     color: KingdomColors.text.inverse,
   },
-  
+
   // Content Type Filter Styles
   contentTypeBar: {
     flexDirection: 'row',
@@ -1509,4 +1510,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default React.memo(ForgeCommunityScreen);
+export default ForgeCommunityScreen;

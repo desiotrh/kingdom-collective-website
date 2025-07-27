@@ -6,7 +6,8 @@ import {
   ImageSourcePropType,
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-import { KingdomColors, KingdomShadows } from '../constants/KingdomColors';
+import { KingdomColors } from '../constants/KingdomColors';
+import { KingdomShadows } from '../constants/KingdomShadows';
 
 interface KingdomLogoProps {
   size?: 'small' | 'medium' | 'large';
@@ -15,11 +16,11 @@ interface KingdomLogoProps {
   glowIntensity?: number;
 }
 
-const KingdomLogo: React.FC<KingdomLogoProps> = ({ 
-  size = 'medium', 
-  style, 
-  showGlow = true, 
-  glowIntensity = 0.2 
+const KingdomLogo: React.FC<KingdomLogoProps> = ({
+  size = 'medium',
+  style,
+  showGlow = true,
+  glowIntensity = 0.2
 }) => {
   const getSizeStyle = () => {
     switch (size) {
@@ -45,11 +46,11 @@ const KingdomLogo: React.FC<KingdomLogoProps> = ({
 
   return (
     <View style={[
-      styles.container, 
+      styles.container,
       sizeStyle.container,
       style
     ]}>
-      <Image 
+      <Image
         source={require('../../assets/KingdomStudiosLogo.png')}
         style={[styles.image, sizeStyle.image]}
         resizeMode="contain"

@@ -17,7 +17,7 @@ Welcome to the Kingdom Voice Beta! You are helping us pioneer a faith-integrated
 - **Analytics:** Voice engagement, spiritual impact, testimony/prayer tracking.
 
 ## How to Report Bugs & Feedback
-- Use the in-app feedback form (coming soon) or email: **beta@kingdomstudios.app**
+- Use the in-app feedback form (coming soon) or email: **beta@kingdomcollective.pro**
 - Please include screenshots, device info, and steps to reproduce any issues.
 - Share wins, ideas, and testimonies!
 
@@ -27,6 +27,6 @@ Welcome to the Kingdom Voice Beta! You are helping us pioneer a faith-integrated
 - Respect privacy, copyright, and community standards.
 
 ## Contact & Support
-- Email: **beta@kingdomstudios.app**
+- Email: **beta@kingdomcollective.pro**
 - Discord: [Kingdom Studios Beta Community](#)
 - Thank you for advancing the Kingdom with your creativity and feedback! 

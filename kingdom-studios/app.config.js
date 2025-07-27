@@ -47,12 +47,12 @@ export default {
     ],
     extra: {
       // Firebase Configuration
-      firebaseApiKey: process.env.EXPO_PUBLIC_FIREBASE_API_KEY,
-      firebaseAuthDomain: process.env.EXPO_PUBLIC_FIREBASE_AUTH_DOMAIN,
-      firebaseProjectId: process.env.EXPO_PUBLIC_FIREBASE_PROJECT_ID,
-      firebaseStorageBucket: process.env.EXPO_PUBLIC_FIREBASE_STORAGE_BUCKET,
-      firebaseMessagingSenderId: process.env.EXPO_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
-      firebaseAppId: process.env.EXPO_PUBLIC_FIREBASE_APP_ID,
+      firebaseApiKey: process.env.EXPO_PUBLIC_FIREBASE_API_KEY || '',
+      firebaseAuthDomain: process.env.EXPO_PUBLIC_FIREBASE_AUTH_DOMAIN || '',
+      firebaseProjectId: process.env.EXPO_PUBLIC_FIREBASE_PROJECT_ID || '',
+      firebaseStorageBucket: process.env.EXPO_PUBLIC_FIREBASE_STORAGE_BUCKET || '',
+      firebaseMessagingSenderId: process.env.EXPO_PUBLIC_FIREBASE_MESSAGING_SENDER_ID || '',
+      firebaseAppId: process.env.EXPO_PUBLIC_FIREBASE_APP_ID || '',
 
       // Google OAuth
       googleClientId: process.env.EXPO_PUBLIC_GOOGLE_CLIENT_ID,
@@ -65,6 +65,7 @@ export default {
       // AI Content Generation
       openaiApiKey: process.env.EXPO_PUBLIC_OPENAI_API_KEY,
       openrouterApiKey: process.env.EXPO_PUBLIC_OPENROUTER_API_KEY,
+      falApiKey: process.env.EXPO_PUBLIC_FAL_API_KEY,
 
       // E-commerce Platform APIs
       etsyApiKey: process.env.EXPO_PUBLIC_ETSY_API_KEY,
@@ -114,8 +115,8 @@ export default {
       pusherCluster: process.env.EXPO_PUBLIC_PUSHER_CLUSTER,
 
       // Development Settings
-      debugMode: process.env.EXPO_PUBLIC_DEBUG_MODE === 'true',
-      enableMocks: process.env.EXPO_PUBLIC_ENABLE_MOCKS === 'true',
+      debugMode: process.env.EXPO_PUBLIC_DEBUG_MODE === 'true' || true,
+      enableMocks: process.env.EXPO_PUBLIC_ENABLE_MOCKS === 'true' || true,
 
       // Legal Pages & Developer Information
       termsOfServiceUrl: 'https://kingdomstudiosapp.com/terms',

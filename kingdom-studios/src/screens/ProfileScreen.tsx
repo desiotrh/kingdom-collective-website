@@ -14,7 +14,8 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { useAuth } from '../contexts/AuthContext';
 import { useFaithMode } from '../contexts/FaithModeContext';
 import { useAppNavigation } from '../utils/navigationUtils';
-import { KingdomColors, KingdomShadows } from '../constants/KingdomColors';
+import { KingdomColors } from '../constants/KingdomColors';
+import { KingdomShadows } from '../constants/KingdomShadows';
 import KingdomLogo from '../components/KingdomLogo';
 
 const { width } = Dimensions.get('window');
@@ -153,7 +154,7 @@ const ProfileScreen = () => {
           <Text style={styles.profileTitle}>
             {faithMode ? 'Kingdom Entrepreneur & Faith-Based Creator' : 'Digital Creator & Entrepreneur'}
           </Text>
-          
+
           {/* Location and Join Date */}
           <View style={styles.profileDetails}>
             <Text style={styles.profileDetail}>📍 Global Kingdom Community</Text>
@@ -162,8 +163,8 @@ const ProfileScreen = () => {
 
           {/* Bio */}
           <Text style={styles.profileBio}>
-            {faithMode 
-              ? "Building God's kingdom through digital innovation. Passionate about creating faith-inspired products that make a difference. ✨" 
+            {faithMode
+              ? "Building God's kingdom through digital innovation. Passionate about creating faith-inspired products that make a difference. ✨"
               : "Digital entrepreneur focused on creating innovative products and building communities. Always learning and growing. 🚀"
             }
           </Text>

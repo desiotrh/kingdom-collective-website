@@ -466,7 +466,7 @@ class TeamCollaborationService {
       {
         id: '1',
         userId: 'user_1',
-        email: 'john@kingdomstudios.com',
+        email: 'john@kingdomcollective.pro',
         name: 'John Smith',
         role: 'owner',
         permissions: this.getPermissionsForRole('owner'),
@@ -478,7 +478,7 @@ class TeamCollaborationService {
       {
         id: '2',
         userId: 'user_2',
-        email: 'sarah@kingdomstudios.com',
+        email: 'sarah@kingdomcollective.pro',
         name: 'Sarah Johnson',
         role: 'admin',
         permissions: this.getPermissionsForRole('admin'),
@@ -490,7 +490,7 @@ class TeamCollaborationService {
       {
         id: '3',
         userId: 'user_3',
-        email: 'mike@kingdomstudios.com',
+        email: 'mike@kingdomcollective.pro',
         name: 'Mike Davis',
         role: 'editor',
         permissions: this.getPermissionsForRole('editor'),

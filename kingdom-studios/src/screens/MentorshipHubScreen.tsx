@@ -18,7 +18,8 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { BlurView } from 'expo-blur';
 import { useNavigation } from '@react-navigation/native';
 import { useFaithMode } from '../contexts/FaithModeContext';
-import { KingdomColors, KingdomShadows } from '../constants/KingdomColors';
+import { KingdomColors } from '../constants/KingdomColors';
+import { KingdomShadows } from '../constants/KingdomShadows';
 import KingdomLogo from '../components/KingdomLogo';
 import { MENTORSHIP_CATEGORIES, MentorProfile, MentorshipCategory } from '../types/mentorship';
 
@@ -72,7 +73,7 @@ export default function MentorshipHubScreen() {
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
 
   const CategoryCard = ({ category }: { category: MentorshipCategory }) => (
-    <TouchableOpacity 
+    <TouchableOpacity
       style={styles.categoryCard}
       onPress={() => setSelectedCategory(category.id)}
       activeOpacity={0.8}
@@ -125,9 +126,9 @@ export default function MentorshipHubScreen() {
               </View>
             </View>
           </View>
-          
+
           <Text style={styles.mentorBio}>{mentor.bio}</Text>
-          
+
           <View style={styles.specialtiesContainer}>
             {mentor.specialties.map((specialty, index) => (
               <View key={index} style={styles.specialtyTag}>
@@ -135,7 +136,7 @@ export default function MentorshipHubScreen() {
               </View>
             ))}
           </View>
-          
+
           <TouchableOpacity style={styles.connectButton}>
             <LinearGradient
               colors={['#FFD700', '#FFC107'] as const}
@@ -181,7 +182,7 @@ export default function MentorshipHubScreen() {
             <View style={styles.headerSpacer} />
           </View>
 
-          <ScrollView 
+          <ScrollView
             style={styles.scrollView}
             contentContainerStyle={styles.scrollContent}
             showsVerticalScrollIndicator={false}
@@ -196,7 +197,7 @@ export default function MentorshipHubScreen() {
                   {faithMode ? '🌟 Find Your Spiritual Guide' : '🚀 Accelerate Your Growth'}
                 </Text>
                 <Text style={styles.heroSubtitle}>
-                  {faithMode 
+                  {faithMode
                     ? "Connect with spirit-filled mentors who will walk alongside you in faith and creativity. Every believer needs a Paul, a Barnabas, and a Timothy."
                     : "Get personalized guidance from experienced creators and entrepreneurs. Learn faster, avoid mistakes, and achieve your goals."
                   }
@@ -225,25 +226,25 @@ export default function MentorshipHubScreen() {
             <View style={styles.quickActionsSection}>
               <Text style={styles.sectionTitle}>Quick Actions</Text>
               <View style={styles.quickActionsGrid}>
-                <QuickAction 
-                  icon="🙋‍♀️" 
-                  title="Find a Mentor" 
-                  onPress={() => navigation.navigate('FindMentor')} 
+                <QuickAction
+                  icon="🙋‍♀️"
+                  title="Find a Mentor"
+                  onPress={() => navigation.navigate('FindMentor')}
                 />
-                <QuickAction 
-                  icon="🎓" 
-                  title="Browse Courses" 
-                  onPress={() => navigation.navigate('DiscipleshipPathways')} 
+                <QuickAction
+                  icon="🎓"
+                  title="Browse Courses"
+                  onPress={() => navigation.navigate('DiscipleshipPathways')}
                 />
-                <QuickAction 
-                  icon="👨‍🏫" 
-                  title="Become a Guide" 
-                  onPress={() => navigation.navigate('BecomeMentor')} 
+                <QuickAction
+                  icon="👨‍🏫"
+                  title="Become a Guide"
+                  onPress={() => navigation.navigate('BecomeMentor')}
                 />
-                <QuickAction 
-                  icon="💬" 
-                  title="My Sessions" 
-                  onPress={() => navigation.navigate('MentorshipSessions')} 
+                <QuickAction
+                  icon="💬"
+                  title="My Sessions"
+                  onPress={() => navigation.navigate('MentorshipSessions')}
                 />
               </View>
             </View>
@@ -262,14 +263,14 @@ export default function MentorshipHubScreen() {
             <View style={styles.featuredSection}>
               <View style={styles.sectionHeader}>
                 <Text style={styles.sectionTitle}>Featured Guides</Text>
-                <TouchableOpacity 
+                <TouchableOpacity
                   style={styles.viewAllButton}
                   onPress={() => navigation.navigate('AllMentors')}
                 >
                   <Text style={styles.viewAllText}>View All</Text>
                 </TouchableOpacity>
               </View>
-              
+
               <View style={styles.mentorsContainer}>
                 {mockFeaturedMentors.map(mentor => (
                   <MentorCard key={mentor.id} mentor={mentor} />
@@ -311,12 +312,12 @@ export default function MentorshipHubScreen() {
                   {faithMode ? '🔥 Ready to Grow in Faith?' : '🚀 Ready to Level Up?'}
                 </Text>
                 <Text style={styles.ctaSubtitle}>
-                  {faithMode 
+                  {faithMode
                     ? "Join thousands of believers who have found their calling through mentorship."
                     : "Join creators who've accelerated their growth with expert guidance."
                   }
                 </Text>
-                <TouchableOpacity 
+                <TouchableOpacity
                   style={styles.ctaButton}
                   onPress={() => navigation.navigate('FindMentor')}
                 >

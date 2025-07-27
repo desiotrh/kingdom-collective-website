@@ -20,7 +20,8 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { BlurView } from 'expo-blur';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { useFaithMode } from '../contexts/FaithModeContext';
-import { KingdomColors, KingdomShadows } from '../constants/KingdomColors';
+import { KingdomColors } from '../constants/KingdomColors';
+import { KingdomShadows } from '../constants/KingdomShadows';
 import KingdomLogo from '../components/KingdomLogo';
 import { MentorProfile, Testimonial } from '../types/mentorship';
 
@@ -91,7 +92,7 @@ const MentorProfileScreen = () => {
   const handleRequestMentorship = () => {
     Alert.alert(
       faithMode ? 'Request Spiritual Guidance' : 'Request Mentorship',
-      faithMode 
+      faithMode
         ? 'Would you like to connect with this mentor for spiritual guidance and growth?'
         : 'Would you like to request mentorship from this mentor?',
       [
@@ -105,7 +106,7 @@ const MentorProfileScreen = () => {
               setLoading(false);
               Alert.alert(
                 'Request Sent!',
-                faithMode 
+                faithMode
                   ? 'Your request for spiritual guidance has been sent. You\'ll hear back within 24 hours. God bless!'
                   : 'Your mentorship request has been sent. You\'ll receive a response within 24 hours.'
               );
@@ -147,8 +148,8 @@ const MentorProfileScreen = () => {
               style={styles.profileContent}
             >
               <View style={styles.profileImageContainer}>
-                <Image 
-                  source={{ uri: mentor.profileImage }} 
+                <Image
+                  source={{ uri: mentor.profileImage }}
                   style={styles.profileImage as ImageStyle}
                 />
                 <View style={[styles.statusBadge, mentor.isActive && styles.activeBadge]}>
@@ -280,8 +281,8 @@ const MentorProfileScreen = () => {
           </BlurView>
 
           {/* Request Button */}
-          <TouchableOpacity 
-            style={styles.requestButton} 
+          <TouchableOpacity
+            style={styles.requestButton}
             onPress={handleRequestMentorship}
             disabled={loading}
           >

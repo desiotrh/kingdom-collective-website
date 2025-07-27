@@ -139,7 +139,7 @@ ALERT_SMS_ENABLED=false
 # Email Alerting (if enabled)
 SMTP_HOST=smtp.your-provider.com
 SMTP_PORT=587
-SMTP_USER=alerts@kingdomstudios.com
+SMTP_USER=alerts@kingdomcollective.pro
 SMTP_PASS=your_email_password
 
 # Slack Alerting (if enabled)
@@ -368,7 +368,7 @@ const performanceMonitoring = new PerformanceMonitoringSystem({
   emailAlerting: true,
   slackAlerting: true,
   smsAlerting: true,
-  alertRecipients: ["ops@kingdomstudios.com"],
+  alertRecipients: ["ops@kingdomcollective.pro"],
 });
 ```
 

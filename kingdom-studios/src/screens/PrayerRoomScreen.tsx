@@ -22,7 +22,8 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { BlurView } from 'expo-blur';
 import { useNavigation } from '@react-navigation/native';
 import { useFaithMode } from '../contexts/FaithModeContext';
-import { KingdomColors, KingdomShadows } from '../constants/KingdomColors';
+import { KingdomColors } from '../constants/KingdomColors';
+import { KingdomShadows } from '../constants/KingdomShadows';
 import KingdomLogo from '../components/KingdomLogo';
 import { PrayerRequest, PRAYER_CATEGORIES } from '../types/spiritual';
 import { Ionicons } from '@expo/vector-icons';
@@ -46,7 +47,7 @@ interface PrayerDisplayItem {
 const PrayerRoomScreen = () => {
   const navigation = useNavigation();
   const { faithMode } = useFaithMode();
-  
+
   const [prayerRequests, setPrayerRequests] = useState<PrayerDisplayItem[]>([]);
   const [selectedTab, setSelectedTab] = useState<'requests' | 'personal' | 'praise'>('requests');
   const [refreshing, setRefreshing] = useState(false);
@@ -66,7 +67,7 @@ const PrayerRoomScreen = () => {
         {
           id: '1',
           title: faithMode ? 'Healing for my mother' : 'Support for family member',
-          description: faithMode 
+          description: faithMode
             ? 'Please pray for my mother who is undergoing surgery. Believing God for complete healing and restoration.'
             : 'My family member is going through a difficult medical procedure. Please send positive thoughts.',
           category: 'healing',
@@ -81,7 +82,7 @@ const PrayerRoomScreen = () => {
         {
           id: '2',
           title: faithMode ? 'Job provision' : 'Career opportunity',
-          description: faithMode 
+          description: faithMode
             ? 'Trusting God for the right job opportunity. Praying for His perfect timing and provision.'
             : 'Looking for the right career opportunity. Hoping for good timing and the right fit.',
           category: 'provision',
@@ -96,7 +97,7 @@ const PrayerRoomScreen = () => {
         {
           id: '3',
           title: faithMode ? 'Praise Report: Job answered!' : 'Great news: New job!',
-          description: faithMode 
+          description: faithMode
             ? 'God answered our prayers! I got the job I\'ve been praying for. His timing is perfect!'
             : 'Amazing news! I got the job I\'ve been hoping for. Everything worked out perfectly!',
           category: 'provision',
@@ -132,15 +133,15 @@ const PrayerRoomScreen = () => {
 
   const handlePrayForRequest = async (requestId: string) => {
     try {
-      setPrayerRequests(prev => prev.map(r => 
-        r.id === requestId 
+      setPrayerRequests(prev => prev.map(r =>
+        r.id === requestId
           ? { ...r, prayerCount: r.prayerCount + 1 }
           : r
       ));
-      
+
       Alert.alert(
         faithMode ? 'Prayer Recorded' : 'Support Recorded',
-        faithMode 
+        faithMode
           ? 'Your prayer has been recorded. May God bless your intercession.'
           : 'Your support has been recorded. Thank you for caring.'
       );
@@ -174,10 +175,10 @@ const PrayerRoomScreen = () => {
       setNewPrayerTitle('');
       setNewPrayerDescription('');
       setShowAddForm(false);
-      
+
       Alert.alert(
         faithMode ? 'Prayer Request Submitted' : 'Request Submitted',
-        faithMode 
+        faithMode
           ? 'Your prayer request has been shared with the community. May God answer according to His will.'
           : 'Your request has been shared with the community. Thank you for trusting us with this.'
       );
@@ -220,14 +221,14 @@ const PrayerRoomScreen = () => {
         </Text>
 
         <View style={styles.cardFooter}>
-          <TouchableOpacity 
+          <TouchableOpacity
             style={styles.prayButton}
             onPress={() => handlePrayForRequest(item.id)}
           >
-            <Ionicons 
-              name={faithMode ? "prism" : "heart"} 
-              size={18} 
-              color={KingdomColors.gold.bright} 
+            <Ionicons
+              name={faithMode ? "prism" : "heart"}
+              size={18}
+              color={KingdomColors.gold.bright}
             />
             <Text style={styles.prayButtonText}>
               {faithMode ? `Pray (${item.prayerCount})` : `Support (${item.prayerCount})`}
@@ -253,18 +254,18 @@ const PrayerRoomScreen = () => {
   );
 
   const tabs = [
-    { 
-      key: 'requests', 
+    {
+      key: 'requests',
       label: faithMode ? 'Prayer Requests' : 'Support Requests',
       icon: 'hands-outline'
     },
-    { 
-      key: 'praise', 
+    {
+      key: 'praise',
       label: faithMode ? 'Praise Reports' : 'Good News',
       icon: 'celebration'
     },
-    { 
-      key: 'personal', 
+    {
+      key: 'personal',
       label: faithMode ? 'My Prayers' : 'My Requests',
       icon: 'person'
     },
@@ -278,13 +279,13 @@ const PrayerRoomScreen = () => {
       >
         {/* Header */}
         <View style={styles.header}>
-          <TouchableOpacity 
+          <TouchableOpacity
             style={styles.backButton}
             onPress={() => navigation.goBack()}
           >
             <Ionicons name="arrow-back" size={24} color={KingdomColors.text.primary} />
           </TouchableOpacity>
-          
+
           <View style={styles.headerCenter}>
             <KingdomLogo size="small" />
             <Text style={styles.headerTitle}>
@@ -292,7 +293,7 @@ const PrayerRoomScreen = () => {
             </Text>
           </View>
 
-          <TouchableOpacity 
+          <TouchableOpacity
             style={styles.addButton}
             onPress={() => setShowAddForm(true)}
           >
@@ -311,10 +312,10 @@ const PrayerRoomScreen = () => {
               ]}
               onPress={() => setSelectedTab(tab.key as 'requests' | 'personal' | 'praise')}
             >
-              <Ionicons 
-                name={tab.icon as any} 
-                size={20} 
-                color={selectedTab === tab.key ? KingdomColors.gold.bright : KingdomColors.text.muted} 
+              <Ionicons
+                name={tab.icon as any}
+                size={20}
+                color={selectedTab === tab.key ? KingdomColors.gold.bright : KingdomColors.text.muted}
               />
               <Text style={[
                 styles.tabText,
@@ -331,7 +332,7 @@ const PrayerRoomScreen = () => {
           <View style={styles.verseContainer}>
             <BlurView intensity={20} style={styles.verseBlur}>
               <Text style={styles.verse}>
-                "Do not be anxious about anything, but in every situation, by prayer and petition, 
+                "Do not be anxious about anything, but in every situation, by prayer and petition,
                 with thanksgiving, present your requests to God." - Philippians 4:6
               </Text>
             </BlurView>
@@ -339,7 +340,7 @@ const PrayerRoomScreen = () => {
         )}
 
         {/* Content */}
-        <ScrollView 
+        <ScrollView
           style={styles.scrollView}
           refreshControl={
             <RefreshControl
@@ -355,7 +356,7 @@ const PrayerRoomScreen = () => {
 
         {/* Add Prayer Form Modal */}
         {showAddForm && (
-          <KeyboardAvoidingView 
+          <KeyboardAvoidingView
             style={styles.modalOverlay}
             behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
           >
@@ -369,7 +370,7 @@ const PrayerRoomScreen = () => {
                     <Text style={styles.modalTitle}>
                       {faithMode ? 'Submit Prayer Request' : 'Submit Support Request'}
                     </Text>
-                    <TouchableOpacity 
+                    <TouchableOpacity
                       style={styles.closeButton}
                       onPress={() => setShowAddForm(false)}
                     >
@@ -395,19 +396,19 @@ const PrayerRoomScreen = () => {
                     numberOfLines={4}
                   />
 
-                  <TouchableOpacity 
+                  <TouchableOpacity
                     style={styles.anonymousOption}
                     onPress={() => setIsAnonymous(!isAnonymous)}
                   >
-                    <Ionicons 
-                      name={isAnonymous ? "checkbox" : "checkbox-outline"} 
-                      size={20} 
-                      color={KingdomColors.gold.bright} 
+                    <Ionicons
+                      name={isAnonymous ? "checkbox" : "checkbox-outline"}
+                      size={20}
+                      color={KingdomColors.gold.bright}
                     />
                     <Text style={styles.anonymousText}>Submit anonymously</Text>
                   </TouchableOpacity>
 
-                  <TouchableOpacity 
+                  <TouchableOpacity
                     style={styles.submitButton}
                     onPress={handleSubmitPrayer}
                   >

@@ -175,8 +175,8 @@ We may modify these Terms at any time. We will notify users of material changes 
 
 For questions about these Terms, contact us at:
 
-- **Email:** legal@kingdomstudios.app
-- **Support:** support@kingdomstudios.app
+- **Email:** legal@kingdomcollective.pro
+- **Support:** support@kingdomcollective.pro
 - **Address:** [Your Business Address]
 
 ## 16. Severability

@@ -17,7 +17,7 @@ const analyticsEngine = new AdvancedAnalyticsEngine();
 const performanceMonitoring = new PerformanceMonitoringSystem({
   emailAlerting: false, // Enable in production
   slackAlerting: false, // Enable in production
-  alertRecipients: ['admin@kingdomstudios.com']
+  alertRecipients: ['admin@kingdomcollective.pro']
 });
 
 // Middleware for monitoring authentication
@@ -40,7 +40,7 @@ router.get('/dashboard', authenticateMonitoring, (req, res) => {
       performance: performanceMonitoring.getDashboardData(),
       timestamp: new Date().toISOString()
     };
-    
+
     res.json({
       success: true,
       data: dashboardData
@@ -66,14 +66,14 @@ router.get('/health', (req, res) => {
       performance: performanceMonitoring.getSystemStatus(),
       version: process.env.npm_package_version || '1.0.0'
     };
-    
+
     // Determine overall health status
     if (health.system.status === 'critical' || health.performance === 'critical') {
       health.status = 'critical';
     } else if (health.system.status === 'warning' || health.performance === 'warning') {
       health.status = 'warning';
     }
-    
+
     res.json({
       success: true,
       data: health
@@ -93,7 +93,7 @@ router.get('/metrics/performance', authenticateMonitoring, (req, res) => {
   try {
     const timeRange = req.query.timeRange || '1h';
     const metrics = performanceMonitoring.getDashboardData();
-    
+
     res.json({
       success: true,
       data: {
@@ -116,7 +116,7 @@ router.get('/analytics', authenticateMonitoring, (req, res) => {
   try {
     const timeRange = req.query.timeRange || '24h';
     const analyticsData = analyticsEngine.exportData(timeRange);
-    
+
     res.json({
       success: true,
       data: {
@@ -138,17 +138,17 @@ router.get('/analytics', authenticateMonitoring, (req, res) => {
 router.post('/track', (req, res) => {
   try {
     const { userId, event, properties } = req.body;
-    
+
     if (!userId || !event) {
       return res.status(400).json({
         success: false,
         error: 'userId and event are required'
       });
     }
-    
+
     // Track with analytics engine
     analyticsEngine.trackEvent(userId, event, properties);
-    
+
     // Record performance metrics if applicable
     if (properties.responseTime) {
       performanceMonitoring.recordPerformanceMetric('responseTime', properties.responseTime, {
@@ -156,7 +156,7 @@ router.post('/track', (req, res) => {
         userId
       });
     }
-    
+
     res.json({
       success: true,
       message: 'Event tracked successfully'
@@ -176,21 +176,21 @@ router.get('/alerts', authenticateMonitoring, (req, res) => {
     const { status = 'active', severity } = req.query;
     const monitoringData = monitoringDashboard.getDashboardData();
     const performanceData = performanceMonitoring.getDashboardData();
-    
+
     let alerts = [...monitoringData.alerts, ...performanceData.alerts.recent];
-    
+
     // Filter by status
     if (status === 'active') {
       alerts = alerts.filter(alert => !alert.resolved);
     } else if (status === 'resolved') {
       alerts = alerts.filter(alert => alert.resolved);
     }
-    
+
     // Filter by severity
     if (severity) {
       alerts = alerts.filter(alert => alert.severity === severity);
     }
-    
+
     res.json({
       success: true,
       data: {
@@ -217,11 +217,11 @@ router.post('/alerts/:alertId/acknowledge', authenticateMonitoring, (req, res) =
   try {
     const { alertId } = req.params;
     const { acknowledgedBy = 'api' } = req.body;
-    
+
     // Acknowledge in both monitoring systems
     monitoringDashboard.acknowledgeAlert(alertId, acknowledgedBy);
     performanceMonitoring.acknowledgeAlert(alertId, acknowledgedBy);
-    
+
     res.json({
       success: true,
       message: 'Alert acknowledged successfully'
@@ -240,11 +240,11 @@ router.post('/alerts/:alertId/resolve', authenticateMonitoring, (req, res) => {
   try {
     const { alertId } = req.params;
     const { resolvedBy = 'api', resolution = '' } = req.body;
-    
+
     // Resolve in both monitoring systems
     monitoringDashboard.resolveAlert(alertId, resolvedBy, resolution);
     performanceMonitoring.resolveAlert(alertId, resolvedBy, resolution);
-    
+
     res.json({
       success: true,
       message: 'Alert resolved successfully'
@@ -262,7 +262,7 @@ router.post('/alerts/:alertId/resolve', authenticateMonitoring, (req, res) => {
 router.get('/analytics/users', authenticateMonitoring, (req, res) => {
   try {
     const analyticsData = analyticsEngine.getDashboardData();
-    
+
     res.json({
       success: true,
       data: {
@@ -284,7 +284,7 @@ router.get('/analytics/users', authenticateMonitoring, (req, res) => {
 router.get('/analytics/content', authenticateMonitoring, (req, res) => {
   try {
     const analyticsData = analyticsEngine.getDashboardData();
-    
+
     res.json({
       success: true,
       data: {
@@ -305,7 +305,7 @@ router.get('/analytics/content', authenticateMonitoring, (req, res) => {
 router.get('/analytics/business', authenticateMonitoring, (req, res) => {
   try {
     const analyticsData = analyticsEngine.getDashboardData();
-    
+
     res.json({
       success: true,
       data: {
@@ -326,7 +326,7 @@ router.get('/analytics/business', authenticateMonitoring, (req, res) => {
 router.get('/metrics/system', authenticateMonitoring, (req, res) => {
   try {
     const monitoringData = monitoringDashboard.getDashboardData();
-    
+
     res.json({
       success: true,
       data: {
@@ -348,7 +348,7 @@ router.get('/metrics/system', authenticateMonitoring, (req, res) => {
 router.get('/export', authenticateMonitoring, (req, res) => {
   try {
     const { format = 'json', timeRange = '24h' } = req.query;
-    
+
     const exportData = {
       monitoring: monitoringDashboard.getDashboardData(),
       analytics: analyticsEngine.exportData(timeRange),
@@ -356,7 +356,7 @@ router.get('/export', authenticateMonitoring, (req, res) => {
       exportedAt: new Date().toISOString(),
       timeRange
     };
-    
+
     if (format === 'csv') {
       // Convert to CSV format (simplified)
       const csv = convertToCSV(exportData);
@@ -381,25 +381,25 @@ router.get('/export', authenticateMonitoring, (req, res) => {
 // WebSocket endpoint for real-time monitoring
 router.ws = (server) => {
   const wss = new WebSocket.Server({ server, path: '/api/monitoring/realtime' });
-  
+
   wss.on('connection', (ws, req) => {
     console.log('📡 New monitoring WebSocket connection');
-    
+
     // Add client to monitoring dashboard
     monitoringDashboard.addClient(ws);
-    
+
     // Send initial data
     ws.send(JSON.stringify({
       type: 'connected',
       message: 'Connected to Kingdom Studios monitoring',
       timestamp: new Date().toISOString()
     }));
-    
+
     ws.on('message', (data) => {
       try {
         const message = JSON.parse(data);
         console.log('Received monitoring message:', message);
-        
+
         // Handle different message types
         switch (message.type) {
           case 'subscribe':
@@ -418,16 +418,16 @@ router.ws = (server) => {
         console.error('Error handling WebSocket message:', error);
       }
     });
-    
+
     ws.on('close', () => {
       console.log('📡 Monitoring WebSocket connection closed');
     });
-    
+
     ws.on('error', (error) => {
       console.error('Monitoring WebSocket error:', error);
     });
   });
-  
+
   return wss;
 };
 
@@ -436,7 +436,7 @@ function convertToCSV(data) {
   // Simplified CSV conversion
   const headers = ['timestamp', 'metric', 'value', 'category'];
   const rows = [headers.join(',')];
-  
+
   // Add monitoring data
   if (data.monitoring.performanceHistory) {
     data.monitoring.performanceHistory.forEach(entry => {
@@ -448,7 +448,7 @@ function convertToCSV(data) {
       ].join(','));
     });
   }
-  
+
   return rows.join('\n');
 }
 

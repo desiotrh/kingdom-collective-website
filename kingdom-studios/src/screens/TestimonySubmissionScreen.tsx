@@ -22,7 +22,8 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { BlurView } from 'expo-blur';
 import { useNavigation } from '@react-navigation/native';
 import { useFaithMode } from '../contexts/FaithModeContext';
-import { KingdomColors, KingdomShadows } from '../constants/KingdomColors';
+import { KingdomColors } from '../constants/KingdomColors';
+import { KingdomShadows } from '../constants/KingdomShadows';
 import KingdomLogo from '../components/KingdomLogo';
 import { TESTIMONY_CATEGORIES, TestimonyCategory } from '../types/spiritual';
 
@@ -31,7 +32,7 @@ const { width, height } = Dimensions.get('window');
 const TestimonySubmissionScreen = () => {
   const navigation = useNavigation();
   const { faithMode } = useFaithMode();
-  
+
   const [formData, setFormData] = useState({
     title: '',
     content: '',
@@ -42,13 +43,13 @@ const TestimonySubmissionScreen = () => {
     scheduleAsPost: false,
     scheduledDate: '',
   });
-  
+
   const [loading, setLoading] = useState(false);
   const [currentStep, setCurrentStep] = useState(1);
   const totalSteps = 3;
 
   const suggestedTags = [
-    'breakthrough', 'miracle', 'answered-prayer', 'god-is-good', 'testimony', 
+    'breakthrough', 'miracle', 'answered-prayer', 'god-is-good', 'testimony',
     'faith', 'deliverance', 'healing', 'provision', 'restoration',
     'identity', 'calling', 'business', 'family', 'victory'
   ];
@@ -98,7 +99,7 @@ const TestimonySubmissionScreen = () => {
     try {
       // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 2000));
-      
+
       Alert.alert(
         '🙏 Testimony Submitted!',
         'Thank you for sharing your testimony! It will be reviewed and posted to the community soon. Your story will encourage others!',
@@ -142,7 +143,7 @@ const TestimonySubmissionScreen = () => {
           <Text style={styles.sectionDescription}>
             Give your testimony a powerful title that captures God's goodness
           </Text>
-          
+
           <TextInput
             style={styles.titleInput}
             placeholder="God delivered me from..."
@@ -161,7 +162,7 @@ const TestimonySubmissionScreen = () => {
           <Text style={styles.sectionDescription}>
             Choose the category that best describes your testimony
           </Text>
-          
+
           <View style={styles.categoriesGrid}>
             {TESTIMONY_CATEGORIES.map((category) => (
               <TouchableOpacity
@@ -195,7 +196,7 @@ const TestimonySubmissionScreen = () => {
         <Text style={styles.sectionDescription}>
           Tell your story in detail. How did God move? What changed? How can others be encouraged?
         </Text>
-        
+
         <TextInput
           style={styles.contentInput}
           placeholder="I want to share how God..."
@@ -232,7 +233,7 @@ const TestimonySubmissionScreen = () => {
           <Text style={styles.sectionDescription}>
             Add tags to help others find your testimony
           </Text>
-          
+
           <View style={styles.tagsContainer}>
             {suggestedTags.map((tag, index) => (
               <TouchableOpacity
@@ -258,7 +259,7 @@ const TestimonySubmissionScreen = () => {
       <BlurView intensity={20} style={styles.sectionCard}>
         <LinearGradient colors={KingdomColors.gradients.cardBackground as any} style={styles.sectionContent}>
           <Text style={styles.sectionTitle}>Privacy & Sharing</Text>
-          
+
           <View style={styles.settingRow}>
             <View style={styles.settingInfo}>
               <Text style={styles.settingTitle}>Make Public</Text>
@@ -330,8 +331,8 @@ const TestimonySubmissionScreen = () => {
           <Text style={styles.progressText}>Step {currentStep} of {totalSteps}</Text>
         </View>
 
-        <KeyboardAvoidingView 
-          style={styles.flex} 
+        <KeyboardAvoidingView
+          style={styles.flex}
           behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
         >
           <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
@@ -353,15 +354,15 @@ const TestimonySubmissionScreen = () => {
             {/* Navigation Buttons */}
             <View style={styles.navigationContainer}>
               {currentStep > 1 && (
-                <TouchableOpacity 
+                <TouchableOpacity
                   style={styles.backNavButton}
                   onPress={() => setCurrentStep(currentStep - 1)}
                 >
                   <Text style={styles.backNavText}>← Previous</Text>
                 </TouchableOpacity>
               )}
-              
-              <TouchableOpacity 
+
+              <TouchableOpacity
                 style={[
                   styles.nextButton,
                   !canProceedToNext() && styles.nextButtonDisabled
@@ -370,16 +371,16 @@ const TestimonySubmissionScreen = () => {
                 disabled={!canProceedToNext() || loading}
               >
                 <LinearGradient
-                  colors={canProceedToNext() 
+                  colors={canProceedToNext()
                     ? KingdomColors.gradients.primary as any
                     : [KingdomColors.gray, KingdomColors.darkGray]
                   }
                   style={styles.nextButtonGradient}
                 >
                   <Text style={styles.nextButtonText}>
-                    {loading 
+                    {loading
                       ? 'Submitting...'
-                      : currentStep === totalSteps 
+                      : currentStep === totalSteps
                         ? '🙏 Share Testimony'
                         : 'Next →'
                     }

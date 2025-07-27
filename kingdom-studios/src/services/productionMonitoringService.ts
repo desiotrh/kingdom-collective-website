@@ -114,7 +114,7 @@ class ProductionMonitoringService {
         condition: 'greater_than',
         severity: 'critical',
         enabled: true,
-        recipients: ['alerts@kingdomstudios.app'],
+        recipients: ['alerts@kingdomcollective.pro'],
       },
       {
         id: 'low_health_score',
@@ -124,7 +124,7 @@ class ProductionMonitoringService {
         condition: 'less_than',
         severity: 'warning',
         enabled: true,
-        recipients: ['alerts@kingdomstudios.app'],
+        recipients: ['alerts@kingdomcollective.pro'],
       },
       {
         id: 'high_memory_usage',
@@ -134,7 +134,7 @@ class ProductionMonitoringService {
         condition: 'greater_than',
         severity: 'warning',
         enabled: true,
-        recipients: ['tech@kingdomstudios.app'],
+        recipients: ['tech@kingdomcollective.pro'],
       },
       {
         id: 'api_failure_rate',
@@ -144,7 +144,7 @@ class ProductionMonitoringService {
         condition: 'greater_than',
         severity: 'critical',
         enabled: true,
-        recipients: ['alerts@kingdomstudios.app'],
+        recipients: ['alerts@kingdomcollective.pro'],
       },
     ];
   }

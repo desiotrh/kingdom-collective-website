@@ -3,19 +3,19 @@ import { StatusBar } from 'expo-status-bar';
 import { NavigationContainer } from '@react-navigation/native';
 import { Platform } from 'react-native';
 import Constants from 'expo-constants';
-import { AuthProvider } from './src/contexts/AuthContext';
-import { FaithModeProvider } from './src/contexts/FaithModeContext';
-import { DualModeProvider } from './src/contexts/DualModeContext';
-import { TierSystemProvider } from './src/contexts/TierSystemContext';
-import { NotificationProvider } from './src/contexts/NotificationContext';
-import { ProductProvider } from './src/contexts/ProductContext';
-import { AppProvider } from './src/contexts/AppContext';
-import { PerformanceProvider } from './src/contexts/PerformanceContext';
-import { LoadingSkeleton } from './src/components/LazyComponents';
-import notificationService from './src/services/notificationService';
+import { AuthProvider } from './kingdom-studios/src/contexts/AuthContext';
+import { FaithModeProvider } from './kingdom-studios/src/contexts/FaithModeContext';
+import { DualModeProvider } from './kingdom-studios/src/contexts/DualModeContext';
+import { TierSystemProvider } from './kingdom-studios/src/contexts/TierSystemContext';
+import { NotificationProvider } from './kingdom-studios/src/contexts/NotificationContext';
+import { ProductProvider } from './kingdom-studios/src/contexts/ProductContext';
+import { AppProvider } from './kingdom-studios/src/contexts/AppContext';
+import { PerformanceProvider } from './kingdom-studios/src/contexts/PerformanceContext';
+import { LoadingSkeleton } from './kingdom-studios/src/components/LazyComponents';
+import notificationService from './kingdom-studios/src/services/notificationService';
 
 // Lazy load OnboardingNavigator for better initial load performance
-const OnboardingNavigator = React.lazy(() => import('./src/navigation/OnboardingNavigator'));
+const OnboardingNavigator = React.lazy(() => import('./kingdom-studios/src/navigation/OnboardingNavigator'));
 
 export default function App() {
   useEffect(() => {

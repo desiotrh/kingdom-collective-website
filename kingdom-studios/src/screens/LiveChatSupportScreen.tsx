@@ -41,7 +41,7 @@ interface SupportTicket {
 const LiveChatSupportScreen: React.FC = () => {
   const { currentMode } = useDualMode();
   const colors = currentMode === 'faith' ? KingdomColors.faith : KingdomColors.encouragement;
-  
+
   const [currentView, setCurrentView] = useState<'chat' | 'tickets' | 'help'>('chat');
   const [messageText, setMessageText] = useState('');
   const [messages, setMessages] = useState<Message[]>([]);
@@ -60,8 +60,8 @@ const LiveChatSupportScreen: React.FC = () => {
     const mockMessages: Message[] = [
       {
         id: '1',
-        text: currentMode === 'faith' 
-          ? 'Welcome to Kingdom Studios Support! How can we help you on your ministry journey today? 🙏' 
+        text: currentMode === 'faith'
+          ? 'Welcome to Kingdom Studios Support! How can we help you on your ministry journey today? 🙏'
           : 'Welcome to our support chat! How can we help you today? 😊',
         sender: 'support',
         timestamp: new Date(Date.now() - 300000),
@@ -78,7 +78,7 @@ const LiveChatSupportScreen: React.FC = () => {
       },
       {
         id: '3',
-        text: currentMode === 'faith' 
+        text: currentMode === 'faith'
           ? 'I understand the importance of consistent ministry content. Let me help you resolve this scheduling issue. Can you tell me what specific problem you\'re experiencing?'
           : 'I\'d be happy to help you with the scheduling feature! Can you tell me what specific issue you\'re facing?',
         sender: 'support',
@@ -143,7 +143,7 @@ const LiveChatSupportScreen: React.FC = () => {
 
     setMessages(prev => [...prev, newMessage]);
     setMessageText('');
-    
+
     // Simulate typing indicator
     setIsAgentTyping(true);
     setTimeout(() => {
@@ -151,7 +151,7 @@ const LiveChatSupportScreen: React.FC = () => {
       // Simulate support response
       const responseMessage: Message = {
         id: (Date.now() + 1).toString(),
-        text: currentMode === 'faith' 
+        text: currentMode === 'faith'
           ? 'Thank you for your message. I\'m reviewing this and will respond shortly. May God bless your patience! 🙏'
           : 'Thanks for your message! I\'m looking into this and will get back to you shortly.',
         sender: 'support',
@@ -212,7 +212,7 @@ const LiveChatSupportScreen: React.FC = () => {
   const renderMessage = (message: Message) => {
     const isUser = message.sender === 'user';
     const isBot = message.sender === 'bot';
-    
+
     return (
       <View key={message.id} style={[
         styles.messageContainer,
@@ -220,14 +220,14 @@ const LiveChatSupportScreen: React.FC = () => {
       ]}>
         {!isUser && (
           <View style={[styles.agentAvatar, { backgroundColor: colors.primary }]}>
-            <MaterialIcons 
-              name={isBot ? 'smart-toy' : 'support-agent'} 
-              size={16} 
-              color="#FFFFFF" 
+            <MaterialIcons
+              name={isBot ? 'smart-toy' : 'support-agent'}
+              size={16}
+              color="#FFFFFF"
             />
           </View>
         )}
-        
+
         <View style={[
           styles.messageBubble,
           { backgroundColor: isUser ? colors.primary : colors.surface }
@@ -246,10 +246,10 @@ const LiveChatSupportScreen: React.FC = () => {
               {formatTimestamp(message.timestamp)}
             </Text>
             {isUser && (
-              <MaterialIcons 
-                name={message.status === 'read' ? 'done-all' : 'done'} 
-                size={12} 
-                color={message.status === 'read' ? colors.success : 'rgba(255,255,255,0.7)'} 
+              <MaterialIcons
+                name={message.status === 'read' ? 'done-all' : 'done'}
+                size={12}
+                color={message.status === 'read' ? colors.success : 'rgba(255,255,255,0.7)'}
               />
             )}
           </View>
@@ -268,11 +268,11 @@ const LiveChatSupportScreen: React.FC = () => {
           <Text style={styles.statusText}>{ticket.status.replace('_', ' ')}</Text>
         </View>
       </View>
-      
+
       <Text style={[styles.ticketTitle, { color: colors.text }]}>
         {ticket.title}
       </Text>
-      
+
       <View style={styles.ticketMeta}>
         <View style={styles.ticketMetaItem}>
           <MaterialIcons name="category" size={14} color={colors.textSecondary} />
@@ -280,14 +280,14 @@ const LiveChatSupportScreen: React.FC = () => {
             {ticket.category}
           </Text>
         </View>
-        
+
         <View style={styles.ticketMetaItem}>
           <MaterialIcons name="priority-high" size={14} color={getPriorityColor(ticket.priority)} />
           <Text style={[styles.ticketMetaText, { color: getPriorityColor(ticket.priority) }]}>
             {ticket.priority}
           </Text>
         </View>
-        
+
         <View style={styles.ticketMetaItem}>
           <MaterialIcons name="person" size={14} color={colors.textSecondary} />
           <Text style={[styles.ticketMetaText, { color: colors.textSecondary }]}>
@@ -295,7 +295,7 @@ const LiveChatSupportScreen: React.FC = () => {
           </Text>
         </View>
       </View>
-      
+
       <Text style={[styles.ticketDate, { color: colors.textSecondary }]}>
         Updated {formatDate(ticket.lastUpdated)}
       </Text>
@@ -308,11 +308,11 @@ const LiveChatSupportScreen: React.FC = () => {
         <Text style={[styles.helpSectionTitle, { color: colors.text }]}>
           {currentMode === 'faith' ? '🙏 Frequently Asked Questions' : '❓ Frequently Asked Questions'}
         </Text>
-        
+
         {[
           {
             question: currentMode === 'faith' ? 'How do I schedule my ministry content?' : 'How do I schedule my content?',
-            answer: currentMode === 'faith' 
+            answer: currentMode === 'faith'
               ? 'You can schedule your ministry content using our Content Scheduler. Go to Content Generator > Schedule, select your platforms, and set your desired posting times. God\'s timing is perfect!'
               : 'You can schedule content using our Content Scheduler. Navigate to Content Generator > Schedule, choose your platforms, and set your posting times.'
           },
@@ -320,13 +320,23 @@ const LiveChatSupportScreen: React.FC = () => {
             question: currentMode === 'faith' ? 'Can I get prayer support through the app?' : 'How do I contact support?',
             answer: currentMode === 'faith'
               ? 'Absolutely! Visit our Prayer Room where you can submit prayer requests and connect with our prayer team. We believe in the power of prayer and community support.'
-              : 'You can contact support through this chat system, submit a ticket, or email us at support@kingdomstudios.app. We typically respond within 24 hours.'
+              : 'You can contact support through this chat system, submit a ticket, or email us at support@kingdomcollective.pro. We typically respond within 24 hours.'
           },
           {
             question: currentMode === 'faith' ? 'How do I track my kingdom impact?' : 'How do I track my analytics?',
             answer: currentMode === 'faith'
               ? 'Use our Kingdom Analytics to track your spiritual impact, community growth, and content performance. Remember, every soul touched is a victory for the Kingdom!'
               : 'Access your analytics dashboard to view detailed metrics about your content performance, engagement rates, and growth statistics.'
+          },
+          {
+            question: 'How do I get ministry support?',
+            answer: currentMode === 'faith'
+              ? 'For ministry-specific questions, email us at ministry@kingdomcollective.pro. We\'re here to support your Kingdom work!'
+              : 'For specialized support, email us at support@kingdomcollective.pro. We\'re here to help!'
+          },
+          {
+            question: 'Can I request a feature?',
+            answer: 'Absolutely! We love hearing from our community. Send your feature requests to ' + (currentMode === 'faith' ? 'ministry@kingdomcollective.pro' : 'support@kingdomcollective.pro') + ' and we\'ll consider them for future updates.'
           }
         ].map((faq, index) => (
           <View key={index} style={[styles.faqItem, { backgroundColor: colors.background }]}>
@@ -339,19 +349,19 @@ const LiveChatSupportScreen: React.FC = () => {
           </View>
         ))}
       </View>
-      
+
       <View style={styles.helpSection}>
         <Text style={[styles.helpSectionTitle, { color: colors.text }]}>
           {currentMode === 'faith' ? '📧 Contact Our Ministry Team' : '📧 Contact Information'}
         </Text>
-        
+
         <View style={[styles.contactCard, { backgroundColor: colors.surface }]}>
           <MaterialIcons name="email" size={20} color={colors.primary} />
           <Text style={[styles.contactText, { color: colors.text }]}>
-            {currentMode === 'faith' ? 'ministry@kingdomstudios.app' : 'support@kingdomstudios.app'}
+            {currentMode === 'faith' ? 'ministry@kingdomcollective.pro' : 'support@kingdomcollective.pro'}
           </Text>
         </View>
-        
+
         <View style={[styles.contactCard, { backgroundColor: colors.surface }]}>
           <MaterialIcons name="access-time" size={20} color={colors.primary} />
           <Text style={[styles.contactText, { color: colors.text }]}>
@@ -363,7 +373,7 @@ const LiveChatSupportScreen: React.FC = () => {
   );
 
   return (
-    <KeyboardAvoidingView 
+    <KeyboardAvoidingView
       style={[styles.container, { backgroundColor: colors.background }]}
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
     >
@@ -372,7 +382,7 @@ const LiveChatSupportScreen: React.FC = () => {
         <Text style={[styles.headerTitle, { color: colors.text }]}>
           {currentMode === 'faith' ? '💬 Ministry Support' : '💬 Live Support'}
         </Text>
-        
+
         {/* Connection Status */}
         <View style={styles.connectionStatus}>
           <View style={[
@@ -400,10 +410,10 @@ const LiveChatSupportScreen: React.FC = () => {
             ]}
             onPress={() => setCurrentView(tab.key as any)}
           >
-            <MaterialIcons 
-              name={tab.icon as any} 
-              size={20} 
-              color={currentView === tab.key ? '#FFFFFF' : colors.textSecondary} 
+            <MaterialIcons
+              name={tab.icon as any}
+              size={20}
+              color={currentView === tab.key ? '#FFFFFF' : colors.textSecondary}
             />
             <Text style={[
               styles.tabText,
@@ -419,13 +429,13 @@ const LiveChatSupportScreen: React.FC = () => {
       <View style={styles.content}>
         {currentView === 'chat' && (
           <>
-            <ScrollView 
+            <ScrollView
               ref={scrollViewRef}
               style={styles.chatContainer}
               showsVerticalScrollIndicator={false}
             >
               {messages.map(renderMessage)}
-              
+
               {isAgentTyping && (
                 <View style={[styles.messageContainer, styles.supportMessage]}>
                   <View style={[styles.agentAvatar, { backgroundColor: colors.primary }]}>
@@ -439,7 +449,7 @@ const LiveChatSupportScreen: React.FC = () => {
                 </View>
               )}
             </ScrollView>
-            
+
             {/* Message Input */}
             <View style={[styles.inputContainer, { backgroundColor: colors.surface }]}>
               <TextInput
@@ -451,13 +461,13 @@ const LiveChatSupportScreen: React.FC = () => {
                 multiline
                 maxLength={500}
               />
-              
+
               <View style={styles.inputActions}>
                 <TouchableOpacity style={styles.attachButton}>
                   <MaterialIcons name="attach-file" size={20} color={colors.textSecondary} />
                 </TouchableOpacity>
-                
-                <TouchableOpacity 
+
+                <TouchableOpacity
                   style={[
                     styles.sendButton,
                     { backgroundColor: messageText.trim() ? colors.primary : colors.textSecondary }
@@ -478,13 +488,13 @@ const LiveChatSupportScreen: React.FC = () => {
               <Text style={[styles.ticketsTitle, { color: colors.text }]}>
                 {currentMode === 'faith' ? 'Ministry Support Tickets' : 'Support Tickets'}
               </Text>
-              
+
               <TouchableOpacity style={[styles.newTicketButton, { backgroundColor: colors.primary }]}>
                 <MaterialIcons name="add" size={20} color="#FFFFFF" />
                 <Text style={styles.newTicketText}>New Ticket</Text>
               </TouchableOpacity>
             </View>
-            
+
             {tickets.map(renderTicket)}
           </ScrollView>
         )}

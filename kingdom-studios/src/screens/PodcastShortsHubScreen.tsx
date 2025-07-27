@@ -50,7 +50,7 @@ const PodcastShortsHubScreen: React.FC = () => {
     category: 'Religion & Spirituality',
     language: 'English',
     author: 'Kingdom Studios',
-    email: 'podcast@kingdomstudios.com',
+    email: 'podcast@kingdomcollective.pro',
     episodes: [],
     subscribers: 1250,
     totalDownloads: 15670,
@@ -189,7 +189,7 @@ const PodcastShortsHubScreen: React.FC = () => {
   ]);
 
   const getDisplayTitle = (item: any) => {
-    const modeTitle = faithMode 
+    const modeTitle = faithMode
       ? (item.faithModeTitle || item.faithModeName)
       : (item.encouragementModeTitle || item.encouragementModeName);
     return modeTitle || item.title || item.name;
@@ -344,10 +344,11 @@ const PodcastShortsHubScreen: React.FC = () => {
               )}
             </View>
           </View>
-          <View style={[styles.statusIndicator, { backgroundColor: 
-            content.status === 'scheduled' ? KingdomColors.accent.success :
-            content.status === 'planned' ? KingdomColors.gold.warm :
-            KingdomColors.text.muted
+          <View style={[styles.statusIndicator, {
+            backgroundColor:
+              content.status === 'scheduled' ? KingdomColors.accent.success :
+                content.status === 'planned' ? KingdomColors.gold.warm :
+                  KingdomColors.text.muted
           }]} />
         </View>
       ))}
@@ -442,10 +443,10 @@ const PodcastShortsHubScreen: React.FC = () => {
             style={[styles.tab, selectedTab === tab.id && styles.selectedTab]}
             onPress={() => handleTabChange(tab.id)}
           >
-            <MaterialIcons 
-              name={tab.icon as any} 
-              size={18} 
-              color={selectedTab === tab.id ? KingdomColors.white : KingdomColors.text.muted} 
+            <MaterialIcons
+              name={tab.icon as any}
+              size={18}
+              color={selectedTab === tab.id ? KingdomColors.white : KingdomColors.text.muted}
             />
             <Text style={[styles.tabText, selectedTab === tab.id && styles.selectedTabText]}>
               {tab.label}
@@ -480,7 +481,7 @@ const PodcastShortsHubScreen: React.FC = () => {
               </View>
               <MaterialIcons name="chevron-right" size={24} color={KingdomColors.text.muted} />
             </TouchableOpacity>
-            
+
             <TouchableOpacity style={styles.createOption} onPress={() => handleCreateContent('short')}>
               <MaterialCommunityIcons name="video-outline" size={32} color={KingdomColors.gold.warm} />
               <View style={styles.createOptionText}>
@@ -489,7 +490,7 @@ const PodcastShortsHubScreen: React.FC = () => {
               </View>
               <MaterialIcons name="chevron-right" size={24} color={KingdomColors.text.muted} />
             </TouchableOpacity>
-            
+
             <TouchableOpacity style={styles.createOption} onPress={() => handleCreateContent('live')}>
               <MaterialIcons name="live-tv" size={32} color={KingdomColors.accent.error} />
               <View style={styles.createOptionText}>

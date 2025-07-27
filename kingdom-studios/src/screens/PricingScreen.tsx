@@ -14,7 +14,8 @@ import { BlurView } from 'expo-blur';
 import { useAppNavigation } from '../utils/navigationUtils';
 import { useFaithMode } from '../contexts/FaithModeContext';
 import { useApp, getSubscriptionLimits } from '../contexts/AppContext';
-import { KingdomColors, KingdomShadows } from '../constants/KingdomColors';
+import { KingdomColors } from '../constants/KingdomColors';
+import { KingdomShadows } from '../constants/KingdomShadows';
 import KingdomLogo from '../components/KingdomLogo';
 
 const { width } = Dimensions.get('window');

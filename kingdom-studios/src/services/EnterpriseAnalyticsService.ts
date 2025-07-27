@@ -678,7 +678,7 @@ class EnterpriseAnalyticsService {
                 ],
                 visualization: 'dashboard',
                 schedule: 'weekly',
-                recipients: ['team@kingdomstudios.com'],
+                recipients: ['team@kingdomcollective.pro'],
                 isActive: true,
                 createdAt: new Date('2024-01-01'),
             },

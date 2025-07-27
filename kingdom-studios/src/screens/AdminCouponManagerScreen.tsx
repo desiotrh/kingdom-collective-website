@@ -15,7 +15,8 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { BlurView } from 'expo-blur';
 import { useNavigation } from '@react-navigation/native';
 import { useFaithMode } from '../contexts/FaithModeContext';
-import { KingdomColors, KingdomShadows } from '../constants/KingdomColors';
+import { KingdomColors } from '../constants/KingdomColors';
+import { KingdomShadows } from '../constants/KingdomShadows';
 import { Ionicons } from '@expo/vector-icons';
 
 interface Coupon {
@@ -80,7 +81,7 @@ const AdminCouponManagerScreen = () => {
   });
 
   const generateCouponCode = () => {
-    const prefixes = faithMode 
+    const prefixes = faithMode
       ? ['BLESS', 'GRACE', 'FAITH', 'HOPE', 'LOVE']
       : ['CREATE', 'BUILD', 'GROW', 'SHINE', 'RISE'];
     const prefix = prefixes[Math.floor(Math.random() * prefixes.length)];
@@ -118,7 +119,7 @@ const AdminCouponManagerScreen = () => {
   };
 
   const toggleCouponStatus = (id: string) => {
-    setCoupons(coupons.map(coupon => 
+    setCoupons(coupons.map(coupon =>
       coupon.id === id ? { ...coupon, isActive: !coupon.isActive } : coupon
     ));
   };
@@ -127,7 +128,7 @@ const AdminCouponManagerScreen = () => {
     const shareText = faithMode
       ? `🙏 Blessing Alert! Use code "${coupon.code}" for ${coupon.discountValue}${coupon.discountType === 'percentage' ? '%' : '$'} off Kingdom Studios! God's grace extends to you! ✨`
       : `🎉 Special Offer! Use code "${coupon.code}" for ${coupon.discountValue}${coupon.discountType === 'percentage' ? '%' : '$'} off Kingdom Studios! Limited time only! 🚀`;
-    
+
     Alert.alert(
       'Share Coupon',
       shareText,
@@ -164,16 +165,16 @@ const AdminCouponManagerScreen = () => {
             style={styles.toggleButton}
             onPress={() => toggleCouponStatus(coupon.id)}
           >
-            <Ionicons 
-              name={coupon.isActive ? 'pause' : 'play'} 
-              size={20} 
-              color={KingdomColors.text.primary} 
+            <Ionicons
+              name={coupon.isActive ? 'pause' : 'play'}
+              size={20}
+              color={KingdomColors.text.primary}
             />
           </TouchableOpacity>
         </View>
 
         <Text style={styles.couponDescription}>{coupon.description}</Text>
-        
+
         <View style={styles.couponDetails}>
           <View style={styles.detailRow}>
             <Text style={styles.detailLabel}>Discount:</Text>
@@ -303,13 +304,13 @@ const AdminCouponManagerScreen = () => {
                   <TextInput
                     style={[styles.input, { flex: 1 }]}
                     value={newCoupon.code}
-                    onChangeText={(text) => setNewCoupon({...newCoupon, code: text.toUpperCase()})}
+                    onChangeText={(text) => setNewCoupon({ ...newCoupon, code: text.toUpperCase() })}
                     placeholder="Enter code"
                     placeholderTextColor={KingdomColors.text.muted}
                   />
                   <TouchableOpacity
                     style={styles.generateButton}
-                    onPress={() => setNewCoupon({...newCoupon, code: generateCouponCode()})}
+                    onPress={() => setNewCoupon({ ...newCoupon, code: generateCouponCode() })}
                   >
                     <Text style={styles.generateText}>Generate</Text>
                   </TouchableOpacity>
@@ -321,7 +322,7 @@ const AdminCouponManagerScreen = () => {
                 <TextInput
                   style={styles.input}
                   value={newCoupon.description}
-                  onChangeText={(text) => setNewCoupon({...newCoupon, description: text})}
+                  onChangeText={(text) => setNewCoupon({ ...newCoupon, description: text })}
                   placeholder={faithMode ? "Blessing description" : "Coupon description"}
                   placeholderTextColor={KingdomColors.text.muted}
                 />
@@ -332,7 +333,7 @@ const AdminCouponManagerScreen = () => {
                 <TextInput
                   style={styles.input}
                   value={newCoupon.discountValue.toString()}
-                  onChangeText={(text) => setNewCoupon({...newCoupon, discountValue: parseInt(text) || 0})}
+                  onChangeText={(text) => setNewCoupon({ ...newCoupon, discountValue: parseInt(text) || 0 })}
                   placeholder="25"
                   keyboardType="numeric"
                   placeholderTextColor={KingdomColors.text.muted}
@@ -344,7 +345,7 @@ const AdminCouponManagerScreen = () => {
                 <TextInput
                   style={styles.input}
                   value={newCoupon.usageLimit.toString()}
-                  onChangeText={(text) => setNewCoupon({...newCoupon, usageLimit: parseInt(text) || 100})}
+                  onChangeText={(text) => setNewCoupon({ ...newCoupon, usageLimit: parseInt(text) || 100 })}
                   placeholder="100"
                   keyboardType="numeric"
                   placeholderTextColor={KingdomColors.text.muted}
@@ -503,7 +504,7 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     color: KingdomColors.text.inverse,
   },
-  
+
   // Modal Styles
   modalContainer: {
     flex: 1,

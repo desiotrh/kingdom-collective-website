@@ -23,7 +23,8 @@ import { useAuth } from '../contexts/AuthContext';
 import { useFaithMode } from '../contexts/FaithModeContext';
 import { useDualMode } from '../contexts/DualModeContext';
 import { useAppNavigation } from '../utils/navigationUtils';
-import { KingdomColors, KingdomShadows } from '../constants/KingdomColors';
+import { KingdomColors } from '../constants/KingdomColors';
+import { KingdomShadows } from '../constants/KingdomShadows';
 import KingdomLogo from '../components/KingdomLogo';
 import ModeToggle from '../components/ModeToggle';
 

@@ -21,7 +21,8 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { BlurView } from 'expo-blur';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { useFaithMode } from '../contexts/FaithModeContext';
-import { KingdomColors, KingdomShadows } from '../constants/KingdomColors';
+import { KingdomColors } from '../constants/KingdomColors';
+import { KingdomShadows } from '../constants/KingdomShadows';
 import KingdomLogo from '../components/KingdomLogo';
 import { MentorshipCategory } from '../types/mentorship';
 
@@ -38,7 +39,7 @@ const MentorshipRequestScreen = () => {
   const route = useRoute();
   const { mentorId, mentorName, categories } = route.params as RouteParams;
   const { faithMode } = useFaithMode();
-  
+
   const [selectedCategory, setSelectedCategory] = useState<string>('');
   const [message, setMessage] = useState('');
   const [urgency, setUrgency] = useState<'low' | 'medium' | 'high'>('medium');
@@ -52,18 +53,18 @@ const MentorshipRequestScreen = () => {
   ];
 
   const sessionTypeOptions = [
-    { 
-      value: 'one-time', 
+    {
+      value: 'one-time',
       label: faithMode ? 'One conversation' : 'One-time session',
       description: faithMode ? 'A single prayer/guidance session' : 'Single mentorship session'
     },
-    { 
-      value: 'ongoing', 
+    {
+      value: 'ongoing',
       label: faithMode ? 'Discipleship journey' : 'Ongoing mentorship',
       description: faithMode ? 'Regular discipleship meetings' : 'Regular mentorship meetings'
     },
-    { 
-      value: 'course', 
+    {
+      value: 'course',
       label: faithMode ? 'Structured teaching' : 'Structured course',
       description: faithMode ? 'A specific biblical teaching series' : 'A structured learning program'
     },
@@ -77,8 +78,8 @@ const MentorshipRequestScreen = () => {
 
     if (!message.trim()) {
       Alert.alert(
-        faithMode ? 'Share Your Heart' : 'Message Required', 
-        faithMode 
+        faithMode ? 'Share Your Heart' : 'Message Required',
+        faithMode
           ? 'Please share what\'s on your heart or what you need guidance with.'
           : 'Please provide a message describing what you need help with.'
       );
@@ -90,10 +91,10 @@ const MentorshipRequestScreen = () => {
     try {
       // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 2000));
-      
+
       Alert.alert(
         faithMode ? 'Request Sent! 🙏' : 'Request Sent! 🤝',
-        faithMode 
+        faithMode
           ? `Your request for spiritual guidance has been sent to ${mentorName}. They will respond within 24 hours. God bless you!`
           : `Your mentorship request has been sent to ${mentorName}. You'll receive a response within 24 hours.`,
         [
@@ -125,8 +126,8 @@ const MentorshipRequestScreen = () => {
           <View style={styles.headerSpacer} />
         </View>
 
-        <KeyboardAvoidingView 
-          style={styles.flex} 
+        <KeyboardAvoidingView
+          style={styles.flex}
           behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
         >
           <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
@@ -137,7 +138,7 @@ const MentorshipRequestScreen = () => {
                   {faithMode ? `Request Guidance from ${mentorName}` : `Request Mentorship from ${mentorName}`}
                 </Text>
                 <Text style={styles.subtitle}>
-                  {faithMode 
+                  {faithMode
                     ? 'Share your heart and let God connect you with the right guidance.'
                     : 'Fill out this form to connect with your mentor.'
                   }
@@ -245,14 +246,14 @@ const MentorshipRequestScreen = () => {
                   {faithMode ? 'Share Your Heart' : 'Your Message'}
                 </Text>
                 <Text style={styles.messageHint}>
-                  {faithMode 
+                  {faithMode
                     ? 'Share what\'s on your heart, what you\'re struggling with, or what you\'d like guidance on. Your mentor will pray and respond with wisdom.'
                     : 'Describe what you need help with, your goals, and what you hope to achieve through this mentorship.'
                   }
                 </Text>
                 <TextInput
                   style={styles.messageInput}
-                  placeholder={faithMode 
+                  placeholder={faithMode
                     ? 'I\'ve been struggling with... I feel called to... I need prayer for...'
                     : 'I need help with... My goals are... I hope to learn...'
                   }
@@ -268,8 +269,8 @@ const MentorshipRequestScreen = () => {
             </BlurView>
 
             {/* Submit Button */}
-            <TouchableOpacity 
-              style={styles.submitButton} 
+            <TouchableOpacity
+              style={styles.submitButton}
               onPress={handleSubmitRequest}
               disabled={loading}
             >
@@ -278,9 +279,9 @@ const MentorshipRequestScreen = () => {
                 style={styles.submitButtonGradient}
               >
                 <Text style={styles.submitButtonText}>
-                  {loading 
-                    ? 'Sending...' 
-                    : faithMode 
+                  {loading
+                    ? 'Sending...'
+                    : faithMode
                       ? '🙏 Send Request for Guidance'
                       : '🤝 Send Mentorship Request'
                   }

@@ -1,0 +1,61 @@
+{
+  "timestamp": "2025-07-12T02:29:15.893Z",
+  "appName": "kingdom-circle",
+  "testResults": {
+    "passed": 7,
+    "failed": 1,
+    "total": 8,
+    "details": [
+      {
+        "test": "Voice Prayer Interfaces",
+        "status": "PASSED",
+        "details": "All required interfaces and properties found"
+      },
+      {
+        "test": "Audio Recording Capabilities",
+        "status": "FAILED",
+        "details": "Missing audio recording features"
+      },
+      {
+        "test": "Chain Visualization",
+        "status": "PASSED",
+        "details": "Chain visualization components implemented"
+      },
+      {
+        "test": "Dual-Mode Adaptations",
+        "status": "PASSED",
+        "details": "Faith and Encouragement mode examples implemented"
+      },
+      {
+        "test": "Agreement Counting",
+        "status": "PASSED",
+        "details": "Agreement counting system implemented"
+      },
+      {
+        "test": "Recording Permissions",
+        "status": "PASSED",
+        "details": "Recording permission handling implemented"
+      },
+      {
+        "test": "UI Components",
+        "status": "PASSED",
+        "details": "All required UI components implemented"
+      },
+      {
+        "test": "Audio Integration",
+        "status": "PASSED",
+        "details": "expo-av dependency installed"
+      }
+    ]
+  },
+  "features": [
+    "Voice Prayer Recording",
+    "Audio Playback Controls",
+    "Chain Visualization",
+    "Dual-Mode Adaptations",
+    "Agreement Counting",
+    "Recording Permissions",
+    "UI Components",
+    "Audio Integration"
+  ]
+}

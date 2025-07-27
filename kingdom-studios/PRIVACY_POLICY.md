@@ -91,7 +91,7 @@ We may update this Privacy Policy. We will notify you of any changes by posting 
 
 If you have questions about this Privacy Policy, contact us at:
 
-- **Email:** privacy@kingdomstudios.app
+- **Email:** privacy@kingdomcollective.pro
 - **Address:** [Your Business Address]
 
 ---

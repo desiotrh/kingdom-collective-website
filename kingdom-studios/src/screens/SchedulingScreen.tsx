@@ -13,7 +13,8 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { BlurView } from 'expo-blur';
 import { useAppNavigation } from '../utils/navigationUtils';
 import { useFaithMode } from '../contexts/FaithModeContext';
-import { KingdomColors, KingdomShadows } from '../constants/KingdomColors';
+import { KingdomColors } from '../constants/KingdomColors';
+import { KingdomShadows } from '../constants/KingdomShadows';
 import KingdomLogo from '../components/KingdomLogo';
 
 const { width } = Dimensions.get('window');
@@ -179,7 +180,7 @@ const SchedulingScreen = () => {
     }
   };
 
-  const filteredPosts = mockScheduledPosts.filter(post => 
+  const filteredPosts = mockScheduledPosts.filter(post =>
     activeTab === 'all' || post.status === activeTab
   );
 
@@ -237,15 +238,15 @@ const SchedulingScreen = () => {
             </Text>
           </View>
         </View>
-        
+
         <Text style={styles.postTitle}>{post.title}</Text>
-        
+
         <View style={styles.postDetails}>
           <View style={styles.dateTimeContainer}>
             <Text style={styles.postDate}>📅 {post.date}</Text>
             <Text style={styles.postTime}>⏰ {post.time}</Text>
           </View>
-          
+
           {post.status === 'published' && (
             <View style={styles.engagementContainer}>
               <View style={styles.engagementItem}>
@@ -285,7 +286,7 @@ const SchedulingScreen = () => {
             </View>
             <View style={styles.headerSpacer} />
           </View>
-          
+
           <ScrollView
             style={styles.scrollView}
             contentContainerStyle={styles.scrollContent}
@@ -301,7 +302,7 @@ const SchedulingScreen = () => {
                   {faithMode ? '📅 Faithful Scheduling' : '🗓️ Smart Scheduling'}
                 </Text>
                 <Text style={styles.welcomeDescription}>
-                  {faithMode 
+                  {faithMode
                     ? "Plan your content with divine timing. Schedule posts to reach your audience when God leads."
                     : "Optimize your content strategy with intelligent scheduling and analytics."
                   }
@@ -319,20 +320,20 @@ const SchedulingScreen = () => {
 
             {/* Filter Tabs */}
             <View style={styles.tabsContainer}>
-              <TabButton 
-                title="All Posts" 
-                isActive={activeTab === 'all'} 
-                onPress={() => setActiveTab('all')} 
+              <TabButton
+                title="All Posts"
+                isActive={activeTab === 'all'}
+                onPress={() => setActiveTab('all')}
               />
-              <TabButton 
-                title="Scheduled" 
-                isActive={activeTab === 'scheduled'} 
-                onPress={() => setActiveTab('scheduled')} 
+              <TabButton
+                title="Scheduled"
+                isActive={activeTab === 'scheduled'}
+                onPress={() => setActiveTab('scheduled')}
               />
-              <TabButton 
-                title="Published" 
-                isActive={activeTab === 'published'} 
-                onPress={() => setActiveTab('published')} 
+              <TabButton
+                title="Published"
+                isActive={activeTab === 'published'}
+                onPress={() => setActiveTab('published')}
               />
             </View>
 
@@ -353,7 +354,7 @@ const SchedulingScreen = () => {
                   </LinearGradient>
                 </TouchableOpacity>
               </View>
-              
+
               <View style={styles.postsList}>
                 {filteredPosts.map(post => (
                   <ScheduledPostCard key={post.id} post={post} />

@@ -10,7 +10,8 @@ import {
   ScrollView,
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-import { KingdomColors, KingdomShadows } from '../constants/KingdomColors';
+import { KingdomColors } from '../constants/KingdomColors';
+import { KingdomShadows } from '../constants/KingdomShadows';
 import { Ionicons } from '@expo/vector-icons';
 
 const { width, height } = Dimensions.get('window');
@@ -110,7 +111,7 @@ const FeatureShowcaseScreen: React.FC<FeatureShowcaseScreenProps> = ({ onContinu
         style={styles.backgroundGradient}
       >
         {/* Animated 3D Silk Ribbons */}
-        <Animated.View 
+        <Animated.View
           style={[
             styles.ribbonContainer,
             styles.topRibbon,
@@ -134,16 +135,18 @@ const FeatureShowcaseScreen: React.FC<FeatureShowcaseScreenProps> = ({ onContinu
         </Animated.View>
 
         {/* Bottom ribbon moving opposite direction */}
-        <Animated.View 
+        <Animated.View
           style={[
             styles.ribbonContainer,
             styles.bottomRibbon,
             {
               transform: [
-                { rotate: ribbonRotation.interpolate({
-                  inputRange: [0, 1],
-                  outputRange: ['180deg', '540deg'],
-                }) },
+                {
+                  rotate: ribbonRotation.interpolate({
+                    inputRange: [0, 1],
+                    outputRange: ['180deg', '540deg'],
+                  })
+                },
                 { scale: ribbonScale }
               ]
             }
@@ -160,7 +163,7 @@ const FeatureShowcaseScreen: React.FC<FeatureShowcaseScreenProps> = ({ onContinu
         </Animated.View>
 
         {/* Main Content */}
-        <Animated.View 
+        <Animated.View
           style={[
             styles.content,
             {
@@ -216,7 +219,7 @@ const FeatureShowcaseScreen: React.FC<FeatureShowcaseScreenProps> = ({ onContinu
             {/* CTA Section */}
             <View style={styles.ctaSection}>
               <Text style={styles.ctaText}>Ready to transform your creative journey?</Text>
-              
+
               <TouchableOpacity onPress={onContinue} style={styles.continueButton}>
                 <LinearGradient
                   colors={KingdomColors.gradients.goldShimmer as [string, string]}

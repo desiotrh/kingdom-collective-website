@@ -182,14 +182,14 @@ const CreatorDashboardScreen = () => {
   }, [user, faithMode, currentMode]);
 
   // Mock admin check - in a real app, this would come from user profile/database
-  const isAdmin = user?.email === 'admin@kingdomstudios.com' || user?.email?.includes('admin');
+  const isAdmin = user?.email === 'admin@kingdomcollective.pro' || user?.email?.includes('admin');
 
   // Filter tools based on admin status
   const visibleTools = toolCards.filter(tool => !tool.adminOnly || isAdmin);
 
   const handleToolPress = (toolTitle: string) => {
     console.log(`${toolTitle} pressed`);
-    
+
     if (toolTitle === 'Content Generator') {
       navigation.navigate('ContentGenerator');
     } else if (toolTitle === 'Multi-Post') {
@@ -239,7 +239,7 @@ const CreatorDashboardScreen = () => {
 
   const handleLogout = async () => {
     if (isLoggingOut) return;
-    
+
     setIsLoggingOut(true);
     try {
       // Track logout event
@@ -250,7 +250,7 @@ const CreatorDashboardScreen = () => {
           userId: user.id,
         });
       }
-      
+
       await logout();
       Alert.alert('Success', 'Logged out successfully!');
     } catch (error) {
@@ -279,7 +279,7 @@ const CreatorDashboardScreen = () => {
           <Text style={styles.logoutText}>Logout</Text>
         </TouchableOpacity>
       </View>
-      
+
       <View style={styles.userInfo}>
         <View style={styles.profileImageContainer}>
           {/* For now, we'll use initials since we don't have photoURL in backend User */}
@@ -328,9 +328,9 @@ const CreatorDashboardScreen = () => {
         showsVerticalScrollIndicator={false}
       >
         {renderUserProfile()}
-        
+
         <QuickActionsWidget />
-        
+
         <View style={styles.toolsSection}>
           <Text style={styles.sectionTitle}>Creator Tools</Text>
           <View style={styles.toolsGrid}>
@@ -497,4 +497,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default React.memo(CreatorDashboardScreen);
+export default CreatorDashboardScreen;

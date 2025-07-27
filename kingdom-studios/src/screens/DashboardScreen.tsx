@@ -17,7 +17,8 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { useFaithMode } from '../contexts/FaithModeContext';
 import { useDualMode } from '../contexts/DualModeContext';
 import { useAuth } from '../contexts/AuthContext';
-import { KingdomColors, KingdomShadows } from '../constants/KingdomColors';
+import { KingdomColors } from '../constants/KingdomColors';
+import { KingdomShadows } from '../constants/KingdomShadows';
 import KingdomLogo from '../components/KingdomLogo';
 import ModeToggle from '../components/ModeToggle';
 import { contentService, ContentStats } from '../services/contentService';
@@ -60,7 +61,7 @@ const DashboardScreen = () => {
   const loadDashboardData = useCallback(async () => {
     try {
       setLoading(true);
-      
+
       // Load content statistics
       const statsResponse = await contentService.getStats();
       if (statsResponse.success) {
@@ -95,8 +96,8 @@ const DashboardScreen = () => {
 
       // Subscribe to connection status
       realTimeService.on('connectionStatus', (status: any) => {
-        setConnectionStatus(status.status === 'connected' ? 'online' : 
-                           status.status === 'connecting' ? 'connecting' : 'offline');
+        setConnectionStatus(status.status === 'connected' ? 'online' :
+          status.status === 'connecting' ? 'connecting' : 'offline');
       });
 
       return () => {
@@ -202,7 +203,7 @@ const DashboardScreen = () => {
           userId: user.id,
         });
       }
-      
+
       await logout();
       Alert.alert('Success', 'Logged out successfully!');
       // Navigation will be handled automatically by AuthNavigator
@@ -223,15 +224,15 @@ const DashboardScreen = () => {
         <View style={styles.cardHeader}>
           <Text style={styles.cardIcon}>{data.icon}</Text>
           <View style={[
-            styles.changeIndicator, 
-            data.changeType === 'up' ? styles.changeUp : 
-            data.changeType === 'down' ? styles.changeDown : 
-            styles.changeNeutral
+            styles.changeIndicator,
+            data.changeType === 'up' ? styles.changeUp :
+              data.changeType === 'down' ? styles.changeDown :
+                styles.changeNeutral
           ]}>
             <Text style={styles.changeText}>{data.change}</Text>
           </View>
         </View>
-        
+
         <View style={styles.cardContent}>
           <Text style={styles.cardValue}>{data.value}</Text>
           <Text style={styles.cardTitle}>{data.title}</Text>
@@ -247,11 +248,11 @@ const DashboardScreen = () => {
                 styles.chartBar,
                 {
                   height: Math.random() * 30 + 10,
-                  backgroundColor: data.changeType === 'up' 
-                    ? KingdomColors.gold.bright 
-                    : data.changeType === 'down' 
-                    ? '#EF4444' 
-                    : KingdomColors.silver.bright,
+                  backgroundColor: data.changeType === 'up'
+                    ? KingdomColors.gold.bright
+                    : data.changeType === 'down'
+                      ? '#EF4444'
+                      : KingdomColors.silver.bright,
                 }
               ]}
             />
@@ -272,17 +273,17 @@ const DashboardScreen = () => {
           <Text style={styles.transactionPlatform}>{transaction.platform}</Text>
         </View>
       </View>
-      
+
       <View style={styles.transactionRight}>
         <Text style={[styles.transactionAmount, { color: transaction.amount.startsWith('+') ? '#10B981' : '#EF4444' }]}>
           {transaction.amount}
         </Text>
         <Text style={styles.transactionTime}>{transaction.time}</Text>
         <View style={[
-          styles.statusBadge, 
-          transaction.status === 'completed' ? styles.statusCompleted : 
-          transaction.status === 'pending' ? styles.statusPending : 
-          styles.statusFailed
+          styles.statusBadge,
+          transaction.status === 'completed' ? styles.statusCompleted :
+            transaction.status === 'pending' ? styles.statusPending :
+              styles.statusFailed
         ]}>
           <Text style={styles.statusText}>{transaction.status}</Text>
         </View>
@@ -317,13 +318,13 @@ const DashboardScreen = () => {
                 )}
               </View>
             </View>
-            
+
             <View style={styles.headerActions}>
               <TouchableOpacity style={styles.notificationButton}>
                 <Text style={styles.notificationIcon}>🔔</Text>
                 <View style={styles.notificationBadge} />
               </TouchableOpacity>
-              
+
               <TouchableOpacity
                 style={styles.logoutButton}
                 onPress={handleLogout}
@@ -337,9 +338,9 @@ const DashboardScreen = () => {
               </TouchableOpacity>
             </View>
           </View>
-          
+
           <KingdomLogo size="small" style={styles.headerLogo} />
-          
+
           {/* Mode Toggle */}
           <ModeToggle compact style={styles.modeToggle} />
         </View>
@@ -376,14 +377,14 @@ const DashboardScreen = () => {
               <Text style={styles.chartTitle}>Monthly Progress</Text>
               <Text style={styles.chartSubtitle}>Total Growth of 60%</Text>
             </View>
-            
+
             {/* Circular Progress Chart */}
             <View style={styles.circularChart}>
               <View style={styles.chartCenter}>
                 <Text style={styles.chartMainValue}>$94,475</Text>
                 <Text style={styles.chartLabel}>Total Revenue</Text>
               </View>
-              
+
               {/* Progress Indicators */}
               <View style={styles.progressIndicators}>
                 <View style={styles.progressItem}>
@@ -411,7 +412,7 @@ const DashboardScreen = () => {
               <Text style={styles.seeAllText}>See All</Text>
             </TouchableOpacity>
           </View>
-          
+
           <View style={styles.transactionsList}>
             {recentTransactions.map(renderTransactionItem)}
           </View>
@@ -430,7 +431,7 @@ const DashboardScreen = () => {
                 <Text style={styles.quickActionText}>Add Product</Text>
               </LinearGradient>
             </TouchableOpacity>
-            
+
             <TouchableOpacity style={styles.quickActionCard}>
               <LinearGradient
                 colors={[KingdomColors.silver.bright, KingdomColors.silver.steel]}
@@ -440,7 +441,7 @@ const DashboardScreen = () => {
                 <Text style={styles.quickActionText}>Analytics</Text>
               </LinearGradient>
             </TouchableOpacity>
-            
+
             <TouchableOpacity style={styles.quickActionCard}>
               <LinearGradient
                 colors={[KingdomColors.primary.royalPurple, KingdomColors.primary.deepNavy]}
@@ -450,7 +451,7 @@ const DashboardScreen = () => {
                 <Text style={styles.quickActionText}>Community</Text>
               </LinearGradient>
             </TouchableOpacity>
-            
+
             <TouchableOpacity style={styles.quickActionCard}>
               <LinearGradient
                 colors={[KingdomColors.accent.success, '#059669']}
@@ -577,13 +578,13 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     marginTop: 8,
   },
-  
+
   // Scroll Container
   scrollContainer: {
     flex: 1,
     paddingHorizontal: 20,
   },
-  
+
   // Section Styles
   analyticsSection: {
     marginTop: 20,
@@ -605,7 +606,7 @@ const styles = StyleSheet.create({
     color: KingdomColors.gold.bright,
     fontWeight: '600',
   },
-  
+
   // Analytics Grid
   analyticsGrid: {
     flexDirection: 'row',
@@ -685,7 +686,7 @@ const styles = StyleSheet.create({
     borderRadius: 2,
     opacity: 0.8,
   },
-  
+
   // Chart Section
   chartSection: {
     marginTop: 24,
@@ -748,7 +749,7 @@ const styles = StyleSheet.create({
     fontSize: 10,
     color: KingdomColors.text.muted,
   },
-  
+
   // Transactions
   transactionsSection: {
     marginTop: 24,
@@ -826,7 +827,7 @@ const styles = StyleSheet.create({
     color: KingdomColors.text.primary,
     textTransform: 'uppercase',
   },
-  
+
   // Quick Actions
   quickActionsSection: {
     marginTop: 24,
@@ -861,4 +862,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default React.memo(DashboardScreen);
+export default DashboardScreen;

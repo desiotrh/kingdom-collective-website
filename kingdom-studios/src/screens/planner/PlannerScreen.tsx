@@ -13,7 +13,8 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { useAppNavigation } from '../../utils/navigationUtils';
 import { useFaithMode } from '../../contexts/FaithModeContext';
 import { useAuth } from '../../contexts/AuthContext';
-import { KingdomColors, KingdomShadows } from '../../constants/KingdomColors';
+import { KingdomColors } from '../../constants/KingdomColors';
+import { KingdomShadows } from '../../constants/KingdomShadows';
 import KingdomLogo from '../../components/KingdomLogo';
 
 const { width } = Dimensions.get('window');
@@ -54,8 +55,8 @@ const PlannerScreen: React.FC = () => {
     {
       id: 'kanban-board',
       title: faithMode ? 'Kingdom Kanban Board' : 'Kanban Board',
-      description: faithMode 
-        ? 'Organize your Kingdom building tasks visually' 
+      description: faithMode
+        ? 'Organize your Kingdom building tasks visually'
         : 'Visual task management with drag & drop',
       icon: '📋',
       gradient: [KingdomColors.primary.royalPurple, KingdomColors.gold.bright],
@@ -67,8 +68,8 @@ const PlannerScreen: React.FC = () => {
     {
       id: 'content-calendar',
       title: faithMode ? 'Faith Content Calendar' : 'Content Calendar',
-      description: faithMode 
-        ? 'Plan your Kingdom content with purpose' 
+      description: faithMode
+        ? 'Plan your Kingdom content with purpose'
         : 'Schedule and plan your content strategy',
       icon: '📅',
       gradient: [KingdomColors.gold.warm, KingdomColors.primary.deepNavy],
@@ -80,8 +81,8 @@ const PlannerScreen: React.FC = () => {
     {
       id: 'task-manager',
       title: faithMode ? 'Kingdom Task Manager' : 'Smart Task Manager',
-      description: faithMode 
-        ? 'Manage tasks with Kingdom priorities' 
+      description: faithMode
+        ? 'Manage tasks with Kingdom priorities'
         : 'AI-powered task prioritization and tracking',
       icon: '✅',
       gradient: [KingdomColors.accent.success, KingdomColors.primary.midnight],
@@ -93,8 +94,8 @@ const PlannerScreen: React.FC = () => {
     {
       id: 'goal-tracker',
       title: faithMode ? 'Kingdom Goals Tracker' : 'Goal Achievement Tracker',
-      description: faithMode 
-        ? 'Track your Kingdom building milestones' 
+      description: faithMode
+        ? 'Track your Kingdom building milestones'
         : 'Set and track your business goals',
       icon: '🎯',
       gradient: [KingdomColors.accent.info, KingdomColors.silver.bright],
@@ -167,7 +168,7 @@ const PlannerScreen: React.FC = () => {
       <Text style={styles.sectionTitle}>
         {faithMode ? '📋 Kingdom Task Board' : '📋 Task Board'}
       </Text>
-      
+
       <ScrollView horizontal showsHorizontalScrollIndicator={false}>
         <View style={styles.kanbanColumns}>
           {['todo', 'inProgress', 'review', 'done'].map(status => (
@@ -183,7 +184,7 @@ const PlannerScreen: React.FC = () => {
                   {tasks.filter(task => task.status === status).length}
                 </Text>
               </View>
-              
+
               {tasks
                 .filter(task => task.status === status)
                 .map(task => (
@@ -215,8 +216,8 @@ const PlannerScreen: React.FC = () => {
         {faithMode ? '📅 Kingdom Content Calendar' : '📅 Content Calendar'}
       </Text>
       <Text style={styles.sectionSubtitle}>
-        {faithMode 
-          ? 'Plan your Kingdom content with divine purpose' 
+        {faithMode
+          ? 'Plan your Kingdom content with divine purpose'
           : 'Strategic content planning and scheduling'}
       </Text>
 
@@ -257,7 +258,7 @@ const PlannerScreen: React.FC = () => {
       <Text style={styles.sectionTitle}>
         {faithMode ? '✅ Kingdom Task Manager' : '✅ Task Manager'}
       </Text>
-      
+
       {/* Task Stats */}
       <View style={styles.taskStats}>
         <View style={styles.statCard}>
@@ -359,7 +360,7 @@ const PlannerScreen: React.FC = () => {
         </View>
 
         {/* Content */}
-        <ScrollView 
+        <ScrollView
           style={styles.content}
           showsVerticalScrollIndicator={false}
           contentContainerStyle={styles.contentContainer}

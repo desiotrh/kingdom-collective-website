@@ -11,7 +11,8 @@ import {
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useAppNavigation } from '../utils/navigationUtils';
-import { KingdomColors, KingdomShadows } from '../constants/KingdomColors';
+import { KingdomColors } from '../constants/KingdomColors';
+import { KingdomShadows } from '../constants/KingdomShadows';
 
 const { width } = Dimensions.get('window');
 
@@ -134,14 +135,14 @@ const ProductSyncScreen = () => {
           <Text style={styles.metricIcon}>{metric.icon}</Text>
           <View style={[
             styles.changeIndicator,
-            metric.changeType === 'up' ? styles.changeUp : 
-            metric.changeType === 'down' ? styles.changeDown : 
-            styles.changeNeutral
+            metric.changeType === 'up' ? styles.changeUp :
+              metric.changeType === 'down' ? styles.changeDown :
+                styles.changeNeutral
           ]}>
             <Text style={styles.changeText}>{metric.change}</Text>
           </View>
         </View>
-        
+
         <Text style={styles.metricValue}>{metric.value}</Text>
         <Text style={styles.metricTitle}>{metric.title}</Text>
       </LinearGradient>
@@ -163,12 +164,12 @@ const ProductSyncScreen = () => {
                 <View style={[
                   styles.statusBadge,
                   platform.status === 'connected' ? styles.statusConnected :
-                  platform.status === 'syncing' ? styles.statusSyncing :
-                  styles.statusDisconnected
+                    platform.status === 'syncing' ? styles.statusSyncing :
+                      styles.statusDisconnected
                 ]}>
                   <Text style={styles.statusText}>
                     {platform.status === 'connected' ? '🟢' :
-                     platform.status === 'syncing' ? '🟡' : '🔴'} {platform.status}
+                      platform.status === 'syncing' ? '🟡' : '🔴'} {platform.status}
                   </Text>
                 </View>
               </View>
@@ -193,15 +194,15 @@ const ProductSyncScreen = () => {
           style={[
             styles.connectButton,
             platform.status === 'connected' ? styles.connectedButton :
-            platform.status === 'syncing' ? styles.syncingButton :
-            styles.disconnectedButton
+              platform.status === 'syncing' ? styles.syncingButton :
+                styles.disconnectedButton
           ]}
           onPress={() => handleConnectPress(platform.name)}
           activeOpacity={0.8}
         >
           <Text style={styles.connectButtonText}>
             {platform.status === 'connected' ? 'Manage' :
-             platform.status === 'syncing' ? 'Syncing...' : 'Connect'}
+              platform.status === 'syncing' ? 'Syncing...' : 'Connect'}
           </Text>
         </TouchableOpacity>
       </LinearGradient>
@@ -301,7 +302,7 @@ const styles = StyleSheet.create({
   headerSpacer: {
     width: 60,
   },
-  
+
   // Content
   scrollView: {
     flex: 1,
@@ -310,7 +311,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingBottom: 40,
   },
-  
+
   // Metrics Section
   metricsSection: {
     marginTop: 20,
@@ -380,7 +381,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: KingdomColors.text.secondary,
   },
-  
+
   // Platforms Section
   platformsSection: {
     marginTop: 32,
@@ -483,7 +484,7 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     color: KingdomColors.text.inverse,
   },
-  
+
   // Info Section
   infoSection: {
     marginTop: 32,
@@ -509,4 +510,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default React.memo(ProductSyncScreen);
+export default ProductSyncScreen;

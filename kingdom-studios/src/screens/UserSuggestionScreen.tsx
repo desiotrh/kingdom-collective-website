@@ -21,7 +21,8 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { BlurView } from 'expo-blur';
 import { useNavigation } from '@react-navigation/native';
 import { useFaithMode } from '../contexts/FaithModeContext';
-import { KingdomColors, KingdomShadows } from '../constants/KingdomColors';
+import { KingdomColors } from '../constants/KingdomColors';
+import { KingdomShadows } from '../constants/KingdomShadows';
 import KingdomLogo from '../components/KingdomLogo';
 import { Ionicons } from '@expo/vector-icons';
 
@@ -78,7 +79,7 @@ const SUGGESTION_CATEGORIES = [
 const UserSuggestionScreen = () => {
   const navigation = useNavigation();
   const { faithMode } = useFaithMode();
-  
+
   const [formData, setFormData] = useState<SuggestionFormData>({
     title: '',
     description: '',
@@ -89,7 +90,7 @@ const UserSuggestionScreen = () => {
     email: '',
     suggestionType: 'feature',
   });
-  
+
   const [loading, setLoading] = useState(false);
 
   const currentColors = faithMode ? KingdomColors.faith : KingdomColors.encouragement;
@@ -124,10 +125,10 @@ const UserSuggestionScreen = () => {
     try {
       // Simulate API call to submit suggestion
       await new Promise(resolve => setTimeout(resolve, 2000));
-      
+
       Alert.alert(
         faithMode ? 'Suggestion Submitted! 🙏' : 'Suggestion Submitted! 💡',
-        faithMode 
+        faithMode
           ? 'Thank you for your heart to help improve Kingdom Studios! Your suggestion has been sent to our team and we will prayerfully consider it.'
           : 'Thank you for helping us improve Kingdom Studios! Your suggestion has been submitted and our team will review it.',
         [
@@ -176,8 +177,8 @@ const UserSuggestionScreen = () => {
           <View style={styles.headerSpacer} />
         </View>
 
-        <KeyboardAvoidingView 
-          style={styles.flex} 
+        <KeyboardAvoidingView
+          style={styles.flex}
           behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
         >
           <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
@@ -188,7 +189,7 @@ const UserSuggestionScreen = () => {
                   {faithMode ? 'Share Your Vision' : 'Suggest Improvements'}
                 </Text>
                 <Text style={[styles.subtitle, { color: currentColors.textSecondary }]}>
-                  {faithMode 
+                  {faithMode
                     ? 'Help us build a platform that serves God\'s kingdom better'
                     : 'Help us make Kingdom Studios even better for creators like you'
                   }
@@ -240,7 +241,7 @@ const UserSuggestionScreen = () => {
                   Suggestion Title
                 </Text>
                 <TextInput
-                  style={[styles.titleInput, { 
+                  style={[styles.titleInput, {
                     borderColor: currentColors.border,
                     color: currentColors.text,
                     backgroundColor: currentColors.background,
@@ -298,18 +299,18 @@ const UserSuggestionScreen = () => {
                   Detailed Description
                 </Text>
                 <Text style={[styles.descriptionHint, { color: currentColors.textSecondary }]}>
-                  {faithMode 
+                  {faithMode
                     ? 'Share your vision in detail. How would this help creators serve God\'s kingdom better?'
                     : 'Explain your suggestion in detail. How would this improve the user experience?'
                   }
                 </Text>
                 <TextInput
-                  style={[styles.descriptionInput, { 
+                  style={[styles.descriptionInput, {
                     borderColor: currentColors.border,
                     color: currentColors.text,
                     backgroundColor: currentColors.background,
                   }]}
-                  placeholder={faithMode 
+                  placeholder={faithMode
                     ? 'I believe this feature would help creators...'
                     : 'This improvement would help by...'
                   }
@@ -332,7 +333,7 @@ const UserSuggestionScreen = () => {
                 <Text style={[styles.sectionTitle, { color: currentColors.text }]}>
                   Priority & Settings
                 </Text>
-                
+
                 {/* Priority Selection */}
                 <Text style={[styles.subSectionTitle, { color: currentColors.text }]}>
                   How important is this to you?
@@ -400,7 +401,7 @@ const UserSuggestionScreen = () => {
 
                     {formData.includeContactInfo && (
                       <TextInput
-                        style={[styles.emailInput, { 
+                        style={[styles.emailInput, {
                           borderColor: currentColors.border,
                           color: currentColors.text,
                           backgroundColor: currentColors.background,
@@ -434,7 +435,7 @@ const UserSuggestionScreen = () => {
             )}
 
             {/* Submit Button */}
-            <TouchableOpacity 
+            <TouchableOpacity
               style={[
                 styles.submitButton,
                 (!formData.title.trim() || !formData.description.trim() || !formData.category) && styles.submitButtonDisabled
@@ -443,16 +444,16 @@ const UserSuggestionScreen = () => {
               disabled={!formData.title.trim() || !formData.description.trim() || !formData.category || loading}
             >
               <LinearGradient
-                colors={(!formData.title.trim() || !formData.description.trim() || !formData.category) 
+                colors={(!formData.title.trim() || !formData.description.trim() || !formData.category)
                   ? [currentColors.border, currentColors.textSecondary]
                   : [currentColors.primary, currentColors.accent]
                 }
                 style={styles.submitButtonGradient}
               >
                 <Text style={styles.submitButtonText}>
-                  {loading 
-                    ? 'Submitting...' 
-                    : faithMode 
+                  {loading
+                    ? 'Submitting...'
+                    : faithMode
                       ? '🙏 Submit Suggestion'
                       : '💡 Submit Suggestion'
                   }

@@ -15,7 +15,8 @@ import { useRoute, RouteProp } from '@react-navigation/native';
 import { useAppNavigation } from '../utils/navigationUtils';
 import { useFaithMode } from '../contexts/FaithModeContext';
 import { useAuth } from '../contexts/AuthContext';
-import { KingdomColors, KingdomShadows } from '../constants/KingdomColors';
+import { KingdomColors } from '../constants/KingdomColors';
+import { KingdomShadows } from '../constants/KingdomShadows';
 import KingdomLogo from '../components/KingdomLogo';
 import paymentService, { Product } from '../services/paymentService';
 import advancedAnalyticsService from '../services/advancedAnalyticsService';
@@ -34,7 +35,7 @@ const CheckoutScreen: React.FC = () => {
   const { faithMode } = useFaithMode();
   const { user } = useAuth();
   const { product, plan } = route.params;
-  
+
   const [loading, setLoading] = useState(false);
   const [paymentMethods, setPaymentMethods] = useState<any[]>([]);
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState<string | null>(null);
@@ -79,7 +80,7 @@ const CheckoutScreen: React.FC = () => {
     setLoading(true);
     try {
       let result;
-      
+
       if (product.type === 'subscription') {
         // Handle subscription
         result = await paymentService.createSubscription(
@@ -87,7 +88,7 @@ const CheckoutScreen: React.FC = () => {
           product.id,
           plan || 'monthly'
         );
-        
+
         if (result.success) {
           // Schedule renewal reminder if faith mode
           if (faithMode && result.subscription) {
@@ -124,20 +125,20 @@ const CheckoutScreen: React.FC = () => {
         await notificationService.sendLocalNotification({
           id: `purchase_${Date.now()}`,
           title: faithMode ? 'Kingdom Purchase Complete! 🙏' : 'Payment Successful! ✅',
-          body: faithMode 
+          body: faithMode
             ? `Thank you for your purchase! May God bless your business endeavors.`
             : `Your payment for ${product.name} was successful.`,
-          data: { 
+          data: {
             type: 'purchase_success',
             productId: product.id,
-            amount: product.price 
+            amount: product.price
           },
         });
 
         // Show success message
         Alert.alert(
           faithMode ? 'Praise God! 🙏' : 'Success! ✅',
-          faithMode 
+          faithMode
             ? `Your purchase was successful! Thank you for partnering with Kingdom Studios. May this investment bear fruit for God's Kingdom.`
             : `Your payment was successful! You now have access to ${product.name}.`,
           [
@@ -157,7 +158,7 @@ const CheckoutScreen: React.FC = () => {
       }
     } catch (error) {
       const errorMessage = error instanceof Error ? error.message : 'Payment failed';
-      
+
       // Track failed payment
       await advancedAnalyticsService.trackEvent({
         name: 'payment_failed',
@@ -173,8 +174,8 @@ const CheckoutScreen: React.FC = () => {
         `${errorMessage}\n\nPlease try again or contact support if the issue persists.`,
         [
           { text: 'Try Again' },
-          { 
-            text: 'Contact Support', 
+          {
+            text: 'Contact Support',
             onPress: () => {
               // Open support contact
             }
@@ -200,12 +201,12 @@ const CheckoutScreen: React.FC = () => {
 
   const calculateTotal = () => {
     let total = product.price;
-    
+
     // Apply discount for yearly subscriptions
     if (product.type === 'subscription' && plan === 'yearly') {
       total = total * 10; // 2 months free on yearly
     }
-    
+
     return total;
   };
 
@@ -247,7 +248,7 @@ const CheckoutScreen: React.FC = () => {
           >
             <Text style={styles.backButtonText}>←</Text>
           </TouchableOpacity>
-          
+
           <View style={styles.headerContent}>
             <KingdomLogo size="medium" />
             <Text style={styles.headerTitle}>
@@ -336,7 +337,7 @@ const CheckoutScreen: React.FC = () => {
                 ${calculateTotal().toFixed(2)} {product.currency.toUpperCase()}
               </Text>
             </View>
-            
+
             <TouchableOpacity
               style={[
                 styles.payButton,

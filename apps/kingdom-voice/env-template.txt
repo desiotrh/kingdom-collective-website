@@ -1,0 +1,41 @@
+# Kingdom Voice App - Environment Configuration Template
+# Copy this file to .env.local and fill in your actual values
+
+# ==============================================
+# APP CONFIGURATION
+# ==============================================
+NODE_ENV=development
+EXPO_PUBLIC_DEBUG_MODE=true
+EXPO_PUBLIC_ENABLE_MOCKS=true
+
+# ==============================================
+# API CONFIGURATION
+# ==============================================
+EXPO_PUBLIC_API_BASE_URL=http://localhost:3000/api
+EXPO_PUBLIC_API_KEY=your_api_key_here
+
+# ==============================================
+# FIREBASE CONFIGURATION (REQUIRED)
+# ==============================================
+EXPO_PUBLIC_FIREBASE_API_KEY=your_firebase_api_key_here
+EXPO_PUBLIC_FIREBASE_AUTH_DOMAIN=kingdom-studios-dev.firebaseapp.com
+EXPO_PUBLIC_FIREBASE_PROJECT_ID=kingdom-studios-dev
+EXPO_PUBLIC_FIREBASE_STORAGE_BUCKET=kingdom-studios-dev.appspot.com
+EXPO_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=your_messaging_sender_id
+EXPO_PUBLIC_FIREBASE_APP_ID=your_firebase_app_id
+
+# ==============================================
+# AI SERVICES (REQUIRED)
+# ==============================================
+EXPO_PUBLIC_OPENAI_API_KEY=sk-your_openai_api_key_here
+
+# ==============================================
+# PAYMENT PROCESSING (REQUIRED)
+# ==============================================
+EXPO_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_test_your_stripe_publishable_key
+
+# ==============================================
+# ANALYTICS
+# ==============================================
+EXPO_PUBLIC_GA4_MEASUREMENT_ID=your_ga4_measurement_id
+EXPO_PUBLIC_MIXPANEL_TOKEN=your_mixpanel_token 

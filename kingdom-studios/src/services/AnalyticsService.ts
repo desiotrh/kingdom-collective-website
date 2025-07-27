@@ -1,4 +1,4 @@
-import { authService } from './authService';
+// import { authService } from './authService';
 
 export interface ViralForecast {
   score: number;
@@ -108,29 +108,29 @@ class AnalyticsService {
    */
   trackEvent(eventName: string, properties: any = {}): void {
     try {
-      const user = authService.getCurrentUser();
-      const eventData = {
-        eventName,
-        properties,
-        userId: user?.uid,
-        timestamp: new Date().toISOString(),
-        sessionId: this.getSessionId(),
-      };
+      // const user = authService.getCurrentUser();
+      // const eventData = {
+      //   eventName,
+      //   properties,
+      //   userId: user?.uid,
+      //   timestamp: new Date().toISOString(),
+      //   sessionId: this.getSessionId(),
+      // };
 
       // Send to analytics endpoint
-      fetch(`${this.apiBaseUrl}/analytics/track`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': user ? `Bearer ${authService.getToken()}` : '',
-        },
-        body: JSON.stringify(eventData),
-      }).catch(error => {
-        console.error('Analytics tracking failed:', error);
-      });
+      // fetch(`${this.apiBaseUrl}/analytics/track`, {
+      //   method: 'POST',
+      //   headers: {
+      //     'Content-Type': 'application/json',
+      //     'Authorization': user ? `Bearer ${authService.getToken()}` : '',
+      //   },
+      //   body: JSON.stringify(eventData),
+      // }).catch(error => {
+      //   console.error('Analytics tracking failed:', error);
+      // });
 
       // Also log locally for debugging
-      console.log('Analytics Event:', eventData);
+      console.log('Analytics Event:', { eventName, properties });
     } catch (error) {
       console.error('Analytics tracking error:', error);
     }
@@ -162,19 +162,23 @@ class AnalyticsService {
     }
   ): Promise<ViralForecast> {
     try {
-      const user = authService.getCurrentUser();
-      if (!user) throw new Error('User not authenticated');
+      // const user = authService.getCurrentUser();
+      // if (!user) throw new Error('User not authenticated');
 
       const response = await fetch(`${this.apiBaseUrl}/analytics/viral-forecast`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${await authService.getToken()}`,
+          // 'Authorization': `Bearer ${await authService.getToken()}`,
+          // Use placeholder for now
+          'Authorization': 'Bearer mock-token',
         },
         body: JSON.stringify({
           contentId,
           contentData,
-          userId: user.uid,
+          // userId: user.uid,
+          // Use placeholder for now
+          userId: 'mock-user-id',
         }),
       });
 
@@ -243,14 +247,18 @@ class AnalyticsService {
     duration: number = 7
   ): Promise<ABTest> {
     try {
-      const user = authService.getCurrentUser();
-      if (!user) throw new Error('User not authenticated');
-
+      // TODO: Replace authService.getCurrentUser() and authService.getToken() with actual user/token retrieval logic
+      // const user = authService.getCurrentUser();
+      // if (!user) throw new Error('User not authenticated');
+      // const token = await authService.getToken();
+      // Use placeholder for now
+      const user = { uid: 'mock-user-id' };
+      const token = '';
       const response = await fetch(`${this.apiBaseUrl}/analytics/ab-tests`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${await authService.getToken()}`,
+          'Authorization': `Bearer ${token}`,
         },
         body: JSON.stringify({
           name,
@@ -288,12 +296,14 @@ class AnalyticsService {
    */
   async getABTestResults(testId: string): Promise<ABTestResults> {
     try {
-      const user = authService.getCurrentUser();
-      if (!user) throw new Error('User not authenticated');
+      // const user = authService.getCurrentUser();
+      // if (!user) throw new Error('User not authenticated');
 
       const response = await fetch(`${this.apiBaseUrl}/analytics/ab-tests/${testId}/results`, {
         headers: {
-          'Authorization': `Bearer ${await authService.getToken()}`,
+          // 'Authorization': `Bearer ${await authService.getToken()}`,
+          // Use placeholder for now
+          'Authorization': 'Bearer mock-token',
         },
       });
 
@@ -353,12 +363,14 @@ class AnalyticsService {
    */
   async getAudienceInsights(contentId: string): Promise<AudienceInsights> {
     try {
-      const user = authService.getCurrentUser();
-      if (!user) throw new Error('User not authenticated');
+      // const user = authService.getCurrentUser();
+      // if (!user) throw new Error('User not authenticated');
 
       const response = await fetch(`${this.apiBaseUrl}/analytics/audience-insights/${contentId}`, {
         headers: {
-          'Authorization': `Bearer ${await authService.getToken()}`,
+          // 'Authorization': `Bearer ${await authService.getToken()}`,
+          // Use placeholder for now
+          'Authorization': 'Bearer mock-token',
         },
       });
 
@@ -445,12 +457,14 @@ class AnalyticsService {
    */
   async getEngagementMetrics(contentId: string): Promise<EngagementMetrics> {
     try {
-      const user = authService.getCurrentUser();
-      if (!user) throw new Error('User not authenticated');
+      // const user = authService.getCurrentUser();
+      // if (!user) throw new Error('User not authenticated');
 
       const response = await fetch(`${this.apiBaseUrl}/analytics/engagement/${contentId}`, {
         headers: {
-          'Authorization': `Bearer ${await authService.getToken()}`,
+          // 'Authorization': `Bearer ${await authService.getToken()}`,
+          // Use placeholder for now
+          'Authorization': 'Bearer mock-token',
         },
       });
 
@@ -502,12 +516,14 @@ class AnalyticsService {
    */
   async calculateROI(contentId: string): Promise<ROICalculation> {
     try {
-      const user = authService.getCurrentUser();
-      if (!user) throw new Error('User not authenticated');
+      // const user = authService.getCurrentUser();
+      // if (!user) throw new Error('User not authenticated');
 
       const response = await fetch(`${this.apiBaseUrl}/analytics/roi/${contentId}`, {
         headers: {
-          'Authorization': `Bearer ${await authService.getToken()}`,
+          // 'Authorization': `Bearer ${await authService.getToken()}`,
+          // Use placeholder for now
+          'Authorization': 'Bearer mock-token',
         },
       });
 
@@ -567,18 +583,22 @@ class AnalyticsService {
    */
   async getContentPerformanceComparison(contentIds: string[]): Promise<any[]> {
     try {
-      const user = authService.getCurrentUser();
-      if (!user) throw new Error('User not authenticated');
+      // const user = authService.getCurrentUser();
+      // if (!user) throw new Error('User not authenticated');
 
       const response = await fetch(`${this.apiBaseUrl}/analytics/content-comparison`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${await authService.getToken()}`,
+          // 'Authorization': `Bearer ${await authService.getToken()}`,
+          // Use placeholder for now
+          'Authorization': 'Bearer mock-token',
         },
         body: JSON.stringify({
           contentIds,
-          userId: user.uid,
+          // userId: user.uid,
+          // Use placeholder for now
+          userId: 'mock-user-id',
         }),
       });
 
@@ -624,13 +644,15 @@ class AnalyticsService {
     keywords: string[];
   }> {
     try {
-      const user = authService.getCurrentUser();
-      if (!user) throw new Error('User not authenticated');
+      // const user = authService.getCurrentUser();
+      // if (!user) throw new Error('User not authenticated');
 
       const params = category ? `?category=${category}` : '';
       const response = await fetch(`${this.apiBaseUrl}/analytics/trending-topics${params}`, {
         headers: {
-          'Authorization': `Bearer ${await authService.getToken()}`,
+          // 'Authorization': `Bearer ${await authService.getToken()}`,
+          // Use placeholder for now
+          'Authorization': 'Bearer mock-token',
         },
       });
 

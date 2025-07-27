@@ -70,11 +70,11 @@ const TeamCollaborationScreen: React.FC = () => {
   const [projects, setProjects] = useState<Project[]>([]);
   const [teamMembers, setTeamMembers] = useState<TeamMember[]>([]);
   const [tasks, setTasks] = useState<Task[]>([]);
-  
+
   const [showCreateModal, setShowCreateModal] = useState(false);
   const [showInviteModal, setShowInviteModal] = useState(false);
   const [modalType, setModalType] = useState<'project' | 'task'>('project');
-  
+
   const [newProject, setNewProject] = useState({
     name: '',
     description: '',
@@ -106,7 +106,7 @@ const TeamCollaborationScreen: React.FC = () => {
       {
         id: '1',
         name: 'You (Owner)',
-        email: 'owner@kingdomstudios.com',
+        email: 'owner@kingdomcollective.pro',
         role: 'owner',
         joinedAt: new Date('2024-01-01'),
         lastActive: new Date(),
@@ -324,7 +324,7 @@ const TeamCollaborationScreen: React.FC = () => {
 
     Alert.alert(
       'Project Created!',
-      currentMode === 'faith' 
+      currentMode === 'faith'
         ? 'Your Kingdom project is ready for God\'s work!'
         : 'Your project is ready for success!'
     );
@@ -343,7 +343,7 @@ const TeamCollaborationScreen: React.FC = () => {
 
     Alert.alert(
       'Invitation Sent!',
-      currentMode === 'faith' 
+      currentMode === 'faith'
         ? `Kingdom invitation sent to ${inviteEmail}. May God bless this partnership!`
         : `Team invitation sent to ${inviteEmail}. They'll receive an email to join.`
     );
@@ -413,11 +413,11 @@ const TeamCollaborationScreen: React.FC = () => {
             Progress: {item.progress}%
           </Text>
           <View style={[styles.progressBar, { backgroundColor: colors.border }]}>
-            <View 
+            <View
               style={[
-                styles.progressFill, 
+                styles.progressFill,
                 { backgroundColor: colors.accent, width: `${item.progress}%` }
-              ]} 
+              ]}
             />
           </View>
         </View>
@@ -459,7 +459,7 @@ const TeamCollaborationScreen: React.FC = () => {
 
   const renderTask = ({ item }: { item: Task }) => {
     const assignedMember = teamMembers.find(m => m.id === item.assignedTo);
-    
+
     return (
       <View style={[styles.taskCard, { backgroundColor: colors.surface }]}>
         <View style={styles.taskHeader}>
@@ -572,7 +572,7 @@ const TeamCollaborationScreen: React.FC = () => {
             contentContainerStyle={styles.contentList}
           />
         )}
-        
+
         {activeTab === 'team' && (
           <FlatList
             data={teamMembers}
@@ -582,7 +582,7 @@ const TeamCollaborationScreen: React.FC = () => {
             contentContainerStyle={styles.contentList}
           />
         )}
-        
+
         {activeTab === 'tasks' && (
           <FlatList
             data={tasks}
@@ -623,7 +623,7 @@ const TeamCollaborationScreen: React.FC = () => {
                 {modalType === 'project' ? 'Project Name' : 'Task Title'} *
               </Text>
               <TextInput
-                style={[styles.textInput, { 
+                style={[styles.textInput, {
                   backgroundColor: colors.surface,
                   color: colors.text,
                   borderColor: colors.border,
@@ -636,8 +636,8 @@ const TeamCollaborationScreen: React.FC = () => {
                     setNewTask(prev => ({ ...prev, title: text }));
                   }
                 }}
-                placeholder={currentMode === 'faith' ? 
-                  (modalType === 'project' ? "Kingdom Business Launch" : "Create Easter graphics") : 
+                placeholder={currentMode === 'faith' ?
+                  (modalType === 'project' ? "Kingdom Business Launch" : "Create Easter graphics") :
                   (modalType === 'project' ? "Summer Product Campaign" : "Design landing page")
                 }
                 placeholderTextColor={colors.textSecondary}
@@ -649,7 +649,7 @@ const TeamCollaborationScreen: React.FC = () => {
                 Description *
               </Text>
               <TextInput
-                style={[styles.textInput, styles.textArea, { 
+                style={[styles.textInput, styles.textArea, {
                   backgroundColor: colors.surface,
                   color: colors.text,
                   borderColor: colors.border,
@@ -662,7 +662,7 @@ const TeamCollaborationScreen: React.FC = () => {
                     setNewTask(prev => ({ ...prev, description: text }));
                   }
                 }}
-                placeholder={currentMode === 'faith' ? 
+                placeholder={currentMode === 'faith' ?
                   "Describe how this project will advance God's Kingdom..." :
                   "Describe the project goals and deliverables..."
                 }
@@ -704,7 +704,7 @@ const TeamCollaborationScreen: React.FC = () => {
                 Email Address *
               </Text>
               <TextInput
-                style={[styles.textInput, { 
+                style={[styles.textInput, {
                   backgroundColor: colors.surface,
                   color: colors.text,
                   borderColor: colors.border,
@@ -728,7 +728,7 @@ const TeamCollaborationScreen: React.FC = () => {
                     key={role}
                     style={[
                       styles.roleOption,
-                      { 
+                      {
                         backgroundColor: inviteRole === role ? colors.accent : colors.surface,
                         borderColor: colors.border,
                       }

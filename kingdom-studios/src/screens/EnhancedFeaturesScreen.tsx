@@ -23,7 +23,7 @@ import { KingdomColors } from '../constants/KingdomColors';
 import { aiContentStudio2Service } from '../services/AIContentStudio2Service';
 import { advancedCommunityService } from '../services/AdvancedCommunityService';
 import { enterpriseFeaturesService } from '../services/EnterpriseFeaturesService';
-import { advancedAnalyticsService } from '../services/AdvancedAnalyticsService';
+import { advancedAnalyticsService } from '../services/advancedAnalyticsService';
 import { mobileFirstService } from '../services/MobileFirstService';
 import { advancedMonetizationService } from '../services/AdvancedMonetizationService';
 import { securityComplianceService } from '../services/SecurityComplianceService';
@@ -82,6 +82,74 @@ const EnhancedFeaturesScreen: React.FC = () => {
 
             // Initialize enhancement categories
             const categories: EnhancementCategory[] = [
+                {
+                    id: 'ai-image-studio',
+                    title: 'AI Image Studio',
+                    description: 'Fal.ai style image generation with faith-based content creation',
+                    icon: '🎨',
+                    tier: 'pro',
+                    faithMode: true,
+                    services: [
+                        {
+                            id: 'image-generation',
+                            name: 'AI Image Generation',
+                            description: 'Create stunning visuals with AI-powered image generation',
+                            status: 'available',
+                            tier: 'pro',
+                            faithMode: true,
+                        },
+                        {
+                            id: 'avatar-creator',
+                            name: 'Avatar Creator',
+                            description: 'Generate realistic AI avatars and digital twins',
+                            status: 'available',
+                            tier: 'pro',
+                            faithMode: true,
+                        },
+                        {
+                            id: 'faith-inspired-visuals',
+                            name: 'Faith-Inspired Visuals',
+                            description: 'Create prophetic and faith-based visual content',
+                            status: 'available',
+                            tier: 'pro',
+                            faithMode: true,
+                        },
+                    ],
+                },
+                {
+                    id: 'video-studio-recorder',
+                    title: 'Video Studio Recorder',
+                    description: 'Riverside.fm style recording with multi-guest support',
+                    icon: '🎬',
+                    tier: 'pro',
+                    faithMode: true,
+                    services: [
+                        {
+                            id: 'multi-guest-recording',
+                            name: 'Multi-Guest Recording',
+                            description: 'Record podcasts and interviews with multiple participants',
+                            status: 'available',
+                            tier: 'pro',
+                            faithMode: true,
+                        },
+                        {
+                            id: 'studio-quality-audio',
+                            name: 'Studio Quality Audio',
+                            description: 'Professional audio recording with noise reduction',
+                            status: 'available',
+                            tier: 'pro',
+                            faithMode: true,
+                        },
+                        {
+                            id: 'auto-transcription',
+                            name: 'Auto Transcription',
+                            description: 'Automatic speech-to-text conversion',
+                            status: 'available',
+                            tier: 'pro',
+                            faithMode: true,
+                        },
+                    ],
+                },
                 {
                     id: 'ai-studio-2',
                     title: 'AI Content Studio 2.0',
@@ -623,12 +691,41 @@ const EnhancedFeaturesScreen: React.FC = () => {
             return;
         }
 
-        // Handle service activation
-        Alert.alert(
-            'Feature Activated',
-            `${service.name} is now available for use.`,
-            [{ text: 'OK' }]
-        );
+        // Handle different service types
+        switch (service.id) {
+            case 'image-generation':
+                // Navigate to AI Image Studio
+                Alert.alert('AI Image Studio', 'Opening AI Image Studio...', [
+                    { text: 'OK', onPress: () => {/* Navigate to AIImageStudioScreen */ } }
+                ]);
+                break;
+            case 'avatar-creator':
+                // Navigate to Avatar Creator
+                Alert.alert('Avatar Creator', 'Opening Avatar Creator...', [
+                    { text: 'OK', onPress: () => {/* Navigate to AvatarCreatorScreen */ } }
+                ]);
+                break;
+            case 'faith-inspired-visuals':
+                // Navigate to AI Image Studio with faith mode
+                Alert.alert('Faith-Inspired Visuals', 'Opening AI Image Studio with faith mode...', [
+                    { text: 'OK', onPress: () => {/* Navigate to AIImageStudioScreen with faith mode */ } }
+                ]);
+                break;
+            case 'multi-guest-recording':
+            case 'studio-quality-audio':
+            case 'auto-transcription':
+                // Navigate to Video Studio Recorder
+                Alert.alert('Video Studio Recorder', 'Opening Video Studio Recorder...', [
+                    { text: 'OK', onPress: () => {/* Navigate to VideoStudioRecorderScreen */ } }
+                ]);
+                break;
+            default:
+                Alert.alert(
+                    'Feature Activated',
+                    `${service.name} is now available for use.`,
+                    [{ text: 'OK' }]
+                );
+        }
     };
 
     const renderServiceCard = (service: EnhancementService) => {

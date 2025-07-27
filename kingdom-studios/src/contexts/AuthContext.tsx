@@ -1,10 +1,4 @@
-import React, { createContext, useContext,export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [user, setUser] = useState<User | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
-  const [isGuestMode, setIsGuestMode] = useState(false);
-  const [connectionStatus, setConnectionStatus] = useState<'online' | 'offline' | 'connecting'>('connecting');
-
-  console.log('AuthProvider initializing:', { user: !!user, isLoading, isGuestMode, connectionStatus });ffect, useState, ReactNode } from 'react';
+import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import * as SecureStore from 'expo-secure-store';
 import { apiClient, ApiResponse } from '../services/apiClient';
 
@@ -134,7 +128,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const login = async (email: string, password: string): Promise<{ success: boolean; error?: string }> => {
     try {
       setIsLoading(true);
-      
+
       // Check connection first
       const isConnected = await checkConnection();
       if (!isConnected) {
@@ -142,20 +136,20 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       }
 
       const response = await apiClient.login(email, password);
-      
+
       if (response.success && response.data) {
         const { user, token } = response.data;
-        
+
         // Store authentication data
         await Promise.all([
           SecureStore.setItemAsync(TOKEN_KEY, token),
           SecureStore.setItemAsync(USER_KEY, JSON.stringify(user)),
         ]);
-        
+
         setUser(user);
         return { success: true };
       }
-      
+
       return { success: false, error: response.message || 'Login failed' };
     } catch (error: any) {
       console.error('Login error:', error);
@@ -167,15 +161,15 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
   // Register function with enterprise API client
   const register = async (
-    email: string, 
-    password: string, 
-    firstName: string, 
-    lastName: string, 
+    email: string,
+    password: string,
+    firstName: string,
+    lastName: string,
     faithMode?: boolean
   ): Promise<{ success: boolean; error?: string }> => {
     try {
       setIsLoading(true);
-      
+
       // Check connection first
       const isConnected = await checkConnection();
       if (!isConnected) {
@@ -188,20 +182,20 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         name: `${firstName} ${lastName}`,
         faithMode,
       } as any);
-      
+
       if (response.success && response.data) {
         const { user, token } = response.data;
-        
+
         // Store authentication data
         await Promise.all([
           SecureStore.setItemAsync(TOKEN_KEY, token),
           SecureStore.setItemAsync(USER_KEY, JSON.stringify(user)),
         ]);
-        
+
         setUser(user);
         return { success: true };
       }
-      
+
       return { success: false, error: response.message || 'Registration failed' };
     } catch (error: any) {
       console.error('Registration error:', error);
@@ -223,7 +217,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const logout = async (): Promise<void> => {
     try {
       setIsLoading(true);
-      
+
       // Call backend logout if connected
       if (connectionStatus === 'online') {
         try {
@@ -232,7 +226,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
           console.error('Backend logout error:', error);
         }
       }
-      
+
       // Clear local storage and guest mode
       await clearStoredAuth();
       setIsGuestMode(false);

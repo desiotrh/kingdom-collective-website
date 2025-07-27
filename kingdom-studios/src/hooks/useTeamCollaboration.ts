@@ -60,44 +60,44 @@ export interface UseTeamCollaborationReturn {
   // Team Members
   teamMembers: TeamMember[];
   currentUser: TeamMember | null;
-  
+
   // Invitations
   pendingInvitations: TeamInvitation[];
-  
+
   // Projects
   projects: TeamProject[];
-  
+
   // Activity
   recentActivity: TeamActivity[];
-  
+
   // Loading States
   isLoading: boolean;
   isInviting: boolean;
   isUpdatingMember: boolean;
-  
+
   // Error States
   error: string | null;
-  
+
   // Team Management
   inviteMember: (email: string, role: TeamMember['role']) => Promise<void>;
   removeMember: (memberId: string) => Promise<void>;
   updateMemberRole: (memberId: string, role: TeamMember['role']) => Promise<void>;
   updateMemberPermissions: (memberId: string, permissions: Partial<TeamPermissions>) => Promise<void>;
-  
+
   // Invitations
   resendInvitation: (invitationId: string) => Promise<void>;
   revokeInvitation: (invitationId: string) => Promise<void>;
-  
+
   // Projects
   createProject: (name: string, description: string, memberIds: string[]) => Promise<TeamProject>;
   updateProject: (projectId: string, updates: Partial<TeamProject>) => Promise<void>;
   deleteProject: (projectId: string) => Promise<void>;
   addMemberToProject: (projectId: string, memberId: string) => Promise<void>;
   removeMemberFromProject: (projectId: string, memberId: string) => Promise<void>;
-  
+
   // Activity Tracking
   logActivity: (action: string, target: string, metadata?: Record<string, any>) => Promise<void>;
-  
+
   // Utilities
   getPermissionsForRole: (role: TeamMember['role']) => TeamPermissions;
   canUserPerformAction: (userId: string, action: string) => boolean;
@@ -111,7 +111,7 @@ export const useTeamCollaboration = (): UseTeamCollaborationReturn => {
   const [pendingInvitations, setPendingInvitations] = useState<TeamInvitation[]>([]);
   const [projects, setProjects] = useState<TeamProject[]>([]);
   const [recentActivity, setRecentActivity] = useState<TeamActivity[]>([]);
-  
+
   const [isLoading, setIsLoading] = useState(false);
   const [isInviting, setIsInviting] = useState(false);
   const [isUpdatingMember, setIsUpdatingMember] = useState(false);
@@ -184,7 +184,7 @@ export const useTeamCollaboration = (): UseTeamCollaborationReturn => {
       {
         id: '1',
         name: 'John Smith',
-        email: 'john@kingdomstudios.com',
+        email: 'john@kingdomcollective.pro',
         role: 'owner',
         lastActive: new Date(),
         isOnline: true,
@@ -195,7 +195,7 @@ export const useTeamCollaboration = (): UseTeamCollaborationReturn => {
       {
         id: '2',
         name: 'Sarah Johnson',
-        email: 'sarah@kingdomstudios.com',
+        email: 'sarah@kingdomcollective.pro',
         role: 'admin',
         lastActive: new Date(Date.now() - 15 * 60 * 1000),
         isOnline: false,
@@ -206,7 +206,7 @@ export const useTeamCollaboration = (): UseTeamCollaborationReturn => {
       {
         id: '3',
         name: 'Michael Chen',
-        email: 'michael@kingdomstudios.com',
+        email: 'michael@kingdomcollective.pro',
         role: 'editor',
         lastActive: new Date(Date.now() - 2 * 60 * 60 * 1000),
         isOnline: false,
@@ -295,13 +295,13 @@ export const useTeamCollaboration = (): UseTeamCollaborationReturn => {
   const loadTeamData = useCallback(async () => {
     setIsLoading(true);
     setError(null);
-    
+
     try {
       // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 1000));
-      
+
       const mockData = generateMockData();
-      
+
       setTeamMembers(mockData.members);
       setCurrentUser(mockData.members[0]); // Assume first member is current user
       setPendingInvitations(mockData.invitations);
@@ -320,11 +320,11 @@ export const useTeamCollaboration = (): UseTeamCollaborationReturn => {
   const inviteMember = useCallback(async (email: string, role: TeamMember['role']) => {
     setIsInviting(true);
     setError(null);
-    
+
     try {
       // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 1500));
-      
+
       const newInvitation: TeamInvitation = {
         id: `inv_${Date.now()}`,
         email,
@@ -334,9 +334,9 @@ export const useTeamCollaboration = (): UseTeamCollaborationReturn => {
         expiresAt: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000), // 7 days
         status: 'pending'
       };
-      
+
       setPendingInvitations(prev => [...prev, newInvitation]);
-      
+
       // Log activity
       await logActivity('invited team member', email, { role });
     } catch (err) {
@@ -352,15 +352,15 @@ export const useTeamCollaboration = (): UseTeamCollaborationReturn => {
   const removeMember = useCallback(async (memberId: string) => {
     setIsUpdatingMember(true);
     setError(null);
-    
+
     try {
       // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 1000));
-      
+
       const memberToRemove = teamMembers.find(m => m.id === memberId);
-      
+
       setTeamMembers(prev => prev.filter(member => member.id !== memberId));
-      
+
       if (memberToRemove) {
         await logActivity('removed team member', memberToRemove.name);
       }
@@ -377,23 +377,23 @@ export const useTeamCollaboration = (): UseTeamCollaborationReturn => {
   const updateMemberRole = useCallback(async (memberId: string, role: TeamMember['role']) => {
     setIsUpdatingMember(true);
     setError(null);
-    
+
     try {
       // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 800));
-      
-      setTeamMembers(prev => 
-        prev.map(member => 
-          member.id === memberId 
-            ? { 
-                ...member, 
-                role, 
-                permissions: getPermissionsForRole(role) 
-              }
+
+      setTeamMembers(prev =>
+        prev.map(member =>
+          member.id === memberId
+            ? {
+              ...member,
+              role,
+              permissions: getPermissionsForRole(role)
+            }
             : member
         )
       );
-      
+
       const member = teamMembers.find(m => m.id === memberId);
       if (member) {
         await logActivity('updated member role', member.name, { newRole: role });
@@ -409,27 +409,27 @@ export const useTeamCollaboration = (): UseTeamCollaborationReturn => {
 
   // Update member permissions
   const updateMemberPermissions = useCallback(async (
-    memberId: string, 
+    memberId: string,
     permissions: Partial<TeamPermissions>
   ) => {
     setIsUpdatingMember(true);
     setError(null);
-    
+
     try {
       // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 800));
-      
-      setTeamMembers(prev => 
-        prev.map(member => 
-          member.id === memberId 
-            ? { 
-                ...member, 
-                permissions: { ...member.permissions, ...permissions }
-              }
+
+      setTeamMembers(prev =>
+        prev.map(member =>
+          member.id === memberId
+            ? {
+              ...member,
+              permissions: { ...member.permissions, ...permissions }
+            }
             : member
         )
       );
-      
+
       const member = teamMembers.find(m => m.id === memberId);
       if (member) {
         await logActivity('updated member permissions', member.name);
@@ -448,15 +448,15 @@ export const useTeamCollaboration = (): UseTeamCollaborationReturn => {
     try {
       // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 500));
-      
-      setPendingInvitations(prev => 
-        prev.map(invitation => 
-          invitation.id === invitationId 
-            ? { 
-                ...invitation, 
-                invitedAt: new Date(),
-                expiresAt: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000)
-              }
+
+      setPendingInvitations(prev =>
+        prev.map(invitation =>
+          invitation.id === invitationId
+            ? {
+              ...invitation,
+              invitedAt: new Date(),
+              expiresAt: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000)
+            }
             : invitation
         )
       );
@@ -471,8 +471,8 @@ export const useTeamCollaboration = (): UseTeamCollaborationReturn => {
     try {
       // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 500));
-      
-      setPendingInvitations(prev => 
+
+      setPendingInvitations(prev =>
         prev.filter(invitation => invitation.id !== invitationId)
       );
     } catch (err) {
@@ -483,14 +483,14 @@ export const useTeamCollaboration = (): UseTeamCollaborationReturn => {
 
   // Create project
   const createProject = useCallback(async (
-    name: string, 
-    description: string, 
+    name: string,
+    description: string,
     memberIds: string[]
   ): Promise<TeamProject> => {
     try {
       // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 1000));
-      
+
       const newProject: TeamProject = {
         id: `proj_${Date.now()}`,
         name,
@@ -502,11 +502,11 @@ export const useTeamCollaboration = (): UseTeamCollaborationReturn => {
         lastUpdated: new Date(),
         contentCount: 0
       };
-      
+
       setProjects(prev => [...prev, newProject]);
-      
+
       await logActivity('created project', name);
-      
+
       return newProject;
     } catch (err) {
       console.error('Error creating project:', err);
@@ -517,25 +517,25 @@ export const useTeamCollaboration = (): UseTeamCollaborationReturn => {
 
   // Update project
   const updateProject = useCallback(async (
-    projectId: string, 
+    projectId: string,
     updates: Partial<TeamProject>
   ) => {
     try {
       // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 800));
-      
-      setProjects(prev => 
-        prev.map(project => 
-          project.id === projectId 
-            ? { 
-                ...project, 
-                ...updates, 
-                lastUpdated: new Date() 
-              }
+
+      setProjects(prev =>
+        prev.map(project =>
+          project.id === projectId
+            ? {
+              ...project,
+              ...updates,
+              lastUpdated: new Date()
+            }
             : project
         )
       );
-      
+
       const project = projects.find(p => p.id === projectId);
       if (project) {
         await logActivity('updated project', project.name);
@@ -551,11 +551,11 @@ export const useTeamCollaboration = (): UseTeamCollaborationReturn => {
     try {
       // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 800));
-      
+
       const project = projects.find(p => p.id === projectId);
-      
+
       setProjects(prev => prev.filter(p => p.id !== projectId));
-      
+
       if (project) {
         await logActivity('deleted project', project.name);
       }
@@ -570,15 +570,15 @@ export const useTeamCollaboration = (): UseTeamCollaborationReturn => {
     try {
       // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 500));
-      
-      setProjects(prev => 
-        prev.map(project => 
-          project.id === projectId 
-            ? { 
-                ...project, 
-                members: [...project.members, memberId],
-                lastUpdated: new Date() 
-              }
+
+      setProjects(prev =>
+        prev.map(project =>
+          project.id === projectId
+            ? {
+              ...project,
+              members: [...project.members, memberId],
+              lastUpdated: new Date()
+            }
             : project
         )
       );
@@ -593,15 +593,15 @@ export const useTeamCollaboration = (): UseTeamCollaborationReturn => {
     try {
       // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 500));
-      
-      setProjects(prev => 
-        prev.map(project => 
-          project.id === projectId 
-            ? { 
-                ...project, 
-                members: project.members.filter(id => id !== memberId),
-                lastUpdated: new Date() 
-              }
+
+      setProjects(prev =>
+        prev.map(project =>
+          project.id === projectId
+            ? {
+              ...project,
+              members: project.members.filter(id => id !== memberId),
+              lastUpdated: new Date()
+            }
             : project
         )
       );
@@ -613,8 +613,8 @@ export const useTeamCollaboration = (): UseTeamCollaborationReturn => {
 
   // Log activity
   const logActivity = useCallback(async (
-    action: string, 
-    target: string, 
+    action: string,
+    target: string,
     metadata?: Record<string, any>
   ) => {
     try {
@@ -627,7 +627,7 @@ export const useTeamCollaboration = (): UseTeamCollaborationReturn => {
         timestamp: new Date(),
         metadata
       };
-      
+
       setRecentActivity(prev => [newActivity, ...prev.slice(0, 49)]); // Keep last 50 activities
     } catch (err) {
       console.error('Error logging activity:', err);
@@ -638,7 +638,7 @@ export const useTeamCollaboration = (): UseTeamCollaborationReturn => {
   const canUserPerformAction = useCallback((userId: string, action: string): boolean => {
     const user = teamMembers.find(m => m.id === userId);
     if (!user) return false;
-    
+
     const permissionMap: Record<string, keyof TeamPermissions> = {
       'create_content': 'canCreateContent',
       'publish_posts': 'canPublishPosts',
@@ -649,7 +649,7 @@ export const useTeamCollaboration = (): UseTeamCollaborationReturn => {
       'manage_billing': 'canManageBilling',
       'delete_content': 'canDeleteContent'
     };
-    
+
     const permissionKey = permissionMap[action];
     return permissionKey ? user.permissions[permissionKey] : false;
   }, [teamMembers]);
@@ -673,44 +673,44 @@ export const useTeamCollaboration = (): UseTeamCollaborationReturn => {
     // Team Members
     teamMembers,
     currentUser,
-    
+
     // Invitations
     pendingInvitations,
-    
+
     // Projects
     projects,
-    
+
     // Activity
     recentActivity,
-    
+
     // Loading States
     isLoading,
     isInviting,
     isUpdatingMember,
-    
+
     // Error States
     error,
-    
+
     // Team Management
     inviteMember,
     removeMember,
     updateMemberRole,
     updateMemberPermissions,
-    
+
     // Invitations
     resendInvitation,
     revokeInvitation,
-    
+
     // Projects
     createProject,
     updateProject,
     deleteProject,
     addMemberToProject,
     removeMemberFromProject,
-    
+
     // Activity Tracking
     logActivity,
-    
+
     // Utilities
     getPermissionsForRole,
     canUserPerformAction,

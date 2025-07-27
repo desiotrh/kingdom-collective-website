@@ -306,7 +306,7 @@ kingdom-studios/
 
 ### **Technical Support**
 
-- **Email**: support@kingdomstudios.app
+- **Email**: support@kingdomcollective.pro
 - **Documentation**: [docs.kingdomstudios.app]
 
 ### **Sponsorship Inquiries**

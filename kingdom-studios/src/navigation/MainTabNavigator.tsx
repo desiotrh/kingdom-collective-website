@@ -11,8 +11,8 @@ import { KingdomColors } from '../constants/KingdomColors';
 
 // Import screens
 import DashboardScreen from '../screens/DashboardScreen';
-import ContentCreationScreen from '../screens/ContentCreationScreen';
-import CommunityScreen from '../screens/CommunityScreen';
+import ContentGeneratorScreen from '../screens/ContentGeneratorScreen';
+import CommunityHubScreen from '../screens/CommunityHubScreen';
 import AnalyticsScreen from '../screens/analytics/AnalyticsScreen';
 import EnhancedFeaturesScreen from '../screens/EnhancedFeaturesScreen';
 import ProfileScreen from '../screens/ProfileScreen';
@@ -104,16 +104,15 @@ const MainTabNavigator: React.FC = () => {
 
       <Tab.Screen
         name="Create"
-        component={ContentCreationScreen}
+        component={ContentGeneratorScreen}
         options={{
-          title: 'Create Content',
-          tabBarLabel: 'Create',
+          title: 'Create',
         }}
       />
 
       <Tab.Screen
         name="Community"
-        component={CommunityScreen}
+        component={CommunityHubScreen}
         options={{
           title: 'Community',
           tabBarLabel: 'Community',

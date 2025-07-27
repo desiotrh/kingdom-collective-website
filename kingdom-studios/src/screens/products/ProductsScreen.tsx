@@ -16,7 +16,8 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { useAppNavigation } from '../../utils/navigationUtils';
 import { useFaithMode } from '../../contexts/FaithModeContext';
 import { useAuth } from '../../contexts/AuthContext';
-import { KingdomColors, KingdomShadows } from '../../constants/KingdomColors';
+import { KingdomColors } from '../../constants/KingdomColors';
+import { KingdomShadows } from '../../constants/KingdomShadows';
 import KingdomLogo from '../../components/KingdomLogo';
 import { Product } from '../../contexts/ProductContext';
 import apiService from '../../services/apiService';
@@ -52,7 +53,7 @@ const ProductsScreen: React.FC = () => {
 
   const loadProducts = async () => {
     if (!user) return;
-    
+
     setLoading(true);
     try {
       const userProducts = await firebaseService.getUserProducts(user.uid);
@@ -74,7 +75,7 @@ const ProductsScreen: React.FC = () => {
     setSyncingPlatform(platform);
     try {
       let newProducts: PlatformProduct[] = [];
-      
+
       switch (platform) {
         case 'Etsy':
           newProducts = await platformIntegrationService.syncEtsyProducts();
@@ -86,7 +87,7 @@ const ProductsScreen: React.FC = () => {
           newProducts = await platformIntegrationService.syncShopifyProducts();
           break;
       }
-      
+
       // Convert PlatformProduct to Product and save to Firebase
       for (const platformProduct of newProducts) {
         const product: Product = {
@@ -103,16 +104,16 @@ const ProductsScreen: React.FC = () => {
           tags: platformProduct.tags,
           category: platformProduct.category,
         };
-        
+
         await firebaseService.saveProduct(product);
       }
-      
+
       // Update local state
       setPlatformProducts(prev => [...prev, ...newProducts]);
       await loadProducts();
-      
+
       Alert.alert(
-        'Sync Complete', 
+        'Sync Complete',
         `Successfully synced ${newProducts.length} products from ${platform}!`,
         [
           { text: 'View Products', onPress: () => setSelectedTab('products') },
@@ -122,13 +123,13 @@ const ProductsScreen: React.FC = () => {
     } catch (error) {
       const errorMessage = error instanceof Error ? error.message : 'Unknown error';
       Alert.alert(
-        'Sync Failed', 
+        'Sync Failed',
         `Failed to sync products from ${platform}.\n\nError: ${errorMessage}\n\nTip: Check your API keys in settings.`,
         [
           { text: 'OK' },
-          { 
-            text: 'Check Settings', 
-            onPress: () => navigation.navigate('Settings') 
+          {
+            text: 'Check Settings',
+            onPress: () => navigation.navigate('Settings')
           }
         ]
       );
@@ -232,7 +233,7 @@ const ProductsScreen: React.FC = () => {
                 </Text>
               </View>
             </TouchableOpacity>
-            
+
             <View style={styles.platformActions}>
               {platform.connected && (
                 <TouchableOpacity
@@ -252,7 +253,7 @@ const ProductsScreen: React.FC = () => {
                   )}
                 </TouchableOpacity>
               )}
-              
+
               <View style={[
                 styles.connectionStatus,
                 { backgroundColor: platform.connected ? KingdomColors.accent.success : KingdomColors.gray }
@@ -292,7 +293,7 @@ const ProductsScreen: React.FC = () => {
   );
 
   const renderProducts = () => (
-    <ScrollView 
+    <ScrollView
       style={styles.productsContainer}
       showsVerticalScrollIndicator={false}
       refreshControl={
@@ -404,7 +405,7 @@ const ProductsScreen: React.FC = () => {
         </View>
 
         {/* Content */}
-        <ScrollView 
+        <ScrollView
           style={styles.content}
           showsVerticalScrollIndicator={false}
           contentContainerStyle={styles.contentContainer}

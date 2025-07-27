@@ -26,7 +26,7 @@ export interface ValidationResult {
 class TierSystemTestingService {
   private static instance: TierSystemTestingService;
 
-  private constructor() {}
+  private constructor() { }
 
   static getInstance(): TierSystemTestingService {
     if (!TierSystemTestingService.instance) {
@@ -41,7 +41,7 @@ class TierSystemTestingService {
 
   async runFullTestSuite(): Promise<TestResult[]> {
     console.log('🧪 Starting Kingdom Studios Tier System Test Suite...');
-    
+
     const results: TestResult[] = [];
 
     // Core functionality tests
@@ -51,20 +51,20 @@ class TierSystemTestingService {
     results.push(await this.testTierValidation());
     results.push(await this.testUsageTracking());
     results.push(await this.testBillingIntegration());
-    
+
     // Edge case tests
     results.push(await this.testOfflineHandling());
     results.push(await this.testErrorRecovery());
     results.push(await this.testConcurrentOperations());
-    
+
     // Performance tests
     results.push(await this.testPerformance());
 
     const passed = results.filter(r => r.passed).length;
     const total = results.length;
-    
+
     console.log(`✅ Test Suite Complete: ${passed}/${total} tests passed`);
-    
+
     if (passed < total) {
       console.log('❌ Failed tests:');
       results.filter(r => !r.passed).forEach(test => {
@@ -81,11 +81,11 @@ class TierSystemTestingService {
 
   async testApiConnectivity(): Promise<TestResult> {
     const startTime = Date.now();
-    
+
     try {
       // Test basic API connectivity
       const response = await apiService.getCurrentUser();
-      
+
       if (response.success || response.statusCode === 401) {
         // 401 is acceptable - means API is reachable but user not authenticated
         return {
@@ -114,16 +114,16 @@ class TierSystemTestingService {
 
   async testSubscriptionService(): Promise<TestResult> {
     const startTime = Date.now();
-    
+
     try {
       // Test subscription service functionality
       const subscription = await subscriptionService.getCurrentSubscription();
       const usage = await subscriptionService.getUsageStats();
-      
+
       // Test feature checking
       const canUseContent = await subscriptionService.canUseFeature('contentGeneration');
       const canUseProducts = await subscriptionService.canUseFeature('productSync');
-      
+
       return {
         testName: 'Subscription Service',
         passed: true,
@@ -146,11 +146,11 @@ class TierSystemTestingService {
 
   async testBackendSync(): Promise<TestResult> {
     const startTime = Date.now();
-    
+
     try {
       // Test backend synchronization
       const syncResult = await backendSyncService.performFullSync();
-      
+
       return {
         testName: 'Backend Sync',
         passed: syncResult.success,
@@ -170,10 +170,10 @@ class TierSystemTestingService {
 
   async testTierValidation(): Promise<TestResult> {
     const startTime = Date.now();
-    
+
     try {
       const validationResult = await this.validateTierSystem();
-      
+
       return {
         testName: 'Tier Validation',
         passed: validationResult.isValid,
@@ -193,7 +193,7 @@ class TierSystemTestingService {
 
   async testUsageTracking(): Promise<TestResult> {
     const startTime = Date.now();
-    
+
     try {
       // Test content generation tracking
       const contentResult = await apiService.generateContent(
@@ -228,7 +228,7 @@ class TierSystemTestingService {
 
   async testBillingIntegration(): Promise<TestResult> {
     const startTime = Date.now();
-    
+
     try {
       // Test payment session creation (without actual payment)
       const paymentResult = await subscriptionService.createPaymentSession(
@@ -260,11 +260,11 @@ class TierSystemTestingService {
 
   async testOfflineHandling(): Promise<TestResult> {
     const startTime = Date.now();
-    
+
     try {
       // Simulate offline conditions by clearing cache
       subscriptionService.clearCache();
-      
+
       // Test if services handle offline gracefully
       const subscription = await subscriptionService.getCurrentSubscription();
       const usage = await subscriptionService.getUsageStats();
@@ -290,7 +290,7 @@ class TierSystemTestingService {
 
   async testErrorRecovery(): Promise<TestResult> {
     const startTime = Date.now();
-    
+
     try {
       // Test error recovery mechanisms
       const invalidUpgrade = await subscriptionService.upgradeSubscription(
@@ -324,7 +324,7 @@ class TierSystemTestingService {
 
   async testConcurrentOperations(): Promise<TestResult> {
     const startTime = Date.now();
-    
+
     try {
       // Test concurrent sync operations
       const syncPromises = [
@@ -357,7 +357,7 @@ class TierSystemTestingService {
 
   async testPerformance(): Promise<TestResult> {
     const startTime = Date.now();
-    
+
     try {
       // Test performance of key operations
       const operations = [];
@@ -407,7 +407,7 @@ class TierSystemTestingService {
     try {
       // Validate subscription service
       const subscription = await subscriptionService.getCurrentSubscription();
-      
+
       if (!subscription) {
         warnings.push('No active subscription found');
       } else {
@@ -415,11 +415,11 @@ class TierSystemTestingService {
         if (!subscription.tier) {
           errors.push('Subscription missing tier information');
         }
-        
+
         if (!subscription.features) {
           errors.push('Subscription missing features configuration');
         }
-        
+
         if (!subscription.isActive && subscription.status !== 'trial') {
           warnings.push('Subscription is not active');
         }
@@ -486,7 +486,7 @@ class TierSystemTestingService {
   generateMockUser(): any {
     return {
       id: `user_mock_${Date.now()}`,
-      email: 'test@kingdomstudios.app',
+      email: 'test@kingdomcollective.pro',
       name: 'Test User',
       tier: 'commissioned' as TierType,
       subscriptionId: `sub_mock_${Date.now()}`,
@@ -561,7 +561,7 @@ class TierSystemTestingService {
     try {
       const canUseContent = await subscriptionService.canUseFeature('contentGeneration');
       const canUseProducts = await subscriptionService.canUseFeature('productSync');
-      
+
       return {
         testName: 'Trial Feature Usage',
         passed: canUseContent || canUseProducts,
@@ -598,7 +598,7 @@ class TierSystemTestingService {
     try {
       const subscription = await subscriptionService.getCurrentSubscription();
       const hasFullAccess = subscription?.tier === 'mantled_pro' || subscription?.tier === 'kingdom_enterprise';
-      
+
       return {
         testName: 'Full Feature Access',
         passed: !!hasFullAccess,
