@@ -2,16 +2,14 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;700;900&family=Space+Grotesk:wght@400;500;700&display=swap');
 
 @layer base {
   :root {
-    --navy: #0b1120;
-    --blue: #1e3a8a;
-    --electric-blue: #3b82f6;
-    --gold: #fcd34d;
+    --navy: #131416;
+    --blue: #b7c6e0;
+    --gray: #2d2f34;
     --white: #ffffff;
-    --gray: #d1d5db;
   }
 
   html {
@@ -19,7 +17,7 @@
   }
 
   body {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Space Grotesk', 'Noto Sans', sans-serif;
     background-color: var(--navy);
     color: var(--white);
     margin: 0;
@@ -39,28 +37,16 @@
 
   /* Glow effects */
   .glow-blue {
-    box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
-  }
-
-  .glow-purple {
-    box-shadow: 0 0 20px rgba(147, 51, 234, 0.3);
-  }
-
-  .glow-gold {
-    box-shadow: 0 0 20px rgba(252, 211, 77, 0.3);
+    box-shadow: 0 0 20px rgba(183, 198, 224, 0.3);
   }
 
   /* Button styles */
   .btn-primary {
-    @apply bg-white text-black px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors duration-200;
+    @apply bg-blue text-navy px-4 py-2 rounded-full font-bold text-sm tracking-[0.015em] hover:bg-blue/90 transition-all duration-200;
   }
 
   .btn-secondary {
-    @apply border border-white/20 text-white px-6 py-3 rounded-lg font-semibold hover:bg-white/10 transition-colors duration-200;
-  }
-
-  .btn-gold {
-    @apply bg-gold text-black px-6 py-3 rounded-lg font-semibold shadow-lg shadow-gold/50 hover:shadow-gold/70 transition-all duration-300;
+    @apply bg-gray text-white px-4 py-2 rounded-full font-bold text-sm tracking-[0.015em] hover:bg-gray/90 transition-all duration-200;
   }
 
   /* Card styles */
@@ -70,7 +56,7 @@
 
   /* Text styles */
   .text-gradient {
-    @apply bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-blue to-white bg-clip-text text-transparent;
   }
 
   /* Animation delays */
@@ -108,7 +94,7 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #333333;
+  background: var(--gray);
   border-radius: 4px;
 }
 
