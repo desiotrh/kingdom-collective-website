@@ -119,7 +119,7 @@ export default function KingdomLens() {
               />
             </div>
             <h1 className="text-white text-5xl font-black leading-tight tracking-[-0.033em] mb-6">
-              Kingdom <span className="text-blue">Lens</span>
+              Kingdom Lens
             </h1>
             <p className="text-white text-xl leading-relaxed max-w-3xl mx-auto mb-8">
               Capture life&apos;s beautiful moments with purpose. Plan, shoot, and share your photography with tools designed for creatives of faith.
@@ -127,11 +127,11 @@ export default function KingdomLens() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button 
                 onClick={() => window.open('https://lens.kingdomcollective.pro', '_blank')}
-                className="bg-blue text-navy px-8 py-4 rounded-full text-lg font-bold hover:bg-blue/90 transition-all duration-200"
+                className="bg-gray text-white px-8 py-4 rounded-full text-lg font-bold hover:bg-blue hover:text-white transition-all duration-200"
               >
                 Launch Kingdom Lens
               </button>
-              <Link href="#features" className="bg-gray text-white px-8 py-4 rounded-full text-lg font-bold hover:bg-gray/90 transition-all duration-200">
+              <Link href="#features" className="bg-gray text-white px-8 py-4 rounded-full text-lg font-bold hover:bg-blue hover:text-white transition-all duration-200">
                 Learn More
               </Link>
             </div>
@@ -143,7 +143,7 @@ export default function KingdomLens() {
           <div className="max-w-[960px] mx-auto">
             <div className="text-center mb-16">
               <h2 className="text-white text-4xl font-black leading-tight tracking-[-0.033em] mb-6">
-                Creative <span className="text-blue">Features</span>
+                Creative Features
               </h2>
               <p className="text-white text-base font-normal leading-normal max-w-3xl mx-auto">
                 Everything you need to plan, shoot, and grow your photography business.
@@ -167,7 +167,7 @@ export default function KingdomLens() {
           <div className="max-w-[960px] mx-auto">
             <div className="text-center mb-16">
               <h2 className="text-white text-4xl font-black leading-tight tracking-[-0.033em] mb-6">
-                Choose Your <span className="text-blue">Plan</span>
+                Choose Your Plan
               </h2>
               <p className="text-white text-base font-normal leading-normal max-w-3xl mx-auto">
                 Start capturing beautiful moments today. Scale as your business grows.

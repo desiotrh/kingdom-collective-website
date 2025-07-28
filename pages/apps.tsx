@@ -80,7 +80,7 @@ export default function Apps() {
           <div className="max-w-[1200px] mx-auto">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
               {apps.map((app, index) => (
-                <div key={index} className="bg-black/20 backdrop-blur-sm border border-gray/30 rounded-xl p-8 hover:bg-black/30 transition-all duration-300">
+                <div key={index} className="bg-black/20 backdrop-blur-sm border border-gray/30 rounded-xl p-8 hover:bg-black/30 transition-all duration-300 flex flex-col h-full">
                   {/* App Header */}
                   <div className="flex items-start gap-6 mb-6">
                     <div className="flex-shrink-0">
@@ -113,16 +113,16 @@ export default function Apps() {
                   </div>
 
                   {/* CTA Button */}
-                  <div className="flex gap-4">
+                  <div className="flex gap-4 mt-auto">
                     <Link
                       href={app.href}
-                      className="bg-blue text-navy px-6 py-3 rounded-full font-bold hover:bg-blue/90 transition-all duration-200"
+                      className="bg-gray text-white px-6 py-3 rounded-full font-bold hover:bg-blue hover:text-white transition-all duration-200"
                     >
                       Learn More
                     </Link>
                     <button
                       onClick={() => window.open('https://app.kingdomcollective.pro', '_blank')}
-                      className="bg-gray text-white px-6 py-3 rounded-full font-bold hover:bg-gray/90 transition-all duration-200"
+                      className="bg-gray text-white px-6 py-3 rounded-full font-bold hover:bg-blue hover:text-white transition-all duration-200"
                     >
                       Launch App
                     </button>
@@ -173,10 +173,10 @@ export default function Apps() {
               Choose the app that fits your current needs, or explore our complete ecosystem to see how they work together.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/features" className="bg-blue text-navy px-8 py-4 rounded-full text-lg font-bold hover:bg-blue/90 transition-all duration-200">
+              <Link href="/features" className="bg-gray text-white px-8 py-4 rounded-full text-lg font-bold hover:bg-blue hover:text-white transition-all duration-200">
                 Learn About Features
               </Link>
-              <Link href="/vision" className="bg-gray text-white px-8 py-4 rounded-full text-lg font-bold hover:bg-gray/90 transition-all duration-200">
+              <Link href="/vision" className="bg-gray text-white px-8 py-4 rounded-full text-lg font-bold hover:bg-blue hover:text-white transition-all duration-200">
                 Our Vision
               </Link>
             </div>

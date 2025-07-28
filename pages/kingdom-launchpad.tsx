@@ -119,7 +119,7 @@ export default function KingdomLaunchpad() {
               />
             </div>
             <h1 className="text-white text-5xl font-black leading-tight tracking-[-0.033em] mb-6">
-              Kingdom <span className="text-blue">Launchpad</span>
+              Kingdom Launchpad
             </h1>
             <p className="text-white text-xl leading-relaxed max-w-3xl mx-auto mb-8">
               Launch your digital products with confidence using tools rooted in wisdom. Build, launch, and scale your online business with proven strategies.
@@ -127,11 +127,11 @@ export default function KingdomLaunchpad() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button 
                 onClick={() => window.open('https://launchpad.kingdomcollective.pro', '_blank')}
-                className="bg-blue text-navy px-8 py-4 rounded-full text-lg font-bold hover:bg-blue/90 transition-all duration-200"
+                className="bg-gray text-white px-8 py-4 rounded-full text-lg font-bold hover:bg-blue hover:text-white transition-all duration-200"
               >
                 Launch Kingdom Launchpad
               </button>
-              <Link href="#features" className="bg-gray text-white px-8 py-4 rounded-full text-lg font-bold hover:bg-gray/90 transition-all duration-200">
+              <Link href="#features" className="bg-gray text-white px-8 py-4 rounded-full text-lg font-bold hover:bg-blue hover:text-white transition-all duration-200">
                 Learn More
               </Link>
             </div>
@@ -143,7 +143,7 @@ export default function KingdomLaunchpad() {
           <div className="max-w-[960px] mx-auto">
             <div className="text-center mb-16">
               <h2 className="text-white text-4xl font-black leading-tight tracking-[-0.033em] mb-6">
-                Launch <span className="text-blue">Features</span>
+                Launch Features
               </h2>
               <p className="text-white text-base font-normal leading-normal max-w-3xl mx-auto">
                 Everything you need to successfully launch and scale your digital products.
@@ -167,7 +167,7 @@ export default function KingdomLaunchpad() {
           <div className="max-w-[960px] mx-auto">
             <div className="text-center mb-16">
               <h2 className="text-white text-4xl font-black leading-tight tracking-[-0.033em] mb-6">
-                Choose Your <span className="text-blue">Plan</span>
+                Choose Your Plan
               </h2>
               <p className="text-white text-base font-normal leading-normal max-w-3xl mx-auto">
                 Start launching your products today. Scale as your business grows.

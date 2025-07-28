@@ -118,7 +118,7 @@ export default function KingdomStudios() {
               />
             </div>
             <h1 className="text-white text-5xl font-black leading-tight tracking-[-0.033em] mb-6">
-              Kingdom <span className="text-blue">Studios</span>
+              Kingdom Studios
             </h1>
             <p className="text-white text-xl leading-relaxed max-w-3xl mx-auto mb-8">
               The ultimate content creation hub for faith-driven visionaries. Create, grow, and monetize your digital presence with powerful tools designed for creators who want to make a lasting impact.
@@ -126,11 +126,11 @@ export default function KingdomStudios() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button 
                 onClick={() => window.open('https://app.kingdomcollective.pro', '_blank')}
-                className="bg-blue text-navy px-8 py-4 rounded-full text-lg font-bold hover:bg-blue/90 transition-all duration-200"
+                className="bg-gray text-white px-8 py-4 rounded-full text-lg font-bold hover:bg-blue hover:text-white transition-all duration-200"
               >
                 Launch Kingdom Studios
               </button>
-              <Link href="#features" className="bg-gray text-white px-8 py-4 rounded-full text-lg font-bold hover:bg-gray/90 transition-all duration-200">
+              <Link href="#features" className="bg-gray text-white px-8 py-4 rounded-full text-lg font-bold hover:bg-blue hover:text-white transition-all duration-200">
                 Learn More
               </Link>
             </div>
@@ -142,7 +142,7 @@ export default function KingdomStudios() {
           <div className="max-w-[960px] mx-auto">
             <div className="text-center mb-16">
               <h2 className="text-white text-4xl font-black leading-tight tracking-[-0.033em] mb-6">
-                Powerful <span className="text-blue">Features</span>
+                Powerful Features
               </h2>
               <p className="text-white text-base font-normal leading-normal max-w-3xl mx-auto">
                 Everything you need to create, grow, and monetize your digital presence.
@@ -166,7 +166,7 @@ export default function KingdomStudios() {
           <div className="max-w-[960px] mx-auto">
             <div className="text-center mb-16">
               <h2 className="text-white text-4xl font-black leading-tight tracking-[-0.033em] mb-6">
-                Choose Your <span className="text-blue">Plan</span>
+                Choose Your Plan
               </h2>
               <p className="text-white text-base font-normal leading-normal max-w-3xl mx-auto mb-4">
                 Start free and scale as you grow. No hidden fees, cancel anytime.
