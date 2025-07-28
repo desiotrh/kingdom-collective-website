@@ -86,11 +86,11 @@ export default function Contact() {
       }
       // Faith Mode
       else if (question.includes('faith mode') || question.includes('spiritual') || question.includes('biblical')) {
-        response = "Faith Mode is designed for those who want to build fully surrendered and Spirit-led. It includes scripture integration, spiritual growth checkpoints, prophetic creativity tools, and Holy Spirit reminders. Perfect for creators who want to integrate their faith deeply into their content creation process.";
+        response = "Faith Mode is for those who want to build fully surrendered and Spirit-led, with tools that integrate scripture, spiritual growth checkpoints, prophetic creativity, and reminders to walk in step with the Holy Spirit.";
       }
       // Encouragement Mode
       else if (question.includes('encouragement mode') || question.includes('uplifting')) {
-        response = "Encouragement Mode offers the same excellence and strategy, but in a tone that's uplifting, empowering, and full of truth. It's designed for those still exploring or rebuilding their relationship with God. Features include uplifting content suggestions, empowering messaging, truth-based guidance, and safe exploration space.";
+        response = "Encouragement Mode offers the same excellence and strategy, but in a tone that's uplifting, empowering, and full of truth — designed for those still exploring or rebuilding their relationship with God.";
       }
       // Pricing
       else if (question.includes('pricing') || question.includes('cost') || question.includes('price')) {

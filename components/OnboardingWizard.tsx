@@ -180,7 +180,7 @@ export default function OnboardingWizard() {
               />
               <div>
                 <div className="text-white font-semibold">Faith Mode</div>
-                <div className="text-white text-sm">Biblical integration, spiritual growth checkpoints, prophetic creativity tools</div>
+                <div className="text-white text-sm">For those who want to build fully surrendered and Spirit-led, with tools that integrate scripture, spiritual growth checkpoints, prophetic creativity, and reminders to walk in step with the Holy Spirit.</div>
               </div>
             </label>
             <label className="flex items-center cursor-pointer">
@@ -193,7 +193,7 @@ export default function OnboardingWizard() {
               />
               <div>
                 <div className="text-white font-semibold">Encouragement Mode</div>
-                <div className="text-white text-sm">Uplifting content, empowering messaging, truth-based guidance</div>
+                <div className="text-white text-sm">Offers the same excellence and strategy, but in a tone that's uplifting, empowering, and full of truth — designed for those still exploring or rebuilding their relationship with God.</div>
               </div>
             </label>
           </div>
