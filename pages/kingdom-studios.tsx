@@ -71,7 +71,7 @@ export default function KingdomStudios() {
         '50GB storage',
         'Export in multiple formats',
         'Social media scheduling',
-        '30-day free trial'
+        '14-day free trial'
       ],
       popular: true,
       trial: true
@@ -91,7 +91,7 @@ export default function KingdomStudios() {
         'API access',
         'Custom training sessions',
         'Advanced security features',
-        '30-day free trial'
+        '14-day free trial'
       ],
       popular: false,
       trial: true
@@ -173,14 +173,14 @@ export default function KingdomStudios() {
               </p>
               <div className="bg-blue/20 border border-blue/30 rounded-xl p-4 max-w-2xl mx-auto">
                 <p className="text-blue font-bold text-lg">🎉 Start Free Today!</p>
-                <p className="text-white text-sm">All paid plans include a 30-day free trial. No credit card required to start.</p>
+                <p className="text-white text-sm">All paid plans include a 14-day free trial. No credit card required to start.</p>
               </div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
               {pricingTiers.map((tier, index) => (
-                <div key={index} className={`relative bg-black/20 backdrop-blur-sm border rounded-xl p-8 ${
-                  tier.popular ? 'border-blue/50 bg-black/30' : 'border-gray/30'
+                <div key={index} className={`relative bg-black/20 backdrop-blur-sm rounded-xl p-8 ${
+                  tier.popular ? 'bg-black/30' : ''
                 }`}>
                   {tier.popular && (
                     <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
@@ -191,9 +191,9 @@ export default function KingdomStudios() {
                   )}
                   {tier.trial && (
                     <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                      <span className="bg-green-500 text-white px-4 py-2 rounded-full text-sm font-bold">
-                        30-Day Free Trial
-                      </span>
+                                     <span className="bg-green-500 text-white px-4 py-2 rounded-full text-sm font-bold">
+                 14-Day Free Trial
+               </span>
                     </div>
                   )}
                   <div className="text-center">
@@ -214,11 +214,7 @@ export default function KingdomStudios() {
                     </ul>
                     <button 
                       onClick={() => window.open('https://app.kingdomcollective.pro', '_blank')}
-                      className={`w-full py-3 px-6 rounded-full font-bold transition-all duration-200 ${
-                        tier.popular 
-                          ? 'bg-blue text-navy hover:bg-blue/90' 
-                          : 'bg-gray text-white hover:bg-gray/90'
-                      }`}
+                      className="w-full py-3 px-6 rounded-full font-bold bg-gray text-white hover:bg-blue hover:text-white transition-all duration-200"
                     >
                       Get Started
                     </button>

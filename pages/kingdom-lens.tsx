@@ -72,7 +72,7 @@ export default function KingdomLens() {
         '100GB storage',
         'Multiple export formats',
         'Photo analytics',
-        '30-day free trial'
+        '14-day free trial'
       ],
       popular: true,
       trial: true
@@ -92,7 +92,7 @@ export default function KingdomLens() {
         'API access for photo processing',
         'Custom photo workflows',
         'Advanced security features',
-        '30-day free trial'
+        '14-day free trial'
       ],
       popular: false,
       trial: true

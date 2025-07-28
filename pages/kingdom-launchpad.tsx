@@ -72,7 +72,7 @@ export default function KingdomLaunchpad() {
         'Export in multiple formats',
         'Investor pitch tools',
         'Market research tools',
-        '30-day free trial'
+        '14-day free trial'
       ],
       popular: true,
       trial: true
@@ -92,7 +92,7 @@ export default function KingdomLaunchpad() {
         'API access for business data',
         'Custom business workflows',
         'Advanced security and compliance',
-        '30-day free trial'
+        '14-day free trial'
       ],
       popular: false,
       trial: true

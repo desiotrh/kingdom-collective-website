@@ -72,7 +72,7 @@ export default function KingdomCircle() {
         'Advanced moderation tools',
         'Event management',
         'Member management tools',
-        '30-day free trial'
+        '14-day free trial'
       ],
       popular: true,
       trial: true
@@ -93,7 +93,7 @@ export default function KingdomCircle() {
         'API access for community data',
         'Custom community workflows',
         'Advanced security and compliance',
-        '30-day free trial'
+        '14-day free trial'
       ],
       popular: false,
       trial: true

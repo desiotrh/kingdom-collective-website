@@ -72,7 +72,7 @@ export default function KingdomVoice() {
         '50GB storage',
         'Multiple audio formats',
         'Audio analytics',
-        '30-day free trial'
+        '14-day free trial'
       ],
       popular: true,
       trial: true
@@ -92,7 +92,7 @@ export default function KingdomVoice() {
         'API access for audio processing',
         'Custom audio workflows',
         'Advanced security features',
-        '30-day free trial'
+        '14-day free trial'
       ],
       popular: false,
       trial: true
@@ -174,7 +174,7 @@ export default function KingdomVoice() {
               </p>
               <div className="bg-blue/20 border border-blue/30 rounded-xl p-4 max-w-2xl mx-auto">
                 <p className="text-blue font-bold text-lg">🎉 Start Free Today!</p>
-                <p className="text-white text-sm">All paid plans include a 30-day free trial. No credit card required to start.</p>
+                <p className="text-white text-sm">All paid plans include a 14-day free trial. No credit card required to start.</p>
               </div>
             </div>
 

@@ -97,8 +97,16 @@ export default function Contact() {
         response = "Our pricing varies by app and plan. Each app has its own pricing tiers designed for different needs. You can find detailed pricing on each individual app page (/kingdom-studios, /kingdom-clips, etc.) or contact billing@kingdomcollective.pro for specific questions about pricing and plans.";
       }
       // Technical Support
-      else if (question.includes('technical') || question.includes('bug') || question.includes('problem') || question.includes('issue')) {
-        response = "For technical issues, please email tech@kingdomcollective.pro with specific details about the problem you're experiencing. Include your app name, device type, and steps to reproduce the issue. Our technical team will get back to you within 24 hours.";
+      else if (question.includes('technical') || question.includes('bug') || question.includes('problem') || question.includes('issue') || question.includes('error') || question.includes('not working')) {
+        response = "For technical issues, please email tech@kingdomcollective.pro with specific details about the problem you're experiencing. Include your app name, device type, browser version, and steps to reproduce the issue. Our technical team will get back to you within 24 hours. For immediate help, try clearing your browser cache, updating your browser, or using a different device.";
+      }
+      // Login Issues
+      else if (question.includes('login') || question.includes('sign in') || question.includes('password') || question.includes('account') || question.includes('access')) {
+        response = "Having trouble logging in? Try these steps: 1) Clear your browser cache and cookies, 2) Make sure you're using the correct email address, 3) Use the 'Forgot Password' link if needed, 4) Try a different browser or device. If you're still having issues, email tech@kingdomcollective.pro with your email address and we'll help you regain access to your account.";
+      }
+      // Troubleshooting
+      else if (question.includes('troubleshoot') || question.includes('fix') || question.includes('broken') || question.includes('crash') || question.includes('freeze')) {
+        response = "Here are some common troubleshooting steps: 1) Refresh the page, 2) Clear browser cache and cookies, 3) Try a different browser (Chrome, Firefox, Safari), 4) Check your internet connection, 5) Disable browser extensions temporarily, 6) Update your browser to the latest version. If the problem persists, email tech@kingdomcollective.pro with specific details.";
       }
       // General Features
       else if (question.includes('feature') || question.includes('what can') || question.includes('how does')) {
@@ -133,22 +141,8 @@ export default function Contact() {
             <p className="text-white text-xl leading-relaxed max-w-3xl mx-auto mb-8">
               We&apos;re here to help you succeed. Choose the right contact method for your needs.
             </p>
-          </div>
-        </section>
-
-        {/* Contact Categories Section */}
-        <section className="px-40 py-20 bg-black/30 backdrop-blur-sm">
-          <div className="max-w-[960px] mx-auto">
-            <div className="text-center mb-16">
-              <h2 className="text-white text-4xl font-black leading-tight tracking-[-0.033em] mb-6">
-                Contact <span className="text-blue">Categories</span>
-              </h2>
-              <p className="text-white text-base font-normal leading-normal max-w-3xl mx-auto">
-                Find the right team member to help with your specific needs.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
               {contactCategories.map((category, index) => (
                 <div key={index} className="bg-black/20 backdrop-blur-sm border border-gray/30 rounded-xl p-6 hover:bg-black/30 transition-all duration-300">
                   <div className="text-4xl mb-4">{category.icon}</div>
@@ -165,6 +159,8 @@ export default function Contact() {
             </div>
           </div>
         </section>
+
+
 
         {/* FAQ AI Bot Section */}
         <section className="px-40 py-20">

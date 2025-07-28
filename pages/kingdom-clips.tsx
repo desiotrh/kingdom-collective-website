@@ -72,7 +72,7 @@ export default function KingdomClips() {
         '100GB storage',
         'Multiple export formats',
         'Social media optimization',
-        '30-day free trial'
+        '14-day free trial'
       ],
       popular: true,
       trial: true
@@ -92,7 +92,7 @@ export default function KingdomClips() {
         'API access for video processing',
         'Custom video workflows',
         'Advanced security and compliance',
-        '30-day free trial'
+        '14-day free trial'
       ],
       popular: false,
       trial: true
@@ -174,7 +174,7 @@ export default function KingdomClips() {
               </p>
               <div className="bg-blue/20 border border-blue/30 rounded-xl p-4 max-w-2xl mx-auto">
                 <p className="text-blue font-bold text-lg">🎉 Start Free Today!</p>
-                <p className="text-white text-sm">All paid plans include a 30-day free trial. No credit card required to start.</p>
+                <p className="text-white text-sm">All paid plans include a 14-day free trial. No credit card required to start.</p>
               </div>
             </div>
 
@@ -192,9 +192,9 @@ export default function KingdomClips() {
                   )}
                   {tier.trial && (
                     <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                      <span className="bg-green-500 text-white px-4 py-2 rounded-full text-sm font-bold">
-                        30-Day Free Trial
-                      </span>
+                                     <span className="bg-green-500 text-white px-4 py-2 rounded-full text-sm font-bold">
+                 14-Day Free Trial
+               </span>
                     </div>
                   )}
                   <div className="text-center">
