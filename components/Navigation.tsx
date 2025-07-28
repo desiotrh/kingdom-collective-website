@@ -8,7 +8,7 @@ export default function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <header className="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-gray/30 px-10 py-3 bg-black/20 backdrop-blur-sm">
+    <header className="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-gray/30 px-10 py-3 bg-black/20 backdrop-blur-sm relative z-[9999999]">
       {/* Logo */}
       <Link href="/" className="flex items-center gap-4 text-white hover:text-blue transition-colors duration-200">
         <div className="flex items-center">
@@ -40,7 +40,7 @@ export default function Navigation() {
               </svg>
             </button>
 
-            <div className="absolute top-full left-0 mt-2 w-64 bg-black/90 backdrop-blur-sm border border-gray/30 rounded-xl py-2 z-[999999] opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-auto">
+            <div className="absolute top-full left-0 mt-2 w-64 bg-black/90 backdrop-blur-sm border border-gray/30 rounded-xl py-2 z-[9999999] opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-auto">
               <Link href="/apps" className="block px-4 py-2 text-white hover:bg-gray-800 hover:text-white transition-colors duration-200">
                 All Apps Overview
               </Link>
