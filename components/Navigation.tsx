@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { useAuth } from '../contexts/AuthContext';
 
 export default function Navigation() {
+  const { user, isAuthenticated } = useAuth();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isStudioAppsOpen, setIsStudioAppsOpen] = useState(false);
 
@@ -93,12 +95,15 @@ export default function Navigation() {
 
         {/* Desktop CTA Buttons */}
         <div className="hidden md:flex gap-2">
-          <button className="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 px-4 bg-blue text-navy text-sm font-bold leading-normal tracking-[0.015em] hover:bg-blue/90 transition-all duration-200">
-            <span className="truncate">Dashboard</span>
-          </button>
-          <button className="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 px-4 bg-gray text-white text-sm font-bold leading-normal tracking-[0.015em] hover:bg-gray/90 transition-all duration-200">
-            <span className="truncate">Login</span>
-          </button>
+          {isAuthenticated ? (
+            <Link href="/dashboard" className="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 px-4 bg-blue text-navy text-sm font-bold leading-normal tracking-[0.015em] hover:bg-blue/90 transition-all duration-200">
+              <span className="truncate">Dashboard</span>
+            </Link>
+          ) : (
+            <Link href="/login" className="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 px-4 bg-gray text-white text-sm font-bold leading-normal tracking-[0.015em] hover:bg-gray/90 transition-all duration-200">
+              <span className="truncate">Login</span>
+            </Link>
+          )}
         </div>
 
         {/* Mobile menu button */}
@@ -213,12 +218,15 @@ export default function Navigation() {
               Contact
             </Link>
             <div className="pt-4 border-t border-gray space-y-3">
-              <button className="block w-full text-left bg-blue text-navy px-4 py-2 rounded-full font-bold text-sm tracking-[0.015em] hover:bg-blue/90 transition-all duration-200">
-                Dashboard
-              </button>
-              <button className="block w-full text-left bg-gray text-white px-4 py-2 rounded-full font-bold text-sm tracking-[0.015em] hover:bg-gray/90 transition-all duration-200">
-                Login
-              </button>
+              {isAuthenticated ? (
+                <Link href="/dashboard" className="block w-full text-left bg-blue text-navy px-4 py-2 rounded-full font-bold text-sm tracking-[0.015em] hover:bg-blue/90 transition-all duration-200">
+                  Dashboard
+                </Link>
+              ) : (
+                <Link href="/login" className="block w-full text-left bg-gray text-white px-4 py-2 rounded-full font-bold text-sm tracking-[0.015em] hover:bg-gray/90 transition-all duration-200">
+                  Login
+                </Link>
+              )}
             </div>
           </div>
         </div>
