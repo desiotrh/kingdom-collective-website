@@ -82,6 +82,12 @@ export default function Navigation() {
           >
             Contact
           </Link>
+          <Link
+            href="/store"
+            className="text-white text-sm font-medium leading-normal hover:text-blue transition-colors duration-200"
+          >
+            Store
+          </Link>
         </div>
 
         {/* Desktop CTA Buttons */}
@@ -207,6 +213,13 @@ export default function Navigation() {
               onClick={() => setIsMenuOpen(false)}
             >
               Contact
+            </Link>
+            <Link
+              href="/store"
+              className="block text-white hover:text-blue transition-colors duration-200 text-sm font-medium"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Store
             </Link>
             <div className="pt-4 border-t border-gray space-y-3">
               {isAuthenticated ? (
