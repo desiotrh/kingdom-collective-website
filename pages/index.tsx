@@ -14,7 +14,7 @@ export default function Home() {
       icon: '🎬',
       logo: '/kingdom-studios-logo.png',
       color: 'kingdom-gold',
-      href: '/apps#kingdom-studios',
+      href: '/kingdom-studios',
     },
     {
       title: 'Kingdom Clips',
@@ -22,7 +22,7 @@ export default function Home() {
       icon: '📱',
       logo: '/kingdom-clips-logo.png',
       color: 'kingdom-gold',
-      href: '/apps#kingdom-clips',
+      href: '/kingdom-clips',
     },
     {
       title: 'Kingdom Voice',
@@ -30,7 +30,7 @@ export default function Home() {
       icon: '🎤',
       logo: '/kingdom-voice-logo.png',
       color: 'kingdom-gold',
-      href: '/apps#kingdom-voice',
+      href: '/kingdom-voice',
     },
     {
       title: 'Kingdom Launchpad',
@@ -38,7 +38,7 @@ export default function Home() {
       icon: '🚀',
       logo: '/kingdom-launchpad-logo.png',
       color: 'kingdom-gold',
-      href: '/apps#kingdom-launchpad',
+      href: '/kingdom-launchpad',
     },
     {
       title: 'Kingdom Circle',
@@ -46,7 +46,7 @@ export default function Home() {
       icon: '👥',
       logo: '/kingdom-circle-logo.png',
       color: 'kingdom-gold',
-      href: '/apps#kingdom-circle',
+      href: '/kingdom-circle',
     },
     {
       title: 'Kingdom Lens',
@@ -54,7 +54,7 @@ export default function Home() {
       icon: '📸',
       logo: '/kingdom-lens-logo.png',
       color: 'kingdom-gold',
-      href: '/apps#kingdom-lens',
+      href: '/kingdom-lens',
     },
   ];
 
