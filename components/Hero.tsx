@@ -10,7 +10,7 @@ export default function Hero() {
           alt="Kingdom Collective Logo"
           width={500}
           height={500}
-          className="mx-auto mb-0 max-w-[500px] w-full drop-shadow-xl -mb-4"
+          className="mx-auto mb-0 max-w-[500px] w-full drop-shadow-xl -mb-12"
           priority
         />
         <p className="text-2xl md:text-3xl text-gray-300 font-light leading-relaxed">
