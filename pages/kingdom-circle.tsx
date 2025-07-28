@@ -49,9 +49,11 @@ export default function KingdomCircle() {
         'Public groups',
         'Resource library',
         'Email support',
-        'Limited events'
+        'Limited events',
+        '7-day free trial of Pro features'
       ],
-      popular: false
+      popular: false,
+      trial: false
     },
     {
       name: 'Mentee',
@@ -63,9 +65,11 @@ export default function KingdomCircle() {
         'Premium resources',
         'Priority support',
         'All live events',
-        'Growth tracking'
+        'Growth tracking',
+        '30-day free trial'
       ],
-      popular: true
+      popular: true,
+      trial: true
     },
     {
       name: 'Mentor',
@@ -77,9 +81,11 @@ export default function KingdomCircle() {
         'Revenue sharing',
         'Dedicated support',
         'Advanced analytics',
-        'Custom programs'
+        'Custom programs',
+        '30-day free trial'
       ],
-      popular: false
+      popular: false,
+      trial: true
     }
   ];
 

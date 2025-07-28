@@ -9,7 +9,7 @@ export default function Navigation() {
   return (
     <header className="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-gray/30 px-10 py-3 bg-black/20 backdrop-blur-sm">
       {/* Logo */}
-      <div className="flex items-center gap-4 text-white">
+      <Link href="/" className="flex items-center gap-4 text-white hover:text-blue transition-colors duration-200">
         <div className="flex items-center">
           <Image
             src="/kingdom-collective-logo.png"
@@ -23,7 +23,7 @@ export default function Navigation() {
         <h2 className="text-white text-lg font-bold leading-tight tracking-[-0.015em]">
           Kingdom Collective
         </h2>
-      </div>
+      </Link>
 
       {/* Desktop Navigation */}
       <div className="flex flex-1 justify-end gap-8">
@@ -42,7 +42,7 @@ export default function Navigation() {
             </button>
             {isStudioAppsOpen && (
               <div 
-                className="absolute top-full left-0 mt-2 w-64 bg-black/90 backdrop-blur-sm border border-gray/30 rounded-xl py-2 z-50"
+                className="absolute top-full left-0 mt-2 w-64 bg-black/90 backdrop-blur-sm border border-gray/30 rounded-xl py-2 z-[9999]"
                 onMouseEnter={() => setIsStudioAppsOpen(true)}
                 onMouseLeave={() => setIsStudioAppsOpen(false)}
               >

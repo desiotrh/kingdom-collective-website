@@ -41,17 +41,34 @@ export default function KingdomLaunchpad() {
 
   const pricingTiers = [
     {
+      name: 'Free',
+      price: '$0',
+      period: '/month',
+      features: [
+        'Up to 1 product',
+        'Basic funnel builder',
+        'Standard templates',
+        'Email support',
+        'Basic analytics',
+        '7-day free trial of Pro features'
+      ],
+      popular: false,
+      trial: false
+    },
+    {
       name: 'Starter',
       price: '$39',
       period: '/month',
       features: [
         'Up to 3 products',
-        'Basic funnel builder',
-        'Standard templates',
-        'Email support',
-        'Basic analytics'
+        'Advanced funnel builder',
+        'Premium templates',
+        'Priority support',
+        'Advanced analytics',
+        '30-day free trial'
       ],
-      popular: false
+      popular: false,
+      trial: true
     },
     {
       name: 'Professional',
@@ -59,13 +76,15 @@ export default function KingdomLaunchpad() {
       period: '/month',
       features: [
         'Up to 10 products',
-        'Advanced funnel builder',
+        'All funnel features',
         'Premium templates',
         'Priority support',
         'Advanced analytics',
-        'Custom branding'
+        'Custom branding',
+        '30-day free trial'
       ],
-      popular: true
+      popular: true,
+      trial: true
     },
     {
       name: 'Enterprise',
@@ -78,9 +97,11 @@ export default function KingdomLaunchpad() {
         '24/7 support',
         'Advanced analytics',
         'API access',
-        'White-label solution'
+        'White-label solution',
+        '30-day free trial'
       ],
-      popular: false
+      popular: false,
+      trial: true
     }
   ];
 

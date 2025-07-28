@@ -62,7 +62,7 @@ export default function Vision() {
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
               {/* Faith Mode */}
-              <div className="bg-black/20 backdrop-blur-sm border border-blue/30 rounded-xl p-8">
+              <div className="bg-black/20 backdrop-blur-sm border border-gray/30 rounded-xl p-8">
                 <div className="text-center mb-6">
                   <div className="text-4xl mb-4">🙏</div>
                   <h3 className="text-white text-2xl font-bold mb-4">Faith Mode</h3>

@@ -41,31 +41,50 @@ export default function KingdomStudios() {
 
   const pricingTiers = [
     {
+      name: 'Free',
+      price: '$0',
+      period: '/month',
+      features: [
+        'Basic content creation tools',
+        'Up to 3 projects',
+        'Standard analytics',
+        'Community features',
+        'Email support',
+        '7-day free trial of Pro features'
+      ],
+      popular: false,
+      trial: false
+    },
+    {
       name: 'Creator',
       price: '$29',
       period: '/month',
       features: [
-        'Basic content creation tools',
+        'Advanced content creation tools',
         'Up to 10 projects',
-        'Standard analytics',
-        'Community features',
-        'Email support'
+        'Advanced analytics',
+        'Priority support',
+        'Custom branding',
+        '30-day free trial'
       ],
-      popular: false
+      popular: false,
+      trial: true
     },
     {
       name: 'Professional',
       price: '$79',
       period: '/month',
       features: [
-        'Advanced content creation tools',
+        'Everything in Creator',
         'Unlimited projects',
         'Advanced analytics',
         'Priority support',
         'Custom branding',
-        'API access'
+        'API access',
+        '30-day free trial'
       ],
-      popular: true
+      popular: true,
+      trial: true
     },
     {
       name: 'Enterprise',
@@ -77,9 +96,11 @@ export default function KingdomStudios() {
         'Dedicated account manager',
         'Custom integrations',
         'Advanced security',
-        '24/7 phone support'
+        '24/7 phone support',
+        '30-day free trial'
       ],
-      popular: false
+      popular: false,
+      trial: true
     }
   ];
 
@@ -153,9 +174,13 @@ export default function KingdomStudios() {
               <h2 className="text-white text-4xl font-black leading-tight tracking-[-0.033em] mb-6">
                 Choose Your <span className="text-blue">Plan</span>
               </h2>
-              <p className="text-white text-base font-normal leading-normal max-w-3xl mx-auto">
+              <p className="text-white text-base font-normal leading-normal max-w-3xl mx-auto mb-4">
                 Start free and scale as you grow. No hidden fees, cancel anytime.
               </p>
+              <div className="bg-blue/20 border border-blue/30 rounded-xl p-4 max-w-2xl mx-auto">
+                <p className="text-blue font-bold text-lg">🎉 Start Free Today!</p>
+                <p className="text-white text-sm">All paid plans include a 30-day free trial. No credit card required to start.</p>
+              </div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -167,6 +192,13 @@ export default function KingdomStudios() {
                     <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
                       <span className="bg-blue text-navy px-4 py-2 rounded-full text-sm font-bold">
                         Most Popular
+                      </span>
+                    </div>
+                  )}
+                  {tier.trial && (
+                    <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                      <span className="bg-green-500 text-white px-4 py-2 rounded-full text-sm font-bold">
+                        30-Day Free Trial
                       </span>
                     </div>
                   )}

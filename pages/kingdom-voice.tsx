@@ -49,9 +49,11 @@ export default function KingdomVoice() {
         'Up to 10 entries per month',
         'Standard prompts',
         'Community access',
-        'Email support'
+        'Email support',
+        '7-day free trial of Pro features'
       ],
-      popular: false
+      popular: false,
+      trial: false
     },
     {
       name: 'Healer',
@@ -63,9 +65,11 @@ export default function KingdomVoice() {
         'Premium prompts',
         'Emotional analytics',
         'Priority support',
-        'Guided meditations'
+        'Guided meditations',
+        '30-day free trial'
       ],
-      popular: true
+      popular: true,
+      trial: true
     },
     {
       name: 'Transformation',
@@ -77,9 +81,11 @@ export default function KingdomVoice() {
         'Custom healing plans',
         'Advanced analytics',
         '24/7 support',
-        'Group workshops'
+        'Group workshops',
+        '30-day free trial'
       ],
-      popular: false
+      popular: false,
+      trial: true
     }
   ];
 
@@ -153,9 +159,13 @@ export default function KingdomVoice() {
               <h2 className="text-white text-4xl font-black leading-tight tracking-[-0.033em] mb-6">
                 Choose Your <span className="text-blue">Journey</span>
               </h2>
-              <p className="text-white text-base font-normal leading-normal max-w-3xl mx-auto">
+              <p className="text-white text-base font-normal leading-normal max-w-3xl mx-auto mb-4">
                 Start your healing journey today. Begin with our free plan and upgrade as you grow.
               </p>
+              <div className="bg-blue/20 border border-blue/30 rounded-xl p-4 max-w-2xl mx-auto">
+                <p className="text-blue font-bold text-lg">🎉 Start Free Today!</p>
+                <p className="text-white text-sm">All paid plans include a 30-day free trial. No credit card required to start.</p>
+              </div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

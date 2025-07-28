@@ -41,31 +41,49 @@ export default function KingdomLens() {
 
   const pricingTiers = [
     {
-      name: 'Creator',
-      price: '$15',
+      name: 'Free',
+      price: '$0',
       period: '/month',
       features: [
         'Basic photo planning tools',
         'Portfolio website',
-        'Client management',
+        'Community access',
         'Email support',
-        'Community access'
+        '7-day free trial of Pro features'
       ],
-      popular: false
+      popular: false,
+      trial: false
+    },
+    {
+      name: 'Creator',
+      price: '$15',
+      period: '/month',
+      features: [
+        'Advanced photo planning tools',
+        'Custom portfolio themes',
+        'Client management',
+        'Priority support',
+        'Business analytics',
+        '30-day free trial'
+      ],
+      popular: false,
+      trial: true
     },
     {
       name: 'Professional',
       price: '$39',
       period: '/month',
       features: [
-        'Advanced planning tools',
+        'All planning tools',
         'Custom portfolio themes',
         'Advanced client tools',
         'Priority support',
         'Business analytics',
-        'Creative inspiration library'
+        'Creative inspiration library',
+        '30-day free trial'
       ],
-      popular: true
+      popular: true,
+      trial: true
     },
     {
       name: 'Studio',
@@ -77,9 +95,11 @@ export default function KingdomLens() {
         'White-label solutions',
         'Advanced analytics',
         '24/7 support',
-        'Custom integrations'
+        'Custom integrations',
+        '30-day free trial'
       ],
-      popular: false
+      popular: false,
+      trial: true
     }
   ];
 

@@ -41,17 +41,34 @@ export default function KingdomClips() {
 
   const pricingTiers = [
     {
+      name: 'Free',
+      price: '$0',
+      period: '/month',
+      features: [
+        'Up to 3 videos per month',
+        'Basic AI editing tools',
+        'Standard templates',
+        'Email support',
+        '720p export quality',
+        '7-day free trial of Pro features'
+      ],
+      popular: false,
+      trial: false
+    },
+    {
       name: 'Starter',
       price: '$19',
       period: '/month',
       features: [
         'Up to 10 videos per month',
-        'Basic AI editing tools',
-        'Standard templates',
-        'Email support',
-        '720p export quality'
+        'Advanced AI editing tools',
+        'Premium templates',
+        'Priority support',
+        '1080p export quality',
+        '30-day free trial'
       ],
-      popular: false
+      popular: false,
+      trial: true
     },
     {
       name: 'Creator',
@@ -59,13 +76,15 @@ export default function KingdomClips() {
       period: '/month',
       features: [
         'Up to 50 videos per month',
-        'Advanced AI editing tools',
+        'All AI editing tools',
         'Premium templates',
         'Priority support',
         '1080p export quality',
-        'Custom branding'
+        'Custom branding',
+        '30-day free trial'
       ],
-      popular: true
+      popular: true,
+      trial: true
     },
     {
       name: 'Professional',
@@ -78,9 +97,11 @@ export default function KingdomClips() {
         '24/7 support',
         '4K export quality',
         'API access',
-        'White-label solution'
+        'White-label solution',
+        '30-day free trial'
       ],
-      popular: false
+      popular: false,
+      trial: true
     }
   ];
 
@@ -154,9 +175,13 @@ export default function KingdomClips() {
               <h2 className="text-white text-4xl font-black leading-tight tracking-[-0.033em] mb-6">
                 Choose Your <span className="text-blue">Plan</span>
               </h2>
-              <p className="text-white text-base font-normal leading-normal max-w-3xl mx-auto">
+              <p className="text-white text-base font-normal leading-normal max-w-3xl mx-auto mb-4">
                 Start creating viral content today. Scale as you grow.
               </p>
+              <div className="bg-blue/20 border border-blue/30 rounded-xl p-4 max-w-2xl mx-auto">
+                <p className="text-blue font-bold text-lg">🎉 Start Free Today!</p>
+                <p className="text-white text-sm">All paid plans include a 30-day free trial. No credit card required to start.</p>
+              </div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -168,6 +193,13 @@ export default function KingdomClips() {
                     <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
                       <span className="bg-blue text-navy px-4 py-2 rounded-full text-sm font-bold">
                         Most Popular
+                      </span>
+                    </div>
+                  )}
+                  {tier.trial && (
+                    <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                      <span className="bg-green-500 text-white px-4 py-2 rounded-full text-sm font-bold">
+                        30-Day Free Trial
                       </span>
                     </div>
                   )}
