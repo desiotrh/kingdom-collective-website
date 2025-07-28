@@ -106,7 +106,7 @@ export default function KingdomLens() {
               Kingdom <span className="text-blue">Lens</span>
             </h1>
             <p className="text-white text-xl leading-relaxed max-w-3xl mx-auto mb-8">
-              Capture life's beautiful moments with purpose. Plan, shoot, and share your photography with tools designed for creatives of faith.
+              Capture life&apos;s beautiful moments with purpose. Plan, shoot, and share your photography with tools designed for creatives of faith.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button 
