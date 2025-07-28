@@ -176,8 +176,8 @@ export default function KingdomLens() {
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
               {pricingTiers.map((tier, index) => (
-                <div key={index} className={`relative bg-black/20 backdrop-blur-sm border rounded-xl p-8 ${
-                  tier.popular ? 'border-blue/50 bg-black/30' : 'border-gray/30'
+                <div key={index} className={`relative bg-black/20 backdrop-blur-sm rounded-xl p-8 ${
+                  tier.popular ? 'bg-black/30' : ''
                 }`}>
                   {tier.popular && (
                     <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
@@ -204,11 +204,7 @@ export default function KingdomLens() {
                     </ul>
                     <button 
                       onClick={() => window.open('https://lens.kingdomcollective.pro', '_blank')}
-                      className={`w-full py-3 px-6 rounded-full font-bold transition-all duration-200 ${
-                        tier.popular 
-                          ? 'bg-blue text-navy hover:bg-blue/90' 
-                          : 'bg-gray text-white hover:bg-gray/90'
-                      }`}
+                      className="w-full py-3 px-6 rounded-full font-bold bg-gray text-white hover:bg-blue hover:text-white transition-all duration-200"
                     >
                       Get Started
                     </button>

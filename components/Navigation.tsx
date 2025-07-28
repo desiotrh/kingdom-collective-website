@@ -29,22 +29,23 @@ export default function Navigation() {
       <div className="flex flex-1 justify-end gap-8">
         <div className="hidden md:flex items-center gap-9">
           {/* Studio Apps Dropdown */}
-          <div className="relative">
-            <button
-              onMouseEnter={() => setIsStudioAppsOpen(true)}
-              onMouseLeave={() => setIsStudioAppsOpen(false)}
-              className="text-white text-sm font-medium leading-normal hover:text-blue transition-colors duration-200 flex items-center gap-1"
-            >
-              Studio Apps
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-              </svg>
-            </button>
-            {isStudioAppsOpen && (
-                           <div
-               className="absolute top-full left-0 mt-2 w-64 bg-black/90 backdrop-blur-sm border border-gray/30 rounded-xl py-2 z-[99999]"
+                   <div className="relative">
+           <button
+             onMouseEnter={() => setIsStudioAppsOpen(true)}
+             onMouseLeave={() => setIsStudioAppsOpen(false)}
+             className="text-white text-sm font-medium leading-normal hover:text-blue transition-colors duration-200 flex items-center gap-1"
+           >
+             Studio Apps
+             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+             </svg>
+           </button>
+           {isStudioAppsOpen && (
+             <div
+               className="absolute top-full left-0 mt-2 w-64 bg-black/90 backdrop-blur-sm border border-gray/30 rounded-xl py-2 z-[999999]"
                onMouseEnter={() => setIsStudioAppsOpen(true)}
                onMouseLeave={() => setIsStudioAppsOpen(false)}
+               style={{ position: 'fixed', top: '80px', left: '40px', zIndex: 999999 }}
              >
                 <Link href="/apps" className="block px-4 py-2 text-white hover:bg-blue/20 transition-colors duration-200">
                   All Apps Overview
