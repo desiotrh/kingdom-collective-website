@@ -192,7 +192,7 @@ export default function Account() {
               />
               <div>
                 <div className="text-white font-semibold">Encouragement Mode</div>
-                <div className="text-gray-400 text-sm">Offers the same excellence and strategy, but in a tone that's uplifting, empowering, and full of truth — designed for those still exploring or rebuilding their relationship with God.</div>
+                <div className="text-gray-400 text-sm">Offers the same excellence and strategy, but in a tone that&apos;s uplifting, empowering, and full of truth — designed for those still exploring or rebuilding their relationship with God.</div>
               </div>
             </label>
           </div>

@@ -89,7 +89,7 @@ export default function OnboardingWizard() {
   const renderStep1 = () => (
     <div className="text-center">
       <h2 className="text-white text-3xl font-bold mb-6">Welcome to Kingdom Collective!</h2>
-      <p className="text-white text-lg mb-8">Let's personalize your experience by selecting the apps that interest you.</p>
+      <p className="text-white text-lg mb-8">Let&apos;s personalize your experience by selecting the apps that interest you.</p>
       
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {appOptions.map((app) => (
@@ -127,7 +127,7 @@ export default function OnboardingWizard() {
   const renderStep2 = () => (
     <div className="text-center">
       <h2 className="text-white text-3xl font-bold mb-6">Explore Your Selected Apps</h2>
-      <p className="text-white text-lg mb-8">Here's what you can do with your chosen apps:</p>
+      <p className="text-white text-lg mb-8">Here&apos;s what you can do with your chosen apps:</p>
       
       <div className="space-y-6">
         {selectedApps.map(appId => {
@@ -193,7 +193,7 @@ export default function OnboardingWizard() {
               />
               <div>
                 <div className="text-white font-semibold">Encouragement Mode</div>
-                <div className="text-white text-sm">Offers the same excellence and strategy, but in a tone that's uplifting, empowering, and full of truth — designed for those still exploring or rebuilding their relationship with God.</div>
+                <div className="text-white text-sm">Offers the same excellence and strategy, but in a tone that&apos;s uplifting, empowering, and full of truth — designed for those still exploring or rebuilding their relationship with God.</div>
               </div>
             </label>
           </div>
