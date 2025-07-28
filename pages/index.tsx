@@ -66,7 +66,7 @@ export default function Home() {
         <Hero />
         
         {/* Apps Section */}
-        <section className="px-40 py-20">
+        <section className="px-40 py-32">
           <div className="max-w-[960px] mx-auto">
             <div className="text-center mb-16">
               <h2 className="text-white text-4xl font-black leading-tight tracking-[-0.033em] mb-6">

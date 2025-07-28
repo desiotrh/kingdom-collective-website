@@ -5,7 +5,7 @@ import Image from 'next/image';
 export default function Footer() {
   return (
     <footer className="relative z-10 bg-black/30 backdrop-blur-sm border-t border-gray/30 w-full">
-              <div className="w-full px-20 py-8">
+              <div className="w-full px-20 py-4">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
           {/* Company Info */}
           <div className="col-span-1 md:col-span-2">
@@ -94,7 +94,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="mt-12 pt-8 border-t border-gray flex flex-col md:flex-row justify-between items-center">
+        <div className="mt-8 pt-4 border-t border-gray flex flex-col md:flex-row justify-between items-center">
           <p className="text-white text-sm">
             © 2024 Kingdom Collective. All rights reserved.
           </p>

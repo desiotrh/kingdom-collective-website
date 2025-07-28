@@ -167,7 +167,7 @@ export default function Dashboard() {
               </div>
               <button
                 onClick={() => setShowAddApps(!showAddApps)}
-                className="px-6 py-3 bg-blue text-navy font-bold rounded-full hover:bg-blue/90 transition-all duration-200"
+                                    className="px-6 py-3 bg-gray text-white font-bold rounded-full hover:bg-blue hover:text-white transition-all duration-200"
               >
                 {showAddApps ? 'Hide Apps' : 'Add Apps'}
               </button>
@@ -207,7 +207,7 @@ export default function Dashboard() {
                   
                   <button
                     onClick={() => handleLaunchApp(app.url)}
-                    className="w-full py-3 bg-blue text-navy font-bold rounded-xl hover:bg-blue/90 transition-all duration-200"
+                    className="w-full py-3 bg-gray text-white font-bold rounded-xl hover:bg-blue hover:text-white transition-all duration-200"
                   >
                     Launch {app.name}
                   </button>

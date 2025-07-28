@@ -8,6 +8,7 @@ export default function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isStudioAppsOpen, setIsStudioAppsOpen] = useState(false);
   const [dropdownTimeout, setDropdownTimeout] = useState<NodeJS.Timeout | null>(null);
+  const [isMouseInDropdown, setIsMouseInDropdown] = useState(false);
 
   return (
     <header className="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-gray/30 px-10 py-3 bg-black/20 backdrop-blur-sm">
@@ -39,8 +40,10 @@ export default function Navigation() {
               setIsStudioAppsOpen(true);
             }}
             onMouseLeave={() => {
-              const timeout = setTimeout(() => setIsStudioAppsOpen(false), 300);
-              setDropdownTimeout(timeout);
+              if (!isMouseInDropdown) {
+                const timeout = setTimeout(() => setIsStudioAppsOpen(false), 300);
+                setDropdownTimeout(timeout);
+              }
             }}
             className="text-white text-sm font-medium leading-normal hover:text-blue transition-colors duration-200 flex items-center gap-1"
           >
@@ -55,8 +58,10 @@ export default function Navigation() {
                   onMouseEnter={() => {
                     if (dropdownTimeout) clearTimeout(dropdownTimeout);
                     setIsStudioAppsOpen(true);
+                    setIsMouseInDropdown(true);
                   }}
                   onMouseLeave={() => {
+                    setIsMouseInDropdown(false);
                     const timeout = setTimeout(() => setIsStudioAppsOpen(false), 300);
                     setDropdownTimeout(timeout);
                   }}
@@ -108,7 +113,7 @@ export default function Navigation() {
         {/* Desktop CTA Buttons */}
         <div className="hidden md:flex gap-2">
           {isAuthenticated ? (
-            <Link href="/dashboard" className="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 px-4 bg-blue text-navy text-sm font-bold leading-normal tracking-[0.015em] hover:bg-blue/90 transition-all duration-200">
+            <Link href="/dashboard" className="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 px-4 bg-gray text-white text-sm font-bold leading-normal tracking-[0.015em] hover:bg-blue hover:text-white transition-all duration-200">
               <span className="truncate">Dashboard</span>
             </Link>
           ) : (
@@ -231,7 +236,7 @@ export default function Navigation() {
             </Link>
             <div className="pt-4 border-t border-gray space-y-3">
               {isAuthenticated ? (
-                <Link href="/dashboard" className="block w-full text-left bg-blue text-navy px-4 py-2 rounded-full font-bold text-sm tracking-[0.015em] hover:bg-blue/90 transition-all duration-200">
+                <Link href="/dashboard" className="block w-full text-left bg-gray text-white px-4 py-2 rounded-full font-bold text-sm tracking-[0.015em] hover:bg-blue hover:text-white transition-all duration-200">
                   Dashboard
                 </Link>
               ) : (

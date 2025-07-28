@@ -151,7 +151,7 @@ export default function Features() {
               Join thousands of faith-driven creators who are already building with purpose and making an impact.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/apps" className="bg-blue text-navy px-8 py-4 rounded-full text-lg font-bold hover:bg-blue/90 transition-all duration-200">
+              <Link href="/apps" className="bg-gray text-white px-8 py-4 rounded-full text-lg font-bold hover:bg-blue hover:text-white transition-all duration-200">
                 Explore Our Apps
               </Link>
               <Link href="/vision" className="bg-gray text-white px-8 py-4 rounded-full text-lg font-bold hover:bg-gray/90 transition-all duration-200">

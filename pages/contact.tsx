@@ -193,7 +193,7 @@ export default function Contact() {
                 <button
                   type="submit"
                   disabled={isLoading || !faqQuestion.trim()}
-                  className="bg-blue text-navy px-6 py-3 rounded-full font-bold hover:bg-blue/90 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                                          className="bg-gray text-white px-6 py-3 rounded-full font-bold hover:bg-blue hover:text-white transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {isLoading ? 'Thinking...' : 'Ask AI Assistant'}
                 </button>

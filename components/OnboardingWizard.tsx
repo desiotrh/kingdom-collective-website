@@ -268,7 +268,7 @@ export default function OnboardingWizard() {
               <div key={index} className="flex items-center">
                 <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold ${
                   index + 1 <= currentStep 
-                    ? 'bg-blue text-navy' 
+                    ? 'bg-gray text-white' 
                     : 'bg-gray text-white'
                 }`}>
                   {index + 1}
@@ -302,7 +302,7 @@ export default function OnboardingWizard() {
           <button
             onClick={handleNext}
             disabled={currentStep === 1 && selectedApps.length === 0}
-            className="px-6 py-3 rounded-full bg-blue text-navy font-bold disabled:opacity-50 disabled:cursor-not-allowed hover:bg-blue/90 transition-all duration-200"
+                            className="px-6 py-3 rounded-full bg-gray text-white font-bold disabled:opacity-50 disabled:cursor-not-allowed hover:bg-blue hover:text-white transition-all duration-200"
           >
             {currentStep === 4 ? 'Complete Setup' : 'Next'}
           </button>
