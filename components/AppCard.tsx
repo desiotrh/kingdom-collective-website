@@ -33,7 +33,7 @@ export default function AppCard({
               alt={`${title} Logo`}
               width={64}
               height={64}
-              className="h-16 w-auto"
+              className="h-16 w-auto rounded-xl"
               priority
             />
           </div>
