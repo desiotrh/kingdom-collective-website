@@ -10,7 +10,7 @@ export default function Home() {
   const apps = [
     {
       title: 'Kingdom Studios',
-      description: 'Content & creator hub for faith-driven visionaries.',
+      description: 'The ultimate content creation hub for faith-driven visionaries. Create, grow, and monetize your digital presence with powerful tools designed for creators who want to make a lasting impact.',
       icon: '🎬',
       logo: '/kingdom-studios-logo.png',
       color: 'kingdom-gold',
@@ -18,7 +18,7 @@ export default function Home() {
     },
     {
       title: 'Kingdom Clips',
-      description: 'AI video editing for Reels, Shorts, and TikTok.',
+      description: 'Create engaging short-form video content that resonates with your audience. Perfect for TikTok, Instagram Reels, and YouTube Shorts with faith-based inspiration.',
       icon: '📱',
       logo: '/kingdom-clips-logo.png',
       color: 'kingdom-gold',
@@ -26,7 +26,7 @@ export default function Home() {
     },
     {
       title: 'Kingdom Voice',
-      description: 'Healing, journaling, and Holy Spirit-led expression.',
+      description: 'Transform your message into powerful audio content. From podcasts to voiceovers, amplify your voice with tools designed for spiritual leaders and content creators.',
       icon: '🎤',
       logo: '/kingdom-voice-logo.png',
       color: 'kingdom-gold',
@@ -34,7 +34,7 @@ export default function Home() {
     },
     {
       title: 'Kingdom Launchpad',
-      description: 'Digital product launch tools rooted in wisdom.',
+      description: 'Launch your digital products and courses with confidence. Everything you need to create, sell, and scale your knowledge-based business.',
       icon: '🚀',
       logo: '/kingdom-launchpad-logo.png',
       color: 'kingdom-gold',
@@ -42,7 +42,7 @@ export default function Home() {
     },
     {
       title: 'Kingdom Circle',
-      description: 'Mentorship and Kingdom community at your fingertips.',
+      description: 'Build and nurture your community with purpose. Create meaningful connections, host events, and foster spiritual growth in a safe, supportive environment.',
       icon: '👥',
       logo: '/kingdom-circle-logo.png',
       color: 'kingdom-gold',
@@ -50,7 +50,7 @@ export default function Home() {
     },
     {
       title: 'Kingdom Lens',
-      description: 'Photography and planning for creatives of faith.',
+      description: 'Capture life\'s beautiful moments with purpose. Plan, shoot, and share your photography with tools designed for creatives of faith.',
       icon: '📸',
       logo: '/kingdom-lens-logo.png',
       color: 'kingdom-gold',

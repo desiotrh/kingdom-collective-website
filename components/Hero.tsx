@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 export default function Hero() {
   return (
-    <section className="flex items-center justify-center min-h-screen bg-gradient-to-b from-[#0e0e17] to-[#050510] px-4 text-center">
+    <section className="flex items-center justify-center min-h-screen px-4 text-center">
       <div className="max-w-3xl">
         <Image
           src="/kingdom-collective-logo.png"

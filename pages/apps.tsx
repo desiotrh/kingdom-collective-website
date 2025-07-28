@@ -82,7 +82,7 @@ export default function Apps() {
               {apps.map((app, index) => (
                 <div key={index} className="bg-black/20 backdrop-blur-sm border border-gray/30 rounded-xl p-8 hover:bg-black/30 transition-all duration-300">
                   {/* App Header */}
-                  <div className="flex items-center gap-6 mb-6">
+                  <div className="flex items-start gap-6 mb-6">
                     <div className="flex-shrink-0">
                       <Image
                         src={app.logo}
@@ -93,7 +93,7 @@ export default function Apps() {
                         priority
                       />
                     </div>
-                    <div>
+                    <div className="flex-1">
                       <h3 className="text-white text-2xl font-bold mb-2">{app.name}</h3>
                       <p className="text-white leading-relaxed">{app.description}</p>
                     </div>

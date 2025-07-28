@@ -42,13 +42,12 @@ export default function Navigation() {
                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
              </svg>
            </button>
-           {isStudioAppsOpen && (
-             <div
-               className="absolute top-full left-0 mt-2 w-64 bg-black/90 backdrop-blur-sm border border-gray/30 rounded-xl py-2 z-[999999]"
-               onMouseEnter={() => setIsStudioAppsOpen(true)}
-               onMouseLeave={() => setIsStudioAppsOpen(false)}
-               style={{ position: 'fixed', top: '80px', left: '40px', zIndex: 999999 }}
-             >
+                         {isStudioAppsOpen && (
+                <div
+                  className="absolute top-full left-0 mt-2 w-64 bg-black/90 backdrop-blur-sm border border-gray/30 rounded-xl py-2 z-[999999]"
+                  onMouseEnter={() => setIsStudioAppsOpen(true)}
+                  onMouseLeave={() => setIsStudioAppsOpen(false)}
+                >
                 <Link href="/apps" className="block px-4 py-2 text-white hover:bg-blue/20 transition-colors duration-200">
                   All Apps Overview
                 </Link>
