@@ -13,7 +13,7 @@ export default function Hero() {
           className="mx-auto mb-0 max-w-[500px] w-full drop-shadow-xl -mb-12"
           priority
         />
-        <p className="text-2xl md:text-3xl text-gray-300 font-light leading-relaxed -mt-12">
+        <p className="text-2xl md:text-3xl text-gray-300 font-light leading-relaxed -mt-20">
           Create with Purpose. Share with Authority. <br />
           Build What Matters.
         </p>
