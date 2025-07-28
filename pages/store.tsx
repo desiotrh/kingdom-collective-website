@@ -179,10 +179,28 @@ export default function Store() {
                         <div className="bg-gradient-to-br from-kingdom-darker/80 to-kingdom-dark/80 backdrop-blur-sm border border-kingdom-gold/20 rounded-2xl p-8">
                             <iframe
                                 src="https://desitotrh.com"
-                                className="w-full h-96 rounded-lg"
+                                className="w-full h-[800px] rounded-lg"
                                 title="Kingdom Collective Store"
                                 frameBorder="0"
+                                allow="fullscreen"
+                                loading="lazy"
+                                onError={(e) => {
+                                    console.error('Iframe failed to load:', e);
+                                }}
                             />
+                            <div className="mt-4 text-center">
+                                <p className="text-gray-400 text-sm mb-2">
+                                    Having trouble viewing the store? 
+                                </p>
+                                <a 
+                                    href="https://desitotrh.com" 
+                                    target="_blank" 
+                                    rel="noopener noreferrer"
+                                    className="text-kingdom-gold hover:text-kingdom-goldLight transition-colors duration-200 underline"
+                                >
+                                    Open Store in New Tab
+                                </a>
+                            </div>
                         </div>
 
                         {/* CTA Section */}

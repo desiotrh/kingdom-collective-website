@@ -127,10 +127,28 @@ export default function Home() {
             <div className="bg-black/40 backdrop-blur-sm border border-gray/30 rounded-xl p-8">
               <iframe
                 src="https://desitotrh.com"
-                className="w-full h-96 rounded-lg"
+                className="w-full h-[600px] rounded-lg"
                 title="Kingdom Collective Store"
                 frameBorder="0"
+                allow="fullscreen"
+                loading="lazy"
+                onError={(e) => {
+                  console.error('Iframe failed to load:', e);
+                }}
               />
+              <div className="mt-4 text-center">
+                <p className="text-gray-400 text-sm mb-2">
+                  Having trouble viewing the store? 
+                </p>
+                <a 
+                  href="https://desitotrh.com" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-blue hover:text-blue/80 transition-colors duration-200 underline"
+                >
+                  Open Store in New Tab
+                </a>
+              </div>
             </div>
           </div>
         </section>

@@ -9,8 +9,8 @@ const nextConfig = {
                 source: '/(.*)',
                 headers: [
                     {
-                        key: 'X-Frame-Options',
-                        value: 'SAMEORIGIN',
+                        key: 'Content-Security-Policy',
+                        value: "frame-ancestors 'self' https://desitotrh.com https://beacons.ai; frame-src 'self' https://desitotrh.com https://beacons.ai;",
                     },
                     {
                         key: 'X-Content-Type-Options',
