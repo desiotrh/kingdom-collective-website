@@ -1,10 +1,12 @@
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 interface AppCardProps {
   title: string;
   description: string;
   icon: string;
+  logo: string;
   color: string;
   href: string;
 }
@@ -13,6 +15,7 @@ export default function AppCard({
   title,
   description,
   icon,
+  logo,
   color,
   href,
 }: AppCardProps) {
@@ -23,8 +26,17 @@ export default function AppCard({
         <div className="absolute inset-0 bg-gradient-to-r from-blue/10 to-white/10 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
         
         <div className="relative z-10">
-          {/* Icon */}
-          <div className="text-4xl mb-4">{icon}</div>
+          {/* Logo */}
+          <div className="mb-4">
+            <Image
+              src={logo}
+              alt={`${title} Logo`}
+              width={64}
+              height={64}
+              className="h-16 w-auto"
+              priority
+            />
+          </div>
           
           {/* Title */}
           <h3 className="text-xl font-bold text-white mb-3 group-hover:text-blue transition-colors duration-200">

@@ -12,6 +12,7 @@ export default function Home() {
       title: 'Kingdom Studios',
       description: 'Content & creator hub for faith-driven visionaries.',
       icon: '🎬',
+      logo: '/kingdom-studios-logo.png',
       color: 'kingdom-gold',
       href: '/apps#kingdom-studios',
     },
@@ -19,6 +20,7 @@ export default function Home() {
       title: 'Kingdom Clips',
       description: 'AI video editing for Reels, Shorts, and TikTok.',
       icon: '📱',
+      logo: '/kingdom-clips-logo.png',
       color: 'kingdom-gold',
       href: '/apps#kingdom-clips',
     },
@@ -26,6 +28,7 @@ export default function Home() {
       title: 'Kingdom Voice',
       description: 'Healing, journaling, and Holy Spirit-led expression.',
       icon: '🎤',
+      logo: '/kingdom-voice-logo.png',
       color: 'kingdom-gold',
       href: '/apps#kingdom-voice',
     },
@@ -33,6 +36,7 @@ export default function Home() {
       title: 'Kingdom Launchpad',
       description: 'Digital product launch tools rooted in wisdom.',
       icon: '🚀',
+      logo: '/kingdom-launchpad-logo.png',
       color: 'kingdom-gold',
       href: '/apps#kingdom-launchpad',
     },
@@ -40,6 +44,7 @@ export default function Home() {
       title: 'Kingdom Circle',
       description: 'Mentorship and Kingdom community at your fingertips.',
       icon: '👥',
+      logo: '/kingdom-circle-logo.png',
       color: 'kingdom-gold',
       href: '/apps#kingdom-circle',
     },
@@ -47,6 +52,7 @@ export default function Home() {
       title: 'Kingdom Lens',
       description: 'Photography and planning for creatives of faith.',
       icon: '📸',
+      logo: '/kingdom-lens-logo.png',
       color: 'kingdom-gold',
       href: '/apps#kingdom-lens',
     },
@@ -81,6 +87,7 @@ export default function Home() {
                   title={app.title}
                   description={app.description}
                   icon={app.icon}
+                  logo={app.logo}
                   color={app.color}
                   href={app.href}
                 />
