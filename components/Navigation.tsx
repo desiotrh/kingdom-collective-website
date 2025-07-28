@@ -4,6 +4,7 @@ import Image from 'next/image';
 
 export default function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isStudioAppsOpen, setIsStudioAppsOpen] = useState(false);
 
   return (
     <header className="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-gray/30 px-10 py-3 bg-black/20 backdrop-blur-sm">
@@ -27,12 +28,48 @@ export default function Navigation() {
       {/* Desktop Navigation */}
       <div className="flex flex-1 justify-end gap-8">
         <div className="hidden md:flex items-center gap-9">
-          <Link
-            href="/apps"
-            className="text-white text-sm font-medium leading-normal hover:text-blue transition-colors duration-200"
-          >
-            Studio Apps
-          </Link>
+          {/* Studio Apps Dropdown */}
+          <div className="relative">
+            <button
+              onMouseEnter={() => setIsStudioAppsOpen(true)}
+              onMouseLeave={() => setIsStudioAppsOpen(false)}
+              className="text-white text-sm font-medium leading-normal hover:text-blue transition-colors duration-200 flex items-center gap-1"
+            >
+              Studio Apps
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+            {isStudioAppsOpen && (
+              <div 
+                className="absolute top-full left-0 mt-2 w-64 bg-black/90 backdrop-blur-sm border border-gray/30 rounded-xl py-2 z-50"
+                onMouseEnter={() => setIsStudioAppsOpen(true)}
+                onMouseLeave={() => setIsStudioAppsOpen(false)}
+              >
+                <Link href="/apps" className="block px-4 py-2 text-white hover:bg-blue/20 transition-colors duration-200">
+                  All Apps Overview
+                </Link>
+                <Link href="/kingdom-studios" className="block px-4 py-2 text-white hover:bg-blue/20 transition-colors duration-200">
+                  Kingdom Studios
+                </Link>
+                <Link href="/kingdom-clips" className="block px-4 py-2 text-white hover:bg-blue/20 transition-colors duration-200">
+                  Kingdom Clips
+                </Link>
+                <Link href="/kingdom-voice" className="block px-4 py-2 text-white hover:bg-blue/20 transition-colors duration-200">
+                  Kingdom Voice
+                </Link>
+                <Link href="/kingdom-launchpad" className="block px-4 py-2 text-white hover:bg-blue/20 transition-colors duration-200">
+                  Kingdom Launchpad
+                </Link>
+                <Link href="/kingdom-circle" className="block px-4 py-2 text-white hover:bg-blue/20 transition-colors duration-200">
+                  Kingdom Circle
+                </Link>
+                <Link href="/kingdom-lens" className="block px-4 py-2 text-white hover:bg-blue/20 transition-colors duration-200">
+                  Kingdom Lens
+                </Link>
+              </div>
+            )}
+          </div>
           <Link
             href="/features"
             className="text-white text-sm font-medium leading-normal hover:text-blue transition-colors duration-200"
@@ -44,12 +81,6 @@ export default function Navigation() {
             className="text-white text-sm font-medium leading-normal hover:text-blue transition-colors duration-200"
           >
             Vision
-          </Link>
-          <Link
-            href="/community"
-            className="text-white text-sm font-medium leading-normal hover:text-blue transition-colors duration-200"
-          >
-            Community
           </Link>
           <Link
             href="/contact"
@@ -105,13 +136,60 @@ export default function Navigation() {
       {isMenuOpen && (
         <div className="md:hidden absolute top-full left-0 w-full bg-navy/95 backdrop-blur-md border-t border-gray">
           <div className="px-4 py-6 space-y-4">
-            <Link
-              href="/apps"
-              className="block text-white hover:text-blue transition-colors duration-200 text-sm font-medium"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Studio Apps
-            </Link>
+            <div className="space-y-2">
+              <div className="text-white text-sm font-medium mb-2">Studio Apps</div>
+              <div className="pl-4 space-y-2">
+                <Link
+                  href="/apps"
+                  className="block text-white hover:text-blue transition-colors duration-200 text-sm"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  All Apps Overview
+                </Link>
+                <Link
+                  href="/kingdom-studios"
+                  className="block text-white hover:text-blue transition-colors duration-200 text-sm"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Kingdom Studios
+                </Link>
+                <Link
+                  href="/kingdom-clips"
+                  className="block text-white hover:text-blue transition-colors duration-200 text-sm"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Kingdom Clips
+                </Link>
+                <Link
+                  href="/kingdom-voice"
+                  className="block text-white hover:text-blue transition-colors duration-200 text-sm"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Kingdom Voice
+                </Link>
+                <Link
+                  href="/kingdom-launchpad"
+                  className="block text-white hover:text-blue transition-colors duration-200 text-sm"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Kingdom Launchpad
+                </Link>
+                <Link
+                  href="/kingdom-circle"
+                  className="block text-white hover:text-blue transition-colors duration-200 text-sm"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Kingdom Circle
+                </Link>
+                <Link
+                  href="/kingdom-lens"
+                  className="block text-white hover:text-blue transition-colors duration-200 text-sm"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Kingdom Lens
+                </Link>
+              </div>
+            </div>
             <Link
               href="/features"
               className="block text-white hover:text-blue transition-colors duration-200 text-sm font-medium"
@@ -125,13 +203,6 @@ export default function Navigation() {
               onClick={() => setIsMenuOpen(false)}
             >
               Vision
-            </Link>
-            <Link
-              href="/community"
-              className="block text-white hover:text-blue transition-colors duration-200 text-sm font-medium"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Community
             </Link>
             <Link
               href="/contact"
