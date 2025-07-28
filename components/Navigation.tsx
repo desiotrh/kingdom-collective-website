@@ -82,12 +82,14 @@ export default function Navigation() {
           >
             Contact
           </Link>
-          <Link
-            href="/store"
+          <a
+            href="https://desitotrh.com"
+            target="_blank"
+            rel="noopener noreferrer"
             className="text-white text-sm font-medium leading-normal hover:text-blue transition-colors duration-200"
           >
             Store
-          </Link>
+          </a>
         </div>
 
         {/* Desktop CTA Buttons */}
@@ -214,13 +216,15 @@ export default function Navigation() {
             >
               Contact
             </Link>
-            <Link
-              href="/store"
+            <a
+              href="https://desitotrh.com"
+              target="_blank"
+              rel="noopener noreferrer"
               className="block text-white hover:text-blue transition-colors duration-200 text-sm font-medium"
               onClick={() => setIsMenuOpen(false)}
             >
               Store
-            </Link>
+            </a>
             <div className="pt-4 border-t border-gray space-y-3">
               {isAuthenticated ? (
                 <Link href="/dashboard" className="block w-full text-left bg-gray text-white px-4 py-2 rounded-full font-bold text-sm tracking-[0.015em] hover:bg-blue hover:text-white transition-all duration-200">
