@@ -45,59 +45,53 @@ export default function KingdomClips() {
       price: '$0',
       period: '/month',
       features: [
-        'Up to 3 videos per month',
-        'Basic AI editing tools',
-        'Standard templates',
-        'Email support',
-        '720p export quality',
+        'Basic video editing tools',
+        '3 video exports per month',
+        'Standard video templates',
+        'Basic AI video enhancement',
+        'Community support',
+        '2GB storage',
         '7-day free trial of Pro features'
       ],
       popular: false,
       trial: false
     },
     {
-      name: 'Starter',
-      price: '$19',
+      name: 'Pro',
+      price: '$39',
       period: '/month',
       features: [
-        'Up to 10 videos per month',
-        'Advanced AI editing tools',
-        'Premium templates',
-        'Priority support',
-        '1080p export quality',
-        '30-day free trial'
-      ],
-      popular: false,
-      trial: true
-    },
-    {
-      name: 'Creator',
-      price: '$49',
-      period: '/month',
-      features: [
-        'Up to 50 videos per month',
-        'All AI editing tools',
-        'Premium templates',
-        'Priority support',
-        '1080p export quality',
+        'Everything in Free',
+        'Unlimited video exports',
+        'Premium video templates',
+        'Advanced AI video enhancement',
+        '4K export quality',
         'Custom branding',
+        'Advanced video effects',
+        'Priority support',
+        '100GB storage',
+        'Multiple export formats',
+        'Social media optimization',
         '30-day free trial'
       ],
       popular: true,
       trial: true
     },
     {
-      name: 'Professional',
-      price: '$99',
+      name: 'Enterprise',
+      price: '$129',
       period: '/month',
       features: [
-        'Unlimited videos',
-        'All AI editing tools',
-        'Custom templates',
-        '24/7 support',
-        '4K export quality',
-        'API access',
-        'White-label solution',
+        'Everything in Pro',
+        'Team collaboration (up to 15 members)',
+        'White-label video platform',
+        'Custom video integrations',
+        'Advanced video analytics',
+        'Dedicated video specialist',
+        '1TB storage',
+        'API access for video processing',
+        'Custom video workflows',
+        'Advanced security and compliance',
         '30-day free trial'
       ],
       popular: false,
@@ -184,7 +178,7 @@ export default function KingdomClips() {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
               {pricingTiers.map((tier, index) => (
                 <div key={index} className={`relative bg-black/20 backdrop-blur-sm border rounded-xl p-8 ${
                   tier.popular ? 'border-blue/50 bg-black/30' : 'border-gray/30'

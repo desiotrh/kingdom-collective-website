@@ -45,57 +45,53 @@ export default function KingdomLens() {
       price: '$0',
       period: '/month',
       features: [
-        'Basic photo planning tools',
-        'Portfolio website',
-        'Community access',
-        'Email support',
+        'Basic photo editing tools',
+        '10 photo edits per month',
+        'Standard photo templates',
+        'Basic AI photo enhancement',
+        'Community support',
+        '2GB storage',
         '7-day free trial of Pro features'
       ],
       popular: false,
       trial: false
     },
     {
-      name: 'Creator',
-      price: '$15',
+      name: 'Pro',
+      price: '$29',
       period: '/month',
       features: [
-        'Advanced photo planning tools',
-        'Custom portfolio themes',
-        'Client management',
+        'Everything in Free',
+        'Unlimited photo edits',
+        'Premium photo templates',
+        'Advanced AI photo enhancement',
+        'Professional editing tools',
+        'Custom branding',
+        'Advanced photo effects',
         'Priority support',
-        'Business analytics',
-        '30-day free trial'
-      ],
-      popular: false,
-      trial: true
-    },
-    {
-      name: 'Professional',
-      price: '$39',
-      period: '/month',
-      features: [
-        'All planning tools',
-        'Custom portfolio themes',
-        'Advanced client tools',
-        'Priority support',
-        'Business analytics',
-        'Creative inspiration library',
+        '100GB storage',
+        'Multiple export formats',
+        'Photo analytics',
         '30-day free trial'
       ],
       popular: true,
       trial: true
     },
     {
-      name: 'Studio',
-      price: '$79',
+      name: 'Enterprise',
+      price: '$99',
       period: '/month',
       features: [
-        'Everything in Professional',
-        'Team collaboration',
-        'White-label solutions',
-        'Advanced analytics',
-        '24/7 support',
-        'Custom integrations',
+        'Everything in Pro',
+        'Team collaboration (up to 10 photographers)',
+        'White-label photography platform',
+        'Custom photo integrations',
+        'Advanced photo analytics',
+        'Dedicated photography specialist',
+        '1TB storage',
+        'API access for photo processing',
+        'Custom photo workflows',
+        'Advanced security features',
         '30-day free trial'
       ],
       popular: false,
@@ -178,7 +174,7 @@ export default function KingdomLens() {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
               {pricingTiers.map((tier, index) => (
                 <div key={index} className={`relative bg-black/20 backdrop-blur-sm border rounded-xl p-8 ${
                   tier.popular ? 'border-blue/50 bg-black/30' : 'border-gray/30'

@@ -41,47 +41,58 @@ export default function KingdomCircle() {
 
   const pricingTiers = [
     {
-      name: 'Community',
+      name: 'Free',
       price: '$0',
       period: '/month',
       features: [
-        'Basic community access',
-        'Public groups',
-        'Resource library',
-        'Email support',
-        'Limited events',
+        'Basic community features',
+        'Up to 100 members',
+        'Standard community templates',
+        'Basic engagement tools',
+        'Community support',
+        '1GB storage',
         '7-day free trial of Pro features'
       ],
       popular: false,
       trial: false
     },
     {
-      name: 'Mentee',
-      price: '$25',
+      name: 'Pro',
+      price: '$19',
       period: '/month',
       features: [
-        'Full community access',
-        'Mentorship matching',
-        'Premium resources',
+        'Everything in Free',
+        'Up to 1,000 members',
+        'Premium community templates',
+        'Advanced engagement tools',
+        'Custom branding',
+        'Community analytics dashboard',
         'Priority support',
-        'All live events',
-        'Growth tracking',
+        '50GB storage',
+        'Advanced moderation tools',
+        'Event management',
+        'Member management tools',
         '30-day free trial'
       ],
       popular: true,
       trial: true
     },
     {
-      name: 'Mentor',
-      price: '$99',
+      name: 'Enterprise',
+      price: '$79',
       period: '/month',
       features: [
-        'Everything in Mentee',
-        'Mentor tools & training',
-        'Revenue sharing',
-        'Dedicated support',
-        'Advanced analytics',
-        'Custom programs',
+        'Everything in Pro',
+        'Unlimited members',
+        'Team collaboration (up to 10 moderators)',
+        'White-label community platform',
+        'Custom community integrations',
+        'Advanced community analytics',
+        'Dedicated community manager',
+        '500GB storage',
+        'API access for community data',
+        'Custom community workflows',
+        'Advanced security and compliance',
         '30-day free trial'
       ],
       popular: false,
@@ -164,7 +175,7 @@ export default function KingdomCircle() {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
               {pricingTiers.map((tier, index) => (
                 <div key={index} className={`relative bg-black/20 backdrop-blur-sm border rounded-xl p-8 ${
                   tier.popular ? 'border-blue/50 bg-black/30' : 'border-gray/30'

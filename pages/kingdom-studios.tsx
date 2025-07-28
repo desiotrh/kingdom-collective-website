@@ -46,41 +46,31 @@ export default function KingdomStudios() {
       period: '/month',
       features: [
         'Basic content creation tools',
-        'Up to 3 projects',
-        'Standard analytics',
-        'Community features',
-        'Email support',
+        '5 projects per month',
+        'Standard templates (10 templates)',
+        'Basic AI assistance',
+        'Community support',
+        '1GB storage',
         '7-day free trial of Pro features'
       ],
       popular: false,
       trial: false
     },
     {
-      name: 'Creator',
+      name: 'Pro',
       price: '$29',
       period: '/month',
       features: [
-        'Advanced content creation tools',
-        'Up to 10 projects',
-        'Advanced analytics',
-        'Priority support',
-        'Custom branding',
-        '30-day free trial'
-      ],
-      popular: false,
-      trial: true
-    },
-    {
-      name: 'Professional',
-      price: '$79',
-      period: '/month',
-      features: [
-        'Everything in Creator',
+        'Everything in Free',
         'Unlimited projects',
-        'Advanced analytics',
-        'Priority support',
+        'Premium templates (50+ templates)',
+        'Advanced AI features',
         'Custom branding',
-        'API access',
+        'Advanced analytics dashboard',
+        'Priority support',
+        '50GB storage',
+        'Export in multiple formats',
+        'Social media scheduling',
         '30-day free trial'
       ],
       popular: true,
@@ -88,15 +78,19 @@ export default function KingdomStudios() {
     },
     {
       name: 'Enterprise',
-      price: '$199',
+      price: '$99',
       period: '/month',
       features: [
-        'Everything in Professional',
-        'White-label solution',
-        'Dedicated account manager',
+        'Everything in Pro',
+        'Team collaboration (up to 10 members)',
+        'White-label options',
         'Custom integrations',
-        'Advanced security',
-        '24/7 phone support',
+        'Advanced workflow automation',
+        'Dedicated account manager',
+        '500GB storage',
+        'API access',
+        'Custom training sessions',
+        'Advanced security features',
         '30-day free trial'
       ],
       popular: false,
@@ -183,7 +177,7 @@ export default function KingdomStudios() {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
               {pricingTiers.map((tier, index) => (
                 <div key={index} className={`relative bg-black/20 backdrop-blur-sm border rounded-xl p-8 ${
                   tier.popular ? 'border-blue/50 bg-black/30' : 'border-gray/30'

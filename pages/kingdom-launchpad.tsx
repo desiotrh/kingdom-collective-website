@@ -45,42 +45,33 @@ export default function KingdomLaunchpad() {
       price: '$0',
       period: '/month',
       features: [
-        'Up to 1 product',
-        'Basic funnel builder',
-        'Standard templates',
-        'Email support',
-        'Basic analytics',
+        'Basic business planning tools',
+        '1 business plan',
+        'Standard business templates',
+        'Basic financial calculators',
+        'Community support',
+        '1GB storage',
         '7-day free trial of Pro features'
       ],
       popular: false,
       trial: false
     },
     {
-      name: 'Starter',
-      price: '$39',
+      name: 'Pro',
+      price: '$49',
       period: '/month',
       features: [
-        'Up to 3 products',
-        'Advanced funnel builder',
-        'Premium templates',
-        'Priority support',
-        'Advanced analytics',
-        '30-day free trial'
-      ],
-      popular: false,
-      trial: true
-    },
-    {
-      name: 'Professional',
-      price: '$99',
-      period: '/month',
-      features: [
-        'Up to 10 products',
-        'All funnel features',
-        'Premium templates',
-        'Priority support',
-        'Advanced analytics',
+        'Everything in Free',
+        'Unlimited business plans',
+        'Premium business templates',
+        'Advanced financial modeling',
         'Custom branding',
+        'Business analytics dashboard',
+        'Priority support',
+        '100GB storage',
+        'Export in multiple formats',
+        'Investor pitch tools',
+        'Market research tools',
         '30-day free trial'
       ],
       popular: true,
@@ -88,16 +79,19 @@ export default function KingdomLaunchpad() {
     },
     {
       name: 'Enterprise',
-      price: '$299',
+      price: '$199',
       period: '/month',
       features: [
-        'Unlimited products',
-        'All funnel features',
-        'Custom templates',
-        '24/7 support',
-        'Advanced analytics',
-        'API access',
-        'White-label solution',
+        'Everything in Pro',
+        'Team collaboration (up to 20 members)',
+        'White-label business platform',
+        'Custom business integrations',
+        'Advanced business analytics',
+        'Dedicated business consultant',
+        '1TB storage',
+        'API access for business data',
+        'Custom business workflows',
+        'Advanced security and compliance',
         '30-day free trial'
       ],
       popular: false,
@@ -180,7 +174,7 @@ export default function KingdomLaunchpad() {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
               {pricingTiers.map((tier, index) => (
                 <div key={index} className={`relative bg-black/20 backdrop-blur-sm border rounded-xl p-8 ${
                   tier.popular ? 'border-blue/50 bg-black/30' : 'border-gray/30'

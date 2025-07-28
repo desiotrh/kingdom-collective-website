@@ -45,43 +45,53 @@ export default function KingdomVoice() {
       price: '$0',
       period: '/month',
       features: [
-        'Basic journaling features',
-        'Up to 10 entries per month',
-        'Standard prompts',
-        'Community access',
-        'Email support',
+        'Basic audio recording tools',
+        '2 episodes per month',
+        'Standard audio templates',
+        'Basic AI audio enhancement',
+        'Community support',
+        '1GB storage',
         '7-day free trial of Pro features'
       ],
       popular: false,
       trial: false
     },
     {
-      name: 'Healer',
-      price: '$15',
+      name: 'Pro',
+      price: '$24',
       period: '/month',
       features: [
-        'Unlimited journaling',
-        'Advanced voice recognition',
-        'Premium prompts',
-        'Emotional analytics',
+        'Everything in Free',
+        'Unlimited episodes',
+        'Premium audio templates',
+        'Advanced AI audio enhancement',
+        'Professional audio editing',
+        'Custom branding',
+        'Distribution to major platforms',
         'Priority support',
-        'Guided meditations',
+        '50GB storage',
+        'Multiple audio formats',
+        'Audio analytics',
         '30-day free trial'
       ],
       popular: true,
       trial: true
     },
     {
-      name: 'Transformation',
-      price: '$39',
+      name: 'Enterprise',
+      price: '$79',
       period: '/month',
       features: [
-        'Everything in Healer',
-        '1-on-1 coaching sessions',
-        'Custom healing plans',
-        'Advanced analytics',
-        '24/7 support',
-        'Group workshops',
+        'Everything in Pro',
+        'Team collaboration (up to 10 members)',
+        'White-label podcast platform',
+        'Custom audio integrations',
+        'Advanced podcast analytics',
+        'Dedicated audio specialist',
+        '500GB storage',
+        'API access for audio processing',
+        'Custom audio workflows',
+        'Advanced security features',
         '30-day free trial'
       ],
       popular: false,
@@ -168,7 +178,7 @@ export default function KingdomVoice() {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
               {pricingTiers.map((tier, index) => (
                 <div key={index} className={`relative bg-black/20 backdrop-blur-sm border rounded-xl p-8 ${
                   tier.popular ? 'border-blue/50 bg-black/30' : 'border-gray/30'
