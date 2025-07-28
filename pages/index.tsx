@@ -4,6 +4,7 @@ import Navigation from '../components/Navigation';
 import Hero from '../components/Hero';
 import AppCard from '../components/AppCard';
 import Footer from '../components/Footer';
+import BackgroundVideo from '../components/BackgroundVideo';
 
 export default function Home() {
   const apps = [
@@ -53,7 +54,8 @@ export default function Home() {
 
   return (
     <div className="relative flex size-full min-h-screen flex-col bg-navy dark group/design-root overflow-x-hidden">
-      <div className="layout-container flex h-full grow flex-col">
+      <BackgroundVideo />
+      <div className="layout-container flex h-full grow flex-col relative z-10">
         <Navigation />
         <Hero />
         
@@ -88,7 +90,7 @@ export default function Home() {
         </section>
 
         {/* About Section */}
-        <section className="px-40 py-20 bg-navy/50">
+        <section className="px-40 py-20 bg-black/30 backdrop-blur-sm">
           <div className="max-w-[960px] mx-auto text-center">
             <h2 className="text-white text-4xl font-black leading-tight tracking-[-0.033em] mb-8">
               About <span className="text-blue">Kingdom Collective</span>
@@ -115,7 +117,7 @@ export default function Home() {
               </p>
             </div>
 
-            <div className="bg-navy/30 border border-gray rounded-xl p-8">
+            <div className="bg-black/40 backdrop-blur-sm border border-gray/30 rounded-xl p-8">
               <iframe
                 src="https://desitotrh.com"
                 className="w-full h-96 rounded-lg"

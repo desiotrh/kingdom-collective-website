@@ -7,10 +7,7 @@ export default function Hero() {
         <div className="@container">
           <div className="@[480px]:p-4">
             <div
-              className="flex min-h-[480px] flex-col gap-6 bg-cover bg-center bg-no-repeat @[480px]:gap-8 @[480px]:rounded-xl items-center justify-center p-4"
-              style={{
-                backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.4) 100%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuB_oUcpAtIbdfSxjOebPXT7aaM9_nqS_tGwDjzWyVT-vVt-XEIPHZ3cW5MQiflqXt15K7DEeEjocUtHHzDgw1UXmNsc9mK9VuqidzcWLX0rpgplzJFLadCK90UkBrHB3bff-cBLaAwBDoURzer96GFm1BwBY3c3CtzVj_bTbpuwM_6OH_bloCXtakF54suEbI0k_KkEKyqGrXeDl9bP5VzlYLLmS4KfUSU0lxm9mmzQ6eCpFflXfAcZoM9TBhC4PELykOqfhVJevig")`
-              }}
+              className="flex min-h-[480px] flex-col gap-6 @[480px]:gap-8 @[480px]:rounded-xl items-center justify-center p-4 bg-black/20 backdrop-blur-sm"
             >
               <div className="flex flex-col gap-2 text-center">
                 <h1 className="text-white text-4xl font-black leading-tight tracking-[-0.033em] @[480px]:text-5xl @[480px]:font-black @[480px]:leading-tight @[480px]:tracking-[-0.033em]">

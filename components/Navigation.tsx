@@ -5,7 +5,7 @@ export default function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <header className="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-gray px-10 py-3">
+    <header className="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-gray/30 px-10 py-3 bg-black/20 backdrop-blur-sm">
       {/* Logo */}
       <div className="flex items-center gap-4 text-white">
         <div className="size-4">
