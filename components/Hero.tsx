@@ -8,12 +8,12 @@ export default function Hero() {
         <Image
           src="/kingdom-collective-logo.png"
           alt="Kingdom Collective Logo"
-          width={350}
-          height={350}
-          className="mx-auto mb-6 max-w-[350px] w-full drop-shadow-xl"
+          width={500}
+          height={500}
+          className="mx-auto mb-3 max-w-[500px] w-full drop-shadow-xl"
           priority
         />
-        <p className="text-xl md:text-2xl text-gray-300 font-light leading-relaxed">
+        <p className="text-2xl md:text-3xl text-gray-300 font-light leading-relaxed">
           Create with Purpose. Share with Authority. <br />
           Build What Matters.
         </p>

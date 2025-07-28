@@ -7,6 +7,7 @@ export default function Navigation() {
   const { user, isAuthenticated } = useAuth();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isStudioAppsOpen, setIsStudioAppsOpen] = useState(false);
+  const [dropdownTimeout, setDropdownTimeout] = useState<NodeJS.Timeout | null>(null);
 
   return (
     <header className="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-gray/30 px-10 py-3 bg-black/20 backdrop-blur-sm">
@@ -32,11 +33,17 @@ export default function Navigation() {
         <div className="hidden md:flex items-center gap-9">
           {/* Studio Apps Dropdown */}
                    <div className="relative">
-           <button
-             onMouseEnter={() => setIsStudioAppsOpen(true)}
-             onMouseLeave={() => setIsStudioAppsOpen(false)}
-             className="text-white text-sm font-medium leading-normal hover:text-blue transition-colors duration-200 flex items-center gap-1"
-           >
+                     <button
+            onMouseEnter={() => {
+              if (dropdownTimeout) clearTimeout(dropdownTimeout);
+              setIsStudioAppsOpen(true);
+            }}
+            onMouseLeave={() => {
+              const timeout = setTimeout(() => setIsStudioAppsOpen(false), 300);
+              setDropdownTimeout(timeout);
+            }}
+            className="text-white text-sm font-medium leading-normal hover:text-blue transition-colors duration-200 flex items-center gap-1"
+          >
              Studio Apps
              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
@@ -45,8 +52,14 @@ export default function Navigation() {
                          {isStudioAppsOpen && (
                 <div
                   className="absolute top-full left-0 mt-2 w-64 bg-black/90 backdrop-blur-sm border border-gray/30 rounded-xl py-2 z-[999999]"
-                  onMouseEnter={() => setIsStudioAppsOpen(true)}
-                  onMouseLeave={() => setIsStudioAppsOpen(false)}
+                  onMouseEnter={() => {
+                    if (dropdownTimeout) clearTimeout(dropdownTimeout);
+                    setIsStudioAppsOpen(true);
+                  }}
+                  onMouseLeave={() => {
+                    const timeout = setTimeout(() => setIsStudioAppsOpen(false), 300);
+                    setDropdownTimeout(timeout);
+                  }}
                 >
                 <Link href="/apps" className="block px-4 py-2 text-white hover:bg-blue/20 transition-colors duration-200">
                   All Apps Overview

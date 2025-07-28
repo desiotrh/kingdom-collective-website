@@ -5,8 +5,8 @@ import Image from 'next/image';
 export default function Footer() {
   return (
     <footer className="relative z-10 bg-black/30 backdrop-blur-sm border-t border-gray/30 w-full">
-      <div className="w-full px-40 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+              <div className="w-full px-20 py-8">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
           {/* Company Info */}
           <div className="col-span-1 md:col-span-2">
             <div className="flex items-center gap-4 mb-4">
@@ -98,9 +98,9 @@ export default function Footer() {
           <p className="text-white text-sm">
             © 2024 Kingdom Collective. All rights reserved.
           </p>
-          <div className="flex items-center space-x-6 mt-4 md:mt-0">
+          <div className="flex items-center justify-between mt-4 md:mt-0">
             {/* Social Media Icons */}
-            <div className="flex space-x-4">
+            <div className="flex space-x-6">
               <a
                 href="https://www.tiktok.com/@desi.tritz?_t=ZT-8yG8sblfvAs&_r=1"
                 target="_blank"
@@ -143,7 +143,7 @@ export default function Footer() {
               </a>
             </div>
             
-            <div className="flex space-x-6">
+            <div className="flex space-x-8">
               <Link
                 href="/privacy"
                 className="text-white hover:text-blue transition-colors duration-200 text-sm"
