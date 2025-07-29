@@ -8,8 +8,8 @@ export default function Terms() {
     <div className="relative flex size-full min-h-screen flex-col bg-navy dark group/design-root overflow-x-hidden">
       <BackgroundVideo />
       <div className="layout-container flex h-full grow flex-col relative z-10">
-        <Navigation />
-        
+      <Navigation />
+
         {/* Hero Section */}
         <section className="px-4 sm:px-6 md:px-8 lg:px-12 xl:px-40 py-12 sm:py-16 md:py-20">
           <div className="max-w-4xl mx-auto text-center">
@@ -62,10 +62,10 @@ export default function Terms() {
                     You must create an account to access certain features. You agree to:
                   </p>
                   <ul className="text-gray-300 text-sm sm:text-base leading-relaxed list-disc list-inside space-y-2 ml-4 mb-4">
-                    <li>Provide accurate, current, and complete information</li>
+              <li>Provide accurate, current, and complete information</li>
                     <li>Keep your login credentials secure</li>
                     <li>Notify us immediately of any unauthorized access or suspected breach</li>
-                  </ul>
+            </ul>
 
                   <h3 className="text-white text-lg sm:text-xl font-semibold mb-2">3.2 Account Types</h3>
                   <p className="text-gray-300 text-sm sm:text-base leading-relaxed mb-4">
@@ -90,7 +90,7 @@ export default function Terms() {
                     <li>Impersonate others or misrepresent affiliations</li>
                     <li>Exploit community features to harass or solicit users</li>
                     <li>Use Faith Mode to simulate religious experiences for deceptive or commercial gain</li>
-                  </ul>
+            </ul>
                   <p className="text-gray-300 text-sm sm:text-base leading-relaxed">
                     We reserve the right to remove content or suspend accounts that violate this policy.
                   </p>
@@ -108,7 +108,7 @@ export default function Terms() {
                     <li>AI training (where applicable and anonymized)</li>
                     <li>Backup, security, or compliance</li>
                     <li>Improving Service features</li>
-                  </ul>
+            </ul>
                   <p className="text-gray-300 text-sm sm:text-base leading-relaxed">
                     You are responsible for ensuring you have legal rights to any media, text, or files you upload.
                   </p>
@@ -136,7 +136,7 @@ export default function Terms() {
                     <li>Analytics and usage data</li>
                     <li>Uploaded media and project history</li>
                     <li>Subscription and billing details</li>
-                  </ul>
+            </ul>
                   <p className="text-gray-300 text-sm sm:text-base leading-relaxed">
                     We never sell your personal data and use secure industry-standard practices to protect it.
                   </p>

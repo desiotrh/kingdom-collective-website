@@ -78,25 +78,25 @@ export default function Features() {
         <Navigation />
         
         {/* Hero Section */}
-        <section className="px-40 py-20">
+        <section className="px-4 sm:px-6 md:px-8 lg:px-12 xl:px-40 py-12 sm:py-16 md:py-20">
           <div className="max-w-[960px] mx-auto text-center">
-            <h1 className="text-white text-5xl font-black leading-tight tracking-[-0.033em] mb-6">
+            <h1 className="text-white text-3xl sm:text-4xl md:text-5xl font-black leading-tight tracking-[-0.033em] mb-6">
               What Makes Us <span className="text-blue">Different</span>
             </h1>
-            <p className="text-white text-xl leading-relaxed max-w-3xl mx-auto mb-8">
+            <p className="text-white text-base sm:text-lg md:text-xl leading-relaxed max-w-3xl mx-auto mb-8">
               We&apos;re not just another content creation platform. We&apos;re a movement designed to empower faith-driven creators to make a lasting impact in the digital space.
             </p>
           </div>
         </section>
 
         {/* Differentiators Section */}
-        <section className="px-40 py-20 bg-black/30 backdrop-blur-sm">
+        <section className="px-4 sm:px-6 md:px-8 lg:px-12 xl:px-40 py-12 sm:py-16 md:py-20 bg-black/30 backdrop-blur-sm">
           <div className="max-w-[960px] mx-auto">
-            <div className="text-center mb-16">
-              <h2 className="text-white text-4xl font-black leading-tight tracking-[-0.033em] mb-6">
+            <div className="text-center mb-12 sm:mb-16">
+              <h2 className="text-white text-2xl sm:text-3xl md:text-4xl font-black leading-tight tracking-[-0.033em] mb-6">
                 Why We&apos;re <span className="text-blue">Unique</span>
               </h2>
-              <p className="text-white text-base font-normal leading-normal max-w-3xl mx-auto">
+              <p className="text-white text-sm sm:text-base font-normal leading-normal max-w-3xl mx-auto">
                 In a world of copycat platforms, we&apos;ve built something truly different—a suite of tools designed for Kingdom impact.
               </p>
             </div>
@@ -114,18 +114,18 @@ export default function Features() {
         </section>
 
         {/* Unique Features Section */}
-        <section className="px-40 py-20">
+        <section className="px-4 sm:px-6 md:px-8 lg:px-12 xl:px-40 py-12 sm:py-16 md:py-20">
           <div className="max-w-[960px] mx-auto">
-            <div className="text-center mb-16">
-              <h2 className="text-white text-4xl font-black leading-tight tracking-[-0.033em] mb-6">
+            <div className="text-center mb-12 sm:mb-16">
+              <h2 className="text-white text-2xl sm:text-3xl md:text-4xl font-black leading-tight tracking-[-0.033em] mb-6">
                 Features You <span className="text-blue">Won&apos;t Find Elsewhere</span>
               </h2>
-              <p className="text-white text-base font-normal leading-normal max-w-3xl mx-auto">
+              <p className="text-white text-sm sm:text-base font-normal leading-normal max-w-3xl mx-auto">
                 These aren&apos;t just features—they&apos;re tools for Kingdom advancement.
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
               {uniqueFeatures.map((feature, index) => (
                 <div key={index} className="bg-black/20 backdrop-blur-sm border border-gray/30 rounded-xl p-6 hover:bg-black/30 transition-all duration-300">
                   <div className="flex items-center justify-between mb-4">
@@ -133,8 +133,8 @@ export default function Features() {
                       {feature.category}
                     </span>
                   </div>
-                  <h3 className="text-white text-xl font-bold mb-3">{feature.title}</h3>
-                  <p className="text-white leading-relaxed">{feature.description}</p>
+                  <h3 className="text-white text-lg sm:text-xl font-bold mb-3">{feature.title}</h3>
+                  <p className="text-white text-sm sm:text-base leading-relaxed">{feature.description}</p>
                 </div>
               ))}
             </div>
@@ -142,19 +142,19 @@ export default function Features() {
         </section>
 
         {/* CTA Section */}
-        <section className="px-40 py-20 bg-black/30 backdrop-blur-sm">
+        <section className="px-4 sm:px-6 md:px-8 lg:px-12 xl:px-40 py-12 sm:py-16 md:py-20 bg-black/30 backdrop-blur-sm">
           <div className="max-w-[960px] mx-auto text-center">
-            <h2 className="text-white text-4xl font-black leading-tight tracking-[-0.033em] mb-6">
+            <h2 className="text-white text-2xl sm:text-3xl md:text-4xl font-black leading-tight tracking-[-0.033em] mb-6">
               Ready to Experience the <span className="text-blue">Difference</span>?
             </h2>
-            <p className="text-white text-xl leading-relaxed max-w-3xl mx-auto mb-8">
+            <p className="text-white text-base sm:text-lg md:text-xl leading-relaxed max-w-3xl mx-auto mb-8">
               Join thousands of faith-driven creators who are already building with purpose and making an impact.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/apps" className="bg-gray text-white px-8 py-4 rounded-full text-lg font-bold hover:bg-blue hover:text-white transition-all duration-200">
+              <Link href="/apps" className="bg-gray text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-bold hover:bg-blue hover:text-white transition-all duration-200">
                 Explore Our Apps
               </Link>
-              <Link href="/vision" className="bg-gray text-white px-8 py-4 rounded-full text-lg font-bold hover:bg-gray/90 transition-all duration-200">
+              <Link href="/vision" className="bg-gray text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-bold hover:bg-gray/90 transition-all duration-200">
                 Learn Our Vision
               </Link>
             </div>
