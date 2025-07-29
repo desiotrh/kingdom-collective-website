@@ -14,7 +14,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { Ionicons } from '@expo/vector-icons';
 import { Clipboard } from 'react-native';
 import { KingdomColors } from '../constants/KingdomColors';
-import { useAuth } from '../contexts/AuthContext';
+import { useAuth } from '../contexts/UnifiedAuthContext';
 import { AppMode } from '../types/spiritual';
 
 interface HashtagGroup {

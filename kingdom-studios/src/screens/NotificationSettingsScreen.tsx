@@ -10,7 +10,7 @@ import {
   Platform,
 } from 'react-native';
 import { useNotifications, useNotificationPermissions } from '../hooks/useNotifications';
-import { useAuth } from '../contexts/FirebaseAuthContext';
+import { useAuth } from '../contexts/UnifiedAuthContext';
 
 /**
  * 🔔 NOTIFICATION SETTINGS SCREEN

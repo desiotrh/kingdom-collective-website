@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, Animated, Dimensions, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { useAuth } from '../contexts/AuthContext';
+import { useAuth } from '../contexts/UnifiedAuthContext';
 import { useTierSystem } from '../contexts/TierSystemContext';
 
 const { width: screenWidth } = Dimensions.get('window');

@@ -3,7 +3,7 @@ import { StatusBar } from 'expo-status-bar';
 import { NavigationContainer } from '@react-navigation/native';
 import { Platform } from 'react-native';
 import Constants from 'expo-constants';
-import { AuthProvider } from './src/contexts/AuthContext';
+import { AuthProvider } from './src/contexts/UnifiedAuthContext';
 import { FaithModeProvider } from './src/contexts/FaithModeContext';
 import { DualModeProvider } from './src/contexts/DualModeContext';
 import { TierSystemProvider } from './src/contexts/TierSystemContext';

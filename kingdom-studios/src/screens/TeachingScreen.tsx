@@ -11,7 +11,7 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { useFaithMode } from '../contexts/FaithModeContext';
-import { useAuth } from '../contexts/AuthContext';
+import { useAuth } from '../contexts/UnifiedAuthContext';
 import { useAppNavigation } from '../utils/navigationUtils';
 import { KingdomColors } from '../constants/KingdomColors';
 

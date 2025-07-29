@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Switch } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Switch, Modal, Alert } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Colors } from '@/constants/Colors';
 import { useColorScheme } from '@/hooks/useColorScheme';
 import { useFaithMode } from '@/contexts/FaithModeContext';
+import { KingdomVoiceApiService } from '../../services/unifiedApiService';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function SettingsScreen() {
     const colorScheme = useColorScheme();
@@ -14,10 +16,48 @@ export default function SettingsScreen() {
         toggleFaithMode,
         toggleEncouragementMode
     } = useFaithMode();
+    const apiService = KingdomVoiceApiService.getInstance();
 
     const [notificationsEnabled, setNotificationsEnabled] = useState(true);
     const [autoBackup, setAutoBackup] = useState(true);
     const [darkMode, setDarkMode] = useState(false);
+    const [showDeleteModal, setShowDeleteModal] = useState(false);
+    const [deletingAccount, setDeletingAccount] = useState(false);
+
+    const handleDeleteAccount = () => {
+        setShowDeleteModal(true);
+    };
+
+    const confirmDeleteAccount = async () => {
+        setDeletingAccount(true);
+        try {
+            // Call the unified API to delete the user
+            await apiService.deleteUser();
+            
+            // Clear all local data
+            await AsyncStorage.clear();
+            
+            Alert.alert(
+                'Account Deleted',
+                'Your account has been permanently deleted. Thank you for using Kingdom Voice.',
+                [{ text: 'OK' }]
+            );
+        } catch (error) {
+            console.error('Delete account error:', error);
+            Alert.alert(
+                'Error',
+                'Failed to delete account. Please try again or contact support.',
+                [{ text: 'OK' }]
+            );
+        } finally {
+            setDeletingAccount(false);
+            setShowDeleteModal(false);
+        }
+    };
+
+    const cancelDeleteAccount = () => {
+        setShowDeleteModal(false);
+    };
 
     const settingsSections = [
         {
@@ -116,6 +156,19 @@ export default function SettingsScreen() {
                 },
             ],
         },
+        {
+            title: 'Danger Zone',
+            items: [
+                {
+                    title: 'Delete My Account',
+                    subtitle: 'Permanently delete your account and all data',
+                    type: 'button',
+                    icon: '🗑️',
+                    onPress: handleDeleteAccount,
+                    danger: true,
+                },
+            ],
+        },
     ];
 
     const renderSettingItem = (item: any) => (
@@ -208,6 +261,44 @@ export default function SettingsScreen() {
                     </View>
                 )}
             </ScrollView>
+
+            {/* Delete Account Modal */}
+            <Modal
+                visible={showDeleteModal}
+                transparent={true}
+                animationType="fade"
+                onRequestClose={cancelDeleteAccount}
+            >
+                <View style={styles.modalOverlay}>
+                    <View style={[styles.modalContent, { backgroundColor: colors.background }]}>
+                        <Text style={[styles.modalTitle, { color: colors.text }]}>
+                            Delete Account
+                        </Text>
+                        <Text style={[styles.modalText, { color: colors.charcoalInk }]}>
+                            Are you sure you want to delete your account? This action cannot be undone.
+                        </Text>
+                        <View style={styles.modalButtons}>
+                            <TouchableOpacity
+                                style={[styles.modalButton, { backgroundColor: colors.skyBlue }]}
+                                onPress={confirmDeleteAccount}
+                                disabled={deletingAccount}
+                            >
+                                <Text style={[styles.modalButtonText, { color: colors.charcoalInk }]}>
+                                    {deletingAccount ? 'Deleting...' : 'Delete Account'}
+                                </Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity
+                                style={[styles.modalButton, { backgroundColor: colors.warmBeige }]}
+                                onPress={cancelDeleteAccount}
+                            >
+                                <Text style={[styles.modalButtonText, { color: colors.charcoalInk }]}>
+                                    Cancel
+                                </Text>
+                            </TouchableOpacity>
+                        </View>
+                    </View>
+                </View>
+            </Modal>
         </SafeAreaView>
     );
 }
@@ -359,6 +450,51 @@ const styles = StyleSheet.create({
     encouragementText: {
         fontSize: 14,
         lineHeight: 20,
+        fontFamily: 'Raleway',
+    },
+    modalOverlay: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: 'rgba(0,0,0,0.5)',
+    },
+    modalContent: {
+        width: '80%',
+        padding: 20,
+        borderRadius: 15,
+        alignItems: 'center',
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.2,
+        shadowRadius: 10,
+        elevation: 5,
+    },
+    modalTitle: {
+        fontSize: 24,
+        fontWeight: 'bold',
+        marginBottom: 10,
+        fontFamily: 'Playfair Display',
+    },
+    modalText: {
+        fontSize: 16,
+        textAlign: 'center',
+        marginBottom: 20,
+        fontFamily: 'Raleway',
+    },
+    modalButtons: {
+        width: '100%',
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+    },
+    modalButton: {
+        paddingVertical: 10,
+        paddingHorizontal: 20,
+        borderRadius: 10,
+        alignItems: 'center',
+    },
+    modalButtonText: {
+        fontSize: 18,
+        fontWeight: 'bold',
         fontFamily: 'Raleway',
     },
 }); 

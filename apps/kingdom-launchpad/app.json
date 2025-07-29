@@ -14,14 +14,16 @@
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.kingdom.launchpad"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/Kingdom Launchpad Logo.png",
         "backgroundColor": "#ffffff"
       },
-      "edgeToEdgeEnabled": true
+      "edgeToEdgeEnabled": true,
+      "package": "com.kingdom.launchpad"
     },
     "web": {
       "bundler": "metro",

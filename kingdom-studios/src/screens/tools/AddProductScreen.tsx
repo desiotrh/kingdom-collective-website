@@ -12,7 +12,8 @@ import {
 } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import { useAppNavigation } from '../../utils/navigationUtils';
-import { useProducts } from '../../contexts/ProductContext';
+import { useAuth } from '../../contexts/UnifiedAuthContext';
+import { productService, ProductCreateData } from '../../services/productService';
 
 // Mock faith mode hook
 const useFaithMode = () => {
@@ -43,7 +44,7 @@ const availableCategories = [
 
 const AddProductScreen = () => {
   const navigation = useAppNavigation();
-  const { addProduct } = useProducts();
+  const { user } = useAuth();
   const { isEnabled: faithMode } = useFaithMode();
 
   // Form state
@@ -99,89 +100,129 @@ const AddProductScreen = () => {
       'Are you sure you want to remove the selected image?',
       [
         { text: 'Cancel', style: 'cancel' },
-        { text: 'Remove', onPress: () => setImageUri(null) },
+        {
+          text: 'Remove',
+          style: 'destructive',
+          onPress: () => setImageUri(null)
+        }
       ]
     );
   };
 
-  const handleSave = () => {
-    // Validation
+  const validateForm = (): { isValid: boolean; errors: string[] } => {
+    const errors: string[] = [];
+
     if (!title.trim()) {
-      Alert.alert('Error', 'Please enter a product title');
-      return;
+      errors.push('Product title is required');
     }
 
     if (!description.trim()) {
-      Alert.alert('Error', 'Please enter a product description');
+      errors.push('Product description is required');
+    }
+
+    if (!price.trim()) {
+      errors.push('Product price is required');
+    } else {
+      const priceValue = parseFloat(price);
+      if (isNaN(priceValue) || priceValue <= 0) {
+        errors.push('Please enter a valid price');
+      }
+    }
+
+    if (!category) {
+      errors.push('Please select a category');
+    }
+
+    return {
+      isValid: errors.length === 0,
+      errors
+    };
+  };
+
+  const handleSave = async () => {
+    const validation = validateForm();
+    if (!validation.isValid) {
+      Alert.alert('Validation Error', validation.errors.join('\n'));
       return;
     }
 
-    const priceValue = parseFloat(price);
-    if (isNaN(priceValue) || priceValue <= 0) {
-      Alert.alert('Error', 'Please enter a valid price');
-      return;
-    }
-
-    if (!category.trim()) {
-      Alert.alert('Error', 'Please select a category');
-      return;
-    }
-
-    if (!platform) {
-      Alert.alert('Error', 'Please select a platform');
+    if (!user) {
+      Alert.alert('Error', 'You must be logged in to create a product');
       return;
     }
 
     setIsLoading(true);
 
-    // Prepare new product data
-    const newProduct = {
-      title: title.trim(),
-      description: description.trim(),
-      price: priceValue,
-      category: category.trim(),
-      tags: tags.split(',').map(tag => tag.trim()).filter(tag => tag.length > 0),
-      platform: platform as 'Printify' | 'Etsy' | 'Shopify',
-      imageUrl: generateImageUrl(title, platform),
-    };
+    try {
+      const productData: ProductCreateData = {
+        name: title.trim(),
+        description: description.trim(),
+        price: parseFloat(price),
+        currency: 'USD',
+        images: imageUri ? [imageUri] : [],
+        platforms: platform ? [{
+          platform: platform.toLowerCase() as 'printify' | 'etsy' | 'shopify',
+          platformId: '',
+          url: '',
+          status: 'pending'
+        }] : [],
+        tags: tags.split(',').map(tag => tag.trim()).filter(tag => tag.length > 0),
+        category: category.toLowerCase().replace(/\s+/g, '-'),
+        status: 'draft',
+        metadata: {
+          seoTitle: title,
+          seoDescription: description.substring(0, 160),
+          keywords: tags.split(',').map(tag => tag.trim()).filter(tag => tag.length > 0),
+          targetAudience: [],
+          profitMargin: 0,
+          costOfGoods: 0,
+          shippingWeight: 0,
+          dimensions: {
+            length: 0,
+            width: 0,
+            height: 0,
+            unit: 'cm'
+          }
+        }
+      };
 
-    // Mock save operation with actual context addition
-    setTimeout(() => {
+      const result = await productService.createProduct(productData);
+
+      if (result.success) {
+        Alert.alert(
+          'Success',
+          'Product created successfully!',
+          [
+            {
+              text: 'OK',
+              onPress: () => navigation.goBack()
+            }
+          ]
+        );
+      } else {
+        Alert.alert('Error', result.error || 'Failed to create product');
+      }
+    } catch (error) {
+      console.error('Error creating product:', error);
+      Alert.alert('Error', 'Failed to create product. Please try again.');
+    } finally {
       setIsLoading(false);
-      
-      // Add the product to context
-      addProduct(newProduct);
-      
-      Alert.alert(
-        'Success',
-        'Product added successfully! It will be synced to your platform soon.',
-        [
-          {
-            text: 'OK',
-            onPress: () => navigation.goBack(),
-          },
-        ]
-      );
-    }, 1000);
+    }
   };
 
   const handleCancel = () => {
-    // Check if there's any form data
-    const hasData = title.trim() || description.trim() || price.trim() || 
-                   category.trim() || tags.trim() || platform;
-
-    if (hasData) {
-      Alert.alert(
-        'Discard Changes',
-        'Are you sure you want to discard your changes?',
-        [
-          { text: 'Keep Editing', style: 'cancel' },
-          { text: 'Discard', onPress: () => navigation.goBack() },
-        ]
-      );
-    } else {
-      navigation.goBack();
-    }
+    Alert.alert(
+      'Cancel',
+      'Are you sure you want to cancel? All changes will be lost.',
+      [
+        { text: 'Keep Editing', style: 'cancel' },
+        {
+          text: 'Cancel',
+          style: 'destructive',
+          onPress: () => navigation.goBack()
+        }
+      ]
+    );
   };
 
   const getPlatformById = (id: string) => {

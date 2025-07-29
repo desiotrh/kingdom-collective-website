@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { aiService, type AIContentType, type AIGenerationOptions } from '../services/aiService';
-import { useAuth } from '../contexts/FirebaseAuthContext';
+import { useAuth } from '../contexts/UnifiedAuthContext';
 
 /**
  * 🤖 AI GENERATION HOOK

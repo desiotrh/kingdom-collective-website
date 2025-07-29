@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, ScrollView, TextInput, TouchableOpacity, Alert, ActivityIndicator, StyleSheet } from 'react-native';
 import { useSocialPostGenerator, useHashtagGenerator, useProductDescriptionGenerator } from '../hooks/useAIGeneration';
-import { useAuth } from '../contexts/FirebaseAuthContext';
+import { useAuth } from '../contexts/UnifiedAuthContext';
 
 /**
  * 🤖 AI GENERATION TEST SCREEN

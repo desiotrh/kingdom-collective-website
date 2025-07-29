@@ -13,7 +13,7 @@ import {
 import { LinearGradient } from 'expo-linear-gradient';
 import { useAppNavigation } from '../../utils/navigationUtils';
 import { useFaithMode } from '../../contexts/FaithModeContext';
-import { useAuth } from '../../contexts/AuthContext';
+import { useAuth } from '../../contexts/UnifiedAuthContext';
 import { KingdomColors, KingdomShadows } from '../../constants/KingdomColors';
 import KingdomLogo from '../../components/KingdomLogo';
 

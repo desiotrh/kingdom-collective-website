@@ -15,7 +15,7 @@ import {
     Dimensions,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { useAuth } from '../contexts/AuthContext';
+import { useAuth } from '../contexts/UnifiedAuthContext';
 import { useFaithMode } from '../contexts/FaithModeContext';
 import { KingdomColors } from '../constants/KingdomColors';
 

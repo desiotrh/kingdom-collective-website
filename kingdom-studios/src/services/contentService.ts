@@ -1,105 +1,91 @@
 /**
- * Enterprise Content Service
- * Manages all content generation and management operations
+ * 📝 CONTENT SERVICE - KINGDOM STUDIOS
+ * Handles all content operations through the unified API
+ * 
+ * This service provides content management functionality:
+ * - Content creation and management
+ * - Content history and favorites
+ * - Content refinement and optimization
+ * - Analytics and performance tracking
  */
 
-import { apiClient, ApiResponse } from './apiClient';
+import { kingdomStudiosApi } from './unifiedApiService';
 
-// Content Types
-export interface ContentGenerationRequest {
-  contentType: string;
+export interface ContentPost {
+  id?: string;
+  userId: string;
+  title: string;
+  content: string;
   platform: string;
-  prompt: string;
-  tone?: string;
-  length?: string;
-  subtype?: string;
-  customPrompt?: string;
+  scheduled?: Date;
+  published?: boolean;
+  publishedAt?: Date;
+  analytics?: {
+    views: number;
+    likes: number;
+    shares: number;
+    comments: number;
+    reach: number;
+    engagement: number;
+    clicks: number;
+  };
+  metadata?: {
+    hashtags: string[];
+    mentions: string[];
+    media: Array<{
+      type: 'image' | 'video';
+      url: string;
+      alt?: string;
+    }>;
+    seoTitle?: string;
+    seoDescription?: string;
+    keywords?: string[];
+    targetAudience?: string[];
+    contentStyle?: string;
+    tone?: string;
+    wordCount?: number;
+    readingTime?: number;
+  };
+  faithMode: boolean;
+  createdAt?: Date;
+  updatedAt?: Date;
+}
+
+export interface ContentCreateData {
+  title: string;
+  content: string;
+  platform: string;
+  scheduled?: Date;
+  published?: boolean;
+  analytics?: Partial<ContentPost['analytics']>;
+  metadata?: Partial<ContentPost['metadata']>;
   faithMode?: boolean;
 }
 
-export interface ContentGenerationResponse {
-  id: string;
-  content: string;
-  contentType: string;
-  platform: string;
-  metadata?: {
-    wordCount?: number;
-    charactersCount?: number;
-    tags?: string[];
-    processingTime?: number;
-    cached?: boolean;
-  };
-  createdAt: string;
-}
-
-export interface ContentTemplate {
-  id: string;
-  name: string;
-  category: string;
-  platforms: string[];
-  prompt: string;
-  description?: string;
-  isPopular?: boolean;
-  usageCount?: number;
-}
-
-export interface ContentFavorite {
-  id: string;
-  content: string;
-  contentType: string;
-  platform: string;
-  createdAt: string;
+export interface ContentUpdateData {
   title?: string;
-  metadata?: Record<string, any>;
+  content?: string;
+  platform?: string;
+  scheduled?: Date;
+  published?: boolean;
+  analytics?: Partial<ContentPost['analytics']>;
+  metadata?: Partial<ContentPost['metadata']>;
 }
 
-export interface ContentRefinementRequest {
-  contentId?: string;
-  content: string;
-  refinementType: 'shorten' | 'expand' | 'improve' | 'tone_change' | 'custom';
-  instructions?: string;
-  targetTone?: string;
-  targetLength?: number;
-}
-
-export interface ContentBatchRequest {
-  requests: ContentGenerationRequest[];
-  batchOptions?: {
-    parallel?: boolean;
-    priority?: 'low' | 'normal' | 'high';
-    callback?: string;
+export interface ContentFilters {
+  platform?: string;
+  status?: 'draft' | 'scheduled' | 'published';
+  faithMode?: boolean;
+  dateRange?: {
+    start: Date;
+    end: Date;
   };
-}
-
-export interface ContentStats {
-  totalGenerations: number;
-  todayGenerations: number;
-  recentActivity: Array<{
-    date: string;
-    count: number;
-    contentTypes: string[];
-  }>;
-  topContentTypes: Array<{
-    type: string;
-    count: number;
-    percentage: number;
-  }>;
-  platformUsage: Array<{
-    platform: string;
-    count: number;
-    percentage: number;
-  }>;
-  performance: {
-    avgResponseTime: number;
-    successRate: number;
-    cacheHitRate: number;
-  };
+  search?: string;
+  tags?: string[];
 }
 
 export class ContentService {
   private static instance: ContentService;
-  private cache: Map<string, { data: any; timestamp: number }> = new Map();
-  private readonly CACHE_TTL = 300000; // 5 minutes
 
   private constructor() {}
 
@@ -110,315 +96,368 @@ export class ContentService {
     return ContentService.instance;
   }
 
-  // Generate content
-  async generateContent(request: ContentGenerationRequest): Promise<ApiResponse<ContentGenerationResponse>> {
+  /**
+   * Create a new content post
+   */
+  async saveContentPost(contentData: ContentCreateData): Promise<{ success: boolean; postId?: string; error?: string }> {
     try {
-      const cacheKey = this.getCacheKey('generate', request);
-      const cached = this.getFromCache(cacheKey);
+      const result = await kingdomStudiosApi.saveContentPost(contentData);
       
-      if (cached) {
-        return {
-          data: { ...cached, metadata: { ...cached.metadata, cached: true } },
-          success: true,
-          timestamp: new Date().toISOString(),
-        };
+      if (result.success) {
+        console.log('[Content] Content post created successfully');
+        return { success: true, postId: result.data?.id };
       }
-
-      const response = await apiClient.post<ContentGenerationResponse>(
-        '/api/v1/enterprise-content/generate',
-        request
-      );
-
-      if (response.success) {
-        this.setCache(cacheKey, response.data);
-      }
-
-      return response;
-    } catch (error: any) {
-      throw new Error(error.message || 'Content generation failed');
-    }
-  }
-
-  // Generate multiple content pieces in batch
-  async generateBatch(batchRequest: ContentBatchRequest): Promise<ApiResponse<ContentGenerationResponse[]>> {
-    try {
-      const response = await apiClient.post<ContentGenerationResponse[]>(
-        '/api/v1/enterprise-content/batch',
-        batchRequest
-      );
-
-      return response;
-    } catch (error: any) {
-      throw new Error(error.message || 'Batch content generation failed');
-    }
-  }
-
-  // Refine existing content
-  async refineContent(request: ContentRefinementRequest): Promise<ApiResponse<ContentGenerationResponse>> {
-    try {
-      const response = await apiClient.post<ContentGenerationResponse>(
-        '/api/v1/enterprise-content/refine',
-        request
-      );
-
-      return response;
-    } catch (error: any) {
-      throw new Error(error.message || 'Content refinement failed');
-    }
-  }
-
-  // Get content templates
-  async getTemplates(category?: string): Promise<ApiResponse<ContentTemplate[]>> {
-    try {
-      const params = category ? { category } : undefined;
-      const response = await apiClient.get<ContentTemplate[]>(
-        '/api/v1/enterprise-content/templates',
-        params
-      );
-
-      return response;
-    } catch (error: any) {
-      throw new Error(error.message || 'Failed to fetch templates');
-    }
-  }
-
-  // Get popular templates
-  async getPopularTemplates(limit: number = 10): Promise<ApiResponse<ContentTemplate[]>> {
-    try {
-      const response = await apiClient.get<ContentTemplate[]>(
-        '/api/v1/enterprise-content/templates/popular',
-        { limit }
-      );
-
-      return response;
-    } catch (error: any) {
-      throw new Error(error.message || 'Failed to fetch popular templates');
-    }
-  }
-
-  // Save content as favorite
-  async saveFavorite(contentData: Omit<ContentFavorite, 'id' | 'createdAt'>): Promise<ApiResponse<ContentFavorite>> {
-    try {
-      const response = await apiClient.post<ContentFavorite>(
-        '/api/v1/content/favorites',
-        contentData
-      );
-
-      return response;
-    } catch (error: any) {
-      throw new Error(error.message || 'Failed to save favorite');
-    }
-  }
-
-  // Get user favorites
-  async getFavorites(page: number = 1, limit: number = 20): Promise<ApiResponse<{ 
-    favorites: ContentFavorite[];
-    total: number;
-    page: number;
-    totalPages: number;
-  }>> {
-    try {
-      const response = await apiClient.get(
-        '/api/v1/content/favorites',
-        { page, limit }
-      );
-
-      return response;
-    } catch (error: any) {
-      throw new Error(error.message || 'Failed to fetch favorites');
-    }
-  }
-
-  // Delete favorite
-  async deleteFavorite(favoriteId: string): Promise<ApiResponse<void>> {
-    try {
-      const response = await apiClient.delete(
-        `/api/v1/content/favorites/${favoriteId}`
-      );
-
-      return response;
-    } catch (error: any) {
-      throw new Error(error.message || 'Failed to delete favorite');
-    }
-  }
-
-  // Get content history
-  async getContentHistory(page: number = 1, limit: number = 20): Promise<ApiResponse<{
-    content: ContentGenerationResponse[];
-    total: number;
-    page: number;
-    totalPages: number;
-  }>> {
-    try {
-      const response = await apiClient.get(
-        '/api/v1/content/history',
-        { page, limit }
-      );
-
-      return response;
-    } catch (error: any) {
-      throw new Error(error.message || 'Failed to fetch content history');
-    }
-  }
-
-  // Get content statistics
-  async getStats(): Promise<ApiResponse<ContentStats>> {
-    try {
-      const cacheKey = 'stats';
-      const cached = this.getFromCache(cacheKey);
       
-      if (cached) {
-        return {
-          data: cached,
-          success: true,
-          cached: true,
-          timestamp: new Date().toISOString(),
-        };
+      console.error('[Content] Failed to create content post:', result.error);
+      return { success: false, error: result.error };
+    } catch (error) {
+      console.error('[Content] Error creating content post:', error);
+      return { 
+        success: false, 
+        error: error instanceof Error ? error.message : 'Failed to create content post' 
+      };
+    }
+  }
+
+  /**
+   * Get all content posts for the current user
+   */
+  async getUserContentPosts(filters?: ContentFilters): Promise<ContentPost[]> {
+    try {
+      const result = await kingdomStudiosApi.getUserContentPosts(filters);
+      
+      if (result.success && result.data) {
+        return result.data as ContentPost[];
       }
+      
+      return [];
+    } catch (error) {
+      console.error('[Content] Error getting user content posts:', error);
+      return [];
+    }
+  }
 
-      const response = await apiClient.get<ContentStats>(
-        '/api/v1/enterprise-content/stats'
-      );
-
-      if (response.success) {
-        this.setCache(cacheKey, response.data, 60000); // Cache for 1 minute
+  /**
+   * Get a specific content post by ID
+   */
+  async getContentPost(postId: string): Promise<ContentPost | null> {
+    try {
+      const result = await kingdomStudiosApi.getContentPost(postId);
+      
+      if (result.success && result.data) {
+        return result.data as ContentPost;
       }
-
-      return response;
-    } catch (error: any) {
-      throw new Error(error.message || 'Failed to fetch statistics');
-    }
-  }
-
-  // Search content
-  async searchContent(query: string, filters?: {
-    contentType?: string;
-    platform?: string;
-    dateFrom?: string;
-    dateTo?: string;
-  }): Promise<ApiResponse<ContentGenerationResponse[]>> {
-    try {
-      const params = { q: query, ...filters };
-      const response = await apiClient.get<ContentGenerationResponse[]>(
-        '/api/v1/content/search',
-        params
-      );
-
-      return response;
-    } catch (error: any) {
-      throw new Error(error.message || 'Search failed');
-    }
-  }
-
-  // Export content
-  async exportContent(format: 'json' | 'csv' | 'pdf', filters?: {
-    dateFrom?: string;
-    dateTo?: string;
-    contentTypes?: string[];
-  }): Promise<ApiResponse<{ downloadUrl: string; expiresAt: string }>> {
-    try {
-      const response = await apiClient.post(
-        '/api/v1/content/export',
-        { format, filters }
-      );
-
-      return response;
-    } catch (error: any) {
-      throw new Error(error.message || 'Export failed');
-    }
-  }
-
-  // Analyze content performance
-  async analyzePerformance(contentId: string): Promise<ApiResponse<{
-    engagement: {
-      views?: number;
-      likes?: number;
-      shares?: number;
-      comments?: number;
-    };
-    metrics: {
-      readability: number;
-      sentiment: string;
-      keywordDensity: Record<string, number>;
-    };
-    suggestions: string[];
-  }>> {
-    try {
-      const response = await apiClient.get(
-        `/api/v1/content/${contentId}/analytics`
-      );
-
-      return response;
-    } catch (error: any) {
-      throw new Error(error.message || 'Performance analysis failed');
-    }
-  }
-
-  // Get content trends
-  async getTrends(timeframe: '7d' | '30d' | '90d' = '30d'): Promise<ApiResponse<{
-    trending: {
-      contentTypes: Array<{ type: string; growth: number }>;
-      platforms: Array<{ platform: string; growth: number }>;
-      topics: Array<{ topic: string; mentions: number }>;
-    };
-    insights: string[];
-  }>> {
-    try {
-      const response = await apiClient.get(
-        '/api/v1/content/trends',
-        { timeframe }
-      );
-
-      return response;
-    } catch (error: any) {
-      throw new Error(error.message || 'Failed to fetch trends');
-    }
-  }
-
-  // Cache management
-  private getCacheKey(operation: string, data: any): string {
-    return `${operation}_${JSON.stringify(data)}`;
-  }
-
-  private getFromCache(key: string): any | null {
-    const cached = this.cache.get(key);
-    if (!cached) return null;
-
-    const isExpired = Date.now() - cached.timestamp > this.CACHE_TTL;
-    if (isExpired) {
-      this.cache.delete(key);
+      
+      return null;
+    } catch (error) {
+      console.error('[Content] Error getting content post:', error);
       return null;
     }
-
-    return cached.data;
   }
 
-  private setCache(key: string, data: any, ttl: number = this.CACHE_TTL): void {
-    this.cache.set(key, {
-      data,
-      timestamp: Date.now(),
-    });
-
-    // Auto-cleanup after TTL
-    setTimeout(() => {
-      this.cache.delete(key);
-    }, ttl);
+  /**
+   * Update a content post
+   */
+  async updateContentPost(postId: string, updates: ContentUpdateData): Promise<{ success: boolean; error?: string }> {
+    try {
+      const result = await kingdomStudiosApi.updateContentPost(postId, updates);
+      
+      if (result.success) {
+        console.log('[Content] Content post updated successfully');
+        return { success: true };
+      }
+      
+      console.error('[Content] Failed to update content post:', result.error);
+      return { success: false, error: result.error };
+    } catch (error) {
+      console.error('[Content] Error updating content post:', error);
+      return { 
+        success: false, 
+        error: error instanceof Error ? error.message : 'Failed to update content post' 
+      };
+    }
   }
 
-  // Clear all cached data
-  clearCache(): void {
-    this.cache.clear();
+  /**
+   * Delete a content post
+   */
+  async deleteContentPost(postId: string): Promise<{ success: boolean; error?: string }> {
+    try {
+      const result = await kingdomStudiosApi.deleteContentPost(postId);
+      
+      if (result.success) {
+        console.log('[Content] Content post deleted successfully');
+        return { success: true };
+      }
+      
+      console.error('[Content] Failed to delete content post:', result.error);
+      return { success: false, error: result.error };
+    } catch (error) {
+      console.error('[Content] Error deleting content post:', error);
+      return { 
+        success: false, 
+        error: error instanceof Error ? error.message : 'Failed to delete content post' 
+      };
+    }
   }
 
-  // Get cache statistics
-  getCacheStats(): { size: number; keys: string[] } {
+  /**
+   * Get favorite posts for the current user
+   */
+  async getFavoritePosts(): Promise<ContentPost[]> {
+    try {
+      const result = await kingdomStudiosApi.getFavoritePosts();
+      
+      if (result.success && result.data) {
+        return result.data as ContentPost[];
+      }
+      
+      return [];
+    } catch (error) {
+      console.error('[Content] Error getting favorite posts:', error);
+      return [];
+    }
+  }
+
+  /**
+   * Toggle favorite status for a post
+   */
+  async toggleFavorite(postId: string): Promise<{ success: boolean; isFavorite?: boolean; error?: string }> {
+    try {
+      const result = await kingdomStudiosApi.toggleFavorite(postId);
+      
+      if (result.success) {
+        console.log('[Content] Favorite status toggled successfully');
+        return { success: true, isFavorite: result.data?.isFavorite };
+      }
+      
+      console.error('[Content] Failed to toggle favorite:', result.error);
+      return { success: false, error: result.error };
+    } catch (error) {
+      console.error('[Content] Error toggling favorite:', error);
+      return { 
+        success: false, 
+        error: error instanceof Error ? error.message : 'Failed to toggle favorite' 
+      };
+    }
+  }
+
+  /**
+   * Schedule a content post
+   */
+  async scheduleContentPost(postId: string, scheduledDate: Date): Promise<{ success: boolean; error?: string }> {
+    try {
+      const result = await kingdomStudiosApi.scheduleContentPost(postId, scheduledDate);
+      
+      if (result.success) {
+        console.log('[Content] Content post scheduled successfully');
+        return { success: true };
+      }
+      
+      console.error('[Content] Failed to schedule content post:', result.error);
+      return { success: false, error: result.error };
+    } catch (error) {
+      console.error('[Content] Error scheduling content post:', error);
+      return { 
+        success: false, 
+        error: error instanceof Error ? error.message : 'Failed to schedule content post' 
+      };
+    }
+  }
+
+  /**
+   * Publish a content post
+   */
+  async publishContentPost(postId: string): Promise<{ success: boolean; error?: string }> {
+    try {
+      const result = await kingdomStudiosApi.publishContentPost(postId);
+      
+      if (result.success) {
+        console.log('[Content] Content post published successfully');
+        return { success: true };
+      }
+      
+      console.error('[Content] Failed to publish content post:', result.error);
+      return { success: false, error: result.error };
+    } catch (error) {
+      console.error('[Content] Error publishing content post:', error);
+      return { 
+        success: false, 
+        error: error instanceof Error ? error.message : 'Failed to publish content post' 
+      };
+    }
+  }
+
+  /**
+   * Get content analytics
+   */
+  async getContentAnalytics(postId: string): Promise<{ success: boolean; analytics?: any; error?: string }> {
+    try {
+      const result = await kingdomStudiosApi.getContentAnalytics(postId);
+      
+      if (result.success && result.data) {
+        return { success: true, analytics: result.data };
+      }
+      
+      return { success: false, error: result.error };
+    } catch (error) {
+      console.error('[Content] Error getting content analytics:', error);
+      return { 
+        success: false, 
+        error: error instanceof Error ? error.message : 'Failed to get analytics' 
+      };
+    }
+  }
+
+  /**
+   * Refine content using AI
+   */
+  async refineContent(content: string, instructions: string): Promise<{ success: boolean; refinedContent?: string; error?: string }> {
+    try {
+      const result = await kingdomStudiosApi.refineContent(content, instructions);
+      
+      if (result.success && result.data) {
+        console.log('[Content] Content refined successfully');
+        return { success: true, refinedContent: result.data.refinedContent };
+      }
+      
+      console.error('[Content] Failed to refine content:', result.error);
+      return { success: false, error: result.error };
+    } catch (error) {
+      console.error('[Content] Error refining content:', error);
+      return { 
+        success: false, 
+        error: error instanceof Error ? error.message : 'Failed to refine content' 
+      };
+    }
+  }
+
+  /**
+   * Generate hashtags for content
+   */
+  async generateHashtags(content: string, platform: string): Promise<{ success: boolean; hashtags?: string[]; error?: string }> {
+    try {
+      const result = await kingdomStudiosApi.generateHashtags(content, platform);
+      
+      if (result.success && result.data) {
+        console.log('[Content] Hashtags generated successfully');
+        return { success: true, hashtags: result.data.hashtags };
+      }
+      
+      console.error('[Content] Failed to generate hashtags:', result.error);
+      return { success: false, error: result.error };
+    } catch (error) {
+      console.error('[Content] Error generating hashtags:', error);
+      return { 
+        success: false, 
+        error: error instanceof Error ? error.message : 'Failed to generate hashtags' 
+      };
+    }
+  }
+
+  /**
+   * Validate content data
+   */
+  validateContentData(content: Partial<ContentPost>): { isValid: boolean; errors: string[] } {
+    const errors: string[] = [];
+
+    if (!content.title || content.title.trim().length === 0) {
+      errors.push('Content title is required');
+    }
+
+    if (!content.content || content.content.trim().length === 0) {
+      errors.push('Content is required');
+    }
+
+    if (content.title && content.title.length > 200) {
+      errors.push('Content title must be less than 200 characters');
+    }
+
+    if (content.content && content.content.length > 10000) {
+      errors.push('Content must be less than 10,000 characters');
+    }
+
+    if (content.platform && !['instagram', 'facebook', 'twitter', 'linkedin', 'tiktok', 'youtube'].includes(content.platform)) {
+      errors.push('Invalid platform specified');
+    }
+
     return {
-      size: this.cache.size,
-      keys: Array.from(this.cache.keys()),
+      isValid: errors.length === 0,
+      errors
     };
+  }
+
+  /**
+   * Get default content data
+   */
+  getDefaultContentData(userId: string): ContentCreateData {
+    return {
+      title: '',
+      content: '',
+      platform: 'instagram',
+      published: false,
+      faithMode: true,
+      metadata: {
+        hashtags: [],
+        mentions: [],
+        media: [],
+        contentStyle: 'inspirational',
+        tone: 'encouraging',
+        wordCount: 0,
+        readingTime: 0
+      }
+    };
+  }
+
+  /**
+   * Get supported platforms
+   */
+  getSupportedPlatforms(): Array<{ value: string; label: string; icon: string }> {
+    return [
+      { value: 'instagram', label: 'Instagram', icon: '📸' },
+      { value: 'facebook', label: 'Facebook', icon: '📘' },
+      { value: 'twitter', label: 'Twitter', icon: '🐦' },
+      { value: 'linkedin', label: 'LinkedIn', icon: '💼' },
+      { value: 'tiktok', label: 'TikTok', icon: '🎵' },
+      { value: 'youtube', label: 'YouTube', icon: '📺' }
+    ];
+  }
+
+  /**
+   * Get content statuses
+   */
+  getContentStatuses(): Array<{ value: string; label: string; icon: string }> {
+    return [
+      { value: 'draft', label: 'Draft', icon: '📝' },
+      { value: 'scheduled', label: 'Scheduled', icon: '⏰' },
+      { value: 'published', label: 'Published', icon: '✅' }
+    ];
+  }
+
+  /**
+   * Calculate reading time
+   */
+  calculateReadingTime(content: string): number {
+    const wordsPerMinute = 200;
+    const wordCount = content.split(/\s+/).length;
+    return Math.ceil(wordCount / wordsPerMinute);
+  }
+
+  /**
+   * Extract hashtags from content
+   */
+  extractHashtags(content: string): string[] {
+    const hashtagRegex = /#[\w]+/g;
+    return content.match(hashtagRegex) || [];
+  }
+
+  /**
+   * Extract mentions from content
+   */
+  extractMentions(content: string): string[] {
+    const mentionRegex = /@[\w]+/g;
+    return content.match(mentionRegex) || [];
   }
 }
 
-// Export singleton instance
 export const contentService = ContentService.getInstance();
-export default contentService;

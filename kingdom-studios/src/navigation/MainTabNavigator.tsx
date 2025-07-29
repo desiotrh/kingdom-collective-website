@@ -5,7 +5,7 @@
 
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { useAuth } from '../contexts/AuthContext';
+import { useAuth } from '../contexts/UnifiedAuthContext';
 import { useFaithMode } from '../contexts/FaithModeContext';
 import { KingdomColors } from '../constants/KingdomColors';
 

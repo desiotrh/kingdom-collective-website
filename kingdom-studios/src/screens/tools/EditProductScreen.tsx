@@ -14,7 +14,8 @@ import * as ImagePicker from 'expo-image-picker';
 import { useAppNavigation } from '../../utils/navigationUtils';
 import { RouteProp, useRoute } from '@react-navigation/native';
 import { RootStackParamList } from '../../types/navigation';
-import { useProducts, Product } from '../../contexts/ProductContext';
+import { useAuth } from '../../contexts/UnifiedAuthContext';
+import { productService, Product as ProductType, ProductUpdateData } from '../../services/productService';
 import { useFaithMode } from '../../contexts/FaithModeContext';
 
 type EditProductRouteProp = RouteProp<RootStackParamList, 'EditProduct'>;
@@ -37,11 +38,12 @@ const EditProductScreen = () => {
   const navigation = useAppNavigation();
   const route = useRoute<EditProductRouteProp>();
   const { productId } = route.params;
-  const { getProductById, updateProduct } = useProducts();
+  const { user } = useAuth();
   const { faithMode } = useFaithMode();
 
-  // Find the product by ID
-  const product = getProductById(productId);
+  // Product state
+  const [product, setProduct] = useState<ProductType | null>(null);
+  const [loading, setLoading] = useState(true);
 
   // Form state
   const [title, setTitle] = useState('');
@@ -50,19 +52,45 @@ const EditProductScreen = () => {
   const [category, setCategory] = useState('');
   const [tags, setTags] = useState('');
   const [imageUri, setImageUri] = useState<string | null>(null);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isSaving, setIsSaving] = useState(false);
 
-  // Initialize form with product data
+  // Load product data
   useEffect(() => {
-    if (product) {
-      setTitle(product.title);
-      setDescription(product.description);
-      setPrice(product.price.toString());
-      setCategory(product.category);
-      setTags(product.tags.join(', '));
-      setImageUri(product.imageUri || null);
+    loadProduct();
+  }, [productId]);
+
+  const loadProduct = async () => {
+    if (!productId) return;
+
+    setLoading(true);
+    try {
+      const productData = await productService.getProduct(productId);
+      if (productData) {
+        setProduct(productData);
+        setTitle(productData.name);
+        setDescription(productData.description || '');
+        setPrice(productData.price.toString());
+        setCategory(productData.category);
+        setTags(productData.tags.join(', '));
+        setImageUri(productData.images.length > 0 ? productData.images[0] : null);
+      }
+    } catch (error) {
+      console.error('Error loading product:', error);
+      Alert.alert('Error', 'Failed to load product data');
+    } finally {
+      setLoading(false);
     }
-  }, [product]);
+  };
+
+  if (loading) {
+    return (
+      <SafeAreaView style={styles.container}>
+        <View style={styles.loadingContainer}>
+          <Text style={styles.loadingText}>Loading product...</Text>
+        </View>
+      </SafeAreaView>
+    );
+  }
 
   if (!product) {
     return (
@@ -112,73 +140,110 @@ const EditProductScreen = () => {
       'Are you sure you want to remove the selected image?',
       [
         { text: 'Cancel', style: 'cancel' },
-        { text: 'Remove', onPress: () => setImageUri(null) },
+        {
+          text: 'Remove',
+          style: 'destructive',
+          onPress: () => setImageUri(null)
+        }
       ]
     );
   };
 
-  const handleSave = () => {
-    // Validation
+  const validateForm = (): { isValid: boolean; errors: string[] } => {
+    const errors: string[] = [];
+
     if (!title.trim()) {
-      Alert.alert('Error', 'Please enter a product title');
-      return;
+      errors.push('Product title is required');
     }
 
     if (!description.trim()) {
-      Alert.alert('Error', 'Please enter a product description');
-      return;
+      errors.push('Product description is required');
     }
 
-    const priceValue = parseFloat(price);
-    if (isNaN(priceValue) || priceValue <= 0) {
-      Alert.alert('Error', 'Please enter a valid price');
-      return;
+    if (!price.trim()) {
+      errors.push('Product price is required');
+    } else {
+      const priceValue = parseFloat(price);
+      if (isNaN(priceValue) || priceValue <= 0) {
+        errors.push('Please enter a valid price');
+      }
     }
 
-    if (!category.trim()) {
-      Alert.alert('Error', 'Please select a category');
-      return;
+    if (!category) {
+      errors.push('Please select a category');
     }
 
-    setIsLoading(true);
-
-    // Prepare updated product data
-    const updatedProduct = {
-      title: title.trim(),
-      description: description.trim(),
-      price: priceValue,
-      category: category.trim(),
-      tags: tags.split(',').map(tag => tag.trim()).filter(tag => tag.length > 0),
-      imageUri: imageUri || undefined,
+    return {
+      isValid: errors.length === 0,
+      errors
     };
+  };
 
-    // Mock save operation with actual context update
-    setTimeout(() => {
-      setIsLoading(false);
-      
-      // Update the product in context
-      updateProduct(productId, updatedProduct);
-      
-      Alert.alert(
-        'Success',
-        'Product updated successfully!',
-        [
-          {
-            text: 'OK',
-            onPress: () => navigation.goBack(),
-          },
-        ]
-      );
-    }, 1000);
+  const handleSave = async () => {
+    const validation = validateForm();
+    if (!validation.isValid) {
+      Alert.alert('Validation Error', validation.errors.join('\n'));
+      return;
+    }
+
+    if (!user || !productId) {
+      Alert.alert('Error', 'Unable to update product');
+      return;
+    }
+
+    setIsSaving(true);
+
+    try {
+      const updateData: ProductUpdateData = {
+        name: title.trim(),
+        description: description.trim(),
+        price: parseFloat(price),
+        currency: 'USD',
+        images: imageUri ? [imageUri] : [],
+        tags: tags.split(',').map(tag => tag.trim()).filter(tag => tag.length > 0),
+        category: category.toLowerCase().replace(/\s+/g, '-'),
+        metadata: {
+          seoTitle: title,
+          seoDescription: description.substring(0, 160),
+          keywords: tags.split(',').map(tag => tag.trim()).filter(tag => tag.length > 0),
+        }
+      };
+
+      const result = await productService.updateProduct(productId, updateData);
+
+      if (result.success) {
+        Alert.alert(
+          'Success',
+          'Product updated successfully!',
+          [
+            {
+              text: 'OK',
+              onPress: () => navigation.goBack()
+            }
+          ]
+        );
+      } else {
+        Alert.alert('Error', result.error || 'Failed to update product');
+      }
+    } catch (error) {
+      console.error('Error updating product:', error);
+      Alert.alert('Error', 'Failed to update product. Please try again.');
+    } finally {
+      setIsSaving(false);
+    }
   };
 
   const handleCancel = () => {
     Alert.alert(
-      'Discard Changes',
-      'Are you sure you want to discard your changes?',
+      'Cancel',
+      'Are you sure you want to cancel? All changes will be lost.',
       [
         { text: 'Keep Editing', style: 'cancel' },
-        { text: 'Discard', onPress: () => navigation.goBack() },
+        {
+          text: 'Cancel',
+          style: 'destructive',
+          onPress: () => navigation.goBack()
+        }
       ]
     );
   };
@@ -215,13 +280,13 @@ const EditProductScreen = () => {
           </TouchableOpacity>
           <Text style={styles.title}>Edit Product</Text>
           <TouchableOpacity
-            style={[styles.saveButton, isLoading && styles.saveButtonDisabled]}
+            style={[styles.saveButton, isSaving && styles.saveButtonDisabled]}
             onPress={handleSave}
             activeOpacity={0.8}
-            disabled={isLoading}
+            disabled={isSaving}
           >
             <Text style={styles.saveButtonText}>
-              {isLoading ? 'Saving...' : 'Save'}
+              {isSaving ? 'Saving...' : 'Save'}
             </Text>
           </TouchableOpacity>
         </View>
@@ -620,6 +685,17 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: '600',
     color: '#ffffff',
+  },
+  loadingContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 20,
+  },
+  loadingText: {
+    fontSize: 18,
+    color: '#ffffff',
+    textAlign: 'center',
   },
   // Image upload styles
   imagePreviewContainer: {

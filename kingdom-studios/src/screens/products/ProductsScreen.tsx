@@ -15,13 +15,13 @@ import {
 import { LinearGradient } from 'expo-linear-gradient';
 import { useAppNavigation } from '../../utils/navigationUtils';
 import { useFaithMode } from '../../contexts/FaithModeContext';
-import { useAuth } from '../../contexts/AuthContext';
+import { useAuth } from '../../contexts/UnifiedAuthContext';
 import { KingdomColors } from '../../constants/KingdomColors';
 import { KingdomShadows } from '../../constants/KingdomShadows';
 import KingdomLogo from '../../components/KingdomLogo';
 import { Product } from '../../contexts/ProductContext';
 import apiService from '../../services/apiService';
-import firebaseService from '../../services/firebaseService';
+import { productService, Product as ProductType } from '../../services/productService';
 import platformIntegrationService, { PlatformProduct } from '../../services/platformIntegrationService';
 
 const { width } = Dimensions.get('window');
@@ -41,7 +41,7 @@ const ProductsScreen: React.FC = () => {
   const { faithMode } = useFaithMode();
   const { user } = useAuth();
   const [selectedTab, setSelectedTab] = useState<'overview' | 'products' | 'platforms'>('overview');
-  const [products, setProducts] = useState<Product[]>([]);
+  const [products, setProducts] = useState<ProductType[]>([]);
   const [platformProducts, setPlatformProducts] = useState<PlatformProduct[]>([]);
   const [loading, setLoading] = useState(false);
   const [refreshing, setRefreshing] = useState(false);
@@ -56,10 +56,11 @@ const ProductsScreen: React.FC = () => {
 
     setLoading(true);
     try {
-      const userProducts = await firebaseService.getUserProducts(user.uid);
+      const userProducts = await productService.getUserProducts();
       setProducts(userProducts);
     } catch (error) {
       console.error('Error loading products:', error);
+      Alert.alert('Error', 'Failed to load products. Please try again.');
     } finally {
       setLoading(false);
     }
@@ -88,55 +89,80 @@ const ProductsScreen: React.FC = () => {
           break;
       }
 
-      // Convert PlatformProduct to Product and save to Firebase
+      // Convert PlatformProduct to Product and save via unified API
       for (const platformProduct of newProducts) {
-        const product: Product = {
-          id: platformProduct.id,
-          title: platformProduct.title,
+        const productData = {
+          name: platformProduct.title,
           description: platformProduct.description,
           price: platformProduct.price,
-          imageUrl: platformProduct.imageUrl,
-          platform: platformProduct.platform,
-          status: platformProduct.status,
-          userId: user?.uid || '',
-          createdAt: new Date(),
-          updatedAt: new Date(),
-          tags: platformProduct.tags,
-          category: platformProduct.category,
+          currency: 'USD',
+          images: platformProduct.imageUrl ? [platformProduct.imageUrl] : [],
+          platforms: [{
+            platform: platformProduct.platform.toLowerCase() as 'etsy' | 'printify' | 'shopify',
+            platformId: platformProduct.id,
+            url: platformProduct.url || '',
+            status: platformProduct.status === 'active' ? 'active' : 'inactive'
+          }],
+          tags: [],
+          category: 'general',
+          status: platformProduct.status === 'active' ? 'published' : 'draft'
         };
 
-        await firebaseService.saveProduct(product);
+        const result = await productService.createProduct(productData);
+        if (!result.success) {
+          console.error(`Failed to save ${platformProduct.title}:`, result.error);
+        }
       }
 
-      // Update local state
-      setPlatformProducts(prev => [...prev, ...newProducts]);
+      // Reload products after sync
       await loadProducts();
-
-      Alert.alert(
-        'Sync Complete',
-        `Successfully synced ${newProducts.length} products from ${platform}!`,
-        [
-          { text: 'View Products', onPress: () => setSelectedTab('products') },
-          { text: 'OK' }
-        ]
-      );
+      Alert.alert('Success', `${platform} products synced successfully!`);
     } catch (error) {
-      const errorMessage = error instanceof Error ? error.message : 'Unknown error';
-      Alert.alert(
-        'Sync Failed',
-        `Failed to sync products from ${platform}.\n\nError: ${errorMessage}\n\nTip: Check your API keys in settings.`,
-        [
-          { text: 'OK' },
-          {
-            text: 'Check Settings',
-            onPress: () => navigation.navigate('Settings')
-          }
-        ]
-      );
-      console.error(`${platform} sync error:`, error);
+      console.error(`Error syncing ${platform} products:`, error);
+      Alert.alert('Error', `Failed to sync ${platform} products. Please try again.`);
     } finally {
       setSyncingPlatform(null);
     }
+  };
+
+  const handleDeleteProduct = async (productId: string) => {
+    Alert.alert(
+      'Delete Product',
+      'Are you sure you want to delete this product? This action cannot be undone.',
+      [
+        { text: 'Cancel', style: 'cancel' },
+        {
+          text: 'Delete',
+          style: 'destructive',
+          onPress: async () => {
+            try {
+              const result = await productService.deleteProduct(productId);
+              if (result.success) {
+                setProducts(products.filter(p => p.id !== productId));
+                Alert.alert('Success', 'Product deleted successfully!');
+              } else {
+                Alert.alert('Error', result.error || 'Failed to delete product');
+              }
+            } catch (error) {
+              console.error('Error deleting product:', error);
+              Alert.alert('Error', 'Failed to delete product. Please try again.');
+            }
+          }
+        }
+      ]
+    );
+  };
+
+  const handleEditProduct = (product: ProductType) => {
+    navigation.navigate('EditProduct', { product });
+  };
+
+  const handleViewProduct = (product: ProductType) => {
+    navigation.navigate('ProductDetails', { product });
+  };
+
+  const handleAddProduct = () => {
+    navigation.navigate('AddProduct');
   };
 
   const platforms: Platform[] = [
@@ -317,26 +343,26 @@ const ProductsScreen: React.FC = () => {
           <TouchableOpacity
             key={product.id}
             style={styles.productCard}
-            onPress={() => Alert.alert('Product Details', `Opening ${product.title}`)}
+            onPress={() => Alert.alert('Product Details', `Opening ${product.name}`)}
           >
-            <Image source={{ uri: product.imageUrl }} style={styles.productImage} />
+            <Image source={{ uri: product.images[0] }} style={styles.productImage} />
             <View style={styles.productInfo}>
-              <Text style={styles.productTitle}>{product.title}</Text>
-              <Text style={styles.productPlatform}>{product.platform}</Text>
+              <Text style={styles.productTitle}>{product.name}</Text>
+              <Text style={styles.productPlatform}>{product.platforms[0]?.platform}</Text>
               <View style={styles.productStats}>
                 <Text style={styles.productPrice}>${product.price}</Text>
-                <Text style={styles.productSales}>{product.stats.sales} sales</Text>
+                <Text style={styles.productSales}>{product.platforms[0]?.status === 'active' ? 'Active' : 'Inactive'}</Text>
               </View>
               <View style={styles.productMetrics}>
-                <Text style={styles.productViews}>{product.stats.views} views</Text>
-                <Text style={styles.productRevenue}>${product.stats.revenue}</Text>
+                <Text style={styles.productViews}>{product.platforms[0]?.url || 'N/A'}</Text>
+                <Text style={styles.productRevenue}>${product.price * (product.platforms[0]?.sales || 0)}</Text>
               </View>
             </View>
             <View style={[
               styles.productStatus,
-              { backgroundColor: product.syncStatus === 'Synced' ? KingdomColors.accent.success : KingdomColors.gray }
+              { backgroundColor: product.status === 'published' ? KingdomColors.accent.success : KingdomColors.gray }
             ]}>
-              <Text style={styles.statusText}>{product.syncStatus}</Text>
+              <Text style={styles.statusText}>{product.status}</Text>
             </View>
           </TouchableOpacity>
         ))

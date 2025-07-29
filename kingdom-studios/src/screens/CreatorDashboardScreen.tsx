@@ -10,7 +10,7 @@ import {
   Alert,
   ActivityIndicator,
 } from 'react-native';
-import { useAuth } from '../contexts/AuthContext';
+import { useAuth } from '../contexts/UnifiedAuthContext';
 import { useAppNavigation } from '../utils/navigationUtils';
 import { useFaithMode } from '../contexts/FaithModeContext';
 import { useDualMode } from '../contexts/DualModeContext';

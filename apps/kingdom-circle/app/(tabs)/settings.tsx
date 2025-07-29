@@ -8,12 +8,14 @@ import {
     ScrollView,
     Alert,
     Platform,
+    Modal,
 } from 'react-native';
 import { Colors } from '@/constants/Colors';
 import { useColorScheme } from '@/hooks/useColorScheme';
 import { useFaithMode } from 'packages/hooks/useFaithMode';
 import * as Notifications from 'expo-notifications';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { KingdomCircleApiService } from '../../services/unifiedApiService';
 
 interface NotificationSettings {
     dailyCheckIn: boolean;
@@ -28,6 +30,7 @@ export default function SettingsScreen() {
     const colorScheme = useColorScheme();
     const colors = Colors[colorScheme ?? 'light'];
     const { faithMode, encouragementMode } = useFaithMode();
+    const apiService = KingdomCircleApiService.getInstance();
 
     // State
     const [settings, setSettings] = useState<NotificationSettings>({
@@ -38,6 +41,8 @@ export default function SettingsScreen() {
         preferredTime: '09:00',
         notificationsEnabled: false,
     });
+    const [showDeleteModal, setShowDeleteModal] = useState(false);
+    const [deletingAccount, setDeletingAccount] = useState(false);
 
     // Load settings on mount
     useEffect(() => {
@@ -232,26 +237,52 @@ export default function SettingsScreen() {
         try {
             await Notifications.scheduleNotificationAsync({
                 content: {
-                    title: faithMode
-                        ? '✝️ Test Notification'
-                        : '🕊 Test Notification',
-                    body: faithMode
-                        ? 'This is a test of your notification settings in Faith Mode.'
-                        : 'This is a test of your notification settings in Encouragement Mode.',
-                    sound: 'default',
+                    title: 'Kingdom Circle',
+                    body: 'This is a test notification from Kingdom Circle!',
+                    data: { type: 'test' },
                 },
                 trigger: { seconds: 2 },
             });
-
-            Alert.alert(
-                'Test Notification',
-                'A test notification will appear in 2 seconds.',
-                [{ text: 'OK' }]
-            );
+            Alert.alert('Test Notification', 'A test notification will appear in 2 seconds.');
         } catch (error) {
             console.log('Error sending test notification:', error);
             Alert.alert('Error', 'Failed to send test notification.');
         }
+    };
+
+    const handleDeleteAccount = () => {
+        setShowDeleteModal(true);
+    };
+
+    const confirmDeleteAccount = async () => {
+        setDeletingAccount(true);
+        try {
+            // Call the unified API to delete the user
+            await apiService.deleteUser();
+            
+            // Clear all local data
+            await AsyncStorage.clear();
+            
+            Alert.alert(
+                'Account Deleted',
+                'Your account has been permanently deleted. Thank you for using Kingdom Circle.',
+                [{ text: 'OK' }]
+            );
+        } catch (error) {
+            console.error('Delete account error:', error);
+            Alert.alert(
+                'Error',
+                'Failed to delete account. Please try again or contact support.',
+                [{ text: 'OK' }]
+            );
+        } finally {
+            setDeletingAccount(false);
+            setShowDeleteModal(false);
+        }
+    };
+
+    const cancelDeleteAccount = () => {
+        setShowDeleteModal(false);
     };
 
     const renderSettingItem = (
@@ -414,8 +445,8 @@ export default function SettingsScreen() {
 
                 {/* Mode Indicator */}
                 <View style={[styles.modeIndicator, { backgroundColor: colors.card }]}>
-                    <Text style={[styles.modeText, { color: colors.olive }]}>
-                        {faithMode ? '✝️ Faith Mode Active' : '🕊 Encouragement Mode Active'}
+                    <Text style={[styles.modeText, { color: colors.emerald }]}>
+                        {faithMode ? 'Faith Mode Active' : 'Encouragement Mode Active'}
                     </Text>
                     <Text style={[styles.modeDescription, { color: colors.olive }]}>
                         {faithMode
@@ -424,6 +455,64 @@ export default function SettingsScreen() {
                         }
                     </Text>
                 </View>
+
+                {/* Delete Account Section */}
+                <View style={styles.section}>
+                    <Text style={[styles.sectionTitle, { color: '#dc2626' }]}>
+                        🗑️ Danger Zone
+                    </Text>
+                    <TouchableOpacity
+                        style={[styles.deleteAccountButton, { backgroundColor: colors.card }]}
+                        onPress={handleDeleteAccount}
+                    >
+                        <View style={styles.settingHeader}>
+                            <Text style={[styles.settingIcon, { color: '#dc2626' }]}>
+                                🗑️
+                            </Text>
+                            <View style={styles.settingText}>
+                                <Text style={[styles.settingTitle, { color: '#dc2626' }]}>
+                                    Delete My Account
+                                </Text>
+                                <Text style={[styles.settingDescription, { color: '#dc2626' }]}>
+                                    Permanently delete your account and all data
+                                </Text>
+                            </View>
+                        </View>
+                    </TouchableOpacity>
+                </View>
+
+                {/* Delete Account Modal */}
+                <Modal
+                    visible={showDeleteModal}
+                    transparent={true}
+                    animationType="fade"
+                    onRequestClose={cancelDeleteAccount}
+                >
+                    <View style={styles.modalOverlay}>
+                        <View style={[styles.modalContent, { backgroundColor: colors.card }]}>
+                            <Text style={[styles.modalTitle, { color: '#dc2626' }]}>
+                                Delete My Account
+                            </Text>
+                            <Text style={[styles.modalBody, { color: colors.text }]}>
+                                Are you sure you want to delete your account? This action is permanent and cannot be undone. All your data will be removed from our system.
+                            </Text>
+                            <View style={styles.modalButtons}>
+                                <TouchableOpacity
+                                    style={styles.cancelButton}
+                                    onPress={cancelDeleteAccount}
+                                >
+                                    <Text style={styles.cancelButtonText}>Cancel</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity
+                                    style={styles.confirmDeleteButton}
+                                    onPress={confirmDeleteAccount}
+                                >
+                                    <Text style={styles.confirmDeleteButtonText}>Yes, Delete My Account</Text>
+                                </TouchableOpacity>
+                            </View>
+                        </View>
+                    </View>
+                </Modal>
             </ScrollView>
         </View>
     );
@@ -547,5 +636,74 @@ const styles = StyleSheet.create({
         fontSize: 14,
         textAlign: 'center',
         fontFamily: 'Quicksand_400Regular',
+    },
+    deleteAccountButton: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        padding: 16,
+        borderRadius: 12,
+        marginBottom: 12,
+        borderWidth: 2,
+        borderColor: '#dc2626',
+    },
+    modalOverlay: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    },
+    modalContent: {
+        borderRadius: 16,
+        padding: 24,
+        width: '80%',
+        alignItems: 'center',
+    },
+    modalTitle: {
+        fontSize: 24,
+        fontWeight: 'bold',
+        marginBottom: 16,
+        textAlign: 'center',
+        fontFamily: 'Nunito_700SemiBold',
+    },
+    modalBody: {
+        fontSize: 16,
+        textAlign: 'center',
+        marginBottom: 24,
+        lineHeight: 24,
+        fontFamily: 'Quicksand_400Regular',
+    },
+    modalButtons: {
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        width: '100%',
+    },
+    cancelButton: {
+        paddingVertical: 12,
+        paddingHorizontal: 24,
+        borderRadius: 12,
+        borderWidth: 1,
+        borderColor: '#3b82f6',
+        backgroundColor: 'transparent',
+    },
+    cancelButtonText: {
+        fontSize: 16,
+        color: '#3b82f6',
+        fontWeight: '600',
+        fontFamily: 'Nunito_600SemiBold',
+    },
+    confirmDeleteButton: {
+        paddingVertical: 12,
+        paddingHorizontal: 24,
+        borderRadius: 12,
+        borderWidth: 1,
+        borderColor: '#dc2626',
+        backgroundColor: '#dc2626',
+    },
+    confirmDeleteButtonText: {
+        fontSize: 16,
+        color: '#ffffff',
+        fontWeight: 'bold',
+        fontFamily: 'Nunito_700SemiBold',
     },
 }); 

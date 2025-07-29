@@ -16,7 +16,7 @@ import { BlurView } from 'expo-blur';
 import { useAppNavigation } from '../utils/navigationUtils';
 import { useFaithMode } from '../contexts/FaithModeContext';
 import { useApp } from '../contexts/AppContext';
-import { useAuth } from '../contexts/AuthContext';
+import { useAuth } from '../contexts/UnifiedAuthContext';
 import { KingdomColors } from '../constants/KingdomColors';
 import { KingdomShadows } from '../constants/KingdomShadows';
 import KingdomLogo from '../components/KingdomLogo';

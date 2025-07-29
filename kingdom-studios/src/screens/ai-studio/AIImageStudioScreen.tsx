@@ -17,7 +17,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { LinearGradient } from 'expo-linear-gradient';
 import * as ImagePicker from 'expo-image-picker';
 import * as FileSystem from 'expo-file-system';
-import { useAuth } from '../../contexts/AuthContext';
+import { useAuth } from '../../contexts/UnifiedAuthContext';
 import { useFaithMode } from '../../contexts/FaithModeContext';
 import { KingdomColors } from '../../constants/KingdomColors';
 import { KingdomShadows } from '../../constants/KingdomShadows';

@@ -14,7 +14,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { useRoute, RouteProp } from '@react-navigation/native';
 import { useAppNavigation } from '../utils/navigationUtils';
 import { useFaithMode } from '../contexts/FaithModeContext';
-import { useAuth } from '../contexts/AuthContext';
+import { useAuth } from '../contexts/UnifiedAuthContext';
 import { KingdomColors } from '../constants/KingdomColors';
 import { KingdomShadows } from '../constants/KingdomShadows';
 import KingdomLogo from '../components/KingdomLogo';

@@ -9,14 +9,16 @@
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.kingdom.voice"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/Kingdom Voice Logo.png",
         "backgroundColor": "#FF6B35"
       },
-      "edgeToEdgeEnabled": true
+      "edgeToEdgeEnabled": true,
+      "package": "com.kingdom.voice"
     },
     "web": {
       "bundler": "metro",

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   View,
   Text,
@@ -14,7 +14,8 @@ import {
 import { useAppNavigation } from '../../utils/navigationUtils';
 import { RouteProp, useRoute } from '@react-navigation/native';
 import { RootStackParamList } from '../../types/navigation';
-import { useProducts } from '../../contexts/ProductContext';
+import { useAuth } from '../../contexts/UnifiedAuthContext';
+import { productService, Product as ProductType } from '../../services/productService';
 
 type ProductDetailsRouteProp = RouteProp<RootStackParamList, 'ProductDetails'>;
 
@@ -28,15 +29,49 @@ const ProductDetailsScreen = () => {
   const navigation = useAppNavigation();
   const route = useRoute<ProductDetailsRouteProp>();
   const { productId } = route.params;
-  const { getProductById, refreshProductSync } = useProducts();
+  const { user } = useAuth();
   const { isEnabled: faithMode } = useFaithMode();
   
+  const [product, setProduct] = useState<ProductType | null>(null);
+  const [loading, setLoading] = useState(true);
   const [showEditModal, setShowEditModal] = useState(false);
   const [editedTitle, setEditedTitle] = useState('');
   const [editedPrice, setEditedPrice] = useState('');
+  const [isSaving, setIsSaving] = useState(false);
 
-  // Find the product by ID
-  const product = getProductById(productId);
+  // Load product data
+  useEffect(() => {
+    loadProduct();
+  }, [productId]);
+
+  const loadProduct = async () => {
+    if (!productId) return;
+
+    setLoading(true);
+    try {
+      const productData = await productService.getProduct(productId);
+      if (productData) {
+        setProduct(productData);
+        setEditedTitle(productData.name);
+        setEditedPrice(productData.price.toString());
+      }
+    } catch (error) {
+      console.error('Error loading product:', error);
+      Alert.alert('Error', 'Failed to load product data');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  if (loading) {
+    return (
+      <SafeAreaView style={styles.container}>
+        <View style={styles.loadingContainer}>
+          <Text style={styles.loadingText}>Loading product...</Text>
+        </View>
+      </SafeAreaView>
+    );
+  }
 
   if (!product) {
     return (
@@ -106,54 +141,87 @@ const ProductDetailsScreen = () => {
   };
 
   const formatNumber = (num: number) => {
-    if (num >= 1000) {
-      return `${(num / 1000).toFixed(1)}k`;
-    }
-    return num.toString();
+    return num.toLocaleString();
   };
 
   const handleEdit = () => {
-    console.log('Navigating to EditProduct with productId:', product.id);
-    navigation.navigate('EditProduct', { productId: product.id });
+    setShowEditModal(true);
   };
 
-  const handleSaveEdit = () => {
-    Alert.alert('Success', 'Product updated successfully!');
-    setShowEditModal(false);
+  const handleSaveEdit = async () => {
+    if (!productId) return;
+
+    setIsSaving(true);
+    try {
+      const result = await productService.updateProduct(productId, {
+        name: editedTitle,
+        price: parseFloat(editedPrice)
+      });
+
+      if (result.success) {
+        setProduct(prev => prev ? { ...prev, name: editedTitle, price: parseFloat(editedPrice) } : null);
+        setShowEditModal(false);
+        Alert.alert('Success', 'Product updated successfully!');
+      } else {
+        Alert.alert('Error', result.error || 'Failed to update product');
+      }
+    } catch (error) {
+      console.error('Error updating product:', error);
+      Alert.alert('Error', 'Failed to update product');
+    } finally {
+      setIsSaving(false);
+    }
   };
 
-  const handleRefreshSync = () => {
+  const handleRefreshSync = async () => {
+    if (!productId) return;
+
+    try {
+      const result = await productService.syncProductWithPlatforms(productId, ['etsy', 'printify', 'shopify']);
+      if (result.success) {
+        Alert.alert('Success', 'Product sync refreshed successfully!');
+        await loadProduct(); // Reload product data
+      } else {
+        Alert.alert('Error', result.error || 'Failed to refresh sync');
+      }
+    } catch (error) {
+      console.error('Error refreshing sync:', error);
+      Alert.alert('Error', 'Failed to refresh sync');
+    }
+  };
+
+  const handleDeleteProduct = async () => {
+    if (!productId) return;
+
     Alert.alert(
-      'Refresh Sync',
-      `Refresh sync status for ${product.platform}?`,
+      'Delete Product',
+      'Are you sure you want to delete this product? This action cannot be undone.',
       [
         { text: 'Cancel', style: 'cancel' },
-        { 
-          text: 'Refresh', 
-          onPress: () => {
-            refreshProductSync(productId);
-            Alert.alert('Success', 'Sync refreshed successfully!');
+        {
+          text: 'Delete',
+          style: 'destructive',
+          onPress: async () => {
+            try {
+              const result = await productService.deleteProduct(productId);
+              if (result.success) {
+                Alert.alert('Success', 'Product deleted successfully!');
+                navigation.goBack();
+              } else {
+                Alert.alert('Error', result.error || 'Failed to delete product');
+              }
+            } catch (error) {
+              console.error('Error deleting product:', error);
+              Alert.alert('Error', 'Failed to delete product');
+            }
           }
-        },
+        }
       ]
     );
   };
 
   const handleCreateContent = () => {
-    Alert.alert(
-      'Create Content',
-      `Create social media content for "${product.title}"?`,
-      [
-        { text: 'Cancel', style: 'cancel' },
-        { 
-          text: 'Create Content', 
-          onPress: () => {
-            console.log('Navigate to MultiPlatformPost with product data:', product);
-            navigation.navigate('MultiPlatformPost', { productId: product.id });
-          }
-        },
-      ]
-    );
+    navigation.navigate('ContentCreation', { productId });
   };
 
   return (
@@ -201,7 +269,7 @@ const ProductDetailsScreen = () => {
         <View style={styles.productInfo}>
           {/* Title and Price */}
           <View style={styles.titlePriceContainer}>
-            <Text style={styles.productTitle}>{product.title}</Text>
+            <Text style={styles.productTitle}>{product.name}</Text>
             <Text style={styles.productPrice}>{formatPrice(product.price)}</Text>
           </View>
 
@@ -577,6 +645,17 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: '600',
     color: '#ffffff',
+  },
+  loadingContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#000000',
+  },
+  loadingText: {
+    fontSize: 18,
+    color: '#ffffff',
+    fontWeight: 'bold',
   },
   modalOverlay: {
     flex: 1,

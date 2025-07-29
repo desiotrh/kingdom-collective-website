@@ -12,7 +12,7 @@ import {
 import { LinearGradient } from 'expo-linear-gradient';
 import { usePayment } from '../hooks/usePayment';
 import { useTierSystem } from '../contexts/TierSystemContext';
-import { useAuth } from '../contexts/FirebaseAuthContext';
+import { useAuth } from '../contexts/UnifiedAuthContext';
 
 /**
  * 💰 SUBSCRIPTION UPGRADE SCREEN

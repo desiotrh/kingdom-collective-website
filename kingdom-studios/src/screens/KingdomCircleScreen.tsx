@@ -17,7 +17,7 @@ import {
     RefreshControl,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { useAuth } from '../contexts/AuthContext';
+import { useAuth } from '../contexts/UnifiedAuthContext';
 import { useDualMode } from '../contexts/DualModeContext';
 import { KingdomColors } from '../constants/KingdomColors';
 

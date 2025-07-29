@@ -12,10 +12,9 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { KingdomColors } from '../../constants/KingdomColors';
-import { useAuth } from '../../contexts/AuthContext';
+import { useAuth } from '../../contexts/UnifiedAuthContext';
 import { useFaithMode } from '../../contexts/FaithModeContext';
 import apiService from '../../services/apiService';
-import firebaseService from '../../services/firebaseService';
 
 const { width } = Dimensions.get('window');
 

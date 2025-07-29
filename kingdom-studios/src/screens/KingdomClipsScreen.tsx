@@ -28,7 +28,7 @@ import { communityService } from '../services/communityService';
 
 // Import components
 import { KingdomColors } from '../constants/KingdomColors';
-import { useAuth } from '../contexts/AuthContext';
+import { useAuth } from '../contexts/UnifiedAuthContext';
 import { useDualMode } from '../contexts/DualModeContext';
 
 const { width, height } = Dimensions.get('window');

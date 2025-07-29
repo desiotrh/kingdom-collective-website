@@ -18,7 +18,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { useAppNavigation } from '../utils/navigationUtils';
 import { useFaithMode } from '../contexts/FaithModeContext';
 import { useDualMode } from '../contexts/DualModeContext';
-import { useAuth } from '../contexts/AuthContext';
+import { useAuth } from '../contexts/UnifiedAuthContext';
 import { useTierSystem } from '../contexts/TierSystemContext';
 import { KingdomColors } from '../constants/KingdomColors';
 import { KingdomShadows } from '../constants/KingdomShadows';

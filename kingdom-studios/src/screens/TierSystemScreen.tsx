@@ -14,7 +14,7 @@ import { BlurView } from 'expo-blur';
 import { Ionicons } from '@expo/vector-icons';
 import { useAppNavigation } from '../utils/navigationUtils';
 import { useDualMode } from '../contexts/DualModeContext';
-import { useAuth } from '../contexts/AuthContext';
+import { useAuth } from '../contexts/UnifiedAuthContext';
 import { KingdomColors } from '../constants/KingdomColors';
 import { KingdomShadows } from '../constants/KingdomShadows';
 import KingdomLogo from '../components/KingdomLogo';

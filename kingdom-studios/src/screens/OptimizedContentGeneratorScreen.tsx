@@ -13,7 +13,7 @@ import {
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useFaithMode } from '../contexts/FaithModeContext';
-import { useAuth } from '../contexts/AuthContext';
+import { useAuth } from '../contexts/UnifiedAuthContext';
 import { KingdomColors } from '../constants/KingdomColors';
 import { KingdomShadows } from '../constants/KingdomShadows';
 import { useDebounce, usePerformanceMonitor } from '../hooks/usePerformance';

@@ -11,7 +11,7 @@ import {
   FlatList,
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-import { useAuth } from '../contexts/AuthContext';
+import { useAuth } from '../contexts/UnifiedAuthContext';
 import { useFaithMode } from '../contexts/FaithModeContext';
 import { useAppNavigation } from '../utils/navigationUtils';
 import { KingdomColors } from '../constants/KingdomColors';

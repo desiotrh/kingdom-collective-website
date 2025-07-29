@@ -1,6 +1,6 @@
-import { useState, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import PaymentService, { PaymentResult, PaymentMethod, Subscription } from '../services/paymentService';
-import { useAuth } from '../contexts/FirebaseAuthContext';
+import { useAuth } from '../contexts/UnifiedAuthContext';
 import { useTierSystem } from '../contexts/TierSystemContext';
 
 /**

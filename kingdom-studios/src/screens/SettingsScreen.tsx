@@ -12,14 +12,12 @@ import {
   Image,
   Dimensions,
   TextInput,
+  Modal,
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import Constants from 'expo-constants';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { signOut } from 'firebase/auth';
-import { getAuth } from 'firebase/auth';
-import { app } from '../config/firebase';
-import { useAuth } from '../contexts/AuthContext';
+import { useAuth } from '../contexts/UnifiedAuthContext';
 import { useFaithMode } from '../contexts/FaithModeContext';
 import { useDualMode } from '../contexts/DualModeContext';
 import { useAppNavigation } from '../utils/navigationUtils';
@@ -27,11 +25,12 @@ import { KingdomColors } from '../constants/KingdomColors';
 import { KingdomShadows } from '../constants/KingdomShadows';
 import KingdomLogo from '../components/KingdomLogo';
 import ModeToggle from '../components/ModeToggle';
+import { KingdomStudiosApiService } from '../services/unifiedApiService';
 
 const { width } = Dimensions.get('window');
 
 const SettingsScreen = () => {
-  const { user } = useAuth();
+  const { user, logout } = useAuth();
   const { faithMode, setFaithMode } = useFaithMode();
   const {
     currentMode,
@@ -42,9 +41,11 @@ const SettingsScreen = () => {
     setDualMode
   } = useDualMode();
   const navigation = useAppNavigation();
-  const auth = getAuth(app);
+  const apiService = KingdomStudiosApiService.getInstance();
 
   const [loading, setLoading] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [deletingAccount, setDeletingAccount] = useState(false);
   const [apiConfig, setApiConfig] = useState<APIConfiguration>({
     openaiApiKey: '',
     openrouterApiKey: '',
@@ -156,29 +157,60 @@ const SettingsScreen = () => {
   };
 
   const handleLogout = async () => {
-    Alert.alert(
-      'Logout',
-      'Are you sure you want to logout?',
-      [
-        { text: 'Cancel', style: 'cancel' },
-        {
-          text: 'Logout',
-          style: 'destructive',
-          onPress: async () => {
-            setLoading(true);
-            try {
-              await signOut(auth);
-              Alert.alert('Success', 'Logged out successfully!');
-            } catch (error) {
-              console.error('Logout error:', error);
-              Alert.alert('Error', 'Failed to log out. Please try again.');
-            } finally {
-              setLoading(false);
-            }
-          }
-        }
-      ]
-    );
+    setLoading(true);
+    try {
+      await logout();
+      // Clear all local data
+      await AsyncStorage.clear();
+      // Navigate to login screen
+      navigation.navigate('Login');
+    } catch (error) {
+      console.error('Logout error:', error);
+      Alert.alert('Error', 'Failed to logout. Please try again.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleDeleteAccount = () => {
+    setShowDeleteModal(true);
+  };
+
+  const confirmDeleteAccount = async () => {
+    setDeletingAccount(true);
+    try {
+      // Call the unified API to delete the user
+      await apiService.deleteUser();
+      
+      // Clear all local data
+      await AsyncStorage.clear();
+      
+      // Log out the user
+      await logout();
+      
+      // Navigate to login screen
+      navigation.navigate('Login');
+      
+      Alert.alert(
+        'Account Deleted',
+        'Your account has been permanently deleted. Thank you for using Kingdom Studios.',
+        [{ text: 'OK' }]
+      );
+    } catch (error) {
+      console.error('Delete account error:', error);
+      Alert.alert(
+        'Error',
+        'Failed to delete account. Please try again or contact support.',
+        [{ text: 'OK' }]
+      );
+    } finally {
+      setDeletingAccount(false);
+      setShowDeleteModal(false);
+    }
+  };
+
+  const cancelDeleteAccount = () => {
+    setShowDeleteModal(false);
   };
 
   const handleGoBack = () => {
@@ -320,7 +352,50 @@ const SettingsScreen = () => {
           {loading ? 'Logging out...' : 'Logout'}
         </Text>
       </TouchableOpacity>
+      
+      <TouchableOpacity
+        style={[styles.deleteAccountButton, deletingAccount && styles.deleteAccountButtonDisabled]}
+        onPress={handleDeleteAccount}
+        disabled={deletingAccount}
+        activeOpacity={0.8}
+      >
+        <Text style={styles.deleteAccountButtonText}>
+          {deletingAccount ? 'Deleting Account...' : 'Delete My Account'}
+        </Text>
+      </TouchableOpacity>
     </View>
+  );
+
+  const renderDeleteAccountModal = () => (
+    <Modal
+      visible={showDeleteModal}
+      transparent={true}
+      animationType="fade"
+      onRequestClose={cancelDeleteAccount}
+    >
+      <View style={styles.modalOverlay}>
+        <View style={styles.modalContent}>
+          <Text style={styles.modalTitle}>Delete My Account</Text>
+          <Text style={styles.modalBody}>
+            Are you sure you want to delete your account? This action is permanent and cannot be undone. All your data will be removed from our system.
+          </Text>
+          <View style={styles.modalButtons}>
+            <TouchableOpacity
+              style={styles.cancelButton}
+              onPress={cancelDeleteAccount}
+            >
+              <Text style={styles.cancelButtonText}>Cancel</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.confirmDeleteButton}
+              onPress={confirmDeleteAccount}
+            >
+              <Text style={styles.confirmDeleteButtonText}>Yes, Delete My Account</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </View>
+    </Modal>
   );
 
   const renderSettingCard = (icon: string, title: string, description: string, onPress: () => void, rightElement?: React.ReactNode) => (
@@ -426,6 +501,21 @@ const SettingsScreen = () => {
       )}
     </View>
   );
+
+  const handleDeleteAccount = async () => {
+    setDeletingAccount(true);
+    try {
+      await apiService.deleteUser();
+      Alert.alert('Account Deleted', 'Your account has been deleted.');
+      logout(); // Log out the user after successful deletion
+    } catch (error) {
+      console.error('Error deleting account:', error);
+      Alert.alert('Error', 'Failed to delete account. Please try again.');
+    } finally {
+      setDeletingAccount(false);
+      setShowDeleteModal(false);
+    }
+  };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -668,6 +758,9 @@ const SettingsScreen = () => {
         {/* Footer spacing */}
         <View style={styles.footer} />
       </ScrollView>
+
+      {/* Delete Account Modal */}
+      {renderDeleteAccountModal()}
     </SafeAreaView>
   );
 };
@@ -1099,6 +1192,105 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: '500',
     color: '#1a202c',
+  },
+  // Modal styles
+  modalOverlay: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+  },
+  modalContent: {
+    backgroundColor: '#111111',
+    borderRadius: 16,
+    padding: 24,
+    width: '80%',
+    alignItems: 'center',
+    borderWidth: 1,
+    borderColor: '#333333',
+  },
+  modalTitle: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: '#ffffff',
+    marginBottom: 16,
+  },
+  modalBody: {
+    fontSize: 16,
+    color: '#cccccc',
+    textAlign: 'center',
+    marginBottom: 24,
+  },
+  modalButtons: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    width: '100%',
+  },
+  modalButton: {
+    paddingVertical: 12,
+    paddingHorizontal: 24,
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: '#3b82f6',
+  },
+  modalButtonCancel: {
+    backgroundColor: 'transparent',
+    borderColor: '#3b82f6',
+    borderWidth: 1,
+  },
+  modalButtonDelete: {
+    backgroundColor: '#dc2626',
+    borderColor: '#dc2626',
+    borderWidth: 1,
+  },
+  modalButtonText: {
+    fontSize: 16,
+    color: '#3b82f6',
+    fontWeight: '600',
+  },
+  deleteAccountButton: {
+    marginTop: 12,
+    paddingVertical: 12,
+    paddingHorizontal: 24,
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: '#dc2626',
+    backgroundColor: 'transparent',
+    alignItems: 'center',
+  },
+  deleteAccountButtonDisabled: {
+    opacity: 0.6,
+  },
+  deleteAccountButtonText: {
+    fontSize: 16,
+    color: '#dc2626',
+    fontWeight: 'bold',
+  },
+  cancelButton: {
+    paddingVertical: 12,
+    paddingHorizontal: 24,
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: '#3b82f6',
+    backgroundColor: 'transparent',
+  },
+  cancelButtonText: {
+    fontSize: 16,
+    color: '#3b82f6',
+    fontWeight: '600',
+  },
+  confirmDeleteButton: {
+    paddingVertical: 12,
+    paddingHorizontal: 24,
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: '#dc2626',
+    backgroundColor: '#dc2626',
+  },
+  confirmDeleteButtonText: {
+    fontSize: 16,
+    color: '#ffffff',
+    fontWeight: 'bold',
   },
 });
 

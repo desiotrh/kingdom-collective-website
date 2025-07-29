@@ -26,6 +26,9 @@ import webhookRoutes from './routes/webhooks.js';
 import adminRoutes from './routes/admin.js';
 import enterpriseContentRoutes, { initializeEnterpriseContentService } from './routes/enterpriseContent.js';
 
+// Import unified API routes
+import unifiedApiRoutes from './routes/unifiedApi.js';
+
 // Import middleware
 import { errorHandler } from './middleware/errorHandler.js';
 import { 
@@ -195,6 +198,9 @@ app.use(`${apiPrefix}/products`, productRoutes);
 app.use(`${apiPrefix}/analytics`, analyticsRoutes);
 app.use(`${apiPrefix}/payments`, paymentRoutes);
 app.use(`${apiPrefix}/admin`, adminRoutes);
+
+// Unified API routes for all Kingdom apps
+app.use(`${apiPrefix}/unified`, unifiedApiRoutes);
 
 // Enterprise monitoring routes
 app.use(`${apiPrefix}/monitoring`, monitoringRoutes);

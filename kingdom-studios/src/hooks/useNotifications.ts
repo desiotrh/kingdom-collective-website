@@ -1,7 +1,7 @@
-import { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import * as Notifications from 'expo-notifications';
 import NotificationService, { ScheduledReminder } from '../services/notificationService';
-import { useAuth } from '../contexts/FirebaseAuthContext';
+import { useAuth } from '../contexts/UnifiedAuthContext';
 
 /**
  * 🔔 NOTIFICATION HOOK

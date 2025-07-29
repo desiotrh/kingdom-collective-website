@@ -1,6 +1,6 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { useAuth } from '../contexts/AuthContext';
+import { useAuth } from '../contexts/UnifiedAuthContext';
 import LoginScreen from '../screens/LoginScreen';
 import MainTabNavigator from './MainTabNavigator';
 import OnboardingScreen from '../screens/OnboardingScreen';

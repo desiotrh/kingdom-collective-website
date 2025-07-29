@@ -12,7 +12,7 @@ import {
 import { useAppNavigation } from '../utils/navigationUtils';
 import { useFaithMode } from '../contexts/FaithModeContext';
 import { useApp } from '../contexts/AppContext';
-import { useAuth } from '../contexts/AuthContext';
+import { useAuth } from '../contexts/UnifiedAuthContext';
 import WelcomeGuide from '../components/WelcomeGuide';
 
 const OnboardingScreen = () => {

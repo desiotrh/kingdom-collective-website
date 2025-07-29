@@ -9,14 +9,16 @@
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.kingdom.clips"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/Kingdom Clips Logo.png",
         "backgroundColor": "#ffffff"
       },
-      "edgeToEdgeEnabled": true
+      "edgeToEdgeEnabled": true,
+      "package": "com.kingdom.clips"
     },
     "web": {
       "bundler": "metro",
