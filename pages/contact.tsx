@@ -217,7 +217,7 @@ export default function Contact() {
               Ready to <span className="text-blue">Get Started</span>?
             </h2>
             <p className="text-white text-xl leading-relaxed max-w-3xl mx-auto mb-8">
-              Explore our apps and start creating with purpose today.
+              Explore our apps and download them to your mobile device.
             </p>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
@@ -238,12 +238,17 @@ export default function Contact() {
                 </Link>
               </div>
               <div className="text-center">
-                <div className="text-4xl mb-4">🛍️</div>
-                <h3 className="text-white text-xl font-bold mb-3">Visit Our Store</h3>
-                <p className="text-white">Find courses, templates, and resources to enhance your journey.</p>
-                <a href="https://desitotrh.com" target="_blank" rel="noopener noreferrer" className="inline-block mt-4 text-blue hover:text-blue/80 transition-colors duration-200 font-medium">
-                  Shop Now →
-                </a>
+                <div className="text-4xl mb-4">📱</div>
+                <h3 className="text-white text-xl font-bold mb-3">Download Our Apps</h3>
+                <p className="text-white">Get our apps on your mobile device for on-the-go creation.</p>
+                <div className="flex flex-col sm:flex-row gap-2 mt-4 justify-center">
+                  <a href="#" target="_blank" rel="noopener noreferrer" className="inline-block text-blue hover:text-blue/80 transition-colors duration-200 font-medium">
+                    🍎 App Store →
+                  </a>
+                  <a href="#" target="_blank" rel="noopener noreferrer" className="inline-block text-blue hover:text-blue/80 transition-colors duration-200 font-medium">
+                    🤖 Google Play →
+                  </a>
+                </div>
               </div>
             </div>
           </div>

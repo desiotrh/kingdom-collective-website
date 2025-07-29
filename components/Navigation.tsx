@@ -82,14 +82,29 @@ export default function Navigation() {
           >
             Contact
           </Link>
-          <a
-            href="https://desitotrh.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-white text-sm font-medium leading-normal hover:text-blue transition-colors duration-200"
-          >
-            Store
-          </a>
+          <div className="relative group">
+            <button className="text-white text-sm font-medium leading-normal hover:text-blue transition-colors duration-200 flex items-center gap-1">
+              Download Apps
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+
+            <div className="absolute top-full left-0 mt-2 w-64 bg-black/90 backdrop-blur-sm border border-gray/30 rounded-xl py-2 z-[9999999] opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-auto">
+              <a href="#" target="_blank" rel="noopener noreferrer" className="block px-4 py-2 text-white hover:bg-gray-800 hover:text-white transition-colors duration-200">
+                <div className="flex items-center gap-2">
+                  <span className="text-lg">🍎</span>
+                  <span>App Store</span>
+                </div>
+              </a>
+              <a href="#" target="_blank" rel="noopener noreferrer" className="block px-4 py-2 text-white hover:bg-gray-800 hover:text-white transition-colors duration-200">
+                <div className="flex items-center gap-2">
+                  <span className="text-lg">🤖</span>
+                  <span>Google Play</span>
+                </div>
+              </a>
+            </div>
+          </div>
         </div>
 
         {/* Desktop CTA Buttons */}
@@ -216,15 +231,29 @@ export default function Navigation() {
             >
               Contact
             </Link>
-            <a
-              href="https://desitotrh.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block text-white hover:text-blue transition-colors duration-200 text-sm font-medium"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Store
-            </a>
+            <div className="space-y-2">
+              <div className="text-white text-sm font-medium mb-2">Download Apps</div>
+              <div className="pl-4 space-y-2">
+                <a
+                  href="#"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block text-white hover:text-blue transition-colors duration-200 text-sm"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  🍎 App Store
+                </a>
+                <a
+                  href="#"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block text-white hover:text-blue transition-colors duration-200 text-sm"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  🤖 Google Play
+                </a>
+              </div>
+            </div>
             <div className="pt-4 border-t border-gray space-y-3">
               {isAuthenticated ? (
                 <Link href="/dashboard" className="block w-full text-left bg-gray text-white px-4 py-2 rounded-full font-bold text-sm tracking-[0.015em] hover:bg-blue hover:text-white transition-all duration-200">
