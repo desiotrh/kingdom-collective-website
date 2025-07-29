@@ -12,27 +12,27 @@ export default function Vision() {
         <Navigation />
         
         {/* Hero Section */}
-        <section className="px-40 py-20">
+        <section className="px-4 sm:px-6 md:px-8 lg:px-12 xl:px-40 py-12 sm:py-16 md:py-20">
           <div className="max-w-[960px] mx-auto text-center">
-            <h1 className="text-white text-5xl font-black leading-tight tracking-[-0.033em] mb-6">
+            <h1 className="text-white text-3xl sm:text-4xl md:text-5xl font-black leading-tight tracking-[-0.033em] mb-6">
               Our <span className="text-blue">Vision</span>
             </h1>
-            <p className="text-white text-xl leading-relaxed max-w-3xl mx-auto mb-8">
+            <p className="text-white text-base sm:text-lg md:text-xl leading-relaxed max-w-3xl mx-auto mb-8">
               Kingdom Studios was birthed out of a mandate — not a marketing plan.
             </p>
           </div>
         </section>
 
         {/* Mission Statement Section */}
-        <section className="px-40 py-20 bg-black/30 backdrop-blur-sm">
+        <section className="px-4 sm:px-6 md:px-8 lg:px-12 xl:px-40 py-12 sm:py-16 md:py-20 bg-black/30 backdrop-blur-sm">
           <div className="max-w-[960px] mx-auto">
-            <div className="text-center mb-16">
-              <h2 className="text-white text-4xl font-black leading-tight tracking-[-0.033em] mb-6">
+            <div className="text-center mb-12 sm:mb-16">
+              <h2 className="text-white text-2xl sm:text-3xl md:text-4xl font-black leading-tight tracking-[-0.033em] mb-6">
                 The <span className="text-blue">Mandate</span>
               </h2>
             </div>
 
-            <div className="space-y-8 text-white leading-relaxed text-lg">
+            <div className="space-y-6 sm:space-y-8 text-white leading-relaxed text-base sm:text-lg">
               <p>
                 We believe we are living in a time where boldness, purity, and truth must rise in the digital space, and it&apos;s not enough to just &quot;create content.&quot; We are here to bring Heaven to Earth — to reflect the glory of God through everything we build, say, and share.
               </p>
@@ -49,30 +49,30 @@ export default function Vision() {
         </section>
 
         {/* Dual Mode Section */}
-        <section className="px-40 py-20">
+        <section className="px-4 sm:px-6 md:px-8 lg:px-12 xl:px-40 py-12 sm:py-16 md:py-20">
           <div className="max-w-[960px] mx-auto">
-            <div className="text-center mb-16">
-              <h2 className="text-white text-4xl font-black leading-tight tracking-[-0.033em] mb-6">
+            <div className="text-center mb-12 sm:mb-16">
+              <h2 className="text-white text-2xl sm:text-3xl md:text-4xl font-black leading-tight tracking-[-0.033em] mb-6">
                 Built to <span className="text-blue">Include</span>
               </h2>
-              <p className="text-white text-xl leading-relaxed max-w-3xl mx-auto mb-8">
+              <p className="text-white text-base sm:text-lg md:text-xl leading-relaxed max-w-3xl mx-auto mb-8">
                 We recognize that not everyone who comes here is already walking with Jesus — and that&apos;s okay. That&apos;s why we built a dual-mode experience.
               </p>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12">
               {/* Faith Mode */}
-              <div className="bg-black/20 backdrop-blur-sm border border-gray/30 rounded-xl p-8">
+              <div className="bg-black/20 backdrop-blur-sm border border-gray/30 rounded-xl p-6 sm:p-8">
                 <div className="text-center mb-6">
-                  <div className="text-4xl mb-4">🙏</div>
-                  <h3 className="text-white text-2xl font-bold mb-4">Faith Mode</h3>
+                  <div className="text-3xl sm:text-4xl mb-4">🙏</div>
+                  <h3 className="text-white text-xl sm:text-2xl font-bold mb-4">Faith Mode</h3>
                 </div>
-                <p className="text-white leading-relaxed text-lg">
+                <p className="text-white leading-relaxed text-sm sm:text-base md:text-lg">
                   For those who want to build fully surrendered and Spirit-led, with tools that integrate scripture, spiritual growth checkpoints, prophetic creativity, and reminders to walk in step with the Holy Spirit.
                 </p>
                 <div className="mt-6">
                   <h4 className="text-blue font-bold mb-3">Features Include:</h4>
-                  <ul className="text-white space-y-2">
+                  <ul className="text-white space-y-2 text-sm sm:text-base">
                     <li className="flex items-center">
                       <span className="text-blue mr-2">•</span>
                       Scripture integration
@@ -94,17 +94,17 @@ export default function Vision() {
               </div>
 
               {/* Encouragement Mode */}
-              <div className="bg-black/20 backdrop-blur-sm border border-gray/30 rounded-xl p-8">
+              <div className="bg-black/20 backdrop-blur-sm border border-gray/30 rounded-xl p-6 sm:p-8">
                 <div className="text-center mb-6">
-                  <div className="text-4xl mb-4">✨</div>
-                  <h3 className="text-white text-2xl font-bold mb-4">Encouragement Mode</h3>
+                  <div className="text-3xl sm:text-4xl mb-4">✨</div>
+                  <h3 className="text-white text-xl sm:text-2xl font-bold mb-4">Encouragement Mode</h3>
                 </div>
-                <p className="text-white leading-relaxed text-lg">
+                <p className="text-white leading-relaxed text-sm sm:text-base md:text-lg">
                   Offers the same excellence and strategy, but in a tone that&apos;s uplifting, empowering, and full of truth — designed for those still exploring or rebuilding their relationship with God.
                 </p>
                 <div className="mt-6">
                   <h4 className="text-blue font-bold mb-3">Features Include:</h4>
-                  <ul className="text-white space-y-2">
+                  <ul className="text-white space-y-2 text-sm sm:text-base">
                     <li className="flex items-center">
                       <span className="text-blue mr-2">•</span>
                       Uplifting content suggestions
@@ -129,15 +129,15 @@ export default function Vision() {
         </section>
 
         {/* Purpose Section */}
-        <section className="px-40 py-20 bg-black/30 backdrop-blur-sm">
+        <section className="px-4 sm:px-6 md:px-8 lg:px-12 xl:px-40 py-12 sm:py-16 md:py-20 bg-black/30 backdrop-blur-sm">
           <div className="max-w-[960px] mx-auto">
-            <div className="text-center mb-16">
-              <h2 className="text-white text-4xl font-black leading-tight tracking-[-0.033em] mb-6">
+            <div className="text-center mb-12 sm:mb-16">
+              <h2 className="text-white text-2xl sm:text-3xl md:text-4xl font-black leading-tight tracking-[-0.033em] mb-6">
                 Created for <span className="text-blue">You</span>
               </h2>
             </div>
 
-            <div className="space-y-8 text-white leading-relaxed text-lg">
+            <div className="space-y-6 sm:space-y-8 text-white leading-relaxed text-base sm:text-lg">
               <p>
                 We built this to include, not exclude. To awaken purpose, not just performance. Whether you&apos;re a bold Kingdom warrior or just now discovering that there&apos;s more to life than what culture has sold you — this space was created with you in mind.
               </p>
@@ -147,23 +147,23 @@ export default function Vision() {
               </p>
             </div>
 
-            <div className="mt-12 text-center">
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+            <div className="mt-8 sm:mt-12 text-center">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
                 <div className="text-center">
-                  <div className="text-3xl mb-2">🎯</div>
-                  <h3 className="text-white font-bold">The Called</h3>
+                  <div className="text-2xl sm:text-3xl mb-2">🎯</div>
+                  <h3 className="text-white font-bold text-sm sm:text-base">The Called</h3>
                 </div>
                 <div className="text-center">
-                  <div className="text-3xl mb-2">🤔</div>
-                  <h3 className="text-white font-bold">The Curious</h3>
+                  <div className="text-2xl sm:text-3xl mb-2">🤔</div>
+                  <h3 className="text-white font-bold text-sm sm:text-base">The Curious</h3>
                 </div>
                 <div className="text-center">
-                  <div className="text-3xl mb-2">🎨</div>
-                  <h3 className="text-white font-bold">The Creative</h3>
+                  <div className="text-2xl sm:text-3xl mb-2">🎨</div>
+                  <h3 className="text-white font-bold text-sm sm:text-base">The Creative</h3>
                 </div>
                 <div className="text-center">
-                  <div className="text-3xl mb-2">🙏</div>
-                  <h3 className="text-white font-bold">The Surrendered</h3>
+                  <div className="text-2xl sm:text-3xl mb-2">🙏</div>
+                  <h3 className="text-white font-bold text-sm sm:text-base">The Surrendered</h3>
                 </div>
               </div>
             </div>
@@ -171,19 +171,19 @@ export default function Vision() {
         </section>
 
         {/* CTA Section */}
-        <section className="px-40 py-20">
+        <section className="px-4 sm:px-6 md:px-8 lg:px-12 xl:px-40 py-12 sm:py-16 md:py-20">
           <div className="max-w-[960px] mx-auto text-center">
-            <h2 className="text-white text-4xl font-black leading-tight tracking-[-0.033em] mb-6">
+            <h2 className="text-white text-2xl sm:text-3xl md:text-4xl font-black leading-tight tracking-[-0.033em] mb-6">
               Ready to Join the <span className="text-blue">Movement</span>?
             </h2>
-            <p className="text-white text-xl leading-relaxed max-w-3xl mx-auto mb-8">
+            <p className="text-white text-base sm:text-lg md:text-xl leading-relaxed max-w-3xl mx-auto mb-8">
               Start creating with purpose, sharing with authority, and building what truly matters.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/apps" className="bg-gray text-white px-8 py-4 rounded-full text-lg font-bold hover:bg-blue hover:text-white transition-all duration-200">
+              <Link href="/apps" className="bg-gray text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-bold hover:bg-blue hover:text-white transition-all duration-200">
                 Explore Our Apps
               </Link>
-              <Link href="/features" className="bg-gray text-white px-8 py-4 rounded-full text-lg font-bold hover:bg-gray/90 transition-all duration-200">
+              <Link href="/features" className="bg-gray text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-bold hover:bg-gray/90 transition-all duration-200">
                 See Our Features
               </Link>
             </div>
