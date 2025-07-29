@@ -118,7 +118,7 @@ export default function Footer() {
                 className="text-white hover:text-blue transition-colors duration-200"
               >
                 <Image
-                  src="/instagram-icon.webp"
+                  src="/instagram-icon.png"
                   alt="Instagram"
                   width={24}
                   height={24}
@@ -147,7 +147,7 @@ export default function Footer() {
               </a>
             </div>
             
-            <div className="flex space-x-8">
+            <div className="flex space-x-8 ml-12">
               <Link
                 href="/privacy"
                 className="text-white hover:text-blue transition-colors duration-200 text-sm"
