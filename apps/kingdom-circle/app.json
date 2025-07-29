@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "kingdom-circle",
+    "name": "Kingdom Circle",
     "slug": "kingdom-circle",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -10,7 +10,13 @@
     "newArchEnabled": true,
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.kingdom.circle"
+      "bundleIdentifier": "com.kingdomcollective.circle",
+      "buildNumber": "1",
+      "infoPlist": {
+        "NSCameraUsageDescription": "Kingdom Circle needs camera access to take photos for your profile and community posts.",
+        "NSPhotoLibraryUsageDescription": "Kingdom Circle needs photo library access to import profile pictures and community content.",
+        "NSMicrophoneUsageDescription": "Kingdom Circle needs microphone access for voice messages and audio content."
+      }
     },
     "android": {
       "adaptiveIcon": {
@@ -18,7 +24,13 @@
         "backgroundColor": "#000000"
       },
       "edgeToEdgeEnabled": true,
-      "package": "com.kingdom.circle"
+      "package": "com.kingdomcollective.circle",
+      "versionCode": 1,
+      "permissions": [
+        "android.permission.CAMERA",
+        "android.permission.RECORD_AUDIO",
+        "android.permission.READ_EXTERNAL_STORAGE"
+      ]
     },
     "web": {
       "bundler": "metro",
@@ -34,6 +46,18 @@
           "imageWidth": 200,
           "resizeMode": "contain",
           "backgroundColor": "#000000"
+        }
+      ],
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Allow Kingdom Circle to access your camera for profile photos and community content."
+        }
+      ],
+      [
+        "expo-av",
+        {
+          "microphonePermission": "Allow Kingdom Circle to access your microphone for voice messages."
         }
       ]
     ],

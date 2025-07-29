@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "kingdom-lens",
+    "name": "Kingdom Lens",
     "slug": "kingdom-lens",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -10,7 +10,13 @@
     "newArchEnabled": true,
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.kingdom.lens"
+      "bundleIdentifier": "com.kingdomcollective.lens",
+      "buildNumber": "1",
+      "infoPlist": {
+        "NSCameraUsageDescription": "Kingdom Lens needs camera access to take photos and create content.",
+        "NSPhotoLibraryUsageDescription": "Kingdom Lens needs photo library access to import and save your photos.",
+        "NSPhotoLibraryAddUsageDescription": "Kingdom Lens needs permission to save your edited photos to your photo library."
+      }
     },
     "android": {
       "adaptiveIcon": {
@@ -18,7 +24,13 @@
         "backgroundColor": "#ffffff"
       },
       "edgeToEdgeEnabled": true,
-      "package": "com.kingdom.lens"
+      "package": "com.kingdomcollective.lens",
+      "versionCode": 1,
+      "permissions": [
+        "android.permission.CAMERA",
+        "android.permission.READ_EXTERNAL_STORAGE",
+        "android.permission.WRITE_EXTERNAL_STORAGE"
+      ]
     },
     "web": {
       "bundler": "metro",
@@ -34,6 +46,12 @@
           "imageWidth": 200,
           "resizeMode": "contain",
           "backgroundColor": "#ffffff"
+        }
+      ],
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Allow Kingdom Lens to access your camera to take photos."
         }
       ]
     ],

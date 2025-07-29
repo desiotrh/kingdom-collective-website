@@ -10,7 +10,13 @@
     "newArchEnabled": true,
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.kingdom.voice"
+      "bundleIdentifier": "com.kingdomcollective.voice",
+      "buildNumber": "1",
+      "infoPlist": {
+        "NSMicrophoneUsageDescription": "Kingdom Voice needs microphone access to record your audio content and podcasts.",
+        "NSSpeechRecognitionUsageDescription": "Kingdom Voice uses speech recognition to transcribe your audio recordings into text.",
+        "NSPhotoLibraryUsageDescription": "Kingdom Voice needs photo library access to import images for your audio content."
+      }
     },
     "android": {
       "adaptiveIcon": {
@@ -18,7 +24,13 @@
         "backgroundColor": "#FF6B35"
       },
       "edgeToEdgeEnabled": true,
-      "package": "com.kingdom.voice"
+      "package": "com.kingdomcollective.voice",
+      "versionCode": 1,
+      "permissions": [
+        "android.permission.RECORD_AUDIO",
+        "android.permission.READ_EXTERNAL_STORAGE",
+        "android.permission.WRITE_EXTERNAL_STORAGE"
+      ]
     },
     "web": {
       "bundler": "metro",
@@ -34,6 +46,12 @@
           "imageWidth": 200,
           "resizeMode": "contain",
           "backgroundColor": "#FF6B35"
+        }
+      ],
+      [
+        "expo-av",
+        {
+          "microphonePermission": "Allow Kingdom Voice to access your microphone to record audio content and podcasts."
         }
       ]
     ],

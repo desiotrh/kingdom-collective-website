@@ -15,7 +15,13 @@
     "newArchEnabled": true,
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.kingdom.launchpad"
+      "bundleIdentifier": "com.kingdomcollective.launchpad",
+      "buildNumber": "1",
+      "infoPlist": {
+        "NSCameraUsageDescription": "Kingdom Launchpad needs camera access to take photos for your product mockups and content.",
+        "NSPhotoLibraryUsageDescription": "Kingdom Launchpad needs photo library access to import images for your product content.",
+        "NSPhotoLibraryAddUsageDescription": "Kingdom Launchpad needs permission to save your product images to your photo library."
+      }
     },
     "android": {
       "adaptiveIcon": {
@@ -23,7 +29,13 @@
         "backgroundColor": "#ffffff"
       },
       "edgeToEdgeEnabled": true,
-      "package": "com.kingdom.launchpad"
+      "package": "com.kingdomcollective.launchpad",
+      "versionCode": 1,
+      "permissions": [
+        "android.permission.CAMERA",
+        "android.permission.READ_EXTERNAL_STORAGE",
+        "android.permission.WRITE_EXTERNAL_STORAGE"
+      ]
     },
     "web": {
       "bundler": "metro",
@@ -39,6 +51,12 @@
           "imageWidth": 200,
           "resizeMode": "contain",
           "backgroundColor": "#ffffff"
+        }
+      ],
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Allow Kingdom Launchpad to access your camera for product photos and content creation."
         }
       ]
     ],
