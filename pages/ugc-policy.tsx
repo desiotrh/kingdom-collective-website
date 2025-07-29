@@ -37,7 +37,7 @@ export default function UGCPolicy() {
                 <div>
                   <h2 className="text-white text-xl sm:text-2xl font-bold mb-4">1. What is UGC?</h2>
                   <p className="text-gray-300 text-sm sm:text-base leading-relaxed mb-4">
-                    "User-Generated Content" includes but is not limited to:
+                    &ldquo;User-Generated Content&rdquo; includes but is not limited to:
                   </p>
                   <ul className="text-gray-300 text-sm sm:text-base leading-relaxed list-disc list-inside space-y-2 ml-4">
                     <li>Uploaded photos, videos, and audio (e.g. in Kingdom Lens or Voice)</li>

@@ -31,7 +31,7 @@ export default function Privacy() {
                 <div>
                   <h2 className="text-white text-xl sm:text-2xl font-bold mb-4">1. Introduction</h2>
                   <p className="text-gray-300 text-sm sm:text-base leading-relaxed">
-                    Kingdom Collective ("we," "our," or "us") values your privacy and is committed to protecting your personal information. This Privacy Policy explains how we collect, use, disclose, and safeguard information when you use our services—including our website, mobile applications, and associated tools across our platform.
+                    Kingdom Collective (&ldquo;we,&rdquo; &ldquo;our,&rdquo; or &ldquo;us&rdquo;) values your privacy and is committed to protecting your personal information. This Privacy Policy explains how we collect, use, disclose, and safeguard information when you use our services—including our website, mobile applications, and associated tools across our platform.
                   </p>
                   <p className="text-gray-300 text-sm sm:text-base leading-relaxed mt-4">
                     This policy applies to all apps under Kingdom Collective, including Kingdom Studios, Kingdom Clips, Kingdom Voice, Kingdom Circle, Kingdom Launchpad, and Kingdom Lens.
@@ -216,7 +216,7 @@ export default function Privacy() {
                   </p>
                   <ul className="text-gray-300 text-sm sm:text-base leading-relaxed list-disc list-inside space-y-2 ml-4 mb-4">
                     <li>Posting updates on this page</li>
-                    <li>Updating the "Last Updated" date</li>
+                    <li>Updating the &ldquo;Last Updated&rdquo; date</li>
                     <li>Notifying via email or in-app message (if appropriate)</li>
                   </ul>
                   <p className="text-gray-300 text-sm sm:text-base leading-relaxed">

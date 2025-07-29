@@ -31,7 +31,7 @@ export default function Terms() {
                 <div>
                   <h2 className="text-white text-xl sm:text-2xl font-bold mb-4">1. Acceptance of Terms</h2>
                   <p className="text-gray-300 text-sm sm:text-base leading-relaxed">
-                    By accessing and using any services, products, mobile applications, platforms, or features provided by Kingdom Collective, including Kingdom Studios, Kingdom Clips, Kingdom Voice, Kingdom Circle, Kingdom Launchpad, and Kingdom Lens (collectively, the "Services"), you agree to be bound by these Terms of Service ("Terms"). If you do not agree to these Terms, please do not use the Services.
+                    By accessing and using any services, products, mobile applications, platforms, or features provided by Kingdom Collective, including Kingdom Studios, Kingdom Clips, Kingdom Voice, Kingdom Circle, Kingdom Launchpad, and Kingdom Lens (collectively, the &ldquo;Services&rdquo;), you agree to be bound by these Terms of Service (&ldquo;Terms&rdquo;). If you do not agree to these Terms, please do not use the Services.
                   </p>
                 </div>
 
@@ -207,7 +207,7 @@ export default function Terms() {
                 <div>
                   <h2 className="text-white text-xl sm:text-2xl font-bold mb-4">11. Disclaimers</h2>
                   <p className="text-gray-300 text-sm sm:text-base leading-relaxed mb-4">
-                    All Services are provided "as is." We make no warranties regarding:
+                    All Services are provided &ldquo;as is.&rdquo; We make no warranties regarding:
                   </p>
                   <ul className="text-gray-300 text-sm sm:text-base leading-relaxed list-disc list-inside space-y-2 ml-4 mb-4">
                     <li>Fitness for a particular purpose</li>

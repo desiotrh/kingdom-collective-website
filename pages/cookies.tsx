@@ -30,7 +30,7 @@ export default function Cookies() {
                 
                 <div>
                   <p className="text-gray-300 text-sm sm:text-base leading-relaxed">
-                    This Cookie Policy explains how Kingdom Collective ("we", "us", or "our") uses cookies and similar tracking technologies on our websites, web apps, and mobile platforms.
+                    This Cookie Policy explains how Kingdom Collective (&ldquo;we&rdquo;, &ldquo;us&rdquo;, or &ldquo;our&rdquo;) uses cookies and similar tracking technologies on our websites, web apps, and mobile platforms.
                   </p>
                 </div>
 
