@@ -166,6 +166,24 @@ export default function Footer() {
               >
                 Cookies
               </Link>
+              <Link
+                href="/ugc-policy"
+                className="text-white hover:text-blue transition-colors duration-200 text-sm"
+              >
+                UGC Policy
+              </Link>
+              <Link
+                href="/refund-policy"
+                className="text-white hover:text-blue transition-colors duration-200 text-sm"
+              >
+                Refund Policy
+              </Link>
+              <Link
+                href="/spiritual-disclaimer"
+                className="text-white hover:text-blue transition-colors duration-200 text-sm"
+              >
+                Spiritual Disclaimer
+              </Link>
             </div>
           </div>
         </div>
