@@ -1,0 +1,7 @@
+{
+  "buildCommand": "cd kingdom-website && npm install && npm run build",
+  "outputDirectory": "kingdom-website/out",
+  "framework": "nextjs",
+  "installCommand": "cd kingdom-website && npm install",
+  "devCommand": "cd kingdom-website && npm run dev"
+} 
