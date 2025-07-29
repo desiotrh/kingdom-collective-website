@@ -213,27 +213,36 @@ export default function Contact() {
         <section className="px-40 py-20 bg-black/30 backdrop-blur-sm">
           <div className="max-w-[960px] mx-auto text-center">
             <h2 className="text-white text-4xl font-black leading-tight tracking-[-0.033em] mb-6">
-              Need More <span className="text-blue">Help</span>?
+              Ready to <span className="text-blue">Get Started</span>?
             </h2>
             <p className="text-white text-xl leading-relaxed max-w-3xl mx-auto mb-8">
-              We&apos;re committed to providing you with the support you need to succeed.
+              Explore our apps and start creating with purpose today.
             </p>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
               <div className="text-center">
-                <div className="text-4xl mb-4">📚</div>
-                <h3 className="text-white text-xl font-bold mb-3">Documentation</h3>
-                <p className="text-white">Comprehensive guides and tutorials for all our tools.</p>
+                <div className="text-4xl mb-4">🚀</div>
+                <h3 className="text-white text-xl font-bold mb-3">Explore Our Apps</h3>
+                <p className="text-white">Discover all the tools in the Kingdom Collective suite.</p>
+                <Link href="/apps" className="inline-block mt-4 text-blue hover:text-blue/80 transition-colors duration-200 font-medium">
+                  Browse Apps →
+                </Link>
               </div>
               <div className="text-center">
-                <div className="text-4xl mb-4">🎥</div>
-                <h3 className="text-white text-xl font-bold mb-3">Video Tutorials</h3>
-                <p className="text-white">Step-by-step video guides for every feature.</p>
+                <div className="text-4xl mb-4">💡</div>
+                <h3 className="text-white text-xl font-bold mb-3">Learn Our Vision</h3>
+                <p className="text-white">Understand how we're empowering creators with purpose.</p>
+                <Link href="/vision" className="inline-block mt-4 text-blue hover:text-blue/80 transition-colors duration-200 font-medium">
+                  Our Vision →
+                </Link>
               </div>
               <div className="text-center">
-                <div className="text-4xl mb-4">👥</div>
-                <h3 className="text-white text-xl font-bold mb-3">Community</h3>
-                <p className="text-white">Connect with other creators in our community.</p>
+                <div className="text-4xl mb-4">🛍️</div>
+                <h3 className="text-white text-xl font-bold mb-3">Visit Our Store</h3>
+                <p className="text-white">Find courses, templates, and resources to enhance your journey.</p>
+                <a href="https://desitotrh.com" target="_blank" rel="noopener noreferrer" className="inline-block mt-4 text-blue hover:text-blue/80 transition-colors duration-200 font-medium">
+                  Shop Now →
+                </a>
               </div>
             </div>
           </div>
