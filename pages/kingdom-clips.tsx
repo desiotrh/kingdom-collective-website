@@ -106,7 +106,7 @@ export default function KingdomClips() {
         <Navigation />
         
         {/* Hero Section */}
-        <section className="px-40 py-20">
+        <section className="px-4 sm:px-6 md:px-8 lg:px-12 xl:px-40 py-12 sm:py-16 md:py-20">
           <div className="max-w-[960px] mx-auto text-center">
             <div className="mb-8">
               <Image
@@ -114,24 +114,24 @@ export default function KingdomClips() {
                 alt="Kingdom Clips Logo"
                 width={120}
                 height={120}
-                className="h-30 w-auto rounded-xl mx-auto mb-6"
+                className="h-24 sm:h-30 w-auto rounded-xl mx-auto mb-6"
                 priority
               />
             </div>
-            <h1 className="text-white text-5xl font-black leading-tight tracking-[-0.033em] mb-6">
+            <h1 className="text-white text-3xl sm:text-4xl md:text-5xl font-black leading-tight tracking-[-0.033em] mb-6">
               Kingdom Clips
             </h1>
-            <p className="text-white text-xl leading-relaxed max-w-3xl mx-auto mb-8">
+            <p className="text-white text-base sm:text-lg md:text-xl leading-relaxed max-w-3xl mx-auto mb-8">
               Transform your raw footage into viral content with AI-powered video editing. Create engaging Reels, Shorts, and TikTok videos in minutes, not hours.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button 
                 onClick={() => window.open('https://clips.kingdomcollective.pro', '_blank')}
-                className="bg-gray text-white px-8 py-4 rounded-full text-lg font-bold hover:bg-blue hover:text-white transition-all duration-200"
+                className="bg-gray text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-bold hover:bg-blue hover:text-white transition-all duration-200"
               >
                 Launch Kingdom Clips
               </button>
-              <Link href="#features" className="bg-gray text-white px-8 py-4 rounded-full text-lg font-bold hover:bg-blue hover:text-white transition-all duration-200">
+              <Link href="#features" className="bg-gray text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-bold hover:bg-blue hover:text-white transition-all duration-200">
                 Learn More
               </Link>
             </div>
@@ -139,23 +139,23 @@ export default function KingdomClips() {
         </section>
 
         {/* Features Section */}
-        <section id="features" className="px-40 py-20 bg-black/30 backdrop-blur-sm">
+        <section id="features" className="px-4 sm:px-6 md:px-8 lg:px-12 xl:px-40 py-12 sm:py-16 md:py-20 bg-black/30 backdrop-blur-sm">
           <div className="max-w-[960px] mx-auto">
-            <div className="text-center mb-16">
-              <h2 className="text-white text-4xl font-black leading-tight tracking-[-0.033em] mb-6">
+            <div className="text-center mb-12 sm:mb-16">
+              <h2 className="text-white text-2xl sm:text-3xl md:text-4xl font-black leading-tight tracking-[-0.033em] mb-6">
                 AI-Powered Features
               </h2>
-              <p className="text-white text-base font-normal leading-normal max-w-3xl mx-auto">
+              <p className="text-white text-sm sm:text-base font-normal leading-normal max-w-3xl mx-auto">
                 Everything you need to create viral video content with the power of artificial intelligence.
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
               {features.map((feature, index) => (
                 <div key={index} className="bg-black/20 backdrop-blur-sm border border-gray/30 rounded-xl p-6 hover:bg-black/30 transition-all duration-300">
-                  <div className="text-4xl mb-4">{feature.icon}</div>
-                  <h3 className="text-white text-xl font-bold mb-3">{feature.title}</h3>
-                  <p className="text-white leading-relaxed">{feature.description}</p>
+                  <div className="text-3xl sm:text-4xl mb-4">{feature.icon}</div>
+                  <h3 className="text-white text-lg sm:text-xl font-bold mb-3">{feature.title}</h3>
+                  <p className="text-white text-sm sm:text-base leading-relaxed">{feature.description}</p>
                 </div>
               ))}
             </div>
@@ -163,36 +163,36 @@ export default function KingdomClips() {
         </section>
 
         {/* Pricing Section */}
-        <section className="px-40 py-20">
+        <section className="px-4 sm:px-6 md:px-8 lg:px-12 xl:px-40 py-12 sm:py-16 md:py-20">
           <div className="max-w-[960px] mx-auto">
-            <div className="text-center mb-16">
-              <h2 className="text-white text-4xl font-black leading-tight tracking-[-0.033em] mb-6">
+            <div className="text-center mb-12 sm:mb-16">
+              <h2 className="text-white text-2xl sm:text-3xl md:text-4xl font-black leading-tight tracking-[-0.033em] mb-6">
                 Choose Your Plan
               </h2>
-              <p className="text-white text-base font-normal leading-normal max-w-3xl mx-auto mb-4">
+              <p className="text-white text-sm sm:text-base font-normal leading-normal max-w-3xl mx-auto mb-4">
                 Start creating viral content today. Scale as you grow.
               </p>
               <div className="bg-blue/20 border border-blue/30 rounded-xl p-4 max-w-2xl mx-auto">
-                <p className="text-blue font-bold text-lg">🎉 Start Free Today!</p>
-                <p className="text-white text-sm">All paid plans include a 14-day free trial. No credit card required to start.</p>
+                <p className="text-blue font-bold text-base sm:text-lg">🎉 Start Free Today!</p>
+                <p className="text-white text-xs sm:text-sm">All paid plans include a 14-day free trial. No credit card required to start.</p>
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 max-w-4xl mx-auto">
               {pricingTiers.map((tier, index) => (
-                <div key={index} className={`relative bg-black/20 backdrop-blur-sm rounded-xl p-8 ${
+                <div key={index} className={`relative bg-black/20 backdrop-blur-sm rounded-xl p-6 sm:p-8 ${
                   tier.popular ? 'bg-black/30' : ''
                 }`}>
                   {tier.popular && (
                     <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                      <span className="bg-blue text-navy px-4 py-2 rounded-full text-sm font-bold">
+                      <span className="bg-blue text-navy px-3 sm:px-4 py-2 rounded-full text-xs sm:text-sm font-bold">
                         Most Popular
                       </span>
                     </div>
                   )}
                   {tier.trial && !tier.popular && (
                     <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                      <span className="bg-blue text-white px-4 py-2 rounded-full text-sm font-bold">
+                      <span className="bg-blue text-white px-3 sm:px-4 py-2 rounded-full text-xs sm:text-sm font-bold">
                         14-Day Free Trial
                       </span>
                     </div>
