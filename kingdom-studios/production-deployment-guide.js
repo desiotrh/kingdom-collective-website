@@ -217,7 +217,7 @@ EXPO_PUBLIC_ENVIRONMENT=production
 \`\`\`
 NODE_ENV=production
 PORT=3001
-MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/kingdom-studios
+MONGODB_URI=mongodb+srv://[username]:[password]@[cluster].mongodb.net/[database]
 JWT_SECRET=your-super-secure-jwt-secret
 OPENAI_API_KEY=your_openai_api_key
 CORS_ORIGIN=https://your-frontend-domain.com

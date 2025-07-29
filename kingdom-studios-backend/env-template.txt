@@ -11,7 +11,7 @@ DEBUG=false
 # ==============================================
 # DATABASE CONFIGURATION (REQUIRED)
 # ==============================================
-MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/kingdom-studios
+MONGODB_URI=mongodb+srv://[username]:[password]@[cluster].mongodb.net/[database]
 REDIS_HOST=your_redis_host
 REDIS_PORT=6379
 REDIS_PASSWORD=your_redis_password

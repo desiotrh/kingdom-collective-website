@@ -138,7 +138,7 @@
 - [ ] Get connection string
 - [ ] Add to backend `.env`:
   ```
-  MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/kingdom-studios
+  MONGODB_URI=mongodb+srv://[username]:[password]@[cluster].mongodb.net/[database]
   ```
 
 ### **Firebase Firestore**
