@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Link from 'next/link';
 import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
 import BackgroundVideo from '../components/BackgroundVideo';
@@ -231,7 +232,7 @@ export default function Contact() {
               <div className="text-center">
                 <div className="text-4xl mb-4">💡</div>
                 <h3 className="text-white text-xl font-bold mb-3">Learn Our Vision</h3>
-                <p className="text-white">Understand how we're empowering creators with purpose.</p>
+                <p className="text-white">Understand how we&apos;re empowering creators with purpose.</p>
                 <Link href="/vision" className="inline-block mt-4 text-blue hover:text-blue/80 transition-colors duration-200 font-medium">
                   Our Vision →
                 </Link>
