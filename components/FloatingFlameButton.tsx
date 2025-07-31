@@ -23,7 +23,7 @@ export default function FloatingFlameButton({ onToggle, isOpen, currentPage }: F
       >
         {/* Burning Bush Flame */}
         <div className="relative z-10 w-12 h-12 flex items-center justify-center">
-          {/* Flame icon removed */}
+          <Lottie animationData={flameAnimation} loop autoplay />
         </div>
 
         {/* Status indicator */}
