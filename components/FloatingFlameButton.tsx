@@ -24,16 +24,16 @@ export default function FloatingFlameButton({ onToggle, isOpen, currentPage }: F
   };
 
   return (
-    <div className="fixed right-8 top-1/2 transform -translate-y-1/2 z-[9999]">
+    <div className="fixed right-4 top-1/2 transform -translate-y-1/2 z-[9999]">
       <button
         onClick={onToggle}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
-        className="relative w-20 h-20 bg-transparent rounded-full flex items-center justify-center hover:scale-110 transition-all duration-300"
+        className="relative w-24 h-24 bg-transparent rounded-full flex items-center justify-center hover:scale-110 transition-all duration-300"
       >
         {/* Burning Bush Flame */}
-        <div className="relative z-10 w-12 h-12 flex items-center justify-center">
-          {/* Fallback SVG flame - always visible */}
+        <div className="relative z-10 w-20 h-20 flex items-center justify-center">
+          {/* Better SVG flame - always visible */}
           <svg 
             className="w-full h-full"
             viewBox="0 0 100 100" 
@@ -41,16 +41,37 @@ export default function FloatingFlameButton({ onToggle, isOpen, currentPage }: F
             xmlns="http://www.w3.org/2000/svg"
           >
             <defs>
-              <radialGradient id="flameGradient" cx="50%" cy="50%" r="50%">
+              <radialGradient id="flameGradient" cx="50%" cy="30%" r="70%">
                 <stop offset="0%" stopColor="#ff6b35" />
-                <stop offset="50%" stopColor="#f7931e" />
-                <stop offset="100%" stopColor="#1e3a8a" />
+                <stop offset="30%" stopColor="#f7931e" />
+                <stop offset="60%" stopColor="#1e3a8a" />
+                <stop offset="100%" stopColor="#0f172a" />
               </radialGradient>
+              <filter id="glow">
+                <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                <feMerge> 
+                  <feMergeNode in="coloredBlur"/>
+                  <feMergeNode in="SourceGraphic"/>
+                </feMerge>
+              </filter>
             </defs>
+            {/* Main flame */}
             <path 
-              d="M50 10 C60 20, 70 30, 50 50 C30 30, 40 20, 50 10 Z" 
+              d="M50 5 C60 15, 70 25, 65 45 C70 35, 75 25, 50 5 Z M50 5 C40 15, 30 25, 35 45 C30 35, 25 25, 50 5 Z" 
               fill="url(#flameGradient)"
+              filter="url(#glow)"
               className="animate-pulse"
+            />
+            {/* Inner flame */}
+            <path 
+              d="M50 10 C55 20, 60 30, 58 40 C60 35, 62 25, 50 10 Z M50 10 C45 20, 40 30, 42 40 C40 35, 38 25, 50 10 Z" 
+              fill="#ff8c42"
+              opacity="0.8"
+            />
+            {/* Flame tip */}
+            <path 
+              d="M50 0 C52 5, 54 10, 50 15 C46 10, 48 5, 50 0 Z" 
+              fill="#ff6b35"
             />
           </svg>
           
