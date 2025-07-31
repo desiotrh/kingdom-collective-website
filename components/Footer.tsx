@@ -96,7 +96,7 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className="mt-8 pt-4 border-t border-gray flex flex-col space-y-4 md:flex-row md:justify-between md:items-center">
           <p className="text-white text-sm text-center md:text-left">
-            © 2024 Kingdom Collective. All rights reserved.
+            © 2025 Kingdom Collective. All rights reserved.
           </p>
           
           {/* Social Media Icons */}

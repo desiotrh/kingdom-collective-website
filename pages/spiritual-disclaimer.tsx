@@ -17,7 +17,7 @@ export default function SpiritualDisclaimer() {
               Spiritual & AI Disclaimer
             </h1>
             <p className="text-white text-base sm:text-lg md:text-xl font-normal leading-relaxed px-4">
-              Last Updated: December 2024
+              Last Updated: December 2025
             </p>
           </div>
         </section>

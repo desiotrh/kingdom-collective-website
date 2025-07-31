@@ -8,34 +8,34 @@ import BackgroundVideo from '../components/BackgroundVideo';
 export default function KingdomVoice() {
   const features = [
     {
-      title: 'Healing Journaling',
-      description: 'Guided journaling prompts designed for emotional healing and spiritual growth.',
-      icon: '💙'
+      title: 'Professional Audio Recording',
+      description: 'High-quality voice recording with noise reduction and professional audio enhancement.',
+      icon: '🎙️'
     },
     {
-      title: 'Voice Recognition',
-      description: 'Transform your thoughts into text with advanced voice-to-text technology.',
-      icon: '🎤'
+      title: 'AI Voice-to-Text',
+      description: 'Automatically transcribe your recordings into text with advanced AI technology.',
+      icon: '📝'
     },
     {
-      title: 'Holy Spirit Guidance',
-      description: 'Spirit-led prompts and insights to deepen your spiritual journey.',
-      icon: '✨'
+      title: 'Podcast Episode Builder',
+      description: 'Organize your audio content into professional podcast episodes with easy editing.',
+      icon: '🎧'
     },
     {
-      title: 'Emotional Analytics',
-      description: 'Track your emotional patterns and growth over time with detailed insights.',
-      icon: '📈'
+      title: 'Audio Editing Tools',
+      description: 'Trim, enhance, and polish your recordings with professional editing features.',
+      icon: '✂️'
     },
     {
-      title: 'Community Support',
-      description: 'Connect with others on similar healing journeys in a safe, supportive environment.',
-      icon: '🤝'
+      title: 'Content Library',
+      description: 'Store and organize all your audio creations in a searchable content library.',
+      icon: '📚'
     },
     {
-      title: 'Privacy & Security',
-      description: 'Your thoughts and feelings are protected with enterprise-grade security.',
-      icon: '🔒'
+      title: 'Export & Share',
+      description: 'Easily share your audio content across platforms with one-click distribution.',
+      icon: '🚀'
     }
   ];
 
@@ -46,9 +46,9 @@ export default function KingdomVoice() {
       period: '/month',
       features: [
         'Basic audio recording tools',
-        '2 episodes per month',
+        '2 podcast episodes per month',
         'Standard audio templates',
-        'Basic AI audio enhancement',
+        'Basic AI transcription',
         'Community support',
         '1GB storage',
         '7-day free trial of Pro features'
@@ -62,9 +62,9 @@ export default function KingdomVoice() {
       period: '/month',
       features: [
         'Everything in Free',
-        'Unlimited episodes',
+        'Unlimited podcast episodes',
         'Premium audio templates',
-        'Advanced AI audio enhancement',
+        'Advanced AI transcription',
         'Professional audio editing',
         'Custom branding',
         'Distribution to major platforms',
@@ -122,7 +122,7 @@ export default function KingdomVoice() {
               Kingdom Voice
             </h1>
             <p className="text-white text-base sm:text-lg md:text-xl leading-relaxed max-w-3xl mx-auto mb-8">
-              Your sacred space for healing, journaling, and Holy Spirit-led expression. Transform your thoughts into healing words and find your authentic voice.
+              Your complete audio content creation studio. Record, transcribe, and share your voice with the world. Perfect for podcasters, content creators, and anyone wanting to capture their thoughts through audio.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button 
@@ -143,10 +143,10 @@ export default function KingdomVoice() {
           <div className="max-w-[960px] mx-auto">
             <div className="text-center mb-12 sm:mb-16">
               <h2 className="text-white text-2xl sm:text-3xl md:text-4xl font-black leading-tight tracking-[-0.033em] mb-6">
-                Healing Features
+                Audio Creation Features
               </h2>
               <p className="text-white text-sm sm:text-base font-normal leading-normal max-w-3xl mx-auto">
-                Everything you need to heal, grow, and find your authentic voice.
+                Everything you need to create professional audio content and share your voice with the world.
               </p>
             </div>
 
@@ -167,10 +167,10 @@ export default function KingdomVoice() {
           <div className="max-w-[960px] mx-auto">
             <div className="text-center mb-12 sm:mb-16">
               <h2 className="text-white text-2xl sm:text-3xl md:text-4xl font-black leading-tight tracking-[-0.033em] mb-6">
-                Choose Your Journey
+                Choose Your Plan
               </h2>
               <p className="text-white text-sm sm:text-base font-normal leading-normal max-w-3xl mx-auto mb-4">
-                Start your healing journey today. Begin with our free plan and upgrade as you grow.
+                Start creating audio content today. Begin with our free plan and upgrade as you grow.
               </p>
               <div className="bg-blue/20 border border-blue/30 rounded-xl p-4 max-w-2xl mx-auto">
                 <p className="text-blue font-bold text-base sm:text-lg">🎉 Start Free Today!</p>

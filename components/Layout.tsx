@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Head from 'next/head';
+import FloatingFlameButton from './FloatingFlameButton';
+import EnhancedChatWindow from './EnhancedChatWindow';
 
 interface LayoutProps {
     children: React.ReactNode;
@@ -8,6 +10,24 @@ interface LayoutProps {
 }
 
 export default function Layout({ children, title = 'Kingdom Collective', description = 'Create with Purpose. Share with Authority. Build What Matters.' }: LayoutProps) {
+    const [isChatOpen, setIsChatOpen] = useState(false);
+    const [currentPage, setCurrentPage] = useState('/');
+
+    const handleToggleChat = () => {
+        setIsChatOpen(!isChatOpen);
+    };
+
+    const handleCloseChat = () => {
+        setIsChatOpen(false);
+    };
+
+    // Update current page based on window location
+    React.useEffect(() => {
+        if (typeof window !== 'undefined') {
+            setCurrentPage(window.location.pathname);
+        }
+    }, []);
+
     return (
         <>
             <Head>
@@ -39,6 +59,21 @@ export default function Layout({ children, title = 'Kingdom Collective', descrip
             
             <div className="min-h-screen bg-gradient-to-br from-kingdom-dark via-kingdom-darker to-kingdom-navy">
                 {children}
+                
+                {/* Enhanced Sales Bot */}
+                <FloatingFlameButton 
+                    onClick={handleToggleChat}
+                    isActive={isChatOpen}
+                    tooltip="Chat with our AI Assistant"
+                />
+                
+                {isChatOpen && (
+                    <EnhancedChatWindow
+                        isOpen={isChatOpen}
+                        onClose={handleCloseChat}
+                        currentPage={currentPage}
+                    />
+                )}
             </div>
         </>
     );
