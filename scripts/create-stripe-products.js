@@ -1,8 +1,13 @@
 const Stripe = require('stripe');
 require('dotenv').config({ path: '.env.local' });
 
-// Set the Stripe secret key directly
-const STRIPE_SECRET_KEY = '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';
+// Use environment variable for Stripe secret key
+const STRIPE_SECRET_KEY = process.env.STRIPE_SECRET_KEY;
+
+if (!STRIPE_SECRET_KEY) {
+  console.error('❌ STRIPE_SECRET_KEY is not set in environment variables');
+  process.exit(1);
+}
 
 console.log('🔍 Debug: Using Stripe secret key:', STRIPE_SECRET_KEY ? 'SET' : 'NOT SET');
 
@@ -10,215 +15,190 @@ const stripe = new Stripe(STRIPE_SECRET_KEY, {
   apiVersion: '2023-10-16',
 });
 
-// AI Bot Products
+// Bot products to create
 const botProducts = [
   {
     name: 'Sales Assistant Bot',
-    description: 'Advanced AI sales assistant for lead qualification and conversion',
+    description: 'AI-powered sales assistant for lead qualification and customer engagement',
     price: 29900, // $299.00 in cents
-    descriptiveId: 'prod_sales_assistant_bot',
-    descriptivePriceId: 'price_sales_assistant_bot',
-    metadata: { type: 'bot', category: 'sales' }
+    productId: 'sales_assistant_bot',
+    priceId: 'price_sales_assistant_bot'
   },
   {
     name: 'Lead Generation Bot',
-    description: 'AI-powered lead generation and qualification system',
-    price: 24900, // $249.00 in cents
-    descriptiveId: 'prod_lead_generation_bot',
-    descriptivePriceId: 'price_lead_generation_bot',
-    metadata: { type: 'bot', category: 'marketing' }
-  },
-  {
-    name: 'Onboarding Bot',
-    description: 'Automated customer onboarding and training system',
-    price: 19900, // $199.00 in cents
-    descriptiveId: 'prod_onboarding_bot',
-    descriptivePriceId: 'price_onboarding_bot',
-    metadata: { type: 'bot', category: 'customer-success' }
+    description: 'Automated lead generation and qualification system',
+    price: 39900, // $399.00 in cents
+    productId: 'lead_generation_bot',
+    priceId: 'price_lead_generation_bot'
   },
   {
     name: 'Customer Support Bot',
-    description: '24/7 AI customer support and ticket management',
-    price: 34900, // $349.00 in cents
-    descriptiveId: 'prod_customer_support_bot',
-    descriptivePriceId: 'price_customer_support_bot',
-    metadata: { type: 'bot', category: 'support' }
+    description: '24/7 customer support and FAQ automation',
+    price: 24900, // $249.00 in cents
+    productId: 'customer_support_bot',
+    priceId: 'price_customer_support_bot'
   },
   {
     name: 'Faith Bot',
-    description: 'Spiritual guidance and faith-based community AI assistant',
-    price: 17900, // $179.00 in cents
-    descriptiveId: 'prod_faith_bot',
-    descriptivePriceId: 'price_faith_bot',
-    metadata: { type: 'bot', category: 'faith' }
-  },
-  {
-    name: 'Course Explainer Bot',
-    description: 'AI-powered course content explanation and learning assistant',
-    price: 27900, // $279.00 in cents
-    descriptiveId: 'prod_course_explainer_bot',
-    descriptivePriceId: 'price_course_explainer_bot',
-    metadata: { type: 'bot', category: 'education' }
-  },
-  {
-    name: 'Testimonial Bot',
-    description: 'Automated testimonial collection and management system',
-    price: 15900, // $159.00 in cents
-    descriptiveId: 'prod_testimonial_bot',
-    descriptivePriceId: 'price_testimonial_bot',
-    metadata: { type: 'bot', category: 'marketing' }
-  },
-  {
-    name: 'Job Application Bot',
-    description: 'AI-powered job application screening and candidate management',
-    price: 22900, // $229.00 in cents
-    descriptiveId: 'prod_job_application_bot',
-    descriptivePriceId: 'price_job_application_bot',
-    metadata: { type: 'bot', category: 'hr' }
+    description: 'Spiritual guidance and faith-based conversation AI',
+    price: 19900, // $199.00 in cents
+    productId: 'faith_bot',
+    priceId: 'price_faith_bot'
   },
   {
     name: 'Enhanced Sales Bot',
-    description: 'Premium AI sales assistant with advanced analytics and CRM integration',
-    price: 39900, // $399.00 in cents
-    descriptiveId: 'prod_enhanced_sales_bot',
-    descriptivePriceId: 'price_enhanced_sales_bot',
-    metadata: { type: 'bot', category: 'sales' }
+    description: 'Advanced sales automation with CRM integration',
+    price: 49900, // $499.00 in cents
+    productId: 'enhanced_sales_bot',
+    priceId: 'price_enhanced_sales_bot'
   },
   {
     name: 'Appointment Booking Bot',
     description: 'Automated appointment scheduling and calendar management',
-    price: 19900, // $199.00 in cents
-    descriptiveId: 'prod_appointment_booking_bot',
-    descriptivePriceId: 'price_appointment_booking_bot',
-    metadata: { type: 'bot', category: 'scheduling' }
+    price: 34900, // $349.00 in cents
+    productId: 'appointment_booking_bot',
+    priceId: 'price_appointment_booking_bot'
   },
   {
     name: 'FAQ & Knowledge Base Bot',
-    description: 'AI-powered FAQ system with knowledge base management',
-    price: 17900, // $179.00 in cents
-    descriptiveId: 'prod_faq_knowledge_base_bot',
-    descriptivePriceId: 'price_faq_knowledge_base_bot',
-    metadata: { type: 'bot', category: 'support' }
+    description: 'Intelligent FAQ system with knowledge base management',
+    price: 19900, // $199.00 in cents
+    productId: 'faq_knowledge_bot',
+    priceId: 'price_faq_knowledge_bot'
   },
   {
     name: 'Event Management Bot',
-    description: 'Complete event planning and management AI assistant',
-    price: 29900, // $299.00 in cents
-    descriptiveId: 'prod_event_management_bot',
-    descriptivePriceId: 'price_event_management_bot',
-    metadata: { type: 'bot', category: 'events' }
+    description: 'Event planning and management automation',
+    price: 39900, // $399.00 in cents
+    productId: 'event_management_bot',
+    priceId: 'price_event_management_bot'
   },
   {
     name: 'Inventory Management Bot',
-    description: 'AI-powered inventory tracking and management system',
-    price: 24900, // $249.00 in cents
-    descriptiveId: 'prod_inventory_management_bot',
-    descriptivePriceId: 'price_inventory_management_bot',
-    metadata: { type: 'bot', category: 'retail' }
+    description: 'Real-time inventory tracking and management',
+    price: 29900, // $299.00 in cents
+    productId: 'inventory_management_bot',
+    priceId: 'price_inventory_management_bot'
   },
   {
     name: 'Social Media Management Bot',
-    description: 'Automated social media content creation and scheduling',
-    price: 27900, // $279.00 in cents
-    descriptiveId: 'prod_social_media_management_bot',
-    descriptivePriceId: 'price_social_media_management_bot',
-    metadata: { type: 'bot', category: 'marketing' }
+    description: 'Automated social media posting and engagement',
+    price: 24900, // $249.00 in cents
+    productId: 'social_media_bot',
+    priceId: 'price_social_media_bot'
+  },
+  {
+    name: 'Course Explainer Bot',
+    description: 'Educational content delivery and course management',
+    price: 19900, // $199.00 in cents
+    productId: 'course_explainer_bot',
+    priceId: 'price_course_explainer_bot'
+  },
+  {
+    name: 'Testimonial Bot',
+    description: 'Automated testimonial collection and management',
+    price: 14900, // $149.00 in cents
+    productId: 'testimonial_bot',
+    priceId: 'price_testimonial_bot'
+  },
+  {
+    name: 'Job Application Bot',
+    description: 'Automated job application processing and screening',
+    price: 29900, // $299.00 in cents
+    productId: 'job_application_bot',
+    priceId: 'price_job_application_bot'
+  },
+  {
+    name: 'Onboarding Bot',
+    description: 'Automated customer and employee onboarding',
+    price: 19900, // $199.00 in cents
+    productId: 'onboarding_bot',
+    priceId: 'price_onboarding_bot'
   }
 ];
 
-// Add-on Products
+// Add-on products to create
 const addOnProducts = [
   {
     name: 'Custom Branding',
-    description: 'Custom colors, logo, and brand integration',
+    description: 'Custom colors, logo, and brand integration for your AI bot',
     price: 5000, // $50.00 in cents
-    descriptiveId: 'prod_custom_branding',
-    descriptivePriceId: 'price_custom_branding',
-    metadata: { type: 'addon', category: 'customization' }
+    productId: 'custom_branding_addon',
+    priceId: 'price_custom_branding_addon'
   },
   {
     name: 'VoiceBot Integration',
     description: 'Kingdom Voice integration for voice-enabled interactions',
     price: 7500, // $75.00 in cents
-    descriptiveId: 'prod_voicebot_integration',
-    descriptivePriceId: 'price_voicebot_integration',
-    metadata: { type: 'addon', category: 'integration' }
+    productId: 'voicebot_integration_addon',
+    priceId: 'price_voicebot_integration_addon'
   },
   {
     name: 'Dual Tone Toggle',
     description: 'Faith + Marketplace tone switching capability',
     price: 4000, // $40.00 in cents
-    descriptiveId: 'prod_dual_tone_toggle',
-    descriptivePriceId: 'price_dual_tone_toggle',
-    metadata: { type: 'addon', category: 'customization' }
+    productId: 'dual_tone_toggle_addon',
+    priceId: 'price_dual_tone_toggle_addon'
   },
   {
     name: 'Memory Engine',
     description: 'Custom trained FAQ and conversation memory system',
     price: 12500, // $125.00 in cents
-    descriptiveId: 'prod_memory_engine',
-    descriptivePriceId: 'price_memory_engine',
-    metadata: { type: 'addon', category: 'ai' }
+    productId: 'memory_engine_addon',
+    priceId: 'price_memory_engine_addon'
   },
   {
     name: 'Embed Service',
     description: 'Professional installation and embedding service',
     price: 6000, // $60.00 in cents
-    descriptiveId: 'prod_embed_service',
-    descriptivePriceId: 'price_embed_service',
-    metadata: { type: 'addon', category: 'service' }
+    productId: 'embed_service_addon',
+    priceId: 'price_embed_service_addon'
   },
   {
     name: 'Basic Analytics',
     description: 'Google Tag, Zapier, and analytics integration',
     price: 10000, // $100.00 in cents
-    descriptiveId: 'prod_basic_analytics',
-    descriptivePriceId: 'price_basic_analytics',
-    metadata: { type: 'addon', category: 'analytics' }
+    productId: 'basic_analytics_addon',
+    priceId: 'price_basic_analytics_addon'
   },
   {
     name: 'Legal & Compliance',
     description: 'Legal disclaimers and compliance documentation',
     price: 3000, // $30.00 in cents
-    descriptiveId: 'prod_legal_compliance',
-    descriptivePriceId: 'price_legal_compliance',
-    metadata: { type: 'addon', category: 'legal' }
+    productId: 'legal_compliance_addon',
+    priceId: 'price_legal_compliance_addon'
   },
   {
     name: 'Stripe/Zapier Setup',
     description: 'Payment processor and automation setup service',
     price: 12500, // $125.00 in cents
-    descriptiveId: 'prod_stripe_zapier_setup',
-    descriptivePriceId: 'price_stripe_zapier_setup',
-    metadata: { type: 'addon', category: 'integration' }
+    productId: 'stripe_zapier_setup_addon',
+    priceId: 'price_stripe_zapier_setup_addon'
   }
 ];
 
-// Bundle Products
+// Bundle products to create
 const bundleProducts = [
   {
-    name: 'Sales Suite',
-    description: 'Complete sales automation suite: Sales Assistant + Lead Generation + Enhanced Sales',
+    name: 'Starter Bot Bundle',
+    description: 'Perfect starter package with 3 essential bots',
     price: 79900, // $799.00 in cents
-    descriptiveId: 'prod_sales_suite',
-    descriptivePriceId: 'price_sales_suite',
-    metadata: { type: 'bundle', category: 'sales', bots: 'sales-assistant,lead-generation,enhanced-sales' }
+    productId: 'starter_bot_bundle',
+    priceId: 'price_starter_bot_bundle'
   },
   {
-    name: 'Support Suite',
-    description: 'Complete customer support suite: Customer Support + Onboarding',
-    price: 54900, // $549.00 in cents
-    descriptiveId: 'prod_support_suite',
-    descriptivePriceId: 'price_support_suite',
-    metadata: { type: 'bundle', category: 'support', bots: 'customer-support,onboarding' }
+    name: 'Professional Bot Bundle',
+    description: 'Complete business automation with 5 premium bots',
+    price: 149900, // $1,499.00 in cents
+    productId: 'professional_bot_bundle',
+    priceId: 'price_professional_bot_bundle'
   },
   {
-    name: 'Complete Business Suite',
-    description: 'Full business automation: Sales + Support + Marketing + HR',
-    price: 149900, // $1499.00 in cents
-    descriptiveId: 'prod_complete_business_suite',
-    descriptivePriceId: 'price_complete_business_suite',
-    metadata: { type: 'bundle', category: 'business', bots: 'sales-assistant,lead-generation,customer-support,onboarding,testimonial' }
+    name: 'Enterprise Bot Suite',
+    description: 'Full enterprise solution with all bots and premium add-ons',
+    price: 299900, // $2,999.00 in cents
+    productId: 'enterprise_bot_suite',
+    priceId: 'price_enterprise_bot_suite'
   }
 ];
 
@@ -228,33 +208,27 @@ async function createProduct(productData) {
     const product = await stripe.products.create({
       name: productData.name,
       description: productData.description,
-      metadata: productData.metadata,
-      images: ['https://kingdomcollective.com/logo.png'], // Replace with your logo URL
+      images: ['https://kingdomcollective.com/logo.png'],
     });
 
-    // Create the price for the product
+    // Create the price
     const price = await stripe.prices.create({
       product: product.id,
       unit_amount: productData.price,
       currency: 'usd',
-      metadata: {
-        ...productData.metadata,
-        product_id: product.id
-      }
     });
 
     console.log(`✅ Created: ${productData.name}`);
     console.log(`   Product ID: ${product.id}`);
     console.log(`   Price ID: ${price.id}`);
-    console.log(`   Descriptive ID: ${productData.descriptiveId}`);
     console.log(`   Price: $${(productData.price / 100).toFixed(2)}`);
     console.log('');
 
     return {
       productId: product.id,
       priceId: price.id,
-      descriptiveId: productData.descriptiveId,
-      descriptivePriceId: productData.descriptivePriceId,
+      descriptiveId: productData.productId,
+      descriptivePriceId: productData.priceId,
       name: productData.name,
       price: productData.price
     };
@@ -274,7 +248,7 @@ async function createAllProducts() {
   };
 
   // Create bot products
-  console.log('📦 Creating AI Bot Products...');
+  console.log('🤖 Creating Bot Products...');
   for (const bot of botProducts) {
     const result = await createProduct(bot);
     if (result) results.bots.push(result);
@@ -298,31 +272,34 @@ async function createAllProducts() {
   console.log('\n📝 Generating configuration file...');
   const config = {
     bots: results.bots.reduce((acc, bot) => {
-      acc[bot.name.toLowerCase().replace(/\s+/g, '-')] = {
+      acc[bot.descriptiveId] = {
         productId: bot.productId,
         priceId: bot.priceId,
         descriptiveId: bot.descriptiveId,
         descriptivePriceId: bot.descriptivePriceId,
+        name: bot.name,
         price: bot.price / 100
       };
       return acc;
     }, {}),
     addons: results.addons.reduce((acc, addon) => {
-      acc[addon.name.toLowerCase().replace(/\s+/g, '-')] = {
+      acc[addon.descriptiveId] = {
         productId: addon.productId,
         priceId: addon.priceId,
         descriptiveId: addon.descriptiveId,
         descriptivePriceId: addon.descriptivePriceId,
+        name: addon.name,
         price: addon.price / 100
       };
       return acc;
     }, {}),
     bundles: results.bundles.reduce((acc, bundle) => {
-      acc[bundle.name.toLowerCase().replace(/\s+/g, '-')] = {
+      acc[bundle.descriptiveId] = {
         productId: bundle.productId,
         priceId: bundle.priceId,
         descriptiveId: bundle.descriptiveId,
         descriptivePriceId: bundle.descriptivePriceId,
+        name: bundle.name,
         price: bundle.price / 100
       };
       return acc;
@@ -331,9 +308,9 @@ async function createAllProducts() {
 
   console.log('\n✅ All products created successfully!');
   console.log(`📊 Summary:`);
-  console.log(`   - ${results.bots.length} AI Bots`);
-  console.log(`   - ${results.addons.length} Add-ons`);
-  console.log(`   - ${results.bundles.length} Bundles`);
+  console.log(`   - ${results.bots.length} Bot Products`);
+  console.log(`   - ${results.addons.length} Add-on Products`);
+  console.log(`   - ${results.bundles.length} Bundle Products`);
   
   console.log('\n📋 Configuration:');
   console.log(JSON.stringify(config, null, 2));
@@ -352,9 +329,9 @@ if (require.main === module) {
     .then(() => {
       console.log('\n🎉 Stripe products setup complete!');
       console.log('Next steps:');
-      console.log('1. Update your checkout system to use these product IDs');
-      console.log('2. Set up webhook handling for purchase events');
-      console.log('3. Configure Beacons email templates with these product IDs');
+      console.log('1. Update config/stripe-products.ts with the generated IDs');
+      console.log('2. Test the checkout integration');
+      console.log('3. Deploy to production');
     })
     .catch(error => {
       console.error('❌ Script failed:', error);
