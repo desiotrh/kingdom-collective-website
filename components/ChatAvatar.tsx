@@ -12,10 +12,10 @@ export default function ChatAvatar({ tone }: ChatAvatarProps) {
     <div className="w-14 h-14 flex items-center justify-center">
       <Image
         src="/kingdom-flame-avatar.png"
-        alt="Kingdom Flame"
+        alt="Holy Flame"
         width={40}
         height={40}
-        className="animate-flame-flicker"
+        className="flame w-10 h-10"
       />
     </div>
   );

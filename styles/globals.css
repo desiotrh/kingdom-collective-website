@@ -131,30 +131,19 @@
 
 /* Realistic flame flicker animation */
 @keyframes flameFlicker {
-  0% {
+  0%, 100% {
     transform: scale(1) rotate(0deg);
-    filter: drop-shadow(0 0 8px #facc15) drop-shadow(0 0 16px #3b82f6);
-  }
-  25% {
-    transform: scale(1.02) rotate(0.5deg);
-    filter: drop-shadow(0 0 10px #facc15) drop-shadow(0 0 18px #3b82f6);
+    filter: drop-shadow(0 0 6px #facc15);
   }
   50% {
-    transform: scale(1.05) rotate(-0.5deg);
-    filter: drop-shadow(0 0 12px #f97316) drop-shadow(0 0 20px #3b82f6);
-  }
-  75% {
-    transform: scale(1.03) rotate(0.3deg);
-    filter: drop-shadow(0 0 9px #facc15) drop-shadow(0 0 17px #3b82f6);
-  }
-  100% {
-    transform: scale(1) rotate(0deg);
-    filter: drop-shadow(0 0 8px #facc15) drop-shadow(0 0 16px #3b82f6);
+    transform: scale(1.05) rotate(-1deg);
+    filter: drop-shadow(0 0 12px #f97316);
   }
 }
 
-.animate-flame-flicker {
-  animation: flameFlicker 2s ease-in-out infinite;
+.flame {
+  animation: flameFlicker 1.2s infinite ease-in-out;
+  transform-origin: center;
 }
 
 @keyframes flame-glow {

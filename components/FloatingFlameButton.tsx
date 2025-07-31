@@ -24,10 +24,10 @@ export default function FloatingFlameButton({ onToggle, isOpen, currentPage }: F
         <div className="relative z-10 w-20 h-20 flex items-center justify-center">
           <Image
             src="/kingdom-flame-avatar.png"
-            alt="Kingdom Flame"
+            alt="Holy Flame"
             width={60}
             height={60}
-            className="animate-flame-flicker"
+            className="flame"
           />
         </div>
 
