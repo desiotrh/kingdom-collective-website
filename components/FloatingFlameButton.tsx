@@ -85,12 +85,12 @@ export default function FloatingFlameButton({ onToggle, isOpen, currentPage }: F
         </div>
       )}
 
-      {/* Page context indicator */}
-      {!isOpen && (
+      {/* Page context indicator - REMOVED */}
+      {/* {!isOpen && (
         <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 bg-gray-800 text-white px-2 py-1 rounded text-xs opacity-75">
           {currentPage === '/' ? 'Home' : currentPage.replace('/', '').replace('-', ' ')}
         </div>
-      )}
+      )} */}
     </div>
   );
 } 
