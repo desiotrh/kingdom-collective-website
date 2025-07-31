@@ -68,9 +68,9 @@ export default function Layout({ children, title = 'Kingdom Collective', descrip
                 <div className="fixed left-4 top-4 z-[9999]">
                     <button
                         onClick={() => alert('Layout component is working!')}
-                        className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg shadow-lg"
+                        className="bg-red-500 hover:bg-red-600 text-white px-6 py-3 rounded-lg shadow-lg text-lg font-bold"
                     >
-                        Test Layout
+                        🔥 TEST LAYOUT
                     </button>
                 </div>
 
@@ -93,9 +93,9 @@ export default function Layout({ children, title = 'Kingdom Collective', descrip
                 <div className="fixed right-4 top-4 z-[9998]">
                     <button
                         onClick={handleToggleChat}
-                        className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg shadow-lg"
+                        className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-lg shadow-lg text-lg font-bold"
                     >
-                        Test Bot
+                        🤖 TEST BOT
                     </button>
                 </div>
             </div>
