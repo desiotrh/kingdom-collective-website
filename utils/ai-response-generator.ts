@@ -294,7 +294,7 @@ How can I help you learn more about our mission or specific apps?`;
   }
 
   private generateRecommendationResponse(context: ResponseContext): string {
-    const recommendedApps = getRecommendedApps(context.userInterests);
+    const recommendedApps = getRecommendedApps(context.interests);
     
     return `🎯 **Personalized Recommendations** - Wisdom in Choice
 
