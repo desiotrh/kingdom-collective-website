@@ -125,7 +125,7 @@ export default function EnhancedChatWindow({ isOpen, onClose, currentPage }: Enh
   if (!isOpen) return null;
 
   return (
-    <div className={`fixed right-4 md:right-8 top-1/2 transform -translate-y-1/2 z-[9999] w-[90vw] max-w-[500px] h-[80vh] max-h-[700px] bg-gradient-to-br from-kingdom-dark via-kingdom-darker to-kingdom-navy rounded-3xl shadow-2xl border border-kingdom-gold/20 overflow-hidden backdrop-blur-sm transition-all duration-500 ease-out ${
+    <div className={`fixed right-4 md:right-8 top-20 md:top-16 transform z-[9999] w-[90vw] max-w-[500px] h-[80vh] max-h-[700px] bg-gradient-to-br from-kingdom-dark via-kingdom-darker to-kingdom-navy rounded-3xl shadow-2xl border border-kingdom-gold/20 overflow-hidden backdrop-blur-sm transition-all duration-500 ease-out ${
       isOpen ? 'opacity-100 scale-100 translate-y-0' : 'opacity-0 scale-95 translate-y-4'
     }`}>
       {/* Header */}
