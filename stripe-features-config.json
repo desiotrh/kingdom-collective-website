@@ -1,0 +1,68 @@
+{
+  "features": {
+    "custom_branding": {
+      "productId": "prod_Sme4V99qntiCSe",
+      "priceId": "price_1Rr4lzGMSZjMrbvl3MYajAyG",
+      "descriptiveId": "custom_branding",
+      "name": "Custom Branding",
+      "price": 50,
+      "category": "customization"
+    },
+    "voicebot_integration": {
+      "productId": "prod_Sme46zsHJyJmaO",
+      "priceId": "price_1Rr4lzGMSZjMrbvlBv2GITWu",
+      "descriptiveId": "voicebot_integration",
+      "name": "VoiceBot Integration",
+      "price": 75,
+      "category": "integration"
+    },
+    "dual_tone_toggle": {
+      "productId": "prod_Sme4ZwAIbR3XIm",
+      "priceId": "price_1Rr4m0GMSZjMrbvlrXtfg1sO",
+      "descriptiveId": "dual_tone_toggle",
+      "name": "Dual Tone Toggle",
+      "price": 40,
+      "category": "customization"
+    },
+    "memory_engine": {
+      "productId": "prod_Sme4Vum5IYvHSb",
+      "priceId": "price_1Rr4m0GMSZjMrbvltFaHJ8GA",
+      "descriptiveId": "memory_engine",
+      "name": "Memory Engine",
+      "price": 125,
+      "category": "ai"
+    },
+    "embed_service": {
+      "productId": "prod_Sme44Lfo9h8veR",
+      "priceId": "price_1Rr4m1GMSZjMrbvlPhQkRx5G",
+      "descriptiveId": "embed_service",
+      "name": "Embed Service",
+      "price": 60,
+      "category": "service"
+    },
+    "basic_analytics": {
+      "productId": "prod_Sme4g0IXfO1Rqn",
+      "priceId": "price_1Rr4m2GMSZjMrbvlbyLjTQbc",
+      "descriptiveId": "basic_analytics",
+      "name": "Basic Analytics",
+      "price": 100,
+      "category": "analytics"
+    },
+    "legal_compliance": {
+      "productId": "prod_Sme4jaaQqa1A5y",
+      "priceId": "price_1Rr4m2GMSZjMrbvlEihXMSmJ",
+      "descriptiveId": "legal_compliance",
+      "name": "Legal & Compliance",
+      "price": 30,
+      "category": "legal"
+    },
+    "stripe_zapier_setup": {
+      "productId": "prod_Sme4YBHGD2KbJa",
+      "priceId": "price_1Rr4m3GMSZjMrbvlyoFSuUcC",
+      "descriptiveId": "stripe_zapier_setup",
+      "name": "Stripe/Zapier Setup",
+      "price": 125,
+      "category": "integration"
+    }
+  }
+}

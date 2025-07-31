@@ -10,11 +10,14 @@
     },
     "dependencies": {
         "@next/font": "^14.0.0",
+        "@stripe/stripe-js": "^2.4.0",
+        "dotenv": "^17.2.1",
         "framer-motion": "^12.23.12",
         "lottie-react": "^2.4.1",
         "next": "14.0.0",
         "react": "^18.2.0",
-        "react-dom": "^18.2.0"
+        "react-dom": "^18.2.0",
+        "stripe": "^14.25.0"
     },
     "devDependencies": {
         "@types/node": "^20.0.0",

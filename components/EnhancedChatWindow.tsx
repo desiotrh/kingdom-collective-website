@@ -73,7 +73,11 @@ export default function EnhancedChatWindow({ isOpen, onClose, currentPage }: Enh
       id: Date.now().toString(),
       text: textToSend,
       isUser: true,
-      timestamp: new Date()
+      timestamp: new Date(),
+      context: {
+        page: currentPage,
+        intent: 'user_message'
+      }
     };
 
     setMessages(prev => [...prev, userMessage]);
@@ -82,6 +86,9 @@ export default function EnhancedChatWindow({ isOpen, onClose, currentPage }: Enh
     }
     setIsLoading(true);
     setIsTyping(true);
+
+    // Save user message to conversation memory
+    conversationManager.addMessage(sessionId, userMessage);
 
     try {
       // Generate AI response
@@ -98,20 +105,28 @@ export default function EnhancedChatWindow({ isOpen, onClose, currentPage }: Enh
         timestamp: new Date(),
         context: {
           page: currentPage,
-          intent: 'response'
+          intent: 'bot_response'
         }
       };
 
       setMessages(prev => [...prev, botMessage]);
+      
+      // Save bot message to conversation memory
+      conversationManager.addMessage(sessionId, botMessage);
     } catch (error) {
       console.error('Error generating response:', error);
       const errorMessage: Message = {
         id: (Date.now() + 1).toString(),
         text: "I apologize, but I'm having trouble processing your request right now. Please try again in a moment.",
         isUser: false,
-        timestamp: new Date()
+        timestamp: new Date(),
+        context: {
+          page: currentPage,
+          intent: 'error'
+        }
       };
       setMessages(prev => [...prev, errorMessage]);
+      conversationManager.addMessage(sessionId, errorMessage);
     } finally {
       setIsLoading(false);
       setIsTyping(false);
@@ -181,9 +196,14 @@ export default function EnhancedChatWindow({ isOpen, onClose, currentPage }: Enh
                     id: Date.now().toString(),
                     text: "Tell me about your AI bots and how they can help my business.",
                     isUser: true,
-                    timestamp: new Date()
+                    timestamp: new Date(),
+                    context: {
+                      page: currentPage,
+                      intent: 'quick_action'
+                    }
                   };
                   setMessages(prev => [...prev, newMessage]);
+                  conversationManager.addMessage(sessionId, newMessage);
                   handleSendMessage("Tell me about your AI bots and how they can help my business.");
                 }}
                 className="w-full p-3 bg-gradient-to-r from-kingdom-gold/20 to-kingdom-orange/20 border border-kingdom-gold/30 rounded-xl text-left hover:from-kingdom-gold/30 hover:to-kingdom-orange/30 transition-all duration-200 backdrop-blur-sm"
@@ -191,7 +211,7 @@ export default function EnhancedChatWindow({ isOpen, onClose, currentPage }: Enh
                 <div className="flex items-center space-x-2">
                   <div className="w-6 h-6 bg-gradient-to-r from-kingdom-gold to-kingdom-orange rounded-full flex items-center justify-center">
                     <svg className="w-3 h-3 text-kingdom-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 002 2z" />
                     </svg>
                   </div>
                   <div>
@@ -207,9 +227,14 @@ export default function EnhancedChatWindow({ isOpen, onClose, currentPage }: Enh
                     id: Date.now().toString(),
                     text: "Show me your Kingdom apps and their features.",
                     isUser: true,
-                    timestamp: new Date()
+                    timestamp: new Date(),
+                    context: {
+                      page: currentPage,
+                      intent: 'quick_action'
+                    }
                   };
                   setMessages(prev => [...prev, newMessage]);
+                  conversationManager.addMessage(sessionId, newMessage);
                   handleSendMessage("Show me your Kingdom apps and their features.");
                 }}
                 className="w-full p-3 bg-gradient-to-r from-blue-500/20 to-purple-500/20 border border-blue-500/30 rounded-xl text-left hover:from-blue-500/30 hover:to-purple-500/30 transition-all duration-200 backdrop-blur-sm"
@@ -217,7 +242,7 @@ export default function EnhancedChatWindow({ isOpen, onClose, currentPage }: Enh
                 <div className="flex items-center space-x-2">
                   <div className="w-6 h-6 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center">
                     <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 002 2z" />
                     </svg>
                   </div>
                   <div>
@@ -233,9 +258,14 @@ export default function EnhancedChatWindow({ isOpen, onClose, currentPage }: Enh
                     id: Date.now().toString(),
                     text: "Tell me about Kingdom Collective and your mission.",
                     isUser: true,
-                    timestamp: new Date()
+                    timestamp: new Date(),
+                    context: {
+                      page: currentPage,
+                      intent: 'quick_action'
+                    }
                   };
                   setMessages(prev => [...prev, newMessage]);
+                  conversationManager.addMessage(sessionId, newMessage);
                   handleSendMessage("Tell me about Kingdom Collective and your mission.");
                 }}
                 className="w-full p-3 bg-gradient-to-r from-green-500/20 to-teal-500/20 border border-green-500/30 rounded-xl text-left hover:from-green-500/30 hover:to-teal-500/30 transition-all duration-200 backdrop-blur-sm"

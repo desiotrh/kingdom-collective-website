@@ -11,6 +11,9 @@ export interface ConversationMemory {
   lastInteraction: Date;
   userPersona: 'technical' | 'business' | 'creative' | 'spiritual' | 'general';
   budgetRange: 'low' | 'medium' | 'high' | 'enterprise' | 'unknown';
+  conversationTopics: string[];
+  followUpQuestions: string[];
+  userGoals: string[];
 }
 
 export interface Message {
@@ -22,6 +25,7 @@ export interface Message {
     page?: string;
     intent?: string;
     entities?: string[];
+    topics?: string[];
   };
 }
 
@@ -49,7 +53,10 @@ export class ConversationManager {
       conversationHistory: [],
       lastInteraction: new Date(),
       userPersona: 'general',
-      budgetRange: 'unknown'
+      budgetRange: 'unknown',
+      conversationTopics: [],
+      followUpQuestions: [],
+      userGoals: []
     };
 
     this.memories.set(sessionId, memory);
@@ -84,7 +91,37 @@ export class ConversationManager {
     if (memory) {
       memory.conversationHistory.push(message);
       memory.lastInteraction = new Date();
+      
+      // Keep only last 20 messages to prevent memory bloat
+      if (memory.conversationHistory.length > 20) {
+        memory.conversationHistory = memory.conversationHistory.slice(-20);
+      }
+      
       this.saveToLocalStorage(sessionId, memory);
+    }
+  }
+
+  addConversationTopic(sessionId: string, topic: string): void {
+    const memory = this.getMemory(sessionId);
+    if (memory && !memory.conversationTopics.includes(topic)) {
+      memory.conversationTopics.push(topic);
+      this.updateMemory(sessionId, { conversationTopics: memory.conversationTopics });
+    }
+  }
+
+  addFollowUpQuestion(sessionId: string, question: string): void {
+    const memory = this.getMemory(sessionId);
+    if (memory && !memory.followUpQuestions.includes(question)) {
+      memory.followUpQuestions.push(question);
+      this.updateMemory(sessionId, { followUpQuestions: memory.followUpQuestions });
+    }
+  }
+
+  addUserGoal(sessionId: string, goal: string): void {
+    const memory = this.getMemory(sessionId);
+    if (memory && !memory.userGoals.includes(goal)) {
+      memory.userGoals.push(goal);
+      this.updateMemory(sessionId, { userGoals: memory.userGoals });
     }
   }
 
@@ -126,6 +163,9 @@ export class ConversationManager {
     interests: string[];
     mentionedApps: string[];
     currentPage: string;
+    topics: string[];
+    goals: string[];
+    recentMessages: string[];
   } {
     const memory = this.getMemory(sessionId);
     if (!memory) {
@@ -134,16 +174,66 @@ export class ConversationManager {
         budgetRange: 'unknown',
         interests: [],
         mentionedApps: [],
-        currentPage: '/'
+        currentPage: '/',
+        topics: [],
+        goals: [],
+        recentMessages: []
       };
     }
+
+    // Get last 5 messages for context
+    const recentMessages = memory.conversationHistory
+      .slice(-5)
+      .map(msg => msg.text);
 
     return {
       userPersona: memory.userPersona,
       budgetRange: memory.budgetRange,
       interests: memory.userInterests,
       mentionedApps: memory.mentionedApps,
-      currentPage: memory.currentPage
+      currentPage: memory.currentPage,
+      topics: memory.conversationTopics,
+      goals: memory.userGoals,
+      recentMessages
+    };
+  }
+
+  getConversationSummary(sessionId: string): {
+    totalMessages: number;
+    userMessages: number;
+    botMessages: number;
+    topicsDiscussed: string[];
+    appsMentioned: string[];
+    userInterests: string[];
+    conversationDuration: number;
+  } {
+    const memory = this.getMemory(sessionId);
+    if (!memory) {
+      return {
+        totalMessages: 0,
+        userMessages: 0,
+        botMessages: 0,
+        topicsDiscussed: [],
+        appsMentioned: [],
+        userInterests: [],
+        conversationDuration: 0
+      };
+    }
+
+    const userMessages = memory.conversationHistory.filter(msg => msg.isUser).length;
+    const botMessages = memory.conversationHistory.filter(msg => !msg.isUser).length;
+    const conversationDuration = memory.conversationHistory.length > 0 
+      ? new Date().getTime() - memory.conversationHistory[0].timestamp.getTime()
+      : 0;
+
+    return {
+      totalMessages: memory.conversationHistory.length,
+      userMessages,
+      botMessages,
+      topicsDiscussed: memory.conversationTopics,
+      appsMentioned: memory.mentionedApps,
+      userInterests: memory.userInterests,
+      conversationDuration
     };
   }
 

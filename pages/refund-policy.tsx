@@ -30,14 +30,14 @@ export default function RefundPolicy() {
                 
                 <div>
                   <p className="text-gray-300 text-sm sm:text-base leading-relaxed">
-                    This policy outlines the billing, subscription, and refund procedures for all products and services offered through Kingdom Collective and its apps.
+                    This policy outlines the billing, subscription, and refund procedures for all products and services offered through Kingdom Collective and its apps, including AI bots and related services.
                   </p>
                 </div>
 
                 <div>
                   <h2 className="text-white text-xl sm:text-2xl font-bold mb-4">1. Payment & Subscription Terms</h2>
                   <p className="text-gray-300 text-sm sm:text-base leading-relaxed mb-4">
-                    By subscribing to a paid plan (Seed, Growth, Pro, Mantled Pro, or Kingdom Enterprise), you agree to:
+                    By subscribing to a paid plan (Seed, Growth, Pro, Mantled Pro, Kingdom Enterprise, or AI bot services), you agree to:
                   </p>
                   <ul className="text-gray-300 text-sm sm:text-base leading-relaxed list-disc list-inside space-y-2 ml-4 mb-4">
                     <li>Pay the full amount listed at the time of purchase</li>
@@ -69,6 +69,8 @@ export default function RefundPolicy() {
                     <li>Unused credits (e.g., AI generations, storage)</li>
                     <li>User error or forgotten cancellations</li>
                     <li>Downgrades after renewal</li>
+                    <li>AI bot services after 30 days of purchase (one-time purchases)</li>
+                    <li>Custom AI bot development work once development has begun</li>
                   </ul>
                   <p className="text-gray-300 text-sm sm:text-base leading-relaxed mb-4">
                     Refunds may be granted in rare cases involving:
@@ -79,7 +81,7 @@ export default function RefundPolicy() {
                     <li>Confirmed technical errors that prevent platform access</li>
                   </ul>
                   <p className="text-gray-300 text-sm sm:text-base leading-relaxed">
-                    All refund requests must be made within 7 days of charge by contacting <a href="mailto:billing@kingdomcollective.pro" className="text-blue hover:text-blue-300 transition-colors duration-200">billing@kingdomcollective.pro</a>. We reserve the right to deny refunds at our sole discretion.
+                    All refund requests must be made within 7 days of charge for subscription services, or within 30 days for one-time AI bot purchases, by contacting <a href="mailto:billing@kingdomcollective.pro" className="text-blue hover:text-blue-300 transition-colors duration-200">billing@kingdomcollective.pro</a>. We reserve the right to deny refunds at our sole discretion.
                   </p>
                 </div>
 

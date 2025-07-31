@@ -48,6 +48,7 @@ export default function Terms() {
                     <li>Photography planning, file delivery, and media storage</li>
                     <li>Cross-platform analytics, performance tracking, and marketing tools</li>
                     <li>A dual-mode interface: Faith Mode and Encouragement Mode</li>
+                    <li>AI-powered bots for appointment booking, FAQ management, event coordination, inventory tracking, and social media management</li>
                   </ul>
                   <p className="text-gray-300 text-sm sm:text-base leading-relaxed mt-4">
                     You are responsible for how you use each tool, and for ensuring your use complies with local laws and our Acceptable Use Policy.
@@ -69,7 +70,7 @@ export default function Terms() {
 
                   <h3 className="text-white text-lg sm:text-xl font-semibold mb-2">3.2 Account Types</h3>
                   <p className="text-gray-300 text-sm sm:text-base leading-relaxed mb-4">
-                    We offer various access tiers (Seed, Growth, Pro, Mantled Pro, Kingdom Enterprise), each with specific feature sets and usage limits. Additional terms may apply to sponsored, team, or mentorship accounts.
+                    We offer various access tiers (Seed, Growth, Pro, Mantled Pro, Kingdom Enterprise), each with specific feature sets and usage limits. For AI bots, we offer Basic, Professional, and Enterprise tiers with different capabilities and pricing. Additional terms may apply to sponsored, team, or mentorship accounts.
                   </p>
 
                   <h3 className="text-white text-lg sm:text-xl font-semibold mb-2">3.3 Age Restriction</h3>
@@ -87,6 +88,7 @@ export default function Terms() {
                     <li>Upload, share, or promote illegal, violent, hateful, or sexually explicit content</li>
                     <li>Violate intellectual property rights</li>
                     <li>Abuse AI tools for spam, automation, deception, or plagiarism</li>
+                    <li>Use AI bots for illegal activities, harassment, or malicious purposes</li>
                     <li>Impersonate others or misrepresent affiliations</li>
                     <li>Exploit community features to harass or solicit users</li>
                     <li>Use Faith Mode to simulate religious experiences for deceptive or commercial gain</li>

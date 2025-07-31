@@ -64,6 +64,56 @@ export default function Navigation() {
               </Link>
             </div>
           </div>
+
+          {/* AI Bots Dropdown */}
+          <div className="relative group">
+            <button
+              className="text-white text-sm font-medium leading-normal hover:text-blue transition-colors duration-200 flex items-center gap-1"
+            >
+              AI Bots
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+
+            <div className="absolute top-full left-0 mt-2 w-72 bg-black/90 backdrop-blur-sm border border-gray/30 rounded-xl py-2 z-[9999999] opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-auto">
+              <Link href="/ai-bots" className="block px-4 py-2 text-white hover:bg-gray-800 hover:text-white transition-colors duration-200 font-semibold">
+                🤖 All AI Bots Overview
+              </Link>
+              <div className="border-t border-gray/30 my-1"></div>
+              <Link href="/ai-bots/sales-assistant" className="block px-4 py-2 text-white hover:bg-gray-800 hover:text-white transition-colors duration-200">
+                💼 Sales Assistant Bot
+              </Link>
+              <Link href="/ai-bots/lead-generation" className="block px-4 py-2 text-white hover:bg-gray-800 hover:text-white transition-colors duration-200">
+                🎯 Lead Generation Bot
+              </Link>
+              <Link href="/ai-bots/onboarding" className="block px-4 py-2 text-white hover:bg-gray-800 hover:text-white transition-colors duration-200">
+                📚 Onboarding Bot
+              </Link>
+              <Link href="/ai-bots/customer-support" className="block px-4 py-2 text-white hover:bg-gray-800 hover:text-white transition-colors duration-200">
+                💬 Customer Support Bot
+              </Link>
+              <Link href="/ai-bots/faith-bot" className="block px-4 py-2 text-white hover:bg-gray-800 hover:text-white transition-colors duration-200">
+                🙏 Faith Bot
+              </Link>
+              <Link href="/ai-bots/course-explainer" className="block px-4 py-2 text-white hover:bg-gray-800 hover:text-white transition-colors duration-200">
+                🎓 Course Explainer Bot
+              </Link>
+              <Link href="/ai-bots/testimonial" className="block px-4 py-2 text-white hover:bg-gray-800 hover:text-white transition-colors duration-200">
+                📝 Testimonial Bot
+              </Link>
+              <Link href="/ai-bots/job-application" className="block px-4 py-2 text-white hover:bg-gray-800 hover:text-white transition-colors duration-200">
+                💼 Job Application Bot
+              </Link>
+              <Link href="/ai-bots/enhanced-sales" className="block px-4 py-2 text-white hover:bg-gray-800 hover:text-white transition-colors duration-200">
+                🚀 Enhanced Sales Bot
+              </Link>
+              <div className="border-t border-gray/30 my-1"></div>
+              <Link href="/ai-bots/pricing" className="block px-4 py-2 text-white hover:bg-gray-800 hover:text-white transition-colors duration-200 font-semibold">
+                💰 Pricing & Add-ons
+              </Link>
+            </div>
+          </div>
           <Link
             href="/features"
             className="text-white text-sm font-medium leading-normal hover:text-blue transition-colors duration-200"
@@ -207,6 +257,88 @@ export default function Navigation() {
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Kingdom Lens
+                </Link>
+              </div>
+            </div>
+            <div className="space-y-2">
+              <div className="text-white text-sm font-medium mb-2">AI Bots</div>
+              <div className="pl-4 space-y-2">
+                <Link
+                  href="/ai-bots"
+                  className="block text-white hover:text-blue transition-colors duration-200 text-sm"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  🤖 All AI Bots Overview
+                </Link>
+                <Link
+                  href="/ai-bots/sales-assistant"
+                  className="block text-white hover:text-blue transition-colors duration-200 text-sm"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  💼 Sales Assistant Bot
+                </Link>
+                <Link
+                  href="/ai-bots/lead-generation"
+                  className="block text-white hover:text-blue transition-colors duration-200 text-sm"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  🎯 Lead Generation Bot
+                </Link>
+                <Link
+                  href="/ai-bots/onboarding"
+                  className="block text-white hover:text-blue transition-colors duration-200 text-sm"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  📚 Onboarding Bot
+                </Link>
+                <Link
+                  href="/ai-bots/customer-support"
+                  className="block text-white hover:text-blue transition-colors duration-200 text-sm"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  💬 Customer Support Bot
+                </Link>
+                <Link
+                  href="/ai-bots/faith-bot"
+                  className="block text-white hover:text-blue transition-colors duration-200 text-sm"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  🙏 Faith Bot
+                </Link>
+                <Link
+                  href="/ai-bots/course-explainer"
+                  className="block text-white hover:text-blue transition-colors duration-200 text-sm"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  🎓 Course Explainer Bot
+                </Link>
+                <Link
+                  href="/ai-bots/testimonial"
+                  className="block text-white hover:text-blue transition-colors duration-200 text-sm"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  📝 Testimonial Bot
+                </Link>
+                <Link
+                  href="/ai-bots/job-application"
+                  className="block text-white hover:text-blue transition-colors duration-200 text-sm"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  💼 Job Application Bot
+                </Link>
+                <Link
+                  href="/ai-bots/enhanced-sales"
+                  className="block text-white hover:text-blue transition-colors duration-200 text-sm"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  🚀 Enhanced Sales Bot
+                </Link>
+                <Link
+                  href="/ai-bots/pricing"
+                  className="block text-white hover:text-blue transition-colors duration-200 text-sm font-semibold"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  💰 Pricing & Add-ons
                 </Link>
               </div>
             </div>
