@@ -10,8 +10,8 @@ interface ChatAvatarProps {
 
 export default function ChatAvatar({ tone }: ChatAvatarProps) {
   return (
-    <div className="w-14 h-14 rounded-full overflow-hidden">
-      <Lottie animationData={flameAnimation} loop autoplay />
+    <div className="w-12 h-12 flex items-center justify-center">
+      {/* Flame icon removed */}
     </div>
   );
 } 
