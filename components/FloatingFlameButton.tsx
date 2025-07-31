@@ -1,8 +1,6 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import Lottie from "lottie-react";
-import flameAnimation from "../public/flame.json";
 
 interface FloatingFlameButtonProps {
   onToggle: () => void;
@@ -12,16 +10,14 @@ interface FloatingFlameButtonProps {
 
 export default function FloatingFlameButton({ onToggle, isOpen, currentPage }: FloatingFlameButtonProps) {
   const [isHovered, setIsHovered] = useState(false);
-  const [lottieError, setLottieError] = useState<string | null>(null);
+  const [glow, setGlow] = useState(true);
 
   useEffect(() => {
-    console.log('FloatingFlameButton mounted, flameAnimation:', flameAnimation);
+    const interval = setInterval(() => {
+      setGlow((prev) => !prev);
+    }, 700);
+    return () => clearInterval(interval);
   }, []);
-
-  const handleLottieError = (error: any) => {
-    console.error('Lottie error:', error);
-    setLottieError(error.message);
-  };
 
   return (
     <div className="fixed right-4 top-1/2 transform -translate-y-1/2 z-[9999]">
@@ -32,59 +28,30 @@ export default function FloatingFlameButton({ onToggle, isOpen, currentPage }: F
         className="relative w-24 h-24 bg-transparent rounded-full flex items-center justify-center hover:scale-110 transition-all duration-300"
       >
         {/* Burning Bush Flame */}
-        <div className="relative z-10 w-20 h-20 flex items-center justify-center">
-          {/* Better SVG flame - always visible */}
-          <svg 
-            className="w-full h-full"
-            viewBox="0 0 100 100" 
-            fill="none" 
-            xmlns="http://www.w3.org/2000/svg"
+        <div className="relative z-10 w-20 h-20 flex items-center justify-center bg-black rounded-full shadow-inner">
+          <svg
+            viewBox="0 0 100 100"
+            width="60"
+            height="60"
+            className="transition-all duration-700 ease-in-out"
+            style={{
+              filter: glow
+                ? "drop-shadow(0 0 10px #f97316) drop-shadow(0 0 20px #3b82f6)"
+                : "drop-shadow(0 0 5px #0ea5e9)",
+            }}
           >
-            <defs>
-              <radialGradient id="flameGradient" cx="50%" cy="30%" r="70%">
-                <stop offset="0%" stopColor="#ff6b35" />
-                <stop offset="30%" stopColor="#f7931e" />
-                <stop offset="60%" stopColor="#1e3a8a" />
-                <stop offset="100%" stopColor="#0f172a" />
-              </radialGradient>
-              <filter id="glow">
-                <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
-                <feMerge> 
-                  <feMergeNode in="coloredBlur"/>
-                  <feMergeNode in="SourceGraphic"/>
-                </feMerge>
-              </filter>
-            </defs>
-            {/* Main flame */}
-            <path 
-              d="M50 5 C60 15, 70 25, 65 45 C70 35, 75 25, 50 5 Z M50 5 C40 15, 30 25, 35 45 C30 35, 25 25, 50 5 Z" 
+            <path
+              d="M50,10 C65,30 60,70 50,90 C40,70 35,30 50,10 Z"
               fill="url(#flameGradient)"
-              filter="url(#glow)"
-              className="animate-pulse"
             />
-            {/* Inner flame */}
-            <path 
-              d="M50 10 C55 20, 60 30, 58 40 C60 35, 62 25, 50 10 Z M50 10 C45 20, 40 30, 42 40 C40 35, 38 25, 50 10 Z" 
-              fill="#ff8c42"
-              opacity="0.8"
-            />
-            {/* Flame tip */}
-            <path 
-              d="M50 0 C52 5, 54 10, 50 15 C46 10, 48 5, 50 0 Z" 
-              fill="#ff6b35"
-            />
+            <defs>
+              <linearGradient id="flameGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stopColor="#3b82f6" />     {/* Blue */}
+                <stop offset="50%" stopColor="#facc15" />    {/* Gold */}
+                <stop offset="100%" stopColor="#dc2626" />   {/* Red */}
+              </linearGradient>
+            </defs>
           </svg>
-          
-          {/* Lottie animation - hidden for now */}
-          {false && (
-            <Lottie 
-              animationData={flameAnimation} 
-              loop 
-              autoplay 
-              onError={handleLottieError}
-              style={{ width: '100%', height: '100%' }}
-            />
-          )}
         </div>
 
         {/* Status indicator - REMOVED */}
