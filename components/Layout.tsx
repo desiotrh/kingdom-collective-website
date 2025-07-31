@@ -64,6 +64,16 @@ export default function Layout({ children, title = 'Kingdom Collective', descrip
             <div className="min-h-screen bg-gradient-to-br from-kingdom-dark via-kingdom-darker to-kingdom-navy">
                 {children}
                 
+                {/* Test button to verify Layout is working */}
+                <div className="fixed left-4 top-4 z-[9999]">
+                    <button
+                        onClick={() => alert('Layout component is working!')}
+                        className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg shadow-lg"
+                    >
+                        Test Layout
+                    </button>
+                </div>
+
                 {/* Enhanced Sales Bot */}
                 <FloatingFlameButton 
                     onToggle={handleToggleChat}
