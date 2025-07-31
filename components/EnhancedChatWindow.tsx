@@ -28,6 +28,7 @@ export default function EnhancedChatWindow({ isOpen, onClose, currentPage }: Enh
   const [inputText, setInputText] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [sessionId, setSessionId] = useState('');
+  const [isTyping, setIsTyping] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   // Initialize session
@@ -77,13 +78,15 @@ export default function EnhancedChatWindow({ isOpen, onClose, currentPage }: Enh
     setMessages(prev => [...prev, userMessage]);
     setInputText('');
     setIsLoading(true);
+    setIsTyping(true);
 
     try {
       // Generate AI response
       const response = aiResponseGenerator.generateResponse(inputText, sessionId, currentPage);
       
-      // Simulate typing delay
-      await new Promise(resolve => setTimeout(resolve, 1000 + Math.random() * 1000));
+      // Simulate typing delay with realistic timing
+      const typingDelay = 1000 + Math.random() * 2000;
+      await new Promise(resolve => setTimeout(resolve, typingDelay));
 
       const botMessage: Message = {
         id: (Date.now() + 1).toString(),
@@ -108,6 +111,7 @@ export default function EnhancedChatWindow({ isOpen, onClose, currentPage }: Enh
       setMessages(prev => [...prev, errorMessage]);
     } finally {
       setIsLoading(false);
+      setIsTyping(false);
     }
   };
 
@@ -121,17 +125,26 @@ export default function EnhancedChatWindow({ isOpen, onClose, currentPage }: Enh
   if (!isOpen) return null;
 
   return (
-    <div className="fixed right-8 top-1/2 transform -translate-y-1/2 z-[9999] w-[420px] h-[650px] bg-gradient-to-br from-kingdom-dark via-kingdom-darker to-kingdom-navy rounded-3xl shadow-2xl border border-kingdom-gold/20 overflow-hidden backdrop-blur-sm">
+    <div className={`fixed right-8 top-1/2 transform -translate-y-1/2 z-[9999] w-[420px] h-[650px] bg-gradient-to-br from-kingdom-dark via-kingdom-darker to-kingdom-navy rounded-3xl shadow-2xl border border-kingdom-gold/20 overflow-hidden backdrop-blur-sm transition-all duration-500 ease-out ${
+      isOpen ? 'opacity-100 scale-100 translate-y-0' : 'opacity-0 scale-95 translate-y-4'
+    }`}>
       {/* Header */}
       <div className="relative p-6 border-b border-kingdom-gold/20 bg-gradient-to-r from-kingdom-gold/10 via-kingdom-orange/10 to-kingdom-gold/10">
         <div className="flex items-center space-x-4">
           <div className="relative">
-            <ChatAvatar tone="kingdom" />
+            <div className={`transition-all duration-300 ${isTyping ? 'animate-pulse' : ''}`}>
+              <ChatAvatar tone="kingdom" />
+            </div>
             <div className="absolute -bottom-1 -right-1 w-3 h-3 bg-green-500 rounded-full border-2 border-kingdom-dark animate-pulse"></div>
+            {isTyping && (
+              <div className="absolute -top-1 -right-1 w-4 h-4 bg-kingdom-gold rounded-full border-2 border-kingdom-dark animate-ping"></div>
+            )}
           </div>
           <div className="flex-1">
             <h2 className="text-xl font-bold text-white">Kingdom Assistant</h2>
-            <p className="text-sm text-kingdom-gold/80">Grounded in Truth, Powered by Innovation</p>
+            <p className="text-sm text-kingdom-gold/80">
+              {isTyping ? 'Typing...' : 'Grounded in Truth, Powered by Innovation'}
+            </p>
           </div>
           <button
             onClick={onClose}
@@ -146,16 +159,17 @@ export default function EnhancedChatWindow({ isOpen, onClose, currentPage }: Enh
 
       {/* Messages */}
       <div className="flex-1 overflow-y-auto custom-scrollbar p-6 h-[500px] bg-gradient-to-b from-transparent to-kingdom-dark/20">
-        {messages.map((message) => (
+        {messages.map((message, index) => (
           <div
             key={message.id}
-            className={`flex ${message.isUser ? 'justify-end' : 'justify-start'} mb-6`}
+            className={`flex ${message.isUser ? 'justify-end' : 'justify-start'} mb-6 animate-fade-in`}
+            style={{ animationDelay: `${index * 100}ms` }}
           >
             <div
-              className={`max-w-[280px] px-5 py-3 rounded-2xl ${
+              className={`max-w-[280px] px-5 py-3 rounded-2xl transition-all duration-300 ${
                 message.isUser
-                  ? 'bg-gradient-to-r from-kingdom-gold to-kingdom-orange text-kingdom-dark shadow-lg'
-                  : 'bg-kingdom-darker/80 text-white border border-kingdom-gold/20 shadow-lg backdrop-blur-sm'
+                  ? 'bg-gradient-to-r from-kingdom-gold to-kingdom-orange text-kingdom-dark shadow-lg hover:shadow-xl'
+                  : 'bg-kingdom-darker/80 text-white border border-kingdom-gold/20 shadow-lg backdrop-blur-sm hover:shadow-xl'
               }`}
             >
               <p className="text-sm leading-relaxed whitespace-pre-wrap">{message.text}</p>
@@ -166,7 +180,7 @@ export default function EnhancedChatWindow({ isOpen, onClose, currentPage }: Enh
           </div>
         ))}
         {isLoading && (
-          <div className="flex justify-start mb-6">
+          <div className="flex justify-start mb-6 animate-fade-in">
             <div className="bg-kingdom-darker/80 text-white px-5 py-3 rounded-2xl border border-kingdom-gold/20 shadow-lg backdrop-blur-sm">
               <div className="flex space-x-2">
                 <div className="w-2 h-2 bg-kingdom-gold rounded-full animate-bounce"></div>
@@ -187,14 +201,14 @@ export default function EnhancedChatWindow({ isOpen, onClose, currentPage }: Enh
             onChange={(e) => setInputText(e.target.value)}
             onKeyPress={handleKeyPress}
             placeholder="Ask about Kingdom apps, biblical wisdom, or technology..."
-            className="flex-1 bg-kingdom-darker/80 text-white placeholder-kingdom-gold/40 rounded-2xl px-4 py-3 resize-none focus:outline-none focus:ring-2 focus:ring-kingdom-gold/50 border border-kingdom-gold/20 backdrop-blur-sm"
+            className="flex-1 bg-kingdom-darker/80 text-white placeholder-kingdom-gold/40 rounded-2xl px-4 py-3 resize-none focus:outline-none focus:ring-2 focus:ring-kingdom-gold/50 border border-kingdom-gold/20 backdrop-blur-sm transition-all duration-200 hover:border-kingdom-gold/40"
             rows={1}
             disabled={isLoading}
           />
           <button
             onClick={handleSendMessage}
             disabled={!inputText.trim() || isLoading}
-            className="bg-gradient-to-r from-kingdom-gold to-kingdom-orange hover:from-kingdom-gold/90 hover:to-kingdom-orange/90 disabled:from-gray-600 disabled:to-gray-600 disabled:cursor-not-allowed text-kingdom-dark px-6 py-3 rounded-2xl font-medium transition-all duration-200 transform hover:scale-105 shadow-lg"
+            className="bg-gradient-to-r from-kingdom-gold to-kingdom-orange hover:from-kingdom-gold/90 hover:to-kingdom-orange/90 disabled:from-gray-600 disabled:to-gray-600 disabled:cursor-not-allowed text-kingdom-dark px-6 py-3 rounded-2xl font-medium transition-all duration-200 transform hover:scale-105 shadow-lg disabled:transform-none"
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />

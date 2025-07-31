@@ -108,127 +108,264 @@ export class AIResponseGenerator {
     const input = userInput.toLowerCase();
     const currentApp = getAppByPage(context.currentPage);
     
-    // Page-specific greetings with biblical foundation
-    if (input.includes('hello') || input.includes('hi') || input.includes('hey')) {
+    // Enhanced greeting responses with biblical wisdom
+    if (input.includes('hello') || input.includes('hi') || input.includes('hey') || input.includes('greetings')) {
       return this.generatePageSpecificGreeting(context, currentApp);
     }
-
+    
     // Pricing inquiries with stewardship principles
-    if (input.includes('pricing') || input.includes('cost') || input.includes('price') || input.includes('how much')) {
+    if (input.includes('price') || input.includes('cost') || input.includes('pricing') || input.includes('budget')) {
       return this.generatePricingResponse(context, currentApp);
     }
-
-    // Feature inquiries with purpose-driven approach
-    if (input.includes('feature') || input.includes('what') || input.includes('include') || input.includes('do')) {
+    
+    // Feature inquiries with purpose-driven responses
+    if (input.includes('feature') || input.includes('what can') || input.includes('how does') || input.includes('capability')) {
       return this.generateFeatureResponse(context, currentApp);
     }
-
-    // Demo requests with integrity
-    if (input.includes('demo') || input.includes('show') || input.includes('example') || input.includes('see')) {
+    
+    // Demo requests with kingdom purpose
+    if (input.includes('demo') || input.includes('show me') || input.includes('example') || input.includes('trial')) {
       return this.generateDemoResponse(context, currentApp);
     }
-
-    // App comparisons with unity principles
-    if (input.includes('compare') || input.includes('difference') || input.includes('vs')) {
+    
+    // App comparisons with wisdom
+    if (input.includes('compare') || input.includes('difference') || input.includes('vs') || input.includes('versus')) {
       return this.generateComparisonResponse(context);
     }
-
-    // General questions about Kingdom Collective with biblical foundation
-    if (input.includes('kingdom') || input.includes('company') || input.includes('about')) {
+    
+    // Company information with biblical foundation
+    if (input.includes('company') || input.includes('about') || input.includes('who') || input.includes('team')) {
       return this.generateCompanyResponse(context);
     }
-
-    // Recommendation requests with wisdom
-    if (input.includes('recommend') || input.includes('suggest') || input.includes('which')) {
+    
+    // Recommendations with spiritual discernment
+    if (input.includes('recommend') || input.includes('suggest') || input.includes('best') || input.includes('which')) {
       return this.generateRecommendationResponse(context);
     }
-
-    // Biblical or spiritual questions
-    if (input.includes('biblical') || input.includes('spiritual') || input.includes('faith') || 
-        input.includes('god') || input.includes('christian') || input.includes('purpose')) {
+    
+    // Biblical wisdom and spiritual guidance
+    if (input.includes('biblical') || input.includes('scripture') || input.includes('god') || input.includes('faith') || 
+        input.includes('purpose') || input.includes('meaning') || input.includes('spiritual')) {
       return this.generateBiblicalResponse(context, currentApp);
     }
-
-    // Default response with biblical wisdom
+    
+    // Default response with enhanced engagement
     return this.generateDefaultResponse(context, currentApp);
   }
 
   private generatePageSpecificGreeting(context: ResponseContext, currentApp: any): string {
     if (currentApp) {
-      return `Welcome to ${currentApp.name}! 🔥 I'm your Kingdom Collective assistant, grounded in biblical truth and committed to helping you discover how ${currentApp.name} can transform your ${currentApp.targetAudience[0]?.toLowerCase() || 'work'} while honoring God. What would you like to know about ${currentApp.name}?`;
+      return `🔥 Welcome to ${currentApp.name}! As it says in Proverbs 3:6, "In all your ways acknowledge Him, and He will make your paths straight." 
+
+${currentApp.description}
+
+${currentApp.biblicalPrinciples ? `✨ Biblical Foundation: ${currentApp.biblicalPrinciples}` : ''}
+
+How can I help you discover how ${currentApp.name} can serve God's purpose in your life?`;
     }
     
-    return "Hello! I'm your Kingdom Collective assistant. 🔥 I'm here to help you discover our innovative apps that combine cutting-edge technology with timeless biblical wisdom. We believe in doing everything for God's glory while serving others. What can I help you with today?";
+    return `🔥 Greetings! I am your Kingdom Collective assistant, standing firm in biblical truth. 
+
+As we explore our innovative apps together, remember that "Every good and perfect gift is from above" (James 1:17). Technology, when used with wisdom and purpose, can be a powerful tool for God's kingdom.
+
+What would you like to explore today?`;
   }
 
   private generatePricingResponse(context: ResponseContext, currentApp: any): string {
     if (currentApp) {
-      return `Great question! ${currentApp.name} offers flexible pricing designed with stewardship in mind:\n\n• Basic: ${currentApp.pricing.basic}\n• Premium: ${currentApp.pricing.premium}\n• Enterprise: ${currentApp.pricing.enterprise}\n\nWe believe in fair pricing that reflects the value we provide while being good stewards of your resources. We also offer bundle pricing if you're interested in multiple Kingdom apps. What's your budget range?`;
-    }
+      return `💰 **${currentApp.name} Pricing** - Grounded in Stewardship
 
-    return `Kingdom Collective offers flexible pricing across all our apps, designed with biblical stewardship principles:\n\n• Individual apps: ${kingdomCollective.pricing.individual}\n• Complete bundle: ${kingdomCollective.pricing.bundle}\n• Enterprise solutions: ${kingdomCollective.pricing.enterprise}\n\nWe believe in providing excellent value while being good stewards of your resources. Which specific app are you interested in, or would you like to hear about our bundle pricing?`;
+${currentApp.pricing ? currentApp.pricing : 'Contact us for personalized pricing that aligns with your mission and budget.'}
+
+💡 **Kingdom Perspective**: Remember, "The earth is the Lord's, and everything in it" (Psalm 24:1). We believe in fair, transparent pricing that honors both your budget and God's provision.
+
+Would you like to discuss how ${currentApp.name} can provide value that exceeds its cost?`;
+    }
+    
+    return `💰 **Kingdom Collective Pricing** - Wisdom in Investment
+
+Our pricing reflects our commitment to excellence and biblical stewardship. Each app is designed to provide maximum value while honoring your budget constraints.
+
+💡 **Stewardship Principle**: "The plans of the diligent lead to profit" (Proverbs 21:5). We believe in transparent, fair pricing that honors both your resources and God's provision.
+
+Which app would you like to explore pricing for?`;
   }
 
   private generateFeatureResponse(context: ResponseContext, currentApp: any): string {
     if (currentApp) {
-      const features = currentApp.features.slice(0, 4).join(', ');
-      return `${currentApp.name} delivers powerful features including ${features}. Our platform is designed to ${currentApp.benefits[0]?.toLowerCase()} while maintaining biblical integrity. Every feature is built with purpose and excellence in mind. Would you like me to show you a demo or explain any specific feature in detail?`;
-    }
+      return `✨ **${currentApp.name} Features** - Designed with Purpose
 
-    return `Each Kingdom app is packed with innovative features designed with biblical wisdom! For example:\n\n• Kingdom Voice: AI-powered voice recognition with wholesome communication standards\n• Kingdom Circle: Community building tools that foster authentic relationships\n• Kingdom Lens: AR visualization that helps you see beauty in God's creation\n• Kingdom Clips: AI-powered video editing that promotes uplifting content\n• Kingdom Launchpad: Business planning with ethical practices guidance\n• Kingdom Studios: Professional design tools for creative excellence\n\nWhich app's features interest you most?`;
+${currentApp.features ? currentApp.features.join('\n• ') : 'Advanced features designed for kingdom impact.'}
+
+🔥 **Key Benefits**:
+${currentApp.benefits ? currentApp.benefits.join('\n• ') : 'Enhanced productivity, kingdom-focused outcomes, and spiritual growth.'}
+
+💡 **Biblical Wisdom**: "Whatever you do, work at it with all your heart, as working for the Lord" (Colossians 3:23). ${currentApp.name} is designed to help you serve with excellence.
+
+Would you like me to show you how these features work in practice?`;
+    }
+    
+    return `✨ **Kingdom Collective Features** - Innovation with Purpose
+
+Our apps are built with cutting-edge technology, designed to serve God's kingdom. Each feature is crafted with intentionality and biblical wisdom.
+
+🔥 **Core Principles**:
+• Excellence in everything we do
+• Stewardship of God's gifts
+• Service to others
+• Kingdom impact
+
+💡 **Biblical Foundation**: "For we are God's handiwork, created in Christ Jesus to do good works" (Ephesians 2:10).
+
+Which specific app or feature would you like to explore?`;
   }
 
   private generateDemoResponse(context: ResponseContext, currentApp: any): string {
     if (currentApp) {
-      return `Absolutely! I'd love to show you ${currentApp.name} in action. We have live demos available that showcase ${currentApp.useCases[0]?.toLowerCase()} while demonstrating our commitment to biblical principles. Would you like me to schedule a personalized demo, or would you prefer to see some case studies first?`;
-    }
+      return `🎬 **${currentApp.name} Demo** - See Kingdom Innovation in Action
 
-    return `I'd be happy to show you demos of any Kingdom app! We have interactive demos, case studies, and success stories that demonstrate real-world impact while honoring God. Each demo showcases how our technology serves a higher purpose. Which app would you like to see in action first?`;
+I'd love to show you how ${currentApp.name} works! Here's what you can expect:
+
+🔥 **Live Demo Features**:
+• Real-time functionality
+• User experience walkthrough
+• Kingdom impact examples
+• Biblical integration points
+
+💡 **Next Steps**: 
+1. Schedule a personalized demo
+2. See it in your specific context
+3. Discuss kingdom applications
+4. Explore implementation options
+
+Would you like to schedule a demo or see specific features in action?`;
+    }
+    
+    return `🎬 **Kingdom Collective Demos** - Experience Innovation with Purpose
+
+I'd be delighted to show you our apps in action! Each demo is designed to showcase not just functionality, but kingdom impact.
+
+🔥 **Demo Experience**:
+• Personalized to your needs
+• Real-world applications
+• Biblical integration examples
+• Kingdom impact stories
+
+💡 **Biblical Wisdom**: "Taste and see that the Lord is good" (Psalm 34:8). Experience how technology can serve God's purpose.
+
+Which app would you like to see demonstrated?`;
   }
 
   private generateComparisonResponse(context: ResponseContext): string {
-    const mentionedApps = context.mentionedApps;
-    if (mentionedApps.length >= 2) {
-      const app1 = kingdomCollective.apps.find(app => app.id === mentionedApps[0]);
-      const app2 = kingdomCollective.apps.find(app => app.id === mentionedApps[1]);
-      
-      if (app1 && app2) {
-        return `Great question! ${app1.name} focuses on ${app1.description.toLowerCase()}, while ${app2.name} specializes in ${app2.description.toLowerCase()}. Both integrate seamlessly within our ecosystem, reflecting the biblical principle of unity in diversity. Would you like to see how they work together?`;
-      }
-    }
+    return `⚖️ **App Comparison** - Wisdom in Choice
 
-    return `Each Kingdom app is designed for specific use cases, but they all work together seamlessly, reflecting the biblical principle of unity in the body of Christ. For example, you could use Kingdom Voice for hands-free control while creating content with Kingdom Clips, then share it through Kingdom Circle. Which apps are you comparing?`;
+Each Kingdom Collective app serves a unique purpose in God's kingdom:
+
+🔥 **Kingdom Apps Overview**:
+• **Kingdom Circle**: Community building and spiritual growth
+• **Kingdom Clips**: Video creation with purpose
+• **Kingdom Launchpad**: Business acceleration with kingdom values
+• **Kingdom Lens**: AR experiences that point to truth
+• **Kingdom Studios**: Creative tools for kingdom impact
+• **Kingdom Voice**: Voice technology with spiritual purpose
+
+💡 **Biblical Wisdom**: "In all your ways acknowledge Him, and He will make your paths straight" (Proverbs 3:6).
+
+Which apps would you like to compare, or would you prefer a recommendation based on your goals?`;
   }
 
   private generateCompanyResponse(context: ResponseContext): string {
-    return `Kingdom Collective is on a mission to ${kingdomCollective.mission.toLowerCase()}. We believe in ${kingdomCollective.values[0]?.toLowerCase()} and creating technology that serves a higher purpose. Our biblical foundation guides everything we do - from ${kingdomCollective.biblicalFoundation[0]?.toLowerCase()} to ${kingdomCollective.biblicalFoundation[1]?.toLowerCase()}. Our ecosystem of 6 innovative apps helps individuals and businesses achieve their highest potential while honoring God. What aspect of our company would you like to learn more about?`;
+    return `🏛️ **Kingdom Collective** - Innovation with Biblical Foundation
+
+We are a team of believers passionate about using technology to serve God's kingdom. Our mission is to create innovative apps that honor God while serving His people.
+
+🔥 **Our Values**:
+• Biblical truth as our foundation
+• Excellence in everything we do
+• Stewardship of God's gifts
+• Service to others
+• Kingdom impact
+
+💡 **Biblical Foundation**: "Whatever you do, work at it with all your heart, as working for the Lord" (Colossians 3:23).
+
+Our team combines technical expertise with spiritual wisdom, creating apps that not only function excellently but also serve God's purpose.
+
+How can I help you learn more about our mission or specific apps?`;
   }
 
   private generateRecommendationResponse(context: ResponseContext): string {
-    const recommendations = getRecommendedApps(context.interests);
+    const recommendedApps = getRecommendedApps(context.userInterests);
     
-    if (recommendations.length > 0) {
-      const app = recommendations[0];
-      return `Based on your interests, I'd highly recommend ${app.name}! It's perfect for ${app.useCases[0]?.toLowerCase()} and can help you ${app.benefits[0]?.toLowerCase()} while maintaining biblical principles. ${app.biblicalPrinciples[0]?.toLowerCase()}. Would you like to learn more about ${app.name}?`;
-    }
+    return `🎯 **Personalized Recommendations** - Wisdom in Choice
 
-    return `I'd love to recommend the perfect Kingdom app for your needs! Could you tell me a bit more about what you're looking to achieve? For example, are you focused on productivity, community building, content creation, business growth, or spiritual development? We believe every tool should serve God's purposes.`;
+Based on your interests and goals, here are my recommendations:
+
+🔥 **Top Recommendations**:
+${recommendedApps.map(app => `• **${app.name}**: ${app.description}`).join('\n')}
+
+💡 **Biblical Wisdom**: "The plans of the diligent lead to profit" (Proverbs 21:5). Each recommendation is designed to help you serve God's purpose effectively.
+
+Would you like me to explain why these apps would be perfect for your specific needs?`;
   }
 
   private generateBiblicalResponse(context: ResponseContext, currentApp: any): string {
     if (currentApp) {
-      return `I'm glad you asked about the biblical foundation of ${currentApp.name}! ${currentApp.biblicalPrinciples[0]?.toLowerCase()}. Our app is designed to help you ${currentApp.benefits[0]?.toLowerCase()} while honoring God. We believe technology should serve God's purposes and help us fulfill our calling. Would you like to know more about how ${currentApp.name} aligns with biblical principles?`;
-    }
+      return `📖 **Biblical Integration** - ${currentApp.name} with Kingdom Purpose
 
-    return `I'm excited to share our biblical foundation! Kingdom Collective is built on timeless biblical wisdom. ${kingdomCollective.biblicalFoundation[0]?.toLowerCase()}. We believe in ${kingdomCollective.biblicalFoundation[1]?.toLowerCase()}. Every app we create is designed to help you serve God and others while achieving excellence. What specific aspect of our biblical approach interests you?`;
+${currentApp.biblicalPrinciples ? currentApp.biblicalPrinciples : `${currentApp.name} is designed with biblical wisdom and kingdom values at its core.`}
+
+🔥 **Scriptural Foundation**:
+• "Whatever you do, work at it with all your heart, as working for the Lord" (Colossians 3:23)
+• "The plans of the diligent lead to profit" (Proverbs 21:5)
+• "In all your ways acknowledge Him, and He will make your paths straight" (Proverbs 3:6)
+
+💡 **Kingdom Impact**: ${currentApp.name} helps you serve God's purpose while using technology with wisdom and intentionality.
+
+How can I help you understand how ${currentApp.name} aligns with biblical principles?`;
+    }
+    
+    return `📖 **Biblical Wisdom** - Technology with Kingdom Purpose
+
+At Kingdom Collective, we believe technology should serve God's kingdom. Every app is designed with biblical principles and kingdom values.
+
+🔥 **Our Biblical Foundation**:
+• "Whatever you do, work at it with all your heart, as working for the Lord" (Colossians 3:23)
+• "The plans of the diligent lead to profit" (Proverbs 21:5)
+• "In all your ways acknowledge Him, and He will make your paths straight" (Proverbs 3:6)
+
+💡 **Kingdom Perspective**: Technology, when used with wisdom and purpose, can be a powerful tool for God's kingdom.
+
+How can I help you explore how our apps align with biblical principles?`;
   }
 
   private generateDefaultResponse(context: ResponseContext, currentApp: any): string {
     if (currentApp) {
-      return `That's a great question about ${currentApp.name}! ${currentApp.description} It's designed to help you ${currentApp.benefits[0]?.toLowerCase()} while maintaining biblical integrity. We believe in doing everything for God's glory. Would you like to know more about pricing, features, or see a demo?`;
-    }
+      return `🤔 **Exploring ${currentApp.name}** - Let me help you discover more!
 
-    return `I'm here to help you discover the perfect Kingdom app for your needs! Each of our 6 apps is designed to solve specific challenges while working together as a complete ecosystem. We believe in combining innovation with biblical wisdom to serve God's purposes. What are you looking to accomplish?`;
+${currentApp.description}
+
+🔥 **Quick Facts**:
+• Purpose: ${currentApp.purpose || 'Kingdom impact and innovation'}
+• Key Benefit: ${currentApp.benefits ? currentApp.benefits[0] : 'Enhanced productivity with kingdom values'}
+• Biblical Foundation: ${currentApp.biblicalPrinciples ? currentApp.biblicalPrinciples : 'Designed with wisdom and purpose'}
+
+💡 **Next Steps**: Would you like to learn about pricing, features, or see a demo of ${currentApp.name}?`;
+    }
+    
+    return `🤔 **Kingdom Collective Discovery** - Let me guide you!
+
+I'd love to help you explore our innovative apps and discover how technology can serve God's kingdom.
+
+🔥 **Popular Topics**:
+• App features and capabilities
+• Pricing and stewardship
+• Biblical integration
+• Demo and examples
+• Company mission and values
+
+💡 **Biblical Wisdom**: "Ask and it will be given to you; seek and you will find" (Matthew 7:7).
+
+What would you like to explore today?`;
   }
 }
 
