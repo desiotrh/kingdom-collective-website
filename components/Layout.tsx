@@ -63,16 +63,6 @@ export default function Layout({ children, title = 'Kingdom Collective', descrip
             
             <div className="min-h-screen bg-gradient-to-br from-kingdom-dark via-kingdom-darker to-kingdom-navy">
                 {children}
-                
-                {/* Test button to verify Layout is working */}
-                <div className="fixed left-4 top-4 z-[9999]">
-                    <button
-                        onClick={() => alert('Layout component is working!')}
-                        className="bg-red-500 hover:bg-red-600 text-white px-6 py-3 rounded-lg shadow-lg text-lg font-bold"
-                    >
-                        🔥 TEST LAYOUT
-                    </button>
-                </div>
 
                 {/* Enhanced Sales Bot */}
                 <FloatingFlameButton 
@@ -88,16 +78,6 @@ export default function Layout({ children, title = 'Kingdom Collective', descrip
                         currentPage={currentPage}
                     />
                 )}
-
-                {/* Fallback button in case the main one doesn't show */}
-                <div className="fixed right-4 top-4 z-[9998]">
-                    <button
-                        onClick={handleToggleChat}
-                        className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-lg shadow-lg text-lg font-bold"
-                    >
-                        🤖 TEST BOT
-                    </button>
-                </div>
             </div>
         </>
     );
