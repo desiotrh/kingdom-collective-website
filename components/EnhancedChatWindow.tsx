@@ -1,9 +1,9 @@
 'use client';
 
-import { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { conversationManager } from '../utils/conversation-memory';
 import { aiResponseGenerator } from '../utils/ai-response-generator';
+import { conversationManager } from '../utils/conversation-memory';
 
 interface Message {
   id: string;
@@ -35,27 +35,19 @@ export default function EnhancedChatWindow({ isOpen, onClose, currentPage }: Enh
     const newSessionId = `session_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
     setSessionId(newSessionId);
     
-    // Create or load conversation memory
-    let memory = conversationManager.getMemory(newSessionId);
-    if (!memory) {
-      memory = conversationManager.createMemory('user', newSessionId, currentPage);
-    }
-
-    // Load previous messages if they exist
-    if (memory.conversationHistory.length > 0) {
-      setMessages(memory.conversationHistory);
-    } else {
-      // Welcome message
-      const welcomeMessage: Message = {
-        id: 'welcome',
-        text: aiResponseGenerator.generateResponse('hello', newSessionId, currentPage),
-        isUser: false,
-        timestamp: new Date()
-      };
-      setMessages([welcomeMessage]);
-      conversationManager.addMessage(newSessionId, welcomeMessage);
-    }
-  }, [currentPage]);
+    // Add welcome message
+    const welcomeMessage: Message = {
+      id: 'welcome',
+      text: "Hello! I'm your Kingdom Collective assistant, grounded in biblical truth and committed to helping you discover our innovative apps. What can I help you with today?",
+      isUser: false,
+      timestamp: new Date(),
+      context: {
+        page: currentPage,
+        intent: 'greeting'
+      }
+    };
+    setMessages([welcomeMessage]);
+  }, []);
 
   // Update current page in memory when it changes
   useEffect(() => {
@@ -73,39 +65,50 @@ export default function EnhancedChatWindow({ isOpen, onClose, currentPage }: Enh
   }, [messages]);
 
   const handleSendMessage = async () => {
-    if (!inputText.trim() || isLoading || !sessionId) return;
+    if (!inputText.trim() || isLoading) return;
 
     const userMessage: Message = {
       id: Date.now().toString(),
       text: inputText,
       isUser: true,
-      timestamp: new Date(),
-      context: {
-        page: currentPage
-      }
+      timestamp: new Date()
     };
 
     setMessages(prev => [...prev, userMessage]);
-    conversationManager.addMessage(sessionId, userMessage);
     setInputText('');
     setIsLoading(true);
 
-    // Generate AI response
-    setTimeout(() => {
-      const botResponse = aiResponseGenerator.generateResponse(inputText, sessionId, currentPage);
+    try {
+      // Generate AI response
+      const response = aiResponseGenerator.generateResponse(inputText, sessionId, currentPage);
+      
+      // Simulate typing delay
+      await new Promise(resolve => setTimeout(resolve, 1000 + Math.random() * 1000));
+
       const botMessage: Message = {
         id: (Date.now() + 1).toString(),
-        text: botResponse,
+        text: response,
         isUser: false,
         timestamp: new Date(),
         context: {
-          page: currentPage
+          page: currentPage,
+          intent: 'response'
         }
       };
+
       setMessages(prev => [...prev, botMessage]);
-      conversationManager.addMessage(sessionId, botMessage);
+    } catch (error) {
+      console.error('Error generating response:', error);
+      const errorMessage: Message = {
+        id: (Date.now() + 1).toString(),
+        text: "I apologize, but I'm having trouble processing your request right now. Please try again in a moment.",
+        isUser: false,
+        timestamp: new Date()
+      };
+      setMessages(prev => [...prev, errorMessage]);
+    } finally {
       setIsLoading(false);
-    }, 1000);
+    }
   };
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
@@ -121,7 +124,7 @@ export default function EnhancedChatWindow({ isOpen, onClose, currentPage }: Enh
       opacity: 0,
       transition: {
         duration: 0.3,
-        ease: "easeInOut"
+        ease: "easeInOut" as const
       }
     },
     open: {
@@ -129,7 +132,7 @@ export default function EnhancedChatWindow({ isOpen, onClose, currentPage }: Enh
       opacity: 1,
       transition: {
         duration: 0.3,
-        ease: "easeInOut"
+        ease: "easeInOut" as const
       }
     }
   };
