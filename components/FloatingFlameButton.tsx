@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
 
 interface FloatingFlameButtonProps {
@@ -11,14 +11,6 @@ interface FloatingFlameButtonProps {
 
 export default function FloatingFlameButton({ onToggle, isOpen, currentPage }: FloatingFlameButtonProps) {
   const [isHovered, setIsHovered] = useState(false);
-  const [glow, setGlow] = useState(true);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setGlow((prev) => !prev);
-    }, 700);
-    return () => clearInterval(interval);
-  }, []);
 
   return (
     <div className="fixed right-4 top-1/2 transform -translate-y-1/2 z-[9999]">
@@ -29,20 +21,13 @@ export default function FloatingFlameButton({ onToggle, isOpen, currentPage }: F
         className="relative w-24 h-24 bg-transparent rounded-full flex items-center justify-center hover:scale-110 transition-all duration-300"
       >
         {/* Burning Bush Flame */}
-        <div className="relative z-10 w-20 h-20 flex items-center justify-center bg-black rounded-full shadow-inner">
+        <div className="relative z-10 w-20 h-20 flex items-center justify-center">
           <Image
             src="/kingdom-flame-avatar.png"
             alt="Kingdom Flame"
             width={60}
             height={60}
-            className={`transition-all duration-700 ease-in-out ${
-              glow ? 'animate-pulse' : 'animate-ping'
-            }`}
-            style={{
-              filter: glow
-                ? "drop-shadow(0 0 12px #facc15) drop-shadow(0 0 24px #3b82f6)"
-                : "drop-shadow(0 0 6px #dc2626)",
-            }}
+            className="animate-flame-flicker"
           />
         </div>
 
