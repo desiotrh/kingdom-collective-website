@@ -3,6 +3,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { aiResponseGenerator } from '../utils/ai-response-generator';
 import { conversationManager } from '../utils/conversation-memory';
+import ChatAvatar from './ChatAvatar';
 
 interface Message {
   id: string;
@@ -124,11 +125,7 @@ export default function EnhancedChatWindow({ isOpen, onClose, currentPage }: Enh
       {/* Header */}
       <div className="flex items-center justify-between p-4 border-b border-[#374151] bg-gradient-to-r from-yellow-600 to-orange-600">
         <div className="flex items-center space-x-3">
-          <div className="w-10 h-10 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full flex items-center justify-center">
-            <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M12 2C13.1 2 14 2.9 14 4C14 5.1 13.1 6 12 6C10.9 6 10 5.1 10 4C10 2.9 10.9 2 12 2ZM12 8C13.1 8 14 8.9 14 10C14 11.1 13.1 12 12 12C10.9 12 10 11.1 10 10C10 8.9 10.9 8 12 8ZM12 14C13.1 14 14 14.9 14 16C14 17.1 13.1 18 12 18C10.9 18 10 17.1 10 16C10 14.9 10.9 14 12 14ZM12 20C13.1 20 14 20.9 14 22C14 23.1 13.1 24 12 24C10.9 24 10 23.1 10 22C10 20.9 10.9 20 12 20Z"/>
-            </svg>
-          </div>
+          <ChatAvatar tone="kingdom" />
           <div>
             <h2 className="text-lg font-bold text-white">Kingdom Assistant</h2>
             <p className="text-xs text-yellow-200">Your Royal Guide</p>
