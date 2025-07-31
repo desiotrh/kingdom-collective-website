@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Lottie from "lottie-react";
 import flameAnimation from "../public/flame.json";
 
@@ -12,6 +12,16 @@ interface FloatingFlameButtonProps {
 
 export default function FloatingFlameButton({ onToggle, isOpen, currentPage }: FloatingFlameButtonProps) {
   const [isHovered, setIsHovered] = useState(false);
+  const [lottieError, setLottieError] = useState<string | null>(null);
+
+  useEffect(() => {
+    console.log('FloatingFlameButton mounted, flameAnimation:', flameAnimation);
+  }, []);
+
+  const handleLottieError = (error: any) => {
+    console.error('Lottie error:', error);
+    setLottieError(error.message);
+  };
 
   return (
     <div className="fixed right-8 top-1/2 transform -translate-y-1/2 z-[9999]">
@@ -23,7 +33,38 @@ export default function FloatingFlameButton({ onToggle, isOpen, currentPage }: F
       >
         {/* Burning Bush Flame */}
         <div className="relative z-10 w-12 h-12 flex items-center justify-center">
-          <Lottie animationData={flameAnimation} loop autoplay />
+          {lottieError ? (
+            <div className="text-red-500 text-xs">Lottie Error: {lottieError}</div>
+          ) : (
+            <Lottie 
+              animationData={flameAnimation} 
+              loop 
+              autoplay 
+              onError={handleLottieError}
+              style={{ width: '100%', height: '100%' }}
+            />
+          )}
+          
+          {/* Fallback SVG flame */}
+          <svg 
+            className="absolute inset-0 w-full h-full"
+            viewBox="0 0 100 100" 
+            fill="none" 
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <defs>
+              <radialGradient id="flameGradient" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stopColor="#ff6b35" />
+                <stop offset="50%" stopColor="#f7931e" />
+                <stop offset="100%" stopColor="#1e3a8a" />
+              </radialGradient>
+            </defs>
+            <path 
+              d="M50 10 C60 20, 70 30, 50 50 C30 30, 40 20, 50 10 Z" 
+              fill="url(#flameGradient)"
+              className="animate-pulse"
+            />
+          </svg>
         </div>
 
         {/* Status indicator */}
