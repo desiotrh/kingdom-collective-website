@@ -125,6 +125,10 @@ export default function EnhancedChatWindow({ isOpen, onClose, currentPage }: Enh
     }
   };
 
+  const handleSendButtonClick = () => {
+    handleSendMessage();
+  };
+
   if (!isOpen) return null;
 
   return (
@@ -299,7 +303,7 @@ export default function EnhancedChatWindow({ isOpen, onClose, currentPage }: Enh
             disabled={isLoading}
           />
           <button
-            onClick={handleSendMessage}
+            onClick={handleSendButtonClick}
             disabled={!inputText.trim() || isLoading}
             className="bg-gradient-to-r from-kingdom-gold to-kingdom-orange hover:from-kingdom-gold/90 hover:to-kingdom-orange/90 disabled:from-gray-600 disabled:to-gray-600 disabled:cursor-not-allowed text-kingdom-dark px-6 py-4 rounded-2xl font-medium transition-all duration-200 transform hover:scale-105 shadow-lg disabled:transform-none flex-shrink-0"
           >
