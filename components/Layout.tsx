@@ -14,17 +14,21 @@ export default function Layout({ children, title = 'Kingdom Collective', descrip
     const [currentPage, setCurrentPage] = useState('/');
 
     const handleToggleChat = () => {
+        console.log('Toggle chat clicked!', { isChatOpen });
         setIsChatOpen(!isChatOpen);
     };
 
     const handleCloseChat = () => {
+        console.log('Close chat clicked!');
         setIsChatOpen(false);
     };
 
     // Update current page based on window location
     React.useEffect(() => {
         if (typeof window !== 'undefined') {
-            setCurrentPage(window.location.pathname);
+            const path = window.location.pathname;
+            console.log('Current page:', path);
+            setCurrentPage(path);
         }
     }, []);
 
@@ -74,6 +78,16 @@ export default function Layout({ children, title = 'Kingdom Collective', descrip
                         currentPage={currentPage}
                     />
                 )}
+
+                {/* Fallback button in case the main one doesn't show */}
+                <div className="fixed right-4 top-4 z-[9998]">
+                    <button
+                        onClick={handleToggleChat}
+                        className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg shadow-lg"
+                    >
+                        Test Bot
+                    </button>
+                </div>
             </div>
         </>
     );

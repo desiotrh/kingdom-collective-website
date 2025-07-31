@@ -77,7 +77,7 @@ export default function FloatingFlameButton({ onToggle, isOpen, currentPage }: F
   };
 
   return (
-    <div className="fixed right-8 top-1/2 transform -translate-y-1/2 z-50">
+    <div className="fixed right-8 top-1/2 transform -translate-y-1/2 z-[9999]">
       <motion.button
         onClick={onToggle}
         onMouseEnter={() => setIsHovered(true)}
@@ -90,7 +90,7 @@ export default function FloatingFlameButton({ onToggle, isOpen, currentPage }: F
         whileTap="tap"
       >
         {/* Main flame button */}
-        <div className="relative w-16 h-16 bg-gradient-to-br from-yellow-400 via-orange-500 to-red-500 rounded-full flex items-center justify-center shadow-2xl border-2 border-yellow-300">
+        <div className="relative w-16 h-16 bg-gradient-to-br from-yellow-400 via-orange-500 to-red-500 rounded-full flex items-center justify-center shadow-2xl border-2 border-yellow-300 animate-pulse">
           {/* Animated glow effect */}
           <motion.div
             className="absolute inset-0 rounded-full bg-yellow-400 opacity-30"
