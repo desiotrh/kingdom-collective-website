@@ -25,12 +25,12 @@ export default function ChatAvatar({ tone }: ChatAvatarProps) {
         className="transition-all duration-700 ease-in-out"
         style={{
           filter: glow
-            ? "drop-shadow(0 0 10px #f97316) drop-shadow(0 0 20px #3b82f6)"
-            : "drop-shadow(0 0 5px #0ea5e9)",
+            ? "drop-shadow(0 0 12px #facc15) drop-shadow(0 0 24px #3b82f6)"
+            : "drop-shadow(0 0 6px #dc2626)",
         }}
       >
         <path
-          d="M50,10 C65,30 60,70 50,90 C40,70 35,30 50,10 Z"
+          d="M50,10 C65,35 60,75 50,90 C40,75 35,35 50,10 Z"
           fill="url(#flameGradient)"
         />
         <defs>
