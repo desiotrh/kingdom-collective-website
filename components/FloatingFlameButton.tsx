@@ -33,21 +33,9 @@ export default function FloatingFlameButton({ onToggle, isOpen, currentPage }: F
       >
         {/* Burning Bush Flame */}
         <div className="relative z-10 w-12 h-12 flex items-center justify-center">
-          {lottieError ? (
-            <div className="text-red-500 text-xs">Lottie Error: {lottieError}</div>
-          ) : (
-            <Lottie 
-              animationData={flameAnimation} 
-              loop 
-              autoplay 
-              onError={handleLottieError}
-              style={{ width: '100%', height: '100%' }}
-            />
-          )}
-          
-          {/* Fallback SVG flame */}
+          {/* Fallback SVG flame - always visible */}
           <svg 
-            className="absolute inset-0 w-full h-full"
+            className="w-full h-full"
             viewBox="0 0 100 100" 
             fill="none" 
             xmlns="http://www.w3.org/2000/svg"
@@ -65,14 +53,25 @@ export default function FloatingFlameButton({ onToggle, isOpen, currentPage }: F
               className="animate-pulse"
             />
           </svg>
+          
+          {/* Lottie animation - hidden for now */}
+          {false && (
+            <Lottie 
+              animationData={flameAnimation} 
+              loop 
+              autoplay 
+              onError={handleLottieError}
+              style={{ width: '100%', height: '100%' }}
+            />
+          )}
         </div>
 
-        {/* Status indicator */}
-        {!isOpen && (
+        {/* Status indicator - REMOVED */}
+        {/* {!isOpen && (
           <div className="absolute -top-2 -right-2 w-6 h-6 bg-green-500 rounded-full border-2 border-white animate-pulse">
             <div className="w-full h-full bg-green-400 rounded-full"></div>
           </div>
-        )}
+        )} */}
       </button>
 
       {/* Tooltip */}
