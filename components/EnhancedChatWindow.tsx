@@ -38,7 +38,7 @@ export default function EnhancedChatWindow({ isOpen, onClose, currentPage }: Enh
     // Add welcome message
     const welcomeMessage: Message = {
       id: 'welcome',
-      text: "Hello! I'm your Kingdom Collective assistant, grounded in biblical truth and committed to helping you discover our innovative apps. What can I help you with today?",
+      text: "🔥 Greetings! I am your Kingdom Collective assistant, standing firm in biblical truth. I'm here to guide you through our innovative apps and help you discover how technology can serve God's purpose. What would you like to explore today?",
       isUser: false,
       timestamp: new Date(),
       context: {
@@ -121,54 +121,57 @@ export default function EnhancedChatWindow({ isOpen, onClose, currentPage }: Enh
   if (!isOpen) return null;
 
   return (
-    <div className="fixed right-8 top-1/2 transform -translate-y-1/2 z-[9999] w-96 h-[600px] bg-[#1a2332] rounded-2xl shadow-2xl border border-[#374151] overflow-hidden">
+    <div className="fixed right-8 top-1/2 transform -translate-y-1/2 z-[9999] w-[420px] h-[650px] bg-gradient-to-br from-kingdom-dark via-kingdom-darker to-kingdom-navy rounded-3xl shadow-2xl border border-kingdom-gold/20 overflow-hidden backdrop-blur-sm">
       {/* Header */}
-      <div className="flex items-center justify-between p-4 border-b border-[#374151] bg-gradient-to-r from-yellow-600 to-orange-600">
-        <div className="flex items-center space-x-3">
-          <ChatAvatar tone="kingdom" />
-          <div>
-            <h2 className="text-lg font-bold text-white">Kingdom Assistant</h2>
-            <p className="text-xs text-yellow-200">Your Royal Guide</p>
+      <div className="relative p-6 border-b border-kingdom-gold/20 bg-gradient-to-r from-kingdom-gold/10 via-kingdom-orange/10 to-kingdom-gold/10">
+        <div className="flex items-center space-x-4">
+          <div className="relative">
+            <ChatAvatar tone="kingdom" />
+            <div className="absolute -bottom-1 -right-1 w-3 h-3 bg-green-500 rounded-full border-2 border-kingdom-dark animate-pulse"></div>
           </div>
+          <div className="flex-1">
+            <h2 className="text-xl font-bold text-white">Kingdom Assistant</h2>
+            <p className="text-sm text-kingdom-gold/80">Grounded in Truth, Powered by Innovation</p>
+          </div>
+          <button
+            onClick={onClose}
+            className="text-kingdom-gold/60 hover:text-kingdom-gold transition-colors p-2 rounded-full hover:bg-kingdom-gold/10"
+          >
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
         </div>
-        <button
-          onClick={onClose}
-          className="text-white hover:text-yellow-200 transition-colors"
-        >
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-          </svg>
-        </button>
       </div>
 
       {/* Messages */}
-      <div className="flex-1 overflow-y-auto custom-scrollbar p-4 h-[480px]">
+      <div className="flex-1 overflow-y-auto custom-scrollbar p-6 h-[500px] bg-gradient-to-b from-transparent to-kingdom-dark/20">
         {messages.map((message) => (
           <div
             key={message.id}
-            className={`flex ${message.isUser ? 'justify-end' : 'justify-start'} mb-4`}
+            className={`flex ${message.isUser ? 'justify-end' : 'justify-start'} mb-6`}
           >
             <div
-              className={`max-w-xs px-4 py-2 rounded-2xl ${
+              className={`max-w-[280px] px-5 py-3 rounded-2xl ${
                 message.isUser
-                  ? 'bg-gradient-to-r from-blue-600 to-blue-700 text-white'
-                  : 'bg-[#2d3748] text-gray-100'
+                  ? 'bg-gradient-to-r from-kingdom-gold to-kingdom-orange text-kingdom-dark shadow-lg'
+                  : 'bg-kingdom-darker/80 text-white border border-kingdom-gold/20 shadow-lg backdrop-blur-sm'
               }`}
             >
-              <p className="text-sm whitespace-pre-wrap">{message.text}</p>
-              <p className="text-xs opacity-50 mt-1">
+              <p className="text-sm leading-relaxed whitespace-pre-wrap">{message.text}</p>
+              <p className={`text-xs mt-2 ${message.isUser ? 'text-kingdom-dark/70' : 'text-kingdom-gold/60'}`}>
                 {message.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
               </p>
             </div>
           </div>
         ))}
         {isLoading && (
-          <div className="flex justify-start mb-4">
-            <div className="bg-[#2d3748] text-gray-100 px-4 py-2 rounded-2xl">
-              <div className="flex space-x-1">
-                <div className="w-2 h-2 bg-yellow-400 rounded-full animate-bounce"></div>
-                <div className="w-2 h-2 bg-yellow-400 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
-                <div className="w-2 h-2 bg-yellow-400 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+          <div className="flex justify-start mb-6">
+            <div className="bg-kingdom-darker/80 text-white px-5 py-3 rounded-2xl border border-kingdom-gold/20 shadow-lg backdrop-blur-sm">
+              <div className="flex space-x-2">
+                <div className="w-2 h-2 bg-kingdom-gold rounded-full animate-bounce"></div>
+                <div className="w-2 h-2 bg-kingdom-gold rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
+                <div className="w-2 h-2 bg-kingdom-gold rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
               </div>
             </div>
           </div>
@@ -177,23 +180,25 @@ export default function EnhancedChatWindow({ isOpen, onClose, currentPage }: Enh
       </div>
 
       {/* Input */}
-      <div className="p-4 border-t border-[#374151]">
+      <div className="p-6 border-t border-kingdom-gold/20 bg-gradient-to-r from-kingdom-dark/50 to-kingdom-darker/50">
         <div className="flex space-x-3">
           <textarea
             value={inputText}
             onChange={(e) => setInputText(e.target.value)}
             onKeyPress={handleKeyPress}
-            placeholder="Ask me about Kingdom apps..."
-            className="flex-1 bg-[#2d3748] text-white placeholder-gray-400 rounded-xl px-4 py-3 resize-none focus:outline-none focus:ring-2 focus:ring-yellow-500"
+            placeholder="Ask about Kingdom apps, biblical wisdom, or technology..."
+            className="flex-1 bg-kingdom-darker/80 text-white placeholder-kingdom-gold/40 rounded-2xl px-4 py-3 resize-none focus:outline-none focus:ring-2 focus:ring-kingdom-gold/50 border border-kingdom-gold/20 backdrop-blur-sm"
             rows={1}
             disabled={isLoading}
           />
           <button
             onClick={handleSendMessage}
             disabled={!inputText.trim() || isLoading}
-            className="bg-gradient-to-r from-yellow-600 to-orange-600 hover:from-yellow-700 hover:to-orange-700 disabled:from-gray-600 disabled:to-gray-600 disabled:cursor-not-allowed text-white px-6 py-3 rounded-xl font-medium transition-all duration-200 transform hover:scale-105"
+            className="bg-gradient-to-r from-kingdom-gold to-kingdom-orange hover:from-kingdom-gold/90 hover:to-kingdom-orange/90 disabled:from-gray-600 disabled:to-gray-600 disabled:cursor-not-allowed text-kingdom-dark px-6 py-3 rounded-2xl font-medium transition-all duration-200 transform hover:scale-105 shadow-lg"
           >
-            Send
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+            </svg>
           </button>
         </div>
       </div>

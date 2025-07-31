@@ -13,6 +13,14 @@ module.exports = {
         blue: '#b7c6e0',
         gray: '#2d2f34',
         white: '#ffffff',
+        // Kingdom Collective theme colors
+        'kingdom-dark': '#0f172a',
+        'kingdom-darker': '#1e293b',
+        'kingdom-navy': '#0f172a',
+        'kingdom-gold': '#facc15',
+        'kingdom-orange': '#f97316',
+        'kingdom-gold-light': '#fef3c7',
+        'kingdom-orange-light': '#fed7aa',
       },
       fontFamily: {
         sans: ['Space Grotesk', 'Noto Sans', 'sans-serif'],
