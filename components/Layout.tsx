@@ -62,9 +62,9 @@ export default function Layout({ children, title = 'Kingdom Collective', descrip
                 
                 {/* Enhanced Sales Bot */}
                 <FloatingFlameButton 
-                    onClick={handleToggleChat}
-                    isActive={isChatOpen}
-                    tooltip="Chat with our AI Assistant"
+                    onToggle={handleToggleChat}
+                    isOpen={isChatOpen}
+                    currentPage={currentPage}
                 />
                 
                 {isChatOpen && (

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 interface FloatingFlameButtonProps {
@@ -10,13 +10,13 @@ interface FloatingFlameButtonProps {
 }
 
 export default function FloatingFlameButton({ onToggle, isOpen, currentPage }: FloatingFlameButtonProps) {
+  const [isAnimating, setIsAnimating] = useState(true);
   const [isHovered, setIsHovered] = useState(false);
-  const [isAnimating, setIsAnimating] = useState(false);
 
   useEffect(() => {
-    // Initial entrance animation
-    setIsAnimating(true);
-    const timer = setTimeout(() => setIsAnimating(false), 2000);
+    const timer = setTimeout(() => {
+      setIsAnimating(false);
+    }, 2000);
     return () => clearTimeout(timer);
   }, []);
 
@@ -32,7 +32,7 @@ export default function FloatingFlameButton({ onToggle, isOpen, currentPage }: F
       opacity: 1,
       transition: {
         duration: 0.8,
-        ease: "easeOut"
+        ease: "easeOut" as const
       }
     },
     hover: { 
@@ -40,7 +40,7 @@ export default function FloatingFlameButton({ onToggle, isOpen, currentPage }: F
       rotate: [0, -5, 5, 0],
       transition: {
         duration: 0.3,
-        ease: "easeInOut"
+        ease: "easeInOut" as const
       }
     },
     tap: { 
@@ -59,7 +59,7 @@ export default function FloatingFlameButton({ onToggle, isOpen, currentPage }: F
       transition: {
         duration: 2,
         repeat: Infinity,
-        ease: "easeInOut"
+        ease: "easeInOut" as const
       }
     }
   };
@@ -71,7 +71,7 @@ export default function FloatingFlameButton({ onToggle, isOpen, currentPage }: F
       transition: {
         duration: 1.5,
         repeat: Infinity,
-        ease: "easeInOut"
+        ease: "easeInOut" as const
       }
     }
   };

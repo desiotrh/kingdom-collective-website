@@ -47,7 +47,7 @@ export default function EnhancedChatWindow({ isOpen, onClose, currentPage }: Enh
       }
     };
     setMessages([welcomeMessage]);
-  }, []);
+  }, [currentPage]);
 
   // Update current page in memory when it changes
   useEffect(() => {
