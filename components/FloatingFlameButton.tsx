@@ -19,14 +19,8 @@ export default function FloatingFlameButton({ onToggle, isOpen, currentPage }: F
         onClick={onToggle}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
-        className="relative w-20 h-20 bg-gradient-to-br from-yellow-400 via-orange-500 to-red-500 rounded-full flex items-center justify-center shadow-2xl border-4 border-yellow-300 hover:scale-110 transition-all duration-300 animate-pulse animate-flame-glow"
+        className="relative w-20 h-20 bg-transparent rounded-full flex items-center justify-center hover:scale-110 transition-all duration-300"
       >
-        {/* Animated glow effect */}
-        <div className="absolute inset-0 rounded-full bg-yellow-400 opacity-30 animate-ping"></div>
-        
-        {/* Pulse effect */}
-        <div className="absolute inset-0 rounded-full bg-orange-400 opacity-20 animate-pulse"></div>
-        
         {/* Burning Bush Flame */}
         <div className="relative z-10 w-12 h-12 flex items-center justify-center">
           {/* Flame icon removed */}
