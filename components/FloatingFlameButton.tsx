@@ -1,7 +1,8 @@
 'use client';
 
 import React, { useState } from 'react';
-import { motion } from "framer-motion";
+import Lottie from "lottie-react";
+import flameAnimation from "../public/flame.json";
 
 interface FloatingFlameButtonProps {
   onToggle: () => void;
@@ -11,13 +12,6 @@ interface FloatingFlameButtonProps {
 
 export default function FloatingFlameButton({ onToggle, isOpen, currentPage }: FloatingFlameButtonProps) {
   const [isHovered, setIsHovered] = useState(false);
-
-  const colors = {
-    from: "from-yellow-400",
-    via: "via-orange-500", 
-    to: "to-yellow-300",
-    shadow: "shadow-yellow-500",
-  };
 
   return (
     <div className="fixed right-8 top-1/2 transform -translate-y-1/2 z-[9999]">
@@ -34,8 +28,8 @@ export default function FloatingFlameButton({ onToggle, isOpen, currentPage }: F
         <div className="absolute inset-0 rounded-full bg-orange-400 opacity-20 animate-pulse"></div>
         
         {/* Burning Bush Flame */}
-        <div className="relative z-10 w-12 h-12 flex items-center justify-center">
-          {/* Flame icon will be added here */}
+        <div className="relative z-10 w-12 h-12 flex items-center justify-center overflow-hidden rounded-full">
+          <Lottie animationData={flameAnimation} loop autoplay />
         </div>
 
         {/* Status indicator */}

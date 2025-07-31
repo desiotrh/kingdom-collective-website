@@ -11,6 +11,7 @@
     "dependencies": {
         "@next/font": "^14.0.0",
         "framer-motion": "^12.23.12",
+        "lottie-react": "^2.4.1",
         "next": "14.0.0",
         "react": "^18.2.0",
         "react-dom": "^18.2.0"
