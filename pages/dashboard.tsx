@@ -502,7 +502,6 @@ export default function Dashboard() {
                           <div>
                             <div className="flex items-center gap-3 mb-4">
                               <h3 className="text-xl font-bold text-white">{bot.name}</h3>
-                              <span className="text-kingdom-gold text-sm font-medium">{bot.category}</span>
                             </div>
                             <p className="text-white text-sm">{bot.description}</p>
                           </div>
