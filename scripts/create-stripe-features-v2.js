@@ -1,8 +1,15 @@
 const Stripe = require('stripe');
 require('dotenv').config({ path: '.env.local' });
 
-// Set the Stripe secret key directly
-const STRIPE_SECRET_KEY = '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';
+// Use environment variable for Stripe secret key
+const STRIPE_SECRET_KEY = process.env.STRIPE_SECRET_KEY;
+
+if (!STRIPE_SECRET_KEY) {
+  console.error('❌ STRIPE_SECRET_KEY is not set in environment variables');
+  console.log('💡 Please add your Stripe secret key to .env.local file');
+  console.log('   Example: STRIPE_SECRET_KEY=sk_live_your_key_here');
+  process.exit(1);
+}
 
 console.log('🔍 Debug: Using Stripe secret key:', STRIPE_SECRET_KEY ? 'SET' : 'NOT SET');
 
