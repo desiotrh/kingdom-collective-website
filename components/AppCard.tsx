@@ -21,7 +21,7 @@ export default function AppCard({
 }: AppCardProps) {
   return (
     <Link href={href}>
-      <div className="group relative bg-navy/30 border border-gray rounded-xl p-6 hover:bg-navy/50 hover:border-blue/50 transition-all duration-300 hover:scale-105">
+      <div className="card-standard group relative hover:scale-105">
         {/* Glow effect on hover */}
         <div className="absolute inset-0 bg-gradient-to-r from-blue/10 to-white/10 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
         
@@ -39,12 +39,12 @@ export default function AppCard({
           </div>
           
           {/* Title */}
-          <h3 className="text-xl font-bold text-white mb-3 group-hover:text-blue transition-colors duration-200">
+          <h3 className="text-heading-secondary mb-3 group-hover:text-blue transition-colors duration-200">
             {title}
           </h3>
           
           {/* Description */}
-          <p className="text-white leading-relaxed">
+          <p className="text-body-primary">
             {description}
           </p>
           

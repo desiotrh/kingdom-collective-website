@@ -66,13 +66,13 @@ export default function Home() {
         <Hero />
         
         {/* Apps Section */}
-        <section className="px-4 sm:px-6 md:px-8 lg:px-12 xl:px-40 py-16 sm:py-20 md:py-24 lg:py-32">
-          <div className="max-w-[960px] mx-auto">
+        <section className="section-padding">
+          <div className="container-standard">
             <div className="text-center mb-12 sm:mb-16">
-              <h2 className="text-white text-2xl sm:text-3xl md:text-4xl font-black leading-tight tracking-[-0.033em] mb-4 sm:mb-6">
+              <h2 className="text-heading-primary mb-4 sm:mb-6">
                 Our <span className="text-blue">Studio Apps</span>
               </h2>
-              <p className="text-white text-sm sm:text-base font-normal leading-relaxed max-w-3xl mx-auto px-4">
+              <p className="text-body-primary max-w-3xl mx-auto px-4">
                 Kingdom Collective is more than just a suite of apps—it&apos;s a movement
                 dedicated to empowering creators, entrepreneurs, and community builders
                 to create with purpose, share with authority, and build what truly
@@ -97,12 +97,12 @@ export default function Home() {
         </section>
 
         {/* About Section */}
-        <section className="px-4 sm:px-6 md:px-8 lg:px-12 xl:px-40 py-12 sm:py-16 md:py-20 bg-black/30 backdrop-blur-sm">
-          <div className="max-w-[960px] mx-auto text-center">
-            <h2 className="text-white text-2xl sm:text-3xl md:text-4xl font-black leading-tight tracking-[-0.033em] mb-6 sm:mb-8">
+        <section className="section-padding bg-black/30 backdrop-blur-sm">
+          <div className="container-standard text-center">
+            <h2 className="text-heading-primary mb-6 sm:mb-8">
               About <span className="text-blue">Kingdom Collective</span>
             </h2>
-            <p className="text-white text-sm sm:text-base font-normal leading-relaxed px-4">
+            <p className="text-body-primary px-4">
               Our mission is to provide the tools, resources, and community support
               needed to help you make a lasting impact in your sphere of influence.
               Whether you&apos;re creating content, building a business, or fostering
@@ -110,8 +110,6 @@ export default function Home() {
             </p>
           </div>
         </section>
-
-
 
         <Footer />
       </div>

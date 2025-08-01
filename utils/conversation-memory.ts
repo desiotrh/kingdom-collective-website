@@ -14,6 +14,13 @@ export interface ConversationMemory {
   conversationTopics: string[];
   followUpQuestions: string[];
   userGoals: string[];
+  // Enhanced tracking fields
+  sentiment: 'positive' | 'neutral' | 'negative' | 'unknown';
+  engagementLevel: 'high' | 'medium' | 'low';
+  userJourney: string[];
+  painPoints: string[];
+  decisionStage: 'awareness' | 'consideration' | 'evaluation' | 'decision' | 'unknown';
+  preferredCommunicationStyle: 'detailed' | 'concise' | 'visual' | 'technical' | 'spiritual';
 }
 
 export interface Message {
@@ -56,7 +63,13 @@ export class ConversationManager {
       budgetRange: 'unknown',
       conversationTopics: [],
       followUpQuestions: [],
-      userGoals: []
+      userGoals: [],
+      sentiment: 'unknown',
+      engagementLevel: 'medium',
+      userJourney: [],
+      painPoints: [],
+      decisionStage: 'unknown',
+      preferredCommunicationStyle: 'detailed'
     };
 
     this.memories.set(sessionId, memory);
@@ -96,6 +109,9 @@ export class ConversationManager {
       if (memory.conversationHistory.length > 20) {
         memory.conversationHistory = memory.conversationHistory.slice(-20);
       }
+      
+      // Analyze message for enhanced tracking
+      this.analyzeMessageForInsights(sessionId, message);
       
       this.saveToLocalStorage(sessionId, memory);
     }
@@ -269,6 +285,85 @@ export class ConversationManager {
       localStorage.removeItem(`kingdom-conversation-${sessionId}`);
     } catch (error) {
       console.warn('Failed to clear conversation from localStorage:', error);
+    }
+  }
+
+  private analyzeMessageForInsights(sessionId: string, message: Message): void {
+    const memory = this.getMemory(sessionId);
+    if (!memory) return;
+
+    const text = message.text.toLowerCase();
+    
+    // Sentiment analysis
+    const positiveWords = ['great', 'amazing', 'love', 'excellent', 'perfect', 'wonderful', 'awesome'];
+    const negativeWords = ['bad', 'terrible', 'hate', 'awful', 'disappointing', 'frustrated'];
+    
+    const positiveCount = positiveWords.filter(word => text.includes(word)).length;
+    const negativeCount = negativeWords.filter(word => text.includes(word)).length;
+    
+    if (positiveCount > negativeCount) {
+      memory.sentiment = 'positive';
+    } else if (negativeCount > positiveCount) {
+      memory.sentiment = 'negative';
+    } else {
+      memory.sentiment = 'neutral';
+    }
+    
+    // Engagement level analysis
+    const messageLength = message.text.length;
+    const hasQuestions = text.includes('?') || text.includes('how') || text.includes('what') || text.includes('why');
+    const hasSpecificRequests = text.includes('show me') || text.includes('tell me') || text.includes('explain');
+    
+    if (messageLength > 100 || hasQuestions || hasSpecificRequests) {
+      memory.engagementLevel = 'high';
+    } else if (messageLength > 50) {
+      memory.engagementLevel = 'medium';
+    } else {
+      memory.engagementLevel = 'low';
+    }
+    
+    // Decision stage analysis
+    if (text.includes('price') || text.includes('cost') || text.includes('pricing')) {
+      memory.decisionStage = 'evaluation';
+    } else if (text.includes('compare') || text.includes('difference') || text.includes('vs')) {
+      memory.decisionStage = 'consideration';
+    } else if (text.includes('demo') || text.includes('trial') || text.includes('test')) {
+      memory.decisionStage = 'decision';
+    } else if (text.includes('what') || text.includes('tell me') || text.includes('show me')) {
+      memory.decisionStage = 'awareness';
+    }
+    
+    // Communication style preference
+    if (text.includes('technical') || text.includes('api') || text.includes('integration')) {
+      memory.preferredCommunicationStyle = 'technical';
+    } else if (text.includes('biblical') || text.includes('spiritual') || text.includes('faith')) {
+      memory.preferredCommunicationStyle = 'spiritual';
+    } else if (text.includes('detailed') || text.includes('explain') || text.includes('more')) {
+      memory.preferredCommunicationStyle = 'detailed';
+    } else if (text.includes('quick') || text.includes('summary') || text.includes('brief')) {
+      memory.preferredCommunicationStyle = 'concise';
+    }
+    
+    // Pain points detection
+    const painPointKeywords = ['problem', 'issue', 'challenge', 'difficult', 'struggle', 'need help'];
+    painPointKeywords.forEach(keyword => {
+      if (text.includes(keyword)) {
+        const context = text.substring(text.indexOf(keyword) - 20, text.indexOf(keyword) + 20);
+        if (!memory.painPoints.includes(context.trim())) {
+          memory.painPoints.push(context.trim());
+        }
+      }
+    });
+    
+    // User journey tracking
+    if (text.includes('first time') || text.includes('new') || text.includes('discover')) {
+      memory.userJourney.push('discovery');
+    } else if (text.includes('learn') || text.includes('understand') || text.includes('explore')) {
+      memory.userJourney.push('learning');
+    } else if (text.includes('compare') || text.includes('evaluate') || text.includes('consider')) {
+      memory.userJourney.push('evaluation');
+    } else if (text.includes('buy') || text.includes('purchase') || text.includes('sign up')) {
+      memory.userJourney.push('purchase');
     }
   }
 }

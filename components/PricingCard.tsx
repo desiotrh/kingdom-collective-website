@@ -23,14 +23,14 @@ interface PricingCardProps {
 
 export default function PricingCard({ appName, appIcon, tiers }: PricingCardProps) {
     return (
-        <div className="bg-kingdom-darker/50 rounded-2xl p-8 border border-kingdom-royal/20">
+        <div className="card-glass p-8">
             {/* App Header */}
             <div className="text-center mb-8">
-                <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-kingdom-royal to-kingdom-blue flex items-center justify-center mx-auto mb-4">
+                <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-kingdom-gold to-kingdom-orange flex items-center justify-center mx-auto mb-4">
                     <span className="text-2xl">{appIcon}</span>
                 </div>
-                <h3 className="text-2xl font-playfair font-bold text-white mb-2">{appName}</h3>
-                <p className="text-gray-400">Choose the perfect plan for your needs</p>
+                <h3 className="text-heading-secondary mb-2">{appName}</h3>
+                <p className="text-body-secondary">Choose the perfect plan for your needs</p>
             </div>
 
             {/* Pricing Tiers */}
@@ -38,15 +38,15 @@ export default function PricingCard({ appName, appIcon, tiers }: PricingCardProp
                 {tiers.map((tier, index) => (
                     <div
                         key={index}
-                        className={`relative p-6 rounded-xl border transition-all duration-300 hover:scale-105 ${tier.popular
-                                ? 'border-kingdom-gold bg-gradient-to-br from-kingdom-gold/10 to-kingdom-amber/10'
-                                : 'border-kingdom-royal/20 bg-kingdom-dark/30'
+                        className={`relative card-standard ${tier.popular
+                                ? 'border-kingdom-gold bg-gradient-to-br from-kingdom-gold/10 to-kingdom-orange/10'
+                                : ''
                             }`}
                     >
                         {/* Popular Badge */}
                         {tier.popular && (
                             <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-                                <span className="bg-gradient-to-r from-kingdom-gold to-kingdom-amber text-kingdom-dark px-4 py-1 rounded-full text-sm font-semibold">
+                                <span className="bg-gradient-to-r from-kingdom-gold to-kingdom-orange text-kingdom-dark px-4 py-1 rounded-full text-sm font-semibold">
                                     Most Popular
                                 </span>
                             </div>
@@ -54,12 +54,12 @@ export default function PricingCard({ appName, appIcon, tiers }: PricingCardProp
 
                         {/* Tier Header */}
                         <div className="text-center mb-6">
-                            <h4 className="text-xl font-playfair font-semibold text-white mb-2">{tier.name}</h4>
+                            <h4 className="text-heading-secondary mb-2">{tier.name}</h4>
                             <div className="mb-2">
                                 <span className="text-3xl font-bold text-white">{tier.price}</span>
-                                {tier.price !== 'Free' && <span className="text-gray-400">/month</span>}
+                                {tier.price !== 'Free' && <span className="text-body-secondary">/month</span>}
                             </div>
-                            <p className="text-sm text-gray-400">{tier.description}</p>
+                            <p className="text-body-secondary">{tier.description}</p>
                         </div>
 
                         {/* Features */}
@@ -80,7 +80,7 @@ export default function PricingCard({ appName, appIcon, tiers }: PricingCardProp
                                             </svg>
                                         )}
                                     </div>
-                                    <span className={`text-sm ${feature.included ? 'text-gray-300' : 'text-gray-500'}`}>
+                                    <span className={`text-sm ${feature.included ? 'text-body-primary' : 'text-body-secondary'}`}>
                                         {feature.text}
                                     </span>
                                 </div>
@@ -91,8 +91,8 @@ export default function PricingCard({ appName, appIcon, tiers }: PricingCardProp
                         <a
                             href={tier.href}
                             className={`block w-full text-center py-3 px-6 rounded-lg font-semibold transition-all duration-300 ${tier.popular
-                                    ? 'bg-gradient-to-r from-kingdom-gold to-kingdom-amber text-kingdom-dark hover:shadow-lg hover:shadow-kingdom-gold/30'
-                                    : 'border-2 border-kingdom-royal text-kingdom-royal hover:bg-kingdom-royal hover:text-white'
+                                    ? 'btn-kingdom-primary'
+                                    : 'btn-kingdom-secondary'
                                 }`}
                         >
                             {tier.cta}

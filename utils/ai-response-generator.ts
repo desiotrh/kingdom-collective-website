@@ -38,7 +38,10 @@ export class AIResponseGenerator {
     this.analyzeUserInput(userInput, sessionId, context);
     
     // Generate contextual response with biblical foundation
-    return this.generateContextualResponse(userInput, context);
+    const baseResponse = this.generateContextualResponse(userInput, context);
+    
+    // Apply personalization based on conversation memory
+    return this.generatePersonalizedResponse(context, baseResponse);
   }
 
   private buildContext(memory: ConversationMemory | null, currentPage: string): ResponseContext {
@@ -141,6 +144,7 @@ export class AIResponseGenerator {
   private generateContextualResponse(userInput: string, context: ResponseContext): string {
     const input = userInput.toLowerCase();
     const currentApp = getAppByPage(context.currentPage);
+    const memory = conversationManager.getMemory(context.currentPage);
     
     // Enhanced greeting responses with biblical wisdom
     if (input.includes('hello') || input.includes('hi') || input.includes('hey') || input.includes('greetings')) {
@@ -196,8 +200,103 @@ export class AIResponseGenerator {
       return this.generateBiblicalResponse(context, currentApp);
     }
     
+    // Enhanced error handling and fallback responses
+    if (input.includes('help') || input.includes('support') || input.includes('assist')) {
+      return this.generateHelpResponse(context);
+    }
+    
     // Default response with enhanced engagement
     return this.generateDefaultResponse(context, currentApp);
+  }
+
+  private generatePersonalizedResponse(context: ResponseContext, baseResponse: string): string {
+    const memory = conversationManager.getMemory(context.currentPage);
+    if (!memory) return baseResponse;
+
+    let personalizedResponse = baseResponse;
+
+    // Adapt based on sentiment
+    if (memory.sentiment === 'negative') {
+      personalizedResponse += `\n\n🙏 I sense you might have some concerns. I'm here to help address any questions or challenges you're facing. What specific aspect would you like me to clarify?`;
+    } else if (memory.sentiment === 'positive') {
+      personalizedResponse += `\n\n🎉 I'm glad you're excited about our solutions! Let me know if you'd like to dive deeper into any particular aspect.`;
+    }
+
+    // Adapt based on engagement level
+    if (memory.engagementLevel === 'high') {
+      personalizedResponse += `\n\n💡 Since you're showing great interest, would you like me to provide more detailed information about specific features or pricing options?`;
+    } else if (memory.engagementLevel === 'low') {
+      personalizedResponse += `\n\n🤔 I want to make sure I'm addressing your specific needs. Could you tell me more about what you're looking for?`;
+    }
+
+    // Adapt based on decision stage
+    switch (memory.decisionStage) {
+      case 'awareness':
+        personalizedResponse += `\n\n📚 Since you're just discovering our solutions, let me know if you'd like a comprehensive overview or to focus on a specific area.`;
+        break;
+      case 'consideration':
+        personalizedResponse += `\n\n⚖️ I see you're comparing options. Would you like me to help you understand the differences between our apps or focus on specific criteria?`;
+        break;
+      case 'evaluation':
+        personalizedResponse += `\n\n💰 For pricing and evaluation, I can provide detailed cost breakdowns and ROI information. What's most important to you?`;
+        break;
+      case 'decision':
+        personalizedResponse += `\n\n🚀 Ready to move forward? I can help you with the next steps, whether that's a demo, trial, or direct purchase.`;
+        break;
+    }
+
+    // Adapt based on communication style preference
+    switch (memory.preferredCommunicationStyle) {
+      case 'technical':
+        personalizedResponse += `\n\n🔧 I can provide technical specifications, API details, and integration information if that would be helpful.`;
+        break;
+      case 'spiritual':
+        personalizedResponse += `\n\n📖 I'd be happy to share more about how our solutions align with biblical principles and kingdom values.`;
+        break;
+      case 'detailed':
+        personalizedResponse += `\n\n📋 I can provide comprehensive information about features, use cases, and implementation details.`;
+        break;
+      case 'concise':
+        personalizedResponse += `\n\n⚡ I'll keep my responses focused and to the point. Let me know if you need more details.`;
+        break;
+    }
+
+    return personalizedResponse;
+  }
+
+  private generateHelpResponse(context: ResponseContext): string {
+    return `🙏 **How can I serve you today?**
+
+I'm here to help you discover how Kingdom Collective can serve your needs. Here are some ways I can assist:
+
+**📱 App Information**
+• "Show me your apps" - Complete app overview
+• "Tell me about [app name]" - Specific app details
+• "What are the features?" - Detailed capabilities
+
+**🤖 AI Bots & Automation**
+• "Tell me about your AI bots" - Automation solutions
+• "How do the bots work?" - Technical details
+• "Which bot is best for me?" - Personalized recommendations
+
+**💰 Pricing & Value**
+• "What are your pricing options?" - Cost information
+• "Is there a free trial?" - Trial availability
+• "What's included?" - Feature breakdown
+
+**🏛️ Company & Mission**
+• "Tell me about your mission" - Company values
+• "What are your biblical principles?" - Spiritual foundation
+• "How do you serve the community?" - Impact stories
+
+**💡 Quick Actions**
+• Ask about specific apps: "Tell me about Kingdom Voice"
+• Get recommendations: "What's best for a small business?"
+• Learn about features: "What can Kingdom Circle do?"
+
+*"For I know the plans I have for you," declares the Lord, "plans to prosper you and not to harm you, plans to give you hope and a future." - Jeremiah 29:11*
+
+What would you like to explore first?`;
   }
 
   private generateComprehensiveAppOverview(context: ResponseContext): string {

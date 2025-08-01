@@ -67,6 +67,105 @@
   .delay-2000 {
     animation-delay: 2s;
   }
+
+  /* Consistent card styling */
+  .card-standard {
+    @apply bg-navy/30 border border-gray rounded-xl p-6 hover:bg-navy/50 hover:border-blue/50 transition-all duration-300;
+  }
+
+  .card-elevated {
+    @apply bg-navy/40 border border-gray/50 rounded-xl p-6 hover:bg-navy/60 hover:border-blue/50 transition-all duration-300 shadow-lg;
+  }
+
+  .card-glass {
+    @apply bg-black/30 backdrop-blur-sm border border-gray/30 rounded-xl p-6 hover:bg-black/40 hover:border-blue/50 transition-all duration-300;
+  }
+
+  /* Consistent button styling */
+  .btn-kingdom-primary {
+    @apply bg-gradient-to-r from-kingdom-gold to-kingdom-orange text-kingdom-dark px-6 py-3 rounded-lg font-semibold text-sm tracking-wide hover:shadow-lg hover:shadow-kingdom-gold/30 transition-all duration-300;
+  }
+
+  .btn-kingdom-secondary {
+    @apply border-2 border-kingdom-gold text-kingdom-gold px-6 py-3 rounded-lg font-semibold text-sm tracking-wide hover:bg-kingdom-gold hover:text-kingdom-dark transition-all duration-300;
+  }
+
+  .btn-kingdom-outline {
+    @apply border border-gray text-white px-6 py-3 rounded-lg font-semibold text-sm tracking-wide hover:bg-gray hover:text-white transition-all duration-300;
+  }
+
+  /* Consistent text styling */
+  .text-heading-primary {
+    @apply text-white text-2xl sm:text-3xl md:text-4xl font-black leading-tight tracking-[-0.033em];
+  }
+
+  .text-heading-secondary {
+    @apply text-white text-xl sm:text-2xl md:text-3xl font-bold leading-tight tracking-[-0.02em];
+  }
+
+  .text-body-primary {
+    @apply text-white text-sm sm:text-base font-normal leading-relaxed;
+  }
+
+  .text-body-secondary {
+    @apply text-gray-300 text-sm font-normal leading-relaxed;
+  }
+
+  /* Consistent spacing */
+  .section-padding {
+    @apply px-4 sm:px-6 md:px-8 lg:px-12 xl:px-40 py-12 sm:py-16 md:py-20;
+  }
+
+  .container-standard {
+    @apply max-w-[960px] mx-auto;
+  }
+
+  .container-wide {
+    @apply max-w-[1200px] mx-auto;
+  }
+
+  /* Consistent form styling */
+  .input-standard {
+    @apply bg-navy/30 border border-gray rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:border-blue focus:outline-none transition-all duration-200;
+  }
+
+  .textarea-standard {
+    @apply bg-navy/30 border border-gray rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:border-blue focus:outline-none transition-all duration-200 resize-none;
+  }
+
+  /* Consistent navigation styling */
+  .nav-link {
+    @apply text-white text-sm font-medium leading-normal hover:text-blue transition-colors duration-200;
+  }
+
+  .nav-dropdown {
+    @apply absolute top-full left-0 mt-2 w-64 bg-black/90 backdrop-blur-sm border border-gray/30 rounded-xl py-2 z-[9999999] opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-auto;
+  }
+
+  .nav-dropdown-item {
+    @apply block px-4 py-2 text-white hover:bg-gray-800 hover:text-white transition-colors duration-200;
+  }
+
+  /* Consistent chat styling */
+  .chat-container {
+    @apply fixed bottom-4 right-4 w-80 h-96 bg-navy/95 backdrop-blur-sm border border-gray/30 rounded-xl shadow-2xl z-[9999999];
+  }
+
+  .chat-message {
+    @apply mb-4 p-3 rounded-lg max-w-[85%];
+  }
+
+  .chat-message-user {
+    @apply bg-blue text-navy ml-auto;
+  }
+
+  .chat-message-assistant {
+    @apply bg-gray text-white;
+  }
+
+  .chat-input {
+    @apply w-full bg-navy/50 border border-gray/30 rounded-lg px-4 py-2 text-white placeholder-gray-400 focus:border-blue focus:outline-none;
+  }
 }
 
 @layer utilities {
