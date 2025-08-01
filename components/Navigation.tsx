@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useAuth } from '../contexts/AuthContext';
+import CartIcon from './CartIcon';
 
 export default function Navigation() {
   const { user, isAuthenticated } = useAuth();
@@ -76,41 +77,56 @@ export default function Navigation() {
               </svg>
             </button>
 
-            <div className="absolute top-full left-0 mt-2 w-72 bg-black/90 backdrop-blur-sm border border-gray/30 rounded-xl py-2 z-[9999999] opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-auto">
+            <div className="absolute top-full left-0 mt-2 w-72 bg-black/90 backdrop-blur-sm border border-gray/30 rounded-xl py-2 z-[9999999] opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none group-hover:pointer-events-auto">
               <Link href="/ai-bots" className="block px-4 py-2 text-white hover:bg-gray-800 hover:text-white transition-colors duration-200 font-semibold">
-                🤖 All AI Bots Overview
+                All AI Bots Overview
               </Link>
               <div className="border-t border-gray/30 my-1"></div>
               <Link href="/ai-bots/sales-assistant" className="block px-4 py-2 text-white hover:bg-gray-800 hover:text-white transition-colors duration-200">
-                💼 Sales Assistant Bot
+                Sales Assistant Bot
               </Link>
               <Link href="/ai-bots/lead-generation" className="block px-4 py-2 text-white hover:bg-gray-800 hover:text-white transition-colors duration-200">
-                🎯 Lead Generation Bot
+                Lead Generation Bot
               </Link>
               <Link href="/ai-bots/onboarding" className="block px-4 py-2 text-white hover:bg-gray-800 hover:text-white transition-colors duration-200">
-                📚 Onboarding Bot
+                Onboarding Bot
               </Link>
               <Link href="/ai-bots/customer-support" className="block px-4 py-2 text-white hover:bg-gray-800 hover:text-white transition-colors duration-200">
-                💬 Customer Support Bot
+                Customer Support Bot
               </Link>
               <Link href="/ai-bots/faith-bot" className="block px-4 py-2 text-white hover:bg-gray-800 hover:text-white transition-colors duration-200">
-                🙏 Faith Bot
+                Faith Bot
               </Link>
               <Link href="/ai-bots/course-explainer" className="block px-4 py-2 text-white hover:bg-gray-800 hover:text-white transition-colors duration-200">
-                🎓 Course Explainer Bot
+                Course Explainer Bot
               </Link>
               <Link href="/ai-bots/testimonial" className="block px-4 py-2 text-white hover:bg-gray-800 hover:text-white transition-colors duration-200">
-                📝 Testimonial Bot
+                Testimonial Bot
               </Link>
               <Link href="/ai-bots/job-application" className="block px-4 py-2 text-white hover:bg-gray-800 hover:text-white transition-colors duration-200">
-                💼 Job Application Bot
+                Job Application Bot
               </Link>
               <Link href="/ai-bots/enhanced-sales" className="block px-4 py-2 text-white hover:bg-gray-800 hover:text-white transition-colors duration-200">
-                🚀 Enhanced Sales Bot
+                Enhanced Sales Bot
+              </Link>
+              <Link href="/ai-bots/appointment-booking" className="block px-4 py-2 text-white hover:bg-gray-800 hover:text-white transition-colors duration-200">
+                Appointment Booking Bot
+              </Link>
+              <Link href="/ai-bots/faq-knowledge" className="block px-4 py-2 text-white hover:bg-gray-800 hover:text-white transition-colors duration-200">
+                FAQ & Knowledge Bot
+              </Link>
+              <Link href="/ai-bots/event-management" className="block px-4 py-2 text-white hover:bg-gray-800 hover:text-white transition-colors duration-200">
+                Event Management Bot
+              </Link>
+              <Link href="/ai-bots/inventory-management" className="block px-4 py-2 text-white hover:bg-gray-800 hover:text-white transition-colors duration-200">
+                Inventory Management Bot
+              </Link>
+              <Link href="/ai-bots/social-media" className="block px-4 py-2 text-white hover:bg-gray-800 hover:text-white transition-colors duration-200">
+                Social Media Bot
               </Link>
               <div className="border-t border-gray/30 my-1"></div>
               <Link href="/ai-bots/pricing" className="block px-4 py-2 text-white hover:bg-gray-800 hover:text-white transition-colors duration-200 font-semibold">
-                💰 Pricing & Add-ons
+                Pricing & Add-ons
               </Link>
             </div>
           </div>
@@ -158,7 +174,8 @@ export default function Navigation() {
         </div>
 
         {/* Desktop CTA Buttons */}
-        <div className="hidden md:flex gap-2">
+        <div className="hidden md:flex gap-2 items-center">
+          <CartIcon />
           {isAuthenticated ? (
             <Link href="/dashboard" className="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 px-4 bg-gray text-white text-sm font-bold leading-normal tracking-[0.015em] hover:bg-blue hover:text-white transition-all duration-200">
               <span className="truncate">Dashboard</span>

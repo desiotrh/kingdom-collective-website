@@ -4,8 +4,10 @@ import Link from 'next/link';
 import Navigation from '../../components/Navigation';
 import Footer from '../../components/Footer';
 import BackgroundVideo from '../../components/BackgroundVideo';
+import { useCart } from '../../contexts/CartContext';
 
 export default function AppointmentBookingBot() {
+  const { addItem } = useCart();
   const [activeTab, setActiveTab] = useState('overview');
   const [demoMessage, setDemoMessage] = useState('');
   const [demoResponse, setDemoResponse] = useState('');
@@ -13,7 +15,7 @@ export default function AppointmentBookingBot() {
   const [conversationHistory, setConversationHistory] = useState([
     {
       type: 'bot',
-      message: "👋 Hi! I'm your Kingdom Appointment Assistant. I can help you schedule appointments, manage your calendar, and handle bookings 24/7. What type of appointment would you like to book?",
+      message: "Hi! I'm your Kingdom Appointment Assistant. I can help you schedule appointments, manage your calendar, and handle bookings 24/7. What type of appointment would you like to book?",
       timestamp: new Date()
     }
   ]);
@@ -89,6 +91,16 @@ export default function AppointmentBookingBot() {
     "Recurring meetings"
   ];
 
+  const handleAddToCart = () => {
+    addItem({
+      id: 'appointment-booking-bot',
+      name: 'Appointment Booking Bot',
+      price: 199,
+      type: 'bot',
+      description: 'Automate appointment scheduling with intelligent AI'
+    });
+  };
+
   const timeSlots = [
     { time: "9:00 AM", available: true },
     { time: "10:00 AM", available: true },
@@ -116,7 +128,6 @@ export default function AppointmentBookingBot() {
           <section className="px-40 py-20">
             <div className="max-w-6xl mx-auto text-center">
               <div className="mb-8">
-                <span className="text-6xl mb-4 block">📅</span>
                 <h1 className="text-white text-5xl md:text-7xl font-black leading-tight tracking-[-0.033em] mb-6">
                   Appointment Booking Bot
                 </h1>
@@ -127,12 +138,12 @@ export default function AppointmentBookingBot() {
               </div>
               
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link
-                  href="/ai-bots/pricing"
+                <button
+                  onClick={handleAddToCart}
                   className="px-8 py-4 bg-gradient-to-r from-kingdom-gold to-kingdom-orange text-kingdom-dark font-bold rounded-full text-lg hover:scale-105 transition-all duration-200"
                 >
-                  Get Started - $189
-                </Link>
+                  Add to Cart - $199
+                </button>
                 <button
                   onClick={() => setActiveTab('demo')}
                   className="px-8 py-4 bg-white/10 text-white font-bold rounded-full text-lg border border-white/20 hover:bg-white/20 transition-all duration-200"
