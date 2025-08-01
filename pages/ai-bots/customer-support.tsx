@@ -5,7 +5,6 @@ import Image from 'next/image';
 import Navigation from '../../components/Navigation';
 import Footer from '../../components/Footer';
 import BackgroundVideo from '../../components/BackgroundVideo';
-import { useCart } from '../../contexts/CartContext';
 
 interface Message {
   type: 'user' | 'bot';
@@ -14,7 +13,6 @@ interface Message {
 }
 
 export default function CustomerSupportBot() {
-  const { addItem } = useCart();
   const [activeTab, setActiveTab] = useState('overview');
   const [demoMessage, setDemoMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -99,31 +97,28 @@ export default function CustomerSupportBot() {
       };
       
       setConversationHistory(prev => [...prev, botMessage]);
-      setOpenTickets(prev => Math.max(0, prev + selectedResponse.tickets));
+      
+      // Update analytics
+      setOpenTickets(prev => prev + selectedResponse.tickets);
       setResolvedToday(prev => prev + selectedResponse.resolved);
-      setCustomerSatisfaction(prev => Math.min(5.0, prev + selectedResponse.satisfaction));
+      setCustomerSatisfaction(prev => Math.min(5, prev + selectedResponse.satisfaction));
+      
       setIsLoading(false);
-    }, 1500);
+    }, 2000);
   };
 
   const handleQuickAction = (action: string) => {
     setDemoMessage(action);
-    // Auto-submit the quick action
+    // Simulate form submission
     setTimeout(() => {
       const event = { preventDefault: () => {} } as React.FormEvent;
-      setDemoMessage(action);
       handleDemoSubmit(event);
     }, 100);
   };
 
   const handleAddToCart = () => {
-    addItem({
-      id: 'customer-support-bot',
-      name: 'Customer Support Bot',
-      price: 199,
-      type: 'bot',
-      description: '24/7 AI-powered customer support with instant issue resolution'
-    });
+    // Redirect to pricing page or show contact form
+    window.location.href = '/ai-bots/pricing';
   };
 
   return (
