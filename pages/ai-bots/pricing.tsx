@@ -652,7 +652,7 @@ export default function AIBotsPricingPage() {
             
             <div className="space-y-6">
               <div className="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10">
-                <h3 className="text-white font-semibold mb-2">What's included in the bot price?</h3>
+                <h3 className="text-white font-semibold mb-2">What&apos;s included in the bot price?</h3>
                 <p className="text-white/70">Each bot includes setup, training, basic customization, and 30 days of support. Additional customization and integrations are available as add-ons.</p>
               </div>
               
@@ -667,7 +667,7 @@ export default function AIBotsPricingPage() {
               </div>
               
               <div className="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10">
-                <h3 className="text-white font-semibold mb-2">Can I customize the bot's personality?</h3>
+                <h3 className="text-white font-semibold mb-2">Can I customize the bot&apos;s personality?</h3>
                 <p className="text-white/70">Absolutely! We can customize the tone, personality, and communication style to match your brand and target audience.</p>
               </div>
             </div>

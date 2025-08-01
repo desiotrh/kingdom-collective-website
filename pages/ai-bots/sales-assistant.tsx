@@ -189,14 +189,14 @@ export default function SalesAssistantBotPage() {
                         <div className="w-2 h-2 bg-kingdom-gold rounded-full"></div>
                         <span className="text-white text-sm font-medium">Bot</span>
                       </div>
-                      <p className="text-white/80 text-sm">Hello! I'm your Kingdom Sales Assistant. How can I help you today?</p>
+                      <p className="text-white/80 text-sm">Hello! I&apos;m your Kingdom Sales Assistant. How can I help you today?</p>
                     </div>
                     <div className="bg-kingdom-gold/20 rounded-lg p-3 ml-8">
                       <div className="flex items-center gap-2 mb-2">
                         <div className="w-2 h-2 bg-white rounded-full"></div>
                         <span className="text-white text-sm font-medium">User</span>
                       </div>
-                      <p className="text-white/80 text-sm">I'm interested in your services</p>
+                      <p className="text-white/80 text-sm">I&apos;m interested in your services</p>
                     </div>
                     <div className="bg-white/10 rounded-lg p-3">
                       <div className="flex items-center gap-2 mb-2">
@@ -235,7 +235,7 @@ export default function SalesAssistantBotPage() {
             <div className="space-y-6">
               {botData.biblicalPrinciples.map((principle, index) => (
                 <div key={index} className="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10">
-                  <p className="text-white/90 text-center italic">"{principle}"</p>
+                  <p className="text-white/90 text-center italic">&ldquo;{principle}&rdquo;</p>
                 </div>
               ))}
             </div>
