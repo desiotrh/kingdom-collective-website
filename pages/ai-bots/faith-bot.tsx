@@ -1,6 +1,11 @@
 import React, { useState } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
+import Image from 'next/image';
+import Navigation from '../../components/Navigation';
+import Footer from '../../components/Footer';
+import BackgroundVideo from '../../components/BackgroundVideo';
+import { useCart } from '../../contexts/CartContext';
 
 interface Message {
   type: 'user' | 'bot';
@@ -9,13 +14,14 @@ interface Message {
 }
 
 export default function FaithBot() {
+  const { addItem } = useCart();
   const [activeTab, setActiveTab] = useState('overview');
   const [demoMessage, setDemoMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [conversationHistory, setConversationHistory] = useState<Message[]>([
     {
       type: 'bot',
-      message: "🙏 Welcome! I'm your Kingdom Faith Assistant. I'm here to provide spiritual guidance, biblical wisdom, and prayer support. How can I help you grow in your faith journey today?",
+      message: "Welcome! I'm your Kingdom Faith Assistant. I'm here to provide spiritual guidance, biblical wisdom, and prayer support. How can I help you grow in your faith journey today?",
       timestamp: new Date()
     }
   ]);
@@ -110,64 +116,119 @@ export default function FaithBot() {
     }, 100);
   };
 
+  const handleAddToCart = () => {
+    addItem({
+      id: 'faith-bot',
+      name: 'Faith Bot',
+      price: 199,
+      type: 'bot',
+      description: 'AI-powered spiritual guidance with biblical wisdom'
+    });
+  };
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900">
+    <>
       <Head>
         <title>Faith Bot - Kingdom Collective</title>
         <meta name="description" content="AI-powered spiritual guidance with biblical wisdom, prayer support, and faith community" />
       </Head>
 
-      {/* Hero Section */}
-      <div className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-purple-600/20 to-blue-600/20"></div>
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
-          <div className="text-center">
-            <div className="flex justify-center mb-6">
-              <div className="bg-gradient-to-r from-purple-500 to-blue-500 p-3 rounded-full">
-                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-                </svg>
+      <div className="relative flex size-full min-h-screen flex-col bg-navy dark group/design-root overflow-x-hidden">
+        <BackgroundVideo />
+        <div className="layout-container flex h-full grow flex-col relative z-10">
+          <Navigation />
+          
+          <main className="flex-1">
+            {/* Hero Section */}
+            <section className="px-4 sm:px-6 md:px-8 lg:px-12 xl:px-40 py-16 sm:py-20 md:py-24 lg:py-32">
+              <div className="max-w-7xl mx-auto">
+                <div className="text-center mb-16">
+                  <div className="flex justify-center mb-8">
+                    <Image
+                      src="/ai-bot-logos/faith-bot.png"
+                      alt="Faith Bot Logo"
+                      width={120}
+                      height={120}
+                      className="rounded-xl"
+                    />
+                  </div>
+                  <h1 className="text-white text-4xl md:text-6xl font-black leading-tight tracking-[-0.033em] mb-6">
+                    Faith <span className="text-blue">Bot</span>
+                  </h1>
+                  <p className="text-white/80 text-lg max-w-3xl mx-auto">
+                    AI-powered spiritual guidance with biblical wisdom, prayer support, and faith community. 
+                    Grow in your faith journey with personalized devotionals and biblical insights.
+                  </p>
+                </div>
+                
+                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                  <button
+                    onClick={handleAddToCart}
+                    className="px-8 py-4 bg-gradient-to-r from-kingdom-gold to-kingdom-orange text-kingdom-dark font-bold rounded-full text-lg hover:scale-105 transition-all duration-200"
+                  >
+                    Add to Cart - $199
+                  </button>
+                  <button
+                    onClick={() => setActiveTab('demo')}
+                    className="px-8 py-4 bg-white/10 text-white font-bold rounded-full text-lg border border-white/20 hover:bg-white/20 transition-all duration-200"
+                  >
+                    Try Demo
+                  </button>
+                </div>
               </div>
-            </div>
-            <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
-              Faith Bot
-            </h1>
-            <p className="text-xl text-purple-200 mb-8 max-w-3xl mx-auto">
-              AI-powered spiritual guidance with biblical wisdom, prayer support, and faith community. 
-              Grow in your faith journey with personalized devotionals and biblical insights.
-            </p>
-            <div className="flex flex-wrap justify-center gap-4">
-              <button
-                onClick={() => setActiveTab('demo')}
-                className="bg-gradient-to-r from-purple-500 to-blue-500 text-white px-8 py-3 rounded-lg font-semibold hover:from-purple-600 hover:to-blue-600 transition-all duration-200"
-              >
-                Try Demo
-              </button>
-              <Link href="/ai-bots/pricing" className="bg-white/10 backdrop-blur-sm text-white px-8 py-3 rounded-lg font-semibold hover:bg-white/20 transition-all duration-200">
-                View Pricing
-              </Link>
-            </div>
-          </div>
-        </div>
-      </div>
+            </section>
 
-      {/* Navigation Tabs */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-wrap justify-center gap-2 mb-8">
-          {['overview', 'demo', 'features', 'pricing'].map((tab) => (
-            <button
-              key={tab}
-              onClick={() => setActiveTab(tab)}
-              className={`px-6 py-3 rounded-lg font-medium transition-all duration-200 ${
-                activeTab === tab
-                  ? 'bg-gradient-to-r from-purple-500 to-blue-500 text-white'
-                  : 'bg-white/10 backdrop-blur-sm text-white hover:bg-white/20'
-              }`}
-            >
-              {tab.charAt(0).toUpperCase() + tab.slice(1)}
-            </button>
-          ))}
-        </div>
+            {/* Tab Navigation */}
+            <section className="px-4 sm:px-6 md:px-8 lg:px-12 xl:px-40 py-8">
+              <div className="max-w-7xl mx-auto">
+                <div className="flex space-x-1 bg-black/20 backdrop-blur-sm rounded-xl p-2">
+                  <button
+                    onClick={() => setActiveTab('overview')}
+                    className={`flex-1 py-3 px-6 rounded-lg font-bold transition-all duration-200 ${
+                      activeTab === 'overview' 
+                        ? 'bg-blue text-white' 
+                        : 'text-white/70 hover:text-white'
+                    }`}
+                  >
+                    Overview
+                  </button>
+                  <button
+                    onClick={() => setActiveTab('demo')}
+                    className={`flex-1 py-3 px-6 rounded-lg font-bold transition-all duration-200 ${
+                      activeTab === 'demo' 
+                        ? 'bg-blue text-white' 
+                        : 'text-white/70 hover:text-white'
+                    }`}
+                  >
+                    Live Demo
+                  </button>
+                  <button
+                    onClick={() => setActiveTab('features')}
+                    className={`flex-1 py-3 px-6 rounded-lg font-bold transition-all duration-200 ${
+                      activeTab === 'features' 
+                        ? 'bg-blue text-white' 
+                        : 'text-white/70 hover:text-white'
+                    }`}
+                  >
+                    Features
+                  </button>
+                  <button
+                    onClick={() => setActiveTab('pricing')}
+                    className={`flex-1 py-3 px-6 rounded-lg font-bold transition-all duration-200 ${
+                      activeTab === 'pricing' 
+                        ? 'bg-blue text-white' 
+                        : 'text-white/70 hover:text-white'
+                    }`}
+                  >
+                    Pricing
+                  </button>
+                </div>
+              </div>
+            </section>
+
+            {/* Tab Content */}
+            <section className="px-4 sm:px-6 md:px-8 lg:px-12 xl:px-40 py-20">
+              <div className="max-w-7xl mx-auto">
 
         {/* Overview Tab */}
         {activeTab === 'overview' && (
@@ -478,7 +539,13 @@ export default function FaithBot() {
             </div>
           </div>
         )}
+              </div>
+            </section>
+          </main>
+        </div>
       </div>
-    </div>
+      
+      <Footer />
+    </>
   );
 } 

@@ -1,6 +1,11 @@
 import React, { useState } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
+import Image from 'next/image';
+import Navigation from '../../components/Navigation';
+import Footer from '../../components/Footer';
+import BackgroundVideo from '../../components/BackgroundVideo';
+import { useCart } from '../../contexts/CartContext';
 
 interface Message {
   type: 'user' | 'bot';
@@ -9,13 +14,14 @@ interface Message {
 }
 
 export default function CustomerSupportBot() {
+  const { addItem } = useCart();
   const [activeTab, setActiveTab] = useState('overview');
   const [demoMessage, setDemoMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [conversationHistory, setConversationHistory] = useState<Message[]>([
     {
       type: 'bot',
-      message: "👋 Hi! I'm your Kingdom Customer Support Assistant. I can help resolve issues, answer questions, and provide 24/7 support. What can I help you with today?",
+      message: "Hi! I'm your Kingdom Customer Support Assistant. I can help resolve issues, answer questions, and provide 24/7 support. What can I help you with today?",
       timestamp: new Date()
     }
   ]);
@@ -110,46 +116,67 @@ export default function CustomerSupportBot() {
     }, 100);
   };
 
+  const handleAddToCart = () => {
+    addItem({
+      id: 'customer-support-bot',
+      name: 'Customer Support Bot',
+      price: 199,
+      type: 'bot',
+      description: '24/7 AI-powered customer support with instant issue resolution'
+    });
+  };
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900">
+    <>
       <Head>
         <title>Customer Support Bot - Kingdom Collective</title>
         <meta name="description" content="24/7 AI-powered customer support with instant issue resolution and satisfaction tracking" />
       </Head>
 
-      {/* Hero Section */}
-      <div className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-purple-600/20 to-blue-600/20"></div>
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
-          <div className="text-center">
-            <div className="flex justify-center mb-6">
-              <div className="bg-gradient-to-r from-purple-500 to-blue-500 p-3 rounded-full">
-                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192L5.636 18.364M12 2.25a9.75 9.75 0 100 19.5 9.75 9.75 0 000-19.5z" />
-                </svg>
+      <div className="relative flex size-full min-h-screen flex-col bg-navy dark group/design-root overflow-x-hidden">
+        <BackgroundVideo />
+        <div className="layout-container flex h-full grow flex-col relative z-10">
+          <Navigation />
+          
+          <main className="flex-1">
+            {/* Hero Section */}
+            <section className="px-4 sm:px-6 md:px-8 lg:px-12 xl:px-40 py-16 sm:py-20 md:py-24 lg:py-32">
+              <div className="max-w-7xl mx-auto">
+                <div className="text-center mb-16">
+                  <div className="flex justify-center mb-8">
+                    <Image
+                      src="/ai-bot-logos/customer-support-bot.png"
+                      alt="Customer Support Bot Logo"
+                      width={120}
+                      height={120}
+                      className="rounded-xl"
+                    />
+                  </div>
+                  <h1 className="text-white text-4xl md:text-6xl font-black leading-tight tracking-[-0.033em] mb-6">
+                    Customer Support <span className="text-blue">Bot</span>
+                  </h1>
+                  <p className="text-white/80 text-lg max-w-3xl mx-auto">
+                    24/7 AI-powered customer support that resolves issues instantly, tracks satisfaction, and escalates when needed. 
+                    Provide exceptional customer service around the clock.
+                  </p>
+                </div>
+                
+                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                  <button
+                    onClick={handleAddToCart}
+                    className="px-8 py-4 bg-gradient-to-r from-kingdom-gold to-kingdom-orange text-kingdom-dark font-bold rounded-full text-lg hover:scale-105 transition-all duration-200"
+                  >
+                    Add to Cart - $199
+                  </button>
+                  <button
+                    onClick={() => setActiveTab('demo')}
+                    className="px-8 py-4 bg-white/10 text-white font-bold rounded-full text-lg border border-white/20 hover:bg-white/20 transition-all duration-200"
+                  >
+                    Try Demo
+                  </button>
+                </div>
               </div>
-            </div>
-            <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
-              Customer Support Bot
-            </h1>
-            <p className="text-xl text-purple-200 mb-8 max-w-3xl mx-auto">
-              24/7 AI-powered customer support that resolves issues instantly, tracks satisfaction, and escalates when needed. 
-              Provide exceptional customer service around the clock.
-            </p>
-            <div className="flex flex-wrap justify-center gap-4">
-              <button
-                onClick={() => setActiveTab('demo')}
-                className="bg-gradient-to-r from-purple-500 to-blue-500 text-white px-8 py-3 rounded-lg font-semibold hover:from-purple-600 hover:to-blue-600 transition-all duration-200"
-              >
-                Try Demo
-              </button>
-              <Link href="/ai-bots/pricing" className="bg-white/10 backdrop-blur-sm text-white px-8 py-3 rounded-lg font-semibold hover:bg-white/20 transition-all duration-200">
-                View Pricing
-              </Link>
-            </div>
-          </div>
-        </div>
-      </div>
+            </section>
 
       {/* Navigation Tabs */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
