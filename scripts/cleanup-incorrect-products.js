@@ -6,6 +6,8 @@ const STRIPE_SECRET_KEY = process.env.STRIPE_SECRET_KEY;
 
 if (!STRIPE_SECRET_KEY) {
   console.error('❌ STRIPE_SECRET_KEY is not set in environment variables');
+  console.log('💡 Please add your Stripe secret key to .env.local file');
+  console.log('   Example: STRIPE_SECRET_KEY=sk_live_your_key_here');
   process.exit(1);
 }
 
