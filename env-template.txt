@@ -1,0 +1,15 @@
+# Stripe Configuration
+# Copy this file to .env.local and add your actual keys
+
+# Stripe Publishable Key (Public - Safe to use in frontend)
+NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_live_your_publishable_key_here
+
+# Stripe Secret Key (Private - Only for backend)
+STRIPE_SECRET_KEY=sk_live_your_secret_key_here
+
+# Base URL for your website
+NEXT_PUBLIC_BASE_URL=https://your-domain.com
+
+# Optional: Beacons Integration (if using automated emails)
+BEACONS_FORM_URL=https://your-beacons-form-url.com
+BEACONS_API_KEY=your_beacons_api_key_here 

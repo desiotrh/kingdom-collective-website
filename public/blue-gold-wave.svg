@@ -1,0 +1,44 @@
+<svg width="1200" height="200" viewBox="0 0 1200 200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="ribbonGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#144e9c;stop-opacity:1" />
+      <stop offset="25%" style="stop-color:#f1c376;stop-opacity:0.8" />
+      <stop offset="50%" style="stop-color:#144e9c;stop-opacity:1" />
+      <stop offset="75%" style="stop-color:#f1c376;stop-opacity:0.8" />
+      <stop offset="100%" style="stop-color:#144e9c;stop-opacity:1" />
+    </linearGradient>
+    <pattern id="ribbonPattern" x="0" y="0" width="1200" height="200" patternUnits="userSpaceOnUse">
+      <!-- Main ribbon wave -->
+      <path d="M0,100 Q150,50 300,100 T600,100 T900,100 T1200,100 L1200,150 L0,150 Z" 
+            fill="url(#ribbonGradient)" opacity="0.3"/>
+      
+      <!-- Secondary ribbon wave -->
+      <path d="M0,120 Q200,80 400,120 T800,120 T1200,120 L1200,170 L0,170 Z" 
+            fill="url(#ribbonGradient)" opacity="0.2"/>
+      
+      <!-- Accent ribbon -->
+      <path d="M0,80 Q100,40 200,80 T400,80 T600,80 T800,80 T1000,80 T1200,80 L1200,130 L0,130 Z" 
+            fill="url(#ribbonGradient)" opacity="0.4"/>
+      
+      <!-- Gold accent lines -->
+      <line x1="0" y1="90" x2="1200" y2="90" stroke="#f1c376" stroke-width="2" opacity="0.6"/>
+      <line x1="0" y1="110" x2="1200" y2="110" stroke="#f1c376" stroke-width="2" opacity="0.6"/>
+      <line x1="0" y1="130" x2="1200" y2="130" stroke="#f1c376" stroke-width="1" opacity="0.4"/>
+    </pattern>
+  </defs>
+  
+  <!-- Background with pattern -->
+  <rect width="1200" height="200" fill="url(#ribbonPattern)"/>
+  
+  <!-- Floating gold particles -->
+  <circle cx="100" cy="50" r="3" fill="#f1c376" opacity="0.8"/>
+  <circle cx="300" cy="30" r="2" fill="#f1c376" opacity="0.6"/>
+  <circle cx="500" cy="70" r="2.5" fill="#f1c376" opacity="0.7"/>
+  <circle cx="700" cy="40" r="2" fill="#f1c376" opacity="0.6"/>
+  <circle cx="900" cy="60" r="3" fill="#f1c376" opacity="0.8"/>
+  <circle cx="1100" cy="35" r="2.5" fill="#f1c376" opacity="0.7"/>
+  
+  <!-- Additional decorative elements -->
+  <path d="M0,150 Q300,120 600,150 T1200,150 L1200,200 L0,200 Z" 
+        fill="url(#ribbonGradient)" opacity="0.1"/>
+</svg> 

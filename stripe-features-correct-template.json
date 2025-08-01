@@ -1,0 +1,22 @@
+{
+  "features": {
+    "custom_branding": {
+      "featureId": "feat_TO_BE_FILLED",
+      "priceId": "price_1Rr4lzGMSZjMrbvl3MYajAyG",
+      "descriptiveId": "custom_branding",
+      "name": "Custom Branding",
+      "description": "Custom colors, logo, and brand integration for your AI bot",
+      "price": 50,
+      "category": "customization"
+    },
+    "voicebot_integration": {
+      "featureId": "feat_TO_BE_FILLED",
+      "priceId": "price_1Rr4lzGMSZjMrbvlBv2GITWu",
+      "descriptiveId": "voicebot_integration",
+      "name": "VoiceBot Integration",
+      "description": "Kingdom Voice integration for voice-enabled interactions",
+      "price": 75,
+      "category": "integration"
+    }
+  }
+}
