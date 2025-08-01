@@ -180,7 +180,7 @@ export default function OrderForm() {
               🤖 Order Your AI Bot
             </h1>
             <p className="text-xl text-white/80 max-w-3xl mx-auto">
-              Let's build the perfect AI bot for your business. Fill out this form and we'll create a customized solution just for you.
+              Let&apos;s build the perfect AI bot for your business. Fill out this form and we&apos;ll create a customized solution just for you.
             </p>
           </div>
 

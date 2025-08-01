@@ -421,7 +421,7 @@ export default function AppointmentBookingBot() {
                       </div>
 
                       <div className="bg-gradient-to-br from-kingdom-dark/80 to-black/80 backdrop-blur-sm rounded-xl p-6 border border-kingdom-gold/20">
-                        <h3 className="text-white font-bold mb-4">🕐 Today's Schedule</h3>
+                        <h3 className="text-white font-bold mb-4">🕐 Today&apos;s Schedule</h3>
                         <div className="space-y-2">
                           {timeSlots.map((slot, index) => (
                             <div key={index} className="flex justify-between items-center">

@@ -72,7 +72,7 @@ export default function SuccessPage() {
             </h1>
             
             <p className="text-xl text-white/80 mb-8 max-w-2xl mx-auto">
-              Thank you for your purchase! Your AI bots are being prepared and you'll receive 
+              Thank you for your purchase! Your AI bots are being prepared and you&apos;ll receive 
               setup instructions within 24 hours.
             </p>
           </div>
@@ -140,7 +140,7 @@ export default function SuccessPage() {
                   <span className="text-2xl">📧</span>
                 </div>
                 <h3 className="text-xl font-bold text-white mb-2">Email Confirmation</h3>
-                <p className="text-white/70">You'll receive a detailed confirmation email with your order details and next steps.</p>
+                <p className="text-white/70">You&apos;ll receive a detailed confirmation email with your order details and next steps.</p>
               </div>
               
               <div className="text-center">
