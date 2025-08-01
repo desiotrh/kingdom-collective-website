@@ -77,7 +77,7 @@ export default function Navigation() {
               </svg>
             </button>
 
-            <div className="absolute top-full left-0 mt-2 w-72 bg-black/90 backdrop-blur-sm border border-gray/30 rounded-xl py-2 z-[9999999] opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none group-hover:pointer-events-auto">
+            <div className="absolute top-full left-0 mt-2 w-72 bg-black/90 backdrop-blur-sm border border-gray/30 rounded-xl py-2 z-[9999999] opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-auto">
               <Link href="/ai-bots" className="block px-4 py-2 text-white hover:bg-gray-800 hover:text-white transition-colors duration-200 font-semibold">
                 All AI Bots Overview
               </Link>
