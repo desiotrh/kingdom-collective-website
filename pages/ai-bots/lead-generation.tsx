@@ -3,6 +3,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import Navigation from '../../components/Navigation';
 import Footer from '../../components/Footer';
+import BackgroundVideo from '../../components/BackgroundVideo';
 
 export default function LeadGenerationBot() {
   const [activeTab, setActiveTab] = useState('overview');

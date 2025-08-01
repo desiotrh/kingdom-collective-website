@@ -3,27 +3,27 @@ import Head from 'next/head';
 import Navigation from '../../components/Navigation';
 import Footer from '../../components/Footer';
 
-const botOptions = [
-  { id: 'sales-assistant', name: 'Sales Assistant Bot', price: 299, emoji: '💼' },
-  { id: 'lead-generation', name: 'Lead Generation Bot', price: 249, emoji: '🎯' },
-  { id: 'onboarding', name: 'Onboarding Bot', price: 199, emoji: '📚' },
-  { id: 'customer-support', name: 'Customer Support Bot', price: 349, emoji: '💬' },
-  { id: 'faith-bot', name: 'Faith Bot', price: 179, emoji: '🙏' },
-  { id: 'course-explainer', name: 'Course Explainer Bot', price: 279, emoji: '🎓' },
-  { id: 'testimonial', name: 'Testimonial Bot', price: 159, emoji: '📝' },
-  { id: 'job-application', name: 'Job Application Bot', price: 229, emoji: '💼' },
-  { id: 'enhanced-sales', name: 'Enhanced Sales Bot', price: 399, emoji: '🚀' }
+const bots = [
+  { id: 'sales-assistant', name: 'Sales Assistant Bot', price: 299 },
+  { id: 'lead-generation', name: 'Lead Generation Bot', price: 249 },
+  { id: 'onboarding', name: 'Onboarding Bot', price: 199 },
+  { id: 'customer-support', name: 'Customer Support Bot', price: 349 },
+  { id: 'faith-bot', name: 'Faith Bot', price: 179 },
+  { id: 'course-explainer', name: 'Course Explainer Bot', price: 279 },
+  { id: 'testimonial', name: 'Testimonial Bot', price: 159 },
+  { id: 'job-application', name: 'Job Application Bot', price: 229 },
+  { id: 'enhanced-sales', name: 'Enhanced Sales Bot', price: 399 }
 ];
 
 const addOns = [
-  { id: 'custom-branding', name: 'Custom Branding (colors, logo)', price: 50, emoji: '🔧' },
-  { id: 'voicebot-integration', name: 'VoiceBot Integration (Kingdom Voice)', price: 75, emoji: '🎤' },
-  { id: 'dual-tone', name: 'Dual Tone Toggle (Faith + Marketplace)', price: 40, emoji: '💬' },
-  { id: 'memory-engine', name: 'Memory Engine / Custom Trained FAQ', price: 125, emoji: '🧠' },
-  { id: 'embed-service', name: 'Embed Service (We install it for them)', price: 60, emoji: '🌐' },
-  { id: 'analytics', name: 'Basic Analytics (Google Tag/Zapier/etc.)', price: 100, emoji: '📈' },
-  { id: 'legal-compliance', name: 'Legal & Compliance Disclaimers', price: 30, emoji: '🧾' },
-  { id: 'stripe-zapier', name: 'Stripe or Zapier Setup (requires API keys)', price: 125, emoji: '⚙️' }
+  { id: 'custom-branding', name: 'Custom Branding (colors, logo)', price: 50 },
+  { id: 'voicebot-integration', name: 'VoiceBot Integration (Kingdom Voice)', price: 75 },
+  { id: 'dual-tone', name: 'Dual Tone Toggle (Faith + Marketplace)', price: 40 },
+  { id: 'memory-engine', name: 'Memory Engine / Custom Trained FAQ', price: 125 },
+  { id: 'embed-service', name: 'Embed Service (We install it for them)', price: 60 },
+  { id: 'analytics', name: 'Basic Analytics (Google Tag/Zapier/etc.)', price: 100 },
+  { id: 'legal-compliance', name: 'Legal & Compliance Disclaimers', price: 30 },
+  { id: 'stripe-zapier', name: 'Stripe or Zapier Setup (requires API keys)', price: 125 }
 ];
 
 const bundles = [
@@ -136,7 +136,7 @@ export default function OrderForm() {
     } else {
       // Add individual bot prices
       formData.selectedBots.forEach(botId => {
-        const bot = botOptions.find(b => b.id === botId);
+        const bot = bots.find(b => b.id === botId);
         if (bot) total += bot.price;
       });
     }
@@ -316,10 +316,9 @@ export default function OrderForm() {
                         <div className="text-kingdom-gold/80 text-sm mb-3">Save ${bundle.savings}</div>
                         <ul className="text-white/70 text-sm space-y-1">
                           {bundle.bots.map((botId) => {
-                            const bot = botOptions.find(b => b.id === botId);
+                            const bot = bots.find(b => b.id === botId);
                             return (
                               <li key={botId} className="flex items-center gap-2">
-                                <span>{bot?.emoji}</span>
                                 <span>{bot?.name}</span>
                               </li>
                             );
@@ -334,7 +333,7 @@ export default function OrderForm() {
                 <div className="mb-8">
                   <h3 className="text-xl font-bold text-white mb-4">Or Select Individual Bots</h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                    {botOptions.map((bot) => (
+                    {bots.map((bot) => (
                       <div
                         key={bot.id}
                         className={`p-4 rounded-lg border transition-all duration-200 cursor-pointer ${
@@ -346,8 +345,7 @@ export default function OrderForm() {
                       >
                         <div className="flex items-center justify-between">
                           <div className="flex items-center gap-2">
-                            <span className="text-2xl">{bot.emoji}</span>
-                            <span className="text-white font-semibold">{bot.name}</span>
+                            <span className="text-2xl">{bot.name}</span>
                           </div>
                           <span className="text-kingdom-gold font-bold">${bot.price}</span>
                         </div>
@@ -371,7 +369,7 @@ export default function OrderForm() {
                         onClick={() => toggleAddOn(addon.id)}
                       >
                         <div className="flex items-center gap-2 mb-2">
-                          <span className="text-xl">{addon.emoji}</span>
+                          <span className="text-xl">{addon.name}</span>
                           <span className="text-kingdom-gold font-bold">${addon.price}</span>
                         </div>
                         <div className="text-white/80 text-sm">{addon.name}</div>

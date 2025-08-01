@@ -6,6 +6,9 @@ import { useAuth } from '../contexts/AuthContext';
 export default function Navigation() {
   const { user, isAuthenticated } = useAuth();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [studioAppsOpen, setStudioAppsOpen] = useState(false);
+  const [chatbotsOpen, setChatbotsOpen] = useState(false);
+  const [downloadAppsOpen, setDownloadAppsOpen] = useState(false);
 
   return (
     <header className="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-gray/30 px-4 sm:px-6 md:px-8 lg:px-10 py-3 bg-black/20 backdrop-blur-sm relative z-[9999999]">
@@ -30,85 +33,116 @@ export default function Navigation() {
       <div className="flex flex-1 justify-end gap-8">
         <div className="hidden md:flex items-center gap-9">
           {/* Studio Apps Dropdown */}
-          <div className="relative group">
-            <button className="nav-link flex items-center gap-1">
+          <div className="relative">
+            <button 
+              className="nav-link flex items-center gap-1"
+              onMouseEnter={() => setStudioAppsOpen(true)}
+              onMouseLeave={() => setStudioAppsOpen(false)}
+            >
               Studio Apps
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
               </svg>
             </button>
 
-            <div className="nav-dropdown">
-              <Link href="/apps" className="nav-dropdown-item">
-                All Apps Overview
-              </Link>
-              <Link href="/kingdom-studios" className="nav-dropdown-item">
-                Kingdom Studios
-              </Link>
-              <Link href="/kingdom-clips" className="nav-dropdown-item">
-                Kingdom Clips
-              </Link>
-              <Link href="/kingdom-voice" className="nav-dropdown-item">
-                Kingdom Voice
-              </Link>
-              <Link href="/kingdom-launchpad" className="nav-dropdown-item">
-                Kingdom Launchpad
-              </Link>
-              <Link href="/kingdom-circle" className="nav-dropdown-item">
-                Kingdom Circle
-              </Link>
-              <Link href="/kingdom-lens" className="nav-dropdown-item">
-                Kingdom Lens
-              </Link>
-            </div>
+            {studioAppsOpen && (
+              <div 
+                className="nav-dropdown"
+                onMouseEnter={() => setStudioAppsOpen(true)}
+                onMouseLeave={() => setStudioAppsOpen(false)}
+              >
+                <Link href="/apps" className="nav-dropdown-item">
+                  All Apps Overview
+                </Link>
+                <Link href="/kingdom-studios" className="nav-dropdown-item">
+                  Kingdom Studios
+                </Link>
+                <Link href="/kingdom-clips" className="nav-dropdown-item">
+                  Kingdom Clips
+                </Link>
+                <Link href="/kingdom-voice" className="nav-dropdown-item">
+                  Kingdom Voice
+                </Link>
+                <Link href="/kingdom-launchpad" className="nav-dropdown-item">
+                  Kingdom Launchpad
+                </Link>
+                <Link href="/kingdom-circle" className="nav-dropdown-item">
+                  Kingdom Circle
+                </Link>
+                <Link href="/kingdom-lens" className="nav-dropdown-item">
+                  Kingdom Lens
+                </Link>
+              </div>
+            )}
           </div>
 
-          {/* AI Bots Dropdown */}
-          <div className="relative group">
-            <button className="nav-link flex items-center gap-1">
-              AI Bots
+          {/* Chatbots Dropdown */}
+          <div className="relative">
+            <button 
+              className="nav-link flex items-center gap-1"
+              onMouseEnter={() => setChatbotsOpen(true)}
+              onMouseLeave={() => setChatbotsOpen(false)}
+            >
+              Chatbots
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
               </svg>
             </button>
 
-            <div className="nav-dropdown w-72">
-              <Link href="/ai-bots" className="nav-dropdown-item font-semibold">
-                🤖 All AI Bots Overview
-              </Link>
-              <div className="border-t border-gray/30 my-1"></div>
-              <Link href="/ai-bots/sales-assistant" className="nav-dropdown-item">
-                💼 Sales Assistant Bot
-              </Link>
-              <Link href="/ai-bots/lead-generation" className="nav-dropdown-item">
-                🎯 Lead Generation Bot
-              </Link>
-              <Link href="/ai-bots/onboarding" className="nav-dropdown-item">
-                📚 Onboarding Bot
-              </Link>
-              <Link href="/ai-bots/customer-support" className="nav-dropdown-item">
-                💬 Customer Support Bot
-              </Link>
-              <Link href="/ai-bots/faith-bot" className="nav-dropdown-item">
-                🙏 Faith Bot
-              </Link>
-              <Link href="/ai-bots/course-explainer" className="nav-dropdown-item">
-                🎓 Course Explainer Bot
-              </Link>
-              <Link href="/ai-bots/testimonial" className="nav-dropdown-item">
-                📝 Testimonial Bot
-              </Link>
-              <Link href="/ai-bots/job-application" className="nav-dropdown-item">
-                💼 Job Application Bot
-              </Link>
-              <Link href="/ai-bots/enhanced-sales" className="nav-dropdown-item">
-                🚀 Enhanced Sales Bot
-              </Link>
-              <div className="border-t border-gray/30 my-1"></div>
-              <Link href="/ai-bots/pricing" className="nav-dropdown-item font-semibold">
-                💰 Pricing & Add-ons
-              </Link>
-            </div>
+            {chatbotsOpen && (
+              <div 
+                className="nav-dropdown w-72"
+                onMouseEnter={() => setChatbotsOpen(true)}
+                onMouseLeave={() => setChatbotsOpen(false)}
+              >
+                <Link href="/ai-bots" className="nav-dropdown-item font-semibold">
+                  All Chatbots Overview
+                </Link>
+                <div className="border-t border-gray/30 my-1"></div>
+                <Link href="/ai-bots/sales-assistant" className="nav-dropdown-item">
+                  Sales Assistant Bot
+                </Link>
+                <Link href="/ai-bots/lead-generation" className="nav-dropdown-item">
+                  Lead Generation Bot
+                </Link>
+                <Link href="/ai-bots/onboarding" className="nav-dropdown-item">
+                  Onboarding Bot
+                </Link>
+                <Link href="/ai-bots/customer-support" className="nav-dropdown-item">
+                  Customer Support Bot
+                </Link>
+                <Link href="/ai-bots/faith-bot" className="nav-dropdown-item">
+                  Faith Bot
+                </Link>
+                <Link href="/ai-bots/course-explainer" className="nav-dropdown-item">
+                  Course Explainer Bot
+                </Link>
+                <Link href="/ai-bots/testimonial" className="nav-dropdown-item">
+                  Testimonial Bot
+                </Link>
+                <Link href="/ai-bots/job-application" className="nav-dropdown-item">
+                  Job Application Bot
+                </Link>
+                <Link href="/ai-bots/enhanced-sales" className="nav-dropdown-item">
+                  Enhanced Sales Bot
+                </Link>
+                <Link href="/ai-bots/appointment-booking" className="nav-dropdown-item">
+                  Appointment Booking Bot
+                </Link>
+                <Link href="/ai-bots/faq-knowledge" className="nav-dropdown-item">
+                  FAQ & Knowledge Base Bot
+                </Link>
+                <Link href="/ai-bots/event-management" className="nav-dropdown-item">
+                  Event Management Bot
+                </Link>
+                <Link href="/ai-bots/inventory-management" className="nav-dropdown-item">
+                  Inventory Management Bot
+                </Link>
+                <Link href="/ai-bots/social-media" className="nav-dropdown-item">
+                  Social Media Management Bot
+                </Link>
+              </div>
+            )}
           </div>
           <Link href="/features" className="nav-link">
             Features
@@ -119,28 +153,38 @@ export default function Navigation() {
           <Link href="/contact" className="nav-link">
             Contact
           </Link>
-          <div className="relative group">
-            <button className="nav-link flex items-center gap-1">
+          <div className="relative">
+            <button 
+              className="nav-link flex items-center gap-1"
+              onMouseEnter={() => setDownloadAppsOpen(true)}
+              onMouseLeave={() => setDownloadAppsOpen(false)}
+            >
               Download Apps
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
               </svg>
             </button>
 
-            <div className="nav-dropdown">
-              <a href="#" target="_blank" rel="noopener noreferrer" className="nav-dropdown-item">
-                <div className="flex items-center gap-2">
-                  <span className="text-lg">🍎</span>
-                  <span>App Store</span>
-                </div>
-              </a>
-              <a href="#" target="_blank" rel="noopener noreferrer" className="nav-dropdown-item">
-                <div className="flex items-center gap-2">
-                  <span className="text-lg">🤖</span>
-                  <span>Google Play</span>
-                </div>
-              </a>
-            </div>
+            {downloadAppsOpen && (
+              <div 
+                className="nav-dropdown"
+                onMouseEnter={() => setDownloadAppsOpen(true)}
+                onMouseLeave={() => setDownloadAppsOpen(false)}
+              >
+                <a href="#" target="_blank" rel="noopener noreferrer" className="nav-dropdown-item">
+                  <div className="flex items-center gap-2">
+                    <span className="text-lg">🍎</span>
+                    <span>App Store</span>
+                  </div>
+                </a>
+                <a href="#" target="_blank" rel="noopener noreferrer" className="nav-dropdown-item">
+                  <div className="flex items-center gap-2">
+                    <span className="text-lg">🤖</span>
+                    <span>Google Play</span>
+                  </div>
+                </a>
+              </div>
+            )}
           </div>
         </div>
 

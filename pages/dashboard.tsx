@@ -19,7 +19,6 @@ interface AppData {
 interface AIBotData {
   id: string;
   name: string;
-  emoji: string;
   description: string;
   status: 'active' | 'maintenance' | 'inactive';
   purchaseDate: string;
@@ -46,6 +45,42 @@ interface NotificationData {
   date: string;
   read: boolean;
 }
+
+interface Bot {
+  id: string;
+  name: string;
+  price: number;
+  category: string;
+  description: string;
+  features: string[];
+}
+
+const availableBots: Bot[] = [
+  {
+    id: 'sales-assistant',
+    name: 'Sales Assistant Bot',
+    price: 299,
+    category: 'Sales',
+    description: 'Intelligent sales automation with lead qualification and follow-up capabilities',
+    features: ['Lead qualification', 'Product recommendations', 'Follow-up automation', 'Biblical communication standards']
+  },
+  {
+    id: 'appointment-booking',
+    name: 'Appointment Booking Bot',
+    price: 199,
+    category: 'Scheduling',
+    description: 'Automated appointment scheduling with calendar integration and reminders',
+    features: ['Calendar integration', 'Time zone handling', 'Reminder notifications', 'Payment processing']
+  },
+  {
+    id: 'faq-knowledge',
+    name: 'FAQ & Knowledge Base Bot',
+    price: 179,
+    category: 'Support',
+    description: 'Intelligent search and context-aware responses for customer support',
+    features: ['Intelligent search', 'Context-aware responses', 'Article suggestions', 'Multi-language support']
+  }
+];
 
 export default function Dashboard() {
   const { user, logout } = useAuth();
@@ -118,7 +153,6 @@ export default function Dashboard() {
     {
       id: 'sales-assistant',
       name: 'Sales Assistant Bot',
-      emoji: '💼',
       description: 'Lead generation and qualification automation',
       status: 'active',
       purchaseDate: '2024-01-15',
@@ -128,7 +162,6 @@ export default function Dashboard() {
     {
       id: 'appointment-booking',
       name: 'Appointment Booking Bot',
-      emoji: '📅',
       description: 'Automated appointment scheduling',
       status: 'maintenance',
       purchaseDate: '2024-01-20',
@@ -139,7 +172,6 @@ export default function Dashboard() {
     {
       id: 'faq-knowledge',
       name: 'FAQ & Knowledge Base Bot',
-      emoji: '❓',
       description: 'Intelligent FAQ handling',
       status: 'active',
       purchaseDate: '2024-01-25',
@@ -467,9 +499,11 @@ export default function Dashboard() {
                     <div key={bot.id} className="bg-black/20 backdrop-blur-sm rounded-xl p-6">
                       <div className="flex items-center justify-between mb-4">
                         <div className="flex items-center">
-                          <span className="text-3xl mr-3">{bot.emoji}</span>
                           <div>
-                            <h3 className="text-white font-bold text-lg">{bot.name}</h3>
+                            <div className="flex items-center gap-3 mb-4">
+                              <h3 className="text-xl font-bold text-white">{bot.name}</h3>
+                              <span className="text-kingdom-gold text-sm font-medium">{bot.category}</span>
+                            </div>
                             <p className="text-white text-sm">{bot.description}</p>
                           </div>
                         </div>

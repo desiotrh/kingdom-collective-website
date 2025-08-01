@@ -324,67 +324,208 @@ ${apps.map(app => `**${app.name}** - ${app.tagline}
   }
 
   private generateAIBotsResponse(context: ResponseContext): string {
-    return `🤖 **Kingdom AI Bots** - Intelligent Automation with Purpose
+    const input = context.recentMessages.join(' ').toLowerCase();
+    
+    // Enhanced chatbot knowledge
+    const chatbotInfo = {
+      salesAssistant: {
+        name: 'Sales Assistant Bot',
+        price: '$299',
+        features: ['Lead qualification and scoring', 'Product recommendations', 'Follow-up automation', 'Biblical communication standards'],
+        benefits: ['Increase conversion rates by 40%', 'Reduce follow-up time by 60%', 'Improve lead quality'],
+        useCases: ['Real estate agencies', 'Insurance companies', 'Financial services', 'SaaS businesses']
+      },
+      leadGeneration: {
+        name: 'Lead Generation Bot',
+        price: '$249',
+        features: ['Automated lead capture', 'Qualification questions', 'Appointment scheduling', 'CRM integration'],
+        benefits: ['Capture more qualified leads', 'Automate initial screening', 'Integrate with your CRM'],
+        useCases: ['B2B companies', 'Service businesses', 'Consulting firms', 'Agencies']
+      },
+      customerSupport: {
+        name: 'Customer Support Bot',
+        price: '$349',
+        features: ['24/7 availability', 'Ticket routing', 'Knowledge base integration', 'Empathetic responses'],
+        benefits: ['Reduce support costs by 60%', 'Improve response times', 'Handle common issues automatically'],
+        useCases: ['E-commerce stores', 'SaaS companies', 'Service businesses', 'Online platforms']
+      },
+      onboarding: {
+        name: 'Onboarding Bot',
+        price: '$199',
+        features: ['New user guidance', 'Feature tutorials', 'FAQ handling', 'Personalized welcome'],
+        benefits: ['Reduce churn by 30%', 'Improve user adoption', 'Scale onboarding efficiently'],
+        useCases: ['SaaS companies', 'Online platforms', 'Educational institutions', 'Membership sites']
+      },
+      appointmentBooking: {
+        name: 'Appointment Booking Bot',
+        price: '$199',
+        features: ['Calendar integration', 'Time zone handling', 'Reminder notifications', 'Payment processing'],
+        benefits: ['Reduce no-shows by 50%', 'Automate scheduling', 'Improve customer experience'],
+        useCases: ['Healthcare practices', 'Consulting firms', 'Service businesses', 'Salons and spas']
+      },
+      faqKnowledge: {
+        name: 'FAQ & Knowledge Base Bot',
+        price: '$179',
+        features: ['Intelligent search', 'Context-aware responses', 'Article suggestions', 'Multi-language support'],
+        benefits: ['Reduce support tickets by 70%', 'Provide instant answers', 'Scale support globally'],
+        useCases: ['All businesses with support needs', 'SaaS companies', 'E-commerce', 'Educational institutions']
+      }
+    };
 
-Our AI bots are designed to serve your business needs while maintaining biblical integrity:
+    // Specific chatbot questions
+    if (input.includes('sales') || input.includes('lead') || input.includes('conversion')) {
+      const bot = chatbotInfo.salesAssistant;
+      return `Our ${bot.name} (${bot.price}) is perfect for businesses looking to improve their sales process. 
 
-**🔥 Sales Assistant Bot**
-• Lead qualification and nurturing
-• Product recommendations
-• Follow-up automation
-• Biblical communication standards
+Key features include:
+${bot.features.map(f => `• ${f}`).join('\n')}
 
-**🎯 Lead Generation Bot**
-• Automated lead capture
-• Qualification questions
-• Appointment scheduling
-• Integration with CRM systems
+Business benefits:
+${bot.benefits.map(b => `• ${b}`).join('\n')}
 
-**📚 Onboarding Bot**
-• New user guidance
-• Feature tutorials
-• FAQ handling
-• Personalized welcome experience
+Perfect for: ${bot.useCases.join(', ')}
 
-**💬 Customer Support Bot**
-• 24/7 support availability
-• Ticket routing and escalation
-• Knowledge base integration
-• Empathetic, helpful responses
+This chatbot is trained specifically for sales conversations and can handle lead qualification, product recommendations, and follow-up automation while maintaining ethical communication standards.`;
 
-**📖 Faith Bot**
-• Biblical guidance and encouragement
-• Prayer request handling
-• Scripture recommendations
-• Spiritual growth resources
+    } else if (input.includes('support') || input.includes('customer service') || input.includes('help')) {
+      const bot = chatbotInfo.customerSupport;
+      return `Our ${bot.name} (${bot.price}) provides 24/7 customer support with intelligent automation.
 
-**🎬 Course Explainer Bot**
-• Educational content delivery
-• Interactive learning experiences
-• Progress tracking
-• Adaptive learning paths
+Key features:
+${bot.features.map(f => `• ${f}`).join('\n')}
 
-**📝 Testimonial Bot**
-• Customer feedback collection
-• Review generation
-• Success story capture
-• Social proof automation
+Business benefits:
+${bot.benefits.map(b => `• ${b}`).join('\n')}
 
-**💼 Job Application Bot**
-• Application screening
-• Interview scheduling
-• Candidate communication
-• Hiring process automation
+Perfect for: ${bot.useCases.join(', ')}
 
-**🎨 Enhanced Sales Bot**
-• Advanced sales techniques
-• Objection handling
-• Closing strategies
-• Performance analytics
+This chatbot can handle common customer inquiries, route complex issues to human agents, and provide instant responses to improve customer satisfaction.`;
 
-💡 **Biblical Integration**: All our bots are programmed with wholesome communication standards and ethical business practices.
+    } else if (input.includes('onboarding') || input.includes('new user') || input.includes('tutorial')) {
+      const bot = chatbotInfo.onboarding;
+      return `Our ${bot.name} (${bot.price}) helps new users get started quickly and effectively.
 
-**Which bot would you like to learn more about?** I can provide detailed information about features, pricing, and implementation.`;
+Key features:
+${bot.features.map(f => `• ${f}`).join('\n')}
+
+Business benefits:
+${bot.benefits.map(b => `• ${b}`).join('\n')}
+
+Perfect for: ${bot.useCases.join(', ')}
+
+This chatbot guides new users through your platform, provides tutorials, and helps reduce churn by ensuring users understand your product's value.`;
+
+    } else if (input.includes('appointment') || input.includes('booking') || input.includes('schedule')) {
+      const bot = chatbotInfo.appointmentBooking;
+      return `Our ${bot.name} (${bot.price}) automates appointment scheduling and management.
+
+Key features:
+${bot.features.map(f => `• ${f}`).join('\n')}
+
+Business benefits:
+${bot.benefits.map(b => `• ${b}`).join('\n')}
+
+Perfect for: ${bot.useCases.join(', ')}
+
+This chatbot handles scheduling, sends reminders, and integrates with your calendar to streamline appointment management.`;
+
+    } else if (input.includes('faq') || input.includes('knowledge') || input.includes('search')) {
+      const bot = chatbotInfo.faqKnowledge;
+      return `Our ${bot.name} (${bot.price}) provides intelligent search and instant answers.
+
+Key features:
+${bot.features.map(f => `• ${f}`).join('\n')}
+
+Business benefits:
+${bot.benefits.map(b => `• ${b}`).join('\n')}
+
+Perfect for: ${bot.useCases.join(', ')}
+
+This chatbot can search your knowledge base, provide context-aware responses, and help customers find answers instantly.`;
+
+    } else if (input.includes('price') || input.includes('cost') || input.includes('how much')) {
+      return `Our chatbots are priced based on complexity and features:
+
+**Basic Chatbots ($159-$199):**
+• FAQ & Knowledge Base Bot - $179
+• Onboarding Bot - $199
+• Appointment Booking Bot - $199
+
+**Professional Chatbots ($249-$349):**
+• Lead Generation Bot - $249
+• Sales Assistant Bot - $299
+• Customer Support Bot - $349
+
+**Add-ons available:**
+• Custom Branding - $50
+• Voice Integration - $75
+• Analytics Setup - $100
+• Legal Compliance - $30
+
+All chatbots include setup, training, and 30 days of support. We also offer bundle pricing for multiple chatbots.`;
+
+    } else if (input.includes('how') || input.includes('work') || input.includes('process')) {
+      return `Here's how our chatbot process works:
+
+**1. Choose Your Chatbot**
+Select from our range of specialized chatbots designed for different business needs (sales, support, onboarding, etc.)
+
+**2. Customize & Configure**
+We train the chatbot with your specific business information, products, services, and communication style
+
+**3. Integration & Setup**
+We install the chatbot on your website, integrate with your existing systems (CRM, calendar, etc.), and configure all settings
+
+**4. Training & Launch**
+We provide comprehensive training for your team and launch the chatbot with ongoing support
+
+**5. Optimization**
+We monitor performance and continuously improve the chatbot based on real usage data
+
+The entire process typically takes 1-2 weeks from order to launch, depending on complexity.`;
+
+    } else if (input.includes('benefit') || input.includes('roi') || input.includes('improve')) {
+      return `Our chatbots provide significant business benefits:
+
+**Cost Savings:**
+• Reduce customer support costs by 60-70%
+• Automate repetitive tasks
+• Scale operations without hiring more staff
+
+**Revenue Growth:**
+• Increase conversion rates by 40%
+• Capture more qualified leads
+• Reduce no-shows by 50%
+
+**Customer Experience:**
+• 24/7 availability
+• Instant responses
+• Consistent service quality
+• Multi-language support
+
+**Operational Efficiency:**
+• Handle multiple conversations simultaneously
+• Integrate with existing systems
+• Provide detailed analytics
+• Scale with your business
+
+Most businesses see ROI within 30-60 days of implementation.`;
+
+    } else {
+      return `We offer professional chatbots trained specifically for your business needs. Our chatbots are not generic AI - they're customized with your business information, products, services, and communication style.
+
+**Popular chatbots include:**
+• Sales Assistant Bot ($299) - Lead qualification and sales automation
+• Customer Support Bot ($349) - 24/7 customer service
+• Lead Generation Bot ($249) - Automated lead capture and qualification
+• Onboarding Bot ($199) - New user guidance and tutorials
+• Appointment Booking Bot ($199) - Automated scheduling
+• FAQ & Knowledge Base Bot ($179) - Intelligent search and answers
+
+Each chatbot is trained with your specific business data and can handle real customer interactions while maintaining your brand voice and biblical integrity.
+
+Would you like to know more about a specific chatbot or our pricing?`;
+    }
   }
 
   private generatePageSpecificGreeting(context: ResponseContext, currentApp: any): string {
