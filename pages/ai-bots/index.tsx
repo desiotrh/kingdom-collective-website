@@ -134,7 +134,7 @@ const chatbots = [
 ];
 
 export default function ChatbotsPage() {
-  const categories = [...new Set(chatbots.map(bot => bot.category))];
+  const categories = Array.from(new Set(chatbots.map(bot => bot.category)));
 
   return (
     <>
