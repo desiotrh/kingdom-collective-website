@@ -108,7 +108,7 @@
   }
 
   .text-body-secondary {
-    @apply text-gray-300 text-sm font-normal leading-relaxed;
+    @apply text-white/70 text-sm font-normal leading-relaxed;
   }
 
   /* Consistent spacing */
