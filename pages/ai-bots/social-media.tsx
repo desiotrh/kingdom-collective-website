@@ -645,7 +645,7 @@ export default function SocialMediaBot() {
                       </ul>
                       <Link
                         href="/ai-bots/pricing"
-                        className="w-full py-3 bg-gray text-white font-bold rounded-xl hover:bg-blue hover:text-white transition-all duration-200 text-center block"
+                        className="w-full py-3 bg-gradient-to-r from-kingdom-gold to-kingdom-gold-soft text-black font-bold rounded-xl hover:from-kingdom-gold-soft hover:to-kingdom-gold-matte transition-all duration-200 text-center block"
                       >
                         Get Started
                       </Link>
@@ -718,7 +718,7 @@ export default function SocialMediaBot() {
                       </ul>
                       <Link
                         href="/ai-bots/pricing"
-                        className="w-full py-3 bg-gray text-white font-bold rounded-xl hover:bg-blue hover:text-white transition-all duration-200 text-center block"
+                        className="w-full py-3 bg-gradient-to-r from-kingdom-gold to-kingdom-gold-soft text-black font-bold rounded-xl hover:from-kingdom-gold-soft hover:to-kingdom-gold-matte transition-all duration-200 text-center block"
                       >
                         Get Started
                       </Link>

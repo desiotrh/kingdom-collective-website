@@ -51,7 +51,7 @@ export default function FAQ() {
                         <h1 className="text-4xl sm:text-5xl font-playfair font-bold text-white mb-6 drop-shadow-lg">
                             Frequently Asked <span className="gold-accent">Questions</span>
                         </h1>
-                        <p className="text-xl text-blue-200 drop-shadow-md">
+                        <p className="text-xl text-kingdom-gold drop-shadow-md">
                             Find answers to common questions about Kingdom Collective apps and services.
                         </p>
                     </div>

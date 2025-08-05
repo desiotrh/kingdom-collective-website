@@ -81,7 +81,7 @@ export default function RefundPolicy() {
                     <li>Confirmed technical errors that prevent platform access</li>
                   </ul>
                   <p className="text-gray-300 text-sm sm:text-base leading-relaxed">
-                    All refund requests must be made within 7 days of charge for subscription services, or within 30 days for one-time AI bot purchases, by contacting <a href="mailto:billing@kingdomcollective.pro" className="text-blue hover:text-blue-300 transition-colors duration-200">billing@kingdomcollective.pro</a>. We reserve the right to deny refunds at our sole discretion.
+                    All refund requests must be made within 7 days of charge for subscription services, or within 30 days for one-time AI bot purchases, by contacting <a href="mailto:billing@kingdomcollective.pro" className="text-kingdom-gold hover:text-kingdom-gold-soft transition-colors duration-200">billing@kingdomcollective.pro</a>. We reserve the right to deny refunds at our sole discretion.
                   </p>
                 </div>
 

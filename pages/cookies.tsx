@@ -104,7 +104,7 @@ export default function Cookies() {
                     We may update this Cookie Policy from time to time. Changes will be posted on this page with the updated date.
                   </p>
                   <p className="text-gray-300 text-sm sm:text-base leading-relaxed">
-                    For more information, contact us at <a href="mailto:privacy@kingdomcollective.pro" className="text-blue hover:text-blue-300 transition-colors duration-200">privacy@kingdomcollective.pro</a>
+                    For more information, contact us at <a href="mailto:privacy@kingdomcollective.pro" className="text-kingdom-gold hover:text-kingdom-gold-soft transition-colors duration-200">privacy@kingdomcollective.pro</a>
                   </p>
                 </div>
 

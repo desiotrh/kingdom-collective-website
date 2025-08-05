@@ -175,7 +175,7 @@ export default function Privacy() {
                     <li>Adjust your Faith Mode or Encouragement Mode preferences</li>
                   </ul>
                   <p className="text-gray-300 text-sm sm:text-base leading-relaxed">
-                    To exercise any of these rights, email us at: <a href="mailto:privacy@kingdomcollective.pro" className="text-blue hover:text-blue-300 transition-colors duration-200">privacy@kingdomcollective.pro</a>
+                    To exercise any of these rights, email us at: <a href="mailto:privacy@kingdomcollective.pro" className="text-kingdom-gold hover:text-kingdom-gold-soft transition-colors duration-200">privacy@kingdomcollective.pro</a>
                   </p>
                 </div>
 
@@ -230,9 +230,9 @@ export default function Privacy() {
                     Questions or requests related to your privacy? Reach out to:
                   </p>
                   <div className="text-gray-300 text-sm sm:text-base leading-relaxed space-y-2">
-                    <p>Email: <a href="mailto:privacy@kingdomcollective.pro" className="text-blue hover:text-blue-300 transition-colors duration-200">privacy@kingdomcollective.pro</a></p>
+                    <p>Email: <a href="mailto:privacy@kingdomcollective.pro" className="text-kingdom-gold hover:text-kingdom-gold-soft transition-colors duration-200">privacy@kingdomcollective.pro</a></p>
                     <p>Mailing Address: Kingdom Collective</p>
-                    <p>Website: <a href="https://kingdomcollective.pro" className="text-blue hover:text-blue-300 transition-colors duration-200">https://kingdomcollective.pro</a></p>
+                    <p>Website: <a href="https://kingdomcollective.pro" className="text-kingdom-gold hover:text-kingdom-gold-soft transition-colors duration-200">https://kingdomcollective.pro</a></p>
                   </div>
                 </div>
 

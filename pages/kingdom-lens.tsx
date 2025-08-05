@@ -127,11 +127,11 @@ export default function KingdomLens() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button 
                 onClick={() => window.open('https://lens.kingdomcollective.pro', '_blank')}
-                className="bg-gray text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-bold hover:bg-blue hover:text-white transition-all duration-200"
+                className="bg-gradient-to-r from-kingdom-gold to-kingdom-gold-soft text-black px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-bold hover:from-kingdom-gold-soft hover:to-kingdom-gold-matte transition-all duration-200"
               >
                 Launch Kingdom Lens
               </button>
-              <Link href="#features" className="bg-gray text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-bold hover:bg-blue hover:text-white transition-all duration-200">
+              <Link href="#features" className="bg-gradient-to-r from-kingdom-gold to-kingdom-gold-soft text-black px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-bold hover:from-kingdom-gold-soft hover:to-kingdom-gold-matte transition-all duration-200">
                 Learn More
               </Link>
             </div>
@@ -181,14 +181,14 @@ export default function KingdomLens() {
                 }`}>
                   {tier.popular && (
                     <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                      <span className="bg-blue text-navy px-3 sm:px-4 py-2 rounded-full text-xs sm:text-sm font-bold">
+                      <span className="bg-kingdom-gold text-black px-3 sm:px-4 py-2 rounded-full text-xs sm:text-sm font-bold">
                         Most Popular
                       </span>
                     </div>
                   )}
                   {tier.trial && !tier.popular && (
                     <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                      <span className="bg-blue text-navy px-4 sm:px-6 py-2 rounded-full text-xs sm:text-sm font-bold whitespace-nowrap">
+                      <span className="bg-kingdom-gold text-black px-4 sm:px-6 py-2 rounded-full text-xs sm:text-sm font-bold whitespace-nowrap">
                         14-Day Free Trial
                       </span>
                     </div>
@@ -204,7 +204,7 @@ export default function KingdomLens() {
                     <ul className="space-y-3 mb-8">
                       {tier.features.map((feature, featureIndex) => (
                         <li key={featureIndex} className="text-white flex items-center">
-                          <svg className="w-4 sm:w-5 h-4 sm:h-5 text-blue mr-3" fill="currentColor" viewBox="0 0 20 20">
+                          <svg className="w-4 sm:w-5 h-4 sm:h-5 text-kingdom-gold mr-3" fill="currentColor" viewBox="0 0 20 20">
                             <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                           </svg>
                           <span className="text-sm sm:text-base">{feature}</span>
@@ -214,7 +214,7 @@ export default function KingdomLens() {
                     <div className="text-center">
                       <button 
                         onClick={() => window.open('https://lens.kingdomcollective.pro', '_blank')}
-                        className="w-full py-3 px-6 rounded-full font-bold bg-gray text-white hover:bg-blue hover:text-white transition-all duration-200"
+                        className="w-full py-3 px-6 rounded-full font-bold bg-gradient-to-r from-kingdom-gold to-kingdom-gold-soft text-black hover:from-kingdom-gold-soft hover:to-kingdom-gold-matte transition-all duration-200"
                       >
                         Get Started
                       </button>

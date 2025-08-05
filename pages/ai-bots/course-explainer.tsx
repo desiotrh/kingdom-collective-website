@@ -355,7 +355,7 @@ export default function CourseExplainerBot() {
                           <button
                             type="submit"
                             disabled={isLoading}
-                            className="px-6 py-2 bg-blue text-white rounded-lg font-bold hover:bg-blue/80 transition-all disabled:opacity-50"
+                            className="px-6 py-2 bg-gradient-to-r from-kingdom-gold to-kingdom-gold-soft text-black rounded-lg font-bold hover:from-kingdom-gold-soft hover:to-kingdom-gold-matte transition-all disabled:opacity-50"
                           >
                             Send
                           </button>

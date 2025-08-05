@@ -90,7 +90,7 @@ export default function UGCPolicy() {
                     We reserve the right to remove or disable any content at our discretion if it violates our terms, laws, or community guidelines. Repeated offenses may lead to account suspension.
                   </p>
                   <p className="text-gray-300 text-sm sm:text-base leading-relaxed">
-                    If you believe your content has been misused or was removed in error, contact us at <a href="mailto:support@kingdomcollective.pro" className="text-blue hover:text-blue-300 transition-colors duration-200">support@kingdomcollective.pro</a>
+                    If you believe your content has been misused or was removed in error, contact us at <a href="mailto:support@kingdomcollective.pro" className="text-kingdom-gold hover:text-kingdom-gold-soft transition-colors duration-200">support@kingdomcollective.pro</a>
                   </p>
                 </div>
 

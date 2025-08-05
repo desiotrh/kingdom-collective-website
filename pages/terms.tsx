@@ -285,8 +285,8 @@ export default function Terms() {
                     Questions? Contact us at:
                   </p>
                   <div className="text-gray-300 text-sm sm:text-base leading-relaxed space-y-2">
-                    <p>Email: <a href="mailto:legal@kingdomcollective.pro" className="text-blue hover:text-blue-300 transition-colors duration-200">legal@kingdomcollective.pro</a></p>
-                    <p>Website: <a href="https://kingdomcollective.pro" className="text-blue hover:text-blue-300 transition-colors duration-200">https://kingdomcollective.pro</a></p>
+                    <p>Email: <a href="mailto:legal@kingdomcollective.pro" className="text-kingdom-gold hover:text-kingdom-gold-soft transition-colors duration-200">legal@kingdomcollective.pro</a></p>
+                    <p>Website: <a href="https://kingdomcollective.pro" className="text-kingdom-gold hover:text-kingdom-gold-soft transition-colors duration-200">https://kingdomcollective.pro</a></p>
                   </div>
                 </div>
 

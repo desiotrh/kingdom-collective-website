@@ -82,7 +82,7 @@ export default function Account() {
           <button
             type="submit"
             disabled={isLoading}
-                                className="px-6 py-3 bg-gray text-white font-bold rounded-xl hover:bg-blue hover:text-white transition-all duration-200 disabled:opacity-50"
+                                className="px-6 py-3 bg-gradient-to-r from-kingdom-gold to-kingdom-gold-soft text-black font-bold rounded-xl hover:from-kingdom-gold-soft hover:to-kingdom-gold-matte transition-all duration-200 disabled:opacity-50"
           >
             {isLoading ? 'Updating...' : 'Update Profile'}
           </button>
@@ -236,7 +236,7 @@ export default function Account() {
       <div className="bg-black/20 backdrop-blur-sm rounded-xl p-6">
         <h3 className="text-white text-xl font-bold mb-4">Payment Methods</h3>
         <p className="text-gray-400">No payment methods added yet.</p>
-                        <button className="mt-4 px-6 py-3 bg-gray text-white font-bold rounded-xl hover:bg-blue hover:text-white transition-all duration-200">
+                        <button className="mt-4 px-6 py-3 bg-gradient-to-r from-kingdom-gold to-kingdom-gold-soft text-black font-bold rounded-xl hover:from-kingdom-gold-soft hover:to-kingdom-gold-matte transition-all duration-200">
           Add Payment Method
         </button>
       </div>

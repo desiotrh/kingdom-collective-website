@@ -11,7 +11,7 @@ export default function Navigation() {
   return (
     <header className="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-gray/30 px-4 sm:px-6 md:px-8 lg:px-10 py-3 bg-black/20 backdrop-blur-sm relative z-[9999999]">
       {/* Logo */}
-      <Link href="/" className="flex items-center gap-4 text-white hover:text-blue transition-colors duration-200" aria-label="Go to Kingdom Collective homepage">
+              <Link href="/" className="flex items-center gap-4 text-white hover:text-kingdom-gold transition-colors duration-200" aria-label="Go to Kingdom Collective homepage">
         <div className="flex items-center">
           <Image
             src="/kingdom-collective-logo.png"
@@ -33,7 +33,7 @@ export default function Navigation() {
           {/* Studio Apps Dropdown */}
           <div className="relative group">
             <button
-              className="text-white text-sm font-medium leading-normal hover:text-blue transition-colors duration-200 flex items-center gap-1"
+              className="text-white text-sm font-medium leading-normal hover:text-kingdom-gold transition-colors duration-200 flex items-center gap-1"
               aria-expanded="false"
               aria-haspopup="true"
               aria-label="Studio Apps menu"
@@ -72,7 +72,7 @@ export default function Navigation() {
           {/* AI Bots Dropdown */}
           <div className="relative group">
             <button
-              className="text-white text-sm font-medium leading-normal hover:text-blue transition-colors duration-200 flex items-center gap-1"
+              className="text-white text-sm font-medium leading-normal hover:text-kingdom-gold transition-colors duration-200 flex items-center gap-1"
               aria-expanded="false"
               aria-haspopup="true"
               aria-label="AI Bots menu"
@@ -138,24 +138,24 @@ export default function Navigation() {
           </div>
           <Link
             href="/features"
-            className="text-white text-sm font-medium leading-normal hover:text-blue transition-colors duration-200"
+            className="text-white text-sm font-medium leading-normal hover:text-kingdom-gold transition-colors duration-200"
           >
             Features
           </Link>
           <Link
             href="/vision"
-            className="text-white text-sm font-medium leading-normal hover:text-blue transition-colors duration-200"
+            className="text-white text-sm font-medium leading-normal hover:text-kingdom-gold transition-colors duration-200"
           >
             Vision
           </Link>
           <Link
             href="/contact"
-            className="text-white text-sm font-medium leading-normal hover:text-blue transition-colors duration-200"
+            className="text-white text-sm font-medium leading-normal hover:text-kingdom-gold transition-colors duration-200"
           >
             Contact
           </Link>
           <div className="relative group">
-            <button className="text-white text-sm font-medium leading-normal hover:text-blue transition-colors duration-200 flex items-center gap-1" aria-expanded="false" aria-haspopup="true" aria-label="Download Apps menu">
+            <button className="text-white text-sm font-medium leading-normal hover:text-kingdom-gold transition-colors duration-200 flex items-center gap-1" aria-expanded="false" aria-haspopup="true" aria-label="Download Apps menu">
               Download Apps
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
@@ -197,7 +197,7 @@ export default function Navigation() {
         <div className="md:hidden">
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="text-white hover:text-blue transition-colors duration-200"
+            className="text-white hover:text-kingdom-gold transition-colors duration-200"
             aria-label="Toggle mobile menu"
             aria-expanded={isMenuOpen}
             aria-controls="mobile-menu"
@@ -238,49 +238,49 @@ export default function Navigation() {
               <div className="pl-4 space-y-2">
                 <Link
                   href="/apps"
-                  className="block text-white hover:text-blue transition-colors duration-200 text-sm"
+                  className="block text-white hover:text-kingdom-gold transition-colors duration-200 text-sm"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   All Apps Overview
                 </Link>
                 <Link
                   href="/kingdom-studios"
-                  className="block text-white hover:text-blue transition-colors duration-200 text-sm"
+                  className="block text-white hover:text-kingdom-gold transition-colors duration-200 text-sm"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Kingdom Studios
                 </Link>
                 <Link
                   href="/kingdom-clips"
-                  className="block text-white hover:text-blue transition-colors duration-200 text-sm"
+                  className="block text-white hover:text-kingdom-gold transition-colors duration-200 text-sm"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Kingdom Clips
                 </Link>
                 <Link
                   href="/kingdom-voice"
-                  className="block text-white hover:text-blue transition-colors duration-200 text-sm"
+                  className="block text-white hover:text-kingdom-gold transition-colors duration-200 text-sm"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Kingdom Voice
                 </Link>
                 <Link
                   href="/kingdom-launchpad"
-                  className="block text-white hover:text-blue transition-colors duration-200 text-sm"
+                  className="block text-white hover:text-kingdom-gold transition-colors duration-200 text-sm"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Kingdom Launchpad
                 </Link>
                 <Link
                   href="/kingdom-circle"
-                  className="block text-white hover:text-blue transition-colors duration-200 text-sm"
+                  className="block text-white hover:text-kingdom-gold transition-colors duration-200 text-sm"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Kingdom Circle
                 </Link>
                 <Link
                   href="/kingdom-lens"
-                  className="block text-white hover:text-blue transition-colors duration-200 text-sm"
+                  className="block text-white hover:text-kingdom-gold transition-colors duration-200 text-sm"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Kingdom Lens
@@ -292,77 +292,77 @@ export default function Navigation() {
               <div className="pl-4 space-y-2">
                 <Link
                   href="/ai-bots"
-                  className="block text-white hover:text-blue transition-colors duration-200 text-sm"
+                  className="block text-white hover:text-kingdom-gold transition-colors duration-200 text-sm"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   🤖 All AI Bots Overview
                 </Link>
                 <Link
                   href="/ai-bots/sales-assistant"
-                  className="block text-white hover:text-blue transition-colors duration-200 text-sm"
+                  className="block text-white hover:text-kingdom-gold transition-colors duration-200 text-sm"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   💼 Sales Assistant Bot
                 </Link>
                 <Link
                   href="/ai-bots/lead-generation"
-                  className="block text-white hover:text-blue transition-colors duration-200 text-sm"
+                  className="block text-white hover:text-kingdom-gold transition-colors duration-200 text-sm"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   🎯 Lead Generation Bot
                 </Link>
                 <Link
                   href="/ai-bots/onboarding"
-                  className="block text-white hover:text-blue transition-colors duration-200 text-sm"
+                  className="block text-white hover:text-kingdom-gold transition-colors duration-200 text-sm"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   📚 Onboarding Bot
                 </Link>
                 <Link
                   href="/ai-bots/customer-support"
-                  className="block text-white hover:text-blue transition-colors duration-200 text-sm"
+                  className="block text-white hover:text-kingdom-gold transition-colors duration-200 text-sm"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   💬 Customer Support Bot
                 </Link>
                 <Link
                   href="/ai-bots/faith-bot"
-                  className="block text-white hover:text-blue transition-colors duration-200 text-sm"
+                  className="block text-white hover:text-kingdom-gold transition-colors duration-200 text-sm"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   🙏 Faith Bot
                 </Link>
                 <Link
                   href="/ai-bots/course-explainer"
-                  className="block text-white hover:text-blue transition-colors duration-200 text-sm"
+                  className="block text-white hover:text-kingdom-gold transition-colors duration-200 text-sm"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   🎓 Course Explainer Bot
                 </Link>
                 <Link
                   href="/ai-bots/testimonial"
-                  className="block text-white hover:text-blue transition-colors duration-200 text-sm"
+                  className="block text-white hover:text-kingdom-gold transition-colors duration-200 text-sm"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   📝 Testimonial Bot
                 </Link>
                 <Link
                   href="/ai-bots/job-application"
-                  className="block text-white hover:text-blue transition-colors duration-200 text-sm"
+                  className="block text-white hover:text-kingdom-gold transition-colors duration-200 text-sm"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   💼 Job Application Bot
                 </Link>
                 <Link
                   href="/ai-bots/enhanced-sales"
-                  className="block text-white hover:text-blue transition-colors duration-200 text-sm"
+                  className="block text-white hover:text-kingdom-gold transition-colors duration-200 text-sm"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   🚀 Enhanced Sales Bot
                 </Link>
                 <Link
                   href="/ai-bots/pricing"
-                  className="block text-white hover:text-blue transition-colors duration-200 text-sm font-semibold"
+                  className="block text-white hover:text-kingdom-gold transition-colors duration-200 text-sm font-semibold"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   💰 Pricing & Add-ons
@@ -371,21 +371,21 @@ export default function Navigation() {
             </div>
             <Link
               href="/features"
-              className="block text-white hover:text-blue transition-colors duration-200 text-sm font-medium"
+              className="block text-white hover:text-kingdom-gold transition-colors duration-200 text-sm font-medium"
               onClick={() => setIsMenuOpen(false)}
             >
               Features
             </Link>
             <Link
               href="/vision"
-              className="block text-white hover:text-blue transition-colors duration-200 text-sm font-medium"
+              className="block text-white hover:text-kingdom-gold transition-colors duration-200 text-sm font-medium"
               onClick={() => setIsMenuOpen(false)}
             >
               Vision
             </Link>
             <Link
               href="/contact"
-              className="block text-white hover:text-blue transition-colors duration-200 text-sm font-medium"
+              className="block text-white hover:text-kingdom-gold transition-colors duration-200 text-sm font-medium"
               onClick={() => setIsMenuOpen(false)}
             >
               Contact
@@ -397,7 +397,7 @@ export default function Navigation() {
                   href="#"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block text-white hover:text-blue transition-colors duration-200 text-sm"
+                  className="block text-white hover:text-kingdom-gold transition-colors duration-200 text-sm"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   🍎 App Store
@@ -406,7 +406,7 @@ export default function Navigation() {
                   href="#"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block text-white hover:text-blue transition-colors duration-200 text-sm"
+                  className="block text-white hover:text-kingdom-gold transition-colors duration-200 text-sm"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   🤖 Google Play

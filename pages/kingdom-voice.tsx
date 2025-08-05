@@ -127,11 +127,11 @@ export default function KingdomVoice() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button 
                 onClick={() => window.open('https://voice.kingdomcollective.pro', '_blank')}
-                className="bg-gray text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-bold hover:bg-blue hover:text-white transition-all duration-200"
+                className="bg-gradient-to-r from-kingdom-gold to-kingdom-gold-soft text-black px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-bold hover:from-kingdom-gold-soft hover:to-kingdom-gold-matte transition-all duration-200"
               >
                 Launch Kingdom Voice
               </button>
-              <Link href="#features" className="bg-gray text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-bold hover:bg-blue hover:text-white transition-all duration-200">
+              <Link href="#features" className="bg-gradient-to-r from-kingdom-gold to-kingdom-gold-soft text-black px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-bold hover:from-kingdom-gold-soft hover:to-kingdom-gold-matte transition-all duration-200">
                 Learn More
               </Link>
             </div>
@@ -172,8 +172,8 @@ export default function KingdomVoice() {
               <p className="text-white text-sm sm:text-base font-normal leading-normal max-w-3xl mx-auto mb-4">
                 Start creating audio content today. Begin with our free plan and upgrade as you grow.
               </p>
-              <div className="bg-blue/20 border border-blue/30 rounded-xl p-4 max-w-2xl mx-auto">
-                <p className="text-blue font-bold text-base sm:text-lg">🎉 Start Free Today!</p>
+              <div className="bg-kingdom-gold/20 border border-kingdom-gold/30 rounded-xl p-4 max-w-2xl mx-auto">
+                <p className="text-kingdom-gold font-bold text-base sm:text-lg">🎉 Start Free Today!</p>
                 <p className="text-white text-xs sm:text-sm">All paid plans include a 14-day free trial. No credit card required to start.</p>
               </div>
             </div>
@@ -185,14 +185,14 @@ export default function KingdomVoice() {
                 }`}>
                   {tier.popular && (
                     <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                      <span className="bg-blue text-navy px-3 sm:px-4 py-2 rounded-full text-xs sm:text-sm font-bold">
+                      <span className="bg-kingdom-gold text-black px-3 sm:px-4 py-2 rounded-full text-xs sm:text-sm font-bold">
                         Most Popular
                       </span>
                     </div>
                   )}
                   {tier.trial && !tier.popular && (
                     <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                      <span className="bg-blue text-navy px-4 sm:px-6 py-2 rounded-full text-xs sm:text-sm font-bold whitespace-nowrap">
+                      <span className="bg-kingdom-gold text-black px-4 sm:px-6 py-2 rounded-full text-xs sm:text-sm font-bold whitespace-nowrap">
                         14-Day Free Trial
                       </span>
                     </div>
@@ -208,7 +208,7 @@ export default function KingdomVoice() {
                     <ul className="space-y-3 mb-8">
                       {tier.features.map((feature, featureIndex) => (
                         <li key={featureIndex} className="text-white flex items-center">
-                          <svg className="w-5 h-5 text-blue mr-3" fill="currentColor" viewBox="0 0 20 20">
+                          <svg className="w-5 h-5 text-kingdom-gold mr-3" fill="currentColor" viewBox="0 0 20 20">
                             <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                           </svg>
                           {feature}
@@ -218,7 +218,7 @@ export default function KingdomVoice() {
                     <div className="text-center">
                       <button 
                         onClick={() => window.open('https://voice.kingdomcollective.pro', '_blank')}
-                        className="w-full py-3 px-6 rounded-full font-bold bg-gray text-white hover:bg-blue hover:text-white transition-all duration-200"
+                        className="w-full py-3 px-6 rounded-full font-bold bg-gradient-to-r from-kingdom-gold to-kingdom-gold-soft text-black hover:from-kingdom-gold-soft hover:to-kingdom-gold-matte transition-all duration-200"
                       >
                         {tier.price === '$0' ? 'Start Free' : 'Get Started'}
                       </button>
