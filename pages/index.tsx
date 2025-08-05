@@ -65,53 +65,61 @@ export default function Home() {
         <BackgroundVideo />
         <div className="layout-container flex h-full grow flex-col relative z-10">
           <Navigation />
-          <Hero />
           
-          {/* Apps Section */}
-          <section className="section-padding">
-            <div className="container-standard">
-              <div className="text-center mb-12 sm:mb-16">
-                <h2 className="text-heading-primary mb-4 sm:mb-6">
-                  Our <span className="text-blue">Studio Apps</span>
+          {/* Main Content */}
+          <main role="main">
+            {/* Hero Section */}
+            <section aria-labelledby="hero-heading">
+              <h1 id="hero-heading" className="sr-only">Kingdom Collective - Create with Purpose. Share with Authority. Build What Matters.</h1>
+              <Hero />
+            </section>
+            
+            {/* Apps Section */}
+            <section className="section-padding" aria-labelledby="apps-heading">
+              <div className="container-standard">
+                <div className="text-center mb-12 sm:mb-16">
+                  <h2 id="apps-heading" className="text-4xl md:text-6xl font-bold leading-tight tracking-[-0.033em] text-white mb-4 sm:mb-6">
+                    Our <span className="text-[#FFD700]">Studio Apps</span>
+                  </h2>
+                  <p className="text-white text-sm sm:text-base font-normal leading-relaxed max-w-3xl mx-auto px-4">
+                    Kingdom Collective is more than just a suite of apps—it&apos;s a movement
+                    dedicated to empowering creators, entrepreneurs, and community builders
+                    to create with purpose, share with authority, and build what truly
+                    matters.
+                  </p>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+                  {apps.map((app, index) => (
+                    <AppCard
+                      key={index}
+                      title={app.title}
+                      description={app.description}
+                      icon={app.icon}
+                      logo={app.logo}
+                      color={app.color}
+                      href={app.href}
+                    />
+                  ))}
+                </div>
+              </div>
+            </section>
+
+            {/* About Section */}
+            <section className="section-padding bg-black/30 backdrop-blur-sm" aria-labelledby="about-heading">
+              <div className="container-standard text-center">
+                <h2 id="about-heading" className="text-4xl md:text-6xl font-bold leading-tight tracking-[-0.033em] text-white mb-6 sm:mb-8">
+                  About <span className="text-[#FFD700]">Kingdom Collective</span>
                 </h2>
-                <p className="text-body-primary max-w-3xl mx-auto px-4">
-                  Kingdom Collective is more than just a suite of apps—it&apos;s a movement
-                  dedicated to empowering creators, entrepreneurs, and community builders
-                  to create with purpose, share with authority, and build what truly
-                  matters.
+                <p className="text-white text-sm sm:text-base font-normal leading-relaxed px-4">
+                  Our mission is to provide the tools, resources, and community support
+                  needed to help you make a lasting impact in your sphere of influence.
+                  Whether you&apos;re creating content, building a business, or fostering
+                  community, we&apos;re here to support your journey every step of the way.
                 </p>
               </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-                {apps.map((app, index) => (
-                  <AppCard
-                    key={index}
-                    title={app.title}
-                    description={app.description}
-                    icon={app.icon}
-                    logo={app.logo}
-                    color={app.color}
-                    href={app.href}
-                  />
-                ))}
-              </div>
-            </div>
-          </section>
-
-          {/* About Section */}
-          <section className="section-padding bg-black/30 backdrop-blur-sm">
-            <div className="container-standard text-center">
-              <h2 className="text-heading-primary mb-6 sm:mb-8">
-                About <span className="text-blue">Kingdom Collective</span>
-              </h2>
-              <p className="text-body-primary px-4">
-                Our mission is to provide the tools, resources, and community support
-                needed to help you make a lasting impact in your sphere of influence.
-                Whether you&apos;re creating content, building a business, or fostering
-                community, we&apos;re here to support your journey every step of the way.
-              </p>
-            </div>
-          </section>
+            </section>
+          </main>
 
           <Footer />
         </div>

@@ -131,15 +131,15 @@ export default function ChatbotsPage() {
         <div className="layout-container flex h-full grow flex-col relative z-10">
           <Navigation />
           
-          <main className="min-h-screen">
+          <main className="min-h-screen" role="main">
             {/* Hero Section */}
-            <section className="relative py-20 px-4 sm:px-6 lg:px-8">
+            <section className="relative py-20 px-4 sm:px-6 lg:px-8" aria-labelledby="hero-heading">
               <div className="max-w-7xl mx-auto">
                 <div className="text-center mb-12">
-                  <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
+                  <h1 id="hero-heading" className="text-4xl md:text-6xl font-bold leading-tight tracking-[-0.033em] text-white mb-6">
                     Professional Chatbots
                   </h1>
-                  <p className="text-2xl text-kingdom-gold font-semibold mb-4">
+                  <p className="text-2xl text-[#FFD700] font-semibold mb-4">
                     Trained for Your Business Success
                   </p>
                   <p className="text-xl text-white/80 mb-8 max-w-3xl mx-auto">
@@ -150,16 +150,17 @@ export default function ChatbotsPage() {
             </section>
 
             {/* Chatbots Grid */}
-            <section className="py-16 px-4 sm:px-6 lg:px-8">
+            <section className="py-16 px-4 sm:px-6 lg:px-8" aria-labelledby="chatbots-heading">
               <div className="max-w-7xl mx-auto">
+                <h2 id="chatbots-heading" className="sr-only">Available Chatbots</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                   {chatbots.map((bot) => (
-                    <div key={bot.id} className="card-standard">
+                    <article key={bot.id} className="card-standard">
                       <div className="mb-4">
                         <h3 className="text-xl font-bold text-white mb-2">{bot.name}</h3>
                         <p className="text-white/70 text-sm mb-4">{bot.description}</p>
                         <div className="flex items-center justify-between mb-4">
-                          <span className="text-kingdom-gold font-bold text-lg">{bot.price}</span>
+                          <span className="text-[#FFD700] font-bold text-lg">{bot.price}</span>
                           <span className="text-white/60 text-sm bg-gray/30 px-2 py-1 rounded">{bot.category}</span>
                         </div>
                       </div>
@@ -169,36 +170,36 @@ export default function ChatbotsPage() {
                         <ul className="space-y-1">
                           {bot.features.slice(0, 3).map((feature, index) => (
                             <li key={index} className="text-white/70 text-sm flex items-center">
-                              <span className="text-kingdom-gold mr-2">•</span>
+                              <span className="text-[#FFD700] mr-2">•</span>
                               {feature}
                             </li>
                           ))}
                         </ul>
                       </div>
                       
-                      <Link href={bot.demoUrl} className="btn-kingdom-primary w-full text-center">
+                      <Link href={bot.demoUrl} className="bg-gradient-to-r from-[#FFD700] to-yellow-400 text-black font-semibold px-6 py-2 rounded-md shadow-md hover:brightness-110 transition w-full text-center" aria-label={`View details for ${bot.name}`}>
                         View Details
                       </Link>
-                    </div>
+                    </article>
                   ))}
                 </div>
               </div>
             </section>
 
             {/* CTA Section */}
-            <section className="py-16 px-4 sm:px-6 lg:px-8">
+            <section className="py-16 px-4 sm:px-6 lg:px-8" aria-labelledby="cta-heading">
               <div className="max-w-4xl mx-auto text-center">
-                <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+                <h2 id="cta-heading" className="text-4xl md:text-6xl font-bold leading-tight tracking-[-0.033em] text-white mb-6">
                   Ready to Transform Your Business?
                 </h2>
                 <p className="text-xl text-white/80 mb-8">
                   Choose the perfect chatbot for your needs and start automating your customer interactions today.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <Link href="/ai-bots/pricing" className="btn-kingdom-primary">
+                  <Link href="/ai-bots/pricing" className="bg-gradient-to-r from-[#FFD700] to-yellow-400 text-black font-semibold px-6 py-2 rounded-md shadow-md hover:brightness-110 transition">
                     View Pricing
                   </Link>
-                  <Link href="/contact" className="btn-kingdom-secondary">
+                  <Link href="/contact" className="bg-transparent border border-[#FFD700] text-[#FFD700] px-6 py-2 rounded-md font-semibold hover:bg-[#FFD700] hover:text-black transition-all duration-200">
                     Get Custom Quote
                   </Link>
                 </div>

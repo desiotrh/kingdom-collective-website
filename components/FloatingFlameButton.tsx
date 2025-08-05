@@ -19,12 +19,15 @@ export default function FloatingFlameButton({ onToggle, isOpen, currentPage }: F
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
         className="relative w-24 h-24 bg-transparent rounded-full flex items-center justify-center hover:scale-110 transition-all duration-300"
+        aria-label={`${isOpen ? 'Close' : 'Open'} Kingdom Assistant chat`}
+        aria-expanded={isOpen}
+        aria-describedby={isHovered ? "flame-tooltip" : undefined}
       >
         {/* Burning Bush Flame */}
         <div className="relative z-10 w-20 h-20 flex items-center justify-center">
           <Image
             src="/kingdom-flame-avatar.png"
-            alt="Holy Flame"
+            alt="Kingdom Assistant - Holy Flame"
             width={60}
             height={60}
             className="flame"
@@ -41,7 +44,12 @@ export default function FloatingFlameButton({ onToggle, isOpen, currentPage }: F
 
       {/* Tooltip */}
       {isHovered && (
-        <div className="absolute right-full mr-3 top-1/2 transform -translate-y-1/2 bg-gray-900 text-white px-3 py-2 rounded-lg text-sm whitespace-nowrap shadow-lg">
+        <div 
+          id="flame-tooltip"
+          className="absolute right-full mr-3 top-1/2 transform -translate-y-1/2 bg-gray-900 text-white px-3 py-2 rounded-lg text-sm whitespace-nowrap shadow-lg"
+          role="tooltip"
+          aria-hidden="true"
+        >
           <div className="flex items-center space-x-2">
             <div className="w-2 h-2 bg-yellow-400 rounded-full animate-pulse"></div>
             <span>Kingdom Assistant</span>

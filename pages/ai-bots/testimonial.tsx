@@ -479,9 +479,9 @@ export default function TestimonialBot() {
                   </div>
                 </div>
               )}
-            </main>
-            <Footer />
-          </div>
+            </div>
+          </main>
+          <Footer />
         </div>
       </div>
     </>

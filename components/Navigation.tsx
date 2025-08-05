@@ -11,7 +11,7 @@ export default function Navigation() {
   return (
     <header className="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-gray/30 px-4 sm:px-6 md:px-8 lg:px-10 py-3 bg-black/20 backdrop-blur-sm relative z-[9999999]">
       {/* Logo */}
-      <Link href="/" className="flex items-center gap-4 text-white hover:text-blue transition-colors duration-200">
+      <Link href="/" className="flex items-center gap-4 text-white hover:text-blue transition-colors duration-200" aria-label="Go to Kingdom Collective homepage">
         <div className="flex items-center">
           <Image
             src="/kingdom-collective-logo.png"
@@ -28,39 +28,42 @@ export default function Navigation() {
       </Link>
 
       {/* Desktop Navigation */}
-      <div className="flex flex-1 justify-end gap-8">
+      <nav className="flex flex-1 justify-end gap-8" role="navigation" aria-label="Main navigation">
         <div className="hidden md:flex items-center gap-9">
           {/* Studio Apps Dropdown */}
           <div className="relative group">
             <button
               className="text-white text-sm font-medium leading-normal hover:text-blue transition-colors duration-200 flex items-center gap-1"
+              aria-expanded="false"
+              aria-haspopup="true"
+              aria-label="Studio Apps menu"
             >
               Studio Apps
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
               </svg>
             </button>
 
-            <div className="nav-dropdown">
-              <Link href="/apps" className="nav-dropdown-item">
+            <div className="nav-dropdown" role="menu">
+              <Link href="/apps" className="nav-dropdown-item" role="menuitem">
                 All Apps Overview
               </Link>
-              <Link href="/kingdom-studios" className="nav-dropdown-item">
+              <Link href="/kingdom-studios" className="nav-dropdown-item" role="menuitem">
                 Kingdom Studios
               </Link>
-              <Link href="/kingdom-clips" className="nav-dropdown-item">
+              <Link href="/kingdom-clips" className="nav-dropdown-item" role="menuitem">
                 Kingdom Clips
               </Link>
-              <Link href="/kingdom-voice" className="nav-dropdown-item">
+              <Link href="/kingdom-voice" className="nav-dropdown-item" role="menuitem">
                 Kingdom Voice
               </Link>
-              <Link href="/kingdom-launchpad" className="nav-dropdown-item">
+              <Link href="/kingdom-launchpad" className="nav-dropdown-item" role="menuitem">
                 Kingdom Launchpad
               </Link>
-              <Link href="/kingdom-circle" className="nav-dropdown-item">
+              <Link href="/kingdom-circle" className="nav-dropdown-item" role="menuitem">
                 Kingdom Circle
               </Link>
-              <Link href="/kingdom-lens" className="nav-dropdown-item">
+              <Link href="/kingdom-lens" className="nav-dropdown-item" role="menuitem">
                 Kingdom Lens
               </Link>
             </div>
@@ -70,62 +73,65 @@ export default function Navigation() {
           <div className="relative group">
             <button
               className="text-white text-sm font-medium leading-normal hover:text-blue transition-colors duration-200 flex items-center gap-1"
+              aria-expanded="false"
+              aria-haspopup="true"
+              aria-label="AI Bots menu"
             >
               AI Bots
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
               </svg>
             </button>
 
-            <div className="nav-dropdown w-72">
-              <Link href="/ai-bots" className="nav-dropdown-item font-semibold">
+            <div className="nav-dropdown w-72" role="menu">
+              <Link href="/ai-bots" className="nav-dropdown-item font-semibold" role="menuitem">
                 All AI Bots Overview
               </Link>
               <div className="border-t border-white/30 my-1"></div>
-              <Link href="/ai-bots/sales-assistant" className="nav-dropdown-item">
+              <Link href="/ai-bots/sales-assistant" className="nav-dropdown-item" role="menuitem">
                 Sales Assistant Bot
               </Link>
-              <Link href="/ai-bots/lead-generation" className="nav-dropdown-item">
+              <Link href="/ai-bots/lead-generation" className="nav-dropdown-item" role="menuitem">
                 Lead Generation Bot
               </Link>
-              <Link href="/ai-bots/onboarding" className="nav-dropdown-item">
+              <Link href="/ai-bots/onboarding" className="nav-dropdown-item" role="menuitem">
                 Onboarding Bot
               </Link>
-              <Link href="/ai-bots/customer-support" className="nav-dropdown-item">
+              <Link href="/ai-bots/customer-support" className="nav-dropdown-item" role="menuitem">
                 Customer Support Bot
               </Link>
-              <Link href="/ai-bots/faith-bot" className="nav-dropdown-item">
+              <Link href="/ai-bots/faith-bot" className="nav-dropdown-item" role="menuitem">
                 Faith Bot
               </Link>
-              <Link href="/ai-bots/course-explainer" className="nav-dropdown-item">
+              <Link href="/ai-bots/course-explainer" className="nav-dropdown-item" role="menuitem">
                 Course Explainer Bot
               </Link>
-              <Link href="/ai-bots/testimonial" className="nav-dropdown-item">
+              <Link href="/ai-bots/testimonial" className="nav-dropdown-item" role="menuitem">
                 Testimonial Bot
               </Link>
-              <Link href="/ai-bots/job-application" className="nav-dropdown-item">
+              <Link href="/ai-bots/job-application" className="nav-dropdown-item" role="menuitem">
                 Job Application Bot
               </Link>
-              <Link href="/ai-bots/enhanced-sales" className="nav-dropdown-item">
+              <Link href="/ai-bots/enhanced-sales" className="nav-dropdown-item" role="menuitem">
                 Enhanced Sales Bot
               </Link>
-              <Link href="/ai-bots/appointment-booking" className="nav-dropdown-item">
+              <Link href="/ai-bots/appointment-booking" className="nav-dropdown-item" role="menuitem">
                 Appointment Booking Bot
               </Link>
-              <Link href="/ai-bots/faq-knowledge" className="nav-dropdown-item">
+              <Link href="/ai-bots/faq-knowledge" className="nav-dropdown-item" role="menuitem">
                 FAQ & Knowledge Bot
               </Link>
-              <Link href="/ai-bots/event-management" className="nav-dropdown-item">
+              <Link href="/ai-bots/event-management" className="nav-dropdown-item" role="menuitem">
                 Event Management Bot
               </Link>
-              <Link href="/ai-bots/inventory-management" className="nav-dropdown-item">
+              <Link href="/ai-bots/inventory-management" className="nav-dropdown-item" role="menuitem">
                 Inventory Management Bot
               </Link>
-              <Link href="/ai-bots/social-media" className="nav-dropdown-item">
+              <Link href="/ai-bots/social-media" className="nav-dropdown-item" role="menuitem">
                 Social Media Bot
               </Link>
               <div className="border-t border-white/30 my-1"></div>
-              <Link href="/ai-bots/pricing" className="nav-dropdown-item font-semibold">
+              <Link href="/ai-bots/pricing" className="nav-dropdown-item font-semibold" role="menuitem">
                 Pricing & Add-ons
               </Link>
             </div>
@@ -149,21 +155,21 @@ export default function Navigation() {
             Contact
           </Link>
           <div className="relative group">
-            <button className="text-white text-sm font-medium leading-normal hover:text-blue transition-colors duration-200 flex items-center gap-1">
+            <button className="text-white text-sm font-medium leading-normal hover:text-blue transition-colors duration-200 flex items-center gap-1" aria-expanded="false" aria-haspopup="true" aria-label="Download Apps menu">
               Download Apps
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
               </svg>
             </button>
 
-            <div className="nav-dropdown">
-              <a href="#" target="_blank" rel="noopener noreferrer" className="nav-dropdown-item">
+            <div className="nav-dropdown" role="menu">
+              <a href="#" target="_blank" rel="noopener noreferrer" className="nav-dropdown-item" role="menuitem">
                 <div className="flex items-center gap-2">
                   <span className="text-lg">🍎</span>
                   <span>App Store</span>
                 </div>
               </a>
-              <a href="#" target="_blank" rel="noopener noreferrer" className="nav-dropdown-item">
+              <a href="#" target="_blank" rel="noopener noreferrer" className="nav-dropdown-item" role="menuitem">
                 <div className="flex items-center gap-2">
                   <span className="text-lg">🤖</span>
                   <span>Google Play</span>
@@ -192,12 +198,16 @@ export default function Navigation() {
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             className="text-white hover:text-blue transition-colors duration-200"
+            aria-label="Toggle mobile menu"
+            aria-expanded={isMenuOpen}
+            aria-controls="mobile-menu"
           >
             <svg
               className="w-6 h-6"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
+              aria-hidden="true"
             >
               {isMenuOpen ? (
                 <path
@@ -217,11 +227,11 @@ export default function Navigation() {
             </svg>
           </button>
         </div>
-      </div>
+      </nav>
 
       {/* Mobile Navigation */}
       {isMenuOpen && (
-        <div className="md:hidden absolute top-full left-0 w-full bg-navy/95 backdrop-blur-md border-t border-gray">
+        <div id="mobile-menu" className="md:hidden absolute top-full left-0 w-full bg-navy/95 backdrop-blur-md border-t border-gray" role="navigation" aria-label="Mobile navigation">
           <div className="px-4 py-6 space-y-4">
             <div className="space-y-2">
               <div className="text-white text-sm font-medium mb-2">Studio Apps</div>

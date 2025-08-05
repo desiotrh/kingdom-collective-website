@@ -66,10 +66,10 @@ export default function Apps() {
         {/* Hero Section */}
         <section className="section-padding">
           <div className="container-standard text-center">
-            <h1 className="text-heading-primary mb-6">
-              Our <span className="text-blue">Studio Apps</span>
+            <h1 className="text-4xl md:text-6xl font-bold leading-tight tracking-[-0.033em] text-white mb-6">
+              Our <span className="text-[#FFD700]">Studio Apps</span>
             </h1>
-            <p className="text-body-primary max-w-3xl mx-auto">
+            <p className="text-white text-sm sm:text-base font-normal leading-relaxed max-w-3xl mx-auto">
               A complete suite of tools designed to empower faith-driven creators, entrepreneurs, and community builders. Each app is built with purpose and designed for Kingdom impact.
             </p>
           </div>
@@ -94,19 +94,19 @@ export default function Apps() {
                       />
                     </div>
                     <div className="flex-1 flex flex-col justify-start">
-                      <h3 className="text-heading-secondary mb-2">{app.name}</h3>
-                      <p className="text-body-primary line-clamp-3">{app.description}</p>
+                      <h3 className="text-2xl sm:text-3xl font-bold leading-tight text-white mb-2">{app.name}</h3>
+                      <p className="text-white text-sm sm:text-base font-normal leading-relaxed line-clamp-3">{app.description}</p>
                     </div>
                   </div>
 
                   {/* Features */}
                   <div className="mb-8 flex-1">
-                    <h4 className="text-blue font-bold mb-6">Key Features:</h4>
+                    <h4 className="text-[#FFD700] font-bold mb-6">Key Features:</h4>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                       {app.features.map((feature, featureIndex) => (
                         <div key={featureIndex} className="flex items-center">
-                          <span className="text-blue mr-2">•</span>
-                          <span className="text-body-primary">{feature}</span>
+                          <span className="text-[#FFD700] mr-2">•</span>
+                          <span className="text-white text-sm sm:text-base font-normal leading-relaxed">{feature}</span>
                         </div>
                       ))}
                     </div>
@@ -116,13 +116,13 @@ export default function Apps() {
                   <div className="flex gap-4 mt-auto">
                     <Link
                       href={app.href}
-                      className="btn-kingdom-outline flex-1 text-center"
+                      className="bg-transparent border border-white/30 text-white px-6 py-2 rounded-md font-semibold hover:bg-white/10 transition-all duration-200 flex-1 text-center"
                     >
                       Learn More
                     </Link>
                     <button
                       onClick={() => window.open('https://app.kingdomcollective.pro', '_blank')}
-                      className="btn-kingdom-outline flex-1 text-center"
+                      className="bg-gradient-to-r from-[#FFD700] to-yellow-400 text-black font-semibold px-6 py-2 rounded-md shadow-md hover:brightness-110 transition flex-1 text-center"
                     >
                       Launch App
                     </button>
@@ -136,28 +136,28 @@ export default function Apps() {
         {/* Integration Section */}
         <section className="section-padding bg-black/30 backdrop-blur-sm">
           <div className="container-standard text-center">
-            <h2 className="text-heading-primary mb-6">
-              Seamless <span className="text-blue">Integration</span>
+            <h2 className="text-4xl md:text-6xl font-bold leading-tight tracking-[-0.033em] text-white mb-6">
+              Seamless <span className="text-[#FFD700]">Integration</span>
             </h2>
-            <p className="text-body-primary max-w-3xl mx-auto mb-8 sm:mb-12">
+            <p className="text-white text-sm sm:text-base font-normal leading-relaxed max-w-3xl mx-auto mb-8 sm:mb-12">
               All our apps work together as one unified ecosystem. Share content across platforms, manage your community, and grow your impact with tools that actually work together.
             </p>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
               <div className="text-center flex flex-col h-full">
                 <div className="text-3xl sm:text-4xl mb-4">🔄</div>
-                <h3 className="text-heading-secondary mb-3">Cross-Platform Sync</h3>
-                <p className="text-body-primary flex-1">Content and data sync seamlessly across all your Kingdom apps.</p>
+                <h3 className="text-2xl sm:text-3xl font-bold leading-tight text-white mb-3">Cross-Platform Sync</h3>
+                <p className="text-white text-sm sm:text-base font-normal leading-relaxed flex-1">Content and data sync seamlessly across all your Kingdom apps.</p>
               </div>
               <div className="text-center flex flex-col h-full">
                 <div className="text-3xl sm:text-4xl mb-4">🎯</div>
-                <h3 className="text-heading-secondary mb-3">Unified Analytics</h3>
-                <p className="text-body-primary flex-1">Track your growth and impact across all platforms in one dashboard.</p>
+                <h3 className="text-2xl sm:text-3xl font-bold leading-tight text-white mb-3">Unified Analytics</h3>
+                <p className="text-white text-sm sm:text-base font-normal leading-relaxed flex-1">Track your growth and impact across all platforms in one dashboard.</p>
               </div>
               <div className="text-center flex flex-col h-full">
                 <div className="text-3xl sm:text-4xl mb-4">🚀</div>
-                <h3 className="text-heading-secondary mb-3">Scalable Growth</h3>
-                <p className="text-body-primary flex-1">Start with one app and expand your toolkit as your ministry grows.</p>
+                <h3 className="text-2xl sm:text-3xl font-bold leading-tight text-white mb-3">Scalable Growth</h3>
+                <p className="text-white text-sm sm:text-base font-normal leading-relaxed flex-1">Start with one app and expand your toolkit as your ministry grows.</p>
               </div>
             </div>
           </div>

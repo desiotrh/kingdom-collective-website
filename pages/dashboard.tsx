@@ -280,11 +280,11 @@ export default function Dashboard() {
         <Navigation />
         
         {/* Dashboard Header */}
-        <section className="px-40 py-20">
+        <section className="px-4 sm:px-6 md:px-8 lg:px-12 xl:px-40 py-12 sm:py-16 md:py-20">
           <div className="max-w-[1200px] mx-auto">
             <div className="flex items-center justify-between mb-8">
               <div>
-                <h1 className="text-white text-4xl font-black leading-tight tracking-[-0.033em] mb-2">
+                <h1 className="text-4xl md:text-6xl font-bold leading-tight tracking-[-0.033em] text-white mb-2">
                   Welcome back, {user.name}!
                 </h1>
                 <p className="text-white text-lg">
@@ -294,13 +294,13 @@ export default function Dashboard() {
               <div className="flex items-center space-x-4">
                 <div className="text-right">
                   <p className="text-white text-sm">Experience Mode</p>
-                  <p className="text-blue font-semibold">
+                  <p className="text-[#FFD700] font-semibold">
                     {user.preferences.faithMode ? 'Faith Mode' : 'Encouragement Mode'}
                   </p>
                 </div>
                 <button
                   onClick={logout}
-                  className="px-4 py-2 bg-gray text-white rounded-full text-sm font-bold hover:bg-gray/90 transition-all duration-200"
+                  className="px-4 py-2 bg-gradient-to-r from-[#FFD700] to-yellow-400 text-black font-semibold px-6 py-2 rounded-md shadow-md hover:brightness-110 transition"
                 >
                   Logout
                 </button>
@@ -309,31 +309,31 @@ export default function Dashboard() {
 
             {/* Quick Stats */}
             <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-              <div className="bg-black/20 backdrop-blur-sm rounded-xl p-6">
+              <div className="bg-black/20 backdrop-blur-sm border border-white/10 rounded-xl p-6">
                 <h3 className="text-white font-bold text-lg mb-2">Active Apps</h3>
-                <p className="text-blue text-3xl font-black">{userApps.length}</p>
+                <p className="text-[#FFD700] text-3xl font-black">{userApps.length}</p>
               </div>
-              <div className="bg-black/20 backdrop-blur-sm rounded-xl p-6">
+              <div className="bg-black/20 backdrop-blur-sm border border-white/10 rounded-xl p-6">
                 <h3 className="text-white font-bold text-lg mb-2">AI Bots</h3>
-                <p className="text-blue text-3xl font-black">{userAIBots.length}</p>
+                <p className="text-[#FFD700] text-3xl font-black">{userAIBots.length}</p>
               </div>
-              <div className="bg-black/20 backdrop-blur-sm rounded-xl p-6">
+              <div className="bg-black/20 backdrop-blur-sm border border-white/10 rounded-xl p-6">
                 <h3 className="text-white font-bold text-lg mb-2">Orders</h3>
-                <p className="text-blue text-3xl font-black">{orderHistory.length}</p>
+                <p className="text-[#FFD700] text-3xl font-black">{orderHistory.length}</p>
               </div>
-              <div className="bg-black/20 backdrop-blur-sm rounded-xl p-6">
+              <div className="bg-black/20 backdrop-blur-sm border border-white/10 rounded-xl p-6">
                 <h3 className="text-white font-bold text-lg mb-2">Notifications</h3>
-                <p className="text-blue text-3xl font-black">{notifications.filter(n => !n.read).length}</p>
+                <p className="text-[#FFD700] text-3xl font-black">{notifications.filter(n => !n.read).length}</p>
               </div>
             </div>
 
             {/* Tab Navigation */}
-            <div className="flex space-x-1 bg-black/20 backdrop-blur-sm rounded-xl p-2 mb-8">
+            <div className="flex space-x-1 bg-black/20 backdrop-blur-sm border border-white/10 rounded-xl p-2 mb-8">
               <button
                 onClick={() => setActiveTab('apps')}
                 className={`flex-1 py-3 px-6 rounded-lg font-bold transition-all duration-200 ${
                   activeTab === 'apps' 
-                    ? 'bg-blue text-white' 
+                    ? 'bg-gradient-to-r from-[#FFD700] to-yellow-400 text-black' 
                     : 'text-white/70 hover:text-white'
                 }`}
               >
@@ -343,7 +343,7 @@ export default function Dashboard() {
                 onClick={() => setActiveTab('ai-bots')}
                 className={`flex-1 py-3 px-6 rounded-lg font-bold transition-all duration-200 ${
                   activeTab === 'ai-bots' 
-                    ? 'bg-blue text-white' 
+                    ? 'bg-gradient-to-r from-[#FFD700] to-yellow-400 text-black' 
                     : 'text-white/70 hover:text-white'
                 }`}
               >
@@ -353,7 +353,7 @@ export default function Dashboard() {
                 onClick={() => setActiveTab('orders')}
                 className={`flex-1 py-3 px-6 rounded-lg font-bold transition-all duration-200 ${
                   activeTab === 'orders' 
-                    ? 'bg-blue text-white' 
+                    ? 'bg-gradient-to-r from-[#FFD700] to-yellow-400 text-black' 
                     : 'text-white/70 hover:text-white'
                 }`}
               >
@@ -363,7 +363,7 @@ export default function Dashboard() {
                 onClick={() => setActiveTab('notifications')}
                 className={`flex-1 py-3 px-6 rounded-lg font-bold transition-all duration-200 ${
                   activeTab === 'notifications' 
-                    ? 'bg-blue text-white' 
+                    ? 'bg-gradient-to-r from-[#FFD700] to-yellow-400 text-black' 
                     : 'text-white/70 hover:text-white'
                 }`}
               >
@@ -374,7 +374,7 @@ export default function Dashboard() {
         </section>
 
         {/* Tab Content */}
-        <section className="px-40 py-20 bg-black/30 backdrop-blur-sm">
+        <section className="px-4 sm:px-6 md:px-8 lg:px-12 xl:px-40 py-12 sm:py-16 md:py-20 bg-black/30 backdrop-blur-sm">
           <div className="max-w-[1200px] mx-auto">
             
             {/* Apps Tab */}
@@ -382,7 +382,7 @@ export default function Dashboard() {
               <div>
                 <div className="flex items-center justify-between mb-8">
                   <div>
-                    <h2 className="text-white text-3xl font-black leading-tight tracking-[-0.033em] mb-2">
+                    <h2 className="text-4xl md:text-6xl font-bold leading-tight tracking-[-0.033em] text-white mb-2">
                       Your Apps
                     </h2>
                     <p className="text-white text-lg">
@@ -391,7 +391,7 @@ export default function Dashboard() {
                   </div>
                   <button
                     onClick={() => setShowAddApps(!showAddApps)}
-                    className="px-6 py-3 bg-gray text-white font-bold rounded-full hover:bg-blue hover:text-white transition-all duration-200"
+                    className="px-6 py-3 bg-gradient-to-r from-[#FFD700] to-yellow-400 text-black font-semibold px-6 py-2 rounded-md shadow-md hover:brightness-110 transition"
                   >
                     {showAddApps ? 'Hide Apps' : 'Add Apps'}
                   </button>
@@ -400,7 +400,7 @@ export default function Dashboard() {
                 {/* User's Selected Apps */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
                   {userApps.map((app) => (
-                    <div key={app.id} className="bg-black/20 backdrop-blur-sm rounded-xl p-6">
+                    <div key={app.id} className="bg-black/20 backdrop-blur-sm border border-white/10 rounded-xl p-6">
                       <div className="flex items-center justify-between mb-4">
                         <div className="flex items-center">
                           <Image
@@ -431,7 +431,7 @@ export default function Dashboard() {
                       
                       <button
                         onClick={() => handleLaunchApp(app.url)}
-                        className="w-full py-3 bg-gray text-white font-bold rounded-xl hover:bg-blue hover:text-white transition-all duration-200"
+                        className="w-full py-3 bg-gradient-to-r from-[#FFD700] to-yellow-400 text-black font-semibold px-6 py-2 rounded-md shadow-md hover:brightness-110 transition"
                       >
                         Launch {app.name}
                       </button>
@@ -445,7 +445,7 @@ export default function Dashboard() {
                     <h3 className="text-white text-xl font-bold mb-6">Available Apps</h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                       {availableApps.map((app) => (
-                        <div key={app.id} className="bg-black/20 backdrop-blur-sm rounded-xl p-6">
+                        <div key={app.id} className="bg-black/20 backdrop-blur-sm border border-white/10 rounded-xl p-6">
                           <div className="flex items-center mb-4">
                             <Image
                               src={app.logo}
@@ -462,7 +462,7 @@ export default function Dashboard() {
                           
                           <button
                             onClick={() => handleAddApp(app.id)}
-                            className="w-full py-3 bg-gray text-white font-bold rounded-xl hover:bg-gray/90 transition-all duration-200"
+                            className="w-full py-3 bg-gradient-to-r from-[#FFD700] to-yellow-400 text-black font-semibold px-6 py-2 rounded-md shadow-md hover:brightness-110 transition"
                           >
                             Add {app.name}
                           </button>
@@ -479,7 +479,7 @@ export default function Dashboard() {
               <div>
                 <div className="flex items-center justify-between mb-8">
                   <div>
-                    <h2 className="text-white text-3xl font-black leading-tight tracking-[-0.033em] mb-2">
+                    <h2 className="text-4xl md:text-6xl font-bold leading-tight tracking-[-0.033em] text-white mb-2">
                       Your AI Bots
                     </h2>
                     <p className="text-white text-lg">
@@ -488,7 +488,7 @@ export default function Dashboard() {
                   </div>
                   <Link
                     href="/ai-bots"
-                    className="px-6 py-3 bg-gradient-to-r from-kingdom-gold to-kingdom-orange text-kingdom-dark font-bold rounded-full hover:scale-105 transition-all duration-200"
+                    className="px-6 py-3 bg-gradient-to-r from-[#FFD700] to-yellow-400 text-black font-semibold px-6 py-2 rounded-md shadow-md hover:brightness-110 transition"
                   >
                     Buy More Bots
                   </Link>
@@ -496,7 +496,7 @@ export default function Dashboard() {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                   {userAIBots.map((bot) => (
-                    <div key={bot.id} className="bg-black/20 backdrop-blur-sm rounded-xl p-6">
+                    <div key={bot.id} className="bg-black/20 backdrop-blur-sm border border-white/10 rounded-xl p-6">
                       <div className="flex items-center justify-between mb-4">
                         <div className="flex items-center">
                           <div>
@@ -524,7 +524,7 @@ export default function Dashboard() {
                       <div className="flex space-x-2">
                         <Link
                           href={bot.url || '#'}
-                          className="flex-1 py-3 bg-gray text-white font-bold rounded-xl hover:bg-blue hover:text-white transition-all duration-200 text-center"
+                          className="flex-1 py-3 bg-gradient-to-r from-[#FFD700] to-yellow-400 text-black font-semibold px-6 py-2 rounded-md shadow-md hover:brightness-110 transition text-center"
                         >
                           Manage Bot
                         </Link>
@@ -546,7 +546,7 @@ export default function Dashboard() {
               <div>
                 <div className="flex items-center justify-between mb-8">
                   <div>
-                    <h2 className="text-white text-3xl font-black leading-tight tracking-[-0.033em] mb-2">
+                    <h2 className="text-4xl md:text-6xl font-bold leading-tight tracking-[-0.033em] text-white mb-2">
                       Order History
                     </h2>
                     <p className="text-white text-lg">
@@ -557,14 +557,14 @@ export default function Dashboard() {
 
                 <div className="space-y-4">
                   {orderHistory.map((order) => (
-                    <div key={order.id} className="bg-black/20 backdrop-blur-sm rounded-xl p-6">
+                    <div key={order.id} className="bg-black/20 backdrop-blur-sm border border-white/10 rounded-xl p-6">
                       <div className="flex items-center justify-between mb-4">
                         <div>
                           <h3 className="text-white font-bold text-lg">{order.id}</h3>
                           <p className="text-gray-400 text-sm">{order.date}</p>
                         </div>
                         <div className="text-right">
-                          <p className="text-kingdom-gold font-bold text-xl">${order.total}</p>
+                          <p className="text-[#FFD700] font-bold text-xl">${order.total}</p>
                           <div className={`px-3 py-1 rounded-full text-xs font-bold ${
                             order.status === 'completed' ? 'bg-green-500/20 text-green-400 border border-green-500/30' :
                             order.status === 'pending' ? 'bg-yellow-500/20 text-yellow-400 border border-yellow-500/30' :
@@ -586,7 +586,7 @@ export default function Dashboard() {
                       
                       <div className="flex space-x-2">
                         {order.invoiceUrl && (
-                          <button className="px-4 py-2 bg-gray text-white rounded-lg hover:bg-gray/90 transition-all duration-200 text-sm">
+                          <button className="px-4 py-2 bg-gradient-to-r from-[#FFD700] to-yellow-400 text-black font-semibold px-6 py-2 rounded-md shadow-md hover:brightness-110 transition text-sm">
                             Download Invoice
                           </button>
                         )}
@@ -605,7 +605,7 @@ export default function Dashboard() {
               <div>
                 <div className="flex items-center justify-between mb-8">
                   <div>
-                    <h2 className="text-white text-3xl font-black leading-tight tracking-[-0.033em] mb-2">
+                    <h2 className="text-4xl md:text-6xl font-bold leading-tight tracking-[-0.033em] text-white mb-2">
                       Notifications
                     </h2>
                     <p className="text-white text-lg">
@@ -616,21 +616,21 @@ export default function Dashboard() {
 
                 <div className="space-y-4">
                   {notifications.map((notification) => (
-                    <div key={notification.id} className={`bg-black/20 backdrop-blur-sm rounded-xl p-6 ${
-                      !notification.read ? 'border-l-4 border-blue' : ''
+                    <div key={notification.id} className={`bg-black/20 backdrop-blur-sm border border-white/10 rounded-xl p-6 ${
+                      !notification.read ? 'border-l-4 border-[#FFD700]' : ''
                     }`}>
                       <div className="flex items-start justify-between">
                         <div className="flex-1">
                           <div className="flex items-center mb-2">
                             <div className={`w-3 h-3 rounded-full mr-3 ${
                               notification.type === 'maintenance' ? 'bg-yellow-400' :
-                              notification.type === 'update' ? 'bg-blue' :
+                              notification.type === 'update' ? 'bg-[#FFD700]' :
                               notification.type === 'billing' ? 'bg-green-400' :
                               'bg-red-400'
                             }`}></div>
                             <h3 className="text-white font-bold text-lg">{notification.title}</h3>
                             {!notification.read && (
-                              <div className="ml-2 w-2 h-2 bg-blue rounded-full"></div>
+                              <div className="ml-2 w-2 h-2 bg-[#FFD700] rounded-full"></div>
                             )}
                           </div>
                           <p className="text-gray-400 text-sm mb-2">{notification.message}</p>

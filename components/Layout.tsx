@@ -61,8 +61,10 @@ export default function Layout({ children, title = 'Kingdom Collective', descrip
                 <meta name="theme-color" content="#144e9c" />
             </Head>
             
-            <div className="min-h-screen bg-gradient-to-br from-kingdom-dark via-kingdom-darker to-kingdom-navy">
-                {children}
+            <div className="min-h-screen bg-gradient-to-br from-kingdom-dark via-kingdom-darker to-kingdom-navy" lang="en">
+                <main role="main">
+                    {children}
+                </main>
 
                 {/* Enhanced Sales Bot */}
                 <FloatingFlameButton 

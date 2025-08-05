@@ -4,6 +4,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { aiResponseGenerator } from '../utils/ai-response-generator';
 import { conversationManager } from '../utils/conversation-memory';
 import ChatAvatar from './ChatAvatar';
+import Image from 'next/image';
 
 interface Message {
   id: string;
@@ -39,7 +40,7 @@ export default function EnhancedChatWindow({ isOpen, onClose, currentPage }: Enh
     // Add welcome message
     const welcomeMessage: Message = {
       id: 'welcome',
-      text: "🔥 Greetings! I am your Kingdom Collective assistant, standing firm in biblical truth. I'm here to guide you through our innovative apps and help you discover how technology can serve God's purpose. What would you like to explore today?",
+      text: "Hi! I'm your Kingdom Collective assistant — here to help you navigate our apps, tools, and features built with purpose. Whether you're exploring for business or faith, I've got you covered. How can I help today?",
       isUser: false,
       timestamp: new Date(),
       context: {
@@ -176,14 +177,20 @@ export default function EnhancedChatWindow({ isOpen, onClose, currentPage }: Enh
           >
             <div className="flex items-start gap-3">
               {!message.isUser && (
-                <div className="w-6 h-6 rounded-full bg-gradient-to-r from-kingdom-gold to-kingdom-orange flex items-center justify-center flex-shrink-0">
-                  <span className="text-xs text-kingdom-dark">🔥</span>
+                <div className="w-6 h-6 rounded-full bg-gradient-to-r from-[#FFD700] to-yellow-400 flex items-center justify-center flex-shrink-0">
+                  <Image
+                    src="/kingdom-flame-avatar.png"
+                    alt="Kingdom Assistant"
+                    width={16}
+                    height={16}
+                    className="w-4 h-4"
+                  />
                 </div>
               )}
               <div className="flex-1">
-                <p className="text-sm leading-relaxed whitespace-pre-wrap">
+                <div className="bg-black/30 text-white rounded-xl p-3 text-sm sm:text-base leading-relaxed">
                   {message.text}
-                </p>
+                </div>
                 <p className="text-xs text-gray-400 mt-1">
                   {new Date(message.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                 </p>
@@ -200,14 +207,22 @@ export default function EnhancedChatWindow({ isOpen, onClose, currentPage }: Enh
         {isTyping && (
           <div className="chat-message chat-message-assistant">
             <div className="flex items-start gap-3">
-              <div className="w-6 h-6 rounded-full bg-gradient-to-r from-kingdom-gold to-kingdom-orange flex items-center justify-center flex-shrink-0">
-                <span className="text-xs text-kingdom-dark">🔥</span>
+              <div className="w-6 h-6 rounded-full bg-gradient-to-r from-[#FFD700] to-yellow-400 flex items-center justify-center flex-shrink-0">
+                <Image
+                  src="/kingdom-flame-avatar.png"
+                  alt="Kingdom Assistant"
+                  width={16}
+                  height={16}
+                  className="w-4 h-4"
+                />
               </div>
               <div className="flex-1">
-                <div className="flex space-x-1">
-                  <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
-                  <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
-                  <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+                <div className="bg-black/30 text-white rounded-xl p-3">
+                  <div className="flex space-x-1">
+                    <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
+                    <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
+                    <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -225,14 +240,14 @@ export default function EnhancedChatWindow({ isOpen, onClose, currentPage }: Enh
             value={inputText}
             onChange={(e) => setInputText(e.target.value)}
             onKeyPress={handleKeyPress}
-            placeholder="Ask me anything..."
-            className="chat-input flex-1"
+            placeholder="Type your question here..."
+            className="w-full px-4 py-2 rounded-md bg-black/20 text-white placeholder-white/60 border border-white/10 focus:outline-none focus:ring-2 focus:ring-[#FFD700]"
             disabled={isLoading}
           />
           <button
             onClick={handleSendButtonClick}
             disabled={isLoading || !inputText.trim()}
-            className="bg-gradient-to-r from-kingdom-gold to-kingdom-orange text-kingdom-dark px-4 py-2 rounded-lg font-semibold text-sm hover:shadow-lg hover:shadow-kingdom-gold/30 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="bg-gradient-to-r from-[#FFD700] to-yellow-400 text-black font-semibold px-4 py-2 rounded-md shadow-md hover:brightness-110 transition disabled:opacity-50 disabled:cursor-not-allowed"
           >
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />

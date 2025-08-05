@@ -23,7 +23,7 @@ const addOns = [
   { id: 'memory-engine', name: 'Memory Engine / Custom Trained FAQ', price: 125 },
   { id: 'embed-service', name: 'Embed Service (We install it for them)', price: 60 },
   { id: 'analytics', name: 'Basic Analytics (Google Tag/Zapier/etc.)', price: 100 },
-  { id: 'legal-compliance', name: 'Legal & Compliance Disclaimers', price: 30 },
+  { id: 'legal-compliance', name: 'Legal &amp; Compliance Disclaimers', price: 30 },
   { id: 'stripe-zapier', name: 'Stripe or Zapier Setup (requires API keys)', price: 125 }
 ];
 
@@ -189,7 +189,7 @@ export default function OrderForm() {
                     Custom Chatbot Solutions for Your Business
                   </p>
                   <p className="text-xl text-white/80 mb-8 max-w-3xl mx-auto">
-                    Tell us about your needs and we'll create the perfect chatbot solution for your business.
+                    Tell us about your needs and we&apos;ll create the perfect chatbot solution for your business.
                   </p>
                 </div>
               </div>
@@ -391,7 +391,7 @@ export default function OrderForm() {
                   {/* Step 3: Add-ons */}
                   {currentStep === 3 && (
                     <div className="space-y-6">
-                      <h2 className="text-2xl font-bold text-white mb-6">Add-ons & Customization</h2>
+                      <h2 className="text-2xl font-bold text-white mb-6">Add-ons &amp; Customization</h2>
                       
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         {addOns.map((addon) => (

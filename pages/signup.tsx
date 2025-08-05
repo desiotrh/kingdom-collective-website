@@ -72,7 +72,7 @@ export default function Signup() {
         <Navigation />
         
         {/* Signup Section */}
-        <section className="px-40 py-20 flex-1 flex items-center justify-center">
+        <section className="px-4 sm:px-6 md:px-8 lg:px-12 xl:px-40 py-12 sm:py-16 md:py-20 flex-1 flex items-center justify-center">
           <div className="max-w-md w-full">
             <div className="text-center mb-8">
               <div className="flex justify-center mb-6">
@@ -85,7 +85,7 @@ export default function Signup() {
                   priority
                 />
               </div>
-              <h1 className="text-white text-3xl font-black leading-tight tracking-[-0.033em] mb-4">
+              <h1 className="text-4xl md:text-6xl font-bold leading-tight tracking-[-0.033em] text-white mb-4">
                 Join Kingdom Collective
               </h1>
               <p className="text-white text-lg">
@@ -94,7 +94,7 @@ export default function Signup() {
             </div>
 
             {/* Email Signup Form */}
-            <div className="bg-black/20 backdrop-blur-sm rounded-xl p-8 mb-6">
+            <div className="bg-black/20 backdrop-blur-sm border border-white/10 rounded-xl p-8 mb-6">
               <form onSubmit={handleEmailSignup} className="space-y-6">
                 <div>
                   <label htmlFor="email" className="block text-white font-medium mb-2">
@@ -105,7 +105,7 @@ export default function Signup() {
                     id="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="w-full p-4 bg-black/30 border border-gray/30 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-blue/50 transition-colors duration-200"
+                    className="input-standard bg-black/30 border border-gray/30 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-gold/50"
                     placeholder="Enter your email"
                     required
                   />
@@ -120,7 +120,7 @@ export default function Signup() {
                     id="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    className="w-full p-4 bg-black/30 border border-gray/30 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-blue/50 transition-colors duration-200"
+                    className="input-standard bg-black/30 border border-gray/30 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-gold/50"
                     placeholder="Create a password"
                     required
                   />
@@ -135,7 +135,7 @@ export default function Signup() {
                     id="confirmPassword"
                     value={confirmPassword}
                     onChange={(e) => setConfirmPassword(e.target.value)}
-                    className="w-full p-4 bg-black/30 border border-gray/30 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-blue/50 transition-colors duration-200"
+                    className="input-standard bg-black/30 border border-gray/30 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-gold/50"
                     placeholder="Confirm your password"
                     required
                   />
@@ -150,7 +150,7 @@ export default function Signup() {
                 <button
                   type="submit"
                   disabled={isLoading}
-                                          className="w-full py-4 bg-gray text-white font-bold rounded-xl hover:bg-blue hover:text-white transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full py-4 bg-gradient-to-r from-[#FFD700] to-yellow-400 text-black font-semibold px-6 py-2 rounded-md shadow-md hover:brightness-110 transition disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {isLoading ? 'Creating Account...' : 'Create Account'}
                 </button>
@@ -207,7 +207,7 @@ export default function Signup() {
             <div className="text-center mt-8">
               <p className="text-white">
                 Already have an account?{' '}
-                <Link href="/login" className="text-blue hover:text-blue/80 transition-colors duration-200 font-medium">
+                <Link href="/login" className="text-[#FFD700] hover:text-yellow-400 transition-colors duration-200 font-medium">
                   Sign in
                 </Link>
               </p>

@@ -3,11 +3,11 @@ import Image from 'next/image';
 
 export default function Hero() {
   return (
-    <section className="flex items-center justify-center min-h-screen px-4 sm:px-6 md:px-8 text-center -mt-20">
+    <section className="flex items-center justify-center min-h-screen px-4 sm:px-6 md:px-8 text-center -mt-20" aria-labelledby="hero-heading">
       <div className="max-w-3xl w-full">
         <Image
           src="/kingdom-collective-logo.png"
-          alt="Kingdom Collective Logo"
+          alt="Kingdom Collective Logo - Create with Purpose. Share with Authority. Build What Matters."
           width={600}
           height={600}
           className="mx-auto mb-0 max-w-[300px] sm:max-w-[400px] md:max-w-[500px] lg:max-w-[600px] w-full drop-shadow-xl -mb-8 sm:-mb-10 md:-mb-12"

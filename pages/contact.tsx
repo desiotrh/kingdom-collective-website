@@ -136,8 +136,8 @@ export default function Contact() {
         {/* Hero Section */}
         <section className="px-4 sm:px-6 md:px-8 lg:px-12 xl:px-40 py-12 sm:py-16 md:py-20">
           <div className="max-w-[960px] mx-auto text-center">
-            <h1 className="text-white text-3xl sm:text-4xl md:text-5xl font-black leading-tight tracking-[-0.033em] mb-4 sm:mb-6">
-              Get in <span className="text-blue">Touch</span>
+            <h1 className="text-4xl md:text-6xl font-bold leading-tight tracking-[-0.033em] text-white mb-4 sm:mb-6">
+              Get in <span className="text-[#FFD700]">Touch</span>
             </h1>
             <p className="text-white text-base sm:text-lg md:text-xl leading-relaxed max-w-3xl mx-auto mb-6 sm:mb-8 px-4">
               We&apos;re here to help you succeed. Choose the right contact method for your needs.
@@ -145,13 +145,13 @@ export default function Contact() {
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mt-8 sm:mt-12">
               {contactCategories.map((category, index) => (
-                <div key={index} className="bg-black/20 backdrop-blur-sm border border-gray/30 rounded-xl p-4 sm:p-6 hover:bg-black/30 transition-all duration-300">
+                <div key={index} className="bg-black/20 backdrop-blur-sm border border-white/10 rounded-xl p-4 sm:p-6 hover:bg-black/30 transition-all duration-300">
                   <div className="text-3xl sm:text-4xl mb-3 sm:mb-4">{category.icon}</div>
                   <h3 className="text-white text-lg sm:text-xl font-bold mb-2 sm:mb-3">{category.title}</h3>
                   <p className="text-white text-sm sm:text-base leading-relaxed mb-3 sm:mb-4">{category.description}</p>
                   <a 
                     href={`mailto:${category.email}`}
-                    className="text-blue hover:text-blue/80 transition-colors duration-200 font-medium text-sm sm:text-base"
+                    className="text-[#FFD700] hover:text-yellow-400 transition-colors duration-200 font-medium text-sm sm:text-base"
                   >
                     {category.email}
                   </a>
@@ -161,21 +161,19 @@ export default function Contact() {
           </div>
         </section>
 
-
-
         {/* FAQ AI Bot Section */}
         <section className="px-4 sm:px-6 md:px-8 lg:px-12 xl:px-40 py-12 sm:py-16 md:py-20">
           <div className="max-w-[960px] mx-auto">
             <div className="text-center mb-12 sm:mb-16">
-              <h2 className="text-white text-2xl sm:text-3xl md:text-4xl font-black leading-tight tracking-[-0.033em] mb-4 sm:mb-6">
-                AI <span className="text-blue">Assistant</span>
+              <h2 className="text-4xl md:text-6xl font-bold leading-tight tracking-[-0.033em] text-white mb-4 sm:mb-6">
+                AI <span className="text-[#FFD700]">Assistant</span>
               </h2>
               <p className="text-white text-sm sm:text-base font-normal leading-relaxed max-w-3xl mx-auto px-4">
                 Get instant answers to common questions with our AI-powered FAQ assistant.
               </p>
             </div>
 
-            <div className="bg-black/20 backdrop-blur-sm border border-gray/30 rounded-xl p-4 sm:p-6 md:p-8">
+            <div className="bg-black/20 backdrop-blur-sm border border-white/10 rounded-xl p-4 sm:p-6 md:p-8">
               <form onSubmit={handleFaqSubmit} className="space-y-4 sm:space-y-6">
                 <div>
                   <label htmlFor="faq-question" className="block text-white font-medium mb-2 text-sm sm:text-base">
@@ -186,7 +184,7 @@ export default function Contact() {
                     value={faqQuestion}
                     onChange={(e) => setFaqQuestion(e.target.value)}
                     placeholder="Type your question here..."
-                    className="w-full p-3 sm:p-4 bg-black/30 border border-gray/30 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-blue/50 transition-colors duration-200 text-sm sm:text-base"
+                    className="textarea-standard bg-black/30 border border-gray/30 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-gold/50 text-sm sm:text-base"
                     rows={4}
                   />
                 </div>
@@ -194,15 +192,15 @@ export default function Contact() {
                 <button
                   type="submit"
                   disabled={isLoading || !faqQuestion.trim()}
-                  className="bg-gray text-white px-4 sm:px-6 py-2 sm:py-3 rounded-full font-bold hover:bg-blue hover:text-white transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed text-sm sm:text-base"
+                  className="bg-gradient-to-r from-[#FFD700] to-yellow-400 text-black font-semibold px-6 py-2 rounded-md shadow-md hover:brightness-110 transition disabled:opacity-50 disabled:cursor-not-allowed text-sm sm:text-base"
                 >
                   {isLoading ? 'Thinking...' : 'Ask AI Assistant'}
                 </button>
               </form>
 
               {faqResponse && (
-                <div className="mt-8 p-6 bg-blue/10 border border-blue/30 rounded-xl">
-                  <h3 className="text-blue font-bold mb-3">AI Response:</h3>
+                <div className="mt-8 p-6 bg-[#FFD700]/10 border border-[#FFD700]/30 rounded-xl">
+                  <h3 className="text-[#FFD700] font-bold mb-3">AI Response:</h3>
                   <p className="text-white leading-relaxed">{faqResponse}</p>
                 </div>
               )}
@@ -213,8 +211,8 @@ export default function Contact() {
         {/* Additional Support Section */}
         <section className="px-4 sm:px-6 md:px-8 lg:px-12 xl:px-40 py-12 sm:py-16 md:py-20 bg-black/30 backdrop-blur-sm">
           <div className="max-w-[960px] mx-auto text-center">
-            <h2 className="text-white text-2xl sm:text-3xl md:text-4xl font-black leading-tight tracking-[-0.033em] mb-4 sm:mb-6">
-              Ready to <span className="text-blue">Get Started</span>?
+            <h2 className="text-4xl md:text-6xl font-bold leading-tight tracking-[-0.033em] text-white mb-4 sm:mb-6">
+              Ready to <span className="text-[#FFD700]">Get Started</span>?
             </h2>
             <p className="text-white text-base sm:text-lg md:text-xl leading-relaxed max-w-3xl mx-auto mb-6 sm:mb-8 px-4">
               Explore our apps and download them to your mobile device.
@@ -225,7 +223,7 @@ export default function Contact() {
                 <div className="text-3xl sm:text-4xl mb-3 sm:mb-4">🚀</div>
                 <h3 className="text-white text-lg sm:text-xl font-bold mb-2 sm:mb-3">Explore Our Apps</h3>
                 <p className="text-white text-sm sm:text-base">Discover all the tools in the Kingdom Collective suite.</p>
-                <Link href="/apps" className="inline-block mt-3 sm:mt-4 text-blue hover:text-blue/80 transition-colors duration-200 font-medium text-sm sm:text-base">
+                <Link href="/apps" className="inline-block mt-3 sm:mt-4 text-[#FFD700] hover:text-yellow-400 transition-colors duration-200 font-medium text-sm sm:text-base">
                   Browse Apps →
                 </Link>
               </div>
@@ -233,7 +231,7 @@ export default function Contact() {
                 <div className="text-3xl sm:text-4xl mb-3 sm:mb-4">💡</div>
                 <h3 className="text-white text-lg sm:text-xl font-bold mb-2 sm:mb-3">Learn Our Vision</h3>
                 <p className="text-white text-sm sm:text-base">Understand how we&apos;re empowering creators with purpose.</p>
-                <Link href="/vision" className="inline-block mt-3 sm:mt-4 text-blue hover:text-blue/80 transition-colors duration-200 font-medium text-sm sm:text-base">
+                <Link href="/vision" className="inline-block mt-3 sm:mt-4 text-[#FFD700] hover:text-yellow-400 transition-colors duration-200 font-medium text-sm sm:text-base">
                   Our Vision →
                 </Link>
               </div>
@@ -242,10 +240,10 @@ export default function Contact() {
                 <h3 className="text-white text-lg sm:text-xl font-bold mb-2 sm:mb-3">Download Our Apps</h3>
                 <p className="text-white text-sm sm:text-base">Get our apps on your mobile device for on-the-go creation.</p>
                 <div className="flex flex-col sm:flex-row gap-2 mt-3 sm:mt-4 justify-center">
-                  <a href="#" target="_blank" rel="noopener noreferrer" className="inline-block text-blue hover:text-blue/80 transition-colors duration-200 font-medium text-sm sm:text-base">
+                  <a href="#" target="_blank" rel="noopener noreferrer" className="inline-block text-[#FFD700] hover:text-yellow-400 transition-colors duration-200 font-medium text-sm sm:text-base">
                     🍎 App Store →
                   </a>
-                  <a href="#" target="_blank" rel="noopener noreferrer" className="inline-block text-blue hover:text-blue/80 transition-colors duration-200 font-medium text-sm sm:text-base">
+                  <a href="#" target="_blank" rel="noopener noreferrer" className="inline-block text-[#FFD700] hover:text-yellow-400 transition-colors duration-200 font-medium text-sm sm:text-base">
                     🤖 Google Play →
                   </a>
                 </div>

@@ -4,7 +4,7 @@ import Image from 'next/image';
 
 export default function Footer() {
   return (
-    <footer className="relative z-10 bg-black/30 backdrop-blur-sm border-t border-gray/30 w-full">
+    <footer className="relative z-10 bg-black/30 backdrop-blur-sm border-t border-gray/30 w-full" role="contentinfo" aria-label="Site footer">
       <div className="w-full px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20 py-4">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 sm:gap-12">
           {/* Company Info */}
@@ -31,8 +31,8 @@ export default function Footer() {
           </div>
 
           {/* Quick Links */}
-          <div>
-            <h3 className="text-white font-semibold mb-4">Products</h3>
+          <nav aria-labelledby="footer-products">
+            <h3 id="footer-products" className="text-white font-semibold mb-4">Products</h3>
             <ul className="space-y-2">
               <li>
                 <Link href="/apps" className="nav-link text-sm">
@@ -50,11 +50,11 @@ export default function Footer() {
                 </Link>
               </li>
             </ul>
-          </div>
+          </nav>
 
           {/* Company */}
-          <div>
-            <h3 className="text-white font-semibold mb-4">Company</h3>
+          <nav aria-labelledby="footer-company">
+            <h3 id="footer-company" className="text-white font-semibold mb-4">Company</h3>
             <ul className="space-y-2">
               <li>
                 <Link href="/about" className="nav-link text-sm">
@@ -72,7 +72,7 @@ export default function Footer() {
                 </Link>
               </li>
             </ul>
-          </div>
+          </nav>
         </div>
 
         {/* Bottom Bar */}
@@ -80,17 +80,19 @@ export default function Footer() {
           <p className="text-body-secondary text-center md:text-left">
             © 2025 Kingdom Collective. All rights reserved.
           </p>
-          <div className="flex flex-wrap justify-center md:justify-end gap-4 text-sm">
-            <Link href="/privacy" className="nav-link">
-              Privacy Policy
-            </Link>
-            <Link href="/terms" className="nav-link">
-              Terms of Service
-            </Link>
-            <Link href="/cookies" className="nav-link">
-              Cookie Policy
-            </Link>
-          </div>
+          <nav aria-label="Legal links">
+            <div className="flex flex-wrap justify-center md:justify-end gap-4 text-sm">
+              <Link href="/privacy" className="nav-link">
+                Privacy Policy
+              </Link>
+              <Link href="/terms" className="nav-link">
+                Terms of Service
+              </Link>
+              <Link href="/cookies" className="nav-link">
+                Cookie Policy
+              </Link>
+            </div>
+          </nav>
         </div>
       </div>
     </footer>

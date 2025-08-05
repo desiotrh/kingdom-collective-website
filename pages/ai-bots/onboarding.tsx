@@ -492,9 +492,9 @@ export default function OnboardingBot() {
                   </div>
                 </div>
               )}
-            </main>
-            <Footer />
-          </div>
+            </div>
+          </main>
+          <Footer />
         </div>
       </div>
     </>
