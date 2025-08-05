@@ -194,11 +194,13 @@ export default function KingdomCircle() {
                       </span>
                     </div>
                   )}
-                  <div className="text-center">
-                    <h3 className="text-white text-xl sm:text-2xl font-bold mb-2">{tier.name}</h3>
-                    <div className="mb-6">
-                      <span className="text-white text-3xl sm:text-4xl font-black">{tier.price}</span>
-                      <span className="text-white text-base sm:text-lg">{tier.period}</span>
+                  <div>
+                    <div className="text-center">
+                      <h3 className="text-white text-xl sm:text-2xl font-bold mb-2">{tier.name}</h3>
+                      <div className="mb-6">
+                        <span className="text-white text-3xl sm:text-4xl font-black">{tier.price}</span>
+                        <span className="text-white text-base sm:text-lg">{tier.period}</span>
+                      </div>
                     </div>
                     <ul className="space-y-3 mb-8">
                       {tier.features.map((feature, featureIndex) => (
@@ -210,12 +212,14 @@ export default function KingdomCircle() {
                         </li>
                       ))}
                     </ul>
-                    <button 
-                      onClick={() => window.open('https://circle.kingdomcollective.pro', '_blank')}
-                      className="w-full py-3 px-6 rounded-full font-bold bg-gray text-white hover:bg-blue hover:text-white transition-all duration-200"
-                    >
-                      {tier.price === '$0' ? 'Join Free' : 'Get Started'}
-                    </button>
+                    <div className="text-center">
+                      <button 
+                        onClick={() => window.open('https://circle.kingdomcollective.pro', '_blank')}
+                        className="w-full py-3 px-6 rounded-full font-bold bg-gray text-white hover:bg-blue hover:text-white transition-all duration-200"
+                      >
+                        {tier.price === '$0' ? 'Join Free' : 'Get Started'}
+                      </button>
+                    </div>
                   </div>
                 </div>
               ))}
