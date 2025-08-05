@@ -1,5 +1,6 @@
 {
   "framework": "nextjs",
-  "buildCommand": "bash vercel-build.sh",
-  "outputDirectory": "kingdom-website/.next"
+  "rootDirectory": "kingdom-website",
+  "buildCommand": "npm run build",
+  "outputDirectory": ".next"
 } 
