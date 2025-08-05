@@ -1,0 +1,212 @@
+{
+  "version": "6",
+  "id": "lead-gen-bot",
+  "name": "Lead Generation Bot",
+  "events": [
+    {
+      "id": "evt1",
+      "type": "start",
+      "outgoingEdgeId": "edge1",
+      "graphCoordinates": {
+        "x": 0,
+        "y": 0
+      }
+    }
+  ],
+  "groups": [
+    {
+      "id": "group1",
+      "title": "Main Flow",
+      "graphCoordinates": {
+        "x": 0,
+        "y": 0
+      },
+      "blocks": [
+        {
+          "id": "welcome",
+          "type": "text",
+          "label": "Welcome",
+          "content": {
+            "type": "text",
+            "content": "👋 Hi there! Ready to level up your business or life?"
+          }
+        },
+        {
+          "id": "tone-selector",
+          "type": "choice input",
+          "label": "Tone Selection",
+          "question": {
+            "type": "text",
+            "content": "Choose your preferred tone:"
+          },
+          "choices": [
+            {
+              "id": "opt1",
+              "label": "😎 Casual"
+            },
+            {
+              "id": "opt2",
+              "label": "💼 Professional"
+            },
+            {
+              "id": "opt3",
+              "label": "🎉 Fun"
+            }
+          ]
+        },
+        {
+          "id": "faith-toggle",
+          "type": "text",
+          "label": "Faith Mode Question",
+          "content": {
+            "type": "text",
+            "content": "Would you like Faith Mode? (Encouragement + Scripture)"
+          }
+        },
+        {
+          "id": "faith-choice",
+          "type": "choice input",
+          "label": "Faith Mode Choice",
+          "question": {
+            "type": "text",
+            "content": "Faith Mode:"
+          },
+          "choices": [
+            {
+              "id": "opt1",
+              "label": "🙏 Yes"
+            },
+            {
+              "id": "opt2",
+              "label": "No"
+            }
+          ]
+        },
+        {
+          "id": "faith-message",
+          "type": "text",
+          "label": "Faith Encouragement",
+          "content": {
+            "type": "text",
+            "content": "✨ Here's a word for you: 'For I know the plans I have for you,' declares the Lord, 'plans to prosper you and not to harm you, plans to give you hope and a future.' (Jeremiah 29:11)"
+          }
+        },
+        {
+          "id": "challenge-question",
+          "type": "text",
+          "label": "Challenge Question",
+          "content": {
+            "type": "text",
+            "content": "🎯 What's your biggest challenge right now?"
+          }
+        },
+        {
+          "id": "challenge-input",
+          "type": "text input",
+          "label": "Challenge Input",
+          "question": {
+            "type": "text",
+            "content": "Tell me about your challenge..."
+          },
+          "variable": "challenge"
+        },
+        {
+          "id": "goal-question",
+          "type": "text",
+          "label": "Goal Question",
+          "content": {
+            "type": "text",
+            "content": "🚀 What's your #1 goal for the next 90 days?"
+          }
+        },
+        {
+          "id": "goal-input",
+          "type": "text input",
+          "label": "Goal Input",
+          "question": {
+            "type": "text",
+            "content": "What do you want to achieve?"
+          },
+          "variable": "goal"
+        },
+        {
+          "id": "name-question",
+          "type": "text",
+          "label": "Name Question",
+          "content": {
+            "type": "text",
+            "content": "What's your full name?"
+          }
+        },
+        {
+          "id": "name-input",
+          "type": "text input",
+          "label": "Name Input",
+          "question": {
+            "type": "text",
+            "content": "Enter your full name"
+          },
+          "variable": "full_name"
+        },
+        {
+          "id": "email-question",
+          "type": "text",
+          "label": "Email Question",
+          "content": {
+            "type": "text",
+            "content": "What's your email address?"
+          }
+        },
+        {
+          "id": "email-input",
+          "type": "email input",
+          "label": "Email Input",
+          "question": {
+            "type": "text",
+            "content": "Enter your email"
+          },
+          "variable": "email"
+        },
+        {
+          "id": "thank-you",
+          "type": "text",
+          "label": "Thank You",
+          "content": {
+            "type": "text",
+            "content": "Thank you, {{full_name}}! 🎉 Check your email for next steps.\n\nCoded in wisdom by Kingdom Collective"
+          }
+        }
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge1",
+      "from": {
+        "blockId": "evt1",
+        "itemId": "",
+        "pathId": ""
+      },
+      "to": {
+        "groupId": "group1",
+        "blockId": "welcome"
+      }
+    }
+  ],
+  "variables": [],
+  "theme": {
+    "general": {
+      "font": "Inter",
+      "background": {
+        "type": "Color",
+        "content": "#FFFFFF"
+      }
+    }
+  },
+  "settings": {
+    "enableUserInput": true,
+    "autoStart": true,
+    "showRestartButton": true,
+    "typingDelay": 30
+  }
+}

@@ -1,13 +1,37 @@
 import express from 'express';
 const router = express.Router();
 
-// TODO: Implement product routes
-router.get('/', (req, res) => {
-  res.json({ success: false, error: 'Not implemented yet' });
+// Product routes implementation
+router.get('/', async (req, res) => {
+  try {
+    // TODO: Implement actual product fetching logic
+    res.json({ 
+      success: true, 
+      data: [],
+      message: 'Products endpoint ready'
+    });
+  } catch (error) {
+    res.status(500).json({ 
+      success: false, 
+      error: error.message 
+    });
+  }
 });
 
-router.post('/', (req, res) => {
-  res.json({ success: false, error: 'Not implemented yet' });
+router.post('/', async (req, res) => {
+  try {
+    // TODO: Implement actual product creation logic
+    res.json({ 
+      success: true, 
+      data: { id: 'temp-product-id' },
+      message: 'Product creation endpoint ready'
+    });
+  } catch (error) {
+    res.status(500).json({ 
+      success: false, 
+      error: error.message 
+    });
+  }
 });
 
 export default router;

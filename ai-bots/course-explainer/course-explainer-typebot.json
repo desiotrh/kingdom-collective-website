@@ -1,0 +1,158 @@
+{
+  "version": "6",
+  "id": "course-explainer-bot",
+  "name": "Course Explainer Bot",
+  "events": [
+    {
+      "id": "evt1",
+      "type": "start",
+      "outgoingEdgeId": "edge1",
+      "graphCoordinates": {
+        "x": 0,
+        "y": 0
+      }
+    }
+  ],
+  "groups": [
+    {
+      "id": "group1",
+      "title": "Main Flow",
+      "graphCoordinates": {
+        "x": 0,
+        "y": 0
+      },
+      "blocks": [
+        {
+          "id": "welcome",
+          "type": "text",
+          "label": "Welcome",
+          "content": {
+            "type": "text",
+            "content": "Welcome! I'm here to help you understand our courses and find the perfect fit. 📚"
+          }
+        },
+        {
+          "id": "course-interest",
+          "type": "choice input",
+          "label": "Course Interest",
+          "question": {
+            "type": "text",
+            "content": "What type of course are you interested in?"
+          },
+          "choices": [
+            {
+              "id": "opt1",
+              "label": "Business"
+            },
+            {
+              "id": "opt2",
+              "label": "Technology"
+            },
+            {
+              "id": "opt3",
+              "label": "Creative"
+            },
+            {
+              "id": "opt4",
+              "label": "Personal Development"
+            }
+          ]
+        },
+        {
+          "id": "skill-level",
+          "type": "choice input",
+          "label": "Skill Level",
+          "question": {
+            "type": "text",
+            "content": "What's your current skill level?"
+          },
+          "choices": [
+            {
+              "id": "opt1",
+              "label": "Beginner"
+            },
+            {
+              "id": "opt2",
+              "label": "Intermediate"
+            },
+            {
+              "id": "opt3",
+              "label": "Advanced"
+            }
+          ]
+        },
+        {
+          "id": "course-overview",
+          "type": "text",
+          "label": "Course Overview",
+          "content": {
+            "type": "text",
+            "content": "Perfect! Based on your interests, here's what I recommend:\n\n🎯 Course: [Course Name]\n⏱️ Duration: 8 weeks\n💡 Level: Perfect for your skill level\n💰 Investment: $299"
+          }
+        },
+        {
+          "id": "enrollment-question",
+          "type": "choice input",
+          "label": "Enrollment Question",
+          "question": {
+            "type": "text",
+            "content": "Would you like to learn more or enroll?"
+          },
+          "choices": [
+            {
+              "id": "opt1",
+              "label": "Tell me more"
+            },
+            {
+              "id": "opt2",
+              "label": "I'm ready to enroll"
+            },
+            {
+              "id": "opt3",
+              "label": "Show me other options"
+            }
+          ]
+        },
+        {
+          "id": "enrollment-link",
+          "type": "text",
+          "label": "Enrollment Link",
+          "content": {
+            "type": "text",
+            "content": "Excellent choice! Here's your enrollment link:\n[📚 Enroll Now](https://yourcourse.com/enroll)"
+          }
+        }
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge1",
+      "from": {
+        "blockId": "evt1",
+        "itemId": "",
+        "pathId": ""
+      },
+      "to": {
+        "groupId": "group1",
+        "blockId": "welcome"
+      }
+    }
+  ],
+  "variables": [],
+  "theme": {
+    "general": {
+      "font": "Inter",
+      "background": {
+        "type": "Color",
+        "content": "#FFFFFF"
+      }
+    }
+  },
+  "settings": {
+    "enableUserInput": true,
+    "autoStart": true,
+    "showRestartButton": true,
+    "typingDelay": 30
+  }
+}

@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import SplashScreen from '../screens/SplashScreen';
 import FeatureShowcaseScreen from '../screens/FeatureShowcaseScreen';
 import LoginScreen from '../screens/LoginScreen';
+import LoadingScreen from '../screens/LoadingScreen';
 import AuthNavigator from './AuthNavigator';
-import TestScreen from '../components/TestScreen';
-import { useAuth } from '../contexts/AuthContext';
+import { useAuth } from '../contexts/UnifiedAuthContext';
 
 export type OnboardingStackParamList = {
   Splash: undefined;
@@ -17,18 +17,23 @@ export type OnboardingStackParamList = {
 const Stack = createNativeStackNavigator<OnboardingStackParamList>();
 
 const OnboardingNavigator: React.FC = () => {
-  const [currentScreen, setCurrentScreen] = useState<'splash' | 'features' | 'login' | 'app'>('splash');
   const { user, isLoading, isGuestMode } = useAuth();
   const isAuthenticated = !!user || isGuestMode;
 
-  console.log('OnboardingNavigator:', { user: !!user, isLoading, isGuestMode, isAuthenticated, currentScreen });
+  console.log('OnboardingNavigator:', { user: !!user, isLoading, isGuestMode, isAuthenticated });
 
-  // If user is already authenticated or in guest mode, skip onboarding
-  if (isAuthenticated && !isLoading) {
+  // Show loading screen while checking auth state
+  if (isLoading) {
+    return <LoadingScreen />;
+  }
+
+  // If user is already authenticated or in guest mode, show main app
+  if (isAuthenticated) {
     console.log('User authenticated, showing AuthNavigator');
     return <AuthNavigator />;
   }
 
+  // Show onboarding flow for new users
   return (
     <Stack.Navigator
       screenOptions={{
@@ -37,29 +42,9 @@ const OnboardingNavigator: React.FC = () => {
         contentStyle: { backgroundColor: '#000000' },
       }}
     >
-      {currentScreen === 'splash' && (
-        <Stack.Screen name="Splash">
-          {() => (
-            <TestScreen />
-          )}
-        </Stack.Screen>
-      )}
-      
-      {currentScreen === 'features' && (
-        <Stack.Screen name="FeatureShowcase">
-          {() => (
-            <FeatureShowcaseScreen 
-              onContinue={() => setCurrentScreen('login')} 
-            />
-          )}
-        </Stack.Screen>
-      )}
-      
-      {currentScreen === 'login' && (
-        <Stack.Screen name="Login">
-          {() => <LoginScreen />}
-        </Stack.Screen>
-      )}
+      <Stack.Screen name="Splash" component={SplashScreen} />
+      <Stack.Screen name="FeatureShowcase" component={FeatureShowcaseScreen} />
+      <Stack.Screen name="Login" component={LoginScreen} />
     </Stack.Navigator>
   );
 };

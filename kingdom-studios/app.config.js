@@ -20,11 +20,11 @@ export default {
     },
     assetBundlePatterns: ['**/*'],
     ios: {
-      bundleIdentifier: 'com.dtritz9.kingdomstudios',
+      bundleIdentifier: 'pro.kingdomcollective.studios',
       supportsTablet: true,
     },
     android: {
-      package: 'com.dtritz9.kingdomstudios',
+      package: 'pro.kingdomcollective.studios',
       adaptiveIcon: {
         foregroundImage: './assets/adaptive-icon.png',
         backgroundColor: '#000000',

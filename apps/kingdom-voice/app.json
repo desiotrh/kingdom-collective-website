@@ -10,7 +10,7 @@
     "newArchEnabled": true,
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.kingdomcollective.voice",
+      "bundleIdentifier": "pro.kingdomcollective.voice",
       "buildNumber": "1",
       "infoPlist": {
         "NSMicrophoneUsageDescription": "Kingdom Voice needs microphone access to record your audio content and podcasts.",
@@ -24,7 +24,7 @@
         "backgroundColor": "#FF6B35"
       },
       "edgeToEdgeEnabled": true,
-      "package": "com.kingdomcollective.voice",
+      "package": "pro.kingdomcollective.voice",
       "versionCode": 1,
       "permissions": [
         "android.permission.RECORD_AUDIO",

@@ -15,7 +15,7 @@
     "newArchEnabled": true,
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.kingdomcollective.launchpad",
+      "bundleIdentifier": "pro.kingdomcollective.launchpad",
       "buildNumber": "1",
       "infoPlist": {
         "NSCameraUsageDescription": "Kingdom Launchpad needs camera access to take photos for your product mockups and content.",
@@ -29,7 +29,7 @@
         "backgroundColor": "#ffffff"
       },
       "edgeToEdgeEnabled": true,
-      "package": "com.kingdomcollective.launchpad",
+      "package": "pro.kingdomcollective.launchpad",
       "versionCode": 1,
       "permissions": [
         "android.permission.CAMERA",

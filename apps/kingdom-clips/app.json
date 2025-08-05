@@ -10,7 +10,7 @@
     "newArchEnabled": true,
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.kingdomcollective.clips",
+      "bundleIdentifier": "pro.kingdomcollective.clips",
       "buildNumber": "1",
       "infoPlist": {
         "NSCameraUsageDescription": "Kingdom Clips needs camera access to record videos for content creation.",
@@ -25,7 +25,7 @@
         "backgroundColor": "#ffffff"
       },
       "edgeToEdgeEnabled": true,
-      "package": "com.kingdomcollective.clips",
+      "package": "pro.kingdomcollective.clips",
       "versionCode": 1,
       "permissions": [
         "android.permission.CAMERA",

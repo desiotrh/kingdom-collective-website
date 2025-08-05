@@ -128,7 +128,7 @@ export default function BusinessIntelligenceScreen() {
     const [financialForecasts, setFinancialForecasts] = useState<FinancialForecast[]>([
         {
             id: '1',
-            period: 'Q2 2024',
+            period: 'Q2 2025',
             projectedRevenue: 45000,
             growthRate: 0.25,
             targetRevenue: 50000,
@@ -139,7 +139,7 @@ export default function BusinessIntelligenceScreen() {
         },
         {
             id: '2',
-            period: 'Q3 2024',
+            period: 'Q3 2025',
             projectedRevenue: 38000,
             growthRate: 0.15,
             targetRevenue: 40000,

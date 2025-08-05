@@ -16,6 +16,7 @@ import CommunityHubScreen from '../screens/CommunityHubScreen';
 import AnalyticsScreen from '../screens/analytics/AnalyticsScreen';
 import EnhancedFeaturesScreen from '../screens/EnhancedFeaturesScreen';
 import ProfileScreen from '../screens/ProfileScreen';
+import AudioStudioScreen from '../screens/audio/AudioStudioScreen';
 
 // Import icons (you'll need to install react-native-vector-icons)
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -43,28 +44,31 @@ const MainTabNavigator: React.FC = () => {
         tabBarIcon: ({ focused, color, size }) => {
           let iconName: string;
 
-          switch (route.name) {
-            case 'Dashboard':
-              iconName = 'view-dashboard';
-              break;
-            case 'Create':
-              iconName = 'plus-circle';
-              break;
-            case 'Community':
-              iconName = 'account-group';
-              break;
-            case 'Analytics':
-              iconName = 'chart-line';
-              break;
-            case 'Enhanced':
-              iconName = 'rocket-launch';
-              break;
-            case 'Profile':
-              iconName = 'account';
-              break;
-            default:
-              iconName = 'circle';
-          }
+                     switch (route.name) {
+             case 'Dashboard':
+               iconName = 'view-dashboard';
+               break;
+             case 'Create':
+               iconName = 'plus-circle';
+               break;
+             case 'AudioStudio':
+               iconName = 'musical-notes';
+               break;
+             case 'Community':
+               iconName = 'account-group';
+               break;
+             case 'Analytics':
+               iconName = 'chart-line';
+               break;
+             case 'Enhanced':
+               iconName = 'rocket-launch';
+               break;
+             case 'Profile':
+               iconName = 'account';
+               break;
+             default:
+               iconName = 'circle';
+           }
 
           return <Icon name={iconName} size={size} color={color} />;
         },

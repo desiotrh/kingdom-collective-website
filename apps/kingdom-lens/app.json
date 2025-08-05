@@ -10,7 +10,7 @@
     "newArchEnabled": true,
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.kingdomcollective.lens",
+      "bundleIdentifier": "pro.kingdomcollective.lens",
       "buildNumber": "1",
       "infoPlist": {
         "NSCameraUsageDescription": "Kingdom Lens needs camera access to take photos and create content.",
@@ -24,7 +24,7 @@
         "backgroundColor": "#ffffff"
       },
       "edgeToEdgeEnabled": true,
-      "package": "com.kingdomcollective.lens",
+      "package": "pro.kingdomcollective.lens",
       "versionCode": 1,
       "permissions": [
         "android.permission.CAMERA",

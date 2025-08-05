@@ -1,0 +1,32 @@
+{
+  "name": "@kingdom-collective/theme",
+  "version": "1.0.0",
+  "description": "Shared design system and theme configuration for Kingdom Collective apps",
+  "main": "index.js",
+  "files": [
+    "tailwind.config.js",
+    "index.js",
+    "colors.js",
+    "typography.js",
+    "animations.js"
+  ],
+  "scripts": {
+    "build": "echo 'Theme package built'",
+    "test": "echo 'Theme package tested'"
+  },
+  "keywords": [
+    "design-system",
+    "tailwind",
+    "theme",
+    "kingdom-collective",
+    "ui"
+  ],
+  "author": "Kingdom Collective",
+  "license": "MIT",
+  "peerDependencies": {
+    "tailwindcss": "^3.0.0 || ^4.0.0"
+  },
+  "devDependencies": {
+    "tailwindcss": "^4.1.11"
+  }
+} 

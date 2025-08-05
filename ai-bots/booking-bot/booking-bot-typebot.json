@@ -1,0 +1,202 @@
+{
+  "version": "6",
+  "id": "booking-bot",
+  "name": "Booking Bot",
+  "events": [
+    {
+      "id": "evt1",
+      "type": "start",
+      "outgoingEdgeId": "edge1",
+      "graphCoordinates": {
+        "x": 0,
+        "y": 0
+      }
+    }
+  ],
+  "groups": [
+    {
+      "id": "group1",
+      "title": "Main Flow",
+      "graphCoordinates": {
+        "x": 0,
+        "y": 0
+      },
+      "blocks": [
+        {
+          "id": "welcome",
+          "type": "text",
+          "label": "Welcome",
+          "content": {
+            "type": "text",
+            "content": "Hi there! Need to book a service or want to ask a quick question? 📅"
+          }
+        },
+        {
+          "id": "initial-intent",
+          "type": "choice input",
+          "label": "Initial Intent",
+          "question": {
+            "type": "text",
+            "content": "How can I help you?"
+          },
+          "choices": [
+            {
+              "id": "opt1",
+              "label": "📅 Book Now"
+            },
+            {
+              "id": "opt2",
+              "label": "❓ Ask a Question"
+            }
+          ]
+        },
+        {
+          "id": "service-question",
+          "type": "text",
+          "label": "Service Question",
+          "content": {
+            "type": "text",
+            "content": "Which service are you interested in?"
+          }
+        },
+        {
+          "id": "service-choice",
+          "type": "choice input",
+          "label": "Service Choice",
+          "question": {
+            "type": "text",
+            "content": "Select a service"
+          },
+          "choices": [
+            {
+              "id": "opt1",
+              "label": "✂️ Haircut & Styling"
+            },
+            {
+              "id": "opt2",
+              "label": "🐾 Pet Checkup"
+            },
+            {
+              "id": "opt3",
+              "label": "🌟 Life Coaching Session"
+            },
+            {
+              "id": "opt4",
+              "label": "📸 Photography Consultation"
+            }
+          ]
+        },
+        {
+          "id": "day-question",
+          "type": "text",
+          "label": "Day Question",
+          "content": {
+            "type": "text",
+            "content": "What day works best for you?"
+          }
+        },
+        {
+          "id": "day-choice",
+          "type": "choice input",
+          "label": "Day Choice",
+          "question": {
+            "type": "text",
+            "content": "Select preferred day"
+          },
+          "choices": [
+            {
+              "id": "opt1",
+              "label": "Monday"
+            },
+            {
+              "id": "opt2",
+              "label": "Tuesday"
+            },
+            {
+              "id": "opt3",
+              "label": "Wednesday"
+            },
+            {
+              "id": "opt4",
+              "label": "Thursday"
+            },
+            {
+              "id": "opt5",
+              "label": "Friday"
+            },
+            {
+              "id": "opt6",
+              "label": "Saturday"
+            },
+            {
+              "id": "opt7",
+              "label": "Sunday"
+            }
+          ]
+        },
+        {
+          "id": "time-choice",
+          "type": "choice input",
+          "label": "Time Choice",
+          "question": {
+            "type": "text",
+            "content": "Select preferred time"
+          },
+          "choices": [
+            {
+              "id": "opt1",
+              "label": "🌅 Morning (9AM-12PM)"
+            },
+            {
+              "id": "opt2",
+              "label": "☀️ Afternoon (12PM-5PM)"
+            },
+            {
+              "id": "opt3",
+              "label": "🌆 Evening (5PM-8PM)"
+            }
+          ]
+        },
+        {
+          "id": "calendar-link",
+          "type": "text",
+          "label": "Calendar Link",
+          "content": {
+            "type": "text",
+            "content": "Perfect! Here's your booking link:\n[📅 Book Your Session](https://calendly.com/your-link)"
+          }
+        }
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge1",
+      "from": {
+        "blockId": "evt1",
+        "itemId": "",
+        "pathId": ""
+      },
+      "to": {
+        "groupId": "group1",
+        "blockId": "welcome"
+      }
+    }
+  ],
+  "variables": [],
+  "theme": {
+    "general": {
+      "font": "Inter",
+      "background": {
+        "type": "Color",
+        "content": "#FFFFFF"
+      }
+    }
+  },
+  "settings": {
+    "enableUserInput": true,
+    "autoStart": true,
+    "showRestartButton": true,
+    "typingDelay": 30
+  }
+}

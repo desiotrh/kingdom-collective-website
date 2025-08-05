@@ -1,0 +1,164 @@
+{
+  "version": "6",
+  "id": "sales-assistant-bot",
+  "name": "Sales Assistant Bot",
+  "events": [
+    {
+      "id": "evt1",
+      "type": "start",
+      "outgoingEdgeId": "edge1",
+      "graphCoordinates": {
+        "x": 0,
+        "y": 0
+      }
+    }
+  ],
+  "groups": [
+    {
+      "id": "group1",
+      "title": "Main Flow",
+      "graphCoordinates": {
+        "x": 0,
+        "y": 0
+      },
+      "blocks": [
+        {
+          "id": "welcome",
+          "type": "text",
+          "label": "Welcome",
+          "content": {
+            "type": "text",
+            "content": "Hey! Looking for something specific or want a recommendation? 🛍️"
+          }
+        },
+        {
+          "id": "initial-choices",
+          "type": "choice input",
+          "label": "Initial Choices",
+          "question": {
+            "type": "text",
+            "content": "Choose an option"
+          },
+          "choices": [
+            {
+              "id": "opt1",
+              "label": "Browse Products"
+            },
+            {
+              "id": "opt2",
+              "label": "Tell Me What I Need"
+            },
+            {
+              "id": "opt3",
+              "label": "Show Me Your Top Pick"
+            }
+          ]
+        },
+        {
+          "id": "category-choice",
+          "type": "choice input",
+          "label": "Category Choice",
+          "question": {
+            "type": "text",
+            "content": "Select category"
+          },
+          "choices": [
+            {
+              "id": "opt1",
+              "label": "Skincare"
+            },
+            {
+              "id": "opt2",
+              "label": "Apparel"
+            },
+            {
+              "id": "opt3",
+              "label": "Digital Templates"
+            },
+            {
+              "id": "opt4",
+              "label": "Gifts"
+            }
+          ]
+        },
+        {
+          "id": "goal-question",
+          "type": "text",
+          "label": "Goal Question",
+          "content": {
+            "type": "text",
+            "content": "What's your goal with this product?"
+          }
+        },
+        {
+          "id": "goal-input",
+          "type": "text input",
+          "label": "Goal Input",
+          "question": {
+            "type": "text",
+            "content": "Tell me about your goal..."
+          },
+          "variable": "goal"
+        },
+        {
+          "id": "product-results",
+          "type": "text",
+          "label": "Product Results",
+          "content": {
+            "type": "text",
+            "content": "Perfect! Here are my top recommendations for you:\n\n🌟 Premium Glow Serum\nTransform your skin in 7 days with our bestselling anti-aging formula."
+          }
+        },
+        {
+          "id": "product-cta",
+          "type": "choice input",
+          "label": "Product CTA",
+          "question": {
+            "type": "text",
+            "content": "Product Actions"
+          },
+          "choices": [
+            {
+              "id": "opt1",
+              "label": "🛒 View Now"
+            },
+            {
+              "id": "opt2",
+              "label": "Show More Options"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge1",
+      "from": {
+        "blockId": "evt1",
+        "itemId": "",
+        "pathId": ""
+      },
+      "to": {
+        "groupId": "group1",
+        "blockId": "welcome"
+      }
+    }
+  ],
+  "variables": [],
+  "theme": {
+    "general": {
+      "font": "Inter",
+      "background": {
+        "type": "Color",
+        "content": "#FFFFFF"
+      }
+    }
+  },
+  "settings": {
+    "enableUserInput": true,
+    "autoStart": true,
+    "showRestartButton": true,
+    "typingDelay": 30
+  }
+}

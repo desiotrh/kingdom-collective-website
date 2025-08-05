@@ -1,11 +1,13 @@
 {
   "name": "kingdom-studios-workspace",
+  "version": "1.0.0",
   "private": true,
   "workspaces": [
     "kingdom-studios",
     "kingdom-studios-backend"
   ],
   "scripts": {
+    "build": "cd kingdom-website && npm run build",
     "start": "npm run start --workspace=kingdom-studios",
     "start:backend": "npm run start --workspace=kingdom-studios-backend",
     "dev:backend": "npm run dev --workspace=kingdom-studios-backend",

@@ -1,0 +1,114 @@
+{
+  "version": "6",
+  "id": "faith-bot",
+  "name": "Faith Bot",
+  "events": [
+    {
+      "id": "evt1",
+      "type": "start",
+      "outgoingEdgeId": "edge1",
+      "graphCoordinates": {
+        "x": 0,
+        "y": 0
+      }
+    }
+  ],
+  "groups": [
+    {
+      "id": "group1",
+      "title": "Main Flow",
+      "graphCoordinates": {
+        "x": 0,
+        "y": 0
+      },
+      "blocks": [
+        {
+          "id": "welcome",
+          "type": "text",
+          "label": "Welcome",
+          "content": {
+            "type": "text",
+            "content": "Welcome! I'm here to provide faith-based encouragement and guidance. 🙏"
+          }
+        },
+        {
+          "id": "daily-verse",
+          "type": "text",
+          "label": "Daily Verse",
+          "content": {
+            "type": "text",
+            "content": "Here's today's verse for you:\n\n'Be strong and courageous. Do not be afraid; do not be discouraged, for the Lord your God will be with you wherever you go.' - Joshua 1:9"
+          }
+        },
+        {
+          "id": "prayer-request",
+          "type": "choice input",
+          "label": "Prayer Request",
+          "question": {
+            "type": "text",
+            "content": "Would you like to share a prayer request?"
+          },
+          "choices": [
+            {
+              "id": "opt1",
+              "label": "Yes, I have a prayer request"
+            },
+            {
+              "id": "opt2",
+              "label": "No, just encouragement today"
+            }
+          ]
+        },
+        {
+          "id": "prayer-input",
+          "type": "text input",
+          "label": "Prayer Input",
+          "question": {
+            "type": "text",
+            "content": "What would you like me to pray for?"
+          },
+          "variable": "prayer_request"
+        },
+        {
+          "id": "encouragement",
+          "type": "text",
+          "label": "Encouragement",
+          "content": {
+            "type": "text",
+            "content": "I'm praying for you and your situation. Remember, God hears every prayer and is working in your life. Keep trusting in Him!"
+          }
+        }
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge1",
+      "from": {
+        "blockId": "evt1",
+        "itemId": "",
+        "pathId": ""
+      },
+      "to": {
+        "groupId": "group1",
+        "blockId": "welcome"
+      }
+    }
+  ],
+  "variables": [],
+  "theme": {
+    "general": {
+      "font": "Inter",
+      "background": {
+        "type": "Color",
+        "content": "#FFFFFF"
+      }
+    }
+  },
+  "settings": {
+    "enableUserInput": true,
+    "autoStart": true,
+    "showRestartButton": true,
+    "typingDelay": 30
+  }
+}

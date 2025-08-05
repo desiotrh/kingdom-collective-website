@@ -1,8 +1,5 @@
 {
-  "buildCommand": "cd kingdom-website && npm install && npm run build",
-  "outputDirectory": "kingdom-website/.next",
   "framework": "nextjs",
-  "installCommand": "cd kingdom-website && npm install",
-  "devCommand": "cd kingdom-website && npm run dev",
-  "rootDirectory": "kingdom-website"
+  "buildCommand": "bash vercel-build.sh",
+  "outputDirectory": "kingdom-website/.next"
 } 

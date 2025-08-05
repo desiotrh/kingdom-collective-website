@@ -1,0 +1,151 @@
+{
+  "version": "6",
+  "id": "customer-support-bot",
+  "name": "Customer Support Bot",
+  "events": [
+    {
+      "id": "evt1",
+      "type": "start",
+      "outgoingEdgeId": "edge1",
+      "graphCoordinates": {
+        "x": 0,
+        "y": 0
+      }
+    }
+  ],
+  "groups": [
+    {
+      "id": "group1",
+      "title": "Main Flow",
+      "graphCoordinates": {
+        "x": 0,
+        "y": 0
+      },
+      "blocks": [
+        {
+          "id": "welcome",
+          "type": "text",
+          "label": "Welcome",
+          "content": {
+            "type": "text",
+            "content": "Hi! I'm here to help. What can I assist you with today? 🆘"
+          }
+        },
+        {
+          "id": "issue-category",
+          "type": "choice input",
+          "label": "Issue Category",
+          "question": {
+            "type": "text",
+            "content": "What type of issue are you experiencing?"
+          },
+          "choices": [
+            {
+              "id": "opt1",
+              "label": "Technical Problem"
+            },
+            {
+              "id": "opt2",
+              "label": "Billing Question"
+            },
+            {
+              "id": "opt3",
+              "label": "Feature Request"
+            },
+            {
+              "id": "opt4",
+              "label": "General Inquiry"
+            }
+          ]
+        },
+        {
+          "id": "technical-help",
+          "type": "text",
+          "label": "Technical Help",
+          "content": {
+            "type": "text",
+            "content": "I'll help you troubleshoot this technical issue. Can you describe what's happening?"
+          }
+        },
+        {
+          "id": "issue-description",
+          "type": "text input",
+          "label": "Issue Description",
+          "question": {
+            "type": "text",
+            "content": "Please describe your issue in detail..."
+          },
+          "variable": "issue_description"
+        },
+        {
+          "id": "contact-info",
+          "type": "text",
+          "label": "Contact Info",
+          "content": {
+            "type": "text",
+            "content": "Thanks for the details. I'll need your contact information to follow up."
+          }
+        },
+        {
+          "id": "name-input",
+          "type": "text input",
+          "label": "Name Input",
+          "question": {
+            "type": "text",
+            "content": "What's your name?"
+          },
+          "variable": "support_name"
+        },
+        {
+          "id": "email-input",
+          "type": "email input",
+          "label": "Email Input",
+          "question": {
+            "type": "text",
+            "content": "What's your email?"
+          },
+          "variable": "support_email"
+        },
+        {
+          "id": "support-confirmation",
+          "type": "text",
+          "label": "Support Confirmation",
+          "content": {
+            "type": "text",
+            "content": "Thank you, {{support_name}}! I've created a support ticket for you. You'll receive an email confirmation shortly."
+          }
+        }
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge1",
+      "from": {
+        "blockId": "evt1",
+        "itemId": "",
+        "pathId": ""
+      },
+      "to": {
+        "groupId": "group1",
+        "blockId": "welcome"
+      }
+    }
+  ],
+  "variables": [],
+  "theme": {
+    "general": {
+      "font": "Inter",
+      "background": {
+        "type": "Color",
+        "content": "#FFFFFF"
+      }
+    }
+  },
+  "settings": {
+    "enableUserInput": true,
+    "autoStart": true,
+    "showRestartButton": true,
+    "typingDelay": 30
+  }
+}

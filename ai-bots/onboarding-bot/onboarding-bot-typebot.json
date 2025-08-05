@@ -1,0 +1,156 @@
+{
+  "version": "6",
+  "id": "onboarding-bot",
+  "name": "Onboarding Bot",
+  "events": [
+    {
+      "id": "evt1",
+      "type": "start",
+      "outgoingEdgeId": "edge1",
+      "graphCoordinates": {
+        "x": 0,
+        "y": 0
+      }
+    }
+  ],
+  "groups": [
+    {
+      "id": "group1",
+      "title": "Main Flow",
+      "graphCoordinates": {
+        "x": 0,
+        "y": 0
+      },
+      "blocks": [
+        {
+          "id": "welcome",
+          "type": "text",
+          "label": "Welcome",
+          "content": {
+            "type": "text",
+            "content": "Welcome! Let's get you set up and ready to go. 🚀"
+          }
+        },
+        {
+          "id": "account-type",
+          "type": "choice input",
+          "label": "Account Type",
+          "question": {
+            "type": "text",
+            "content": "What type of account are you setting up?"
+          },
+          "choices": [
+            {
+              "id": "opt1",
+              "label": "Personal"
+            },
+            {
+              "id": "opt2",
+              "label": "Business"
+            },
+            {
+              "id": "opt3",
+              "label": "Team"
+            }
+          ]
+        },
+        {
+          "id": "name-question",
+          "type": "text",
+          "label": "Name Question",
+          "content": {
+            "type": "text",
+            "content": "Great! Let's start with your name."
+          }
+        },
+        {
+          "id": "name-input",
+          "type": "text input",
+          "label": "Name Input",
+          "question": {
+            "type": "text",
+            "content": "What's your full name?"
+          },
+          "variable": "onboarding_name"
+        },
+        {
+          "id": "email-question",
+          "type": "text",
+          "label": "Email Question",
+          "content": {
+            "type": "text",
+            "content": "Perfect! Now I need your email address."
+          }
+        },
+        {
+          "id": "email-input",
+          "type": "email input",
+          "label": "Email Input",
+          "question": {
+            "type": "text",
+            "content": "What's your email?"
+          },
+          "variable": "onboarding_email"
+        },
+        {
+          "id": "goals-question",
+          "type": "text",
+          "label": "Goals Question",
+          "content": {
+            "type": "text",
+            "content": "What are your main goals with this platform?"
+          }
+        },
+        {
+          "id": "goals-input",
+          "type": "text input",
+          "label": "Goals Input",
+          "question": {
+            "type": "text",
+            "content": "Tell me about your goals..."
+          },
+          "variable": "onboarding_goals"
+        },
+        {
+          "id": "onboarding-complete",
+          "type": "text",
+          "label": "Onboarding Complete",
+          "content": {
+            "type": "text",
+            "content": "Excellent, {{onboarding_name}}! Your account is all set up. Check your email for next steps and welcome materials."
+          }
+        }
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge1",
+      "from": {
+        "blockId": "evt1",
+        "itemId": "",
+        "pathId": ""
+      },
+      "to": {
+        "groupId": "group1",
+        "blockId": "welcome"
+      }
+    }
+  ],
+  "variables": [],
+  "theme": {
+    "general": {
+      "font": "Inter",
+      "background": {
+        "type": "Color",
+        "content": "#FFFFFF"
+      }
+    }
+  },
+  "settings": {
+    "enableUserInput": true,
+    "autoStart": true,
+    "showRestartButton": true,
+    "typingDelay": 30
+  }
+}

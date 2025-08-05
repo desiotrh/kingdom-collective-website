@@ -10,7 +10,7 @@
     "newArchEnabled": true,
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.kingdomcollective.circle",
+      "bundleIdentifier": "pro.kingdomcollective.circle",
       "buildNumber": "1",
       "infoPlist": {
         "NSCameraUsageDescription": "Kingdom Circle needs camera access to take photos for your profile and community posts.",
@@ -24,7 +24,7 @@
         "backgroundColor": "#000000"
       },
       "edgeToEdgeEnabled": true,
-      "package": "com.kingdomcollective.circle",
+      "package": "pro.kingdomcollective.circle",
       "versionCode": 1,
       "permissions": [
         "android.permission.CAMERA",

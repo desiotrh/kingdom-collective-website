@@ -176,7 +176,7 @@ jobs:
       - name: 📱 Setup provisioning profile
         uses: apple-actions/download-provisioning-profiles@v1
         with:
-          bundle-id: com.kingdomstudios.app
+          bundle-id: pro.kingdomcollective.studios
           issuer-id: ${{ secrets.APP_STORE_CONNECT_ISSUER_ID }}
           api-key-id: ${{ secrets.APP_STORE_CONNECT_API_KEY_ID }}
           api-private-key: ${{ secrets.APP_STORE_CONNECT_API_PRIVATE_KEY }}
