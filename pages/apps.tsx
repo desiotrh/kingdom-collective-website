@@ -64,23 +64,23 @@ export default function Apps() {
         <Navigation />
         
         {/* Hero Section */}
-        <section className="px-4 sm:px-6 md:px-8 lg:px-12 xl:px-40 py-12 sm:py-16 md:py-20">
-          <div className="max-w-[960px] mx-auto text-center">
-            <h1 className="text-white text-3xl sm:text-4xl md:text-5xl font-black leading-tight tracking-[-0.033em] mb-6">
+        <section className="section-padding">
+          <div className="container-standard text-center">
+            <h1 className="text-heading-primary mb-6">
               Our <span className="text-blue">Studio Apps</span>
             </h1>
-            <p className="text-white text-base sm:text-lg md:text-xl leading-relaxed max-w-3xl mx-auto mb-8">
+            <p className="text-body-primary max-w-3xl mx-auto">
               A complete suite of tools designed to empower faith-driven creators, entrepreneurs, and community builders. Each app is built with purpose and designed for Kingdom impact.
             </p>
           </div>
         </section>
 
         {/* Apps Grid */}
-        <section className="px-4 sm:px-6 md:px-8 lg:px-12 xl:px-40 py-12 sm:py-16 md:py-20">
-          <div className="max-w-[1200px] mx-auto">
+        <section className="section-padding">
+          <div className="container-wide">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12">
               {apps.map((app, index) => (
-                <div key={index} className="bg-black/20 backdrop-blur-sm border border-gray/30 rounded-xl p-6 sm:p-8 hover:bg-black/30 transition-all duration-300 flex flex-col h-full">
+                <div key={index} className="card-standard hover:card-elevated transition-all duration-300 flex flex-col h-full">
                   {/* App Header */}
                   <div className="flex items-start gap-4 sm:gap-6 mb-6">
                     <div className="flex-shrink-0">
@@ -93,20 +93,20 @@ export default function Apps() {
                         priority
                       />
                     </div>
-                    <div className="flex-1">
-                      <h3 className="text-white text-xl sm:text-2xl font-bold mb-2">{app.name}</h3>
-                      <p className="text-white text-sm sm:text-base leading-relaxed">{app.description}</p>
+                    <div className="flex-1 min-h-[80px] flex flex-col justify-center">
+                      <h3 className="text-heading-secondary mb-2">{app.name}</h3>
+                      <p className="text-body-primary">{app.description}</p>
                     </div>
                   </div>
 
                   {/* Features */}
-                  <div className="mb-8">
+                  <div className="mb-8 flex-1">
                     <h4 className="text-blue font-bold mb-4">Key Features:</h4>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                       {app.features.map((feature, featureIndex) => (
                         <div key={featureIndex} className="flex items-center">
                           <span className="text-blue mr-2">•</span>
-                          <span className="text-white text-sm">{feature}</span>
+                          <span className="text-body-primary">{feature}</span>
                         </div>
                       ))}
                     </div>
@@ -116,13 +116,13 @@ export default function Apps() {
                   <div className="flex gap-4 mt-auto">
                     <Link
                       href={app.href}
-                      className="bg-gray text-white px-6 py-3 rounded-full font-bold hover:bg-blue hover:text-white transition-all duration-200"
+                      className="btn-kingdom-outline flex-1 text-center"
                     >
                       Learn More
                     </Link>
                     <button
                       onClick={() => window.open('https://app.kingdomcollective.pro', '_blank')}
-                      className="bg-gray text-white px-6 py-3 rounded-full font-bold hover:bg-blue hover:text-white transition-all duration-200"
+                      className="btn-kingdom-outline flex-1 text-center"
                     >
                       Launch App
                     </button>
@@ -134,51 +134,31 @@ export default function Apps() {
         </section>
 
         {/* Integration Section */}
-        <section className="px-4 sm:px-6 md:px-8 lg:px-12 xl:px-40 py-12 sm:py-16 md:py-20 bg-black/30 backdrop-blur-sm">
-          <div className="max-w-[960px] mx-auto text-center">
-            <h2 className="text-white text-2xl sm:text-3xl md:text-4xl font-black leading-tight tracking-[-0.033em] mb-6">
+        <section className="section-padding bg-black/30 backdrop-blur-sm">
+          <div className="container-standard text-center">
+            <h2 className="text-heading-primary mb-6">
               Seamless <span className="text-blue">Integration</span>
             </h2>
-            <p className="text-white text-base sm:text-lg md:text-xl leading-relaxed max-w-3xl mx-auto mb-8 sm:mb-12">
+            <p className="text-body-primary max-w-3xl mx-auto mb-8 sm:mb-12">
               All our apps work together as one unified ecosystem. Share content across platforms, manage your community, and grow your impact with tools that actually work together.
             </p>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
               <div className="text-center">
                 <div className="text-3xl sm:text-4xl mb-4">🔄</div>
-                <h3 className="text-white text-lg sm:text-xl font-bold mb-3">Cross-Platform Sync</h3>
-                <p className="text-white text-sm sm:text-base">Content and data sync seamlessly across all your Kingdom apps.</p>
+                <h3 className="text-heading-secondary mb-3">Cross-Platform Sync</h3>
+                <p className="text-body-primary">Content and data sync seamlessly across all your Kingdom apps.</p>
               </div>
               <div className="text-center">
-                <div className="text-3xl sm:text-4xl mb-4">👥</div>
-                <h3 className="text-white text-lg sm:text-xl font-bold mb-3">Unified Community</h3>
-                <p className="text-white text-sm sm:text-base">One community, multiple touchpoints across all your platforms.</p>
+                <div className="text-3xl sm:text-4xl mb-4">🎯</div>
+                <h3 className="text-heading-secondary mb-3">Unified Analytics</h3>
+                <p className="text-body-primary">Track your growth and impact across all platforms in one dashboard.</p>
               </div>
               <div className="text-center">
-                <div className="text-3xl sm:text-4xl mb-4">📊</div>
-                <h3 className="text-white text-lg sm:text-xl font-bold mb-3">Centralized Analytics</h3>
-                <p className="text-white text-sm sm:text-base">Track your impact across all platforms from one dashboard.</p>
+                <div className="text-3xl sm:text-4xl mb-4">🚀</div>
+                <h3 className="text-heading-secondary mb-3">Scalable Growth</h3>
+                <p className="text-body-primary">Start with one app and expand your toolkit as your ministry grows.</p>
               </div>
-            </div>
-          </div>
-        </section>
-
-        {/* CTA Section */}
-        <section className="px-4 sm:px-6 md:px-8 lg:px-12 xl:px-40 py-12 sm:py-16 md:py-20">
-          <div className="max-w-[960px] mx-auto text-center">
-            <h2 className="text-white text-2xl sm:text-3xl md:text-4xl font-black leading-tight tracking-[-0.033em] mb-6">
-              Ready to <span className="text-blue">Get Started</span>?
-            </h2>
-            <p className="text-white text-base sm:text-lg md:text-xl leading-relaxed max-w-3xl mx-auto mb-8">
-              Choose the app that fits your current needs, or explore our complete ecosystem to see how they work together.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/features" className="bg-gray text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-bold hover:bg-blue hover:text-white transition-all duration-200">
-                Learn About Features
-              </Link>
-              <Link href="/vision" className="bg-gray text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-bold hover:bg-blue hover:text-white transition-all duration-200">
-                Our Vision
-              </Link>
             </div>
           </div>
         </section>
