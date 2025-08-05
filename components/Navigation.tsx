@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useAuth } from '../contexts/AuthContext';
+import CartIcon from './CartIcon';
 
 export default function Navigation() {
   const { user, isAuthenticated } = useAuth();
@@ -189,7 +190,8 @@ export default function Navigation() {
         </div>
 
         {/* Desktop CTA Buttons */}
-        <div className="hidden md:flex gap-2">
+        <div className="hidden md:flex gap-2 items-center">
+          <CartIcon />
           {isAuthenticated ? (
             <Link href="/dashboard" className="btn-secondary">
               <span className="truncate">Dashboard</span>
