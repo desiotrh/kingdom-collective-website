@@ -192,7 +192,7 @@ export default function KingdomClips() {
                   )}
                   {tier.trial && !tier.popular && (
                     <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                      <span className="bg-blue text-white px-3 sm:px-4 py-2 rounded-full text-xs sm:text-sm font-bold">
+                      <span className="bg-blue text-navy px-4 sm:px-6 py-2 rounded-full text-xs sm:text-sm font-bold whitespace-nowrap">
                         14-Day Free Trial
                       </span>
                     </div>
