@@ -82,7 +82,7 @@ export default function Apps() {
               {apps.map((app, index) => (
                 <div key={index} className="card-standard hover:card-elevated transition-all duration-300 flex flex-col h-full">
                   {/* App Header */}
-                  <div className="flex items-start gap-4 sm:gap-6 mb-6 h-24">
+                  <div className="flex items-start gap-4 sm:gap-6 mb-8 h-24">
                     <div className="flex-shrink-0">
                       <Image
                         src={app.logo}
@@ -101,7 +101,7 @@ export default function Apps() {
 
                   {/* Features */}
                   <div className="mb-8 flex-1">
-                    <h4 className="text-blue font-bold mb-4">Key Features:</h4>
+                    <h4 className="text-blue font-bold mb-6">Key Features:</h4>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                       {app.features.map((feature, featureIndex) => (
                         <div key={featureIndex} className="flex items-center">
