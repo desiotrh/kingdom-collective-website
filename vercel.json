@@ -1,5 +1,4 @@
 {
-  "framework": "nextjs",
-  "buildCommand": "cd kingdom-website && npm run build",
+  "buildCommand": "npm run build",
   "outputDirectory": "kingdom-website/.next"
 } 
