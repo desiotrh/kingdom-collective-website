@@ -3,6 +3,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import Navigation from '../../components/Navigation';
 import Footer from '../../components/Footer';
+import BackgroundVideo from '../../components/BackgroundVideo';
 
 const chatbots = [
   {
@@ -98,29 +99,11 @@ const chatbots = [
   {
     id: 'faq-knowledge',
     name: 'FAQ & Knowledge Base Bot',
-    description: 'Intelligent search and context-aware responses for customer support',
-    features: ['Intelligent search', 'Context-aware responses', 'Article suggestions', 'Multi-language support'],
-    price: '$179',
+    description: 'Intelligent FAQ handling with comprehensive knowledge base integration',
+    features: ['FAQ automation', 'Knowledge base search', 'Smart responses', 'Learning capabilities'],
+    price: '$189',
     demoUrl: '/ai-bots/faq-knowledge',
     category: 'Support'
-  },
-  {
-    id: 'event-management',
-    name: 'Event Management Bot',
-    description: 'Complete event management with registration and attendee coordination',
-    features: ['Registration handling', 'Ticket sales', 'Attendee management', 'Schedule coordination'],
-    price: '$299',
-    demoUrl: '/ai-bots/event-management',
-    category: 'Events'
-  },
-  {
-    id: 'inventory-management',
-    name: 'Inventory Management Bot',
-    description: 'Automated inventory tracking with demand forecasting and supplier communication',
-    features: ['Stock tracking', 'Reorder notifications', 'Demand forecasting', 'Supplier communication'],
-    price: '$249',
-    demoUrl: '/ai-bots/inventory-management',
-    category: 'Operations'
   },
   {
     id: 'social-media',
@@ -143,84 +126,89 @@ export default function ChatbotsPage() {
         <meta name="description" content="Professional chatbots trained for your business needs. Transform customer interactions with intelligent automation." />
       </Head>
       
-      <Navigation />
-      
-      <main className="min-h-screen">
-        {/* Hero Section */}
-        <section className="relative py-20 px-4 sm:px-6 lg:px-8">
-          <div className="max-w-7xl mx-auto">
-            <div className="text-center mb-12">
-              <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
-                Professional Chatbots
-              </h1>
-              <p className="text-2xl text-kingdom-gold font-semibold mb-4">
-                Trained for Your Business Success
-              </p>
-              <p className="text-xl text-white/80 mb-8 max-w-3xl mx-auto">
-                Transform your customer interactions with intelligent chatbots trained specifically for your industry and business needs.
-              </p>
-            </div>
-          </div>
-        </section>
+      <div className="relative flex size-full min-h-screen flex-col bg-navy dark group/design-root overflow-x-hidden">
+        <BackgroundVideo />
+        <div className="layout-container flex h-full grow flex-col relative z-10">
+          <Navigation />
+          
+          <main className="min-h-screen">
+            {/* Hero Section */}
+            <section className="relative py-20 px-4 sm:px-6 lg:px-8">
+              <div className="max-w-7xl mx-auto">
+                <div className="text-center mb-12">
+                  <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
+                    Professional Chatbots
+                  </h1>
+                  <p className="text-2xl text-kingdom-gold font-semibold mb-4">
+                    Trained for Your Business Success
+                  </p>
+                  <p className="text-xl text-white/80 mb-8 max-w-3xl mx-auto">
+                    Transform your customer interactions with intelligent chatbots trained specifically for your industry and business needs.
+                  </p>
+                </div>
+              </div>
+            </section>
 
-        {/* Chatbots Grid */}
-        <section className="py-16 px-4 sm:px-6 lg:px-8">
-          <div className="max-w-7xl mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {chatbots.map((bot) => (
-                <div key={bot.id} className="card-standard">
-                  <div className="mb-4">
-                    <h3 className="text-xl font-bold text-white mb-2">{bot.name}</h3>
-                    <p className="text-white/70 text-sm mb-4">{bot.description}</p>
-                    <div className="flex items-center justify-between mb-4">
-                      <span className="text-kingdom-gold font-bold text-lg">{bot.price}</span>
-                      <span className="text-white/60 text-sm bg-gray/30 px-2 py-1 rounded">{bot.category}</span>
+            {/* Chatbots Grid */}
+            <section className="py-16 px-4 sm:px-6 lg:px-8">
+              <div className="max-w-7xl mx-auto">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                  {chatbots.map((bot) => (
+                    <div key={bot.id} className="card-standard">
+                      <div className="mb-4">
+                        <h3 className="text-xl font-bold text-white mb-2">{bot.name}</h3>
+                        <p className="text-white/70 text-sm mb-4">{bot.description}</p>
+                        <div className="flex items-center justify-between mb-4">
+                          <span className="text-kingdom-gold font-bold text-lg">{bot.price}</span>
+                          <span className="text-white/60 text-sm bg-gray/30 px-2 py-1 rounded">{bot.category}</span>
+                        </div>
+                      </div>
+                      
+                      <div className="mb-4">
+                        <h4 className="text-white font-semibold mb-2">Key Features:</h4>
+                        <ul className="space-y-1">
+                          {bot.features.slice(0, 3).map((feature, index) => (
+                            <li key={index} className="text-white/70 text-sm flex items-center">
+                              <span className="text-kingdom-gold mr-2">•</span>
+                              {feature}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                      
+                      <Link href={bot.demoUrl} className="btn-kingdom-primary w-full text-center">
+                        View Details
+                      </Link>
                     </div>
-                  </div>
-                  
-                  <div className="mb-4">
-                    <h4 className="text-white font-semibold mb-2">Key Features:</h4>
-                    <ul className="space-y-1">
-                      {bot.features.slice(0, 3).map((feature, index) => (
-                        <li key={index} className="text-white/70 text-sm flex items-center">
-                          <span className="text-kingdom-gold mr-2">•</span>
-                          {feature}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                  
-                  <Link href={bot.demoUrl} className="btn-kingdom-primary w-full text-center">
-                    View Details
+                  ))}
+                </div>
+              </div>
+            </section>
+
+            {/* CTA Section */}
+            <section className="py-16 px-4 sm:px-6 lg:px-8">
+              <div className="max-w-4xl mx-auto text-center">
+                <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+                  Ready to Transform Your Business?
+                </h2>
+                <p className="text-xl text-white/80 mb-8">
+                  Choose the perfect chatbot for your needs and start automating your customer interactions today.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                  <Link href="/ai-bots/pricing" className="btn-kingdom-primary">
+                    View Pricing
+                  </Link>
+                  <Link href="/contact" className="btn-kingdom-secondary">
+                    Get Custom Quote
                   </Link>
                 </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* CTA Section */}
-        <section className="py-16 px-4 sm:px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-              Ready to Transform Your Business?
-            </h2>
-            <p className="text-xl text-white/80 mb-8">
-              Choose the perfect chatbot for your needs and start automating your customer interactions today.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/ai-bots/pricing" className="btn-kingdom-primary">
-                View Pricing
-              </Link>
-              <Link href="/contact" className="btn-kingdom-secondary">
-                Get Custom Quote
-              </Link>
-            </div>
-          </div>
-        </section>
-      </main>
-      
-      <Footer />
+              </div>
+            </section>
+          </main>
+          
+          <Footer />
+        </div>
+      </div>
     </>
   );
 } 
