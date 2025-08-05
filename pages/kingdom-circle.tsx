@@ -187,6 +187,13 @@ export default function KingdomCircle() {
                       </span>
                     </div>
                   )}
+                  {tier.trial && !tier.popular && (
+                    <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                      <span className="bg-blue text-navy px-4 sm:px-6 py-2 rounded-full text-xs sm:text-sm font-bold whitespace-nowrap">
+                        14-Day Free Trial
+                      </span>
+                    </div>
+                  )}
                   <div className="text-center">
                     <h3 className="text-white text-xl sm:text-2xl font-bold mb-2">{tier.name}</h3>
                     <div className="mb-6">
