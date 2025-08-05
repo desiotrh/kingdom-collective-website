@@ -82,7 +82,7 @@ export default function Apps() {
               {apps.map((app, index) => (
                 <div key={index} className="card-standard hover:card-elevated transition-all duration-300 flex flex-col h-full">
                   {/* App Header */}
-                  <div className="flex items-start gap-4 sm:gap-6 mb-6">
+                  <div className="flex items-start gap-4 sm:gap-6 mb-6 h-24">
                     <div className="flex-shrink-0">
                       <Image
                         src={app.logo}
@@ -93,9 +93,9 @@ export default function Apps() {
                         priority
                       />
                     </div>
-                    <div className="flex-1 min-h-[80px] flex flex-col justify-center">
+                    <div className="flex-1 flex flex-col justify-start">
                       <h3 className="text-heading-secondary mb-2">{app.name}</h3>
-                      <p className="text-body-primary">{app.description}</p>
+                      <p className="text-body-primary line-clamp-3">{app.description}</p>
                     </div>
                   </div>
 
