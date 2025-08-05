@@ -191,7 +191,7 @@ export default function KingdomStudios() {
                   )}
                   {tier.trial && !tier.popular && (
                     <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                      <span className="bg-blue text-white px-3 sm:px-4 py-2 rounded-full text-xs sm:text-sm font-bold">
+                      <span className="bg-blue text-navy px-3 sm:px-4 py-2 rounded-full text-xs sm:text-sm font-bold">
                         14-Day Free Trial
                       </span>
                     </div>
