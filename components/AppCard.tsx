@@ -21,11 +21,11 @@ export default function AppCard({
 }: AppCardProps) {
   return (
     <Link href={href}>
-      <div className="card-standard group relative hover:scale-105">
+      <div className="card-standard group relative hover:scale-105 flex flex-col h-full">
         {/* Glow effect on hover */}
         <div className="absolute inset-0 bg-gradient-to-r from-blue/10 to-white/10 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
         
-        <div className="relative z-10">
+        <div className="relative z-10 flex flex-col h-full">
           {/* Logo */}
           <div className="mb-4">
             <Image
@@ -44,7 +44,7 @@ export default function AppCard({
           </h3>
           
           {/* Description */}
-          <p className="text-body-primary">
+          <p className="text-body-primary flex-1">
             {description}
           </p>
           
