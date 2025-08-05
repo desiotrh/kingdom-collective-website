@@ -23,7 +23,7 @@ export default function AppCard({
     <Link href={href}>
       <div className="card-standard group relative hover:scale-105 flex flex-col h-full">
         {/* Glow effect on hover */}
-        <div className="absolute inset-0 bg-gradient-to-r from-blue/10 to-white/10 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-kingdom-gold/10 to-white/10 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
         
         <div className="relative z-10 flex flex-col h-full">
           {/* Logo */}
@@ -49,7 +49,7 @@ export default function AppCard({
           </p>
           
           {/* Arrow indicator */}
-          <div className="mt-4 flex items-center text-blue opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+          <div className="mt-4 flex items-center text-kingdom-gold opacity-0 group-hover:opacity-100 transition-opacity duration-200">
             <span className="text-sm font-medium">Learn more</span>
             <svg
               className="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform duration-200"

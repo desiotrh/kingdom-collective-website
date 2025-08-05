@@ -8,7 +8,7 @@ export default function CartIcon() {
   return (
     <Link 
       href="/cart" 
-      className="relative flex items-center text-white hover:text-blue transition-colors duration-200"
+              className="relative flex items-center text-white hover:text-kingdom-gold transition-colors duration-200"
       aria-label={`Shopping cart${itemCount > 0 ? ` with ${itemCount} item${itemCount === 1 ? '' : 's'}` : ''}`}
     >
       <svg 

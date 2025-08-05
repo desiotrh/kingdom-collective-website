@@ -166,7 +166,7 @@ export default function Contact() {
           <div className="max-w-[960px] mx-auto">
             <div className="text-center mb-12 sm:mb-16">
               <h2 className="text-4xl md:text-6xl font-bold leading-tight tracking-[-0.033em] text-white mb-4 sm:mb-6">
-                AI <span className="text-[#FFD700]">Assistant</span>
+                AI <span className="text-kingdom-gold">Assistant</span>
               </h2>
               <p className="text-white text-sm sm:text-base font-normal leading-relaxed max-w-3xl mx-auto px-4">
                 Get instant answers to common questions with our AI-powered FAQ assistant.
@@ -192,15 +192,15 @@ export default function Contact() {
                 <button
                   type="submit"
                   disabled={isLoading || !faqQuestion.trim()}
-                  className="bg-gradient-to-r from-[#FFD700] to-yellow-400 text-black font-semibold px-6 py-2 rounded-md shadow-md hover:brightness-110 transition disabled:opacity-50 disabled:cursor-not-allowed text-sm sm:text-base"
+                  className="bg-gradient-to-r from-kingdom-gold to-kingdom-gold-soft text-black font-semibold px-6 py-2 rounded-md shadow-md hover:from-kingdom-gold-soft hover:to-kingdom-gold-matte transition disabled:opacity-50 disabled:cursor-not-allowed text-sm sm:text-base"
                 >
                   {isLoading ? 'Thinking...' : 'Ask AI Assistant'}
                 </button>
               </form>
 
               {faqResponse && (
-                <div className="mt-8 p-6 bg-[#FFD700]/10 border border-[#FFD700]/30 rounded-xl">
-                  <h3 className="text-[#FFD700] font-bold mb-3">AI Response:</h3>
+                <div className="mt-8 p-6 bg-kingdom-gold/10 border border-kingdom-gold/30 rounded-xl">
+                  <h3 className="text-kingdom-gold font-bold mb-3">AI Response:</h3>
                   <p className="text-white leading-relaxed">{faqResponse}</p>
                 </div>
               )}
@@ -212,7 +212,7 @@ export default function Contact() {
         <section className="px-4 sm:px-6 md:px-8 lg:px-12 xl:px-40 py-12 sm:py-16 md:py-20 bg-black/30 backdrop-blur-sm">
           <div className="max-w-[960px] mx-auto text-center">
             <h2 className="text-4xl md:text-6xl font-bold leading-tight tracking-[-0.033em] text-white mb-4 sm:mb-6">
-              Ready to <span className="text-[#FFD700]">Get Started</span>?
+              Ready to <span className="text-kingdom-gold">Get Started</span>?
             </h2>
             <p className="text-white text-base sm:text-lg md:text-xl leading-relaxed max-w-3xl mx-auto mb-6 sm:mb-8 px-4">
               Explore our apps and download them to your mobile device.
@@ -223,7 +223,7 @@ export default function Contact() {
                 <div className="text-3xl sm:text-4xl mb-3 sm:mb-4">🚀</div>
                 <h3 className="text-white text-lg sm:text-xl font-bold mb-2 sm:mb-3">Explore Our Apps</h3>
                 <p className="text-white text-sm sm:text-base">Discover all the tools in the Kingdom Collective suite.</p>
-                <Link href="/apps" className="inline-block mt-3 sm:mt-4 text-[#FFD700] hover:text-yellow-400 transition-colors duration-200 font-medium text-sm sm:text-base">
+                <Link href="/apps" className="inline-block mt-3 sm:mt-4 text-kingdom-gold hover:text-kingdom-gold/80 transition-colors duration-200 font-medium text-sm sm:text-base">
                   Browse Apps →
                 </Link>
               </div>
@@ -231,7 +231,7 @@ export default function Contact() {
                 <div className="text-3xl sm:text-4xl mb-3 sm:mb-4">💡</div>
                 <h3 className="text-white text-lg sm:text-xl font-bold mb-2 sm:mb-3">Learn Our Vision</h3>
                 <p className="text-white text-sm sm:text-base">Understand how we&apos;re empowering creators with purpose.</p>
-                <Link href="/vision" className="inline-block mt-3 sm:mt-4 text-[#FFD700] hover:text-yellow-400 transition-colors duration-200 font-medium text-sm sm:text-base">
+                <Link href="/vision" className="inline-block mt-3 sm:mt-4 text-kingdom-gold hover:text-kingdom-gold/80 transition-colors duration-200 font-medium text-sm sm:text-base">
                   Our Vision →
                 </Link>
               </div>
@@ -240,10 +240,10 @@ export default function Contact() {
                 <h3 className="text-white text-lg sm:text-xl font-bold mb-2 sm:mb-3">Download Our Apps</h3>
                 <p className="text-white text-sm sm:text-base">Get our apps on your mobile device for on-the-go creation.</p>
                 <div className="flex flex-col sm:flex-row gap-2 mt-3 sm:mt-4 justify-center">
-                  <a href="#" target="_blank" rel="noopener noreferrer" className="inline-block text-[#FFD700] hover:text-yellow-400 transition-colors duration-200 font-medium text-sm sm:text-base">
+                  <a href="#" target="_blank" rel="noopener noreferrer" className="inline-block text-kingdom-gold hover:text-kingdom-gold/80 transition-colors duration-200 font-medium text-sm sm:text-base">
                     🍎 App Store →
                   </a>
-                  <a href="#" target="_blank" rel="noopener noreferrer" className="inline-block text-[#FFD700] hover:text-yellow-400 transition-colors duration-200 font-medium text-sm sm:text-base">
+                  <a href="#" target="_blank" rel="noopener noreferrer" className="inline-block text-kingdom-gold hover:text-kingdom-gold/80 transition-colors duration-200 font-medium text-sm sm:text-base">
                     🤖 Google Play →
                   </a>
                 </div>

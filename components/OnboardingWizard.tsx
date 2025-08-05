@@ -115,7 +115,7 @@ export default function OnboardingWizard() {
             <p className="text-white text-sm mb-4">{app.description}</p>
             <div className="space-y-1">
               {app.features.map((feature, index) => (
-                <div key={index} className="text-blue text-xs">• {feature}</div>
+                <div key={index} className="text-kingdom-gold text-xs">• {feature}</div>
               ))}
             </div>
           </div>
@@ -151,7 +151,7 @@ export default function OnboardingWizard() {
               </div>
               <div className="grid grid-cols-2 gap-4">
                 {app.features.map((feature, index) => (
-                  <div key={index} className="text-blue text-sm">• {feature}</div>
+                  <div key={index} className="text-kingdom-gold text-sm">• {feature}</div>
                 ))}
               </div>
             </div>
@@ -245,8 +245,8 @@ export default function OnboardingWizard() {
       </div>
       
       <div className="text-white">
-        <p className="mb-2">Experience Mode: <span className="text-blue">{preferences.faithMode ? 'Faith Mode' : 'Encouragement Mode'}</span></p>
-        <p>Notifications: <span className="text-blue">{preferences.notifications ? 'Enabled' : 'Disabled'}</span></p>
+                        <p className="mb-2">Experience Mode: <span className="text-kingdom-gold">{preferences.faithMode ? 'Faith Mode' : 'Encouragement Mode'}</span></p>
+                <p>Notifications: <span className="text-kingdom-gold">{preferences.notifications ? 'Enabled' : 'Disabled'}</span></p>
       </div>
     </div>
   );

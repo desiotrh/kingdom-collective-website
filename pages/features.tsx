@@ -81,7 +81,7 @@ export default function Features() {
         <section className="px-4 sm:px-6 md:px-8 lg:px-12 xl:px-40 py-12 sm:py-16 md:py-20">
           <div className="max-w-[960px] mx-auto text-center">
             <h1 className="text-white text-3xl sm:text-4xl md:text-5xl font-black leading-tight tracking-[-0.033em] mb-6">
-              What Makes Us <span className="text-blue">Different</span>
+              What Makes Us <span className="text-kingdom-gold">Different</span>
             </h1>
             <p className="text-white text-base sm:text-lg md:text-xl leading-relaxed max-w-3xl mx-auto mb-8">
               We&apos;re not just another content creation platform. We&apos;re a movement designed to empower faith-driven creators to make a lasting impact in the digital space.
@@ -94,7 +94,7 @@ export default function Features() {
           <div className="max-w-[960px] mx-auto">
             <div className="text-center mb-12 sm:mb-16">
               <h2 className="text-white text-2xl sm:text-3xl md:text-4xl font-black leading-tight tracking-[-0.033em] mb-6">
-                Why We&apos;re <span className="text-blue">Unique</span>
+                Why We&apos;re <span className="text-kingdom-gold">Unique</span>
               </h2>
               <p className="text-white text-sm sm:text-base font-normal leading-normal max-w-3xl mx-auto">
                 In a world of copycat platforms, we&apos;ve built something truly different—a suite of tools designed for Kingdom impact.
@@ -118,7 +118,7 @@ export default function Features() {
           <div className="max-w-[960px] mx-auto">
             <div className="text-center mb-12 sm:mb-16">
               <h2 className="text-white text-2xl sm:text-3xl md:text-4xl font-black leading-tight tracking-[-0.033em] mb-6">
-                Features You <span className="text-blue">Won&apos;t Find Elsewhere</span>
+                Features You <span className="text-kingdom-gold">Won&apos;t Find Elsewhere</span>
               </h2>
               <p className="text-white text-sm sm:text-base font-normal leading-normal max-w-3xl mx-auto">
                 These aren&apos;t just features—they&apos;re tools for Kingdom advancement.
@@ -129,9 +129,9 @@ export default function Features() {
               {uniqueFeatures.map((feature, index) => (
                 <div key={index} className="bg-black/20 backdrop-blur-sm border border-gray/30 rounded-xl p-6 hover:bg-black/30 transition-all duration-300">
                   <div className="flex items-center justify-between mb-4">
-                    <span className="bg-blue/20 text-blue px-3 py-1 rounded-full text-xs font-bold">
-                      {feature.category}
-                    </span>
+                                      <span className="bg-kingdom-gold/20 text-kingdom-gold px-3 py-1 rounded-full text-xs font-bold">
+                    {feature.category}
+                  </span>
                   </div>
                   <h3 className="text-white text-lg sm:text-xl font-bold mb-3">{feature.title}</h3>
                   <p className="text-white text-sm sm:text-base leading-relaxed">{feature.description}</p>
@@ -145,7 +145,7 @@ export default function Features() {
         <section className="px-4 sm:px-6 md:px-8 lg:px-12 xl:px-40 py-12 sm:py-16 md:py-20 bg-black/30 backdrop-blur-sm">
           <div className="max-w-[960px] mx-auto text-center">
             <h2 className="text-white text-2xl sm:text-3xl md:text-4xl font-black leading-tight tracking-[-0.033em] mb-6">
-              Ready to Experience the <span className="text-blue">Difference</span>?
+              Ready to Experience the <span className="text-kingdom-gold">Difference</span>?
             </h2>
             <p className="text-white text-base sm:text-lg md:text-xl leading-relaxed max-w-3xl mx-auto mb-8">
               Join thousands of faith-driven creators who are already building with purpose and making an impact.

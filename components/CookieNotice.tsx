@@ -34,7 +34,7 @@ export default function CookieNotice() {
             <p className="text-white text-sm leading-relaxed">
               We use cookies to enhance your experience, analyze site usage, and assist with our marketing efforts. 
               By continuing to use our site, you consent to our use of cookies. 
-              <Link href="/cookies" className="text-blue hover:text-blue-300 transition-colors duration-200 ml-1">
+              <Link href="/cookies" className="text-kingdom-gold hover:text-kingdom-gold/80 transition-colors duration-200 ml-1">
                 Learn more
               </Link>
             </p>
