@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Head from 'next/head';
 import Navigation from '../../components/Navigation';
 import Footer from '../../components/Footer';
+import BackgroundVideo from '../../components/BackgroundVideo';
 
 const bots = [
   { id: 'sales-assistant', name: 'Sales Assistant Bot', price: 299 },
@@ -167,506 +168,591 @@ export default function OrderForm() {
   return (
     <>
       <Head>
-        <title>AI Bot Order Form - Kingdom Collective</title>
-        <meta name="description" content="Order your custom AI bot with comprehensive setup and customization options." />
+        <title>Order Chatbots - Kingdom Collective</title>
+        <meta name="description" content="Order your custom chatbot solution. Professional chatbots trained for your business needs." />
       </Head>
       
-      <Navigation />
-      
-      <main className="min-h-screen py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-12">
-            <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
-              🤖 Order Your AI Bot
-            </h1>
-            <p className="text-xl text-white/80 max-w-3xl mx-auto">
-              Let&apos;s build the perfect AI bot for your business. Fill out this form and we&apos;ll create a customized solution just for you.
-            </p>
-          </div>
-
-          <form onSubmit={handleSubmit} className="space-y-8">
-            {/* Step 1: Client Information */}
-            {currentStep === 1 && (
-              <div className="bg-white/5 backdrop-blur-sm rounded-xl p-8 border border-white/10">
-                <h2 className="text-2xl font-bold text-white mb-6">Step 1: Client Information</h2>
-                
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div>
-                    <label className="block text-white font-semibold mb-2">Company Name *</label>
-                    <input
-                      type="text"
-                      required
-                      value={formData.companyName}
-                      onChange={(e) => handleInputChange('companyName', e.target.value)}
-                      className="w-full bg-white/10 text-white px-4 py-3 rounded-lg border border-white/20 focus:border-kingdom-gold focus:outline-none"
-                    />
-                  </div>
-                  
-                  <div>
-                    <label className="block text-white font-semibold mb-2">Contact Name *</label>
-                    <input
-                      type="text"
-                      required
-                      value={formData.contactName}
-                      onChange={(e) => handleInputChange('contactName', e.target.value)}
-                      className="w-full bg-white/10 text-white px-4 py-3 rounded-lg border border-white/20 focus:border-kingdom-gold focus:outline-none"
-                    />
-                  </div>
-                  
-                  <div>
-                    <label className="block text-white font-semibold mb-2">Email *</label>
-                    <input
-                      type="email"
-                      required
-                      value={formData.email}
-                      onChange={(e) => handleInputChange('email', e.target.value)}
-                      className="w-full bg-white/10 text-white px-4 py-3 rounded-lg border border-white/20 focus:border-kingdom-gold focus:outline-none"
-                    />
-                  </div>
-                  
-                  <div>
-                    <label className="block text-white font-semibold mb-2">Phone</label>
-                    <input
-                      type="tel"
-                      value={formData.phone}
-                      onChange={(e) => handleInputChange('phone', e.target.value)}
-                      className="w-full bg-white/10 text-white px-4 py-3 rounded-lg border border-white/20 focus:border-kingdom-gold focus:outline-none"
-                    />
-                  </div>
-                  
-                  <div>
-                    <label className="block text-white font-semibold mb-2">Website</label>
-                    <input
-                      type="url"
-                      value={formData.website}
-                      onChange={(e) => handleInputChange('website', e.target.value)}
-                      className="w-full bg-white/10 text-white px-4 py-3 rounded-lg border border-white/20 focus:border-kingdom-gold focus:outline-none"
-                    />
-                  </div>
-                  
-                  <div>
-                    <label className="block text-white font-semibold mb-2">Industry</label>
-                    <select
-                      value={formData.industry}
-                      onChange={(e) => handleInputChange('industry', e.target.value)}
-                      className="w-full bg-white/10 text-white px-4 py-3 rounded-lg border border-white/20 focus:border-kingdom-gold focus:outline-none"
-                    >
-                      <option value="">Select Industry</option>
-                      <option value="healthcare">Healthcare</option>
-                      <option value="real-estate">Real Estate</option>
-                      <option value="e-commerce">E-commerce</option>
-                      <option value="education">Education</option>
-                      <option value="financial">Financial Services</option>
-                      <option value="consulting">Consulting</option>
-                      <option value="church">Church/Ministry</option>
-                      <option value="other">Other</option>
-                    </select>
-                  </div>
-                  
-                  <div>
-                    <label className="block text-white font-semibold mb-2">Company Size</label>
-                    <select
-                      value={formData.companySize}
-                      onChange={(e) => handleInputChange('companySize', e.target.value)}
-                      className="w-full bg-white/10 text-white px-4 py-3 rounded-lg border border-white/20 focus:border-kingdom-gold focus:outline-none"
-                    >
-                      <option value="">Select Size</option>
-                      <option value="1-10">1-10 employees</option>
-                      <option value="11-50">11-50 employees</option>
-                      <option value="51-200">51-200 employees</option>
-                      <option value="201-1000">201-1000 employees</option>
-                      <option value="1000+">1000+ employees</option>
-                    </select>
-                  </div>
-                </div>
-                
-                <div className="mt-8 flex justify-end">
-                  <button
-                    type="button"
-                    onClick={() => setCurrentStep(2)}
-                    className="bg-gradient-to-r from-kingdom-gold to-kingdom-orange text-kingdom-dark px-8 py-3 rounded-lg font-bold hover:scale-105 transition-all duration-200"
-                  >
-                    Next: Bot Selection
-                  </button>
+      <div className="relative flex size-full min-h-screen flex-col bg-navy dark group/design-root overflow-x-hidden">
+        <BackgroundVideo />
+        <div className="layout-container flex h-full grow flex-col relative z-10">
+          <Navigation />
+          
+          <main className="min-h-screen">
+            {/* Hero Section */}
+            <section className="relative py-20 px-4 sm:px-6 lg:px-8">
+              <div className="max-w-7xl mx-auto">
+                <div className="text-center mb-12">
+                  <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
+                    Order Your Chatbot
+                  </h1>
+                  <p className="text-2xl text-kingdom-gold font-semibold mb-4">
+                    Custom Chatbot Solutions for Your Business
+                  </p>
+                  <p className="text-xl text-white/80 mb-8 max-w-3xl mx-auto">
+                    Tell us about your needs and we'll create the perfect chatbot solution for your business.
+                  </p>
                 </div>
               </div>
-            )}
+            </section>
 
-            {/* Step 2: Bot Selection */}
-            {currentStep === 2 && (
-              <div className="bg-white/5 backdrop-blur-sm rounded-xl p-8 border border-white/10">
-                <h2 className="text-2xl font-bold text-white mb-6">Step 2: Bot Selection</h2>
-                
-                {/* Bundle Options */}
-                <div className="mb-8">
-                  <h3 className="text-xl font-bold text-white mb-4">Bundle Options (Save Money!)</h3>
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    {bundles.map((bundle) => (
-                      <div
-                        key={bundle.id}
-                        className={`p-6 rounded-xl border transition-all duration-200 cursor-pointer ${
-                          formData.selectedBundle === bundle.id
-                            ? 'bg-gradient-to-r from-kingdom-gold/20 to-kingdom-orange/20 border-kingdom-gold/50'
-                            : 'bg-white/5 border-white/10 hover:border-kingdom-gold/50'
-                        }`}
-                        onClick={() => selectBundle(bundle.id)}
-                      >
-                        <h4 className="text-white font-bold mb-2">{bundle.name}</h4>
-                        <div className="text-2xl font-bold text-kingdom-gold mb-2">${bundle.price}</div>
-                        <div className="text-kingdom-gold/80 text-sm mb-3">Save ${bundle.savings}</div>
-                        <ul className="text-white/70 text-sm space-y-1">
-                          {bundle.bots.map((botId) => {
-                            const bot = bots.find(b => b.id === botId);
-                            return (
-                              <li key={botId} className="flex items-center gap-2">
-                                <span>{bot?.name}</span>
-                              </li>
-                            );
-                          })}
-                        </ul>
-                      </div>
-                    ))}
+            {/* Form Section */}
+            <section className="py-16 px-4 sm:px-6 lg:px-8">
+              <div className="max-w-4xl mx-auto">
+                <div className="bg-white/5 backdrop-blur-sm rounded-xl p-8 border border-white/10">
+                  {/* Progress Bar */}
+                  <div className="mb-8">
+                    <div className="flex justify-between items-center mb-4">
+                      <span className="text-white font-medium">Step {currentStep} of 6</span>
+                      <span className="text-kingdom-gold font-medium">{Math.round((currentStep / 6) * 100)}% Complete</span>
+                    </div>
+                    <div className="w-full bg-white/10 rounded-full h-2">
+                      <div 
+                        className="bg-gradient-to-r from-kingdom-gold to-kingdom-orange h-2 rounded-full transition-all duration-300"
+                        style={{ width: `${(currentStep / 6) * 100}%` }}
+                      ></div>
+                    </div>
                   </div>
-                </div>
 
-                {/* Individual Bot Selection */}
-                <div className="mb-8">
-                  <h3 className="text-xl font-bold text-white mb-4">Or Select Individual Bots</h3>
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                    {bots.map((bot) => (
-                      <div
-                        key={bot.id}
-                        className={`p-4 rounded-lg border transition-all duration-200 cursor-pointer ${
-                          formData.selectedBots.includes(bot.id)
-                            ? 'bg-gradient-to-r from-kingdom-gold/20 to-kingdom-orange/20 border-kingdom-gold/50'
-                            : 'bg-white/5 border-white/10 hover:border-kingdom-gold/50'
-                        }`}
-                        onClick={() => toggleBot(bot.id)}
-                      >
-                        <div className="flex items-center justify-between">
-                          <div className="flex items-center gap-2">
-                            <span className="text-2xl">{bot.name}</span>
+                  {/* Form Steps */}
+                  {currentStep === 1 && (
+                    <div className="space-y-6">
+                      <h2 className="text-2xl font-bold text-white mb-6">Client Information</h2>
+                      
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                          <label className="block text-white font-medium mb-2">Company Name *</label>
+                          <input
+                            type="text"
+                            value={formData.companyName}
+                            onChange={(e) => handleInputChange('companyName', e.target.value)}
+                            className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:outline-none focus:border-kingdom-gold"
+                            placeholder="Your company name"
+                          />
+                        </div>
+                        
+                        <div>
+                          <label className="block text-white font-medium mb-2">Contact Name *</label>
+                          <input
+                            type="text"
+                            value={formData.contactName}
+                            onChange={(e) => handleInputChange('contactName', e.target.value)}
+                            className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:outline-none focus:border-kingdom-gold"
+                            placeholder="Your full name"
+                          />
+                        </div>
+                        
+                        <div>
+                          <label className="block text-white font-medium mb-2">Email *</label>
+                          <input
+                            type="email"
+                            value={formData.email}
+                            onChange={(e) => handleInputChange('email', e.target.value)}
+                            className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:outline-none focus:border-kingdom-gold"
+                            placeholder="your@email.com"
+                          />
+                        </div>
+                        
+                        <div>
+                          <label className="block text-white font-medium mb-2">Phone</label>
+                          <input
+                            type="tel"
+                            value={formData.phone}
+                            onChange={(e) => handleInputChange('phone', e.target.value)}
+                            className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:outline-none focus:border-kingdom-gold"
+                            placeholder="(555) 123-4567"
+                          />
+                        </div>
+                        
+                        <div>
+                          <label className="block text-white font-medium mb-2">Website</label>
+                          <input
+                            type="url"
+                            value={formData.website}
+                            onChange={(e) => handleInputChange('website', e.target.value)}
+                            className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:outline-none focus:border-kingdom-gold"
+                            placeholder="https://yourwebsite.com"
+                          />
+                        </div>
+                        
+                        <div>
+                          <label className="block text-white font-medium mb-2">Industry</label>
+                          <select
+                            value={formData.industry}
+                            onChange={(e) => handleInputChange('industry', e.target.value)}
+                            className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white focus:outline-none focus:border-kingdom-gold"
+                          >
+                            <option value="">Select industry</option>
+                            <option value="ecommerce">E-commerce</option>
+                            <option value="healthcare">Healthcare</option>
+                            <option value="finance">Finance</option>
+                            <option value="education">Education</option>
+                            <option value="real-estate">Real Estate</option>
+                            <option value="consulting">Consulting</option>
+                            <option value="technology">Technology</option>
+                            <option value="non-profit">Non-Profit</option>
+                            <option value="other">Other</option>
+                          </select>
+                        </div>
+                      </div>
+                      
+                      <div className="flex justify-end">
+                        <button
+                          onClick={() => setCurrentStep(2)}
+                          className="btn-kingdom-primary"
+                        >
+                          Next: Bot Selection
+                        </button>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Continue with other steps... */}
+                  {/* Step 2: Bot Selection */}
+                  {currentStep === 2 && (
+                    <div className="space-y-6">
+                      <h2 className="text-2xl font-bold text-white mb-6">Bot Selection</h2>
+                      
+                      <div className="space-y-4">
+                        <h3 className="text-lg font-semibold text-kingdom-gold mb-4">Individual Bots</h3>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                          {bots.map((bot) => (
+                            <div
+                              key={bot.id}
+                              className={`p-4 rounded-lg border cursor-pointer transition-all ${
+                                formData.selectedBots.includes(bot.id)
+                                  ? 'bg-kingdom-gold/20 border-kingdom-gold'
+                                  : 'bg-white/5 border-white/20 hover:bg-white/10'
+                              }`}
+                              onClick={() => toggleBot(bot.id)}
+                            >
+                              <div className="flex justify-between items-center">
+                                <div>
+                                  <h4 className="text-white font-medium">{bot.name}</h4>
+                                  <p className="text-white/70 text-sm">${bot.price}</p>
+                                </div>
+                                <div className={`w-5 h-5 rounded border-2 ${
+                                  formData.selectedBots.includes(bot.id)
+                                    ? 'bg-kingdom-gold border-kingdom-gold'
+                                    : 'border-white/30'
+                                }`}>
+                                  {formData.selectedBots.includes(bot.id) && (
+                                    <svg className="w-3 h-3 text-navy" fill="currentColor" viewBox="0 0 20 20">
+                                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                                    </svg>
+                                  )}
+                                </div>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                        
+                        <h3 className="text-lg font-semibold text-kingdom-gold mb-4 mt-8">Bundle Deals</h3>
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                          {bundles.map((bundle) => (
+                            <div
+                              key={bundle.id}
+                              className={`p-4 rounded-lg border cursor-pointer transition-all ${
+                                formData.selectedBundle === bundle.id
+                                  ? 'bg-kingdom-gold/20 border-kingdom-gold'
+                                  : 'bg-white/5 border-white/20 hover:bg-white/10'
+                              }`}
+                              onClick={() => selectBundle(bundle.id)}
+                            >
+                              <div className="text-center">
+                                <h4 className="text-white font-medium">{bundle.name}</h4>
+                                <p className="text-kingdom-gold font-bold text-lg">${bundle.price}</p>
+                                <p className="text-white/70 text-sm">Save ${bundle.savings}</p>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                      
+                      <div className="flex justify-between">
+                        <button
+                          onClick={() => setCurrentStep(1)}
+                          className="btn-kingdom-secondary"
+                        >
+                          Previous
+                        </button>
+                        <button
+                          onClick={() => setCurrentStep(3)}
+                          className="btn-kingdom-primary"
+                        >
+                          Next: Add-ons
+                        </button>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Continue with remaining steps... */}
+                  {/* For brevity, I'll add the remaining steps structure */}
+                  
+                  {/* Step 3: Add-ons */}
+                  {currentStep === 3 && (
+                    <div className="space-y-6">
+                      <h2 className="text-2xl font-bold text-white mb-6">Add-ons & Customization</h2>
+                      
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        {addOns.map((addon) => (
+                          <div
+                            key={addon.id}
+                            className={`p-4 rounded-lg border cursor-pointer transition-all ${
+                              formData.selectedAddOns.includes(addon.id)
+                                ? 'bg-kingdom-gold/20 border-kingdom-gold'
+                                : 'bg-white/5 border-white/20 hover:bg-white/10'
+                            }`}
+                            onClick={() => toggleAddOn(addon.id)}
+                          >
+                            <div className="flex justify-between items-center">
+                              <div>
+                                <h4 className="text-white font-medium">{addon.name}</h4>
+                                <p className="text-kingdom-gold text-sm">${addon.price}</p>
+                              </div>
+                              <div className={`w-5 h-5 rounded border-2 ${
+                                formData.selectedAddOns.includes(addon.id)
+                                  ? 'bg-kingdom-gold border-kingdom-gold'
+                                  : 'border-white/30'
+                              }`}>
+                                {formData.selectedAddOns.includes(addon.id) && (
+                                  <svg className="w-3 h-3 text-navy" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                                  </svg>
+                                )}
+                              </div>
+                            </div>
                           </div>
-                          <span className="text-kingdom-gold font-bold">${bot.price}</span>
+                        ))}
+                      </div>
+                      
+                      <div className="flex justify-between">
+                        <button
+                          onClick={() => setCurrentStep(2)}
+                          className="btn-kingdom-secondary"
+                        >
+                          Previous
+                        </button>
+                        <button
+                          onClick={() => setCurrentStep(4)}
+                          className="btn-kingdom-primary"
+                        >
+                          Next: Customization
+                        </button>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Step 4: Customization */}
+                  {currentStep === 4 && (
+                    <div className="space-y-6">
+                      <h2 className="text-2xl font-bold text-white mb-6">Customization</h2>
+                      
+                      <div className="space-y-4">
+                        <div>
+                          <label className="block text-white font-medium mb-2">Brand Colors</label>
+                          <input
+                            type="text"
+                            value={formData.brandColors}
+                            onChange={(e) => handleInputChange('brandColors', e.target.value)}
+                            className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:outline-none focus:border-kingdom-gold"
+                            placeholder="e.g., #FF6B35, #2C3E50"
+                          />
+                        </div>
+                        
+                        <div>
+                          <label className="block text-white font-medium mb-2">Logo URL</label>
+                          <input
+                            type="url"
+                            value={formData.logoUrl}
+                            onChange={(e) => handleInputChange('logoUrl', e.target.value)}
+                            className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:outline-none focus:border-kingdom-gold"
+                            placeholder="https://yourwebsite.com/logo.png"
+                          />
+                        </div>
+                        
+                        <div>
+                          <label className="block text-white font-medium mb-2">Custom Tone</label>
+                          <textarea
+                            value={formData.customTone}
+                            onChange={(e) => handleInputChange('customTone', e.target.value)}
+                            className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:outline-none focus:border-kingdom-gold"
+                            rows={3}
+                            placeholder="Describe the tone and personality you want for your chatbot..."
+                          />
+                        </div>
+                        
+                        <div>
+                          <label className="block text-white font-medium mb-2">Specific Features</label>
+                          <textarea
+                            value={formData.specificFeatures}
+                            onChange={(e) => handleInputChange('specificFeatures', e.target.value)}
+                            className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:outline-none focus:border-kingdom-gold"
+                            rows={3}
+                            placeholder="Any specific features or functionality you need..."
+                          />
                         </div>
                       </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Add-ons */}
-                <div className="mb-8">
-                  <h3 className="text-xl font-bold text-white mb-4">Customization Add-ons</h3>
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                    {addOns.map((addon) => (
-                      <div
-                        key={addon.id}
-                        className={`p-4 rounded-lg border transition-all duration-200 cursor-pointer ${
-                          formData.selectedAddOns.includes(addon.id)
-                            ? 'bg-gradient-to-r from-kingdom-gold/20 to-kingdom-orange/20 border-kingdom-gold/50'
-                            : 'bg-white/5 border-white/10 hover:border-kingdom-gold/50'
-                        }`}
-                        onClick={() => toggleAddOn(addon.id)}
-                      >
-                        <div className="flex items-center gap-2 mb-2">
-                          <span className="text-xl">{addon.name}</span>
-                          <span className="text-kingdom-gold font-bold">${addon.price}</span>
-                        </div>
-                        <div className="text-white/80 text-sm">{addon.name}</div>
+                      
+                      <div className="flex justify-between">
+                        <button
+                          onClick={() => setCurrentStep(3)}
+                          className="btn-kingdom-secondary"
+                        >
+                          Previous
+                        </button>
+                        <button
+                          onClick={() => setCurrentStep(5)}
+                          className="btn-kingdom-primary"
+                        >
+                          Next: Integration
+                        </button>
                       </div>
-                    ))}
-                  </div>
-                </div>
+                    </div>
+                  )}
 
-                {/* Total */}
-                <div className="bg-gradient-to-r from-kingdom-gold/10 to-kingdom-orange/10 rounded-lg p-6 border border-kingdom-gold/30">
-                  <div className="flex justify-between items-center">
-                    <span className="text-white font-bold text-lg">Total:</span>
-                    <span className="text-kingdom-gold font-bold text-2xl">${calculateTotal()}</span>
-                  </div>
-                </div>
-                
-                <div className="mt-8 flex justify-between">
-                  <button
-                    type="button"
-                    onClick={() => setCurrentStep(1)}
-                    className="bg-white/10 text-white px-8 py-3 rounded-lg font-bold hover:bg-white/20 transition-all duration-200"
-                  >
-                    Back
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => setCurrentStep(3)}
-                    className="bg-gradient-to-r from-kingdom-gold to-kingdom-orange text-kingdom-dark px-8 py-3 rounded-lg font-bold hover:scale-105 transition-all duration-200"
-                  >
-                    Next: Customization
-                  </button>
+                  {/* Step 5: Integration */}
+                  {currentStep === 5 && (
+                    <div className="space-y-6">
+                      <h2 className="text-2xl font-bold text-white mb-6">Integration Requirements</h2>
+                      
+                      <div className="space-y-4">
+                        <div>
+                          <label className="block text-white font-medium mb-2">CRM System</label>
+                          <select
+                            value={formData.crmSystem}
+                            onChange={(e) => handleInputChange('crmSystem', e.target.value)}
+                            className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white focus:outline-none focus:border-kingdom-gold"
+                          >
+                            <option value="">Select CRM</option>
+                            <option value="hubspot">HubSpot</option>
+                            <option value="salesforce">Salesforce</option>
+                            <option value="pipedrive">Pipedrive</option>
+                            <option value="zoho">Zoho</option>
+                            <option value="none">None</option>
+                            <option value="other">Other</option>
+                          </select>
+                        </div>
+                        
+                        <div>
+                          <label className="block text-white font-medium mb-2">Payment Processor</label>
+                          <select
+                            value={formData.paymentProcessor}
+                            onChange={(e) => handleInputChange('paymentProcessor', e.target.value)}
+                            className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white focus:outline-none focus:border-kingdom-gold"
+                          >
+                            <option value="">Select payment processor</option>
+                            <option value="stripe">Stripe</option>
+                            <option value="paypal">PayPal</option>
+                            <option value="square">Square</option>
+                            <option value="none">None</option>
+                            <option value="other">Other</option>
+                          </select>
+                        </div>
+                        
+                        <div>
+                          <label className="block text-white font-medium mb-2">Analytics Tools</label>
+                          <input
+                            type="text"
+                            value={formData.analyticsTools}
+                            onChange={(e) => handleInputChange('analyticsTools', e.target.value)}
+                            className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:outline-none focus:border-kingdom-gold"
+                            placeholder="Google Analytics, Facebook Pixel, etc."
+                          />
+                        </div>
+                        
+                        <div>
+                          <label className="block text-white font-medium mb-2">Other Integrations</label>
+                          <textarea
+                            value={formData.otherIntegrations}
+                            onChange={(e) => handleInputChange('otherIntegrations', e.target.value)}
+                            className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:outline-none focus:border-kingdom-gold"
+                            rows={3}
+                            placeholder="Any other systems or tools you need to integrate with..."
+                          />
+                        </div>
+                      </div>
+                      
+                      <div className="flex justify-between">
+                        <button
+                          onClick={() => setCurrentStep(4)}
+                          className="btn-kingdom-secondary"
+                        >
+                          Previous
+                        </button>
+                        <button
+                          onClick={() => setCurrentStep(6)}
+                          className="btn-kingdom-primary"
+                        >
+                          Next: Final Details
+                        </button>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Step 6: Final Details */}
+                  {currentStep === 6 && (
+                    <div className="space-y-6">
+                      <h2 className="text-2xl font-bold text-white mb-6">Final Details</h2>
+                      
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                          <label className="block text-white font-medium mb-2">Timeline</label>
+                          <select
+                            value={formData.timeline}
+                            onChange={(e) => handleInputChange('timeline', e.target.value)}
+                            className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white focus:outline-none focus:border-kingdom-gold"
+                          >
+                            <option value="">Select timeline</option>
+                            <option value="asap">ASAP</option>
+                            <option value="1-2-weeks">1-2 weeks</option>
+                            <option value="2-4-weeks">2-4 weeks</option>
+                            <option value="1-2-months">1-2 months</option>
+                            <option value="flexible">Flexible</option>
+                          </select>
+                        </div>
+                        
+                        <div>
+                          <label className="block text-white font-medium mb-2">Budget Range</label>
+                          <select
+                            value={formData.budget}
+                            onChange={(e) => handleInputChange('budget', e.target.value)}
+                            className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white focus:outline-none focus:border-kingdom-gold"
+                          >
+                            <option value="">Select budget range</option>
+                            <option value="under-500">Under $500</option>
+                            <option value="500-1000">$500 - $1,000</option>
+                            <option value="1000-2000">$1,000 - $2,000</option>
+                            <option value="2000-5000">$2,000 - $5,000</option>
+                            <option value="over-5000">Over $5,000</option>
+                          </select>
+                        </div>
+                        
+                        <div>
+                          <label className="block text-white font-medium mb-2">Urgency Level</label>
+                          <select
+                            value={formData.urgency}
+                            onChange={(e) => handleInputChange('urgency', e.target.value)}
+                            className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white focus:outline-none focus:border-kingdom-gold"
+                          >
+                            <option value="">Select urgency</option>
+                            <option value="low">Low - No rush</option>
+                            <option value="medium">Medium - Within a month</option>
+                            <option value="high">High - Need it soon</option>
+                            <option value="urgent">Urgent - ASAP</option>
+                          </select>
+                        </div>
+                        
+                        <div>
+                          <label className="block text-white font-medium mb-2">Expected Volume</label>
+                          <select
+                            value={formData.expectedVolume}
+                            onChange={(e) => handleInputChange('expectedVolume', e.target.value)}
+                            className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white focus:outline-none focus:border-kingdom-gold"
+                          >
+                            <option value="">Select expected volume</option>
+                            <option value="low">Low - Under 100 conversations/month</option>
+                            <option value="medium">Medium - 100-1000 conversations/month</option>
+                            <option value="high">High - 1000-10000 conversations/month</option>
+                            <option value="enterprise">Enterprise - 10000+ conversations/month</option>
+                          </select>
+                        </div>
+                      </div>
+                      
+                      <div>
+                        <label className="block text-white font-medium mb-2">Use Case</label>
+                        <textarea
+                          value={formData.useCase}
+                          onChange={(e) => handleInputChange('useCase', e.target.value)}
+                          className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:outline-none focus:border-kingdom-gold"
+                          rows={3}
+                          placeholder="Describe your primary use case for the chatbot..."
+                        />
+                      </div>
+                      
+                      <div>
+                        <label className="block text-white font-medium mb-2">Target Audience</label>
+                        <textarea
+                          value={formData.targetAudience}
+                          onChange={(e) => handleInputChange('targetAudience', e.target.value)}
+                          className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:outline-none focus:border-kingdom-gold"
+                          rows={2}
+                          placeholder="Who will be interacting with your chatbot?"
+                        />
+                      </div>
+                      
+                      <div>
+                        <label className="block text-white font-medium mb-2">Special Requirements</label>
+                        <textarea
+                          value={formData.specialRequirements}
+                          onChange={(e) => handleInputChange('specialRequirements', e.target.value)}
+                          className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:outline-none focus:border-kingdom-gold"
+                          rows={3}
+                          placeholder="Any special requirements, compliance needs, or unique features..."
+                        />
+                      </div>
+                      
+                      {/* Order Summary */}
+                      <div className="bg-white/5 rounded-lg p-6 mt-8">
+                        <h3 className="text-xl font-bold text-white mb-4">Order Summary</h3>
+                        <div className="space-y-2">
+                          {formData.selectedBots.length > 0 && (
+                            <div>
+                              <h4 className="text-kingdom-gold font-medium">Selected Bots:</h4>
+                              <ul className="text-white/80 text-sm ml-4">
+                                {formData.selectedBots.map(botId => {
+                                  const bot = bots.find(b => b.id === botId);
+                                  return <li key={botId}>• {bot?.name} - ${bot?.price}</li>;
+                                })}
+                              </ul>
+                            </div>
+                          )}
+                          
+                          {formData.selectedAddOns.length > 0 && (
+                            <div>
+                              <h4 className="text-kingdom-gold font-medium">Selected Add-ons:</h4>
+                              <ul className="text-white/80 text-sm ml-4">
+                                {formData.selectedAddOns.map(addonId => {
+                                  const addon = addOns.find(a => a.id === addonId);
+                                  return <li key={addonId}>• {addon?.name} - ${addon?.price}</li>;
+                                })}
+                              </ul>
+                            </div>
+                          )}
+                          
+                          <div className="border-t border-white/20 pt-4 mt-4">
+                            <div className="flex justify-between items-center">
+                              <span className="text-white font-medium">Total:</span>
+                              <span className="text-kingdom-gold font-bold text-xl">${calculateTotal()}</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <div className="flex justify-between">
+                        <button
+                          onClick={() => setCurrentStep(5)}
+                          className="btn-kingdom-secondary"
+                        >
+                          Previous
+                        </button>
+                        <button
+                          onClick={handleSubmit}
+                          disabled={isSubmitting}
+                          className="btn-kingdom-primary"
+                        >
+                          {isSubmitting ? 'Submitting...' : 'Submit Order'}
+                        </button>
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
-            )}
-
-            {/* Step 3: Customization */}
-            {currentStep === 3 && (
-              <div className="bg-white/5 backdrop-blur-sm rounded-xl p-8 border border-white/10">
-                <h2 className="text-2xl font-bold text-white mb-6">Step 3: Customization</h2>
-                
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div>
-                    <label className="block text-white font-semibold mb-2">Brand Colors (hex codes)</label>
-                    <input
-                      type="text"
-                      placeholder="#FF6B35, #144E9C"
-                      value={formData.brandColors}
-                      onChange={(e) => handleInputChange('brandColors', e.target.value)}
-                      className="w-full bg-white/10 text-white px-4 py-3 rounded-lg border border-white/20 focus:border-kingdom-gold focus:outline-none"
-                    />
-                  </div>
-                  
-                  <div>
-                    <label className="block text-white font-semibold mb-2">Logo URL</label>
-                    <input
-                      type="url"
-                      placeholder="https://yourcompany.com/logo.png"
-                      value={formData.logoUrl}
-                      onChange={(e) => handleInputChange('logoUrl', e.target.value)}
-                      className="w-full bg-white/10 text-white px-4 py-3 rounded-lg border border-white/20 focus:border-kingdom-gold focus:outline-none"
-                    />
-                  </div>
-                  
-                  <div>
-                    <label className="block text-white font-semibold mb-2">Communication Tone</label>
-                    <select
-                      value={formData.customTone}
-                      onChange={(e) => handleInputChange('customTone', e.target.value)}
-                      className="w-full bg-white/10 text-white px-4 py-3 rounded-lg border border-white/20 focus:border-kingdom-gold focus:outline-none"
-                    >
-                      <option value="">Select Tone</option>
-                      <option value="professional">Professional & Formal</option>
-                      <option value="friendly">Friendly & Casual</option>
-                      <option value="faith-based">Faith-based & Inspirational</option>
-                      <option value="technical">Technical & Detailed</option>
-                      <option value="conversational">Conversational & Natural</option>
-                    </select>
-                  </div>
-                  
-                  <div>
-                    <label className="block text-white font-semibold mb-2">Specific Features Needed</label>
-                    <textarea
-                      placeholder="Describe any specific features or functionality you need..."
-                      value={formData.specificFeatures}
-                      onChange={(e) => handleInputChange('specificFeatures', e.target.value)}
-                      rows={3}
-                      className="w-full bg-white/10 text-white px-4 py-3 rounded-lg border border-white/20 focus:border-kingdom-gold focus:outline-none"
-                    />
-                  </div>
-                </div>
-                
-                <div className="mt-8 flex justify-between">
-                  <button
-                    type="button"
-                    onClick={() => setCurrentStep(2)}
-                    className="bg-white/10 text-white px-8 py-3 rounded-lg font-bold hover:bg-white/20 transition-all duration-200"
-                  >
-                    Back
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => setCurrentStep(4)}
-                    className="bg-gradient-to-r from-kingdom-gold to-kingdom-orange text-kingdom-dark px-8 py-3 rounded-lg font-bold hover:scale-105 transition-all duration-200"
-                  >
-                    Next: Integration & Timeline
-                  </button>
-                </div>
-              </div>
-            )}
-
-            {/* Step 4: Integration & Timeline */}
-            {currentStep === 4 && (
-              <div className="bg-white/5 backdrop-blur-sm rounded-xl p-8 border border-white/10">
-                <h2 className="text-2xl font-bold text-white mb-6">Step 4: Integration & Timeline</h2>
-                
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div>
-                    <label className="block text-white font-semibold mb-2">CRM System</label>
-                    <select
-                      value={formData.crmSystem}
-                      onChange={(e) => handleInputChange('crmSystem', e.target.value)}
-                      className="w-full bg-white/10 text-white px-4 py-3 rounded-lg border border-white/20 focus:border-kingdom-gold focus:outline-none"
-                    >
-                      <option value="">Select CRM</option>
-                      <option value="salesforce">Salesforce</option>
-                      <option value="hubspot">HubSpot</option>
-                      <option value="pipedrive">Pipedrive</option>
-                      <option value="zoho">Zoho</option>
-                      <option value="none">None</option>
-                      <option value="other">Other</option>
-                    </select>
-                  </div>
-                  
-                  <div>
-                    <label className="block text-white font-semibold mb-2">Payment Processor</label>
-                    <select
-                      value={formData.paymentProcessor}
-                      onChange={(e) => handleInputChange('paymentProcessor', e.target.value)}
-                      className="w-full bg-white/10 text-white px-4 py-3 rounded-lg border border-white/20 focus:border-kingdom-gold focus:outline-none"
-                    >
-                      <option value="">Select Processor</option>
-                      <option value="stripe">Stripe</option>
-                      <option value="paypal">PayPal</option>
-                      <option value="square">Square</option>
-                      <option value="none">None</option>
-                      <option value="other">Other</option>
-                    </select>
-                  </div>
-                  
-                  <div>
-                    <label className="block text-white font-semibold mb-2">Analytics Tools</label>
-                    <input
-                      type="text"
-                      placeholder="Google Analytics, Mixpanel, etc."
-                      value={formData.analyticsTools}
-                      onChange={(e) => handleInputChange('analyticsTools', e.target.value)}
-                      className="w-full bg-white/10 text-white px-4 py-3 rounded-lg border border-white/20 focus:border-kingdom-gold focus:outline-none"
-                    />
-                  </div>
-                  
-                  <div>
-                    <label className="block text-white font-semibold mb-2">Other Integrations</label>
-                    <input
-                      type="text"
-                      placeholder="Zapier, Slack, etc."
-                      value={formData.otherIntegrations}
-                      onChange={(e) => handleInputChange('otherIntegrations', e.target.value)}
-                      className="w-full bg-white/10 text-white px-4 py-3 rounded-lg border border-white/20 focus:border-kingdom-gold focus:outline-none"
-                    />
-                  </div>
-                  
-                  <div>
-                    <label className="block text-white font-semibold mb-2">Timeline</label>
-                    <select
-                      value={formData.timeline}
-                      onChange={(e) => handleInputChange('timeline', e.target.value)}
-                      className="w-full bg-white/10 text-white px-4 py-3 rounded-lg border border-white/20 focus:border-kingdom-gold focus:outline-none"
-                    >
-                      <option value="">Select Timeline</option>
-                      <option value="urgent">Urgent (1-2 weeks)</option>
-                      <option value="standard">Standard (3-4 weeks)</option>
-                      <option value="flexible">Flexible (1-2 months)</option>
-                    </select>
-                  </div>
-                  
-                  <div>
-                    <label className="block text-white font-semibold mb-2">Budget Range</label>
-                    <select
-                      value={formData.budget}
-                      onChange={(e) => handleInputChange('budget', e.target.value)}
-                      className="w-full bg-white/10 text-white px-4 py-3 rounded-lg border border-white/20 focus:border-kingdom-gold focus:outline-none"
-                    >
-                      <option value="">Select Budget</option>
-                      <option value="under-500">Under $500</option>
-                      <option value="500-1000">$500 - $1,000</option>
-                      <option value="1000-2000">$1,000 - $2,000</option>
-                      <option value="2000+">$2,000+</option>
-                    </select>
-                  </div>
-                </div>
-                
-                <div className="mt-8 flex justify-between">
-                  <button
-                    type="button"
-                    onClick={() => setCurrentStep(3)}
-                    className="bg-white/10 text-white px-8 py-3 rounded-lg font-bold hover:bg-white/20 transition-all duration-200"
-                  >
-                    Back
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => setCurrentStep(5)}
-                    className="bg-gradient-to-r from-kingdom-gold to-kingdom-orange text-kingdom-dark px-8 py-3 rounded-lg font-bold hover:scale-105 transition-all duration-200"
-                  >
-                    Next: Additional Information
-                  </button>
-                </div>
-              </div>
-            )}
-
-            {/* Step 5: Additional Information */}
-            {currentStep === 5 && (
-              <div className="bg-white/5 backdrop-blur-sm rounded-xl p-8 border border-white/10">
-                <h2 className="text-2xl font-bold text-white mb-6">Step 5: Additional Information</h2>
-                
-                <div className="space-y-6">
-                  <div>
-                    <label className="block text-white font-semibold mb-2">Primary Use Case</label>
-                    <textarea
-                      placeholder="Describe how you plan to use the AI bot..."
-                      value={formData.useCase}
-                      onChange={(e) => handleInputChange('useCase', e.target.value)}
-                      rows={3}
-                      className="w-full bg-white/10 text-white px-4 py-3 rounded-lg border border-white/20 focus:border-kingdom-gold focus:outline-none"
-                    />
-                  </div>
-                  
-                  <div>
-                    <label className="block text-white font-semibold mb-2">Target Audience</label>
-                    <textarea
-                      placeholder="Describe your target audience..."
-                      value={formData.targetAudience}
-                      onChange={(e) => handleInputChange('targetAudience', e.target.value)}
-                      rows={3}
-                      className="w-full bg-white/10 text-white px-4 py-3 rounded-lg border border-white/20 focus:border-kingdom-gold focus:outline-none"
-                    />
-                  </div>
-                  
-                  <div>
-                    <label className="block text-white font-semibold mb-2">Expected Volume</label>
-                    <select
-                      value={formData.expectedVolume}
-                      onChange={(e) => handleInputChange('expectedVolume', e.target.value)}
-                      className="w-full bg-white/10 text-white px-4 py-3 rounded-lg border border-white/20 focus:border-kingdom-gold focus:outline-none"
-                    >
-                      <option value="">Select Volume</option>
-                      <option value="low">Low (1-50 interactions/day)</option>
-                      <option value="medium">Medium (50-200 interactions/day)</option>
-                      <option value="high">High (200+ interactions/day)</option>
-                    </select>
-                  </div>
-                  
-                  <div>
-                    <label className="block text-white font-semibold mb-2">Special Requirements</label>
-                    <textarea
-                      placeholder="Any special requirements, compliance needs, or additional information..."
-                      value={formData.specialRequirements}
-                      onChange={(e) => handleInputChange('specialRequirements', e.target.value)}
-                      rows={4}
-                      className="w-full bg-white/10 text-white px-4 py-3 rounded-lg border border-white/20 focus:border-kingdom-gold focus:outline-none"
-                    />
-                  </div>
-                </div>
-                
-                <div className="mt-8 flex justify-between">
-                  <button
-                    type="button"
-                    onClick={() => setCurrentStep(4)}
-                    className="bg-white/10 text-white px-8 py-3 rounded-lg font-bold hover:bg-white/20 transition-all duration-200"
-                  >
-                    Back
-                  </button>
-                  <button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="bg-gradient-to-r from-kingdom-gold to-kingdom-orange text-kingdom-dark px-8 py-3 rounded-lg font-bold hover:scale-105 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
-                  >
-                    {isSubmitting ? 'Submitting...' : 'Submit Order'}
-                  </button>
-                </div>
-              </div>
-            )}
-          </form>
+            </section>
+          </main>
+          
+          <Footer />
         </div>
-      </main>
-      
-      <Footer />
+      </div>
     </>
   );
 } 
