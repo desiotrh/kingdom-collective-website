@@ -144,20 +144,20 @@ export default function Apps() {
             </p>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
-              <div className="text-center">
+              <div className="text-center flex flex-col h-full">
                 <div className="text-3xl sm:text-4xl mb-4">🔄</div>
                 <h3 className="text-heading-secondary mb-3">Cross-Platform Sync</h3>
-                <p className="text-body-primary">Content and data sync seamlessly across all your Kingdom apps.</p>
+                <p className="text-body-primary flex-1">Content and data sync seamlessly across all your Kingdom apps.</p>
               </div>
-              <div className="text-center">
+              <div className="text-center flex flex-col h-full">
                 <div className="text-3xl sm:text-4xl mb-4">🎯</div>
                 <h3 className="text-heading-secondary mb-3">Unified Analytics</h3>
-                <p className="text-body-primary">Track your growth and impact across all platforms in one dashboard.</p>
+                <p className="text-body-primary flex-1">Track your growth and impact across all platforms in one dashboard.</p>
               </div>
-              <div className="text-center">
+              <div className="text-center flex flex-col h-full">
                 <div className="text-3xl sm:text-4xl mb-4">🚀</div>
                 <h3 className="text-heading-secondary mb-3">Scalable Growth</h3>
-                <p className="text-body-primary">Start with one app and expand your toolkit as your ministry grows.</p>
+                <p className="text-body-primary flex-1">Start with one app and expand your toolkit as your ministry grows.</p>
               </div>
             </div>
           </div>
