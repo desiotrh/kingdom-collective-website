@@ -267,7 +267,7 @@ export default function Account() {
         <Navigation />
         
         {/* Account Header */}
-        <section className="px-40 py-20">
+        <section className="px-4 sm:px-6 md:px-8 lg:px-12 xl:px-40 py-12 sm:py-16 md:py-20">
           <div className="max-w-[960px] mx-auto">
             <h1 className="text-white text-4xl font-black leading-tight tracking-[-0.033em] mb-4">
               Account Settings
@@ -279,7 +279,7 @@ export default function Account() {
         </section>
 
         {/* Account Content */}
-        <section className="px-40 py-20">
+        <section className="px-4 sm:px-6 md:px-8 lg:px-12 xl:px-40 py-12 sm:py-16 md:py-20">
           <div className="max-w-[960px] mx-auto">
             <div className="flex flex-col lg:flex-row gap-8">
               {/* Sidebar */}

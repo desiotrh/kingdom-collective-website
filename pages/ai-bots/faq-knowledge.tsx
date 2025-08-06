@@ -116,7 +116,7 @@ export default function FAQKnowledgeBot() {
           <Navigation />
           
           {/* Hero Section */}
-          <section className="px-40 py-20">
+          <section className="px-4 sm:px-6 md:px-8 lg:px-12 xl:px-40 py-12 sm:py-16 md:py-20">
             <div className="max-w-6xl mx-auto text-center">
               <div className="mb-8">
                 <span className="text-6xl mb-4 block">❓</span>
@@ -147,7 +147,7 @@ export default function FAQKnowledgeBot() {
           </section>
 
           {/* Tab Navigation */}
-          <section className="px-40 py-8">
+          <section className="px-4 sm:px-6 md:px-8 lg:px-12 xl:px-40 py-8">
             <div className="max-w-6xl mx-auto">
               <div className="flex space-x-1 bg-black/20 backdrop-blur-sm rounded-xl p-2">
                 <button
@@ -195,7 +195,7 @@ export default function FAQKnowledgeBot() {
           </section>
 
           {/* Tab Content */}
-          <section className="px-40 py-20">
+          <section className="px-4 sm:px-6 md:px-8 lg:px-12 xl:px-40 py-12 sm:py-16 md:py-20">
             <div className="max-w-6xl mx-auto">
               
               {/* Overview Tab */}
@@ -670,7 +670,7 @@ export default function FAQKnowledgeBot() {
           </section>
 
           {/* CTA Section */}
-          <section className="px-40 py-20 bg-black/30 backdrop-blur-sm">
+          <section className="px-4 sm:px-6 md:px-8 lg:px-12 xl:px-40 py-12 sm:py-16 md:py-20 bg-black/30 backdrop-blur-sm">
             <div className="max-w-4xl mx-auto text-center">
               <h2 className="text-white text-4xl font-black mb-6">
                 Ready to Transform Your Support?

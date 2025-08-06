@@ -113,7 +113,7 @@ export default function AppointmentBookingBot() {
           <Navigation />
           
           {/* Hero Section */}
-          <section className="px-40 py-20">
+          <section className="px-4 sm:px-6 md:px-8 lg:px-12 xl:px-40 py-12 sm:py-16 md:py-20">
             <div className="max-w-6xl mx-auto text-center">
               <div className="mb-8">
                 <span className="text-6xl mb-4 block">📅</span>
@@ -144,7 +144,7 @@ export default function AppointmentBookingBot() {
           </section>
 
           {/* Tab Navigation */}
-          <section className="px-40 py-8">
+          <section className="px-4 sm:px-6 md:px-8 lg:px-12 xl:px-40 py-8">
             <div className="max-w-6xl mx-auto">
               <div className="flex space-x-1 bg-black/20 backdrop-blur-sm rounded-xl p-2">
                 <button
@@ -192,7 +192,7 @@ export default function AppointmentBookingBot() {
           </section>
 
           {/* Tab Content */}
-          <section className="px-40 py-20">
+          <section className="px-4 sm:px-6 md:px-8 lg:px-12 xl:px-40 py-12 sm:py-16 md:py-20">
             <div className="max-w-6xl mx-auto">
               
               {/* Overview Tab */}
