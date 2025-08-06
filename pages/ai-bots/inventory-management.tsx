@@ -279,7 +279,7 @@ export default function InventoryManagementBot() {
                         </ul>
                       </div>
                       
-                      <div className="bg-black/20 backdrop-blur-sm rounded-xl p-8">
+                      <div className="card-standard">
                         <h3 className="text-white text-2xl font-bold mb-4">⚡ Key Benefits</h3>
                         <ul className="space-y-3 text-white/80">
                           <li className="flex items-center">
@@ -311,7 +311,7 @@ export default function InventoryManagementBot() {
                   <div>
                     <h2 className="text-white text-4xl font-black mb-8">How It Works</h2>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                      <div className="bg-black/20 backdrop-blur-sm rounded-xl p-8 text-center">
+                      <div className="card-standard text-center">
                         <div className="w-16 h-16 bg-gradient-to-r from-kingdom-gold to-kingdom-orange rounded-full flex items-center justify-center mx-auto mb-4">
                           <span className="text-2xl">1</span>
                         </div>
@@ -321,7 +321,7 @@ export default function InventoryManagementBot() {
                         </p>
                       </div>
                       
-                      <div className="bg-black/20 backdrop-blur-sm rounded-xl p-8 text-center">
+                      <div className="card-standard text-center">
                         <div className="w-16 h-16 bg-gradient-to-r from-kingdom-gold to-kingdom-orange rounded-full flex items-center justify-center mx-auto mb-4">
                           <span className="text-2xl">2</span>
                         </div>
@@ -331,7 +331,7 @@ export default function InventoryManagementBot() {
                         </p>
                       </div>
                       
-                      <div className="bg-black/20 backdrop-blur-sm rounded-xl p-8 text-center">
+                      <div className="card-standard text-center">
                         <div className="w-16 h-16 bg-gradient-to-r from-kingdom-gold to-kingdom-orange rounded-full flex items-center justify-center mx-auto mb-4">
                           <span className="text-2xl">3</span>
                         </div>
@@ -632,7 +632,7 @@ export default function InventoryManagementBot() {
                   
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                     {/* Basic */}
-                    <div className="bg-black/20 backdrop-blur-sm rounded-xl p-8 border border-white/10">
+                    <div className="card-standard border border-white/10">
                       <h3 className="text-white text-2xl font-bold mb-4">Basic</h3>
                       <div className="text-kingdom-gold text-4xl font-black mb-6">$269</div>
                       <ul className="space-y-3 text-white/80 mb-8">
@@ -701,7 +701,7 @@ export default function InventoryManagementBot() {
                     </div>
 
                     {/* Enterprise */}
-                    <div className="bg-black/20 backdrop-blur-sm rounded-xl p-8 border border-white/10">
+                    <div className="card-standard border border-white/10">
                       <h3 className="text-white text-2xl font-bold mb-4">Enterprise</h3>
                       <div className="text-kingdom-gold text-4xl font-black mb-6">$569</div>
                       <ul className="space-y-3 text-white/80 mb-8">
