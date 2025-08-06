@@ -62,7 +62,7 @@ export default function Vision() {
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12">
               {/* Faith Mode */}
-              <div className="bg-black/20 backdrop-blur-sm border border-gray/30 rounded-xl p-6 sm:p-8">
+              <div className="card-standard p-6 sm:p-8">
                 <div className="text-center mb-6">
                   <div className="text-3xl sm:text-4xl mb-4">🙏</div>
                   <h3 className="text-white text-xl sm:text-2xl font-bold mb-4">Faith Mode</h3>
@@ -94,7 +94,7 @@ export default function Vision() {
               </div>
 
               {/* Encouragement Mode */}
-              <div className="bg-black/20 backdrop-blur-sm border border-gray/30 rounded-xl p-6 sm:p-8">
+              <div className="card-standard p-6 sm:p-8">
                 <div className="text-center mb-6">
                   <div className="text-3xl sm:text-4xl mb-4">✨</div>
                   <h3 className="text-white text-xl sm:text-2xl font-bold mb-4">Encouragement Mode</h3>

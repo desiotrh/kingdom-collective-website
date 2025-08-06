@@ -309,21 +309,21 @@ export default function Dashboard() {
 
             {/* Quick Stats */}
             <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-              <div className="bg-black/20 backdrop-blur-sm border border-white/10 rounded-xl p-6">
+              <div className="card-standard">
                 <h3 className="text-white font-bold text-lg mb-2">Active Apps</h3>
-                <p className="text-[#FFD700] text-3xl font-black">{userApps.length}</p>
+                <p className="text-kingdom-gold text-3xl font-black">{userApps.length}</p>
               </div>
-              <div className="bg-black/20 backdrop-blur-sm border border-white/10 rounded-xl p-6">
+              <div className="card-standard">
                 <h3 className="text-white font-bold text-lg mb-2">AI Bots</h3>
-                <p className="text-[#FFD700] text-3xl font-black">{userAIBots.length}</p>
+                <p className="text-kingdom-gold text-3xl font-black">{userAIBots.length}</p>
               </div>
-              <div className="bg-black/20 backdrop-blur-sm border border-white/10 rounded-xl p-6">
+              <div className="card-standard">
                 <h3 className="text-white font-bold text-lg mb-2">Orders</h3>
-                <p className="text-[#FFD700] text-3xl font-black">{orderHistory.length}</p>
+                <p className="text-kingdom-gold text-3xl font-black">{orderHistory.length}</p>
               </div>
-              <div className="bg-black/20 backdrop-blur-sm border border-white/10 rounded-xl p-6">
+              <div className="card-standard">
                 <h3 className="text-white font-bold text-lg mb-2">Notifications</h3>
-                <p className="text-[#FFD700] text-3xl font-black">{notifications.filter(n => !n.read).length}</p>
+                <p className="text-kingdom-gold text-3xl font-black">{notifications.filter(n => !n.read).length}</p>
               </div>
             </div>
 
@@ -400,7 +400,7 @@ export default function Dashboard() {
                 {/* User's Selected Apps */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
                   {userApps.map((app) => (
-                    <div key={app.id} className="bg-black/20 backdrop-blur-sm border border-white/10 rounded-xl p-6">
+                    <div key={app.id} className="card-standard">
                       <div className="flex items-center justify-between mb-4">
                         <div className="flex items-center">
                           <Image
@@ -496,7 +496,7 @@ export default function Dashboard() {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                   {userAIBots.map((bot) => (
-                    <div key={bot.id} className="bg-black/20 backdrop-blur-sm border border-white/10 rounded-xl p-6">
+                    <div key={bot.id} className="card-standard">
                       <div className="flex items-center justify-between mb-4">
                         <div className="flex items-center">
                           <div>
@@ -557,7 +557,7 @@ export default function Dashboard() {
 
                 <div className="space-y-4">
                   {orderHistory.map((order) => (
-                    <div key={order.id} className="bg-black/20 backdrop-blur-sm border border-white/10 rounded-xl p-6">
+                    <div key={order.id} className="card-standard">
                       <div className="flex items-center justify-between mb-4">
                         <div>
                           <h3 className="text-white font-bold text-lg">{order.id}</h3>
@@ -616,7 +616,7 @@ export default function Dashboard() {
 
                 <div className="space-y-4">
                   {notifications.map((notification) => (
-                    <div key={notification.id} className={`bg-black/20 backdrop-blur-sm border border-white/10 rounded-xl p-6 ${
+                    <div key={notification.id} className={`card-standard ${
                       !notification.read ? 'border-l-4 border-[#FFD700]' : ''
                     }`}>
                       <div className="flex items-start justify-between">

@@ -43,7 +43,7 @@ export default function Account() {
 
   const renderProfileTab = () => (
     <div className="space-y-6">
-      <div className="bg-black/20 backdrop-blur-sm rounded-xl p-6">
+      <div className="card-standard">
         <h3 className="text-white text-xl font-bold mb-4">Profile Information</h3>
         <form onSubmit={handleUpdateProfile} className="space-y-4">
           <div className="flex items-center space-x-4 mb-6">
@@ -93,7 +93,7 @@ export default function Account() {
 
   const renderAppsTab = () => (
     <div className="space-y-6">
-      <div className="bg-black/20 backdrop-blur-sm rounded-xl p-6">
+      <div className="card-standard">
         <h3 className="text-white text-xl font-bold mb-4">Your Selected Apps</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {user.selectedApps.map(appId => (
@@ -114,7 +114,7 @@ export default function Account() {
 
   const renderSocialTab = () => (
     <div className="space-y-6">
-      <div className="bg-black/20 backdrop-blur-sm rounded-xl p-6">
+      <div className="card-standard">
         <h3 className="text-white text-xl font-bold mb-4">Connected Social Accounts</h3>
         <div className="space-y-4">
           {user.socialAccounts.map(account => (
@@ -165,7 +165,7 @@ export default function Account() {
 
   const renderPreferencesTab = () => (
     <div className="space-y-6">
-      <div className="bg-black/20 backdrop-blur-sm rounded-xl p-6">
+      <div className="card-standard">
         <h3 className="text-white text-xl font-bold mb-4">Experience Preferences</h3>
         <div className="space-y-4">
           <div>
@@ -199,7 +199,7 @@ export default function Account() {
         </div>
       </div>
       
-      <div className="bg-black/20 backdrop-blur-sm rounded-xl p-6">
+      <div className="card-standard">
         <h3 className="text-white text-xl font-bold mb-4">Notifications</h3>
         <div className="space-y-4">
           <label className="flex items-center cursor-pointer">
@@ -220,7 +220,7 @@ export default function Account() {
 
   const renderBillingTab = () => (
     <div className="space-y-6">
-      <div className="bg-black/20 backdrop-blur-sm rounded-xl p-6">
+      <div className="card-standard">
         <h3 className="text-white text-xl font-bold mb-4">Subscription Status</h3>
         <div className="space-y-4">
           <div className="flex items-center justify-between p-4 bg-black/30 rounded-xl">
@@ -233,7 +233,7 @@ export default function Account() {
         </div>
       </div>
       
-      <div className="bg-black/20 backdrop-blur-sm rounded-xl p-6">
+      <div className="card-standard">
         <h3 className="text-white text-xl font-bold mb-4">Payment Methods</h3>
         <p className="text-gray-400">No payment methods added yet.</p>
                         <button className="mt-4 px-6 py-3 bg-gradient-to-r from-kingdom-gold to-kingdom-gold-soft text-black font-bold rounded-xl hover:from-kingdom-gold-soft hover:to-kingdom-gold-matte transition-all duration-200">

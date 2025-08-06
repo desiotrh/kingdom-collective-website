@@ -96,11 +96,11 @@ export default function OnboardingWizard() {
           <div
             key={app.id}
             onClick={() => handleAppToggle(app.id)}
-                         className={`bg-black/20 backdrop-blur-sm rounded-xl p-6 cursor-pointer transition-all duration-200 ${
-               selectedApps.includes(app.id) 
-                 ? 'border-2 border-kingdom-gold bg-kingdom-gold/10' 
-                 : 'border border-gray/30 hover:border-kingdom-gold/30'
-             }`}
+                                     className={`card-standard cursor-pointer transition-all duration-200 ${
+              selectedApps.includes(app.id) 
+                ? 'border-2 border-kingdom-gold bg-kingdom-gold/10' 
+                : 'hover:border-kingdom-gold/30'
+            }`}
           >
             <div className="flex items-center mb-4">
               <Image
@@ -135,7 +135,7 @@ export default function OnboardingWizard() {
           if (!app) return null;
           
           return (
-            <div key={appId} className="bg-black/20 backdrop-blur-sm rounded-xl p-6">
+                         <div key={appId} className="card-standard">
               <div className="flex items-center mb-4">
                 <Image
                   src={app.logo}
@@ -167,7 +167,7 @@ export default function OnboardingWizard() {
       <p className="text-white text-lg mb-8">Select your preferred mode and preferences:</p>
       
       <div className="space-y-6">
-        <div className="bg-black/20 backdrop-blur-sm rounded-xl p-6">
+        <div className="card-standard">
           <h3 className="text-white font-bold text-xl mb-4">Experience Mode</h3>
           <div className="space-y-4">
             <label className="flex items-center cursor-pointer">
@@ -199,7 +199,7 @@ export default function OnboardingWizard() {
           </div>
         </div>
         
-        <div className="bg-black/20 backdrop-blur-sm rounded-xl p-6">
+        <div className="card-standard">
           <h3 className="text-white font-bold text-xl mb-4">Notifications</h3>
           <label className="flex items-center cursor-pointer">
             <input
@@ -223,7 +223,7 @@ export default function OnboardingWizard() {
       <h2 className="text-white text-3xl font-bold mb-6">🎉 Welcome to Kingdom Collective!</h2>
       <p className="text-white text-lg mb-8">Your personalized experience is ready. You can always modify your preferences later.</p>
       
-      <div className="bg-black/20 backdrop-blur-sm rounded-xl p-6 mb-8">
+      <div className="card-standard mb-8">
         <h3 className="text-white font-bold text-xl mb-4">Your Selected Apps:</h3>
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
           {selectedApps.map(appId => {

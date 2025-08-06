@@ -103,7 +103,7 @@ export default function Features() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {differentiators.map((item, index) => (
-                <div key={index} className="bg-black/20 backdrop-blur-sm border border-gray/30 rounded-xl p-6 hover:bg-black/30 transition-all duration-300">
+                <div key={index} className="card-standard hover:bg-black/30 transition-all duration-300">
                   <div className="text-4xl mb-4">{item.icon}</div>
                   <h3 className="text-white text-xl font-bold mb-3">{item.title}</h3>
                   <p className="text-white leading-relaxed">{item.description}</p>
@@ -127,11 +127,11 @@ export default function Features() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
               {uniqueFeatures.map((feature, index) => (
-                <div key={index} className="bg-black/20 backdrop-blur-sm border border-gray/30 rounded-xl p-6 hover:bg-black/30 transition-all duration-300">
+                                <div key={index} className="card-standard hover:bg-black/30 transition-all duration-300">
                   <div className="flex items-center justify-between mb-4">
-                                      <span className="bg-kingdom-gold/20 text-kingdom-gold px-3 py-1 rounded-full text-xs font-bold">
-                    {feature.category}
-                  </span>
+                    <span className="bg-kingdom-gold/20 text-kingdom-gold px-3 py-1 rounded-full text-xs font-bold">
+                      {feature.category}
+                    </span>
                   </div>
                   <h3 className="text-white text-lg sm:text-xl font-bold mb-3">{feature.title}</h3>
                   <p className="text-white text-sm sm:text-base leading-relaxed">{feature.description}</p>

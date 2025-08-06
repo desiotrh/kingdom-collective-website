@@ -94,7 +94,7 @@ export default function Signup() {
             </div>
 
             {/* Email Signup Form */}
-            <div className="bg-black/20 backdrop-blur-sm border border-white/10 rounded-xl p-8 mb-6">
+            <div className="card-standard p-8 mb-6">
               <form onSubmit={handleEmailSignup} className="space-y-6">
                 <div>
                   <label htmlFor="email" className="block text-white font-medium mb-2">
