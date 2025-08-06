@@ -64,7 +64,7 @@ export default function Vision() {
               {/* Faith Mode */}
               <div className="card-standard p-6 sm:p-8">
                 <div className="text-center mb-6">
-                  <div className="text-3xl sm:text-4xl mb-4">🙏</div>
+                  <div className="icon-standard">🙏</div>
                   <h3 className="text-white text-xl sm:text-2xl font-bold mb-4">Faith Mode</h3>
                 </div>
                 <p className="text-white leading-relaxed text-sm sm:text-base md:text-lg">
@@ -96,7 +96,7 @@ export default function Vision() {
               {/* Encouragement Mode */}
               <div className="card-standard p-6 sm:p-8">
                 <div className="text-center mb-6">
-                  <div className="text-3xl sm:text-4xl mb-4">✨</div>
+                  <div className="icon-standard">✨</div>
                   <h3 className="text-white text-xl sm:text-2xl font-bold mb-4">Encouragement Mode</h3>
                 </div>
                 <p className="text-white leading-relaxed text-sm sm:text-base md:text-lg">
@@ -150,19 +150,19 @@ export default function Vision() {
             <div className="mt-8 sm:mt-12 text-center">
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
                 <div className="text-center">
-                  <div className="text-2xl sm:text-3xl mb-2">🎯</div>
+                  <div className="icon-small">🎯</div>
                   <h3 className="text-white font-bold text-sm sm:text-base">The Called</h3>
                 </div>
                 <div className="text-center">
-                  <div className="text-2xl sm:text-3xl mb-2">🤔</div>
+                  <div className="icon-small">🤔</div>
                   <h3 className="text-white font-bold text-sm sm:text-base">The Curious</h3>
                 </div>
                 <div className="text-center">
-                  <div className="text-2xl sm:text-3xl mb-2">🎨</div>
+                  <div className="icon-small">🎨</div>
                   <h3 className="text-white font-bold text-sm sm:text-base">The Creative</h3>
                 </div>
                 <div className="text-center">
-                  <div className="text-2xl sm:text-3xl mb-2">🙏</div>
+                  <div className="icon-small">🙏</div>
                   <h3 className="text-white font-bold text-sm sm:text-base">The Surrendered</h3>
                 </div>
               </div>

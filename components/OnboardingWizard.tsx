@@ -220,7 +220,7 @@ export default function OnboardingWizard() {
 
   const renderStep4 = () => (
     <div className="text-center">
-      <h2 className="text-white text-3xl font-bold mb-6">🎉 Welcome to Kingdom Collective!</h2>
+      <h2 className="text-white text-3xl font-bold mb-6"><span className="icon-small">🎉</span> Welcome to Kingdom Collective!</h2>
       <p className="text-white text-lg mb-8">Your personalized experience is ready. You can always modify your preferences later.</p>
       
       <div className="card-standard mb-8">

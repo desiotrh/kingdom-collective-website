@@ -220,7 +220,7 @@ export default function Contact() {
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 mt-8 sm:mt-12">
               <div className="text-center">
-                <div className="text-3xl sm:text-4xl mb-3 sm:mb-4">🚀</div>
+                <div className="icon-standard">🚀</div>
                 <h3 className="text-white text-lg sm:text-xl font-bold mb-2 sm:mb-3">Explore Our Apps</h3>
                 <p className="text-white text-sm sm:text-base">Discover all the tools in the Kingdom Collective suite.</p>
                 <Link href="/apps" className="inline-block mt-3 sm:mt-4 text-kingdom-gold hover:text-kingdom-gold/80 transition-colors duration-200 font-medium text-sm sm:text-base">
@@ -228,7 +228,7 @@ export default function Contact() {
                 </Link>
               </div>
               <div className="text-center">
-                <div className="text-3xl sm:text-4xl mb-3 sm:mb-4">💡</div>
+                <div className="icon-standard">💡</div>
                 <h3 className="text-white text-lg sm:text-xl font-bold mb-2 sm:mb-3">Learn Our Vision</h3>
                 <p className="text-white text-sm sm:text-base">Understand how we&apos;re empowering creators with purpose.</p>
                 <Link href="/vision" className="inline-block mt-3 sm:mt-4 text-kingdom-gold hover:text-kingdom-gold/80 transition-colors duration-200 font-medium text-sm sm:text-base">
@@ -236,7 +236,7 @@ export default function Contact() {
                 </Link>
               </div>
               <div className="text-center">
-                <div className="text-3xl sm:text-4xl mb-3 sm:mb-4">📱</div>
+                <div className="icon-standard">📱</div>
                 <h3 className="text-white text-lg sm:text-xl font-bold mb-2 sm:mb-3">Download Our Apps</h3>
                 <p className="text-white text-sm sm:text-base">Get our apps on your mobile device for on-the-go creation.</p>
                 <div className="flex flex-col sm:flex-row gap-2 mt-3 sm:mt-4 justify-center">

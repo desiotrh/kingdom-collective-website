@@ -104,7 +104,7 @@ export default function Features() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {differentiators.map((item, index) => (
                 <div key={index} className="card-standard hover:bg-black/30 transition-all duration-300">
-                  <div className="text-4xl mb-4">{item.icon}</div>
+                  <div className="icon-standard">{item.icon}</div>
                   <h3 className="text-white text-xl font-bold mb-3">{item.title}</h3>
                   <p className="text-white leading-relaxed">{item.description}</p>
                 </div>
