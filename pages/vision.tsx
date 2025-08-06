@@ -15,7 +15,7 @@ export default function Vision() {
         <section className="px-4 sm:px-6 md:px-8 lg:px-12 xl:px-40 py-12 sm:py-16 md:py-20">
           <div className="max-w-[960px] mx-auto text-center">
             <h1 className="text-white text-3xl sm:text-4xl md:text-5xl font-black leading-tight tracking-[-0.033em] mb-6">
-              Our <span className="text-kingdom-gold">Vision</span>
+              Our Vision
             </h1>
             <p className="text-white text-base sm:text-lg md:text-xl leading-relaxed max-w-3xl mx-auto mb-8">
               Kingdom Studios was birthed out of a mandate — not a marketing plan.
@@ -28,7 +28,7 @@ export default function Vision() {
           <div className="max-w-[960px] mx-auto">
             <div className="text-center mb-12 sm:mb-16">
               <h2 className="text-white text-2xl sm:text-3xl md:text-4xl font-black leading-tight tracking-[-0.033em] mb-6">
-                The <span className="text-kingdom-gold">Mandate</span>
+                The Mandate
               </h2>
             </div>
 
@@ -53,7 +53,7 @@ export default function Vision() {
           <div className="max-w-[960px] mx-auto">
             <div className="text-center mb-12 sm:mb-16">
               <h2 className="text-white text-2xl sm:text-3xl md:text-4xl font-black leading-tight tracking-[-0.033em] mb-6">
-                Built to <span className="text-kingdom-gold">Include</span>
+                Built to Include
               </h2>
               <p className="text-white text-base sm:text-lg md:text-xl leading-relaxed max-w-3xl mx-auto mb-8">
                 We recognize that not everyone who comes here is already walking with Jesus — and that&apos;s okay. That&apos;s why we built a dual-mode experience.
@@ -133,7 +133,7 @@ export default function Vision() {
           <div className="max-w-[960px] mx-auto">
             <div className="text-center mb-12 sm:mb-16">
               <h2 className="text-white text-2xl sm:text-3xl md:text-4xl font-black leading-tight tracking-[-0.033em] mb-6">
-                Created for <span className="text-kingdom-gold">You</span>
+                Created for You
               </h2>
             </div>
 
@@ -174,7 +174,7 @@ export default function Vision() {
         <section className="px-4 sm:px-6 md:px-8 lg:px-12 xl:px-40 py-12 sm:py-16 md:py-20">
           <div className="max-w-[960px] mx-auto text-center">
             <h2 className="text-white text-2xl sm:text-3xl md:text-4xl font-black leading-tight tracking-[-0.033em] mb-6">
-              Ready to Join the <span className="text-kingdom-gold">Movement</span>?
+              Ready to Join the Movement?
             </h2>
             <p className="text-white text-base sm:text-lg md:text-xl leading-relaxed max-w-3xl mx-auto mb-8">
               Start creating with purpose, sharing with authority, and building what truly matters.

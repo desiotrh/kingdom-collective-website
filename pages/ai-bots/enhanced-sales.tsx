@@ -145,7 +145,7 @@ export default function EnhancedSalesBot() {
                   <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
                     Enhanced Sales Bot
                   </h1>
-                  <p className="text-2xl text-kingdom-gold font-semibold mb-4">
+                  <p className="text-white text-xl font-semibold mb-4">
                     Advanced Sales Automation & Intelligence
                   </p>
                   <p className="text-xl text-white/80 mb-8 max-w-3xl mx-auto">

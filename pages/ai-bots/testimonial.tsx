@@ -366,7 +366,7 @@ export default function TestimonialBot() {
                           </div>
                           <div className="flex justify-between items-center">
                             <span className="text-purple-300">Service Reviews</span>
-                            <span className="text-blue-400 font-semibold">32%</span>
+                            <span className="text-kingdom-gold font-semibold">32%</span>
                           </div>
                           <div className="flex justify-between items-center">
                             <span className="text-purple-300">Video Testimonials</span>

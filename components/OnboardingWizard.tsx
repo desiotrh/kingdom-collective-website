@@ -96,11 +96,11 @@ export default function OnboardingWizard() {
           <div
             key={app.id}
             onClick={() => handleAppToggle(app.id)}
-            className={`bg-black/20 backdrop-blur-sm rounded-xl p-6 cursor-pointer transition-all duration-200 ${
-              selectedApps.includes(app.id) 
-                ? 'border-2 border-blue bg-blue/10' 
-                : 'border border-gray/30 hover:border-blue/30'
-            }`}
+                         className={`bg-black/20 backdrop-blur-sm rounded-xl p-6 cursor-pointer transition-all duration-200 ${
+               selectedApps.includes(app.id) 
+                 ? 'border-2 border-kingdom-gold bg-kingdom-gold/10' 
+                 : 'border border-gray/30 hover:border-kingdom-gold/30'
+             }`}
           >
             <div className="flex items-center mb-4">
               <Image
@@ -274,9 +274,9 @@ export default function OnboardingWizard() {
                   {index + 1}
                 </div>
                 {index < steps.length - 1 && (
-                  <div className={`w-16 h-1 mx-2 ${
-                    index + 1 < currentStep ? 'bg-blue' : 'bg-gray'
-                  }`} />
+                                     <div className={`w-16 h-1 mx-2 ${
+                     index + 1 < currentStep ? 'bg-kingdom-gold' : 'bg-gray'
+                   }`} />
                 )}
               </div>
             ))}
@@ -302,7 +302,7 @@ export default function OnboardingWizard() {
           <button
             onClick={handleNext}
             disabled={currentStep === 1 && selectedApps.length === 0}
-                            className="px-6 py-3 rounded-full bg-gray text-white font-bold disabled:opacity-50 disabled:cursor-not-allowed hover:bg-blue hover:text-white transition-all duration-200"
+                                                         className="px-6 py-3 rounded-full bg-gray text-white font-bold disabled:opacity-50 disabled:cursor-not-allowed hover:bg-kingdom-gold hover:text-white transition-all duration-200"
           >
             {currentStep === 4 ? 'Complete Setup' : 'Next'}
           </button>

@@ -371,7 +371,7 @@ export default function OnboardingBot() {
                           </div>
                           <div className="flex justify-between items-center">
                             <span className="text-purple-300">Setup</span>
-                            <span className="text-blue-400 font-semibold">87%</span>
+                            <span className="text-kingdom-gold font-semibold">87%</span>
                           </div>
                           <div className="flex justify-between items-center">
                             <span className="text-purple-300">First Use</span>

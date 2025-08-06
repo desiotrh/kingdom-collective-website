@@ -359,7 +359,7 @@ export default function FaithBot() {
                           </div>
                           <div className="flex justify-between items-center">
                             <span className="text-purple-300">Family & Relationships</span>
-                            <span className="text-blue-400 font-semibold">5</span>
+                            <span className="text-kingdom-gold font-semibold">5</span>
                           </div>
                           <div className="flex justify-between items-center">
                             <span className="text-purple-300">Work & Career</span>

@@ -48,7 +48,7 @@ export default function CookieNotice() {
             </button>
             <button
               onClick={acceptCookies}
-              className="px-4 py-2 text-sm bg-gray text-white rounded-lg hover:bg-blue hover:text-white transition-colors duration-200"
+                             className="px-4 py-2 text-sm bg-gray text-white rounded-lg hover:bg-kingdom-gold hover:text-white transition-colors duration-200"
             >
               Accept All
             </button>

@@ -78,8 +78,8 @@ export default function Home() {
             <section className="section-padding" aria-labelledby="apps-heading">
               <div className="container-standard">
                 <div className="text-center mb-12 sm:mb-16">
-                  <h2 id="apps-heading" className="text-4xl md:text-6xl font-bold leading-tight tracking-[-0.033em] text-white mb-4 sm:mb-6">
-                    Our <span className="text-kingdom-gold">Studio Apps</span>
+                  <h2 id="apps-heading" className="text-white text-2xl sm:text-3xl md:text-4xl font-black leading-tight tracking-[-0.033em] mb-4 sm:mb-6">
+                    Our Studio Apps
                   </h2>
                   <p className="text-white text-sm sm:text-base font-normal leading-relaxed max-w-3xl mx-auto px-4">
                     Kingdom Collective is more than just a suite of apps—it&apos;s a movement
@@ -108,8 +108,8 @@ export default function Home() {
             {/* About Section */}
             <section className="section-padding bg-black/30 backdrop-blur-sm" aria-labelledby="about-heading">
               <div className="container-standard text-center">
-                <h2 id="about-heading" className="text-4xl md:text-6xl font-bold leading-tight tracking-[-0.033em] text-white mb-6 sm:mb-8">
-                  About <span className="text-kingdom-gold">Kingdom Collective</span>
+                <h2 id="about-heading" className="text-white text-2xl sm:text-3xl md:text-4xl font-black leading-tight tracking-[-0.033em] mb-6 sm:mb-8">
+                  About Kingdom Collective
                 </h2>
                 <p className="text-white text-sm sm:text-base font-normal leading-relaxed px-4">
                   Our mission is to provide the tools, resources, and community support
