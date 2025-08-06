@@ -136,10 +136,10 @@ export default function Contact() {
         {/* Hero Section */}
         <section className="px-4 sm:px-6 md:px-8 lg:px-12 xl:px-40 py-12 sm:py-16 md:py-20">
           <div className="max-w-[960px] mx-auto text-center">
-            <h1 className="text-4xl md:text-6xl font-bold leading-tight tracking-[-0.033em] text-white mb-4 sm:mb-6">
-              Get in <span className="text-[#FFD700]">Touch</span>
+            <h1 className="text-white text-3xl sm:text-4xl md:text-5xl font-black leading-tight tracking-[-0.033em] mb-6">
+              Get in Touch
             </h1>
-            <p className="text-white text-base sm:text-lg md:text-xl leading-relaxed max-w-3xl mx-auto mb-6 sm:mb-8 px-4">
+            <p className="text-white text-base sm:text-lg md:text-xl leading-relaxed max-w-3xl mx-auto mb-8">
               We&apos;re here to help you succeed. Choose the right contact method for your needs.
             </p>
             
@@ -165,10 +165,10 @@ export default function Contact() {
         <section className="px-4 sm:px-6 md:px-8 lg:px-12 xl:px-40 py-12 sm:py-16 md:py-20">
           <div className="max-w-[960px] mx-auto">
             <div className="text-center mb-12 sm:mb-16">
-              <h2 className="text-white text-2xl sm:text-3xl md:text-4xl font-black leading-tight tracking-[-0.033em] mb-4 sm:mb-6">
+              <h2 className="text-white text-2xl sm:text-3xl md:text-4xl font-black leading-tight tracking-[-0.033em] mb-6">
                 AI Assistant
               </h2>
-              <p className="text-white text-sm sm:text-base font-normal leading-relaxed max-w-3xl mx-auto px-4">
+              <p className="text-white text-sm sm:text-base font-normal leading-normal max-w-3xl mx-auto">
                 Get instant answers to common questions with our AI-powered FAQ assistant.
               </p>
             </div>
@@ -211,10 +211,10 @@ export default function Contact() {
         {/* Additional Support Section */}
         <section className="px-4 sm:px-6 md:px-8 lg:px-12 xl:px-40 py-12 sm:py-16 md:py-20 bg-black/30 backdrop-blur-sm">
           <div className="max-w-[960px] mx-auto text-center">
-            <h2 className="text-white text-2xl sm:text-3xl md:text-4xl font-black leading-tight tracking-[-0.033em] mb-4 sm:mb-6">
+            <h2 className="text-white text-2xl sm:text-3xl md:text-4xl font-black leading-tight tracking-[-0.033em] mb-6">
               Ready to Get Started?
             </h2>
-            <p className="text-white text-base sm:text-lg md:text-xl leading-relaxed max-w-3xl mx-auto mb-6 sm:mb-8 px-4">
+            <p className="text-white text-base sm:text-lg md:text-xl leading-relaxed max-w-3xl mx-auto mb-8">
               Explore our apps and download them to your mobile device.
             </p>
             

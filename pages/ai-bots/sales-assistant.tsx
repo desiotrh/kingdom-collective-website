@@ -88,16 +88,16 @@ export default function SalesAssistantBotPage() {
           
           <main className="min-h-screen">
             {/* Hero Section */}
-            <section className="relative py-20 px-4 sm:px-6 lg:px-8">
-              <div className="max-w-7xl mx-auto">
-                <div className="text-center mb-12">
-                  <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
+            <section className="px-4 sm:px-6 md:px-8 lg:px-12 xl:px-40 py-12 sm:py-16 md:py-20">
+              <div className="max-w-[960px] mx-auto">
+                <div className="text-center mb-12 sm:mb-16">
+                  <h1 className="text-white text-3xl sm:text-4xl md:text-5xl font-black leading-tight tracking-[-0.033em] mb-6">
                     {botData.name}
                   </h1>
                   <p className="text-white text-xl font-semibold mb-4">
                     {botData.tagline}
                   </p>
-                  <p className="text-xl text-white/80 mb-8 max-w-3xl mx-auto">
+                  <p className="text-white text-base sm:text-lg md:text-xl leading-relaxed max-w-3xl mx-auto mb-8">
                     {botData.description}
                   </p>
                   <div className="text-4xl font-bold text-kingdom-gold mb-8">

@@ -39,7 +39,7 @@ export default function AppCard({
           </div>
           
           {/* Title */}
-                          <h3 className="text-heading-secondary mb-3 group-hover:text-kingdom-gold transition-colors duration-200">
+          <h3 className="text-heading-secondary mb-3 group-hover:text-kingdom-gold transition-colors duration-200">
             {title}
           </h3>
           

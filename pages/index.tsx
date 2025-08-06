@@ -75,13 +75,13 @@ export default function Home() {
             </section>
             
             {/* Apps Section */}
-            <section className="section-padding" aria-labelledby="apps-heading">
-              <div className="container-standard">
+            <section className="px-4 sm:px-6 md:px-8 lg:px-12 xl:px-40 py-12 sm:py-16 md:py-20" aria-labelledby="apps-heading">
+              <div className="max-w-[960px] mx-auto">
                 <div className="text-center mb-12 sm:mb-16">
-                  <h2 id="apps-heading" className="text-white text-2xl sm:text-3xl md:text-4xl font-black leading-tight tracking-[-0.033em] mb-4 sm:mb-6">
+                  <h2 id="apps-heading" className="text-white text-2xl sm:text-3xl md:text-4xl font-black leading-tight tracking-[-0.033em] mb-6">
                     Our Studio Apps
                   </h2>
-                  <p className="text-white text-sm sm:text-base font-normal leading-relaxed max-w-3xl mx-auto px-4">
+                  <p className="text-white text-sm sm:text-base font-normal leading-normal max-w-3xl mx-auto">
                     Kingdom Collective is more than just a suite of apps—it&apos;s a movement
                     dedicated to empowering creators, entrepreneurs, and community builders
                     to create with purpose, share with authority, and build what truly
@@ -106,12 +106,12 @@ export default function Home() {
             </section>
 
             {/* About Section */}
-            <section className="section-padding bg-black/30 backdrop-blur-sm" aria-labelledby="about-heading">
-              <div className="container-standard text-center">
-                <h2 id="about-heading" className="text-white text-2xl sm:text-3xl md:text-4xl font-black leading-tight tracking-[-0.033em] mb-6 sm:mb-8">
+            <section className="px-4 sm:px-6 md:px-8 lg:px-12 xl:px-40 py-12 sm:py-16 md:py-20 bg-black/30 backdrop-blur-sm" aria-labelledby="about-heading">
+              <div className="max-w-[960px] mx-auto text-center">
+                <h2 id="about-heading" className="text-white text-2xl sm:text-3xl md:text-4xl font-black leading-tight tracking-[-0.033em] mb-6">
                   About Kingdom Collective
                 </h2>
-                <p className="text-white text-sm sm:text-base font-normal leading-relaxed px-4">
+                <p className="text-white text-sm sm:text-base font-normal leading-normal">
                   Our mission is to provide the tools, resources, and community support
                   needed to help you make a lasting impact in your sphere of influence.
                   Whether you&apos;re creating content, building a business, or fostering
