@@ -355,7 +355,7 @@ export default function SocialMediaBot() {
                         { name: 'Pinterest', icon: '📌' },
                         { name: 'Snapchat', icon: '👻' }
                       ].map((platform) => (
-                        <div key={platform.name} className="bg-black/20 backdrop-blur-sm rounded-xl p-6 text-center">
+                        <div key={platform.name} className="card-standard text-center">
                           <div className="text-3xl mb-3">{platform.icon}</div>
                           <h3 className="text-white font-bold">{platform.name}</h3>
                         </div>
@@ -375,7 +375,7 @@ export default function SocialMediaBot() {
                   
                   <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                     {/* Chat Interface */}
-                    <div className="lg:col-span-2 bg-black/20 backdrop-blur-sm rounded-xl p-6">
+                    <div className="lg:col-span-2 card-standard">
                       <div className="flex items-center mb-6">
                         <div className="w-10 h-10 bg-gradient-to-r from-kingdom-gold to-kingdom-orange rounded-full flex items-center justify-center mr-3">
                           <span className="text-kingdom-dark text-lg">👑</span>
@@ -562,7 +562,7 @@ export default function SocialMediaBot() {
                           icon: '📋'
                         }
                       ].map((feature) => (
-                        <div key={feature.title} className="bg-black/20 backdrop-blur-sm rounded-xl p-6">
+                        <div key={feature.title} className="card-standard">
                           <div className="flex items-start space-x-4">
                             <span className="text-3xl">{feature.icon}</span>
                             <div>
@@ -600,7 +600,7 @@ export default function SocialMediaBot() {
                           icon: '💬'
                         }
                       ].map((feature) => (
-                        <div key={feature.title} className="bg-black/20 backdrop-blur-sm rounded-xl p-6">
+                        <div key={feature.title} className="card-standard">
                           <div className="flex items-start space-x-4">
                             <span className="text-3xl">{feature.icon}</span>
                             <div>
