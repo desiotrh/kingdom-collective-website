@@ -184,7 +184,7 @@ export default function Contact() {
                     value={faqQuestion}
                     onChange={(e) => setFaqQuestion(e.target.value)}
                     placeholder="Type your question here..."
-                    className="textarea-standard bg-black/30 border border-gray/30 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-gold/50 text-sm sm:text-base"
+                    className="textarea-standard text-sm sm:text-base"
                     rows={4}
                   />
                 </div>

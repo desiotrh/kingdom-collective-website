@@ -438,7 +438,7 @@ export default function InventoryManagementBot() {
                           value={demoMessage}
                           onChange={(e) => setDemoMessage(e.target.value)}
                           placeholder="Ask about stock levels, reorder suggestions, demand forecasting..."
-                          className="w-full p-4 bg-black/30 border border-gray/30 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-blue/50 transition-colors duration-200 resize-none"
+                          className="textarea-standard w-full"
                           rows={3}
                         />
                         <button

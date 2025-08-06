@@ -98,7 +98,7 @@ export default function Login() {
                     id="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="input-standard bg-black/30 border border-gray/30 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-gold/50"
+                    className="input-standard"
                     placeholder="Enter your email"
                     required
                   />
@@ -113,7 +113,7 @@ export default function Login() {
                     id="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    className="input-standard bg-black/30 border border-gray/30 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-gold/50"
+                    className="input-standard"
                     placeholder="Enter your password"
                     required
                   />
