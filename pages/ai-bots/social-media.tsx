@@ -390,7 +390,7 @@ export default function SocialMediaBot() {
                       <div className="space-y-4 mb-6 max-h-96 overflow-y-auto">
                         {conversationHistory.map((msg, index) => (
                           <div key={index} className={`flex ${msg.type === 'user' ? 'justify-end' : 'justify-start'}`}>
-                            <div className={`max-w-xs lg:max-w-md ${msg.type === 'user' ? 'bg-blue text-white' : 'bg-gradient-to-r from-kingdom-gold/20 to-kingdom-orange/20 text-white border border-kingdom-gold/30'}`}>
+                            <div className={`max-w-xs lg:max-w-md ${msg.type === 'user' ? 'bg-gradient-to-r from-kingdom-gold to-kingdom-gold-soft text-black' : 'bg-gradient-to-r from-kingdom-gold/20 to-kingdom-orange/20 text-white border border-kingdom-gold/30'}`}>
                               <div className="p-3 rounded-lg">
                                 <p className="text-sm">{msg.message}</p>
                                 <p className="text-xs opacity-60 mt-1">
@@ -730,7 +730,7 @@ export default function SocialMediaBot() {
           </section>
 
           {/* CTA Section */}
-          <section className="px-40 py-20 bg-black/30 backdrop-blur-sm">
+          <section className="px-4 sm:px-6 md:px-8 lg:px-12 xl:px-40 py-12 sm:py-16 md:py-20 bg-black/30 backdrop-blur-sm">
             <div className="max-w-4xl mx-auto text-center">
               <h2 className="text-white text-4xl font-black mb-6">
                 Ready to Transform Your Social Media?

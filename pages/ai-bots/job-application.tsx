@@ -330,7 +330,7 @@ export default function JobApplicationBot() {
                               <div
                                 className={`max-w-xs lg:max-w-md px-4 py-2 rounded-lg ${
                                   message.type === 'user'
-                                    ? 'bg-blue text-white'
+                                    ? 'bg-gradient-to-r from-kingdom-gold to-kingdom-gold-soft text-black'
                                     : 'bg-white/10 text-white'
                                 }`}
                               >

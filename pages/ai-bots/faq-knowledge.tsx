@@ -585,7 +585,7 @@ export default function FAQKnowledgeBot() {
                       </ul>
                       <Link
                         href="/ai-bots/pricing"
-                        className="w-full py-3 bg-gray text-white font-bold rounded-xl hover:bg-blue hover:text-white transition-all duration-200 text-center block"
+                        className="w-full py-3 bg-gray text-white font-bold rounded-xl hover:bg-kingdom-gold hover:text-black transition-all duration-200 text-center block"
                       >
                         Get Started
                       </Link>
@@ -658,7 +658,7 @@ export default function FAQKnowledgeBot() {
                       </ul>
                       <Link
                         href="/ai-bots/pricing"
-                        className="w-full py-3 bg-gray text-white font-bold rounded-xl hover:bg-blue hover:text-white transition-all duration-200 text-center block"
+                        className="w-full py-3 bg-gray text-white font-bold rounded-xl hover:bg-kingdom-gold hover:text-black transition-all duration-200 text-center block"
                       >
                         Get Started
                       </Link>

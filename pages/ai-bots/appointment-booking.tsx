@@ -591,7 +591,7 @@ export default function AppointmentBookingBot() {
                       </ul>
                       <Link
                         href="/ai-bots/pricing"
-                        className="w-full py-3 bg-gray text-white font-bold rounded-xl hover:bg-blue hover:text-white transition-all duration-200 text-center block"
+                        className="w-full py-3 bg-gray text-white font-bold rounded-xl hover:bg-kingdom-gold hover:text-black transition-all duration-200 text-center block"
                       >
                         Get Started
                       </Link>
@@ -664,7 +664,7 @@ export default function AppointmentBookingBot() {
                       </ul>
                       <Link
                         href="/ai-bots/pricing"
-                        className="w-full py-3 bg-gray text-white font-bold rounded-xl hover:bg-blue hover:text-white transition-all duration-200 text-center block"
+                        className="w-full py-3 bg-gray text-white font-bold rounded-xl hover:bg-kingdom-gold hover:text-black transition-all duration-200 text-center block"
                       >
                         Get Started
                       </Link>
@@ -676,7 +676,7 @@ export default function AppointmentBookingBot() {
           </section>
 
           {/* CTA Section */}
-          <section className="px-40 py-20 bg-black/30 backdrop-blur-sm">
+          <section className="px-4 sm:px-6 md:px-8 lg:px-12 xl:px-40 py-12 sm:py-16 md:py-20 bg-black/30 backdrop-blur-sm">
             <div className="max-w-4xl mx-auto text-center">
               <h2 className="text-white text-4xl font-black mb-6">
                 Ready to Automate Your Scheduling?
