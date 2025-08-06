@@ -208,7 +208,7 @@ export default function JobApplicationBot() {
                     <div>
                       <h2 className="text-white text-4xl font-black mb-8">What It Does</h2>
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                        <div className="bg-black/20 backdrop-blur-sm rounded-xl p-8">
+                        <div className="card-standard">
                           <h3 className="text-white text-2xl font-bold mb-4">🎯 Perfect For</h3>
                           <ul className="space-y-3 text-white/80">
                             <li className="flex items-center">
@@ -230,7 +230,7 @@ export default function JobApplicationBot() {
                           </ul>
                         </div>
                         
-                        <div className="bg-black/20 backdrop-blur-sm rounded-xl p-8">
+                        <div className="card-standard">
                           <h3 className="text-white text-2xl font-bold mb-4">⚡ Key Benefits</h3>
                           <ul className="space-y-3 text-white/80">
                             <li className="flex items-center">
