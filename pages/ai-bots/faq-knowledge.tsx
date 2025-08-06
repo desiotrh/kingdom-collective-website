@@ -154,7 +154,7 @@ export default function FAQKnowledgeBot() {
                   onClick={() => setActiveTab('overview')}
                   className={`flex-1 py-3 px-6 rounded-lg font-bold transition-all duration-200 ${
                     activeTab === 'overview' 
-                      ? 'bg-blue text-white' 
+                      ? 'bg-gradient-to-r from-kingdom-gold to-kingdom-gold-soft text-black' 
                       : 'text-white/70 hover:text-white'
                   }`}
                 >
@@ -164,7 +164,7 @@ export default function FAQKnowledgeBot() {
                   onClick={() => setActiveTab('demo')}
                   className={`flex-1 py-3 px-6 rounded-lg font-bold transition-all duration-200 ${
                     activeTab === 'demo' 
-                      ? 'bg-blue text-white' 
+                      ? 'bg-gradient-to-r from-kingdom-gold to-kingdom-gold-soft text-black' 
                       : 'text-white/70 hover:text-white'
                   }`}
                 >
@@ -174,7 +174,7 @@ export default function FAQKnowledgeBot() {
                   onClick={() => setActiveTab('features')}
                   className={`flex-1 py-3 px-6 rounded-lg font-bold transition-all duration-200 ${
                     activeTab === 'features' 
-                      ? 'bg-blue text-white' 
+                      ? 'bg-gradient-to-r from-kingdom-gold to-kingdom-gold-soft text-black' 
                       : 'text-white/70 hover:text-white'
                   }`}
                 >
@@ -184,7 +184,7 @@ export default function FAQKnowledgeBot() {
                   onClick={() => setActiveTab('pricing')}
                   className={`flex-1 py-3 px-6 rounded-lg font-bold transition-all duration-200 ${
                     activeTab === 'pricing' 
-                      ? 'bg-blue text-white' 
+                      ? 'bg-gradient-to-r from-kingdom-gold to-kingdom-gold-soft text-black' 
                       : 'text-white/70 hover:text-white'
                   }`}
                 >

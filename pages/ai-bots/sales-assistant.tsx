@@ -72,6 +72,7 @@ const botData = {
 };
 
 export default function SalesAssistantBotPage() {
+  const [activeTab, setActiveTab] = useState<'overview' | 'demo' | 'features' | 'pricing'>('overview');
   const [activeDemo, setActiveDemo] = useState(0);
 
   return (
@@ -112,6 +113,237 @@ export default function SalesAssistantBotPage() {
                     </Link>
                   </div>
                 </div>
+              </div>
+            </section>
+
+            {/* Tab Navigation */}
+            <section className="px-4 sm:px-6 md:px-8 lg:px-12 xl:px-40 py-8">
+              <div className="max-w-6xl mx-auto">
+                <div className="flex space-x-1 bg-black/20 backdrop-blur-sm rounded-xl p-2">
+                  <button
+                    onClick={() => setActiveTab('overview')}
+                    className={`flex-1 py-3 px-6 rounded-lg font-bold transition-all duration-200 ${
+                      activeTab === 'overview' 
+                        ? 'bg-gradient-to-r from-kingdom-gold to-kingdom-gold-soft text-black' 
+                        : 'text-white/70 hover:text-white'
+                    }`}
+                  >
+                    Overview
+                  </button>
+                  <button
+                    onClick={() => setActiveTab('demo')}
+                    className={`flex-1 py-3 px-6 rounded-lg font-bold transition-all duration-200 ${
+                      activeTab === 'demo' 
+                        ? 'bg-gradient-to-r from-kingdom-gold to-kingdom-gold-soft text-black' 
+                        : 'text-white/70 hover:text-white'
+                    }`}
+                  >
+                    Live Demo
+                  </button>
+                  <button
+                    onClick={() => setActiveTab('features')}
+                    className={`flex-1 py-3 px-6 rounded-lg font-bold transition-all duration-200 ${
+                      activeTab === 'features' 
+                        ? 'bg-gradient-to-r from-kingdom-gold to-kingdom-gold-soft text-black' 
+                        : 'text-white/70 hover:text-white'
+                    }`}
+                  >
+                    Features
+                  </button>
+                  <button
+                    onClick={() => setActiveTab('pricing')}
+                    className={`flex-1 py-3 px-6 rounded-lg font-bold transition-all duration-200 ${
+                      activeTab === 'pricing' 
+                        ? 'bg-gradient-to-r from-kingdom-gold to-kingdom-gold-soft text-black' 
+                        : 'text-white/70 hover:text-white'
+                    }`}
+                  >
+                    Pricing
+                  </button>
+                </div>
+              </div>
+            </section>
+
+            {/* Tab Content */}
+            <section className="px-4 sm:px-6 md:px-8 lg:px-12 xl:px-40 py-12 sm:py-16 md:py-20">
+              <div className="max-w-6xl mx-auto">
+                
+                {/* Overview Tab */}
+                {activeTab === 'overview' && (
+                  <div className="space-y-16">
+                    {/* What it does */}
+                    <div>
+                      <h2 className="text-white text-4xl font-black mb-8">What It Does</h2>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div className="card-standard">
+                          <h3 className="text-white text-2xl font-bold mb-4">🎯 Perfect For</h3>
+                          <ul className="space-y-3 text-white/80">
+                            <li className="flex items-center">
+                              <span className="text-kingdom-gold mr-3">•</span>
+                              Real estate agencies
+                            </li>
+                            <li className="flex items-center">
+                              <span className="text-kingdom-gold mr-3">•</span>
+                              Insurance companies
+                            </li>
+                            <li className="flex items-center">
+                              <span className="text-kingdom-gold mr-3">•</span>
+                              Financial services
+                            </li>
+                            <li className="flex items-center">
+                              <span className="text-kingdom-gold mr-3">•</span>
+                              SaaS businesses
+                            </li>
+                            <li className="flex items-center">
+                              <span className="text-kingdom-gold mr-3">•</span>
+                              Consulting firms
+                            </li>
+                          </ul>
+                        </div>
+                        
+                        <div className="card-standard">
+                          <h3 className="text-white text-2xl font-bold mb-4">⚡ Key Benefits</h3>
+                          <ul className="space-y-3 text-white/80">
+                            <li className="flex items-center">
+                              <span className="text-kingdom-gold mr-3">•</span>
+                              Increase conversion rates by 40%
+                            </li>
+                            <li className="flex items-center">
+                              <span className="text-kingdom-gold mr-3">•</span>
+                              Reduce follow-up time by 60%
+                            </li>
+                            <li className="flex items-center">
+                              <span className="text-kingdom-gold mr-3">•</span>
+                              Improve lead quality and scoring
+                            </li>
+                            <li className="flex items-center">
+                              <span className="text-kingdom-gold mr-3">•</span>
+                              Maintain ethical sales practices
+                            </li>
+                            <li className="flex items-center">
+                              <span className="text-kingdom-gold mr-3">•</span>
+                              Scale sales operations efficiently
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* How it works */}
+                    <div>
+                      <h2 className="text-white text-4xl font-black mb-8">How It Works</h2>
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <div className="card-standard text-center">
+                          <div className="w-16 h-16 bg-gradient-to-r from-kingdom-gold to-kingdom-orange rounded-full flex items-center justify-center mx-auto mb-4">
+                            <span className="text-2xl">1</span>
+                          </div>
+                          <h3 className="text-white text-xl font-bold mb-4">Lead Qualification</h3>
+                          <p className="text-white/80">
+                            Intelligently qualifies leads based on your criteria and scoring system.
+                          </p>
+                        </div>
+                        
+                        <div className="card-standard text-center">
+                          <div className="w-16 h-16 bg-gradient-to-r from-kingdom-gold to-kingdom-orange rounded-full flex items-center justify-center mx-auto mb-4">
+                            <span className="text-2xl">2</span>
+                          </div>
+                          <h3 className="text-white text-xl font-bold mb-4">Product Recommendations</h3>
+                          <p className="text-white/80">
+                            Suggests relevant products and services based on customer needs.
+                          </p>
+                        </div>
+                        
+                        <div className="card-standard text-center">
+                          <div className="w-16 h-16 bg-gradient-to-r from-kingdom-gold to-kingdom-orange rounded-full flex items-center justify-center mx-auto mb-4">
+                            <span className="text-2xl">3</span>
+                          </div>
+                          <h3 className="text-white text-xl font-bold mb-4">Follow-up Automation</h3>
+                          <p className="text-white/80">
+                            Automates follow-up sequences and scheduling for optimal conversion.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {/* Demo Tab */}
+                {activeTab === 'demo' && (
+                  <div className="max-w-7xl mx-auto">
+                    <h2 className="text-white text-4xl font-black mb-8 text-center">Live Sales Assistant Demo</h2>
+                    <p className="text-white/80 text-center mb-12">
+                      Experience the Kingdom Sales Assistant Bot in action with real-time lead qualification and follow-up automation.
+                    </p>
+                    
+                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                      {/* Demo Navigation */}
+                      <div className="space-y-4">
+                        {botData.demoSteps.map((step, index) => (
+                          <button
+                            key={index}
+                            onClick={() => setActiveDemo(index)}
+                            className={`w-full text-left p-4 rounded-xl transition-all duration-200 ${
+                              activeDemo === index
+                                ? 'bg-gradient-to-r from-kingdom-gold/20 to-kingdom-orange/20 border-kingdom-gold/50'
+                                : 'bg-white/5 border-white/10 hover:bg-white/10'
+                            } border backdrop-blur-sm`}
+                          >
+                            <h3 className="text-white font-semibold mb-2">{step.title}</h3>
+                            <p className="text-white/70 text-sm">{step.description}</p>
+                          </button>
+                        ))}
+                      </div>
+                      
+                      {/* Demo Content */}
+                      <div className="lg:col-span-2">
+                        <div className="bg-black/20 backdrop-blur-sm rounded-xl p-6">
+                          <h3 className="text-white text-xl font-bold mb-4">{botData.demoSteps[activeDemo].title}</h3>
+                          <p className="text-white/80 mb-6">{botData.demoSteps[activeDemo].description}</p>
+                          <div className="bg-white/5 rounded-lg p-4">
+                            <p className="text-kingdom-gold font-semibold">{botData.demoSteps[activeDemo].demo}</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {/* Features Tab */}
+                {activeTab === 'features' && (
+                  <div className="space-y-12">
+                    <div className="text-center mb-8">
+                      <h2 className="text-white text-3xl font-bold mb-4">Features</h2>
+                      <p className="text-white/80">Comprehensive sales automation tools</p>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                      {botData.features.map((feature, index) => (
+                        <div key={index} className="card-standard">
+                          <div className="flex items-center gap-3 mb-3">
+                            <div className="w-8 h-8 bg-gradient-to-r from-kingdom-gold to-kingdom-orange rounded-full flex items-center justify-center">
+                              <span className="text-kingdom-dark font-bold text-sm">{index + 1}</span>
+                            </div>
+                            <h3 className="text-white font-semibold">{feature}</h3>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* Pricing Tab */}
+                {activeTab === 'pricing' && (
+                  <div className="max-w-4xl mx-auto text-center">
+                    <h2 className="text-white text-4xl font-black mb-8">Pricing</h2>
+                    <div className="card-standard p-8">
+                      <div className="text-4xl font-bold text-kingdom-gold mb-4">${botData.price}</div>
+                      <p className="text-white/80 mb-6">One-time setup fee</p>
+                      <Link href="/contact" className="btn-kingdom-primary">
+                        Get Started Today
+                      </Link>
+                    </div>
+                  </div>
+                )}
               </div>
             </section>
 
