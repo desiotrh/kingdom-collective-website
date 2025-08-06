@@ -129,28 +129,49 @@ export default function LeadGenerationBot() {
             </section>
 
             {/* Tab Navigation */}
-            <section className="py-8 px-4 sm:px-6 lg:px-8">
-              <div className="max-w-7xl mx-auto">
-                <div className="flex flex-wrap justify-center gap-4">
-                  {[
-                    { id: 'overview', label: 'Overview', icon: '📋' },
-                    { id: 'demo', label: 'Demo', icon: '🎮' },
-                    { id: 'features', label: 'Features', icon: '⚡' },
-                    { id: 'pricing', label: 'Pricing', icon: '💰' }
-                  ].map((tab) => (
-                    <button
-                      key={tab.id}
-                      onClick={() => setActiveTab(tab.id)}
-                      className={`flex items-center gap-2 px-6 py-3 rounded-full font-semibold transition-all duration-200 ${
-                        activeTab === tab.id
-                          ? 'bg-kingdom-gold text-kingdom-dark'
-                          : 'bg-white/10 text-white hover:bg-white/20'
-                      }`}
-                    >
-                      <span>{tab.icon}</span>
-                      {tab.label}
-                    </button>
-                  ))}
+            <section className="px-4 sm:px-6 md:px-8 lg:px-12 xl:px-40 py-8">
+              <div className="max-w-6xl mx-auto">
+                <div className="flex space-x-1 bg-black/20 backdrop-blur-sm rounded-xl p-2">
+                  <button
+                    onClick={() => setActiveTab('overview')}
+                    className={`flex-1 py-3 px-6 rounded-lg font-bold transition-all duration-200 ${
+                      activeTab === 'overview' 
+                        ? 'bg-gradient-to-r from-kingdom-gold to-kingdom-gold-soft text-black' 
+                        : 'text-white/70 hover:text-white'
+                    }`}
+                  >
+                    Overview
+                  </button>
+                  <button
+                    onClick={() => setActiveTab('demo')}
+                    className={`flex-1 py-3 px-6 rounded-lg font-bold transition-all duration-200 ${
+                      activeTab === 'demo' 
+                        ? 'bg-gradient-to-r from-kingdom-gold to-kingdom-gold-soft text-black' 
+                        : 'text-white/70 hover:text-white'
+                    }`}
+                  >
+                    Live Demo
+                  </button>
+                  <button
+                    onClick={() => setActiveTab('features')}
+                    className={`flex-1 py-3 px-6 rounded-lg font-bold transition-all duration-200 ${
+                      activeTab === 'features' 
+                        ? 'bg-gradient-to-r from-kingdom-gold to-kingdom-gold-soft text-black' 
+                        : 'text-white/70 hover:text-white'
+                    }`}
+                  >
+                    Features
+                  </button>
+                  <button
+                    onClick={() => setActiveTab('pricing')}
+                    className={`flex-1 py-3 px-6 rounded-lg font-bold transition-all duration-200 ${
+                      activeTab === 'pricing' 
+                        ? 'bg-gradient-to-r from-kingdom-gold to-kingdom-gold-soft text-black' 
+                        : 'text-white/70 hover:text-white'
+                    }`}
+                  >
+                    Pricing
+                  </button>
                 </div>
               </div>
             </section>
