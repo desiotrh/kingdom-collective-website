@@ -487,7 +487,7 @@ export default function PricingPage() {
                                         Save $600/month
                                     </li>
                                 </ul>
-                                <a href="#contact" className="bg-gradient-to-r from-kingdom-gold to-kingdom-amber text-kingdom-dark px-8 py-3 rounded-full font-semibold hover:shadow-lg hover:shadow-kingdom-gold/30 transition-all duration-300 w-full text-center block">
+                                <a href="#contact" className="bg-gradient-to-r from-kingdom-gold to-kingdom-gold-soft text-black px-8 py-3 rounded-full font-semibold hover:from-kingdom-gold-soft hover:to-kingdom-gold-matte transition-all duration-200 w-full text-center block">
                                     Get Team Bundle
                                 </a>
                             </div>

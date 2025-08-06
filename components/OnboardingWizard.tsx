@@ -294,7 +294,7 @@ export default function OnboardingWizard() {
           <button
             onClick={handleBack}
             disabled={currentStep === 1}
-            className="px-6 py-3 rounded-full bg-gray text-white font-bold disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray/90 transition-all duration-200"
+            className="px-6 py-3 rounded-full bg-gradient-to-r from-kingdom-gold to-kingdom-gold-soft text-black font-bold disabled:opacity-50 disabled:cursor-not-allowed hover:from-kingdom-gold-soft hover:to-kingdom-gold-matte transition-all duration-200"
           >
             Back
           </button>
@@ -302,7 +302,7 @@ export default function OnboardingWizard() {
           <button
             onClick={handleNext}
             disabled={currentStep === 1 && selectedApps.length === 0}
-                                                         className="px-6 py-3 rounded-full bg-gray text-white font-bold disabled:opacity-50 disabled:cursor-not-allowed hover:bg-kingdom-gold hover:text-white transition-all duration-200"
+            className="px-6 py-3 rounded-full bg-gradient-to-r from-kingdom-gold to-kingdom-gold-soft text-black font-bold disabled:opacity-50 disabled:cursor-not-allowed hover:from-kingdom-gold-soft hover:to-kingdom-gold-matte transition-all duration-200"
           >
             {currentStep === 4 ? 'Complete Setup' : 'Next'}
           </button>

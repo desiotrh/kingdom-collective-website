@@ -183,11 +183,11 @@ export default function Navigation() {
         <div className="hidden md:flex gap-2 items-center">
           <CartIcon />
           {isAuthenticated ? (
-            <Link href="/dashboard" className="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 px-4 bg-gray text-white text-sm font-bold leading-normal tracking-[0.015em] hover:bg-blue hover:text-white transition-all duration-200">
+            <Link href="/dashboard" className="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 px-4 bg-gradient-to-r from-kingdom-gold to-kingdom-gold-soft text-black text-sm font-bold leading-normal tracking-[0.015em] hover:from-kingdom-gold-soft hover:to-kingdom-gold-matte transition-all duration-200">
               <span className="truncate">Dashboard</span>
             </Link>
           ) : (
-            <Link href="/login" className="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 px-4 bg-gray text-white text-sm font-bold leading-normal tracking-[0.015em] hover:bg-gray/90 transition-all duration-200">
+            <Link href="/login" className="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 px-4 bg-gradient-to-r from-kingdom-gold to-kingdom-gold-soft text-black text-sm font-bold leading-normal tracking-[0.015em] hover:from-kingdom-gold-soft hover:to-kingdom-gold-matte transition-all duration-200">
               <span className="truncate">Login</span>
             </Link>
           )}
@@ -415,11 +415,11 @@ export default function Navigation() {
             </div>
             <div className="pt-4 border-t border-gray space-y-3">
               {isAuthenticated ? (
-                <Link href="/dashboard" className="block w-full text-left bg-gray text-white px-4 py-2 rounded-full font-bold text-sm tracking-[0.015em] hover:bg-blue hover:text-white transition-all duration-200">
+                <Link href="/dashboard" className="block w-full text-left bg-gradient-to-r from-kingdom-gold to-kingdom-gold-soft text-black px-4 py-2 rounded-full font-bold text-sm tracking-[0.015em] hover:from-kingdom-gold-soft hover:to-kingdom-gold-matte transition-all duration-200">
                   Dashboard
                 </Link>
               ) : (
-                <Link href="/login" className="block w-full text-left bg-gray text-white px-4 py-2 rounded-full font-bold text-sm tracking-[0.015em] hover:bg-gray/90 transition-all duration-200">
+                <Link href="/login" className="block w-full text-left bg-gradient-to-r from-kingdom-gold to-kingdom-gold-soft text-black px-4 py-2 rounded-full font-bold text-sm tracking-[0.015em] hover:from-kingdom-gold-soft hover:to-kingdom-gold-matte transition-all duration-200">
                   Login
                 </Link>
               )}
