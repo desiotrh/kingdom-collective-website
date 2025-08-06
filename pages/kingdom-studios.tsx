@@ -105,7 +105,7 @@ export default function KingdomStudios() {
         <Navigation />
         
         {/* Hero Section */}
-        <section className="px-4 sm:px-6 md:px-8 lg:px-12 xl:px-40 py-12 sm:py-16 md:py-20">
+        <section className="px-4 sm:px-6 md:px-8 lg:px-12 xl:px-40 py-12 sm:py-16 md:py-20" aria-labelledby="hero-heading">
           <div className="max-w-[960px] mx-auto text-center">
             <div className="mb-8">
               <Image
@@ -117,7 +117,7 @@ export default function KingdomStudios() {
                 priority
               />
             </div>
-            <h1 className="text-white text-3xl sm:text-4xl md:text-5xl font-black leading-tight tracking-[-0.033em] mb-6">
+            <h1 id="hero-heading" className="text-white text-3xl sm:text-4xl md:text-5xl font-black leading-tight tracking-[-0.033em] mb-6">
               Kingdom Studios
             </h1>
             <p className="text-white text-base sm:text-lg md:text-xl leading-relaxed max-w-3xl mx-auto mb-8">
@@ -127,10 +127,11 @@ export default function KingdomStudios() {
               <button 
                 onClick={() => window.open('https://app.kingdomcollective.pro', '_blank')}
                 className="bg-gradient-to-r from-kingdom-gold to-kingdom-gold-soft text-black px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-bold hover:from-kingdom-gold-soft hover:to-kingdom-gold-matte hover-scale animate-standard"
+                aria-label="Launch Kingdom Studios application in new tab"
               >
                 Launch Kingdom Studios
               </button>
-              <Link href="#features" className="bg-gradient-to-r from-kingdom-gold to-kingdom-gold-soft text-black px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-bold hover:from-kingdom-gold-soft hover:to-kingdom-gold-matte hover-scale animate-standard">
+              <Link href="#features" className="bg-gradient-to-r from-kingdom-gold to-kingdom-gold-soft text-black px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-bold hover:from-kingdom-gold-soft hover:to-kingdom-gold-matte hover-scale animate-standard" aria-label="Learn more about Kingdom Studios features">
                 Learn More
               </Link>
             </div>
@@ -138,10 +139,10 @@ export default function KingdomStudios() {
         </section>
 
         {/* Features Section */}
-        <section id="features" className="px-4 sm:px-6 md:px-8 lg:px-12 xl:px-40 py-12 sm:py-16 md:py-20 bg-black/30 backdrop-blur-sm">
+        <section id="features" className="px-4 sm:px-6 md:px-8 lg:px-12 xl:px-40 py-12 sm:py-16 md:py-20 bg-black/30 backdrop-blur-sm" aria-labelledby="features-heading">
           <div className="max-w-[960px] mx-auto">
             <div className="text-center mb-12 sm:mb-16">
-              <h2 className="text-white text-2xl sm:text-3xl md:text-4xl font-black leading-tight tracking-[-0.033em] mb-6">
+              <h2 id="features-heading" className="text-white text-2xl sm:text-3xl md:text-4xl font-black leading-tight tracking-[-0.033em] mb-6">
                 Powerful Features
               </h2>
               <p className="text-white text-sm sm:text-base font-normal leading-normal max-w-3xl mx-auto">

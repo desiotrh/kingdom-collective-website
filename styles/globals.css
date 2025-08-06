@@ -83,15 +83,15 @@
 
   /* Consistent button styling */
   .btn-kingdom-primary {
-    @apply bg-gradient-to-r from-kingdom-gold to-kingdom-orange text-kingdom-dark px-6 py-3 rounded-lg font-bold hover:scale-105 transition-all duration-200;
+    @apply bg-gradient-to-r from-kingdom-gold to-kingdom-orange text-kingdom-dark px-6 py-3 rounded-lg font-bold hover:scale-105 accessible-button transition-all duration-200;
   }
 
   .btn-kingdom-secondary {
-    @apply bg-transparent border border-kingdom-gold text-kingdom-gold px-6 py-3 rounded-lg font-bold hover:bg-kingdom-gold hover:text-kingdom-dark transition-all duration-200;
+    @apply bg-transparent border border-kingdom-gold text-kingdom-gold px-6 py-3 rounded-lg font-bold hover:bg-kingdom-gold hover:text-kingdom-dark accessible-button transition-all duration-200;
   }
 
   .btn-kingdom-outline {
-    @apply bg-transparent border border-white/30 text-white px-6 py-3 rounded-lg font-bold hover:bg-white/10 transition-all duration-200;
+    @apply bg-transparent border border-white/30 text-white px-6 py-3 rounded-lg font-bold hover:bg-white/10 accessible-button transition-all duration-200;
   }
 
   /* Consistent text styling */
@@ -126,16 +126,16 @@
 
   /* Consistent form styling */
   .input-standard {
-    @apply bg-black/30 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-400 focus:border-kingdom-gold focus:outline-none transition-all duration-200;
+    @apply bg-black/30 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-400 accessible-input transition-all duration-200;
   }
 
   .textarea-standard {
-    @apply bg-black/30 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-400 focus:border-kingdom-gold focus:outline-none transition-all duration-200 resize-none;
+    @apply bg-black/30 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-400 accessible-input transition-all duration-200 resize-none;
   }
 
   /* Consistent navigation styling */
   .nav-link {
-    @apply text-white text-sm font-medium leading-normal hover:text-blue transition-colors duration-200;
+    @apply text-white text-sm font-medium leading-normal hover:text-blue accessible-link transition-colors duration-200;
   }
 
   .nav-dropdown {
@@ -143,7 +143,7 @@
   }
 
   .nav-dropdown-item {
-    @apply block px-4 py-2 text-white hover:bg-navy hover:text-white transition-colors duration-200;
+    @apply block px-4 py-2 text-white hover:bg-navy hover:text-white accessible-link transition-colors duration-200;
   }
 
   /* Consistent chat styling */
@@ -219,6 +219,35 @@
 
   .hover-glow {
     @apply hover:shadow-lg hover:shadow-kingdom-gold/30 transition-all duration-200;
+  }
+
+  /* Consistent accessibility styling */
+  .focus-kingdom {
+    @apply focus:outline-none focus:border-kingdom-gold focus:ring-2 focus:ring-kingdom-gold/50;
+  }
+
+  .focus-kingdom-soft {
+    @apply focus:outline-none focus:border-kingdom-gold/50 focus:ring-1 focus:ring-kingdom-gold/30;
+  }
+
+  .sr-only {
+    @apply absolute w-px h-px p-0 -m-px overflow-hidden whitespace-nowrap border-0;
+  }
+
+  .skip-link {
+    @apply absolute -top-10 left-6 bg-kingdom-gold text-kingdom-dark px-4 py-2 rounded-md z-50 focus:top-6 transition-all duration-200;
+  }
+
+  .accessible-button {
+    @apply focus-kingdom focus:ring-offset-2 focus:ring-offset-navy;
+  }
+
+  .accessible-link {
+    @apply focus-kingdom-soft focus:ring-offset-1 focus:ring-offset-navy;
+  }
+
+  .accessible-input {
+    @apply focus-kingdom focus:ring-offset-2 focus:ring-offset-navy;
   }
 }
 

@@ -62,7 +62,12 @@ export default function Layout({ children, title = 'Kingdom Collective', descrip
             </Head>
             
             <div className="min-h-screen bg-gradient-to-br from-kingdom-dark via-kingdom-darker to-kingdom-navy" lang="en">
-                <main role="main">
+                {/* Skip to main content link for accessibility */}
+                <a href="#main-content" className="skip-link">
+                    Skip to main content
+                </a>
+                
+                <main role="main" id="main-content">
                     {children}
                 </main>
 

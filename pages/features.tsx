@@ -78,9 +78,9 @@ export default function Features() {
         <Navigation />
         
         {/* Hero Section */}
-        <section className="px-4 sm:px-6 md:px-8 lg:px-12 xl:px-40 py-12 sm:py-16 md:py-20">
+        <section className="px-4 sm:px-6 md:px-8 lg:px-12 xl:px-40 py-12 sm:py-16 md:py-20" aria-labelledby="hero-heading">
           <div className="max-w-[960px] mx-auto text-center">
-            <h1 className="text-white text-3xl sm:text-4xl md:text-5xl font-black leading-tight tracking-[-0.033em] mb-6">
+            <h1 id="hero-heading" className="text-white text-3xl sm:text-4xl md:text-5xl font-black leading-tight tracking-[-0.033em] mb-6">
               What Makes Us Different
             </h1>
             <p className="text-white text-base sm:text-lg md:text-xl leading-relaxed max-w-3xl mx-auto mb-8">
@@ -90,10 +90,10 @@ export default function Features() {
         </section>
 
         {/* Differentiators Section */}
-        <section className="px-4 sm:px-6 md:px-8 lg:px-12 xl:px-40 py-12 sm:py-16 md:py-20 bg-black/30 backdrop-blur-sm">
+        <section className="px-4 sm:px-6 md:px-8 lg:px-12 xl:px-40 py-12 sm:py-16 md:py-20 bg-black/30 backdrop-blur-sm" aria-labelledby="differentiators-heading">
           <div className="max-w-[960px] mx-auto">
             <div className="text-center mb-12 sm:mb-16">
-              <h2 className="text-white text-2xl sm:text-3xl md:text-4xl font-black leading-tight tracking-[-0.033em] mb-6">
+              <h2 id="differentiators-heading" className="text-white text-2xl sm:text-3xl md:text-4xl font-black leading-tight tracking-[-0.033em] mb-6">
                 Why We&apos;re Unique
               </h2>
               <p className="text-white text-sm sm:text-base font-normal leading-normal max-w-3xl mx-auto">
@@ -151,10 +151,10 @@ export default function Features() {
               Join thousands of faith-driven creators who are already building with purpose and making an impact.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/apps" className="bg-gradient-to-r from-kingdom-gold to-kingdom-gold-soft text-black px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-bold hover:from-kingdom-gold-soft hover:to-kingdom-gold-matte hover-scale animate-standard">
+              <Link href="/apps" className="bg-gradient-to-r from-kingdom-gold to-kingdom-gold-soft text-black px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-bold hover:from-kingdom-gold-soft hover:to-kingdom-gold-matte hover-scale animate-standard" aria-label="Explore our suite of applications">
                 Explore Our Apps
               </Link>
-              <Link href="/vision" className="bg-gradient-to-r from-kingdom-gold to-kingdom-gold-soft text-black px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-bold hover:from-kingdom-gold-soft hover:to-kingdom-gold-matte hover-scale animate-standard">
+              <Link href="/vision" className="bg-gradient-to-r from-kingdom-gold to-kingdom-gold-soft text-black px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-bold hover:from-kingdom-gold-soft hover:to-kingdom-gold-matte hover-scale animate-standard" aria-label="Learn about our vision and mission">
                 Learn Our Vision
               </Link>
             </div>
