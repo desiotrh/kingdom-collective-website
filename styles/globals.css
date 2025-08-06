@@ -191,6 +191,35 @@
   .svg-icon-large {
     @apply w-6 h-6 text-kingdom-gold mr-4;
   }
+
+  /* Consistent animation styling */
+  .animate-standard {
+    @apply transition-all duration-200;
+  }
+
+  .animate-slow {
+    @apply transition-all duration-300;
+  }
+
+  .animate-fast {
+    @apply transition-all duration-150;
+  }
+
+  .hover-scale {
+    @apply hover:scale-105 transition-all duration-200;
+  }
+
+  .hover-scale-slow {
+    @apply hover:scale-105 transition-all duration-300;
+  }
+
+  .hover-elevate {
+    @apply hover:bg-black/30 transition-all duration-300;
+  }
+
+  .hover-glow {
+    @apply hover:shadow-lg hover:shadow-kingdom-gold/30 transition-all duration-200;
+  }
 }
 
 @layer utilities {

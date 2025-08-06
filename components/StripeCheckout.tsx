@@ -96,7 +96,7 @@ export default function StripeCheckout({
         <button
           onClick={handleCheckout}
           disabled={isLoading}
-          className="flex-1 bg-gradient-to-r from-kingdom-gold to-kingdom-orange text-kingdom-dark px-6 py-3 rounded-lg font-bold hover:scale-105 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                          className="flex-1 bg-gradient-to-r from-kingdom-gold to-kingdom-orange text-kingdom-dark px-6 py-3 rounded-lg font-bold hover-scale animate-standard disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {isLoading ? 'Processing...' : 'Proceed to Payment'}
         </button>

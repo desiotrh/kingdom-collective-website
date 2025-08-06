@@ -80,7 +80,7 @@ export default function Apps() {
           <div className="container-wide">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12">
               {apps.map((app, index) => (
-                <div key={index} className="card-standard hover:card-elevated transition-all duration-300 flex flex-col h-full">
+                <div key={index} className="card-standard hover-elevate flex flex-col h-full">
                   {/* App Header */}
                   <div className="flex items-start gap-4 sm:gap-6 mb-8 h-24">
                     <div className="flex-shrink-0">
@@ -116,7 +116,7 @@ export default function Apps() {
                   <div className="flex gap-4 mt-auto">
                     <Link
                       href={app.href}
-                      className="bg-transparent border border-white/30 text-white px-6 py-2 rounded-md font-semibold hover:bg-white/10 transition-all duration-200 flex-1 text-center"
+                      className="bg-transparent border border-white/30 text-white px-6 py-2 rounded-md font-semibold hover:bg-white/10 animate-standard flex-1 text-center"
                     >
                       Learn More
                     </Link>

@@ -21,7 +21,7 @@ export default function AppCard({
 }: AppCardProps) {
   return (
     <Link href={href}>
-      <div className="card-standard group relative hover:scale-105 flex flex-col h-full">
+      <div className="card-standard group relative hover-scale-slow flex flex-col h-full">
         {/* Glow effect on hover */}
         <div className="absolute inset-0 bg-gradient-to-r from-kingdom-gold/10 to-white/10 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
         

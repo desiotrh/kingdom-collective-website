@@ -18,7 +18,7 @@ export default function FloatingFlameButton({ onToggle, isOpen, currentPage }: F
         onClick={onToggle}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
-        className="relative w-24 h-24 bg-transparent rounded-full flex items-center justify-center hover:scale-110 transition-all duration-300"
+        className="relative w-24 h-24 bg-transparent rounded-full flex items-center justify-center hover:scale-110 animate-slow"
         aria-label={`${isOpen ? 'Close' : 'Open'} Kingdom Assistant chat`}
         aria-expanded={isOpen}
         aria-describedby={isHovered ? "flame-tooltip" : undefined}

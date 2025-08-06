@@ -103,7 +103,7 @@ export default function Features() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {differentiators.map((item, index) => (
-                <div key={index} className="card-standard hover:bg-black/30 transition-all duration-300">
+                <div key={index} className="card-standard hover-elevate">
                   <div className="icon-standard">{item.icon}</div>
                   <h3 className="text-white text-xl font-bold mb-3">{item.title}</h3>
                   <p className="text-white leading-relaxed">{item.description}</p>
@@ -127,7 +127,7 @@ export default function Features() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
               {uniqueFeatures.map((feature, index) => (
-                                <div key={index} className="card-standard hover:bg-black/30 transition-all duration-300">
+                                <div key={index} className="card-standard hover-elevate">
                   <div className="flex items-center justify-between mb-4">
                     <span className="bg-kingdom-gold/20 text-kingdom-gold px-3 py-1 rounded-full text-xs font-bold">
                       {feature.category}
@@ -151,10 +151,10 @@ export default function Features() {
               Join thousands of faith-driven creators who are already building with purpose and making an impact.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/apps" className="bg-gradient-to-r from-kingdom-gold to-kingdom-gold-soft text-black px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-bold hover:from-kingdom-gold-soft hover:to-kingdom-gold-matte transition-all duration-200">
+              <Link href="/apps" className="bg-gradient-to-r from-kingdom-gold to-kingdom-gold-soft text-black px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-bold hover:from-kingdom-gold-soft hover:to-kingdom-gold-matte hover-scale animate-standard">
                 Explore Our Apps
               </Link>
-              <Link href="/vision" className="bg-gradient-to-r from-kingdom-gold to-kingdom-gold-soft text-black px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-bold hover:from-kingdom-gold-soft hover:to-kingdom-gold-matte transition-all duration-200">
+              <Link href="/vision" className="bg-gradient-to-r from-kingdom-gold to-kingdom-gold-soft text-black px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-bold hover:from-kingdom-gold-soft hover:to-kingdom-gold-matte hover-scale animate-standard">
                 Learn Our Vision
               </Link>
             </div>

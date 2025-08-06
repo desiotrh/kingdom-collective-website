@@ -145,7 +145,7 @@ export default function Contact() {
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mt-8 sm:mt-12">
               {contactCategories.map((category, index) => (
-                <div key={index} className="card-standard p-4 sm:p-6 hover:bg-black/30 transition-all duration-300">
+                <div key={index} className="card-standard p-4 sm:p-6 hover-elevate">
                   <div className="text-3xl sm:text-4xl mb-3 sm:mb-4">{category.icon}</div>
                   <h3 className="text-white text-lg sm:text-xl font-bold mb-2 sm:mb-3">{category.title}</h3>
                   <p className="text-white text-sm sm:text-base leading-relaxed mb-3 sm:mb-4">{category.description}</p>
