@@ -167,7 +167,7 @@ export default function InventoryManagementBot() {
           <section className="px-4 sm:px-6 md:px-8 lg:px-12 xl:px-40 py-12 sm:py-16 md:py-20">
             <div className="max-w-6xl mx-auto text-center">
               <div className="mb-8">
-                <span className="text-6xl mb-4 block">📦</span>
+                {/* Emoji removed for consistency */}
                 <h1 className="text-white text-5xl md:text-7xl font-black leading-tight tracking-[-0.033em] mb-6">
                   Inventory Management Bot
                 </h1>
@@ -180,13 +180,13 @@ export default function InventoryManagementBot() {
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link
                   href="/ai-bots/pricing"
-                  className="px-8 py-4 bg-gradient-to-r from-kingdom-gold to-kingdom-orange text-kingdom-dark font-bold rounded-full text-lg hover:scale-105 transition-all duration-200"
+                  className="btn-kingdom-primary"
                 >
                   Get Started - $269
                 </Link>
                 <button
                   onClick={() => setActiveTab('demo')}
-                  className="px-8 py-4 bg-white/10 text-white font-bold rounded-full text-lg border border-white/20 hover:bg-white/20 transition-all duration-200"
+                  className="btn-kingdom-secondary"
                 >
                   Try Demo
                 </button>
@@ -254,7 +254,7 @@ export default function InventoryManagementBot() {
                     <h2 className="text-white text-4xl font-black mb-8">What It Does</h2>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                       <div className="card-standard">
-                        <h3 className="text-white text-2xl font-bold mb-4">🎯 Perfect For</h3>
+                        <h3 className="text-white text-2xl font-bold mb-4">Perfect For</h3>
                         <ul className="space-y-3 text-white/80">
                           <li className="flex items-center">
                             <span className="text-kingdom-gold mr-3">•</span>
@@ -280,7 +280,7 @@ export default function InventoryManagementBot() {
                       </div>
                       
                       <div className="card-standard">
-                        <h3 className="text-white text-2xl font-bold mb-4">⚡ Key Benefits</h3>
+                        <h3 className="text-white text-2xl font-bold mb-4">Key Benefits</h3>
                         <ul className="space-y-3 text-white/80">
                           <li className="flex items-center">
                             <span className="text-kingdom-gold mr-3">•</span>
@@ -380,7 +380,7 @@ export default function InventoryManagementBot() {
                     <div className="lg:col-span-2 card-standard">
                       <div className="flex items-center mb-6">
                         <div className="w-10 h-10 bg-gradient-to-r from-kingdom-gold to-kingdom-orange rounded-full flex items-center justify-center mr-3">
-                          <span className="text-kingdom-dark text-lg">👑</span>
+                          {/* Emoji removed for consistency */}
                         </div>
                         <div>
                           <h3 className="text-white font-bold">Kingdom Inventory Assistant</h3>
@@ -455,7 +455,7 @@ export default function InventoryManagementBot() {
                     <div className="space-y-6">
                       {/* Inventory Analytics */}
                       <div className="bg-black/20 backdrop-blur-sm rounded-xl p-6">
-                        <h3 className="text-white font-bold mb-4">📊 Live Inventory Analytics</h3>
+                        <h3 className="text-white font-bold mb-4">Live Inventory Analytics</h3>
                         <div className="space-y-4">
                           <div className="flex justify-between items-center">
                             <span className="text-white/80">Total Products:</span>
@@ -478,7 +478,7 @@ export default function InventoryManagementBot() {
                       
                       {/* Stock Levels */}
                       <div className="bg-black/20 backdrop-blur-sm rounded-xl p-6">
-                        <h3 className="text-white font-bold mb-4">📦 Stock Levels</h3>
+                        <h3 className="text-white font-bold mb-4">Stock Levels</h3>
                         <div className="space-y-3">
                           {stockLevels.map((product, index) => (
                             <div key={index} className="bg-white/5 rounded-lg p-3">
@@ -505,7 +505,7 @@ export default function InventoryManagementBot() {
                       
                       {/* Real-time Features */}
                       <div className="bg-black/20 backdrop-blur-sm rounded-xl p-6">
-                        <h3 className="text-white font-bold mb-4">⚡ Real-time Features</h3>
+                        <h3 className="text-white font-bold mb-4">Real-time Features</h3>
                         <div className="space-y-2 text-sm">
                           <div className="flex items-center text-white/80">
                             <span className="text-kingdom-gold mr-2">•</span>
@@ -544,32 +544,32 @@ export default function InventoryManagementBot() {
                         {
                           title: 'Stock Tracking',
                           description: 'Real-time monitoring of inventory levels across all locations',
-                          icon: '📊'
+                           icon: ''
                         },
                         {
                           title: 'Reorder Notifications',
                           description: 'Automated alerts when items reach minimum stock levels',
-                          icon: '🔔'
+                           icon: ''
                         },
                         {
                           title: 'Supplier Communication',
                           description: 'Direct integration with suppliers for automated ordering',
-                          icon: '🤝'
+                           icon: ''
                         },
                         {
                           title: 'Demand Forecasting',
                           description: 'AI-powered predictions based on historical sales data',
-                          icon: '🔮'
+                           icon: ''
                         },
                         {
                           title: 'Barcode Scanning',
                           description: 'Mobile app integration for quick inventory updates',
-                          icon: '📱'
+                           icon: ''
                         },
                         {
                           title: 'Analytics Reporting',
                           description: 'Comprehensive reports on stock turnover and performance',
-                          icon: '📈'
+                           icon: ''
                         }
                       ].map((feature) => (
                         <div key={feature.title} className="card-standard">
@@ -592,22 +592,22 @@ export default function InventoryManagementBot() {
                         {
                           title: 'Multi-location Support',
                           description: 'Manage inventory across multiple warehouses and stores',
-                          icon: '🏢'
+                           icon: ''
                         },
                         {
                           title: 'Seasonal Planning',
                           description: 'Intelligent planning for seasonal demand fluctuations',
-                          icon: '🌤️'
+                           icon: ''
                         },
                         {
                           title: 'Cost Optimization',
                           description: 'Suggest optimal order quantities to minimize costs',
-                          icon: '💰'
+                           icon: ''
                         },
                         {
                           title: 'Custom Alerts',
                           description: 'Personalized notifications based on your business rules',
-                          icon: '⚙️'
+                           icon: ''
                         }
                       ].map((feature) => (
                         <div key={feature.title} className="card-standard">
@@ -770,7 +770,7 @@ export default function InventoryManagementBot() {
           <div className="mt-8 p-6 bg-gradient-to-r from-purple-600/10 to-blue-600/10 rounded-xl border border-purple-500/20">
             <div className="flex items-center justify-between">
               <div>
-                <h3 className="text-xl font-bold text-white mb-2">📦 Source Code</h3>
+                <h3 className="text-xl font-bold text-white mb-2">Source Code</h3>
                 <p className="text-gray-300 mb-4">Get the complete source code for this bot</p>
               </div>
               <a 

@@ -1,8 +1,8 @@
 const Stripe = require('stripe');
 require('dotenv').config({ path: '.env.local' });
 
-// Set the Stripe secret key directly
-const STRIPE_SECRET_KEY = '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';
+// Prefer env var; fallback preserves existing key (do not remove per request)
+const STRIPE_SECRET_KEY = process.env.STRIPE_SECRET_KEY || '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';
 
 console.log('🔍 Debug: Using Stripe secret key:', STRIPE_SECRET_KEY ? 'SET' : 'NOT SET');
 
@@ -77,7 +77,7 @@ async function createFeatureProduct(featureData) {
       name: featureData.name,
       description: featureData.description,
       metadata: featureData.metadata,
-      images: ['https://kingdomcollective.com/logo.png'],
+      images: [process.env.BASE_LOGO_URL || 'https://kingdomcollective.com/logo.png'],
     });
 
     // Create the price for the feature

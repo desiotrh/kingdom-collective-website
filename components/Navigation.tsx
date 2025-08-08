@@ -69,15 +69,15 @@ export default function Navigation() {
             </div>
           </div>
 
-          {/* AI Bots Dropdown */}
+          {/* Chatbots Dropdown */}
           <div className="relative group">
             <button
               className="text-white text-sm font-medium leading-normal hover:text-kingdom-gold transition-colors duration-200 flex items-center gap-1"
               aria-expanded="false"
               aria-haspopup="true"
-              aria-label="AI Bots menu"
+              aria-label="Chatbots menu"
             >
-              AI Bots
+              Chatbots
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
               </svg>
@@ -85,7 +85,7 @@ export default function Navigation() {
 
             <div className="nav-dropdown w-72" role="menu">
               <Link href="/ai-bots" className="nav-dropdown-item font-semibold" role="menuitem">
-                All AI Bots Overview
+                All Chatbots Overview
               </Link>
               <div className="border-t border-white/30 my-1"></div>
               <Link href="/ai-bots/sales-assistant" className="nav-dropdown-item" role="menuitem">
@@ -288,84 +288,84 @@ export default function Navigation() {
               </div>
             </div>
             <div className="space-y-2">
-              <div className="text-white text-sm font-medium mb-2">AI Bots</div>
+              <div className="text-white text-sm font-medium mb-2">Chatbots</div>
               <div className="pl-4 space-y-2">
                 <Link
                   href="/ai-bots"
                   className="block text-white hover:text-kingdom-gold transition-colors duration-200 text-sm"
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  🤖 All AI Bots Overview
+                  All Chatbots Overview
                 </Link>
                 <Link
                   href="/ai-bots/sales-assistant"
                   className="block text-white hover:text-kingdom-gold transition-colors duration-200 text-sm"
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  💼 Sales Assistant Bot
+                  Sales Assistant Bot
                 </Link>
                 <Link
                   href="/ai-bots/lead-generation"
                   className="block text-white hover:text-kingdom-gold transition-colors duration-200 text-sm"
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  🎯 Lead Generation Bot
+                  Lead Generation Bot
                 </Link>
                 <Link
                   href="/ai-bots/onboarding"
                   className="block text-white hover:text-kingdom-gold transition-colors duration-200 text-sm"
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  📚 Onboarding Bot
+                  Onboarding Bot
                 </Link>
                 <Link
                   href="/ai-bots/customer-support"
                   className="block text-white hover:text-kingdom-gold transition-colors duration-200 text-sm"
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  💬 Customer Support Bot
+                  Customer Support Bot
                 </Link>
                 <Link
                   href="/ai-bots/faith-bot"
                   className="block text-white hover:text-kingdom-gold transition-colors duration-200 text-sm"
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  🙏 Faith Bot
+                  Faith Bot
                 </Link>
                 <Link
                   href="/ai-bots/course-explainer"
                   className="block text-white hover:text-kingdom-gold transition-colors duration-200 text-sm"
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  🎓 Course Explainer Bot
+                  Course Explainer Bot
                 </Link>
                 <Link
                   href="/ai-bots/testimonial"
                   className="block text-white hover:text-kingdom-gold transition-colors duration-200 text-sm"
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  📝 Testimonial Bot
+                  Testimonial Bot
                 </Link>
                 <Link
                   href="/ai-bots/job-application"
                   className="block text-white hover:text-kingdom-gold transition-colors duration-200 text-sm"
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  💼 Job Application Bot
+                  Job Application Bot
                 </Link>
                 <Link
                   href="/ai-bots/enhanced-sales"
                   className="block text-white hover:text-kingdom-gold transition-colors duration-200 text-sm"
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  🚀 Enhanced Sales Bot
+                  Enhanced Sales Bot
                 </Link>
                 <Link
                   href="/ai-bots/pricing"
                   className="block text-white hover:text-kingdom-gold transition-colors duration-200 text-sm font-semibold"
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  💰 Pricing & Add-ons
+                  Pricing & Add-ons
                 </Link>
               </div>
             </div>

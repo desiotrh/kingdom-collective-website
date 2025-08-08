@@ -18,7 +18,7 @@ export default function CourseExplainerBot() {
   const [conversationHistory, setConversationHistory] = useState<Message[]>([
     {
       type: 'bot',
-      message: "📚 Welcome! I'm your Kingdom Course Explainer Assistant. I can help you understand complex topics, create study guides, and provide personalized learning experiences. What subject would you like to explore today?",
+      message: "Welcome! I'm your Kingdom Course Explainer Assistant. I can help you understand complex topics, create study guides, and provide personalized learning experiences. What subject would you like to explore today?",
       timestamp: new Date()
     }
   ]);
@@ -253,7 +253,7 @@ export default function CourseExplainerBot() {
                       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                         <div className="text-center">
                           <div className="bg-gradient-to-br from-kingdom-gold/20 to-kingdom-orange/20 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
-                            <span className="text-2xl">📚</span>
+                            <span className="text-2xl"></span>
                           </div>
                           <h3 className="text-white text-xl font-bold mb-2">1. Concept Analysis</h3>
                           <p className="text-white/70">Break down complex topics into understandable components</p>
@@ -261,7 +261,7 @@ export default function CourseExplainerBot() {
                         
                         <div className="text-center">
                           <div className="bg-gradient-to-br from-kingdom-gold/20 to-kingdom-orange/20 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
-                            <span className="text-2xl">🎯</span>
+                            <span className="text-2xl"></span>
                           </div>
                           <h3 className="text-white text-xl font-bold mb-2">2. Personalized Learning</h3>
                           <p className="text-white/70">Adapt explanations to your learning style and pace</p>
@@ -269,7 +269,7 @@ export default function CourseExplainerBot() {
                         
                         <div className="text-center">
                           <div className="bg-gradient-to-br from-kingdom-gold/20 to-kingdom-orange/20 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
-                            <span className="text-2xl">📊</span>
+                            <span className="text-2xl"></span>
                           </div>
                           <h3 className="text-white text-xl font-bold mb-2">3. Progress Tracking</h3>
                           <p className="text-white/70">Monitor your understanding and retention over time</p>
@@ -414,37 +414,37 @@ export default function CourseExplainerBot() {
 
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                       <div className="bg-black/20 backdrop-blur-sm rounded-xl p-6">
-                        <div className="text-3xl mb-4">📚</div>
+                        <div className="text-3xl mb-4"></div>
                         <h3 className="text-white text-xl font-bold mb-2">Concept Analysis</h3>
                         <p className="text-white/70">Break down complex topics into understandable components</p>
                       </div>
                       
                       <div className="bg-black/20 backdrop-blur-sm rounded-xl p-6">
-                        <div className="text-3xl mb-4">🎯</div>
+                        <div className="text-3xl mb-4"></div>
                         <h3 className="text-white text-xl font-bold mb-2">Personalized Learning</h3>
                         <p className="text-white/70">Adapt explanations to your learning style and pace</p>
                       </div>
                       
                       <div className="bg-black/20 backdrop-blur-sm rounded-xl p-6">
-                        <div className="text-3xl mb-4">📊</div>
+                        <div className="text-3xl mb-4"></div>
                         <h3 className="text-white text-xl font-bold mb-2">Progress Tracking</h3>
                         <p className="text-white/70">Monitor your understanding and retention over time</p>
                       </div>
                       
                       <div className="bg-black/20 backdrop-blur-sm rounded-xl p-6">
-                        <div className="text-3xl mb-4">❓</div>
+                        <div className="text-3xl mb-4"></div>
                         <h3 className="text-white text-xl font-bold mb-2">Practice Questions</h3>
                         <p className="text-white/70">Generate tailored practice problems and assessments</p>
                       </div>
                       
                       <div className="bg-black/20 backdrop-blur-sm rounded-xl p-6">
-                        <div className="text-3xl mb-4">📝</div>
+                        <div className="text-3xl mb-4"></div>
                         <h3 className="text-white text-xl font-bold mb-2">Study Guides</h3>
                         <p className="text-white/70">Create comprehensive study materials and summaries</p>
                       </div>
                       
                       <div className="bg-black/20 backdrop-blur-sm rounded-xl p-6">
-                        <div className="text-3xl mb-4">🎮</div>
+                        <div className="text-3xl mb-4"></div>
                         <h3 className="text-white text-xl font-bold mb-2">Interactive Learning</h3>
                         <p className="text-white/70">Engage with gamified learning experiences</p>
                       </div>

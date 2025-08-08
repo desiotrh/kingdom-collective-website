@@ -18,7 +18,7 @@ export default function SocialMediaBot() {
   const [conversationHistory, setConversationHistory] = useState<Message[]>([
     {
       type: 'bot',
-      message: "👋 Hi! I'm your Kingdom Social Media Assistant. I can help you create content, schedule posts, and track engagement across all your platforms. What would you like to work on today?",
+      message: "Hi! I'm your Kingdom Social Media Assistant. I can help you create content, schedule posts, and track engagement across all your platforms. What would you like to work on today?",
       timestamp: new Date()
     }
   ]);
@@ -165,7 +165,7 @@ export default function SocialMediaBot() {
           <section className="px-4 sm:px-6 md:px-8 lg:px-12 xl:px-40 py-12 sm:py-16 md:py-20">
             <div className="max-w-6xl mx-auto text-center">
               <div className="mb-8">
-                <span className="text-6xl mb-4 block">📱</span>
+                {/* Emoji removed for consistency */}
                 <h1 className="text-white text-5xl md:text-7xl font-black leading-tight tracking-[-0.033em] mb-6">
                   Social Media Management Bot
                 </h1>
@@ -178,13 +178,13 @@ export default function SocialMediaBot() {
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link
                   href="/ai-bots/pricing"
-                  className="px-8 py-4 bg-gradient-to-r from-kingdom-gold to-kingdom-orange text-kingdom-dark font-bold rounded-full text-lg hover:scale-105 transition-all duration-200"
+                  className="btn-kingdom-primary"
                 >
                   Get Started - $199
                 </Link>
                 <button
                   onClick={() => setActiveTab('demo')}
-                  className="px-8 py-4 bg-white/10 text-white font-bold rounded-full text-lg border border-white/20 hover:bg-white/20 transition-all duration-200"
+                  className="btn-kingdom-secondary"
                 >
                   Try Demo
                 </button>
@@ -252,7 +252,7 @@ export default function SocialMediaBot() {
                     <h2 className="text-white text-4xl font-black mb-8">What It Does</h2>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                       <div className="card-standard">
-                        <h3 className="text-white text-2xl font-bold mb-4">🎯 Perfect For</h3>
+                        <h3 className="text-white text-2xl font-bold mb-4">Perfect For</h3>
                         <ul className="space-y-3 text-white/80">
                           <li className="flex items-center">
                             <span className="text-kingdom-gold mr-3">•</span>
@@ -278,7 +278,7 @@ export default function SocialMediaBot() {
                       </div>
                       
                       <div className="card-standard">
-                        <h3 className="text-white text-2xl font-bold mb-4">⚡ Key Benefits</h3>
+                        <h3 className="text-white text-2xl font-bold mb-4">Key Benefits</h3>
                         <ul className="space-y-3 text-white/80">
                           <li className="flex items-center">
                             <span className="text-kingdom-gold mr-3">•</span>
@@ -346,17 +346,17 @@ export default function SocialMediaBot() {
                     <h2 className="text-white text-4xl font-black mb-8">Seamless Integration</h2>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                       {[
-                        { name: 'Instagram', icon: '📸' },
-                        { name: 'Facebook', icon: '📘' },
-                        { name: 'Twitter', icon: '🐦' },
-                        { name: 'LinkedIn', icon: '💼' },
-                        { name: 'TikTok', icon: '🎵' },
-                        { name: 'YouTube', icon: '📺' },
-                        { name: 'Pinterest', icon: '📌' },
-                        { name: 'Snapchat', icon: '👻' }
+                        { name: 'Instagram', icon: '' },
+                        { name: 'Facebook', icon: '' },
+                        { name: 'Twitter', icon: '' },
+                        { name: 'LinkedIn', icon: '' },
+                        { name: 'TikTok', icon: '' },
+                        { name: 'YouTube', icon: '' },
+                        { name: 'Pinterest', icon: '' },
+                        { name: 'Snapchat', icon: '' }
                       ].map((platform) => (
                         <div key={platform.name} className="card-standard text-center">
-                          <div className="text-3xl mb-3">{platform.icon}</div>
+                          <div className="text-3xl mb-3"></div>
                           <h3 className="text-white font-bold">{platform.name}</h3>
                         </div>
                       ))}
@@ -377,9 +377,7 @@ export default function SocialMediaBot() {
                     {/* Chat Interface */}
                     <div className="lg:col-span-2 card-standard">
                       <div className="flex items-center mb-6">
-                        <div className="w-10 h-10 bg-gradient-to-r from-kingdom-gold to-kingdom-orange rounded-full flex items-center justify-center mr-3">
-                          <span className="text-kingdom-dark text-lg">👑</span>
-                        </div>
+                        <div className="w-10 h-10 bg-gradient-to-r from-kingdom-gold to-kingdom-orange rounded-full flex items-center justify-center mr-3"></div>
                         <div>
                           <h3 className="text-white font-bold">Kingdom Social Media Assistant</h3>
                           <p className="text-white/60 text-sm">Powered by Kingdom AI</p>

@@ -18,7 +18,7 @@ export default function EnhancedSalesBot() {
   const [conversationHistory, setConversationHistory] = useState<Message[]>([
     {
       type: 'bot',
-      message: "🚀 Welcome! I'm your Kingdom Enhanced Sales Assistant. I can help qualify leads, manage your sales pipeline, forecast revenue, and track customer relationships. How can I help boost your sales performance today?",
+      message: "Welcome! I'm your Kingdom Enhanced Sales Assistant. I can help qualify leads, manage your sales pipeline, forecast revenue, and track customer relationships. How can I help boost your sales performance today?",
       timestamp: new Date()
     }
   ]);
@@ -215,7 +215,7 @@ export default function EnhancedSalesBot() {
                       <h2 className="text-white text-4xl font-black mb-8">What It Does</h2>
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                         <div className="card-standard">
-                          <h3 className="text-white text-2xl font-bold mb-4">🎯 Perfect For</h3>
+                          <h3 className="text-white text-2xl font-bold mb-4">Perfect For</h3>
                           <ul className="space-y-3 text-white/80">
                             <li className="flex items-center">
                               <span className="text-kingdom-gold mr-3">•</span>
@@ -237,7 +237,7 @@ export default function EnhancedSalesBot() {
                         </div>
                         
                         <div className="card-standard">
-                          <h3 className="text-white text-2xl font-bold mb-4">⚡ Key Benefits</h3>
+                          <h3 className="text-white text-2xl font-bold mb-4">Key Benefits</h3>
                           <ul className="space-y-3 text-white/80">
                             <li className="flex items-center">
                               <span className="text-kingdom-gold mr-3">•</span>
@@ -266,7 +266,7 @@ export default function EnhancedSalesBot() {
                       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                         <div className="text-center">
                           <div className="bg-gradient-to-br from-kingdom-gold/20 to-kingdom-orange/20 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
-                            <span className="text-2xl">🎯</span>
+                            <span className="text-2xl"></span>
                           </div>
                           <h3 className="text-white text-xl font-bold mb-2">1. Lead Qualification</h3>
                           <p className="text-white/70">Intelligent scoring and prioritization of prospects</p>
@@ -274,7 +274,7 @@ export default function EnhancedSalesBot() {
                         
                         <div className="text-center">
                           <div className="bg-gradient-to-br from-kingdom-gold/20 to-kingdom-orange/20 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
-                            <span className="text-2xl">📊</span>
+                            <span className="text-2xl"></span>
                           </div>
                           <h3 className="text-white text-xl font-bold mb-2">2. Pipeline Management</h3>
                           <p className="text-white/70">Track and optimize your sales funnel</p>
@@ -282,7 +282,7 @@ export default function EnhancedSalesBot() {
                         
                         <div className="text-center">
                           <div className="bg-gradient-to-br from-kingdom-gold/20 to-kingdom-orange/20 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
-                            <span className="text-2xl">💰</span>
+                            <span className="text-2xl"></span>
                           </div>
                           <h3 className="text-white text-xl font-bold mb-2">3. Revenue Forecasting</h3>
                           <p className="text-white/70">Accurate predictions and trend analysis</p>
@@ -427,37 +427,37 @@ export default function EnhancedSalesBot() {
 
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                       <div className="bg-black/20 backdrop-blur-sm rounded-xl p-6">
-                        <div className="text-3xl mb-4">🎯</div>
+                        <div className="text-3xl mb-4"></div>
                         <h3 className="text-white text-xl font-bold mb-2">Lead Qualification</h3>
                         <p className="text-white/70">Intelligent scoring and prioritization of prospects based on behavior and engagement</p>
                       </div>
                       
                       <div className="bg-black/20 backdrop-blur-sm rounded-xl p-6">
-                        <div className="text-3xl mb-4">📊</div>
+                        <div className="text-3xl mb-4"></div>
                         <h3 className="text-white text-xl font-bold mb-2">Pipeline Management</h3>
                         <p className="text-white/70">Track deals through your sales funnel with automated stage progression</p>
                       </div>
                       
                       <div className="bg-black/20 backdrop-blur-sm rounded-xl p-6">
-                        <div className="text-3xl mb-4">💰</div>
+                        <div className="text-3xl mb-4"></div>
                         <h3 className="text-white text-xl font-bold mb-2">Revenue Forecasting</h3>
                         <p className="text-white/70">Accurate revenue predictions based on historical data and current pipeline</p>
                       </div>
                       
                       <div className="bg-black/20 backdrop-blur-sm rounded-xl p-6">
-                        <div className="text-3xl mb-4">📈</div>
+                        <div className="text-3xl mb-4"></div>
                         <h3 className="text-white text-xl font-bold mb-2">Sales Analytics</h3>
                         <p className="text-white/70">Comprehensive reporting on conversion rates, deal velocity, and performance metrics</p>
                       </div>
                       
                       <div className="bg-black/20 backdrop-blur-sm rounded-xl p-6">
-                        <div className="text-3xl mb-4">🤖</div>
+                        <div className="text-3xl mb-4"></div>
                         <h3 className="text-white text-xl font-bold mb-2">AI Insights</h3>
                         <p className="text-white/70">Predictive analytics and recommendations to optimize your sales strategy</p>
                       </div>
                       
                       <div className="bg-black/20 backdrop-blur-sm rounded-xl p-6">
-                        <div className="text-3xl mb-4">📧</div>
+                        <div className="text-3xl mb-4"></div>
                         <h3 className="text-white text-xl font-bold mb-2">Automated Follow-ups</h3>
                         <p className="text-white/70">Personalized email sequences and communication tracking</p>
                       </div>

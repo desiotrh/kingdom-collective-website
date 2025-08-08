@@ -31,9 +31,9 @@ export default async function handler(
         price_data: {
           currency: 'usd',
           product_data: {
-            name: 'Kingdom AI Bots Package',
-            description: `AI Bots: ${selectedBots.join(', ')}${selectedAddOns.length > 0 ? ` | Add-ons: ${selectedAddOns.join(', ')}` : ''}`,
-            images: ['https://kingdomcollective.com/logo.png'], // Replace with your logo URL
+            name: 'Kingdom Chatbots Package',
+            description: `Chatbots: ${selectedBots.join(', ')}${selectedAddOns.length > 0 ? ` | Add-ons: ${selectedAddOns.join(', ')}` : ''}`,
+            images: [`${req.headers.origin}/kingdom-collective-logo.png`],
           },
           unit_amount: totalAmount * 100, // Convert to cents
         },

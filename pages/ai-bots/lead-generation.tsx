@@ -13,7 +13,7 @@ export default function LeadGenerationBot() {
   const [conversationHistory, setConversationHistory] = useState([
     {
       type: 'bot',
-      message: "👋 Hi! I'm your Kingdom Lead Generation Assistant. I can help you capture, qualify, and nurture leads across multiple channels. What type of business are you looking to generate leads for?",
+      message: "Hi! I'm your Kingdom Lead Generation Assistant. I can help you capture, qualify, and nurture leads across multiple channels. What type of business are you looking to generate leads for?",
       timestamp: new Date()
     }
   ]);
@@ -106,7 +106,7 @@ export default function LeadGenerationBot() {
             {/* Hero Section */}
             <section className="relative py-20 px-4 sm:px-6 lg:px-8">
               <div className="max-w-7xl mx-auto text-center">
-                <div className="text-6xl mb-6">🎯</div>
+                {/* Emoji removed for consistency */}
                 <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
                   Lead Generation Bot
                 </h1>
@@ -246,7 +246,7 @@ export default function LeadGenerationBot() {
                         <div className="bg-gradient-to-br from-kingdom-dark/80 to-black/80 backdrop-blur-sm rounded-xl p-6 border border-kingdom-gold/20">
                           <div className="flex items-center gap-3 mb-6">
                             <div className="w-10 h-10 bg-gradient-to-r from-kingdom-gold to-kingdom-orange rounded-full flex items-center justify-center">
-                              <span className="text-kingdom-dark font-bold">👑</span>
+                              {/* Emoji removed for consistency */}
                             </div>
                             <div>
                               <h3 className="text-white font-bold">Kingdom Lead Gen Assistant</h3>
@@ -391,7 +391,7 @@ export default function LeadGenerationBot() {
                 {activeTab === 'features' && (
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <div className="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10">
-                      <div className="text-3xl mb-4">📝</div>
+                       {/* Emoji removed for consistency */}
                       <h3 className="text-xl font-bold text-white mb-3">Automated Lead Capture</h3>
                       <p className="text-white/70">
                         Capture leads from website forms, social media, email campaigns, and phone calls with 
@@ -400,7 +400,7 @@ export default function LeadGenerationBot() {
                     </div>
                     
                     <div className="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10">
-                      <div className="text-3xl mb-4">🎯</div>
+                       {/* Emoji removed for consistency */}
                       <h3 className="text-xl font-bold text-white mb-3">Smart Qualification</h3>
                       <p className="text-white/70">
                         Automatically score and qualify leads based on your business criteria, budget, timeline, 
@@ -409,7 +409,7 @@ export default function LeadGenerationBot() {
                     </div>
                     
                     <div className="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10">
-                      <div className="text-3xl mb-4">🔗</div>
+                       {/* Emoji removed for consistency */}
                       <h3 className="text-xl font-bold text-white mb-3">CRM Integration</h3>
                       <p className="text-white/70">
                         Seamlessly integrate with popular CRM platforms including Salesforce, HubSpot, Pipedrive, 
@@ -418,7 +418,7 @@ export default function LeadGenerationBot() {
                     </div>
                     
                     <div className="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10">
-                      <div className="text-3xl mb-4">📊</div>
+                       {/* Emoji removed for consistency */}
                       <h3 className="text-xl font-bold text-white mb-3">Lead Scoring</h3>
                       <p className="text-white/70">
                         Advanced lead scoring algorithms that analyze behavior, engagement, and demographic data 
@@ -427,7 +427,7 @@ export default function LeadGenerationBot() {
                     </div>
                     
                     <div className="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10">
-                      <div className="text-3xl mb-4">🤖</div>
+                       {/* Emoji removed for consistency */}
                       <h3 className="text-xl font-bold text-white mb-3">Follow-up Automation</h3>
                       <p className="text-white/70">
                         Automated follow-up sequences with personalized messaging based on lead behavior and 
@@ -436,7 +436,7 @@ export default function LeadGenerationBot() {
                     </div>
                     
                     <div className="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10">
-                      <div className="text-3xl mb-4">📈</div>
+                       {/* Emoji removed for consistency */}
                       <h3 className="text-xl font-bold text-white mb-3">Analytics & Reporting</h3>
                       <p className="text-white/70">
                         Comprehensive analytics dashboard showing lead sources, conversion rates, qualification 

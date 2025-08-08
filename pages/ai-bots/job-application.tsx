@@ -18,7 +18,7 @@ export default function JobApplicationBot() {
   const [conversationHistory, setConversationHistory] = useState<Message[]>([
     {
       type: 'bot',
-      message: "💼 Welcome! I'm your Kingdom Job Application Assistant. I can help parse resumes, screen candidates, schedule interviews, and track applications. How can I help streamline your hiring process today?",
+      message: "Welcome! I'm your Kingdom Job Application Assistant. I can help parse resumes, screen candidates, schedule interviews, and track applications. How can I help streamline your hiring process today?",
       timestamp: new Date()
     }
   ]);
@@ -209,7 +209,7 @@ export default function JobApplicationBot() {
                       <h2 className="text-white text-4xl font-black mb-8">What It Does</h2>
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                         <div className="card-standard">
-                          <h3 className="text-white text-2xl font-bold mb-4">🎯 Perfect For</h3>
+                          <h3 className="text-white text-2xl font-bold mb-4">Perfect For</h3>
                           <ul className="space-y-3 text-white/80">
                             <li className="flex items-center">
                               <span className="text-kingdom-gold mr-3">•</span>
@@ -231,7 +231,7 @@ export default function JobApplicationBot() {
                         </div>
                         
                         <div className="card-standard">
-                          <h3 className="text-white text-2xl font-bold mb-4">⚡ Key Benefits</h3>
+                          <h3 className="text-white text-2xl font-bold mb-4">Key Benefits</h3>
                           <ul className="space-y-3 text-white/80">
                             <li className="flex items-center">
                               <span className="text-kingdom-gold mr-3">•</span>
@@ -260,7 +260,7 @@ export default function JobApplicationBot() {
                       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                         <div className="text-center">
                           <div className="bg-gradient-to-br from-kingdom-gold/20 to-kingdom-orange/20 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
-                            <span className="text-2xl">📄</span>
+                            <span className="text-2xl"></span>
                           </div>
                           <h3 className="text-white text-xl font-bold mb-2">1. Resume Parsing</h3>
                           <p className="text-white/70">Automatically extract key information from resumes and applications</p>
@@ -268,7 +268,7 @@ export default function JobApplicationBot() {
                         
                         <div className="text-center">
                           <div className="bg-gradient-to-br from-kingdom-gold/20 to-kingdom-orange/20 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
-                            <span className="text-2xl">🤖</span>
+                            <span className="text-2xl"></span>
                           </div>
                           <h3 className="text-white text-xl font-bold mb-2">2. AI Screening</h3>
                           <p className="text-white/70">Intelligent candidate evaluation based on job requirements</p>
@@ -276,7 +276,7 @@ export default function JobApplicationBot() {
                         
                         <div className="text-center">
                           <div className="bg-gradient-to-br from-kingdom-gold/20 to-kingdom-orange/20 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
-                            <span className="text-2xl">📅</span>
+                            <span className="text-2xl"></span>
                           </div>
                           <h3 className="text-white text-xl font-bold mb-2">3. Interview Scheduling</h3>
                           <p className="text-white/70">Automated calendar coordination and interview setup</p>
@@ -421,37 +421,37 @@ export default function JobApplicationBot() {
 
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                       <div className="bg-black/20 backdrop-blur-sm rounded-xl p-6">
-                        <div className="text-3xl mb-4">📄</div>
+                        <div className="text-3xl mb-4"></div>
                         <h3 className="text-white text-xl font-bold mb-2">Resume Parsing</h3>
                         <p className="text-white/70">Extract key information from resumes including skills, experience, education, and contact details</p>
                       </div>
                       
                       <div className="bg-black/20 backdrop-blur-sm rounded-xl p-6">
-                        <div className="text-3xl mb-4">🤖</div>
+                        <div className="text-3xl mb-4"></div>
                         <h3 className="text-white text-xl font-bold mb-2">AI Screening</h3>
                         <p className="text-white/70">Intelligent candidate evaluation based on job requirements and company culture</p>
                       </div>
                       
                       <div className="bg-black/20 backdrop-blur-sm rounded-xl p-6">
-                        <div className="text-3xl mb-4">📅</div>
+                        <div className="text-3xl mb-4"></div>
                         <h3 className="text-white text-xl font-bold mb-2">Interview Scheduling</h3>
                         <p className="text-white/70">Automated calendar coordination and interview setup with reminders</p>
                       </div>
                       
                       <div className="bg-black/20 backdrop-blur-sm rounded-xl p-6">
-                        <div className="text-3xl mb-4">📊</div>
+                        <div className="text-3xl mb-4"></div>
                         <h3 className="text-white text-xl font-bold mb-2">Analytics Dashboard</h3>
                         <p className="text-white/70">Track hiring metrics, time-to-fill, and recruitment performance</p>
                       </div>
                       
                       <div className="bg-black/20 backdrop-blur-sm rounded-xl p-6">
-                        <div className="text-3xl mb-4">📧</div>
+                        <div className="text-3xl mb-4"></div>
                         <h3 className="text-white text-xl font-bold mb-2">Automated Communication</h3>
                         <p className="text-white/70">Send personalized emails and status updates to candidates</p>
                       </div>
                       
                       <div className="bg-black/20 backdrop-blur-sm rounded-xl p-6">
-                        <div className="text-3xl mb-4">🔍</div>
+                        <div className="text-3xl mb-4"></div>
                         <h3 className="text-white text-xl font-bold mb-2">Job Description Generator</h3>
                         <p className="text-white/70">Create compelling job postings based on requirements and company culture</p>
                       </div>

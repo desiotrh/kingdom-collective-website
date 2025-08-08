@@ -18,7 +18,7 @@ export default function EventManagementBot() {
   const [conversationHistory, setConversationHistory] = useState<Message[]>([
     {
       type: 'bot',
-      message: "👋 Hi! I'm your Kingdom Event Management Assistant. I can help you create, manage, and coordinate events of any size. What type of event are you planning today?",
+      message: "Hi! I'm your Kingdom Event Management Assistant. I can help you create, manage, and coordinate events of any size. What type of event are you planning today?",
       timestamp: new Date()
     }
   ]);
@@ -158,7 +158,7 @@ export default function EventManagementBot() {
           <section className="px-4 sm:px-6 md:px-8 lg:px-12 xl:px-40 py-12 sm:py-16 md:py-20">
             <div className="max-w-6xl mx-auto text-center">
               <div className="mb-8">
-                <span className="text-6xl mb-4 block">🎪</span>
+                {/* Emoji removed for consistency */}
                 <h1 className="text-white text-5xl md:text-7xl font-black leading-tight tracking-[-0.033em] mb-6">
                   Event Management Bot
                 </h1>
@@ -171,13 +171,13 @@ export default function EventManagementBot() {
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link
                   href="/ai-bots/pricing"
-                  className="px-8 py-4 bg-gradient-to-r from-kingdom-gold to-kingdom-orange text-kingdom-dark font-bold rounded-full text-lg hover:scale-105 transition-all duration-200"
+                  className="btn-kingdom-primary"
                 >
                   Get Started - $229
                 </Link>
                 <button
                   onClick={() => setActiveTab('demo')}
-                  className="px-8 py-4 bg-white/10 text-white font-bold rounded-full text-lg border border-white/20 hover:bg-white/20 transition-all duration-200"
+                  className="btn-kingdom-secondary"
                 >
                   Try Demo
                 </button>
@@ -245,7 +245,7 @@ export default function EventManagementBot() {
                     <h2 className="text-white text-4xl font-black mb-8">What It Does</h2>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                       <div className="card-standard">
-                        <h3 className="text-white text-2xl font-bold mb-4">🎯 Perfect For</h3>
+                        <h3 className="text-white text-2xl font-bold mb-4">Perfect For</h3>
                         <ul className="space-y-3 text-white/80">
                           <li className="flex items-center">
                             <span className="text-kingdom-gold mr-3">•</span>
@@ -271,7 +271,7 @@ export default function EventManagementBot() {
                       </div>
                       
                       <div className="card-standard">
-                        <h3 className="text-white text-2xl font-bold mb-4">⚡ Key Benefits</h3>
+                        <h3 className="text-white text-2xl font-bold mb-4">Key Benefits</h3>
                         <ul className="space-y-3 text-white/80">
                           <li className="flex items-center">
                             <span className="text-kingdom-gold mr-3">•</span>
@@ -339,17 +339,17 @@ export default function EventManagementBot() {
                     <h2 className="text-white text-4xl font-black mb-8">Seamless Integration</h2>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                       {[
-                        { name: 'Eventbrite', icon: '🎫' },
-                        { name: 'Stripe Payments', icon: '💳' },
-                        { name: 'Mailchimp', icon: '📧' },
-                        { name: 'Slack', icon: '💬' },
-                        { name: 'Zoom', icon: '📹' },
-                        { name: 'Google Calendar', icon: '📅' },
-                        { name: 'WhatsApp', icon: '📱' },
-                        { name: 'Discord', icon: '🎮' }
+                        { name: 'Eventbrite', icon: '' },
+                        { name: 'Stripe Payments', icon: '' },
+                        { name: 'Mailchimp', icon: '' },
+                        { name: 'Slack', icon: '' },
+                        { name: 'Zoom', icon: '' },
+                        { name: 'Google Calendar', icon: '' },
+                        { name: 'WhatsApp', icon: '' },
+                        { name: 'Discord', icon: '' }
                       ].map((platform) => (
                         <div key={platform.name} className="bg-black/20 backdrop-blur-sm rounded-xl p-6 text-center">
-                          <div className="text-3xl mb-3">{platform.icon}</div>
+                          <div className="text-3xl mb-3"></div>
                           <h3 className="text-white font-bold">{platform.name}</h3>
                         </div>
                       ))}
@@ -371,7 +371,7 @@ export default function EventManagementBot() {
                     <div className="lg:col-span-2 bg-black/20 backdrop-blur-sm rounded-xl p-6">
                       <div className="flex items-center mb-6">
                         <div className="w-10 h-10 bg-gradient-to-r from-kingdom-gold to-kingdom-orange rounded-full flex items-center justify-center mr-3">
-                          <span className="text-kingdom-dark text-lg">👑</span>
+                          {/* Emoji removed for consistency */}
                         </div>
                         <div>
                           <h3 className="text-white font-bold">Kingdom Event Assistant</h3>
@@ -446,7 +446,7 @@ export default function EventManagementBot() {
                     <div className="space-y-6">
                       {/* Event Analytics */}
                       <div className="bg-black/20 backdrop-blur-sm rounded-xl p-6">
-                        <h3 className="text-white font-bold mb-4">📊 Live Event Analytics</h3>
+                        <h3 className="text-white font-bold mb-4">Live Event Analytics</h3>
                         <div className="space-y-4">
                           <div className="flex justify-between items-center">
                             <span className="text-white/80">Total Events:</span>
@@ -465,7 +465,7 @@ export default function EventManagementBot() {
                       
                       {/* Upcoming Events */}
                       <div className="bg-black/20 backdrop-blur-sm rounded-xl p-6">
-                        <h3 className="text-white font-bold mb-4">📅 Upcoming Events</h3>
+                        <h3 className="text-white font-bold mb-4">Upcoming Events</h3>
                         <div className="space-y-3">
                           {upcomingEvents.map((event, index) => (
                             <div key={index} className="bg-white/5 rounded-lg p-3">
@@ -486,7 +486,7 @@ export default function EventManagementBot() {
                       
                       {/* Real-time Features */}
                       <div className="bg-black/20 backdrop-blur-sm rounded-xl p-6">
-                        <h3 className="text-white font-bold mb-4">⚡ Real-time Features</h3>
+                        <h3 className="text-white font-bold mb-4">Real-time Features</h3>
                         <div className="space-y-2 text-sm">
                           <div className="flex items-center text-white/80">
                             <span className="text-kingdom-gold mr-2">•</span>
@@ -525,37 +525,37 @@ export default function EventManagementBot() {
                         {
                           title: 'Registration Handling',
                           description: 'Automated registration with customizable forms and validation',
-                          icon: '📝'
+                          icon: ''
                         },
                         {
                           title: 'Ticket Sales',
                           description: 'Multiple ticket types, pricing tiers, and payment processing',
-                          icon: '🎫'
+                          icon: ''
                         },
                         {
                           title: 'Attendee Management',
                           description: 'Real-time attendee tracking, check-ins, and communication',
-                          icon: '👥'
+                          icon: ''
                         },
                         {
                           title: 'Schedule Coordination',
                           description: 'Dynamic schedule updates and session management',
-                          icon: '📅'
+                          icon: ''
                         },
                         {
                           title: 'Networking Facilitation',
                           description: 'AI-powered matchmaking and networking opportunities',
-                          icon: '🤝'
+                          icon: ''
                         },
                         {
                           title: 'Post-event Surveys',
                           description: 'Automated feedback collection and analytics',
-                          icon: '📊'
+                          icon: ''
                         }
                       ].map((feature) => (
                         <div key={feature.title} className="bg-black/20 backdrop-blur-sm rounded-xl p-6">
                           <div className="flex items-start space-x-4">
-                            <span className="text-3xl">{feature.icon}</span>
+                             <span className="text-3xl">{feature.icon}</span>
                             <div>
                               <h3 className="text-white text-xl font-bold mb-2">{feature.title}</h3>
                               <p className="text-white/80">{feature.description}</p>
@@ -573,22 +573,22 @@ export default function EventManagementBot() {
                         {
                           title: 'Virtual Event Support',
                           description: 'Seamless integration with Zoom, Teams, and streaming platforms',
-                          icon: '📹'
+                          icon: ''
                         },
                         {
                           title: 'Multi-language Support',
                           description: 'Communicate with attendees in their preferred language',
-                          icon: '🌐'
+                          icon: ''
                         },
                         {
                           title: 'Analytics Dashboard',
                           description: 'Comprehensive event metrics and attendee insights',
-                          icon: '📈'
+                          icon: ''
                         },
                         {
                           title: 'Custom Branding',
                           description: 'Match your event theme and brand identity',
-                          icon: '🎨'
+                          icon: ''
                         }
                       ].map((feature) => (
                         <div key={feature.title} className="bg-black/20 backdrop-blur-sm rounded-xl p-6">

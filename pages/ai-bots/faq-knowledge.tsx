@@ -13,7 +13,7 @@ export default function FAQKnowledgeBot() {
   const [conversationHistory, setConversationHistory] = useState([
     {
       type: 'bot',
-      message: "👋 Hi! I'm your Kingdom Knowledge Assistant. I can help you find answers, search through your knowledge base, and provide instant support. What would you like to know?",
+      message: "Hi! I'm your Kingdom Knowledge Assistant. I can help you find answers, search through your knowledge base, and provide instant support. What would you like to know?",
       timestamp: new Date()
     }
   ]);
@@ -119,7 +119,7 @@ export default function FAQKnowledgeBot() {
           <section className="px-4 sm:px-6 md:px-8 lg:px-12 xl:px-40 py-12 sm:py-16 md:py-20">
             <div className="max-w-6xl mx-auto text-center">
               <div className="mb-8">
-                <span className="text-6xl mb-4 block">❓</span>
+                {/* Emoji removed for consistency */}
                 <h1 className="text-white text-5xl md:text-7xl font-black leading-tight tracking-[-0.033em] mb-6">
                   FAQ & Knowledge Base Bot
                 </h1>
@@ -132,13 +132,13 @@ export default function FAQKnowledgeBot() {
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link
                   href="/ai-bots/pricing"
-                  className="px-8 py-4 bg-gradient-to-r from-kingdom-gold to-kingdom-orange text-kingdom-dark font-bold rounded-full text-lg hover:scale-105 transition-all duration-200"
+                  className="btn-kingdom-primary"
                 >
                   Get Started - $159
                 </Link>
                 <button
                   onClick={() => setActiveTab('demo')}
-                  className="px-8 py-4 bg-white/10 text-white font-bold rounded-full text-lg border border-white/20 hover:bg-white/20 transition-all duration-200"
+                  className="btn-kingdom-secondary"
                 >
                   Try Demo
                 </button>
@@ -206,7 +206,7 @@ export default function FAQKnowledgeBot() {
                     <h2 className="text-white text-4xl font-black mb-8">What It Does</h2>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                       <div className="card-standard">
-                        <h3 className="text-white text-2xl font-bold mb-4">🎯 Perfect For</h3>
+                        <h3 className="text-white text-2xl font-bold mb-4">Perfect For</h3>
                         <ul className="space-y-3 text-white/80">
                           <li className="flex items-center">
                             <span className="text-kingdom-gold mr-3">•</span>
@@ -232,7 +232,7 @@ export default function FAQKnowledgeBot() {
                       </div>
                       
                       <div className="card-standard">
-                        <h3 className="text-white text-2xl font-bold mb-4">⚡ Key Benefits</h3>
+                        <h3 className="text-white text-2xl font-bold mb-4">Key Benefits</h3>
                         <ul className="space-y-3 text-white/80">
                           <li className="flex items-center">
                             <span className="text-kingdom-gold mr-3">•</span>
@@ -327,9 +327,7 @@ export default function FAQKnowledgeBot() {
                     <div className="lg:col-span-2">
                       <div className="bg-gradient-to-br from-kingdom-dark/80 to-black/80 backdrop-blur-sm rounded-xl p-6 border border-kingdom-gold/20">
                         <div className="flex items-center gap-3 mb-6">
-                          <div className="w-10 h-10 bg-gradient-to-r from-kingdom-gold to-kingdom-orange rounded-full flex items-center justify-center">
-                            <span className="text-kingdom-dark font-bold">👑</span>
-                          </div>
+                          <div className="w-10 h-10 bg-gradient-to-r from-kingdom-gold to-kingdom-orange rounded-full flex items-center justify-center"></div>
                           <div>
                             <h3 className="text-white font-bold">Kingdom Knowledge Assistant</h3>
                             <p className="text-white/60 text-sm">Powered by Kingdom AI</p>
@@ -405,7 +403,7 @@ export default function FAQKnowledgeBot() {
                     {/* Knowledge Base Analytics */}
                     <div className="space-y-6">
                       <div className="bg-gradient-to-br from-kingdom-dark/80 to-black/80 backdrop-blur-sm rounded-xl p-6 border border-kingdom-gold/20">
-                        <h3 className="text-white font-bold mb-4">📊 Search Analytics</h3>
+                        <h3 className="text-white font-bold mb-4">Search Analytics</h3>
                         <div className="space-y-4">
                           <div className="text-center">
                             <div className="text-2xl font-bold text-kingdom-gold">{searchResults}</div>
@@ -423,7 +421,7 @@ export default function FAQKnowledgeBot() {
                       </div>
 
                       <div className="bg-gradient-to-br from-kingdom-dark/80 to-black/80 backdrop-blur-sm rounded-xl p-6 border border-kingdom-gold/20">
-                        <h3 className="text-white font-bold mb-4">🔍 Popular Searches</h3>
+                        <h3 className="text-white font-bold mb-4">Popular Searches</h3>
                         <div className="space-y-2">
                           {popularSearches.map((search, index) => (
                             <div key={index} className="flex justify-between items-center">
@@ -435,7 +433,7 @@ export default function FAQKnowledgeBot() {
                       </div>
 
                       <div className="bg-gradient-to-br from-kingdom-dark/80 to-black/80 backdrop-blur-sm rounded-xl p-6 border border-kingdom-gold/20">
-                        <h3 className="text-white font-bold mb-4">⚡ Real-time Features</h3>
+                        <h3 className="text-white font-bold mb-4">Real-time Features</h3>
                         <div className="space-y-2 text-sm">
                           <div className="flex items-center gap-2">
                             <div className="w-2 h-2 bg-green-400 rounded-full"></div>

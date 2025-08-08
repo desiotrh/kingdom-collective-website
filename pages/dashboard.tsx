@@ -288,7 +288,7 @@ export default function Dashboard() {
                   Welcome back, {user.name}!
                 </h1>
                 <p className="text-white text-lg">
-                  Manage your Kingdom Collective apps and AI bots.
+                  Manage your Kingdom Collective apps and chatbots.
                 </p>
               </div>
               <div className="flex items-center space-x-4">
@@ -314,7 +314,7 @@ export default function Dashboard() {
                 <p className="text-kingdom-gold text-3xl font-black">{userApps.length}</p>
               </div>
               <div className="card-standard">
-                <h3 className="text-white font-bold text-lg mb-2">AI Bots</h3>
+                <h3 className="text-white font-bold text-lg mb-2">Chatbots</h3>
                 <p className="text-kingdom-gold text-3xl font-black">{userAIBots.length}</p>
               </div>
               <div className="card-standard">
@@ -347,7 +347,7 @@ export default function Dashboard() {
                     : 'text-white/70 hover:text-white'
                 }`}
               >
-                AI Bots
+                Chatbots
               </button>
               <button
                 onClick={() => setActiveTab('orders')}
@@ -480,10 +480,10 @@ export default function Dashboard() {
                 <div className="flex items-center justify-between mb-8">
                   <div>
                     <h2 className="text-4xl md:text-6xl font-bold leading-tight tracking-[-0.033em] text-white mb-2">
-                      Your AI Bots
+                      Your Chatbots
                     </h2>
                     <p className="text-white text-lg">
-                      Manage your purchased AI bots and monitor their performance.
+                      Manage your purchased chatbots and monitor their performance.
                     </p>
                   </div>
                   <Link
