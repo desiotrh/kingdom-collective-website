@@ -130,7 +130,7 @@ export default function TestimonialBot() {
             {/* Hero Section */}
             <section className="relative py-20 px-4 sm:px-6 lg:px-8">
               <div className="max-w-7xl mx-auto text-center">
-                <div className="text-6xl mb-6">⭐</div>
+                {/* Emoji removed for consistency */}
                 <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
                   Testimonial Bot
                 </h1>
@@ -509,7 +509,6 @@ export default function TestimonialBot() {
                   </div>
                 </div>
               )}
-            </div>
           </main>
           <Footer />
         </div>

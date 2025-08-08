@@ -495,7 +495,6 @@ export default function CustomerSupportBot() {
                   </div>
                 </div>
               )}
-            </div>
           </main>
         </div>
       </div>

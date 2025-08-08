@@ -1,7 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    output: "export",
-    trailingSlash: true,
+    // Use default server output so API routes work
+    // output: "export",
+    trailingSlash: false,
     images: {
         unoptimized: true,
         domains: ['desitotrh.com'],
@@ -13,7 +14,14 @@ const nextConfig = {
                 headers: [
                     {
                         key: 'Content-Security-Policy',
-                        value: "frame-ancestors 'self' https://desitotrh.com https://beacons.ai; frame-src 'self' https://desitotrh.com https://beacons.ai;",
+                        value: [
+                            "default-src 'self'",
+                            "script-src 'self' https://js.stripe.com",
+                            "style-src 'self' 'unsafe-inline'",
+                            "img-src 'self' data: https:",
+                            "frame-src 'self' https://js.stripe.com https://hooks.stripe.com",
+                            "connect-src 'self' https://api.stripe.com https://js.stripe.com"
+                        ].join('; '),
                     },
                     {
                         key: 'X-Content-Type-Options',
