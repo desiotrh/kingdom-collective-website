@@ -1,0 +1,38 @@
+{
+  "banner": "AI is a tool—not your voice. Pause, reflect, and lead your vision.",
+  "modal": {
+    "title": "Pause & Reflect",
+    "body": "AI can assist, but your calling and voice lead. Take a moment to align your intent, then proceed with wisdom.",
+    "timerSeconds": 10,
+    "skippable": true
+  },
+  "beforePrompts": [
+    "What’s the goal, and who is this for?",
+    "What would you create without AI?",
+    "What’s the unique angle or testimony you bring?"
+  ],
+  "afterPrompts": [
+    "What will you change so it truly sounds like you?",
+    "Does this reflect your values and calling?",
+    "What would God have you emphasize?"
+  ],
+  "modes": {
+    "coach": { "pre": true, "post": true },
+    "express": { "pre": false, "post": true }
+  },
+  "nudges": {
+    "enabled": true,
+    "afterConsecutiveUses": 3,
+    "message": "Try your voice first—what’s the core message?"
+  },
+  "provenance": {
+    "labels": ["AI-assisted", "Human-led + AI-polish"],
+    "showChangeHistory": true
+  },
+  "privacy": {
+    "storeReflectionsLocally": true,
+    "syncOptIn": false
+  }
+}
+
+
