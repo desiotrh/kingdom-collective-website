@@ -4,6 +4,7 @@ import { StatusBar } from 'expo-status-bar';
 import { View, Text, StyleSheet, TouchableOpacity, Switch } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { LinearGradient } from 'expo-linear-gradient';
+import { AIReflectBanner } from 'packages/ui/AIReflectBanner';
 
 // Kingdom Lens specific imports
 import { KingdomColors } from '../../kingdom-studios/src/constants/KingdomColors';
@@ -135,6 +136,7 @@ const KingdomLensLayout = () => {
             }}
           />
         </Stack>
+        <AIReflectBanner />
       </LinearGradient>
     </SafeAreaProvider>
   );

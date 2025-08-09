@@ -13,6 +13,7 @@ import { AppProvider } from './src/contexts/AppContext';
 import { PerformanceProvider } from './src/contexts/PerformanceContext';
 import { LoadingSkeleton } from './src/components/LazyComponents';
 import notificationService from './src/services/notificationService';
+import { AIReflectBanner } from '../packages/ui/AIReflectBanner';
 
 // Lazy load OnboardingNavigator for better initial load performance
 const OnboardingNavigator = React.lazy(() => import('./src/navigation/OnboardingNavigator'));
@@ -48,6 +49,7 @@ export default function App() {
                       <Suspense fallback={<LoadingSkeleton />}>
                         <OnboardingNavigator />
                       </Suspense>
+                      <AIReflectBanner />
                     </NavigationContainer>
                   </AuthProvider>
                 </FaithModeProvider>

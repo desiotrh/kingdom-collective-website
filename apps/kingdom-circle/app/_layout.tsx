@@ -6,6 +6,7 @@ import 'react-native-reanimated';
 
 import { useColorScheme } from '@/hooks/useColorScheme';
 import { FaithModeProvider } from 'packages/hooks/useFaithMode';
+import { AIReflectBanner } from 'packages/ui/AIReflectBanner';
 
 export default function RootLayout() {
   const colorScheme = useColorScheme();
@@ -26,6 +27,7 @@ export default function RootLayout() {
           <Stack.Screen name="+not-found" />
         </Stack>
         <StatusBar style="auto" />
+        <AIReflectBanner />
       </ThemeProvider>
     </FaithModeProvider>
   );

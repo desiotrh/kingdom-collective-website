@@ -7,28 +7,34 @@ AI can be helpful—but it is only a tool. It should never replace your vision, 
 - Always pause and reflect to ensure you’re aligned with what you’re called to do.
 
 ### How We Use AI (Across Website and Apps)
+
 - AI is opt-in and assistive, not automatic or directive.
 - You remain the author; AI can suggest, but you decide.
 - We encourage brief reflection before and after AI usage to strengthen your unique voice.
 
 ### Pause & Reflect (Built-in Guidance)
+
 Before you generate:
+
 - What’s the goal, and who is this for?
 - What would you create without AI?
 - What’s the unique angle or testimony you bring?
 
 After you generate:
+
 - What will you change so it truly sounds like you?
 - Does this reflect your values and calling?
 - What would God have you emphasize?
 
 ### Short Versions (for banners, modals, settings)
+
 - Banner: “AI is a tool—not your voice. Pause, reflect, and lead your vision.”
 - Modal title: “Pause & Reflect”
 - Modal body: “AI can assist, but your calling and voice lead. Take a moment to align your intent, then proceed with wisdom.”
 - Settings note: “AI Assist is optional. Keep your voice first, use AI second.”
 
 ### Safeguards That Align With Our Mission
+
 - Reflect-first, accept-last
   - Pre-generate “Pause & Reflect” (5–20s, skippable) with 2–3 intent prompts.
   - Post-generate “Confirm & Edit” step: require a brief tweak or “what I changed” note before saving.
@@ -71,10 +77,9 @@ After you generate:
   - Weekly recap highlighting the user’s evolving angles/style.
 
 ### Per-App Emphasis
+
 - Studios, Launchpad (most AI): full pre+post checkpoints, Coach Mode by default, publish checklist.
 - Voice: pre-transcription intent + post-edit reflection; “distraction-free journaling” mode.
 - Clips: pre-gen intent + post-pick edit; emphasize manual brand kit first.
 - Lens: prompt gallery as guidance; avoid auto-enhance by default; “shoot planning” checklist.
 - Circle: human-led prompts; no AI posting; reflection for challenge creators only.
-
-

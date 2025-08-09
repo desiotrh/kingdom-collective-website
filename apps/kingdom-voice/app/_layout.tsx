@@ -17,6 +17,7 @@ import {
 
 import { useColorScheme } from '@/hooks/useColorScheme';
 import { FaithModeProvider } from '@/contexts/FaithModeContext';
+import { AIReflectBanner } from 'packages/ui/AIReflectBanner';
 
 export default function RootLayout() {
   const colorScheme = useColorScheme();
@@ -44,6 +45,7 @@ export default function RootLayout() {
           <Stack.Screen name="+not-found" />
         </Stack>
         <StatusBar style="auto" />
+        <AIReflectBanner />
       </FaithModeProvider>
     </ThemeProvider>
   );
