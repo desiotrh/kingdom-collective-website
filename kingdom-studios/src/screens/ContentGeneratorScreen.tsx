@@ -30,6 +30,7 @@ import backendAPI, {
 } from '../services/backendAPI';
 import { contentService } from '../services/contentService';
 import { AnalyticsService } from '../services/AnalyticsService';
+import AIReflectModal from '../../../packages/ui/AIReflectModal';
 
 const { width } = Dimensions.get('window');
 
@@ -136,6 +137,8 @@ const ContentGeneratorScreen = () => {
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [modalVisible, setModalVisible] = useState(false);
   const [contentType, setContentType] = useState('');
+  const [reflectVisible, setReflectVisible] = useState(false);
+  const [reflectPendingType, setReflectPendingType] = useState<null | 'post' | 'caption' | 'reelIdea'>(null);
   const [contentGeneration, setContentGeneration] = useState<ContentGenerationState>({
     isLoading: false,
     error: null,
@@ -424,6 +427,12 @@ const ContentGeneratorScreen = () => {
     }
   };
 
+  // Begin reflect checkpoint then generate
+  const beginReflectAndGenerate = (type: 'post' | 'caption' | 'reelIdea') => {
+    setReflectPendingType(type);
+    setReflectVisible(true);
+  };
+
   const handleCustomGeneration = async () => {
     if (!selectedProduct || !user) return;
 
@@ -670,7 +679,7 @@ const ContentGeneratorScreen = () => {
 
                     <TouchableOpacity
                       style={styles.optionButton}
-                      onPress={() => handleGenerateContent('post')}
+                      onPress={() => beginReflectAndGenerate('post')}
                     >
                       <View style={styles.optionContent}>
                         <Text style={styles.optionIcon}>📝</Text>
@@ -685,7 +694,7 @@ const ContentGeneratorScreen = () => {
 
                     <TouchableOpacity
                       style={styles.optionButton}
-                      onPress={() => handleGenerateContent('caption')}
+                      onPress={() => beginReflectAndGenerate('caption')}
                     >
                       <View style={styles.optionContent}>
                         <Text style={styles.optionIcon}>💬</Text>
@@ -700,7 +709,7 @@ const ContentGeneratorScreen = () => {
 
                     <TouchableOpacity
                       style={styles.optionButton}
-                      onPress={() => handleGenerateContent('reelIdea')}
+                      onPress={() => beginReflectAndGenerate('reelIdea')}
                     >
                       <View style={styles.optionContent}>
                         <Text style={styles.optionIcon}>🎬</Text>
@@ -986,6 +995,19 @@ const ContentGeneratorScreen = () => {
       </ScrollView>
 
       {renderGenerationModal()}
+
+      {/* Pause & Reflect (pre-generate) */}
+      <AIReflectModal
+        visible={reflectVisible}
+        onSkip={() => {
+          setReflectVisible(false);
+          if (reflectPendingType) handleGenerateContent(reflectPendingType);
+        }}
+        onConfirm={() => {
+          setReflectVisible(false);
+          if (reflectPendingType) handleGenerateContent(reflectPendingType);
+        }}
+      />
 
       {/* Upgrade Modal */}
       <Modal

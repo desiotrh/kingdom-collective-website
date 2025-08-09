@@ -8,6 +8,7 @@ import { useProductPlans } from '../../../packages/hooks/useProductPlans';
 import { ContentService } from '../../../packages/api';
 import { View, Text, ScrollView, TouchableOpacity, Alert } from 'react-native';
 import * as Clipboard from 'expo-clipboard';
+import AIReflectModal from '../../../packages/ui/AIReflectModal';
 
 const Container = styled.ScrollView`
   flex: 1;
@@ -57,8 +58,15 @@ export default function ProductNamingScreen() {
     const [nameOptions, setNameOptions] = useState<string[]>([]);
     const [selectedName, setSelectedName] = useState('');
     const [description, setDescription] = useState('');
+  const [reflectVisible, setReflectVisible] = useState(false);
 
     const handleGenerateNames = async () => {
+        if (!selectedPlan) return;
+        setReflectVisible(true);
+        // actual generation will start after reflect confirmation
+    };
+
+    const doGenerateNames = async () => {
         if (!selectedPlan) return;
         setNameLoading(true);
         setNameOptions([]);
@@ -85,6 +93,12 @@ export default function ProductNamingScreen() {
     };
 
     const handleGenerateDescription = async () => {
+        if (!selectedPlan || !selectedName) return;
+        setReflectVisible(true);
+        // actual generation will start after reflect confirmation
+    };
+
+    const doGenerateDescription = async () => {
         if (!selectedPlan || !selectedName) return;
         setDescLoading(true);
         let prompt = `Write a 1-paragraph product description for a ${selectedPlan.type} called ${selectedName}. The product helps ${selectedPlan.audience} with ${selectedPlan.problem} and includes features like ${selectedPlan.features.join(', ')}. Make it clear, compelling, and mission-driven.`;
@@ -138,7 +152,7 @@ export default function ProductNamingScreen() {
                 <Text style={{ color: theme.colors.sapphireBlue, marginBottom: 8 }}>
                     Type: {selectedPlan?.type || '-'} | Audience: {selectedPlan?.audience || '-'}
                 </Text>
-                <Button title={nameLoading ? 'Generating...' : 'Generate Names'} onPress={handleGenerateNames} loading={nameLoading} />
+            <Button title={nameLoading ? 'Generating...' : 'Generate Names'} onPress={handleGenerateNames} loading={nameLoading} />
                 <View style={{ marginTop: 12 }}>
                     {nameOptions.map((name, idx) => (
                         <NameOption key={idx} selected={selectedName === name} onPress={() => setSelectedName(name)}>
@@ -159,6 +173,20 @@ export default function ProductNamingScreen() {
                     </DescriptionBox>
                 ) : null}
             </Section>
+        <AIReflectModal
+          visible={reflectVisible}
+          onSkip={() => {
+            setReflectVisible(false);
+            if (nameLoading || descLoading) return;
+            // Decide based on selection state
+            if (!selectedName) doGenerateNames(); else doGenerateDescription();
+          }}
+          onConfirm={() => {
+            setReflectVisible(false);
+            if (nameLoading || descLoading) return;
+            if (!selectedName) doGenerateNames(); else doGenerateDescription();
+          }}
+        />
         </Container>
     );
 } 

@@ -15,6 +15,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Colors } from '@/constants/Colors';
 import { useColorScheme } from '@/hooks/useColorScheme';
 import { useFaithMode } from '@/contexts/FaithModeContext';
+import AIReflectModal from '../../../../packages/ui/AIReflectModal';
 
 interface Devotional {
     id: string;
@@ -48,6 +49,7 @@ export default function DevotionalGeneratorScreen() {
     const [isGenerating, setIsGenerating] = useState(false);
     const [currentDevotional, setCurrentDevotional] = useState<Devotional | null>(null);
     const [savedDevotionals, setSavedDevotionals] = useState<Devotional[]>([]);
+  const [reflectVisible, setReflectVisible] = useState(false);
 
     // Load saved devotionals on mount
     useEffect(() => {
@@ -73,6 +75,11 @@ export default function DevotionalGeneratorScreen() {
             return;
         }
 
+        setReflectVisible(true);
+    };
+
+    const doGenerateDevotional = async () => {
+        const prompt = promptType === 'journal' ? journalEntry : customTheme;
         setIsGenerating(true);
 
         try {
@@ -393,6 +400,13 @@ export default function DevotionalGeneratorScreen() {
                     </View>
                 )}
             </ScrollView>
+
+            {/* Reflect Modal */}
+            <AIReflectModal
+              visible={reflectVisible}
+              onSkip={() => { setReflectVisible(false); doGenerateDevotional(); }}
+              onConfirm={() => { setReflectVisible(false); doGenerateDevotional(); }}
+            />
 
             {/* Faith Mode Overlay */}
             {FaithModeOverlay}

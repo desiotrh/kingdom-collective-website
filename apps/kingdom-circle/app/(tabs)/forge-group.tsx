@@ -20,6 +20,7 @@ import { Audio } from 'expo-av';
 import { Colors } from '@/constants/Colors';
 import { useColorScheme } from '@/hooks/useColorScheme';
 import { useFaithMode } from 'packages/hooks/useFaithMode';
+import AIReflectModal from '../../../../packages/ui/AIReflectModal';
 
 const FAITH_TOPICS = [
     'Deliverance',
@@ -278,6 +279,7 @@ export default function ForgeGroupScreen() {
         description: '',
         prompt: '',
     });
+    const [reflectVisible, setReflectVisible] = useState(false);
     const [challengeResponse, setChallengeResponse] = useState('');
     const [challengeResponseType, setChallengeResponseType] = useState<'text' | 'video'>('text');
     const [cameraPermission, setCameraPermission] = useState<boolean | null>(null);
@@ -507,7 +509,10 @@ export default function ForgeGroupScreen() {
             Alert.alert('Missing Information', 'Please fill in all fields.');
             return;
         }
+        setReflectVisible(true);
+    };
 
+    const doPostChallenge = () => {
         const newChallengePost: GroupChallenge = {
             id: Date.now().toString(),
             title: newChallenge.title,
@@ -518,7 +523,6 @@ export default function ForgeGroupScreen() {
             timestamp: Date.now(),
             responses: [],
         };
-
         setGroupChallenges(prev => [newChallengePost, ...prev]);
         setNewChallenge({ title: '', description: '', prompt: '' });
         setShowNewChallengeModal(false);
@@ -1896,6 +1900,11 @@ export default function ForgeGroupScreen() {
             )}
 
             {/* New Lesson Modal */}
+            <AIReflectModal
+              visible={reflectVisible}
+              onSkip={() => { setReflectVisible(false); doPostChallenge(); }}
+              onConfirm={() => { setReflectVisible(false); doPostChallenge(); }}
+            />
             <Modal
                 visible={showNewLessonModal}
                 animationType="slide"

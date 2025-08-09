@@ -15,6 +15,7 @@ import {
 import { LinearGradient } from 'expo-linear-gradient';
 import { Ionicons } from '@expo/vector-icons';
 import { useFaithMode } from '../../../packages/hooks/useFaithMode';
+import AIReflectModal from '../../../../packages/ui/AIReflectModal';
 
 const { width, height } = Dimensions.get('window');
 
@@ -61,6 +62,7 @@ const AIWorkflowToolsScreen: React.FC = () => {
     const [voiceRecording, setVoiceRecording] = useState(false);
     const [presets, setPresets] = useState<Preset[]>([]);
     const [voiceNotes, setVoiceNotes] = useState<VoiceNote[]>([]);
+    const [reflectVisible, setReflectVisible] = useState(false);
 
     const workflowToolsData: WorkflowTool[] = [
         // Smart Preset Matching
@@ -257,6 +259,10 @@ const AIWorkflowToolsScreen: React.FC = () => {
     };
 
     const createPreset = () => {
+        setReflectVisible(true);
+    };
+
+    const doCreatePreset = () => {
         Alert.alert(
             'Create Preset',
             'Upload a reference image to create a matching preset.',
@@ -493,6 +499,11 @@ const AIWorkflowToolsScreen: React.FC = () => {
                     </LinearGradient>
                 </TouchableOpacity>
             </ScrollView>
+            <AIReflectModal
+              visible={reflectVisible}
+              onSkip={() => { setReflectVisible(false); doCreatePreset(); }}
+              onConfirm={() => { setReflectVisible(false); doCreatePreset(); }}
+            />
         </SafeAreaView>
     );
 };

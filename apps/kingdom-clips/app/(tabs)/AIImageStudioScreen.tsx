@@ -19,6 +19,7 @@ import * as ImagePicker from 'expo-image-picker';
 import * as FileSystem from 'expo-file-system';
 import { useFaithMode } from '../../../packages/hooks/useFaithMode';
 import { Colors } from '@/constants/Colors';
+import AIReflectModal from '../../../../packages/ui/AIReflectModal';
 
 const { width } = Dimensions.get('window');
 
@@ -59,12 +60,18 @@ export default function AIImageStudioScreen() {
     const [refinementLevel, setRefinementLevel] = useState(50);
 
     // Mock AI service for Kingdom Clips
+    const [reflectVisible, setReflectVisible] = useState(false);
+
     const generateImage = async () => {
         if (!prompt.trim()) {
             Alert.alert('Prompt Required', 'Please enter a description for your image.');
             return;
         }
 
+        setReflectVisible(true);
+    };
+
+    const doGenerateImage = async () => {
         setIsGenerating(true);
 
         try {
@@ -361,6 +368,12 @@ export default function AIImageStudioScreen() {
 
                 {generatedImages.length > 0 && renderGeneratedImages()}
             </ScrollView>
+
+            <AIReflectModal
+              visible={reflectVisible}
+              onSkip={() => { setReflectVisible(false); doGenerateImage(); }}
+              onConfirm={() => { setReflectVisible(false); doGenerateImage(); }}
+            />
         </SafeAreaView>
     );
 }
