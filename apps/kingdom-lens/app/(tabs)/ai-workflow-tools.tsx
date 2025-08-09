@@ -16,6 +16,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { Ionicons } from '@expo/vector-icons';
 import { useFaithMode } from '../../../packages/hooks/useFaithMode';
 import AIReflectModal from '../../../../packages/ui/AIReflectModal';
+import { getReflectPrompts } from '../../../../packages/utils/valuesStyle';
 
 const { width, height } = Dimensions.get('window');
 
@@ -501,6 +502,7 @@ const AIWorkflowToolsScreen: React.FC = () => {
             </ScrollView>
             <AIReflectModal
               visible={reflectVisible}
+              beforePrompts={getReflectPrompts(faithMode).before}
               onSkip={() => { setReflectVisible(false); doCreatePreset(); }}
               onConfirm={() => { setReflectVisible(false); doCreatePreset(); }}
             />

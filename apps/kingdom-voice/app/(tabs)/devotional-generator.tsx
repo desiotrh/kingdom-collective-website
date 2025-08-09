@@ -16,6 +16,7 @@ import { Colors } from '@/constants/Colors';
 import { useColorScheme } from '@/hooks/useColorScheme';
 import { useFaithMode } from '@/contexts/FaithModeContext';
 import AIReflectModal from '../../../../packages/ui/AIReflectModal';
+import { getReflectPrompts } from '../../../../packages/utils/valuesStyle';
 
 interface Devotional {
     id: string;
@@ -404,6 +405,7 @@ export default function DevotionalGeneratorScreen() {
             {/* Reflect Modal */}
             <AIReflectModal
               visible={reflectVisible}
+              beforePrompts={getReflectPrompts(isFaithMode).before}
               onSkip={() => { setReflectVisible(false); doGenerateDevotional(); }}
               onConfirm={() => { setReflectVisible(false); doGenerateDevotional(); }}
             />

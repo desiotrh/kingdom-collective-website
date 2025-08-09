@@ -9,6 +9,7 @@ import { ContentService } from '../../../packages/api';
 import { View, Text, ScrollView, TouchableOpacity, Alert } from 'react-native';
 import * as Clipboard from 'expo-clipboard';
 import AIReflectModal from '../../../packages/ui/AIReflectModal';
+import { getReflectPrompts } from '../../../packages/utils/valuesStyle';
 
 const Container = styled.ScrollView`
   flex: 1;
@@ -175,6 +176,7 @@ export default function ProductNamingScreen() {
             </Section>
         <AIReflectModal
           visible={reflectVisible}
+          beforePrompts={getReflectPrompts(includeFaith).before}
           onSkip={() => {
             setReflectVisible(false);
             if (nameLoading || descLoading) return;

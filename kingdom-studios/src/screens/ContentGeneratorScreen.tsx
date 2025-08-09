@@ -31,6 +31,7 @@ import backendAPI, {
 import { contentService } from '../services/contentService';
 import { AnalyticsService } from '../services/AnalyticsService';
 import AIReflectModal from '../../../packages/ui/AIReflectModal';
+import { getReflectPrompts } from '../../../packages/utils/valuesStyle';
 
 const { width } = Dimensions.get('window');
 
@@ -999,6 +1000,7 @@ const ContentGeneratorScreen = () => {
       {/* Pause & Reflect (pre-generate) */}
       <AIReflectModal
         visible={reflectVisible}
+        beforePrompts={getReflectPrompts(faithMode).before}
         onSkip={() => {
           setReflectVisible(false);
           if (reflectPendingType) handleGenerateContent(reflectPendingType);
