@@ -21,7 +21,7 @@ import { Colors } from '@/constants/Colors';
 import { useColorScheme } from '@/hooks/useColorScheme';
 import { useFaithMode } from 'packages/hooks/useFaithMode';
 import AIReflectModal from '../../../../packages/ui/AIReflectModal';
-import { getReflectPrompts } from '../../../../packages/utils/valuesStyle';
+import { getReflectPrompts, persistChoice, readChoice } from '../../../../packages/utils/valuesStyle';
 
 const FAITH_TOPICS = [
     'Deliverance',
@@ -511,6 +511,8 @@ export default function ForgeGroupScreen() {
             Alert.alert('Missing Information', 'Please fill in all fields.');
             return;
         }
+        const remembered = readChoice<boolean>('circle_reflect_skip');
+        if (remembered) { doPostChallenge(); return; }
         setReflectVisible(true);
     };
 
@@ -1905,8 +1907,9 @@ export default function ForgeGroupScreen() {
             <AIReflectModal
               visible={reflectVisible}
               prompts={getReflectPrompts(faithMode).before}
-              onSkip={() => { setReflectVisible(false); doPostChallenge(); }}
-              onConfirm={() => { setReflectVisible(false); doPostChallenge(); }}
+              enableRemember
+              onSkip={({ remember }) => { setReflectVisible(false); doPostChallenge(); if (remember) persistChoice('circle_reflect_skip', true); }}
+              onConfirm={(_, { remember }) => { setReflectVisible(false); doPostChallenge(); if (remember) persistChoice('circle_reflect_skip', true); }}
             />
             <AIReflectModal
               visible={reflectAfterVisible}

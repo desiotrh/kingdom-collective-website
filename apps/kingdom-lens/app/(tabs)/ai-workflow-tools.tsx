@@ -16,7 +16,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { Ionicons } from '@expo/vector-icons';
 import { useFaithMode } from '../../../packages/hooks/useFaithMode';
 import AIReflectModal from '../../../../packages/ui/AIReflectModal';
-import { getReflectPrompts } from '../../../../packages/utils/valuesStyle';
+import { getReflectPrompts, persistChoice, readChoice } from '../../../../packages/utils/valuesStyle';
 
 const { width, height } = Dimensions.get('window');
 
@@ -504,8 +504,9 @@ const AIWorkflowToolsScreen: React.FC = () => {
             <AIReflectModal
               visible={reflectVisible}
               beforePrompts={getReflectPrompts(faithMode).before}
-              onSkip={() => { setReflectVisible(false); doCreatePreset(); }}
-              onConfirm={() => { setReflectVisible(false); doCreatePreset(); }}
+              enableRemember
+              onSkip={({ remember }) => { setReflectVisible(false); doCreatePreset(); if (remember) persistChoice('lens_reflect_skip', true); }}
+              onConfirm={(_, { remember }) => { setReflectVisible(false); doCreatePreset(); if (remember) persistChoice('lens_reflect_skip', true); }}
             />
             <AIReflectModal
               visible={reflectAfterVisible}

@@ -46,4 +46,24 @@ export function defaultTone(faithMode: boolean): string {
   return faithMode ? 'biblical' : 'purpose-driven';
 }
 
+// simple local storage util for remember choices
+export function persistChoice(key: string, value: unknown, days = 7) {
+  try {
+    const until = Date.now() + days * 24 * 60 * 60 * 1000;
+    const payload = { until, value };
+    // @ts-ignore: RN/Expo may not have localStorage; host apps can swap this impl
+    localStorage?.setItem(key, JSON.stringify(payload));
+  } catch {}
+}
+
+export function readChoice<T>(key: string): T | undefined {
+  try {
+    const raw = localStorage?.getItem(key);
+    if (!raw) return undefined;
+    const { until, value } = JSON.parse(raw);
+    if (until && until > Date.now()) return value as T;
+  } catch {}
+  return undefined;
+}
+
 

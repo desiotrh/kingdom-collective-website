@@ -31,7 +31,7 @@ import backendAPI, {
 import { contentService } from '../services/contentService';
 import { AnalyticsService } from '../services/AnalyticsService';
 import AIReflectModal from '../../../packages/ui/AIReflectModal';
-import { getReflectPrompts } from '../../../packages/utils/valuesStyle';
+import { getReflectPrompts, persistChoice, readChoice } from '../../../packages/utils/valuesStyle';
 
 const { width } = Dimensions.get('window');
 
@@ -431,6 +431,11 @@ const ContentGeneratorScreen = () => {
 
   // Begin reflect checkpoint then generate
   const beginReflectAndGenerate = (type: 'post' | 'caption' | 'reelIdea') => {
+    const remembered = readChoice<boolean>('studio_reflect_skip');
+    if (remembered) {
+      handleGenerateContent(type);
+      return;
+    }
     setReflectPendingType(type);
     setReflectVisible(true);
   };
@@ -996,13 +1001,16 @@ const ContentGeneratorScreen = () => {
       <AIReflectModal
         visible={reflectVisible}
         prompts={getReflectPrompts(faithMode).before}
-        onSkip={() => {
+        enableRemember
+        onSkip={({ remember }) => {
           setReflectVisible(false);
           if (reflectPendingType) handleGenerateContent(reflectPendingType);
+          if (remember) persistChoice('studio_reflect_skip', true);
         }}
-        onConfirm={() => {
+        onConfirm={(_, { remember }) => {
           setReflectVisible(false);
           if (reflectPendingType) handleGenerateContent(reflectPendingType);
+          if (remember) persistChoice('studio_reflect_skip', true);
         }}
       />
 

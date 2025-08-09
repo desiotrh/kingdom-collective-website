@@ -20,7 +20,7 @@ import * as FileSystem from 'expo-file-system';
 import { useFaithMode } from '../../../packages/hooks/useFaithMode';
 import { Colors } from '@/constants/Colors';
 import AIReflectModal from '../../../../packages/ui/AIReflectModal';
-import { getReflectPrompts } from '../../../../packages/utils/valuesStyle';
+import { getReflectPrompts, persistChoice, readChoice } from '../../../../packages/utils/valuesStyle';
 
 const { width } = Dimensions.get('window');
 
@@ -70,6 +70,8 @@ export default function AIImageStudioScreen() {
             return;
         }
 
+        const remembered = readChoice<boolean>('clips_reflect_skip');
+        if (remembered) { await doGenerateImage(); return; }
         setReflectVisible(true);
     };
 
@@ -375,8 +377,9 @@ export default function AIImageStudioScreen() {
             <AIReflectModal
               visible={reflectVisible}
               beforePrompts={getReflectPrompts(faithMode).before}
-              onSkip={() => { setReflectVisible(false); doGenerateImage(); }}
-              onConfirm={() => { setReflectVisible(false); doGenerateImage(); }}
+              enableRemember
+              onSkip={({ remember }) => { setReflectVisible(false); doGenerateImage(); if (remember) persistChoice('clips_reflect_skip', true); }}
+              onConfirm={(_, { remember }) => { setReflectVisible(false); doGenerateImage(); if (remember) persistChoice('clips_reflect_skip', true); }}
             />
             <AIReflectModal
               visible={reflectAfterVisible}

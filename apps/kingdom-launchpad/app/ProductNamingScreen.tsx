@@ -9,7 +9,7 @@ import { ContentService } from '../../../packages/api';
 import { View, Text, ScrollView, TouchableOpacity, Alert } from 'react-native';
 import * as Clipboard from 'expo-clipboard';
 import AIReflectModal from '../../../packages/ui/AIReflectModal';
-import { getReflectPrompts } from '../../../packages/utils/valuesStyle';
+import { getReflectPrompts, persistChoice, readChoice } from '../../../packages/utils/valuesStyle';
 
 const Container = styled.ScrollView`
   flex: 1;
@@ -64,6 +64,8 @@ export default function ProductNamingScreen() {
 
     const handleGenerateNames = async () => {
         if (!selectedPlan) return;
+        const remembered = readChoice<boolean>('launchpad_reflect_skip');
+        if (remembered) { await doGenerateNames(); return; }
         setReflectVisible(true);
         // actual generation will start after reflect confirmation
     };
@@ -96,6 +98,8 @@ export default function ProductNamingScreen() {
 
     const handleGenerateDescription = async () => {
         if (!selectedPlan || !selectedName) return;
+        const remembered = readChoice<boolean>('launchpad_reflect_skip');
+        if (remembered) { await doGenerateDescription(); return; }
         setReflectVisible(true);
         // actual generation will start after reflect confirmation
     };
@@ -182,16 +186,19 @@ export default function ProductNamingScreen() {
         <AIReflectModal
           visible={reflectVisible}
           beforePrompts={getReflectPrompts(includeFaith).before}
-          onSkip={() => {
+          enableRemember
+          onSkip={({ remember }) => {
             setReflectVisible(false);
             if (nameLoading || descLoading) return;
             // Decide based on selection state
             if (!selectedName) doGenerateNames(); else doGenerateDescription();
+            if (remember) persistChoice('launchpad_reflect_skip', true);
           }}
-          onConfirm={() => {
+          onConfirm={(_, { remember }) => {
             setReflectVisible(false);
             if (nameLoading || descLoading) return;
             if (!selectedName) doGenerateNames(); else doGenerateDescription();
+            if (remember) persistChoice('launchpad_reflect_skip', true);
           }}
         />
         <AIReflectModal

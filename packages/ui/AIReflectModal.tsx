@@ -3,8 +3,8 @@ import { Modal, View, Text, TouchableOpacity, StyleSheet, TextInput } from 'reac
 
 type AIReflectModalProps = {
   visible: boolean;
-  onConfirm: (note: string) => void;
-  onSkip: () => void;
+  onConfirm: (note: string, opts?: { remember?: boolean; faithEnabled?: boolean }) => void;
+  onSkip: (opts?: { remember?: boolean; faithEnabled?: boolean }) => void;
   prompts?: string[];
   beforePrompts?: string[]; // backward compatibility
   timerSeconds?: number;
@@ -12,6 +12,7 @@ type AIReflectModalProps = {
   faithToggleAvailable?: boolean;
   faithToggleDefault?: boolean;
   onFaithToggleChange?: (enabled: boolean) => void;
+  enableRemember?: boolean;
 };
 
 export const AIReflectModal: React.FC<AIReflectModalProps> = ({
@@ -33,6 +34,7 @@ export const AIReflectModal: React.FC<AIReflectModalProps> = ({
   const [secondsLeft, setSecondsLeft] = useState(timerSeconds);
   const [note, setNote] = useState('');
   const [faithToggle, setFaithToggle] = useState(faithToggleDefault);
+  const [remember, setRemember] = useState(false);
 
   useEffect(() => {
     if (!visible) return;
@@ -72,6 +74,13 @@ export const AIReflectModal: React.FC<AIReflectModalProps> = ({
             <Text key={i} style={styles.prompt}>• {p}</Text>
           ))}
 
+          {enableRemember && (
+            <TouchableOpacity onPress={() => setRemember(!remember)} style={styles.rememberRow}>
+              <View style={[styles.checkbox, remember && styles.checkboxOn]} />
+              <Text style={styles.rememberText}>Remember my choice</Text>
+            </TouchableOpacity>
+          )}
+
           <TextInput
             style={styles.input}
             placeholder="Add a quick note (optional)"
@@ -82,11 +91,11 @@ export const AIReflectModal: React.FC<AIReflectModalProps> = ({
           />
 
           <View style={styles.actions}>
-            <TouchableOpacity onPress={onSkip} style={[styles.button, styles.ghost]}> 
+            <TouchableOpacity onPress={() => onSkip({ remember, faithEnabled: faithToggle })} style={[styles.button, styles.ghost]}> 
               <Text style={styles.ghostText}>Skip</Text>
             </TouchableOpacity>
             <TouchableOpacity
-              onPress={() => onConfirm(note)}
+              onPress={() => onConfirm(note, { remember, faithEnabled: faithToggle })}
               disabled={secondsLeft > 0}
               style={[styles.button, secondsLeft > 0 ? styles.disabled : styles.primary]}
             >
@@ -133,6 +142,28 @@ const styles = StyleSheet.create({
     color: '#CBD5E1',
     fontSize: 12,
     marginBottom: 6,
+  },
+  rememberRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+    marginBottom: 8,
+  },
+  checkbox: {
+    width: 14,
+    height: 14,
+    borderRadius: 2,
+    borderWidth: 1,
+    borderColor: '#374151',
+    backgroundColor: 'transparent',
+  },
+  checkboxOn: {
+    backgroundColor: '#F59E0B',
+    borderColor: '#F59E0B',
+  },
+  rememberText: {
+    color: '#E5E7EB',
+    fontSize: 12,
   },
   toggleRow: {
     flexDirection: 'row',

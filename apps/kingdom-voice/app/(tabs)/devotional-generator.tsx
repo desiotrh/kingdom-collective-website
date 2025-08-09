@@ -16,7 +16,7 @@ import { Colors } from '@/constants/Colors';
 import { useColorScheme } from '@/hooks/useColorScheme';
 import { useFaithMode } from '@/contexts/FaithModeContext';
 import AIReflectModal from '../../../../packages/ui/AIReflectModal';
-import { getReflectPrompts } from '../../../../packages/utils/valuesStyle';
+import { getReflectPrompts, persistChoice, readChoice } from '../../../../packages/utils/valuesStyle';
 
 interface Devotional {
     id: string;
@@ -77,6 +77,8 @@ export default function DevotionalGeneratorScreen() {
             return;
         }
 
+        const remembered = readChoice<boolean>('voice_reflect_skip');
+        if (remembered) { await doGenerateDevotional(); return; }
         setReflectVisible(true);
     };
 
@@ -408,8 +410,9 @@ export default function DevotionalGeneratorScreen() {
             <AIReflectModal
               visible={reflectVisible}
               beforePrompts={getReflectPrompts(isFaithMode).before}
-              onSkip={() => { setReflectVisible(false); doGenerateDevotional(); }}
-              onConfirm={() => { setReflectVisible(false); doGenerateDevotional(); }}
+              enableRemember
+              onSkip={({ remember }) => { setReflectVisible(false); doGenerateDevotional(); if (remember) persistChoice('voice_reflect_skip', true); }}
+              onConfirm={(_, { remember }) => { setReflectVisible(false); doGenerateDevotional(); if (remember) persistChoice('voice_reflect_skip', true); }}
             />
             <AIReflectModal
               visible={reflectAfterVisible}
