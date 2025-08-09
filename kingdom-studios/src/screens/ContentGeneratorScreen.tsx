@@ -140,6 +140,7 @@ const ContentGeneratorScreen = () => {
   const [contentType, setContentType] = useState('');
   const [reflectVisible, setReflectVisible] = useState(false);
   const [reflectPendingType, setReflectPendingType] = useState<null | 'post' | 'caption' | 'reelIdea'>(null);
+  const [reflectAfterVisible, setReflectAfterVisible] = useState(false);
   const [contentGeneration, setContentGeneration] = useState<ContentGenerationState>({
     isLoading: false,
     error: null,
@@ -442,9 +443,8 @@ const ContentGeneratorScreen = () => {
     await handleGenerateContent(type);
   };
 
-  const handleAddToFavorites = async () => {
+  const doAddToFavorites = async () => {
     if (!contentGeneration.content || !user) return;
-
     try {
       await backendAPI.addToFavorites({
         content: contentGeneration.content.content,
@@ -452,20 +452,15 @@ const ContentGeneratorScreen = () => {
         platform: contentGeneration.content.platform,
         title: `${contentGeneration.content.contentType} for ${selectedProduct?.title}`,
       });
-
-      Alert.alert(
-        'Added to Favorites! ⭐',
-        'This content has been saved to your favorites.',
-        [{ text: 'OK', style: 'default' }]
-      );
+      Alert.alert('Added to Favorites! ⭐', 'This content has been saved to your favorites.', [{ text: 'OK', style: 'default' }]);
     } catch (error) {
       console.error('Failed to add to favorites:', error);
-      Alert.alert(
-        'Error',
-        'Failed to add to favorites. Please try again.',
-        [{ text: 'OK', style: 'default' }]
-      );
+      Alert.alert('Error', 'Failed to add to favorites. Please try again.', [{ text: 'OK', style: 'default' }]);
     }
+  };
+
+  const handleAddToFavorites = async () => {
+    setReflectAfterVisible(true);
   };
 
   const handleCloseModal = () => {
@@ -1000,7 +995,7 @@ const ContentGeneratorScreen = () => {
       {/* Pause & Reflect (pre-generate) */}
       <AIReflectModal
         visible={reflectVisible}
-        beforePrompts={getReflectPrompts(faithMode).before}
+        prompts={getReflectPrompts(faithMode).before}
         onSkip={() => {
           setReflectVisible(false);
           if (reflectPendingType) handleGenerateContent(reflectPendingType);
@@ -1008,6 +1003,23 @@ const ContentGeneratorScreen = () => {
         onConfirm={() => {
           setReflectVisible(false);
           if (reflectPendingType) handleGenerateContent(reflectPendingType);
+        }}
+      />
+
+      {/* Confirm & Edit (post-generate before saving) */}
+      <AIReflectModal
+        visible={reflectAfterVisible}
+        variant="after"
+        prompts={getReflectPrompts(faithMode).after}
+        faithToggleAvailable={faithMode}
+        onFaithToggleChange={() => {}}
+        onSkip={() => {
+          setReflectAfterVisible(false);
+          doAddToFavorites();
+        }}
+        onConfirm={() => {
+          setReflectAfterVisible(false);
+          doAddToFavorites();
         }}
       />
 

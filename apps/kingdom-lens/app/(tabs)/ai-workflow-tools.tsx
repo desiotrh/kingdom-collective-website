@@ -64,6 +64,7 @@ const AIWorkflowToolsScreen: React.FC = () => {
     const [presets, setPresets] = useState<Preset[]>([]);
     const [voiceNotes, setVoiceNotes] = useState<VoiceNote[]>([]);
     const [reflectVisible, setReflectVisible] = useState(false);
+    const [reflectAfterVisible, setReflectAfterVisible] = useState(false);
 
     const workflowToolsData: WorkflowTool[] = [
         // Smart Preset Matching
@@ -505,6 +506,15 @@ const AIWorkflowToolsScreen: React.FC = () => {
               beforePrompts={getReflectPrompts(faithMode).before}
               onSkip={() => { setReflectVisible(false); doCreatePreset(); }}
               onConfirm={() => { setReflectVisible(false); doCreatePreset(); }}
+            />
+            <AIReflectModal
+              visible={reflectAfterVisible}
+              variant="after"
+              prompts={getReflectPrompts(faithMode).after}
+              faithToggleAvailable={faithMode}
+              onFaithToggleChange={() => {}}
+              onSkip={() => { setReflectAfterVisible(false); }}
+              onConfirm={() => { setReflectAfterVisible(false); }}
             />
         </SafeAreaView>
     );

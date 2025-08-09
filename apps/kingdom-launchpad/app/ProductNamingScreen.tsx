@@ -60,6 +60,7 @@ export default function ProductNamingScreen() {
     const [selectedName, setSelectedName] = useState('');
     const [description, setDescription] = useState('');
   const [reflectVisible, setReflectVisible] = useState(false);
+  const [reflectAfterVisible, setReflectAfterVisible] = useState(false);
 
     const handleGenerateNames = async () => {
         if (!selectedPlan) return;
@@ -126,7 +127,7 @@ export default function ProductNamingScreen() {
         Alert.alert('Copied!', 'Copied to clipboard.');
     };
 
-    const handleSaveToPlan = async () => {
+    const doSaveToPlan = async () => {
         if (!selectedPlan) return;
         await savePlan({
             ...selectedPlan,
@@ -135,6 +136,10 @@ export default function ProductNamingScreen() {
             faithMode: includeFaith,
         });
         Alert.alert('Saved!', 'Name and description saved to product plan.');
+    };
+
+    const handleSaveToPlan = async () => {
+        setReflectAfterVisible(true);
     };
 
     return (
@@ -188,6 +193,15 @@ export default function ProductNamingScreen() {
             if (nameLoading || descLoading) return;
             if (!selectedName) doGenerateNames(); else doGenerateDescription();
           }}
+        />
+        <AIReflectModal
+          visible={reflectAfterVisible}
+          variant="after"
+          prompts={getReflectPrompts(includeFaith).after}
+          faithToggleAvailable={includeFaith}
+          onFaithToggleChange={() => {}}
+          onSkip={() => { setReflectAfterVisible(false); doSaveToPlan(); }}
+          onConfirm={() => { setReflectAfterVisible(false); doSaveToPlan(); }}
         />
         </Container>
     );

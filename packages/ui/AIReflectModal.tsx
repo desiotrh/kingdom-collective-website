@@ -5,27 +5,38 @@ type AIReflectModalProps = {
   visible: boolean;
   onConfirm: (note: string) => void;
   onSkip: () => void;
-  beforePrompts?: string[];
+  prompts?: string[];
+  beforePrompts?: string[]; // backward compatibility
   timerSeconds?: number;
+  variant?: 'before' | 'after';
+  faithToggleAvailable?: boolean;
+  faithToggleDefault?: boolean;
+  onFaithToggleChange?: (enabled: boolean) => void;
 };
 
 export const AIReflectModal: React.FC<AIReflectModalProps> = ({
   visible,
   onConfirm,
   onSkip,
+  prompts,
   beforePrompts = [
     "What’s the goal, and who is this for?",
     "What would you create without AI?",
     "What’s the unique angle or testimony you bring?",
   ],
   timerSeconds = 10,
+  variant = 'before',
+  faithToggleAvailable = false,
+  faithToggleDefault = true,
+  onFaithToggleChange,
 }) => {
   const [secondsLeft, setSecondsLeft] = useState(timerSeconds);
   const [note, setNote] = useState('');
+  const [faithToggle, setFaithToggle] = useState(faithToggleDefault);
 
   useEffect(() => {
     if (!visible) return;
-    setSecondsLeft(timerSeconds);
+    setSecondsLeft(variant === 'before' ? timerSeconds : Math.min(timerSeconds, 3));
     const t = setInterval(() => {
       setSecondsLeft((s) => (s > 0 ? s - 1 : 0));
     }, 1000);
@@ -37,9 +48,27 @@ export const AIReflectModal: React.FC<AIReflectModalProps> = ({
       <View style={styles.overlay}>
         <View style={styles.card}>
           <Text style={styles.title}>Pause & Reflect</Text>
-          <Text style={styles.subtitle}>AI can assist, but your calling and voice lead.</Text>
+          <Text style={styles.subtitle}>
+            {variant === 'before'
+              ? 'AI can assist, but your calling and voice lead.'
+              : 'Confirm your edits and intent before accepting.'}
+          </Text>
 
-          {beforePrompts.map((p, i) => (
+          {faithToggleAvailable && (
+            <TouchableOpacity
+              onPress={() => {
+                const next = !faithToggle;
+                setFaithToggle(next);
+                onFaithToggleChange && onFaithToggleChange(next);
+              }}
+              style={styles.toggleRow}
+            >
+              <View style={[styles.toggleDot, faithToggle && styles.toggleOn]} />
+              <Text style={styles.toggleText}>Use faith‑focused prompts</Text>
+            </TouchableOpacity>
+          )}
+
+          {(prompts ?? beforePrompts).map((p, i) => (
             <Text key={i} style={styles.prompt}>• {p}</Text>
           ))}
 
@@ -104,6 +133,28 @@ const styles = StyleSheet.create({
     color: '#CBD5E1',
     fontSize: 12,
     marginBottom: 6,
+  },
+  toggleRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+    marginBottom: 8,
+  },
+  toggleDot: {
+    width: 14,
+    height: 14,
+    borderRadius: 7,
+    borderWidth: 1,
+    borderColor: '#374151',
+    backgroundColor: 'transparent',
+  },
+  toggleOn: {
+    backgroundColor: '#F59E0B',
+    borderColor: '#F59E0B',
+  },
+  toggleText: {
+    color: '#E5E7EB',
+    fontSize: 12,
   },
   input: {
     borderWidth: 1,

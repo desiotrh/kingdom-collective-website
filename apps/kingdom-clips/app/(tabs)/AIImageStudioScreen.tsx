@@ -59,6 +59,7 @@ export default function AIImageStudioScreen() {
     const [generatedImages, setGeneratedImages] = useState<GeneratedImage[]>([]);
     const [selectedImage, setSelectedImage] = useState<GeneratedImage | null>(null);
     const [refinementLevel, setRefinementLevel] = useState(50);
+    const [reflectAfterVisible, setReflectAfterVisible] = useState(false);
 
     // Mock AI service for Kingdom Clips
     const [reflectVisible, setReflectVisible] = useState(false);
@@ -145,7 +146,7 @@ export default function AIImageStudioScreen() {
         );
     };
 
-    const saveImage = async (image: GeneratedImage) => {
+    const doSaveImage = async (image: GeneratedImage) => {
         try {
             const result = await FileSystem.downloadAsync(
                 image.url,
@@ -159,6 +160,7 @@ export default function AIImageStudioScreen() {
             Alert.alert('Error', 'Failed to save thumbnail. Please try again.');
         }
     };
+    const saveImage = async (image: GeneratedImage) => { setReflectAfterVisible(true); };
 
     const shareImage = async (image: GeneratedImage) => {
         try {
@@ -375,6 +377,15 @@ export default function AIImageStudioScreen() {
               beforePrompts={getReflectPrompts(faithMode).before}
               onSkip={() => { setReflectVisible(false); doGenerateImage(); }}
               onConfirm={() => { setReflectVisible(false); doGenerateImage(); }}
+            />
+            <AIReflectModal
+              visible={reflectAfterVisible}
+              variant="after"
+              prompts={getReflectPrompts(faithMode).after}
+              faithToggleAvailable={faithMode}
+              onFaithToggleChange={() => {}}
+              onSkip={() => { setReflectAfterVisible(false); if (selectedImage) doSaveImage(selectedImage); }}
+              onConfirm={() => { setReflectAfterVisible(false); if (selectedImage) doSaveImage(selectedImage); }}
             />
         </SafeAreaView>
     );

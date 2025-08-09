@@ -5,12 +5,12 @@ export function getReflectPrompts(faithMode: boolean): ReflectPrompts {
     return {
       before: [
         "Does this honor your calling?",
-        "Who is this meant to serve, and how?",
+        "Who is this for, and how will it serve them?",
         "What scripture or testimony informs this?",
       ],
       after: [
         "What will you change so it reflects your values and calling?",
-        "Is this truthful and dignifying?",
+        "Is this truthful, dignifying, and clear?",
         "What would God have you emphasize?",
       ],
     };
@@ -19,8 +19,8 @@ export function getReflectPrompts(faithMode: boolean): ReflectPrompts {
   // Neutral: biblically faithful principles in values-grounded language
   return {
     before: [
-      "What’s the goal, and who is this for?",
-      "What would you create without AI?",
+      "What’s the goal—and who is this for?",
+      "What would you do without AI—what’s your first draft?",
       "What unique perspective or story are you bringing?",
     ],
     after: [

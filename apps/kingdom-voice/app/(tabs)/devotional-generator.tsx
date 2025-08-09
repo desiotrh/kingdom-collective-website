@@ -51,6 +51,7 @@ export default function DevotionalGeneratorScreen() {
     const [currentDevotional, setCurrentDevotional] = useState<Devotional | null>(null);
     const [savedDevotionals, setSavedDevotionals] = useState<Devotional[]>([]);
   const [reflectVisible, setReflectVisible] = useState(false);
+  const [reflectAfterVisible, setReflectAfterVisible] = useState(false);
 
     // Load saved devotionals on mount
     useEffect(() => {
@@ -139,7 +140,7 @@ export default function DevotionalGeneratorScreen() {
         };
     };
 
-    const saveDevotional = async () => {
+    const doSaveDevotional = async () => {
         if (!currentDevotional) return;
 
         try {
@@ -152,6 +153,7 @@ export default function DevotionalGeneratorScreen() {
             Alert.alert('Error', 'Failed to save devotional. Please try again.');
         }
     };
+    const saveDevotional = async () => { setReflectAfterVisible(true); };
 
     const copyDevotional = async () => {
         if (!currentDevotional) return;
@@ -408,6 +410,15 @@ export default function DevotionalGeneratorScreen() {
               beforePrompts={getReflectPrompts(isFaithMode).before}
               onSkip={() => { setReflectVisible(false); doGenerateDevotional(); }}
               onConfirm={() => { setReflectVisible(false); doGenerateDevotional(); }}
+            />
+            <AIReflectModal
+              visible={reflectAfterVisible}
+              variant="after"
+              prompts={getReflectPrompts(isFaithMode).after}
+              faithToggleAvailable={isFaithMode}
+              onFaithToggleChange={() => {}}
+              onSkip={() => { setReflectAfterVisible(false); doSaveDevotional(); }}
+              onConfirm={() => { setReflectAfterVisible(false); doSaveDevotional(); }}
             />
 
             {/* Faith Mode Overlay */}
