@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import type { Variants } from 'framer-motion';
 import { conversationManager } from '../utils/conversation-memory';
 import { aiResponseGenerator } from '../utils/ai-response-generator';
 
@@ -115,13 +116,13 @@ export default function EnhancedChatWindow({ isOpen, onClose, currentPage }: Enh
     }
   };
 
-  const chatVariants = {
+  const chatVariants: Variants = {
     closed: {
       x: 400,
       opacity: 0,
       transition: {
         duration: 0.3,
-        ease: "easeInOut"
+        ease: [0.42, 0, 0.58, 1]
       }
     },
     open: {
@@ -129,7 +130,7 @@ export default function EnhancedChatWindow({ isOpen, onClose, currentPage }: Enh
       opacity: 1,
       transition: {
         duration: 0.3,
-        ease: "easeInOut"
+        ease: [0.42, 0, 0.58, 1]
       }
     }
   };

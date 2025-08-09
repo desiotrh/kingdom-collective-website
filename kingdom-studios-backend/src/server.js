@@ -22,7 +22,7 @@ import contentRoutes from './routes/content.js';
 import productRoutes from './routes/products.js';
 import analyticsRoutes from './routes/analytics.js';
 import paymentRoutes from './routes/payments.js';
-import webhookRoutes from './routes/webhooks.js';
+import webhookRoutes, { stripeWebhookHandler } from './routes/webhooks.js';
 import adminRoutes from './routes/admin.js';
 import enterpriseContentRoutes, { initializeEnterpriseContentService } from './routes/enterpriseContent.js';
 
@@ -116,7 +116,10 @@ app.use(validationMiddleware);
 // Request deduplication middleware
 app.use(deduplicationMiddleware);
 
-// Body parsing middleware
+// Stripe webhook requires raw body for signature verification
+app.post('/webhooks/stripe', express.raw({ type: 'application/json' }), stripeWebhookHandler);
+
+// Body parsing middleware (must come after raw webhook route above)
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 

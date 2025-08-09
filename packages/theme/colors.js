@@ -11,7 +11,12 @@ export const brandColors = {
   kingdomDark: '#0f172a',
   kingdomDarker: '#1e293b',
   kingdomNavy: '#0f172a',
-  kingdomGold: '#facc15',
+  kingdomGold: '#D4AF37',       // Rich Metallic Gold (replaced bright yellow)
+  kingdomGoldSoft: '#BFA05A',   // Warm Royal Gold
+  kingdomGoldMatte: '#A78C3E',  // Luxe Matte Gold
+  kingdomBronze: '#CD7F32',     // True Bronze
+  kingdomBronzeDark: '#8C7853', // Dark Bronze
+  kingdomBronzeCopper: '#B87333', // Deep Copper-Bronze
   kingdomOrange: '#f97316',
   kingdomGoldLight: '#fef3c7',
   kingdomOrangeLight: '#fed7aa',
@@ -27,7 +32,7 @@ export const brandColors = {
 export const semanticColors = {
   // Primary semantic colors
   primary: brandColors.kingdomGold,
-  secondary: brandColors.kingdomOrange,
+  secondary: brandColors.kingdomBronze,
   accent: brandColors.kingdomDark,
   
   // Background colors
@@ -59,6 +64,11 @@ export const tailwindColors = {
     'kingdom-darker': brandColors.kingdomDarker,
     'kingdom-navy': brandColors.kingdomNavy,
     'kingdom-gold': brandColors.kingdomGold,
+    'kingdom-gold-soft': brandColors.kingdomGoldSoft,
+    'kingdom-gold-matte': brandColors.kingdomGoldMatte,
+    'kingdom-bronze': brandColors.kingdomBronze,
+    'kingdom-bronze-dark': brandColors.kingdomBronzeDark,
+    'kingdom-bronze-copper': brandColors.kingdomBronzeCopper,
     'kingdom-orange': brandColors.kingdomOrange,
     'kingdom-gold-light': brandColors.kingdomGoldLight,
     'kingdom-orange-light': brandColors.kingdomOrangeLight,
