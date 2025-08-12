@@ -1,0 +1,432 @@
+import React, { useState } from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
+import { useAuth } from '../contexts/AuthContext';
+import CartIcon from './CartIcon';
+
+export default function Navigation() {
+  const { user, isAuthenticated } = useAuth();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  return (
+    <header className="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-gray/30 px-4 sm:px-6 md:px-8 lg:px-10 py-3 bg-black/20 backdrop-blur-sm relative z-[9999999]">
+      {/* Logo */}
+              <Link href="/" className="flex items-center gap-4 text-white hover:text-kingdom-gold transition-colors duration-200" aria-label="Go to Kingdom Collective homepage">
+        <div className="flex items-center">
+          <Image
+            src="/kingdom-collective-logo.png"
+            alt="Kingdom Collective Logo"
+            width={32}
+            height={32}
+            className="h-8 w-auto"
+            priority
+          />
+        </div>
+        <h2 className="text-white text-lg font-bold leading-tight tracking-[-0.015em]">
+          Kingdom Collective
+        </h2>
+      </Link>
+
+      {/* Desktop Navigation */}
+      <nav className="flex flex-1 justify-end gap-8" role="navigation" aria-label="Main navigation">
+        <div className="hidden md:flex items-center gap-9">
+          {/* Studio Apps Dropdown */}
+          <div className="relative group">
+            <button
+              className="text-white text-sm font-medium leading-normal hover:text-kingdom-gold transition-colors duration-200 flex items-center gap-1"
+              aria-expanded="false"
+              aria-haspopup="true"
+              aria-label="Studio Apps menu"
+            >
+              Studio Apps
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+
+            <div className="nav-dropdown" role="menu">
+              <Link href="/apps" className="nav-dropdown-item" role="menuitem">
+                All Apps Overview
+              </Link>
+              <Link href="/kingdom-studios" className="nav-dropdown-item" role="menuitem">
+                Kingdom Studios
+              </Link>
+              <Link href="/kingdom-clips" className="nav-dropdown-item" role="menuitem">
+                Kingdom Clips
+              </Link>
+              <Link href="/kingdom-voice" className="nav-dropdown-item" role="menuitem">
+                Kingdom Voice
+              </Link>
+              <Link href="/kingdom-launchpad" className="nav-dropdown-item" role="menuitem">
+                Kingdom Launchpad
+              </Link>
+              <Link href="/kingdom-circle" className="nav-dropdown-item" role="menuitem">
+                Kingdom Circle
+              </Link>
+              <Link href="/kingdom-lens" className="nav-dropdown-item" role="menuitem">
+                Kingdom Lens
+              </Link>
+            </div>
+          </div>
+
+          {/* Chatbots Dropdown */}
+          <div className="relative group">
+            <button
+              className="text-white text-sm font-medium leading-normal hover:text-kingdom-gold transition-colors duration-200 flex items-center gap-1"
+              aria-expanded="false"
+              aria-haspopup="true"
+              aria-label="Chatbots menu"
+            >
+              Chatbots
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+
+            <div className="nav-dropdown w-72" role="menu">
+              <Link href="/ai-bots" className="nav-dropdown-item font-semibold" role="menuitem">
+                All Chatbots Overview
+              </Link>
+              <div className="border-t border-white/30 my-1"></div>
+              <Link href="/ai-bots/sales-assistant" className="nav-dropdown-item" role="menuitem">
+                Sales Assistant Bot
+              </Link>
+              <Link href="/ai-bots/lead-generation" className="nav-dropdown-item" role="menuitem">
+                Lead Generation Bot
+              </Link>
+              <Link href="/ai-bots/onboarding" className="nav-dropdown-item" role="menuitem">
+                Onboarding Bot
+              </Link>
+              <Link href="/ai-bots/customer-support" className="nav-dropdown-item" role="menuitem">
+                Customer Support Bot
+              </Link>
+              <Link href="/ai-bots/faith-bot" className="nav-dropdown-item" role="menuitem">
+                Faith Bot
+              </Link>
+              <Link href="/ai-bots/course-explainer" className="nav-dropdown-item" role="menuitem">
+                Course Explainer Bot
+              </Link>
+              <Link href="/ai-bots/testimonial" className="nav-dropdown-item" role="menuitem">
+                Testimonial Bot
+              </Link>
+              <Link href="/ai-bots/job-application" className="nav-dropdown-item" role="menuitem">
+                Job Application Bot
+              </Link>
+              <Link href="/ai-bots/enhanced-sales" className="nav-dropdown-item" role="menuitem">
+                Enhanced Sales Bot
+              </Link>
+              <Link href="/ai-bots/appointment-booking" className="nav-dropdown-item" role="menuitem">
+                Appointment Booking Bot
+              </Link>
+              <Link href="/ai-bots/faq-knowledge" className="nav-dropdown-item" role="menuitem">
+                FAQ & Knowledge Bot
+              </Link>
+              <Link href="/ai-bots/event-management" className="nav-dropdown-item" role="menuitem">
+                Event Management Bot
+              </Link>
+              <Link href="/ai-bots/inventory-management" className="nav-dropdown-item" role="menuitem">
+                Inventory Management Bot
+              </Link>
+              <Link href="/ai-bots/social-media" className="nav-dropdown-item" role="menuitem">
+                Social Media Bot
+              </Link>
+              <div className="border-t border-white/30 my-1"></div>
+              <Link href="/ai-bots/pricing" className="nav-dropdown-item font-semibold" role="menuitem">
+                Pricing & Add-ons
+              </Link>
+            </div>
+          </div>
+          <Link
+            href="/features"
+            className="text-white text-sm font-medium leading-normal hover:text-kingdom-gold transition-colors duration-200"
+          >
+            Features
+          </Link>
+          <Link
+            href="/vision"
+            className="text-white text-sm font-medium leading-normal hover:text-kingdom-gold transition-colors duration-200"
+          >
+            Vision
+          </Link>
+          <Link
+            href="/contact"
+            className="text-white text-sm font-medium leading-normal hover:text-kingdom-gold transition-colors duration-200"
+          >
+            Contact
+          </Link>
+          <div className="relative group">
+            <button className="text-white text-sm font-medium leading-normal hover:text-kingdom-gold transition-colors duration-200 flex items-center gap-1" aria-expanded="false" aria-haspopup="true" aria-label="Download Apps menu">
+              Download Apps
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+
+            <div className="nav-dropdown" role="menu">
+              <a href="#" target="_blank" rel="noopener noreferrer" className="nav-dropdown-item" role="menuitem">
+                <div className="flex items-center gap-2">
+                  <span className="text-lg">🍎</span>
+                  <span>App Store</span>
+                </div>
+              </a>
+              <a href="#" target="_blank" rel="noopener noreferrer" className="nav-dropdown-item" role="menuitem">
+                <div className="flex items-center gap-2">
+                  <span className="text-lg">🤖</span>
+                  <span>Google Play</span>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        {/* Desktop CTA Buttons */}
+        <div className="hidden md:flex gap-2 items-center">
+          <CartIcon />
+          {isAuthenticated ? (
+            <Link href="/dashboard" className="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 px-4 bg-gradient-to-r from-kingdom-gold to-kingdom-gold-soft text-black text-sm font-bold leading-normal tracking-[0.015em] hover:from-kingdom-gold-soft hover:to-kingdom-gold-matte transition-all duration-200">
+              <span className="truncate">Dashboard</span>
+            </Link>
+          ) : (
+            <Link href="/login" className="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 px-4 bg-gradient-to-r from-kingdom-gold to-kingdom-gold-soft text-black text-sm font-bold leading-normal tracking-[0.015em] hover:from-kingdom-gold-soft hover:to-kingdom-gold-matte transition-all duration-200">
+              <span className="truncate">Login</span>
+            </Link>
+          )}
+        </div>
+
+        {/* Mobile menu button */}
+        <div className="md:hidden">
+          <button
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className="text-white hover:text-kingdom-gold transition-colors duration-200"
+            aria-label="Toggle mobile menu"
+            aria-expanded={isMenuOpen}
+            aria-controls="mobile-menu"
+          >
+            <svg
+              className="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              {isMenuOpen ? (
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              ) : (
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              )}
+            </svg>
+          </button>
+        </div>
+      </nav>
+
+      {/* Mobile Navigation */}
+      {isMenuOpen && (
+        <div id="mobile-menu" className="md:hidden absolute top-full left-0 w-full bg-navy/95 backdrop-blur-md border-t border-gray" role="navigation" aria-label="Mobile navigation">
+          <div className="px-4 py-6 space-y-4">
+            <div className="space-y-2">
+              <div className="text-white text-sm font-medium mb-2">Studio Apps</div>
+              <div className="pl-4 space-y-2">
+                <Link
+                  href="/apps"
+                  className="block text-white hover:text-kingdom-gold transition-colors duration-200 text-sm"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  All Apps Overview
+                </Link>
+                <Link
+                  href="/kingdom-studios"
+                  className="block text-white hover:text-kingdom-gold transition-colors duration-200 text-sm"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Kingdom Studios
+                </Link>
+                <Link
+                  href="/kingdom-clips"
+                  className="block text-white hover:text-kingdom-gold transition-colors duration-200 text-sm"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Kingdom Clips
+                </Link>
+                <Link
+                  href="/kingdom-voice"
+                  className="block text-white hover:text-kingdom-gold transition-colors duration-200 text-sm"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Kingdom Voice
+                </Link>
+                <Link
+                  href="/kingdom-launchpad"
+                  className="block text-white hover:text-kingdom-gold transition-colors duration-200 text-sm"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Kingdom Launchpad
+                </Link>
+                <Link
+                  href="/kingdom-circle"
+                  className="block text-white hover:text-kingdom-gold transition-colors duration-200 text-sm"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Kingdom Circle
+                </Link>
+                <Link
+                  href="/kingdom-lens"
+                  className="block text-white hover:text-kingdom-gold transition-colors duration-200 text-sm"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Kingdom Lens
+                </Link>
+              </div>
+            </div>
+            <div className="space-y-2">
+              <div className="text-white text-sm font-medium mb-2">Chatbots</div>
+              <div className="pl-4 space-y-2">
+                <Link
+                  href="/ai-bots"
+                  className="block text-white hover:text-kingdom-gold transition-colors duration-200 text-sm"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  All Chatbots Overview
+                </Link>
+                <Link
+                  href="/ai-bots/sales-assistant"
+                  className="block text-white hover:text-kingdom-gold transition-colors duration-200 text-sm"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Sales Assistant Bot
+                </Link>
+                <Link
+                  href="/ai-bots/lead-generation"
+                  className="block text-white hover:text-kingdom-gold transition-colors duration-200 text-sm"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Lead Generation Bot
+                </Link>
+                <Link
+                  href="/ai-bots/onboarding"
+                  className="block text-white hover:text-kingdom-gold transition-colors duration-200 text-sm"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Onboarding Bot
+                </Link>
+                <Link
+                  href="/ai-bots/customer-support"
+                  className="block text-white hover:text-kingdom-gold transition-colors duration-200 text-sm"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Customer Support Bot
+                </Link>
+                <Link
+                  href="/ai-bots/faith-bot"
+                  className="block text-white hover:text-kingdom-gold transition-colors duration-200 text-sm"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Faith Bot
+                </Link>
+                <Link
+                  href="/ai-bots/course-explainer"
+                  className="block text-white hover:text-kingdom-gold transition-colors duration-200 text-sm"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Course Explainer Bot
+                </Link>
+                <Link
+                  href="/ai-bots/testimonial"
+                  className="block text-white hover:text-kingdom-gold transition-colors duration-200 text-sm"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Testimonial Bot
+                </Link>
+                <Link
+                  href="/ai-bots/job-application"
+                  className="block text-white hover:text-kingdom-gold transition-colors duration-200 text-sm"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Job Application Bot
+                </Link>
+                <Link
+                  href="/ai-bots/enhanced-sales"
+                  className="block text-white hover:text-kingdom-gold transition-colors duration-200 text-sm"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Enhanced Sales Bot
+                </Link>
+                <Link
+                  href="/ai-bots/pricing"
+                  className="block text-white hover:text-kingdom-gold transition-colors duration-200 text-sm font-semibold"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Pricing & Add-ons
+                </Link>
+              </div>
+            </div>
+            <Link
+              href="/features"
+              className="block text-white hover:text-kingdom-gold transition-colors duration-200 text-sm font-medium"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Features
+            </Link>
+            <Link
+              href="/vision"
+              className="block text-white hover:text-kingdom-gold transition-colors duration-200 text-sm font-medium"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Vision
+            </Link>
+            <Link
+              href="/contact"
+              className="block text-white hover:text-kingdom-gold transition-colors duration-200 text-sm font-medium"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Contact
+            </Link>
+            <div className="space-y-2">
+              <div className="text-white text-sm font-medium mb-2">Download Apps</div>
+              <div className="pl-4 space-y-2">
+                <a
+                  href="#"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block text-white hover:text-kingdom-gold transition-colors duration-200 text-sm"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  🍎 App Store
+                </a>
+                <a
+                  href="#"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block text-white hover:text-kingdom-gold transition-colors duration-200 text-sm"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  🤖 Google Play
+                </a>
+              </div>
+            </div>
+            <div className="pt-4 border-t border-gray space-y-3">
+              {isAuthenticated ? (
+                <Link href="/dashboard" className="block w-full text-left bg-gradient-to-r from-kingdom-gold to-kingdom-gold-soft text-black px-4 py-2 rounded-full font-bold text-sm tracking-[0.015em] hover:from-kingdom-gold-soft hover:to-kingdom-gold-matte transition-all duration-200">
+                  Dashboard
+                </Link>
+              ) : (
+                <Link href="/login" className="block w-full text-left bg-gradient-to-r from-kingdom-gold to-kingdom-gold-soft text-black px-4 py-2 rounded-full font-bold text-sm tracking-[0.015em] hover:from-kingdom-gold-soft hover:to-kingdom-gold-matte transition-all duration-200">
+                  Login
+                </Link>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
+    </header>
+  );
+} 

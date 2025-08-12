@@ -1,0 +1,68 @@
+{
+  "features": {
+    "custom_branding": {
+      "name": "Custom Branding",
+      "description": "Custom colors, logo, and brand integration for your AI bot",
+      "price": 50,
+      "category": "customization",
+      "featureId": "TO_BE_FILLED",
+      "priceId": "TO_BE_FILLED"
+    },
+    "voicebot_integration": {
+      "name": "VoiceBot Integration",
+      "description": "Kingdom Voice integration for voice-enabled interactions",
+      "price": 75,
+      "category": "integration",
+      "featureId": "TO_BE_FILLED",
+      "priceId": "TO_BE_FILLED"
+    },
+    "dual_tone_toggle": {
+      "name": "Dual Tone Toggle",
+      "description": "Faith + Marketplace tone switching capability",
+      "price": 40,
+      "category": "customization",
+      "featureId": "TO_BE_FILLED",
+      "priceId": "TO_BE_FILLED"
+    },
+    "memory_engine": {
+      "name": "Memory Engine",
+      "description": "Custom trained FAQ and conversation memory system",
+      "price": 125,
+      "category": "ai",
+      "featureId": "TO_BE_FILLED",
+      "priceId": "TO_BE_FILLED"
+    },
+    "embed_service": {
+      "name": "Embed Service",
+      "description": "Professional installation and embedding service",
+      "price": 60,
+      "category": "service",
+      "featureId": "TO_BE_FILLED",
+      "priceId": "TO_BE_FILLED"
+    },
+    "basic_analytics": {
+      "name": "Basic Analytics",
+      "description": "Google Tag, Zapier, and analytics integration",
+      "price": 100,
+      "category": "analytics",
+      "featureId": "TO_BE_FILLED",
+      "priceId": "TO_BE_FILLED"
+    },
+    "legal_compliance": {
+      "name": "Legal & Compliance",
+      "description": "Legal disclaimers and compliance documentation",
+      "price": 30,
+      "category": "legal",
+      "featureId": "TO_BE_FILLED",
+      "priceId": "TO_BE_FILLED"
+    },
+    "stripe_zapier_setup": {
+      "name": "Stripe/Zapier Setup",
+      "description": "Payment processor and automation setup service",
+      "price": 125,
+      "category": "integration",
+      "featureId": "TO_BE_FILLED",
+      "priceId": "TO_BE_FILLED"
+    }
+  }
+}

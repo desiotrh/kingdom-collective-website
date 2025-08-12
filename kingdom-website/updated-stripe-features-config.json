@@ -1,0 +1,76 @@
+{
+  "features": {
+    "custom_branding": {
+      "featureId": "feat_custom_branding",
+      "priceId": "price_1Rr4lzGMSZjMrbvl3MYajAyG",
+      "descriptiveId": "custom_branding",
+      "name": "Custom Branding",
+      "description": "Custom colors, logo, and brand integration for your AI bot",
+      "price": 50,
+      "category": "customization"
+    },
+    "voicebot_integration": {
+      "featureId": "feat_voicebot_integration",
+      "priceId": "price_1Rr4lzGMSZjMrbvlBv2GITWu",
+      "descriptiveId": "voicebot_integration",
+      "name": "VoiceBot Integration",
+      "description": "Kingdom Voice integration for voice-enabled interactions",
+      "price": 75,
+      "category": "integration"
+    },
+    "dual_tone_toggle": {
+      "featureId": "feat_dual_tone_toggle",
+      "priceId": "price_1Rr4m0GMSZjMrbvlrXtfg1sO",
+      "descriptiveId": "dual_tone_toggle",
+      "name": "Dual Tone Toggle",
+      "description": "Faith + Marketplace tone switching capability",
+      "price": 40,
+      "category": "customization"
+    },
+    "memory_engine": {
+      "featureId": "feat_memory_engine",
+      "priceId": "price_1Rr4m0GMSZjMrbvltFaHJ8GA",
+      "descriptiveId": "memory_engine",
+      "name": "Memory Engine",
+      "description": "Custom trained FAQ and conversation memory system",
+      "price": 125,
+      "category": "ai"
+    },
+    "embed_service": {
+      "featureId": "feat_embed_service",
+      "priceId": "price_1Rr4m1GMSZjMrbvlPhQkRx5G",
+      "descriptiveId": "embed_service",
+      "name": "Embed Service",
+      "description": "Professional installation and embedding service",
+      "price": 60,
+      "category": "service"
+    },
+    "basic_analytics": {
+      "featureId": "feat_basic_analytics",
+      "priceId": "price_1Rr4m2GMSZjMrbvlbyLjTQbc",
+      "descriptiveId": "basic_analytics",
+      "name": "Basic Analytics",
+      "description": "Google Tag, Zapier, and analytics integration",
+      "price": 100,
+      "category": "analytics"
+    },
+    "legal_compliance": {
+      "featureId": "feat_legal_compliance",
+      "priceId": "price_1Rr4m2GMSZjMrbvlEihXMSmJ",
+      "descriptiveId": "legal_compliance",
+      "name": "Legal & Compliance",
+      "description": "Legal disclaimers and compliance documentation",
+      "price": 30,
+      "category": "legal"
+    },
+    "stripe_zapier_setup": {
+      "featureId": "feat_payment_email_automation_setup",
+      "priceId": "price_1Rr4m3GMSZjMrbvlyoFSuUcC",
+      "descriptiveId": "stripe_zapier_setup",
+      "name": "Stripe/Zapier Setup",
+      "description": "Payment processor and automation setup service",
+      "price": 125,
+      "category": "integration"
+    }
+  }
+}
