@@ -1,4 +1,5 @@
 {
+  "rootDirectory": "kingdom-website",
   "buildCommand": "npm run build",
-  "outputDirectory": "kingdom-website/.next"
+  "outputDirectory": ".next"
 } 
