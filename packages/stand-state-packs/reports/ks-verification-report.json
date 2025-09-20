@@ -1,0 +1,108 @@
+{
+  "state": "KS",
+  "generatedAt": "2025-09-19T21:56:41.379Z",
+  "counties": [
+    {
+      "county": "Douglas",
+      "totalLawyers": 1,
+      "verifiedLawyers": 1,
+      "activeLawyers": 1,
+      "unverifiedLawyers": 0,
+      "lastVerified": null,
+      "lawyers": [
+        {
+          "name": "Lisa Rodriguez 5, Esq.",
+          "verified": true,
+          "active": true,
+          "status": "Unknown",
+          "license": "Unknown",
+          "verifiedAt": "2025-09-19T21:50:25.642Z"
+        }
+      ],
+      "verificationRate": 100
+    },
+    {
+      "county": "Johnson",
+      "totalLawyers": 1,
+      "verifiedLawyers": 1,
+      "activeLawyers": 1,
+      "unverifiedLawyers": 0,
+      "lastVerified": null,
+      "lawyers": [
+        {
+          "name": "Lisa Rodriguez, Esq.",
+          "verified": true,
+          "active": true,
+          "status": "Unknown",
+          "license": "Unknown",
+          "verifiedAt": "2025-09-19T21:50:25.642Z"
+        }
+      ],
+      "verificationRate": 100
+    },
+    {
+      "county": "Sedgwick",
+      "totalLawyers": 1,
+      "verifiedLawyers": 1,
+      "activeLawyers": 1,
+      "unverifiedLawyers": 0,
+      "lastVerified": null,
+      "lawyers": [
+        {
+          "name": "Lisa Rodriguez 2, Esq.",
+          "verified": true,
+          "active": true,
+          "status": "Unknown",
+          "license": "Unknown",
+          "verifiedAt": "2025-09-19T21:50:25.642Z"
+        }
+      ],
+      "verificationRate": 100
+    },
+    {
+      "county": "Shawnee",
+      "totalLawyers": 1,
+      "verifiedLawyers": 1,
+      "activeLawyers": 1,
+      "unverifiedLawyers": 0,
+      "lastVerified": null,
+      "lawyers": [
+        {
+          "name": "Lisa Rodriguez 3, Esq.",
+          "verified": true,
+          "active": true,
+          "status": "Unknown",
+          "license": "Unknown",
+          "verifiedAt": "2025-09-19T21:50:25.642Z"
+        }
+      ],
+      "verificationRate": 100
+    },
+    {
+      "county": "Wyandotte",
+      "totalLawyers": 1,
+      "verifiedLawyers": 1,
+      "activeLawyers": 1,
+      "unverifiedLawyers": 0,
+      "lastVerified": null,
+      "lawyers": [
+        {
+          "name": "Lisa Rodriguez 4, Esq.",
+          "verified": true,
+          "active": true,
+          "status": "Unknown",
+          "license": "Unknown",
+          "verifiedAt": "2025-09-19T21:50:25.642Z"
+        }
+      ],
+      "verificationRate": 100
+    }
+  ],
+  "summary": {
+    "totalLawyers": 5,
+    "verifiedLawyers": 5,
+    "activeLawyers": 5,
+    "unverifiedLawyers": 0,
+    "verificationRate": 100
+  }
+}

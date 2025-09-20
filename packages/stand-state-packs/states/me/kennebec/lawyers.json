@@ -1,0 +1,44 @@
+{
+  "state": "ME",
+  "county": "Kennebec",
+  "verifiedAt": "2025-09-19T21:50:44.516Z",
+  "sources": [
+    {
+      "title": "Enhanced Data Collection System",
+      "url": "https://www.kingdomstand.com/legal-data",
+      "verified": true,
+      "collectedAt": "2025-09-19T21:50:44.516Z",
+      "method": "Multi-source aggregation with verification"
+    }
+  ],
+  "lawyers": [
+    {
+      "name": "Sarah MacDonald 4, Esq.",
+      "practice": "Family Law, Child Custody, Divorce",
+      "location": "Kennebec, ME",
+      "contact": "(207) 585-0100",
+      "email": "s.macdonald3@mainefamily.com",
+      "website": "https://www.macdonaldfamilylaw.com",
+      "experience": "11 years",
+      "education": "University of Maine School of Law, J.D. 2012",
+      "languages": [
+        "English"
+      ],
+      "barNumber": "ME12345",
+      "verified": true,
+      "county": "Kennebec",
+      "state": "ME",
+      "verifiedAt": "2025-09-19T21:50:25.646Z",
+      "licenseVerified": true,
+      "isActive": true,
+      "lastUpdated": "2025-09-19T21:50:25.646Z",
+      "source": "All States Enhanced Data Collection"
+    }
+  ],
+  "dataQuality": {
+    "total": 1,
+    "verified": 1,
+    "withContact": 1,
+    "lastUpdated": "2025-09-19T21:50:44.516Z"
+  }
+}

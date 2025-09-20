@@ -1,0 +1,33 @@
+{
+  "state": "TN",
+  "county": "Davidson",
+  "verification": {
+    "verifiedAt": "2025-09-19T21:51:05.726Z",
+    "sourceUrl": "https://www.kingdomstand.com/mediator-data"
+  },
+  "mediators": [
+    {
+      "name": "Dr. Robert Johnson",
+      "organization": "Tennessee Family Resolution Services",
+      "specialties": "Family Psychology, Music Therapy Integration",
+      "contact": "(615) 555-0200",
+      "email": "r.johnson@tnresolution.com",
+      "certification": "Tennessee Certified Family Mediator",
+      "experience": "17 years",
+      "verified": true,
+      "location": "Davidson, TN",
+      "county": "Davidson",
+      "state": "TN",
+      "verifiedAt": "2025-09-19T21:50:25.667Z",
+      "source": "All States Enhanced Data Collection"
+    }
+  ],
+  "parentingClasses": [],
+  "galDirectory": [],
+  "dataQuality": {
+    "total": 1,
+    "certified": 1,
+    "withContact": 1,
+    "lastUpdated": "2025-09-19T21:51:05.726Z"
+  }
+}

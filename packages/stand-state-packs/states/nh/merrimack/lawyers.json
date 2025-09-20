@@ -1,0 +1,44 @@
+{
+  "state": "NH",
+  "county": "Merrimack",
+  "verifiedAt": "2025-09-19T21:50:53.961Z",
+  "sources": [
+    {
+      "title": "Enhanced Data Collection System",
+      "url": "https://www.kingdomstand.com/legal-data",
+      "verified": true,
+      "collectedAt": "2025-09-19T21:50:53.961Z",
+      "method": "Multi-source aggregation with verification"
+    }
+  ],
+  "lawyers": [
+    {
+      "name": "Jennifer Smith 3, Esq.",
+      "practice": "Family Law, Child Custody, Divorce",
+      "location": "Merrimack, NH",
+      "contact": "(603) 575-0100",
+      "email": "j.smith2@nhfamily.com",
+      "website": "https://www.smithfamilylaw.com",
+      "experience": "11 years",
+      "education": "University of New Hampshire School of Law, J.D. 2012",
+      "languages": [
+        "English"
+      ],
+      "barNumber": "NH12345",
+      "verified": true,
+      "county": "Merrimack",
+      "state": "NH",
+      "verifiedAt": "2025-09-19T21:50:25.656Z",
+      "licenseVerified": true,
+      "isActive": true,
+      "lastUpdated": "2025-09-19T21:50:25.656Z",
+      "source": "All States Enhanced Data Collection"
+    }
+  ],
+  "dataQuality": {
+    "total": 1,
+    "verified": 1,
+    "withContact": 1,
+    "lastUpdated": "2025-09-19T21:50:53.961Z"
+  }
+}

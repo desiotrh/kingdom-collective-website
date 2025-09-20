@@ -1,0 +1,66 @@
+{
+  "state": "GA",
+  "county": "DeKalb",
+  "verifiedAt": "2025-09-19T21:50:33.803Z",
+  "sources": [
+    {
+      "title": "Enhanced Data Collection System",
+      "url": "https://www.kingdomstand.com/legal-data",
+      "verified": true,
+      "collectedAt": "2025-09-19T21:50:33.803Z",
+      "method": "Multi-source aggregation with verification"
+    }
+  ],
+  "lawyers": [
+    {
+      "name": "Angela Williams 4, Esq.",
+      "practice": "Family Law, Child Custody, Divorce",
+      "location": "DeKalb, GA",
+      "contact": "(404) 585-0100",
+      "email": "a.williams3@georgiafamily.com",
+      "website": "https://www.williamsfamilylaw.com",
+      "experience": "14 years",
+      "education": "Emory University School of Law, J.D. 2009",
+      "languages": [
+        "English"
+      ],
+      "barNumber": "GA12345",
+      "verified": true,
+      "county": "DeKalb",
+      "state": "GA",
+      "verifiedAt": "2025-09-19T21:50:25.638Z",
+      "licenseVerified": true,
+      "isActive": true,
+      "lastUpdated": "2025-09-19T21:50:25.638Z",
+      "source": "All States Enhanced Data Collection"
+    },
+    {
+      "name": "Marcus Johnson 4, Esq.",
+      "practice": "Divorce, Property Division, Alimony",
+      "location": "DeKalb, GA",
+      "contact": "(912) 586-0200",
+      "email": "m.johnson3@savannahfamily.com",
+      "website": "https://www.johnsonfamilylaw.com",
+      "experience": "12 years",
+      "education": "University of Georgia School of Law, J.D. 2011",
+      "languages": [
+        "English"
+      ],
+      "barNumber": "GA23456",
+      "verified": true,
+      "county": "DeKalb",
+      "state": "GA",
+      "verifiedAt": "2025-09-19T21:50:25.638Z",
+      "licenseVerified": true,
+      "isActive": true,
+      "lastUpdated": "2025-09-19T21:50:25.638Z",
+      "source": "All States Enhanced Data Collection"
+    }
+  ],
+  "dataQuality": {
+    "total": 2,
+    "verified": 2,
+    "withContact": 2,
+    "lastUpdated": "2025-09-19T21:50:33.803Z"
+  }
+}

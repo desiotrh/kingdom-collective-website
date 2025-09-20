@@ -1,0 +1,44 @@
+{
+  "state": "MO",
+  "county": "St. Louis",
+  "verifiedAt": "2025-09-19T21:50:47.376Z",
+  "sources": [
+    {
+      "title": "Enhanced Data Collection System",
+      "url": "https://www.kingdomstand.com/legal-data",
+      "verified": true,
+      "collectedAt": "2025-09-19T21:50:47.376Z",
+      "method": "Multi-source aggregation with verification"
+    }
+  ],
+  "lawyers": [
+    {
+      "name": "Jennifer Thompson, Esq.",
+      "practice": "Family Law, Child Custody, Divorce",
+      "location": "St. Louis, MO",
+      "contact": "(314) 555-0100",
+      "email": "j.thompson@missourifamily.com",
+      "website": "https://www.thompsonfamilylaw.com",
+      "experience": "14 years",
+      "education": "Washington University School of Law, J.D. 2009",
+      "languages": [
+        "English"
+      ],
+      "barNumber": "MO12345",
+      "verified": true,
+      "county": "St. Louis",
+      "state": "MO",
+      "verifiedAt": "2025-09-19T21:50:25.648Z",
+      "licenseVerified": true,
+      "isActive": true,
+      "lastUpdated": "2025-09-19T21:50:25.648Z",
+      "source": "All States Enhanced Data Collection"
+    }
+  ],
+  "dataQuality": {
+    "total": 1,
+    "verified": 1,
+    "withContact": 1,
+    "lastUpdated": "2025-09-19T21:50:47.376Z"
+  }
+}

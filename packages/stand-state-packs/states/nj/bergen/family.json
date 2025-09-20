@@ -1,0 +1,33 @@
+{
+  "state": "NJ",
+  "county": "Bergen",
+  "verification": {
+    "verifiedAt": "2025-09-19T21:50:54.806Z",
+    "sourceUrl": "https://www.kingdomstand.com/mediator-data"
+  },
+  "mediators": [
+    {
+      "name": "Dr. Susan Cohen",
+      "organization": "New Jersey Family Mediation Institute",
+      "specialties": "Family Psychology, High-Conflict Mediation",
+      "contact": "(973) 555-0200",
+      "email": "s.cohen@njmediation.com",
+      "certification": "New Jersey Certified Family Mediator",
+      "experience": "18 years",
+      "verified": true,
+      "location": "Bergen, NJ",
+      "county": "Bergen",
+      "state": "NJ",
+      "verifiedAt": "2025-09-19T21:50:25.657Z",
+      "source": "All States Enhanced Data Collection"
+    }
+  ],
+  "parentingClasses": [],
+  "galDirectory": [],
+  "dataQuality": {
+    "total": 1,
+    "certified": 1,
+    "withContact": 1,
+    "lastUpdated": "2025-09-19T21:50:54.806Z"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "state": "CA",
+  "county": "Alameda",
+  "verifiedAt": "2025-09-19T21:29:50.607Z",
+  "sources": [
+    {
+      "title": "CA State Bar Association",
+      "url": "https://www.calbar.ca.gov/Attorneys/Find-A-Lawyer",
+      "verified": true
+    }
+  ],
+  "lawyers": []
+}

@@ -1,0 +1,17 @@
+{
+  "state": "AZ",
+  "county": "Pinal",
+  "verification": {
+    "verifiedAt": "2025-09-19T21:50:28.972Z",
+    "sourceUrl": "https://www.kingdomstand.com/mediator-data"
+  },
+  "mediators": [],
+  "parentingClasses": [],
+  "galDirectory": [],
+  "dataQuality": {
+    "total": 0,
+    "certified": 0,
+    "withContact": 0,
+    "lastUpdated": "2025-09-19T21:50:28.972Z"
+  }
+}

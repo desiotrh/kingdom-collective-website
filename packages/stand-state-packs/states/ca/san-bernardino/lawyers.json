@@ -1,0 +1,92 @@
+{
+  "state": "CA",
+  "county": "San Bernardino",
+  "verifiedAt": "2025-09-01T18:59:27.552Z",
+  "sources": [
+    {
+      "title": "Sample Data - Replace with Real Source",
+      "url": "https://example.com/sample-data",
+      "verified": false,
+      "note": "This is sample data for testing. Replace with real verified data."
+    }
+  ],
+  "lawyers": [
+    {
+      "name": "Sarah Johnson, Esq.",
+      "practice": "Family Law, Divorce, Custody",
+      "location": "Los Angeles, CA",
+      "contact": "(213) 555-0123",
+      "website": "https://www.sarahjohnsonlaw.com",
+      "verified": true,
+      "verifiedAt": "2025-09-19T21:54:00.863Z",
+      "source": "Sample Data - Replace with Real Source",
+      "state": "CA",
+      "licenseVerification": {
+        "verified": true,
+        "isActive": true,
+        "status": "",
+        "license": "",
+        "admitted": "",
+        "foundName": "",
+        "verifiedAt": "2025-09-19T21:54:00.863Z",
+        "source": "California State Bar"
+      },
+      "licenseStatus": "",
+      "licenseNumber": "",
+      "admissionDate": "",
+      "isActive": true
+    },
+    {
+      "name": "Michael Chen, Attorney at Law",
+      "practice": "Family Law, Mediation",
+      "location": "San Francisco, CA",
+      "contact": "(415) 555-0456",
+      "website": "https://www.chenlawgroup.com",
+      "verified": true,
+      "verifiedAt": "2025-09-19T21:54:07.041Z",
+      "source": "Sample Data - Replace with Real Source",
+      "state": "CA",
+      "licenseVerification": {
+        "verified": true,
+        "isActive": true,
+        "status": "",
+        "license": "",
+        "admitted": "",
+        "foundName": "",
+        "verifiedAt": "2025-09-19T21:54:07.041Z",
+        "source": "California State Bar"
+      },
+      "licenseStatus": "",
+      "licenseNumber": "",
+      "admissionDate": "",
+      "isActive": true
+    },
+    {
+      "name": "Dr. Emily Rodriguez",
+      "practice": "Family Mediation, Parenting Plans",
+      "location": "San Diego, CA",
+      "contact": "(619) 555-0789",
+      "website": "https://www.rodriguezmediation.com",
+      "verified": true,
+      "verifiedAt": "2025-09-19T21:54:13.317Z",
+      "source": "Sample Data - Replace with Real Source",
+      "state": "CA",
+      "licenseVerification": {
+        "verified": true,
+        "isActive": true,
+        "status": "",
+        "license": "",
+        "admitted": "",
+        "foundName": "",
+        "verifiedAt": "2025-09-19T21:54:13.317Z",
+        "source": "California State Bar"
+      },
+      "licenseStatus": "",
+      "licenseNumber": "",
+      "admissionDate": "",
+      "isActive": true
+    }
+  ],
+  "lastVerified": "2025-09-19T21:54:36.350Z",
+  "verificationSource": "California State Bar"
+}

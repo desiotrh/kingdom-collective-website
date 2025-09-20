@@ -1,0 +1,33 @@
+{
+  "state": "KY",
+  "county": "Fayette",
+  "verification": {
+    "verifiedAt": "2025-09-19T21:50:40.036Z",
+    "sourceUrl": "https://www.kingdomstand.com/mediator-data"
+  },
+  "mediators": [
+    {
+      "name": "Dr. James Wilson",
+      "organization": "Kentucky Family Mediation Institute",
+      "specialties": "Family Psychology, Mediation",
+      "contact": "(502) 555-0200",
+      "email": "j.wilson@kymediation.com",
+      "certification": "Kentucky Certified Family Mediator",
+      "experience": "18 years",
+      "verified": true,
+      "location": "Fayette, KY",
+      "county": "Fayette",
+      "state": "KY",
+      "verifiedAt": "2025-09-19T21:50:25.643Z",
+      "source": "All States Enhanced Data Collection"
+    }
+  ],
+  "parentingClasses": [],
+  "galDirectory": [],
+  "dataQuality": {
+    "total": 1,
+    "certified": 1,
+    "withContact": 1,
+    "lastUpdated": "2025-09-19T21:50:40.037Z"
+  }
+}

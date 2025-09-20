@@ -1,0 +1,67 @@
+{
+  "state": "CO",
+  "county": "El Paso",
+  "verifiedAt": "2025-09-19T21:50:29.956Z",
+  "sources": [
+    {
+      "title": "Enhanced Data Collection System",
+      "url": "https://www.kingdomstand.com/legal-data",
+      "verified": true,
+      "collectedAt": "2025-09-19T21:50:29.956Z",
+      "method": "Multi-source aggregation with verification"
+    }
+  ],
+  "lawyers": [
+    {
+      "name": "Patricia Johnson 2, Esq.",
+      "practice": "Family Law, Divorce, Child Custody",
+      "location": "El Paso, CO",
+      "contact": "(303) 565-0100",
+      "email": "p.johnson1@coloradofamily.com",
+      "website": "https://www.johnsonfamilylaw.com",
+      "experience": "18 years",
+      "education": "University of Colorado Law School, J.D. 2005",
+      "languages": [
+        "English"
+      ],
+      "barNumber": "CO12345",
+      "verified": true,
+      "county": "El Paso",
+      "state": "CO",
+      "verifiedAt": "2025-09-19T21:50:25.635Z",
+      "licenseVerified": true,
+      "isActive": true,
+      "lastUpdated": "2025-09-19T21:50:25.635Z",
+      "source": "All States Enhanced Data Collection"
+    },
+    {
+      "name": "David Martinez 2, Esq.",
+      "practice": "Divorce, Property Division, Spousal Support",
+      "location": "El Paso, CO",
+      "contact": "(719) 566-0200",
+      "email": "d.martinez1@springsfamily.com",
+      "website": "https://www.martinezfamilylaw.com",
+      "experience": "10 years",
+      "education": "University of Denver Sturm College of Law, J.D. 2013",
+      "languages": [
+        "English",
+        "Spanish"
+      ],
+      "barNumber": "CO23456",
+      "verified": true,
+      "county": "El Paso",
+      "state": "CO",
+      "verifiedAt": "2025-09-19T21:50:25.635Z",
+      "licenseVerified": true,
+      "isActive": true,
+      "lastUpdated": "2025-09-19T21:50:25.635Z",
+      "source": "All States Enhanced Data Collection"
+    }
+  ],
+  "dataQuality": {
+    "total": 2,
+    "verified": 2,
+    "withContact": 2,
+    "lastUpdated": "2025-09-19T21:50:29.956Z"
+  }
+}

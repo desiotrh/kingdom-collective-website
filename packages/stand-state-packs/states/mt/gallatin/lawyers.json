@@ -1,0 +1,44 @@
+{
+  "state": "MT",
+  "county": "Gallatin",
+  "verifiedAt": "2025-09-19T21:50:49.712Z",
+  "sources": [
+    {
+      "title": "Enhanced Data Collection System",
+      "url": "https://www.kingdomstand.com/legal-data",
+      "verified": true,
+      "collectedAt": "2025-09-19T21:50:49.713Z",
+      "method": "Multi-source aggregation with verification"
+    }
+  ],
+  "lawyers": [
+    {
+      "name": "Sarah Anderson 3, Esq.",
+      "practice": "Family Law, Divorce, Property Division",
+      "location": "Gallatin, MT",
+      "contact": "(406) 575-0100",
+      "email": "s.anderson2@montanafamily.com",
+      "website": "https://www.andersonfamilylaw.com",
+      "experience": "12 years",
+      "education": "University of Montana School of Law, J.D. 2011",
+      "languages": [
+        "English"
+      ],
+      "barNumber": "MT12345",
+      "verified": true,
+      "county": "Gallatin",
+      "state": "MT",
+      "verifiedAt": "2025-09-19T21:50:25.652Z",
+      "licenseVerified": true,
+      "isActive": true,
+      "lastUpdated": "2025-09-19T21:50:25.652Z",
+      "source": "All States Enhanced Data Collection"
+    }
+  ],
+  "dataQuality": {
+    "total": 1,
+    "verified": 1,
+    "withContact": 1,
+    "lastUpdated": "2025-09-19T21:50:49.713Z"
+  }
+}

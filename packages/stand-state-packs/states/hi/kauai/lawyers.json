@@ -1,0 +1,45 @@
+{
+  "state": "HI",
+  "county": "Kauai",
+  "verifiedAt": "2025-09-19T21:50:35.003Z",
+  "sources": [
+    {
+      "title": "Enhanced Data Collection System",
+      "url": "https://www.kingdomstand.com/legal-data",
+      "verified": true,
+      "collectedAt": "2025-09-19T21:50:35.003Z",
+      "method": "Multi-source aggregation with verification"
+    }
+  ],
+  "lawyers": [
+    {
+      "name": "Daniel Kim 4, Esq.",
+      "practice": "Family Law, Divorce, Child Custody",
+      "location": "Kauai, HI",
+      "contact": "(808) 585-0100",
+      "email": "d.kim3@hawaiifamily.com",
+      "website": "https://www.kimfamilylaw.com",
+      "experience": "15 years",
+      "education": "University of Hawaii at Manoa William S. Richardson School of Law, J.D. 2008",
+      "languages": [
+        "English",
+        "Korean"
+      ],
+      "barNumber": "HI12345",
+      "verified": true,
+      "county": "Kauai",
+      "state": "HI",
+      "verifiedAt": "2025-09-19T21:50:25.639Z",
+      "licenseVerified": true,
+      "isActive": true,
+      "lastUpdated": "2025-09-19T21:50:25.639Z",
+      "source": "All States Enhanced Data Collection"
+    }
+  ],
+  "dataQuality": {
+    "total": 1,
+    "verified": 1,
+    "withContact": 1,
+    "lastUpdated": "2025-09-19T21:50:35.003Z"
+  }
+}

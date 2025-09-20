@@ -1,0 +1,33 @@
+{
+  "state": "HI",
+  "county": "Honolulu",
+  "verification": {
+    "verifiedAt": "2025-09-19T21:50:34.631Z",
+    "sourceUrl": "https://www.kingdomstand.com/mediator-data"
+  },
+  "mediators": [
+    {
+      "name": "Leilani Tanaka, LMFT",
+      "organization": "Hawaii Family Resolution Services",
+      "specialties": "Cultural-Sensitive Mediation, Family Therapy",
+      "contact": "(808) 555-0200",
+      "email": "l.tanaka@hawaiiresolution.com",
+      "certification": "Hawaii Certified Family Mediator",
+      "experience": "13 years",
+      "verified": true,
+      "location": "Honolulu, HI",
+      "county": "Honolulu",
+      "state": "HI",
+      "verifiedAt": "2025-09-19T21:50:25.639Z",
+      "source": "All States Enhanced Data Collection"
+    }
+  ],
+  "parentingClasses": [],
+  "galDirectory": [],
+  "dataQuality": {
+    "total": 1,
+    "certified": 1,
+    "withContact": 1,
+    "lastUpdated": "2025-09-19T21:50:34.631Z"
+  }
+}

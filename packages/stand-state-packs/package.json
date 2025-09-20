@@ -1,0 +1,34 @@
+{
+  "name": "@kingdom-collective/stand-state-packs",
+  "version": "0.1.0",
+  "private": true,
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "seed:all": "node ./scripts/seed-all-states.js",
+    "seed:dry": "node ./scripts/seed-all-states.js --dry-run",
+    "seed:pilot": "node ./scripts/seed-all-states.js --limit-states=IA,OK",
+    "validate": "node ./scripts/validate-schemas.js validate",
+    "validate:file": "node ./scripts/validate-schemas.js validate-file",
+    "generate:schema": "node ./scripts/validate-schemas.js generate-schema",
+    "populate:california": "node ./scripts/populate-california.js",
+    "populate:pilot": "node ./scripts/populate-legal-data.js pilot",
+    "populate:all": "node ./scripts/populate-legal-data.js all",
+    "test:data": "node ./scripts/test-data-collection.js",
+    "alternative:data": "node ./scripts/alternative-data-sources.js",
+    "import:data": "node ./scripts/data-import-system.js"
+  },
+  "devDependencies": {
+    "typescript": "~5.8.3"
+  },
+  "dependencies": {
+    "ajv": "^8.12.0",
+    "ajv-formats": "^2.1.1",
+    "axios": "^1.12.2",
+    "cheerio": "^1.1.0",
+    "commander": "^11.0.0",
+    "node-cache": "^5.1.2",
+    "puppeteer": "^24.22.0"
+  }
+}

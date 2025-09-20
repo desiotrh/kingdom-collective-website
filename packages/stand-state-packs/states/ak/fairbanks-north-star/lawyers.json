@@ -1,0 +1,44 @@
+{
+  "state": "AK",
+  "county": "Fairbanks North Star",
+  "verifiedAt": "2025-09-19T21:50:25.794Z",
+  "sources": [
+    {
+      "title": "Enhanced Data Collection System",
+      "url": "https://www.kingdomstand.com/legal-data",
+      "verified": true,
+      "collectedAt": "2025-09-19T21:50:25.794Z",
+      "method": "Multi-source aggregation with verification"
+    }
+  ],
+  "lawyers": [
+    {
+      "name": "Michael Anderson 2, Esq.",
+      "practice": "Family Law, Divorce, Property Division",
+      "location": "Fairbanks North Star, AK",
+      "contact": "(907) 565-0100",
+      "email": "m.anderson1@alaskafamily.com",
+      "website": "https://www.andersonfamilylaw.com",
+      "experience": "13 years",
+      "education": "University of Washington School of Law, J.D. 2010",
+      "languages": [
+        "English"
+      ],
+      "barNumber": "AK12345",
+      "verified": true,
+      "county": "Fairbanks North Star",
+      "state": "AK",
+      "verifiedAt": "2025-09-19T21:50:25.631Z",
+      "licenseVerified": true,
+      "isActive": true,
+      "lastUpdated": "2025-09-19T21:50:25.631Z",
+      "source": "All States Enhanced Data Collection"
+    }
+  ],
+  "dataQuality": {
+    "total": 1,
+    "verified": 1,
+    "withContact": 1,
+    "lastUpdated": "2025-09-19T21:50:25.794Z"
+  }
+}

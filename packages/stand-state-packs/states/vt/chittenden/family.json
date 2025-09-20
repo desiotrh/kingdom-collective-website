@@ -1,0 +1,33 @@
+{
+  "state": "VT",
+  "county": "Chittenden",
+  "verification": {
+    "verifiedAt": "2025-09-19T21:51:07.754Z",
+    "sourceUrl": "https://www.kingdomstand.com/mediator-data"
+  },
+  "mediators": [
+    {
+      "name": "David Thompson, LCSW",
+      "organization": "Vermont Family Solutions",
+      "specialties": "Rural Mediation, Environmental Family Therapy",
+      "contact": "(802) 555-0200",
+      "email": "d.thompson@vtsolutions.com",
+      "certification": "Vermont Certified Mediator",
+      "experience": "13 years",
+      "verified": true,
+      "location": "Chittenden, VT",
+      "county": "Chittenden",
+      "state": "VT",
+      "verifiedAt": "2025-09-19T21:50:25.668Z",
+      "source": "All States Enhanced Data Collection"
+    }
+  ],
+  "parentingClasses": [],
+  "galDirectory": [],
+  "dataQuality": {
+    "total": 1,
+    "certified": 1,
+    "withContact": 1,
+    "lastUpdated": "2025-09-19T21:51:07.754Z"
+  }
+}

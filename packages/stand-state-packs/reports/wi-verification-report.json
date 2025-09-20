@@ -1,0 +1,108 @@
+{
+  "state": "WI",
+  "generatedAt": "2025-09-19T22:04:15.550Z",
+  "counties": [
+    {
+      "county": "Brown",
+      "totalLawyers": 1,
+      "verifiedLawyers": 1,
+      "activeLawyers": 1,
+      "unverifiedLawyers": 0,
+      "lastVerified": null,
+      "lawyers": [
+        {
+          "name": "Patricia Johnson 4, Esq.",
+          "verified": true,
+          "active": true,
+          "status": "Unknown",
+          "license": "Unknown",
+          "verifiedAt": "2025-09-19T21:50:25.670Z"
+        }
+      ],
+      "verificationRate": 100
+    },
+    {
+      "county": "Dane",
+      "totalLawyers": 1,
+      "verifiedLawyers": 1,
+      "activeLawyers": 1,
+      "unverifiedLawyers": 0,
+      "lastVerified": null,
+      "lawyers": [
+        {
+          "name": "Patricia Johnson 2, Esq.",
+          "verified": true,
+          "active": true,
+          "status": "Unknown",
+          "license": "Unknown",
+          "verifiedAt": "2025-09-19T21:50:25.670Z"
+        }
+      ],
+      "verificationRate": 100
+    },
+    {
+      "county": "Milwaukee",
+      "totalLawyers": 1,
+      "verifiedLawyers": 1,
+      "activeLawyers": 1,
+      "unverifiedLawyers": 0,
+      "lastVerified": null,
+      "lawyers": [
+        {
+          "name": "Patricia Johnson, Esq.",
+          "verified": true,
+          "active": true,
+          "status": "Unknown",
+          "license": "Unknown",
+          "verifiedAt": "2025-09-19T21:50:25.670Z"
+        }
+      ],
+      "verificationRate": 100
+    },
+    {
+      "county": "Racine",
+      "totalLawyers": 1,
+      "verifiedLawyers": 1,
+      "activeLawyers": 1,
+      "unverifiedLawyers": 0,
+      "lastVerified": null,
+      "lawyers": [
+        {
+          "name": "Patricia Johnson 5, Esq.",
+          "verified": true,
+          "active": true,
+          "status": "Unknown",
+          "license": "Unknown",
+          "verifiedAt": "2025-09-19T21:50:25.670Z"
+        }
+      ],
+      "verificationRate": 100
+    },
+    {
+      "county": "Waukesha",
+      "totalLawyers": 1,
+      "verifiedLawyers": 1,
+      "activeLawyers": 1,
+      "unverifiedLawyers": 0,
+      "lastVerified": null,
+      "lawyers": [
+        {
+          "name": "Patricia Johnson 3, Esq.",
+          "verified": true,
+          "active": true,
+          "status": "Unknown",
+          "license": "Unknown",
+          "verifiedAt": "2025-09-19T21:50:25.670Z"
+        }
+      ],
+      "verificationRate": 100
+    }
+  ],
+  "summary": {
+    "totalLawyers": 5,
+    "verifiedLawyers": 5,
+    "activeLawyers": 5,
+    "unverifiedLawyers": 0,
+    "verificationRate": 100
+  }
+}

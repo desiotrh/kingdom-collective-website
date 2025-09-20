@@ -1,0 +1,33 @@
+{
+  "state": "WA",
+  "county": "Pierce",
+  "verification": {
+    "verifiedAt": "2025-09-19T21:51:08.939Z",
+    "sourceUrl": "https://www.kingdomstand.com/mediator-data"
+  },
+  "mediators": [
+    {
+      "name": "Dr. Michael Wilson",
+      "organization": "Washington Family Mediation Center",
+      "specialties": "Tech-Industry Family Issues, High-Asset Mediation",
+      "contact": "(206) 555-0200",
+      "email": "m.wilson@wamediation.com",
+      "certification": "Washington State Certified Mediator",
+      "experience": "18 years",
+      "verified": true,
+      "location": "Pierce, WA",
+      "county": "Pierce",
+      "state": "WA",
+      "verifiedAt": "2025-09-19T21:50:25.669Z",
+      "source": "All States Enhanced Data Collection"
+    }
+  ],
+  "parentingClasses": [],
+  "galDirectory": [],
+  "dataQuality": {
+    "total": 1,
+    "certified": 1,
+    "withContact": 1,
+    "lastUpdated": "2025-09-19T21:51:08.939Z"
+  }
+}

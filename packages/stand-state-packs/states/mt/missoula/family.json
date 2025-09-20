@@ -1,0 +1,33 @@
+{
+  "state": "MT",
+  "county": "Missoula",
+  "verification": {
+    "verifiedAt": "2025-09-19T21:50:49.600Z",
+    "sourceUrl": "https://www.kingdomstand.com/mediator-data"
+  },
+  "mediators": [
+    {
+      "name": "John Thompson, LCSW",
+      "organization": "Montana Family Mediation Services",
+      "specialties": "Rural Family Mediation, Co-Parenting",
+      "contact": "(406) 555-0200",
+      "email": "j.thompson@mtmediation.com",
+      "certification": "Montana Certified Mediator",
+      "experience": "13 years",
+      "verified": true,
+      "location": "Missoula, MT",
+      "county": "Missoula",
+      "state": "MT",
+      "verifiedAt": "2025-09-19T21:50:25.651Z",
+      "source": "All States Enhanced Data Collection"
+    }
+  ],
+  "parentingClasses": [],
+  "galDirectory": [],
+  "dataQuality": {
+    "total": 1,
+    "certified": 1,
+    "withContact": 1,
+    "lastUpdated": "2025-09-19T21:50:49.600Z"
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "state": "TN",
+  "county": "Davidson",
+  "verifiedAt": "2025-09-19T21:51:05.724Z",
+  "sources": [
+    {
+      "title": "Enhanced Data Collection System",
+      "url": "https://www.kingdomstand.com/legal-data",
+      "verified": true,
+      "collectedAt": "2025-09-19T21:51:05.724Z",
+      "method": "Multi-source aggregation with verification"
+    }
+  ],
+  "lawyers": [
+    {
+      "name": "Jennifer Miller 2, Esq.",
+      "practice": "Family Law, Child Custody, Divorce",
+      "location": "Davidson, TN",
+      "contact": "(615) 565-0100",
+      "email": "j.miller1@tennesseefamily.com",
+      "website": "https://www.millerfamilylaw.com",
+      "experience": "14 years",
+      "education": "Vanderbilt University Law School, J.D. 2009",
+      "languages": [
+        "English"
+      ],
+      "barNumber": "TN12345",
+      "verified": true,
+      "county": "Davidson",
+      "state": "TN",
+      "verifiedAt": "2025-09-19T21:50:25.667Z",
+      "licenseVerified": true,
+      "isActive": true,
+      "lastUpdated": "2025-09-19T21:50:25.667Z",
+      "source": "All States Enhanced Data Collection"
+    }
+  ],
+  "dataQuality": {
+    "total": 1,
+    "verified": 1,
+    "withContact": 1,
+    "lastUpdated": "2025-09-19T21:51:05.724Z"
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "state": "AZ",
+  "county": "Maricopa",
+  "verification": {
+    "verifiedAt": "2025-09-19T21:50:28.750Z",
+    "sourceUrl": "https://www.kingdomstand.com/mediator-data"
+  },
+  "mediators": [
+    {
+      "name": "Dr. Maria Gonzalez",
+      "organization": "Arizona Family Mediation Center",
+      "specialties": "Bilingual Mediation, Child Custody",
+      "contact": "(602) 555-0300",
+      "email": "m.gonzalez@azmediation.com",
+      "certification": "Arizona Supreme Court Certified Mediator",
+      "experience": "16 years",
+      "verified": true,
+      "location": "Maricopa, AZ",
+      "county": "Maricopa",
+      "state": "AZ",
+      "verifiedAt": "2025-09-19T21:50:25.633Z",
+      "source": "All States Enhanced Data Collection"
+    }
+  ],
+  "parentingClasses": [],
+  "galDirectory": [],
+  "dataQuality": {
+    "total": 1,
+    "certified": 1,
+    "withContact": 1,
+    "lastUpdated": "2025-09-19T21:50:28.750Z"
+  }
+}

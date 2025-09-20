@@ -1,0 +1,33 @@
+{
+  "state": "LA",
+  "county": "Jefferson",
+  "verification": {
+    "verifiedAt": "2025-09-19T21:50:41.100Z",
+    "sourceUrl": "https://www.kingdomstand.com/mediator-data"
+  },
+  "mediators": [
+    {
+      "name": "Pierre Thibodaux, LCSW",
+      "organization": "Louisiana Family Solutions",
+      "specialties": "Bilingual Mediation, Family Therapy",
+      "contact": "(504) 555-0200",
+      "email": "p.thibodaux@lasolutions.com",
+      "certification": "Louisiana Certified Mediator",
+      "experience": "13 years",
+      "verified": true,
+      "location": "Jefferson, LA",
+      "county": "Jefferson",
+      "state": "LA",
+      "verifiedAt": "2025-09-19T21:50:25.644Z",
+      "source": "All States Enhanced Data Collection"
+    }
+  ],
+  "parentingClasses": [],
+  "galDirectory": [],
+  "dataQuality": {
+    "total": 1,
+    "certified": 1,
+    "withContact": 1,
+    "lastUpdated": "2025-09-19T21:50:41.100Z"
+  }
+}

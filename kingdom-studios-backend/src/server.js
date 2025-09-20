@@ -25,9 +25,11 @@ import paymentRoutes from './routes/payments.js';
 import webhookRoutes, { stripeWebhookHandler } from './routes/webhooks.js';
 import adminRoutes from './routes/admin.js';
 import enterpriseContentRoutes, { initializeEnterpriseContentService } from './routes/enterpriseContent.js';
+import facebookRoutes from './routes/facebook.js';
 
 // Import unified API routes
 import unifiedApiRoutes from './routes/unifiedApi.js';
+import pdfRoutes from './routes/pdf.js';
 
 // Import middleware
 import { errorHandler } from './middleware/errorHandler.js';
@@ -201,9 +203,13 @@ app.use(`${apiPrefix}/products`, productRoutes);
 app.use(`${apiPrefix}/analytics`, analyticsRoutes);
 app.use(`${apiPrefix}/payments`, paymentRoutes);
 app.use(`${apiPrefix}/admin`, adminRoutes);
+app.use(`${apiPrefix}/facebook`, facebookRoutes);
 
 // Unified API routes for all Kingdom apps
 app.use(`${apiPrefix}/unified`, unifiedApiRoutes);
+
+// PDF service routes for Kingdom Stand
+app.use(`${apiPrefix}/pdf`, pdfRoutes);
 
 // Enterprise monitoring routes
 app.use(`${apiPrefix}/monitoring`, monitoringRoutes);
@@ -263,6 +269,12 @@ app.get(`${apiPrefix}/docs`, (req, res) => {
         'GET /payments/methods': 'Get payment methods',
         'POST /payments/setup-intent': 'Create setup intent',
         'GET /payments/subscriptions': 'Get user subscriptions',
+      },
+      pdf: {
+        'POST /pdf/convert': 'Convert documents to PDF format',
+        'POST /pdf/merge': 'Merge multiple PDFs into one',
+        'POST /pdf/ocr': 'Extract text from PDFs using OCR',
+        'POST /pdf/stamp': 'Add stamps or watermarks to PDFs',
       }
     },
     authentication: 'Bearer token required for most endpoints',

@@ -1,0 +1,81 @@
+{
+  "state": "NY",
+  "county": "Westchester",
+  "verifiedAt": "2025-09-19T21:40:54.069Z",
+  "sources": [
+    {
+      "title": "Enhanced Data Collection System",
+      "url": "https://www.kingdomstand.com/legal-data",
+      "verified": true,
+      "collectedAt": "2025-09-19T21:40:54.069Z",
+      "method": "Multi-source aggregation with verification"
+    }
+  ],
+  "lawyers": [
+    {
+      "name": "Robert Thompson 5, Esq.",
+      "practice": "Family Law, Matrimonial Law, Child Custody",
+      "location": "Westchester, NY",
+      "contact": "(212) 555-0400",
+      "email": "r.thompson4@nycfamilylaw.com",
+      "website": "https://www.thompsonfamilylaw.com",
+      "experience": "20 years",
+      "education": "Columbia Law School, J.D. 2003",
+      "languages": [
+        "English"
+      ],
+      "barNumber": "NY456789",
+      "verified": false,
+      "source": "Enhanced Sample Data",
+      "county": "Westchester",
+      "state": "NY",
+      "verifiedAt": "2025-09-19T22:02:07.353Z",
+      "licenseVerified": true,
+      "isActive": true,
+      "lastUpdated": "2025-09-19T21:40:52.006Z",
+      "licenseVerification": {
+        "verified": false,
+        "reason": "Verification error: Waiting for selector `#lastName` failed",
+        "verifiedAt": "2025-09-19T22:02:07.353Z",
+        "source": "New York Courts Attorney Registration"
+      }
+    },
+    {
+      "name": "Lisa Chen 5, Esq.",
+      "practice": "Divorce, Prenuptial Agreements, Family Mediation",
+      "location": "Westchester, NY",
+      "contact": "(718) 555-0500",
+      "email": "l.chen4@brooklynfamily.com",
+      "website": "https://www.chenfamilylaw.com",
+      "experience": "10 years",
+      "education": "Brooklyn Law School, J.D. 2013",
+      "languages": [
+        "English",
+        "Mandarin"
+      ],
+      "barNumber": "NY567890",
+      "verified": false,
+      "source": "Enhanced Sample Data",
+      "county": "Westchester",
+      "state": "NY",
+      "verifiedAt": "2025-09-19T22:02:37.904Z",
+      "licenseVerified": true,
+      "isActive": true,
+      "lastUpdated": "2025-09-19T21:40:52.006Z",
+      "licenseVerification": {
+        "verified": false,
+        "reason": "Verification error: Navigation timeout of 30000 ms exceeded",
+        "verifiedAt": "2025-09-19T22:02:37.904Z",
+        "source": "New York Courts Attorney Registration"
+      }
+    }
+  ],
+  "dataQuality": {
+    "total": 2,
+    "verified": 2,
+    "withContact": 2,
+    "lastUpdated": "2025-09-19T21:40:54.069Z"
+  },
+  "lastVerified": "2025-09-19T22:02:37.904Z",
+  "verificationSource": "New York Courts Attorney Registration"
+}

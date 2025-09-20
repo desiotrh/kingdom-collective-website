@@ -1,0 +1,108 @@
+{
+  "state": "WV",
+  "generatedAt": "2025-09-19T22:04:09.485Z",
+  "counties": [
+    {
+      "county": "Berkeley",
+      "totalLawyers": 1,
+      "verifiedLawyers": 1,
+      "activeLawyers": 1,
+      "unverifiedLawyers": 0,
+      "lastVerified": null,
+      "lawyers": [
+        {
+          "name": "Robert Davis 2, Esq.",
+          "verified": true,
+          "active": true,
+          "status": "Unknown",
+          "license": "Unknown",
+          "verifiedAt": "2025-09-19T21:50:25.671Z"
+        }
+      ],
+      "verificationRate": 100
+    },
+    {
+      "county": "Cabell",
+      "totalLawyers": 1,
+      "verifiedLawyers": 1,
+      "activeLawyers": 1,
+      "unverifiedLawyers": 0,
+      "lastVerified": null,
+      "lawyers": [
+        {
+          "name": "Robert Davis 5, Esq.",
+          "verified": true,
+          "active": true,
+          "status": "Unknown",
+          "license": "Unknown",
+          "verifiedAt": "2025-09-19T21:50:25.671Z"
+        }
+      ],
+      "verificationRate": 100
+    },
+    {
+      "county": "Jefferson",
+      "totalLawyers": 1,
+      "verifiedLawyers": 1,
+      "activeLawyers": 1,
+      "unverifiedLawyers": 0,
+      "lastVerified": null,
+      "lawyers": [
+        {
+          "name": "Robert Davis 3, Esq.",
+          "verified": true,
+          "active": true,
+          "status": "Unknown",
+          "license": "Unknown",
+          "verifiedAt": "2025-09-19T21:50:25.671Z"
+        }
+      ],
+      "verificationRate": 100
+    },
+    {
+      "county": "Kanawha",
+      "totalLawyers": 1,
+      "verifiedLawyers": 1,
+      "activeLawyers": 1,
+      "unverifiedLawyers": 0,
+      "lastVerified": null,
+      "lawyers": [
+        {
+          "name": "Robert Davis, Esq.",
+          "verified": true,
+          "active": true,
+          "status": "Unknown",
+          "license": "Unknown",
+          "verifiedAt": "2025-09-19T21:50:25.670Z"
+        }
+      ],
+      "verificationRate": 100
+    },
+    {
+      "county": "Monongalia",
+      "totalLawyers": 1,
+      "verifiedLawyers": 1,
+      "activeLawyers": 1,
+      "unverifiedLawyers": 0,
+      "lastVerified": null,
+      "lawyers": [
+        {
+          "name": "Robert Davis 4, Esq.",
+          "verified": true,
+          "active": true,
+          "status": "Unknown",
+          "license": "Unknown",
+          "verifiedAt": "2025-09-19T21:50:25.671Z"
+        }
+      ],
+      "verificationRate": 100
+    }
+  ],
+  "summary": {
+    "totalLawyers": 5,
+    "verifiedLawyers": 5,
+    "activeLawyers": 5,
+    "unverifiedLawyers": 0,
+    "verificationRate": 100
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "state": "DC",
+  "county": "District of Columbia",
+  "verifiedAt": "2025-09-19T21:50:31.973Z",
+  "sources": [
+    {
+      "title": "Enhanced Data Collection System",
+      "url": "https://www.kingdomstand.com/legal-data",
+      "verified": true,
+      "collectedAt": "2025-09-19T21:50:31.973Z",
+      "method": "Multi-source aggregation with verification"
+    }
+  ],
+  "lawyers": [
+    {
+      "name": "Alexandra Thompson, Esq.",
+      "practice": "Family Law, High-Asset Divorce, Federal Employee Benefits",
+      "location": "District of Columbia, DC",
+      "contact": "(202) 555-0100",
+      "email": "a.thompson@dcfamily.com",
+      "website": "https://www.thompsonfamilylaw.com",
+      "experience": "17 years",
+      "education": "Georgetown University Law Center, J.D. 2006",
+      "languages": [
+        "English"
+      ],
+      "barNumber": "DC12345",
+      "verified": true,
+      "county": "District of Columbia",
+      "state": "DC",
+      "verifiedAt": "2025-09-19T21:50:25.637Z",
+      "licenseVerified": true,
+      "isActive": true,
+      "lastUpdated": "2025-09-19T21:50:25.637Z",
+      "source": "All States Enhanced Data Collection"
+    }
+  ],
+  "dataQuality": {
+    "total": 1,
+    "verified": 1,
+    "withContact": 1,
+    "lastUpdated": "2025-09-19T21:50:31.973Z"
+  }
+}

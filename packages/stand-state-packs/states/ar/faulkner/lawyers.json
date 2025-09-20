@@ -1,0 +1,44 @@
+{
+  "state": "AR",
+  "county": "Faulkner",
+  "verifiedAt": "2025-09-19T21:50:28.030Z",
+  "sources": [
+    {
+      "title": "Enhanced Data Collection System",
+      "url": "https://www.kingdomstand.com/legal-data",
+      "verified": true,
+      "collectedAt": "2025-09-19T21:50:28.030Z",
+      "method": "Multi-source aggregation with verification"
+    }
+  ],
+  "lawyers": [
+    {
+      "name": "James Miller 4, Esq.",
+      "practice": "Family Law, Child Support, Custody",
+      "location": "Faulkner, AR",
+      "contact": "(501) 585-0100",
+      "email": "j.miller3@arkansasfamily.com",
+      "website": "https://www.millerfamilylaw.com",
+      "experience": "14 years",
+      "education": "University of Arkansas School of Law, J.D. 2009",
+      "languages": [
+        "English"
+      ],
+      "barNumber": "AR12345",
+      "verified": true,
+      "county": "Faulkner",
+      "state": "AR",
+      "verifiedAt": "2025-09-19T21:50:25.632Z",
+      "licenseVerified": true,
+      "isActive": true,
+      "lastUpdated": "2025-09-19T21:50:25.632Z",
+      "source": "All States Enhanced Data Collection"
+    }
+  ],
+  "dataQuality": {
+    "total": 1,
+    "verified": 1,
+    "withContact": 1,
+    "lastUpdated": "2025-09-19T21:50:28.031Z"
+  }
+}

@@ -35,6 +35,7 @@ EXPO_PUBLIC_GOOGLE_IOS_CLIENT_ID=your_google_ios_client_id
 # FACEBOOK INTEGRATION
 # ==============================================
 EXPO_PUBLIC_FACEBOOK_APP_ID=your_facebook_app_id
+EXPO_PUBLIC_FACEBOOK_CLIENT_TOKEN=your_facebook_client_token
 
 # ==============================================
 # AI SERVICES (REQUIRED)

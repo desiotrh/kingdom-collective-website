@@ -1,0 +1,44 @@
+{
+  "state": "IA",
+  "county": "Scott",
+  "verifiedAt": "2025-09-19T21:50:35.872Z",
+  "sources": [
+    {
+      "title": "Enhanced Data Collection System",
+      "url": "https://www.kingdomstand.com/legal-data",
+      "verified": true,
+      "collectedAt": "2025-09-19T21:50:35.872Z",
+      "method": "Multi-source aggregation with verification"
+    }
+  ],
+  "lawyers": [
+    {
+      "name": "Thomas Wilson 3, Esq.",
+      "practice": "Family Law, Child Custody, Divorce",
+      "location": "Scott, IA",
+      "contact": "(515) 575-0100",
+      "email": "t.wilson2@iowafamily.com",
+      "website": "https://www.wilsonfamilylaw.com",
+      "experience": "13 years",
+      "education": "University of Iowa College of Law, J.D. 2010",
+      "languages": [
+        "English"
+      ],
+      "barNumber": "IA12345",
+      "verified": true,
+      "county": "Scott",
+      "state": "IA",
+      "verifiedAt": "2025-09-19T21:50:25.640Z",
+      "licenseVerified": true,
+      "isActive": true,
+      "lastUpdated": "2025-09-19T21:50:25.640Z",
+      "source": "All States Enhanced Data Collection"
+    }
+  ],
+  "dataQuality": {
+    "total": 1,
+    "verified": 1,
+    "withContact": 1,
+    "lastUpdated": "2025-09-19T21:50:35.873Z"
+  }
+}

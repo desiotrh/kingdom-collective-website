@@ -1,0 +1,33 @@
+{
+  "state": "CO",
+  "county": "El Paso",
+  "verification": {
+    "verifiedAt": "2025-09-19T21:50:29.959Z",
+    "sourceUrl": "https://www.kingdomstand.com/mediator-data"
+  },
+  "mediators": [
+    {
+      "name": "Dr. Karen Wilson",
+      "organization": "Colorado Family Resolution Center",
+      "specialties": "High-Conflict Mediation, Parenting Plans",
+      "contact": "(303) 555-0300",
+      "email": "k.wilson@coloradoresolution.com",
+      "certification": "Colorado Supreme Court Certified Mediator",
+      "experience": "20 years",
+      "verified": true,
+      "location": "El Paso, CO",
+      "county": "El Paso",
+      "state": "CO",
+      "verifiedAt": "2025-09-19T21:50:25.635Z",
+      "source": "All States Enhanced Data Collection"
+    }
+  ],
+  "parentingClasses": [],
+  "galDirectory": [],
+  "dataQuality": {
+    "total": 1,
+    "certified": 1,
+    "withContact": 1,
+    "lastUpdated": "2025-09-19T21:50:29.959Z"
+  }
+}

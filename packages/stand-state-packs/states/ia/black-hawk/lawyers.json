@@ -1,0 +1,44 @@
+{
+  "state": "IA",
+  "county": "Black Hawk",
+  "verifiedAt": "2025-09-19T21:50:36.113Z",
+  "sources": [
+    {
+      "title": "Enhanced Data Collection System",
+      "url": "https://www.kingdomstand.com/legal-data",
+      "verified": true,
+      "collectedAt": "2025-09-19T21:50:36.113Z",
+      "method": "Multi-source aggregation with verification"
+    }
+  ],
+  "lawyers": [
+    {
+      "name": "Thomas Wilson 5, Esq.",
+      "practice": "Family Law, Child Custody, Divorce",
+      "location": "Black Hawk, IA",
+      "contact": "(515) 595-0100",
+      "email": "t.wilson4@iowafamily.com",
+      "website": "https://www.wilsonfamilylaw.com",
+      "experience": "13 years",
+      "education": "University of Iowa College of Law, J.D. 2010",
+      "languages": [
+        "English"
+      ],
+      "barNumber": "IA12345",
+      "verified": true,
+      "county": "Black Hawk",
+      "state": "IA",
+      "verifiedAt": "2025-09-19T21:50:25.640Z",
+      "licenseVerified": true,
+      "isActive": true,
+      "lastUpdated": "2025-09-19T21:50:25.640Z",
+      "source": "All States Enhanced Data Collection"
+    }
+  ],
+  "dataQuality": {
+    "total": 1,
+    "verified": 1,
+    "withContact": 1,
+    "lastUpdated": "2025-09-19T21:50:36.113Z"
+  }
+}

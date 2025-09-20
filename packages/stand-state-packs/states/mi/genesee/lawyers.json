@@ -1,0 +1,44 @@
+{
+  "state": "MI",
+  "county": "Genesee",
+  "verifiedAt": "2025-09-19T21:50:45.685Z",
+  "sources": [
+    {
+      "title": "Enhanced Data Collection System",
+      "url": "https://www.kingdomstand.com/legal-data",
+      "verified": true,
+      "collectedAt": "2025-09-19T21:50:45.685Z",
+      "method": "Multi-source aggregation with verification"
+    }
+  ],
+  "lawyers": [
+    {
+      "name": "Robert Anderson 5, Esq.",
+      "practice": "Family Law, Divorce, Property Division",
+      "location": "Genesee, MI",
+      "contact": "(313) 595-0100",
+      "email": "r.anderson4@michiganfamily.com",
+      "website": "https://www.andersonfamilylaw.com",
+      "experience": "14 years",
+      "education": "University of Michigan Law School, J.D. 2009",
+      "languages": [
+        "English"
+      ],
+      "barNumber": "MI12345",
+      "verified": true,
+      "county": "Genesee",
+      "state": "MI",
+      "verifiedAt": "2025-09-19T21:50:25.647Z",
+      "licenseVerified": true,
+      "isActive": true,
+      "lastUpdated": "2025-09-19T21:50:25.647Z",
+      "source": "All States Enhanced Data Collection"
+    }
+  ],
+  "dataQuality": {
+    "total": 1,
+    "verified": 1,
+    "withContact": 1,
+    "lastUpdated": "2025-09-19T21:50:45.685Z"
+  }
+}

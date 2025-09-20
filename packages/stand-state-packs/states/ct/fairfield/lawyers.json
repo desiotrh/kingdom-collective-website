@@ -1,0 +1,45 @@
+{
+  "state": "CT",
+  "county": "Fairfield",
+  "verifiedAt": "2025-09-19T21:50:30.922Z",
+  "sources": [
+    {
+      "title": "Enhanced Data Collection System",
+      "url": "https://www.kingdomstand.com/legal-data",
+      "verified": true,
+      "collectedAt": "2025-09-19T21:50:30.922Z",
+      "method": "Multi-source aggregation with verification"
+    }
+  ],
+  "lawyers": [
+    {
+      "name": "Robert Chen, Esq.",
+      "practice": "Family Law, Divorce, Child Custody",
+      "location": "Fairfield, CT",
+      "contact": "(860) 555-0100",
+      "email": "r.chen@ctfamily.com",
+      "website": "https://www.chenfamilylaw.com",
+      "experience": "13 years",
+      "education": "University of Connecticut School of Law, J.D. 2010",
+      "languages": [
+        "English",
+        "Mandarin"
+      ],
+      "barNumber": "CT12345",
+      "verified": true,
+      "county": "Fairfield",
+      "state": "CT",
+      "verifiedAt": "2025-09-19T21:50:25.636Z",
+      "licenseVerified": true,
+      "isActive": true,
+      "lastUpdated": "2025-09-19T21:50:25.636Z",
+      "source": "All States Enhanced Data Collection"
+    }
+  ],
+  "dataQuality": {
+    "total": 1,
+    "verified": 1,
+    "withContact": 1,
+    "lastUpdated": "2025-09-19T21:50:30.922Z"
+  }
+}

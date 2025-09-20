@@ -1,0 +1,66 @@
+{
+  "generatedAt": "2025-09-19T22:04:22.630Z",
+  "scope": "All 50 States + DC",
+  "totalStates": 51,
+  "dataQuality": {
+    "overall": "Excellent",
+    "score": 100,
+    "factors": [
+      "Excellent state coverage (≥90%)",
+      "Excellent verification rate (≥95%)",
+      "Comprehensive lawyer database (≥200 lawyers)",
+      "Excellent diversity in languages and specializations"
+    ]
+  },
+  "coverage": {
+    "statesWithData": 47,
+    "totalCounties": 237,
+    "averageLawyersPerState": 6,
+    "averageMediatorsPerState": 2
+  },
+  "verification": {
+    "totalLawyers": 270,
+    "verifiedLawyers": 256,
+    "verificationRate": 95,
+    "activeLawyers": 270
+  },
+  "diversity": {
+    "languageSupport": {
+      "English": 264,
+      "Spanish": 35,
+      "Korean": 9,
+      "Mandarin": 11,
+      "French": 5,
+      "Italian": 5
+    },
+    "specializations": {
+      "Family Law": 232,
+      "Divorce": 239,
+      "Property Division": 54,
+      "Child Custody": 125,
+      "Family Mediation": 13,
+      "Child Support": 78,
+      "Custody": 12,
+      "Spousal Support": 15,
+      "Custody Modifications": 5,
+      "Mediation": 7,
+      "Parenting Plans": 2,
+      "High-Asset Divorce": 1,
+      "Federal Employee Benefits": 1,
+      "Alimony": 5,
+      "Matrimonial Law": 6,
+      "Prenuptial Agreements": 6,
+      "Ranch/Farm Divorce": 5
+    },
+    "experienceDistribution": {
+      "0-5 years": 0,
+      "6-10 years": 16,
+      "11-15 years": 196,
+      "16-20 years": 52,
+      "20+ years": 0
+    }
+  },
+  "recommendations": [
+    "Excellent data quality - maintain current standards and regular updates"
+  ]
+}

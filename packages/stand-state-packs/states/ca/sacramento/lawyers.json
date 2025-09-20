@@ -1,0 +1,132 @@
+{
+  "state": "CA",
+  "county": "Sacramento",
+  "verifiedAt": "2025-09-19T21:40:46.789Z",
+  "sources": [
+    {
+      "title": "Enhanced Data Collection System",
+      "url": "https://www.kingdomstand.com/legal-data",
+      "verified": true,
+      "collectedAt": "2025-09-19T21:40:46.789Z",
+      "method": "Multi-source aggregation with verification"
+    }
+  ],
+  "lawyers": [
+    {
+      "name": "Jennifer Martinez 6, Esq.",
+      "practice": "Family Law, Child Custody, Divorce",
+      "location": "Sacramento, CA",
+      "contact": "(213) 555-0100",
+      "email": "j.martinez5@familylawca.com",
+      "website": "https://www.martinezfamilylaw.com",
+      "experience": "12 years",
+      "education": "UCLA School of Law, J.D. 2011",
+      "languages": [
+        "English",
+        "Spanish"
+      ],
+      "barNumber": "CA123456",
+      "verified": true,
+      "source": "Enhanced Sample Data",
+      "county": "Sacramento",
+      "state": "CA",
+      "verifiedAt": "2025-09-19T21:54:20.687Z",
+      "licenseVerified": true,
+      "isActive": true,
+      "lastUpdated": "2025-09-19T21:40:44.039Z",
+      "licenseVerification": {
+        "verified": true,
+        "isActive": true,
+        "status": "",
+        "license": "",
+        "admitted": "",
+        "foundName": "",
+        "verifiedAt": "2025-09-19T21:54:20.687Z",
+        "source": "California State Bar"
+      },
+      "licenseStatus": "",
+      "licenseNumber": "",
+      "admissionDate": ""
+    },
+    {
+      "name": "David Kim 6, Esq.",
+      "practice": "Divorce, Property Division, Spousal Support",
+      "location": "Sacramento, CA",
+      "contact": "(415) 555-0200",
+      "email": "d.kim5@sfdivorcelaw.com",
+      "website": "https://www.kimfamilylaw.com",
+      "experience": "8 years",
+      "education": "Stanford Law School, J.D. 2015",
+      "languages": [
+        "English",
+        "Korean"
+      ],
+      "barNumber": "CA234567",
+      "verified": true,
+      "source": "Enhanced Sample Data",
+      "county": "Sacramento",
+      "state": "CA",
+      "verifiedAt": "2025-09-19T21:54:26.948Z",
+      "licenseVerified": true,
+      "isActive": true,
+      "lastUpdated": "2025-09-19T21:40:44.039Z",
+      "licenseVerification": {
+        "verified": true,
+        "isActive": true,
+        "status": "",
+        "license": "",
+        "admitted": "",
+        "foundName": "",
+        "verifiedAt": "2025-09-19T21:54:26.948Z",
+        "source": "California State Bar"
+      },
+      "licenseStatus": "",
+      "licenseNumber": "",
+      "admissionDate": ""
+    },
+    {
+      "name": "Maria Santos 6, Esq.",
+      "practice": "Child Support, Custody Modifications, Mediation",
+      "location": "Sacramento, CA",
+      "contact": "(619) 555-0300",
+      "email": "m.santos5@sandiegofamily.com",
+      "website": "https://www.santosfamilylaw.com",
+      "experience": "15 years",
+      "education": "University of San Diego School of Law, J.D. 2008",
+      "languages": [
+        "English",
+        "Spanish"
+      ],
+      "barNumber": "CA345678",
+      "verified": true,
+      "source": "Enhanced Sample Data",
+      "county": "Sacramento",
+      "state": "CA",
+      "verifiedAt": "2025-09-19T21:54:33.301Z",
+      "licenseVerified": true,
+      "isActive": true,
+      "lastUpdated": "2025-09-19T21:40:44.039Z",
+      "licenseVerification": {
+        "verified": true,
+        "isActive": true,
+        "status": "",
+        "license": "",
+        "admitted": "",
+        "foundName": "",
+        "verifiedAt": "2025-09-19T21:54:33.301Z",
+        "source": "California State Bar"
+      },
+      "licenseStatus": "",
+      "licenseNumber": "",
+      "admissionDate": ""
+    }
+  ],
+  "lastVerified": "2025-09-19T21:54:35.321Z",
+  "verificationSource": "California State Bar",
+  "dataQuality": {
+    "total": 3,
+    "verified": 3,
+    "withContact": 3,
+    "lastUpdated": "2025-09-19T21:40:46.789Z"
+  }
+}

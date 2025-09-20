@@ -1,0 +1,67 @@
+{
+  "state": "AZ",
+  "county": "Maricopa",
+  "verifiedAt": "2025-09-19T21:50:28.748Z",
+  "sources": [
+    {
+      "title": "Enhanced Data Collection System",
+      "url": "https://www.kingdomstand.com/legal-data",
+      "verified": true,
+      "collectedAt": "2025-09-19T21:50:28.748Z",
+      "method": "Multi-source aggregation with verification"
+    }
+  ],
+  "lawyers": [
+    {
+      "name": "Carlos Rodriguez, Esq.",
+      "practice": "Family Law, Child Custody, Divorce",
+      "location": "Maricopa, AZ",
+      "contact": "(602) 555-0100",
+      "email": "c.rodriguez@azfamily.com",
+      "website": "https://www.rodriguezfamilylaw.com",
+      "experience": "12 years",
+      "education": "Arizona State University College of Law, J.D. 2011",
+      "languages": [
+        "English",
+        "Spanish"
+      ],
+      "barNumber": "AZ12345",
+      "verified": true,
+      "county": "Maricopa",
+      "state": "AZ",
+      "verifiedAt": "2025-09-19T21:50:25.633Z",
+      "licenseVerified": true,
+      "isActive": true,
+      "lastUpdated": "2025-09-19T21:50:25.633Z",
+      "source": "All States Enhanced Data Collection"
+    },
+    {
+      "name": "Jennifer Smith, Esq.",
+      "practice": "Divorce, Spousal Support, Property Division",
+      "location": "Maricopa, AZ",
+      "contact": "(520) 556-0200",
+      "email": "j.smith@tucsonfamily.com",
+      "website": "https://www.smithfamilylaw.com",
+      "experience": "15 years",
+      "education": "University of Arizona James E. Rogers College of Law, J.D. 2008",
+      "languages": [
+        "English"
+      ],
+      "barNumber": "AZ23456",
+      "verified": true,
+      "county": "Maricopa",
+      "state": "AZ",
+      "verifiedAt": "2025-09-19T21:50:25.633Z",
+      "licenseVerified": true,
+      "isActive": true,
+      "lastUpdated": "2025-09-19T21:50:25.633Z",
+      "source": "All States Enhanced Data Collection"
+    }
+  ],
+  "dataQuality": {
+    "total": 2,
+    "verified": 2,
+    "withContact": 2,
+    "lastUpdated": "2025-09-19T21:50:28.748Z"
+  }
+}

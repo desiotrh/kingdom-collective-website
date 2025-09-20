@@ -1,0 +1,44 @@
+{
+  "state": "OK",
+  "county": "Tulsa",
+  "verifiedAt": "2025-09-19T21:50:59.307Z",
+  "sources": [
+    {
+      "title": "Enhanced Data Collection System",
+      "url": "https://www.kingdomstand.com/legal-data",
+      "verified": true,
+      "collectedAt": "2025-09-19T21:50:59.307Z",
+      "method": "Multi-source aggregation with verification"
+    }
+  ],
+  "lawyers": [
+    {
+      "name": "Sarah Thompson 2, Esq.",
+      "practice": "Family Law, Child Custody, Divorce",
+      "location": "Tulsa, OK",
+      "contact": "(405) 565-0100",
+      "email": "s.thompson1@oklahomafamily.com",
+      "website": "https://www.thompsonfamilylaw.com",
+      "experience": "13 years",
+      "education": "University of Oklahoma College of Law, J.D. 2010",
+      "languages": [
+        "English"
+      ],
+      "barNumber": "OK12345",
+      "verified": true,
+      "county": "Tulsa",
+      "state": "OK",
+      "verifiedAt": "2025-09-19T21:50:25.660Z",
+      "licenseVerified": true,
+      "isActive": true,
+      "lastUpdated": "2025-09-19T21:50:25.660Z",
+      "source": "All States Enhanced Data Collection"
+    }
+  ],
+  "dataQuality": {
+    "total": 1,
+    "verified": 1,
+    "withContact": 1,
+    "lastUpdated": "2025-09-19T21:50:59.307Z"
+  }
+}

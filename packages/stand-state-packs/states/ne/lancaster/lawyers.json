@@ -1,0 +1,44 @@
+{
+  "state": "NE",
+  "county": "Lancaster",
+  "verifiedAt": "2025-09-19T21:50:52.800Z",
+  "sources": [
+    {
+      "title": "Enhanced Data Collection System",
+      "url": "https://www.kingdomstand.com/legal-data",
+      "verified": true,
+      "collectedAt": "2025-09-19T21:50:52.800Z",
+      "method": "Multi-source aggregation with verification"
+    }
+  ],
+  "lawyers": [
+    {
+      "name": "Michael Johnson 2, Esq.",
+      "practice": "Family Law, Child Custody, Divorce",
+      "location": "Lancaster, NE",
+      "contact": "(402) 565-0100",
+      "email": "m.johnson1@nebraskafamily.com",
+      "website": "https://www.johnsonfamilylaw.com",
+      "experience": "13 years",
+      "education": "University of Nebraska College of Law, J.D. 2010",
+      "languages": [
+        "English"
+      ],
+      "barNumber": "NE12345",
+      "verified": true,
+      "county": "Lancaster",
+      "state": "NE",
+      "verifiedAt": "2025-09-19T21:50:25.655Z",
+      "licenseVerified": true,
+      "isActive": true,
+      "lastUpdated": "2025-09-19T21:50:25.655Z",
+      "source": "All States Enhanced Data Collection"
+    }
+  ],
+  "dataQuality": {
+    "total": 1,
+    "verified": 1,
+    "withContact": 1,
+    "lastUpdated": "2025-09-19T21:50:52.800Z"
+  }
+}

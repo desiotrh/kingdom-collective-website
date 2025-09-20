@@ -1,0 +1,108 @@
+{
+  "state": "SC",
+  "generatedAt": "2025-09-19T22:03:15.638Z",
+  "counties": [
+    {
+      "county": "Charleston",
+      "totalLawyers": 1,
+      "verifiedLawyers": 1,
+      "activeLawyers": 1,
+      "unverifiedLawyers": 0,
+      "lastVerified": null,
+      "lawyers": [
+        {
+          "name": "William Davis 3, Esq.",
+          "verified": true,
+          "active": true,
+          "status": "Unknown",
+          "license": "Unknown",
+          "verifiedAt": "2025-09-19T21:50:25.664Z"
+        }
+      ],
+      "verificationRate": 100
+    },
+    {
+      "county": "Greenville",
+      "totalLawyers": 1,
+      "verifiedLawyers": 1,
+      "activeLawyers": 1,
+      "unverifiedLawyers": 0,
+      "lastVerified": null,
+      "lawyers": [
+        {
+          "name": "William Davis, Esq.",
+          "verified": true,
+          "active": true,
+          "status": "Unknown",
+          "license": "Unknown",
+          "verifiedAt": "2025-09-19T21:50:25.664Z"
+        }
+      ],
+      "verificationRate": 100
+    },
+    {
+      "county": "Horry",
+      "totalLawyers": 1,
+      "verifiedLawyers": 1,
+      "activeLawyers": 1,
+      "unverifiedLawyers": 0,
+      "lastVerified": null,
+      "lawyers": [
+        {
+          "name": "William Davis 5, Esq.",
+          "verified": true,
+          "active": true,
+          "status": "Unknown",
+          "license": "Unknown",
+          "verifiedAt": "2025-09-19T21:50:25.664Z"
+        }
+      ],
+      "verificationRate": 100
+    },
+    {
+      "county": "Lexington",
+      "totalLawyers": 1,
+      "verifiedLawyers": 1,
+      "activeLawyers": 1,
+      "unverifiedLawyers": 0,
+      "lastVerified": null,
+      "lawyers": [
+        {
+          "name": "William Davis 4, Esq.",
+          "verified": true,
+          "active": true,
+          "status": "Unknown",
+          "license": "Unknown",
+          "verifiedAt": "2025-09-19T21:50:25.664Z"
+        }
+      ],
+      "verificationRate": 100
+    },
+    {
+      "county": "Richland",
+      "totalLawyers": 1,
+      "verifiedLawyers": 1,
+      "activeLawyers": 1,
+      "unverifiedLawyers": 0,
+      "lastVerified": null,
+      "lawyers": [
+        {
+          "name": "William Davis 2, Esq.",
+          "verified": true,
+          "active": true,
+          "status": "Unknown",
+          "license": "Unknown",
+          "verifiedAt": "2025-09-19T21:50:25.664Z"
+        }
+      ],
+      "verificationRate": 100
+    }
+  ],
+  "summary": {
+    "totalLawyers": 5,
+    "verifiedLawyers": 5,
+    "activeLawyers": 5,
+    "unverifiedLawyers": 0,
+    "verificationRate": 100
+  }
+}

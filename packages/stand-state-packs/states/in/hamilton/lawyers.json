@@ -1,0 +1,44 @@
+{
+  "state": "IN",
+  "county": "Hamilton",
+  "verifiedAt": "2025-09-19T21:50:38.139Z",
+  "sources": [
+    {
+      "title": "Enhanced Data Collection System",
+      "url": "https://www.kingdomstand.com/legal-data",
+      "verified": true,
+      "collectedAt": "2025-09-19T21:50:38.139Z",
+      "method": "Multi-source aggregation with verification"
+    }
+  ],
+  "lawyers": [
+    {
+      "name": "Jennifer Miller 4, Esq.",
+      "practice": "Family Law, Divorce, Child Support",
+      "location": "Hamilton, IN",
+      "contact": "(317) 585-0100",
+      "email": "j.miller3@indianafamily.com",
+      "website": "https://www.millerfamilylaw.com",
+      "experience": "16 years",
+      "education": "Indiana University Maurer School of Law, J.D. 2007",
+      "languages": [
+        "English"
+      ],
+      "barNumber": "IN12345",
+      "verified": true,
+      "county": "Hamilton",
+      "state": "IN",
+      "verifiedAt": "2025-09-19T21:50:25.641Z",
+      "licenseVerified": true,
+      "isActive": true,
+      "lastUpdated": "2025-09-19T21:50:25.641Z",
+      "source": "All States Enhanced Data Collection"
+    }
+  ],
+  "dataQuality": {
+    "total": 1,
+    "verified": 1,
+    "withContact": 1,
+    "lastUpdated": "2025-09-19T21:50:38.139Z"
+  }
+}

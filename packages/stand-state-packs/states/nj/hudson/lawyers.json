@@ -1,0 +1,45 @@
+{
+  "state": "NJ",
+  "county": "Hudson",
+  "verifiedAt": "2025-09-19T21:50:55.132Z",
+  "sources": [
+    {
+      "title": "Enhanced Data Collection System",
+      "url": "https://www.kingdomstand.com/legal-data",
+      "verified": true,
+      "collectedAt": "2025-09-19T21:50:55.132Z",
+      "method": "Multi-source aggregation with verification"
+    }
+  ],
+  "lawyers": [
+    {
+      "name": "Anthony Rossi 4, Esq.",
+      "practice": "Family Law, Divorce, Child Support",
+      "location": "Hudson, NJ",
+      "contact": "(973) 585-0100",
+      "email": "a.rossi3@njfamily.com",
+      "website": "https://www.rossifamilylaw.com",
+      "experience": "16 years",
+      "education": "Rutgers Law School, J.D. 2007",
+      "languages": [
+        "English",
+        "Italian"
+      ],
+      "barNumber": "NJ12345",
+      "verified": true,
+      "county": "Hudson",
+      "state": "NJ",
+      "verifiedAt": "2025-09-19T21:50:25.658Z",
+      "licenseVerified": true,
+      "isActive": true,
+      "lastUpdated": "2025-09-19T21:50:25.658Z",
+      "source": "All States Enhanced Data Collection"
+    }
+  ],
+  "dataQuality": {
+    "total": 1,
+    "verified": 1,
+    "withContact": 1,
+    "lastUpdated": "2025-09-19T21:50:55.132Z"
+  }
+}

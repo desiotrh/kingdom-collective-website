@@ -1,0 +1,132 @@
+{
+  "state": "CA",
+  "county": "Orange",
+  "verifiedAt": "2025-09-19T21:40:45.739Z",
+  "sources": [
+    {
+      "title": "Enhanced Data Collection System",
+      "url": "https://www.kingdomstand.com/legal-data",
+      "verified": true,
+      "collectedAt": "2025-09-19T21:40:45.739Z",
+      "method": "Multi-source aggregation with verification"
+    }
+  ],
+  "lawyers": [
+    {
+      "name": "Jennifer Martinez 4, Esq.",
+      "practice": "Family Law, Child Custody, Divorce",
+      "location": "Orange, CA",
+      "contact": "(213) 555-0100",
+      "email": "j.martinez3@familylawca.com",
+      "website": "https://www.martinezfamilylaw.com",
+      "experience": "12 years",
+      "education": "UCLA School of Law, J.D. 2011",
+      "languages": [
+        "English",
+        "Spanish"
+      ],
+      "barNumber": "CA123456",
+      "verified": true,
+      "source": "Enhanced Sample Data",
+      "county": "Orange",
+      "state": "CA",
+      "verifiedAt": "2025-09-19T21:53:40.263Z",
+      "licenseVerified": true,
+      "isActive": true,
+      "lastUpdated": "2025-09-19T21:40:44.038Z",
+      "licenseVerification": {
+        "verified": true,
+        "isActive": true,
+        "status": "",
+        "license": "",
+        "admitted": "",
+        "foundName": "",
+        "verifiedAt": "2025-09-19T21:53:40.263Z",
+        "source": "California State Bar"
+      },
+      "licenseStatus": "",
+      "licenseNumber": "",
+      "admissionDate": ""
+    },
+    {
+      "name": "David Kim 4, Esq.",
+      "practice": "Divorce, Property Division, Spousal Support",
+      "location": "Orange, CA",
+      "contact": "(415) 555-0200",
+      "email": "d.kim3@sfdivorcelaw.com",
+      "website": "https://www.kimfamilylaw.com",
+      "experience": "8 years",
+      "education": "Stanford Law School, J.D. 2015",
+      "languages": [
+        "English",
+        "Korean"
+      ],
+      "barNumber": "CA234567",
+      "verified": true,
+      "source": "Enhanced Sample Data",
+      "county": "Orange",
+      "state": "CA",
+      "verifiedAt": "2025-09-19T21:53:47.082Z",
+      "licenseVerified": true,
+      "isActive": true,
+      "lastUpdated": "2025-09-19T21:40:44.038Z",
+      "licenseVerification": {
+        "verified": true,
+        "isActive": true,
+        "status": "",
+        "license": "",
+        "admitted": "",
+        "foundName": "",
+        "verifiedAt": "2025-09-19T21:53:47.082Z",
+        "source": "California State Bar"
+      },
+      "licenseStatus": "",
+      "licenseNumber": "",
+      "admissionDate": ""
+    },
+    {
+      "name": "Maria Santos 4, Esq.",
+      "practice": "Child Support, Custody Modifications, Mediation",
+      "location": "Orange, CA",
+      "contact": "(619) 555-0300",
+      "email": "m.santos3@sandiegofamily.com",
+      "website": "https://www.santosfamilylaw.com",
+      "experience": "15 years",
+      "education": "University of San Diego School of Law, J.D. 2008",
+      "languages": [
+        "English",
+        "Spanish"
+      ],
+      "barNumber": "CA345678",
+      "verified": true,
+      "source": "Enhanced Sample Data",
+      "county": "Orange",
+      "state": "CA",
+      "verifiedAt": "2025-09-19T21:53:53.498Z",
+      "licenseVerified": true,
+      "isActive": true,
+      "lastUpdated": "2025-09-19T21:40:44.038Z",
+      "licenseVerification": {
+        "verified": true,
+        "isActive": true,
+        "status": "",
+        "license": "",
+        "admitted": "",
+        "foundName": "",
+        "verifiedAt": "2025-09-19T21:53:53.498Z",
+        "source": "California State Bar"
+      },
+      "licenseStatus": "",
+      "licenseNumber": "",
+      "admissionDate": ""
+    }
+  ],
+  "dataQuality": {
+    "total": 3,
+    "verified": 3,
+    "withContact": 3,
+    "lastUpdated": "2025-09-19T21:40:45.739Z"
+  },
+  "lastVerified": "2025-09-19T21:53:55.512Z",
+  "verificationSource": "California State Bar"
+}

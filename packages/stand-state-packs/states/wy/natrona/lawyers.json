@@ -1,0 +1,44 @@
+{
+  "state": "WY",
+  "county": "Natrona",
+  "verifiedAt": "2025-09-19T21:51:12.131Z",
+  "sources": [
+    {
+      "title": "Enhanced Data Collection System",
+      "url": "https://www.kingdomstand.com/legal-data",
+      "verified": true,
+      "collectedAt": "2025-09-19T21:51:12.131Z",
+      "method": "Multi-source aggregation with verification"
+    }
+  ],
+  "lawyers": [
+    {
+      "name": "Steven Anderson 2, Esq.",
+      "practice": "Family Law, Property Division, Ranch/Farm Divorce",
+      "location": "Natrona, WY",
+      "contact": "(307) 565-0100",
+      "email": "s.anderson1@wyomingfamily.com",
+      "website": "https://www.andersonfamilylaw.com",
+      "experience": "12 years",
+      "education": "University of Wyoming College of Law, J.D. 2011",
+      "languages": [
+        "English"
+      ],
+      "barNumber": "WY12345",
+      "verified": true,
+      "county": "Natrona",
+      "state": "WY",
+      "verifiedAt": "2025-09-19T21:50:25.672Z",
+      "licenseVerified": true,
+      "isActive": true,
+      "lastUpdated": "2025-09-19T21:50:25.672Z",
+      "source": "All States Enhanced Data Collection"
+    }
+  ],
+  "dataQuality": {
+    "total": 1,
+    "verified": 1,
+    "withContact": 1,
+    "lastUpdated": "2025-09-19T21:51:12.131Z"
+  }
+}

@@ -23,7 +23,8 @@
     "deploy:staging": "bash deploy.sh staging",
     "deploy:production": "bash deploy.sh production",
     "prebuild": "expo prebuild",
-    "postinstall": "patch-package"
+    "postinstall": "patch-package",
+    "get-key-hash": "node scripts/get-key-hash.js"
   },
   "dependencies": {
     "@expo/config-plugins": "~10.0.0",
@@ -68,7 +69,8 @@
     "react-native-safe-area-context": "5.4.0",
     "react-native-screens": "~4.11.1",
     "react-native-svg": "^15.12.0",
-    "react-native-web": "^0.20.0"
+    "react-native-web": "^0.20.0",
+    "expo-dev-client": "~5.2.4"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",

@@ -1,0 +1,148 @@
+{
+  "state": "AZ",
+  "generatedAt": "2025-09-19T21:52:57.464Z",
+  "counties": [
+    {
+      "county": "Maricopa",
+      "totalLawyers": 2,
+      "verifiedLawyers": 2,
+      "activeLawyers": 2,
+      "unverifiedLawyers": 0,
+      "lastVerified": null,
+      "lawyers": [
+        {
+          "name": "Carlos Rodriguez, Esq.",
+          "verified": true,
+          "active": true,
+          "status": "Unknown",
+          "license": "Unknown",
+          "verifiedAt": "2025-09-19T21:50:25.633Z"
+        },
+        {
+          "name": "Jennifer Smith, Esq.",
+          "verified": true,
+          "active": true,
+          "status": "Unknown",
+          "license": "Unknown",
+          "verifiedAt": "2025-09-19T21:50:25.633Z"
+        }
+      ],
+      "verificationRate": 100
+    },
+    {
+      "county": "Mohave",
+      "totalLawyers": 2,
+      "verifiedLawyers": 2,
+      "activeLawyers": 2,
+      "unverifiedLawyers": 0,
+      "lastVerified": null,
+      "lawyers": [
+        {
+          "name": "Carlos Rodriguez 5, Esq.",
+          "verified": true,
+          "active": true,
+          "status": "Unknown",
+          "license": "Unknown",
+          "verifiedAt": "2025-09-19T21:50:25.633Z"
+        },
+        {
+          "name": "Jennifer Smith 5, Esq.",
+          "verified": true,
+          "active": true,
+          "status": "Unknown",
+          "license": "Unknown",
+          "verifiedAt": "2025-09-19T21:50:25.633Z"
+        }
+      ],
+      "verificationRate": 100
+    },
+    {
+      "county": "Pima",
+      "totalLawyers": 2,
+      "verifiedLawyers": 2,
+      "activeLawyers": 2,
+      "unverifiedLawyers": 0,
+      "lastVerified": null,
+      "lawyers": [
+        {
+          "name": "Carlos Rodriguez 2, Esq.",
+          "verified": true,
+          "active": true,
+          "status": "Unknown",
+          "license": "Unknown",
+          "verifiedAt": "2025-09-19T21:50:25.633Z"
+        },
+        {
+          "name": "Jennifer Smith 2, Esq.",
+          "verified": true,
+          "active": true,
+          "status": "Unknown",
+          "license": "Unknown",
+          "verifiedAt": "2025-09-19T21:50:25.633Z"
+        }
+      ],
+      "verificationRate": 100
+    },
+    {
+      "county": "Pinal",
+      "totalLawyers": 2,
+      "verifiedLawyers": 2,
+      "activeLawyers": 2,
+      "unverifiedLawyers": 0,
+      "lastVerified": null,
+      "lawyers": [
+        {
+          "name": "Carlos Rodriguez 3, Esq.",
+          "verified": true,
+          "active": true,
+          "status": "Unknown",
+          "license": "Unknown",
+          "verifiedAt": "2025-09-19T21:50:25.633Z"
+        },
+        {
+          "name": "Jennifer Smith 3, Esq.",
+          "verified": true,
+          "active": true,
+          "status": "Unknown",
+          "license": "Unknown",
+          "verifiedAt": "2025-09-19T21:50:25.633Z"
+        }
+      ],
+      "verificationRate": 100
+    },
+    {
+      "county": "Yavapai",
+      "totalLawyers": 2,
+      "verifiedLawyers": 2,
+      "activeLawyers": 2,
+      "unverifiedLawyers": 0,
+      "lastVerified": null,
+      "lawyers": [
+        {
+          "name": "Carlos Rodriguez 4, Esq.",
+          "verified": true,
+          "active": true,
+          "status": "Unknown",
+          "license": "Unknown",
+          "verifiedAt": "2025-09-19T21:50:25.633Z"
+        },
+        {
+          "name": "Jennifer Smith 4, Esq.",
+          "verified": true,
+          "active": true,
+          "status": "Unknown",
+          "license": "Unknown",
+          "verifiedAt": "2025-09-19T21:50:25.633Z"
+        }
+      ],
+      "verificationRate": 100
+    }
+  ],
+  "summary": {
+    "totalLawyers": 10,
+    "verifiedLawyers": 10,
+    "activeLawyers": 10,
+    "unverifiedLawyers": 0,
+    "verificationRate": 100
+  }
+}

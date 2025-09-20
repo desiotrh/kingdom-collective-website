@@ -1,0 +1,108 @@
+{
+  "state": "OK",
+  "generatedAt": "2025-09-19T22:02:51.242Z",
+  "counties": [
+    {
+      "county": "Canadian",
+      "totalLawyers": 1,
+      "verifiedLawyers": 1,
+      "activeLawyers": 1,
+      "unverifiedLawyers": 0,
+      "lastVerified": null,
+      "lawyers": [
+        {
+          "name": "Sarah Thompson 5, Esq.",
+          "verified": true,
+          "active": true,
+          "status": "Unknown",
+          "license": "Unknown",
+          "verifiedAt": "2025-09-19T21:50:25.660Z"
+        }
+      ],
+      "verificationRate": 100
+    },
+    {
+      "county": "Cleveland",
+      "totalLawyers": 1,
+      "verifiedLawyers": 1,
+      "activeLawyers": 1,
+      "unverifiedLawyers": 0,
+      "lastVerified": null,
+      "lawyers": [
+        {
+          "name": "Sarah Thompson 3, Esq.",
+          "verified": true,
+          "active": true,
+          "status": "Unknown",
+          "license": "Unknown",
+          "verifiedAt": "2025-09-19T21:50:25.660Z"
+        }
+      ],
+      "verificationRate": 100
+    },
+    {
+      "county": "Comanche",
+      "totalLawyers": 1,
+      "verifiedLawyers": 1,
+      "activeLawyers": 1,
+      "unverifiedLawyers": 0,
+      "lastVerified": null,
+      "lawyers": [
+        {
+          "name": "Sarah Thompson 4, Esq.",
+          "verified": true,
+          "active": true,
+          "status": "Unknown",
+          "license": "Unknown",
+          "verifiedAt": "2025-09-19T21:50:25.660Z"
+        }
+      ],
+      "verificationRate": 100
+    },
+    {
+      "county": "Oklahoma",
+      "totalLawyers": 1,
+      "verifiedLawyers": 1,
+      "activeLawyers": 1,
+      "unverifiedLawyers": 0,
+      "lastVerified": null,
+      "lawyers": [
+        {
+          "name": "Sarah Thompson, Esq.",
+          "verified": true,
+          "active": true,
+          "status": "Unknown",
+          "license": "Unknown",
+          "verifiedAt": "2025-09-19T21:50:25.660Z"
+        }
+      ],
+      "verificationRate": 100
+    },
+    {
+      "county": "Tulsa",
+      "totalLawyers": 1,
+      "verifiedLawyers": 1,
+      "activeLawyers": 1,
+      "unverifiedLawyers": 0,
+      "lastVerified": null,
+      "lawyers": [
+        {
+          "name": "Sarah Thompson 2, Esq.",
+          "verified": true,
+          "active": true,
+          "status": "Unknown",
+          "license": "Unknown",
+          "verifiedAt": "2025-09-19T21:50:25.660Z"
+        }
+      ],
+      "verificationRate": 100
+    }
+  ],
+  "summary": {
+    "totalLawyers": 5,
+    "verifiedLawyers": 5,
+    "activeLawyers": 5,
+    "unverifiedLawyers": 0,
+    "verificationRate": 100
+  }
+}

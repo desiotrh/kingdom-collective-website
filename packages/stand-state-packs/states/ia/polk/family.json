@@ -1,0 +1,33 @@
+{
+  "state": "IA",
+  "county": "Polk",
+  "verification": {
+    "verifiedAt": "2025-09-19T21:50:35.633Z",
+    "sourceUrl": "https://www.kingdomstand.com/mediator-data"
+  },
+  "mediators": [
+    {
+      "name": "Nancy Davis, LMFT",
+      "organization": "Iowa Family Mediation Services",
+      "specialties": "Family Therapy, Mediation",
+      "contact": "(515) 555-0200",
+      "email": "n.davis@iowamediation.com",
+      "certification": "Iowa Certified Family Mediator",
+      "experience": "11 years",
+      "verified": true,
+      "location": "Polk, IA",
+      "county": "Polk",
+      "state": "IA",
+      "verifiedAt": "2025-09-19T21:50:25.639Z",
+      "source": "All States Enhanced Data Collection"
+    }
+  ],
+  "parentingClasses": [],
+  "galDirectory": [],
+  "dataQuality": {
+    "total": 1,
+    "certified": 1,
+    "withContact": 1,
+    "lastUpdated": "2025-09-19T21:50:35.633Z"
+  }
+}

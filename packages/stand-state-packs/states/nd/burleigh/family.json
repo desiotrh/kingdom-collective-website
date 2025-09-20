@@ -1,0 +1,33 @@
+{
+  "state": "ND",
+  "county": "Burleigh",
+  "verification": {
+    "verifiedAt": "2025-09-19T21:50:51.742Z",
+    "sourceUrl": "https://www.kingdomstand.com/mediator-data"
+  },
+  "mediators": [
+    {
+      "name": "Mary Thompson, LCSW",
+      "organization": "North Dakota Family Solutions",
+      "specialties": "Rural Family Mediation, Co-Parenting",
+      "contact": "(701) 555-0200",
+      "email": "m.thompson@ndsolutions.com",
+      "certification": "North Dakota Certified Mediator",
+      "experience": "10 years",
+      "verified": true,
+      "location": "Burleigh, ND",
+      "county": "Burleigh",
+      "state": "ND",
+      "verifiedAt": "2025-09-19T21:50:25.654Z",
+      "source": "All States Enhanced Data Collection"
+    }
+  ],
+  "parentingClasses": [],
+  "galDirectory": [],
+  "dataQuality": {
+    "total": 1,
+    "certified": 1,
+    "withContact": 1,
+    "lastUpdated": "2025-09-19T21:50:51.742Z"
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "state": "WV",
+  "county": "Kanawha",
+  "verification": {
+    "verifiedAt": "2025-09-19T21:51:10.951Z",
+    "sourceUrl": "https://www.kingdomstand.com/mediator-data"
+  },
+  "mediators": [
+    {
+      "name": "Jennifer Thompson, LCSW",
+      "organization": "West Virginia Family Solutions",
+      "specialties": "Rural Family Mediation, Mining Community Issues",
+      "contact": "(304) 555-0200",
+      "email": "j.thompson@wvsolutions.com",
+      "certification": "West Virginia Certified Mediator",
+      "experience": "11 years",
+      "verified": true,
+      "location": "Kanawha, WV",
+      "county": "Kanawha",
+      "state": "WV",
+      "verifiedAt": "2025-09-19T21:50:25.671Z",
+      "source": "All States Enhanced Data Collection"
+    }
+  ],
+  "parentingClasses": [],
+  "galDirectory": [],
+  "dataQuality": {
+    "total": 1,
+    "certified": 1,
+    "withContact": 1,
+    "lastUpdated": "2025-09-19T21:51:10.951Z"
+  }
+}

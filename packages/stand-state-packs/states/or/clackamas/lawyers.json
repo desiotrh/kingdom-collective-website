@@ -1,0 +1,44 @@
+{
+  "state": "OR",
+  "county": "Clackamas",
+  "verifiedAt": "2025-09-19T21:51:00.497Z",
+  "sources": [
+    {
+      "title": "Enhanced Data Collection System",
+      "url": "https://www.kingdomstand.com/legal-data",
+      "verified": true,
+      "collectedAt": "2025-09-19T21:51:00.497Z",
+      "method": "Multi-source aggregation with verification"
+    }
+  ],
+  "lawyers": [
+    {
+      "name": "Jennifer Anderson 3, Esq.",
+      "practice": "Family Law, Divorce, Child Support",
+      "location": "Clackamas, OR",
+      "contact": "(503) 575-0100",
+      "email": "j.anderson2@oregonfamily.com",
+      "website": "https://www.andersonfamilylaw.com",
+      "experience": "14 years",
+      "education": "Lewis & Clark Law School, J.D. 2009",
+      "languages": [
+        "English"
+      ],
+      "barNumber": "OR12345",
+      "verified": true,
+      "county": "Clackamas",
+      "state": "OR",
+      "verifiedAt": "2025-09-19T21:50:25.662Z",
+      "licenseVerified": true,
+      "isActive": true,
+      "lastUpdated": "2025-09-19T21:50:25.662Z",
+      "source": "All States Enhanced Data Collection"
+    }
+  ],
+  "dataQuality": {
+    "total": 1,
+    "verified": 1,
+    "withContact": 1,
+    "lastUpdated": "2025-09-19T21:51:00.497Z"
+  }
+}

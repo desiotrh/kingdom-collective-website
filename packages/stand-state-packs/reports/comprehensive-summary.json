@@ -1,0 +1,39 @@
+{
+  "generatedAt": "2025-09-19T21:38:55.385Z",
+  "processedStates": [
+    "CA",
+    "NY"
+  ],
+  "processingTime": -1758317842966,
+  "totalStats": {
+    "lawyers": 9,
+    "verifiedLawyers": 9,
+    "activeLawyers": 9,
+    "counties": 20,
+    "states": 2
+  },
+  "stateBreakdown": [
+    {
+      "state": "CA",
+      "lawyers": 9,
+      "verifiedLawyers": 9,
+      "activeLawyers": 9,
+      "counties": 10,
+      "qualityScore": 60,
+      "qualityRating": "Fair"
+    },
+    {
+      "state": "NY",
+      "lawyers": 0,
+      "verifiedLawyers": 0,
+      "activeLawyers": 0,
+      "counties": 10,
+      "qualityScore": 25,
+      "qualityRating": "Poor"
+    }
+  ],
+  "errors": [],
+  "recommendations": [
+    "Expand data collection to increase lawyer database size"
+  ]
+}

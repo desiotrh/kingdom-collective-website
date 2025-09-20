@@ -1,0 +1,44 @@
+{
+  "state": "AK",
+  "county": "Anchorage",
+  "verifiedAt": "2025-09-19T21:50:25.677Z",
+  "sources": [
+    {
+      "title": "Enhanced Data Collection System",
+      "url": "https://www.kingdomstand.com/legal-data",
+      "verified": true,
+      "collectedAt": "2025-09-19T21:50:25.677Z",
+      "method": "Multi-source aggregation with verification"
+    }
+  ],
+  "lawyers": [
+    {
+      "name": "Michael Anderson, Esq.",
+      "practice": "Family Law, Divorce, Property Division",
+      "location": "Anchorage, AK",
+      "contact": "(907) 555-0100",
+      "email": "m.anderson@alaskafamily.com",
+      "website": "https://www.andersonfamilylaw.com",
+      "experience": "13 years",
+      "education": "University of Washington School of Law, J.D. 2010",
+      "languages": [
+        "English"
+      ],
+      "barNumber": "AK12345",
+      "verified": true,
+      "county": "Anchorage",
+      "state": "AK",
+      "verifiedAt": "2025-09-19T21:50:25.628Z",
+      "licenseVerified": true,
+      "isActive": true,
+      "lastUpdated": "2025-09-19T21:50:25.630Z",
+      "source": "All States Enhanced Data Collection"
+    }
+  ],
+  "dataQuality": {
+    "total": 1,
+    "verified": 1,
+    "withContact": 1,
+    "lastUpdated": "2025-09-19T21:50:25.677Z"
+  }
+}

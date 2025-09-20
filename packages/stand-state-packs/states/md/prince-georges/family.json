@@ -1,0 +1,33 @@
+{
+  "state": "MD",
+  "county": "Prince Georges",
+  "verification": {
+    "verifiedAt": "2025-09-19T21:50:43.231Z",
+    "sourceUrl": "https://www.kingdomstand.com/mediator-data"
+  },
+  "mediators": [
+    {
+      "name": "Michael Brown, J.D.",
+      "organization": "Maryland Family Resolution Center",
+      "specialties": "Divorce Mediation, Collaborative Law",
+      "contact": "(410) 555-0200",
+      "email": "m.brown@mdresolution.com",
+      "certification": "Maryland Certified Mediator",
+      "experience": "15 years",
+      "verified": true,
+      "location": "Prince Georges, MD",
+      "county": "Prince Georges",
+      "state": "MD",
+      "verifiedAt": "2025-09-19T21:50:25.646Z",
+      "source": "All States Enhanced Data Collection"
+    }
+  ],
+  "parentingClasses": [],
+  "galDirectory": [],
+  "dataQuality": {
+    "total": 1,
+    "certified": 1,
+    "withContact": 1,
+    "lastUpdated": "2025-09-19T21:50:43.232Z"
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "state": "MN",
+  "county": "Ramsey",
+  "verification": {
+    "verifiedAt": "2025-09-19T21:50:46.419Z",
+    "sourceUrl": "https://www.kingdomstand.com/mediator-data"
+  },
+  "mediators": [
+    {
+      "name": "Dr. Lars Olsen",
+      "organization": "Minnesota Family Mediation Center",
+      "specialties": "Scandinavian-Cultural Mediation, Family Psychology",
+      "contact": "(612) 555-0200",
+      "email": "l.olsen@mnmediation.com",
+      "certification": "Minnesota Certified Family Mediator",
+      "experience": "16 years",
+      "verified": true,
+      "location": "Ramsey, MN",
+      "county": "Ramsey",
+      "state": "MN",
+      "verifiedAt": "2025-09-19T21:50:25.647Z",
+      "source": "All States Enhanced Data Collection"
+    }
+  ],
+  "parentingClasses": [],
+  "galDirectory": [],
+  "dataQuality": {
+    "total": 1,
+    "certified": 1,
+    "withContact": 1,
+    "lastUpdated": "2025-09-19T21:50:46.419Z"
+  }
+}

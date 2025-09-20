@@ -1,0 +1,11 @@
+{
+  "state": "CA",
+  "county": "Contra Costa",
+  "verification": {
+    "verifiedAt": "2025-09-19T21:30:02.768Z",
+    "sourceUrl": "https://www.courts.ca.gov/mediators.htm"
+  },
+  "mediators": [],
+  "parentingClasses": [],
+  "galDirectory": []
+}

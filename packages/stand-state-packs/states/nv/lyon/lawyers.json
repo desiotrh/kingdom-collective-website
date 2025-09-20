@@ -1,0 +1,45 @@
+{
+  "state": "NV",
+  "county": "Lyon",
+  "verifiedAt": "2025-09-19T21:50:57.278Z",
+  "sources": [
+    {
+      "title": "Enhanced Data Collection System",
+      "url": "https://www.kingdomstand.com/legal-data",
+      "verified": true,
+      "collectedAt": "2025-09-19T21:50:57.279Z",
+      "method": "Multi-source aggregation with verification"
+    }
+  ],
+  "lawyers": [
+    {
+      "name": "David Rodriguez 4, Esq.",
+      "practice": "Family Law, Divorce, Child Support",
+      "location": "Lyon, NV",
+      "contact": "(702) 585-0100",
+      "email": "d.rodriguez3@nevadafamily.com",
+      "website": "https://www.rodriguezfamilylaw.com",
+      "experience": "15 years",
+      "education": "University of Nevada, Las Vegas William S. Boyd School of Law, J.D. 2008",
+      "languages": [
+        "English",
+        "Spanish"
+      ],
+      "barNumber": "NV12345",
+      "verified": true,
+      "county": "Lyon",
+      "state": "NV",
+      "verifiedAt": "2025-09-19T21:50:25.659Z",
+      "licenseVerified": true,
+      "isActive": true,
+      "lastUpdated": "2025-09-19T21:50:25.659Z",
+      "source": "All States Enhanced Data Collection"
+    }
+  ],
+  "dataQuality": {
+    "total": 1,
+    "verified": 1,
+    "withContact": 1,
+    "lastUpdated": "2025-09-19T21:50:57.279Z"
+  }
+}

@@ -1,0 +1,89 @@
+{
+  "state": "AK",
+  "generatedAt": "2025-09-19T21:52:39.144Z",
+  "counties": [
+    {
+      "county": "Anchorage",
+      "totalLawyers": 1,
+      "verifiedLawyers": 1,
+      "activeLawyers": 1,
+      "unverifiedLawyers": 0,
+      "lastVerified": null,
+      "lawyers": [
+        {
+          "name": "Michael Anderson, Esq.",
+          "verified": true,
+          "active": true,
+          "status": "Unknown",
+          "license": "Unknown",
+          "verifiedAt": "2025-09-19T21:50:25.628Z"
+        }
+      ],
+      "verificationRate": 100
+    },
+    {
+      "county": "Fairbanks North Star",
+      "totalLawyers": 1,
+      "verifiedLawyers": 1,
+      "activeLawyers": 1,
+      "unverifiedLawyers": 0,
+      "lastVerified": null,
+      "lawyers": [
+        {
+          "name": "Michael Anderson 2, Esq.",
+          "verified": true,
+          "active": true,
+          "status": "Unknown",
+          "license": "Unknown",
+          "verifiedAt": "2025-09-19T21:50:25.631Z"
+        }
+      ],
+      "verificationRate": 100
+    },
+    {
+      "county": "Kenai Peninsula",
+      "totalLawyers": 1,
+      "verifiedLawyers": 1,
+      "activeLawyers": 1,
+      "unverifiedLawyers": 0,
+      "lastVerified": null,
+      "lawyers": [
+        {
+          "name": "Michael Anderson 4, Esq.",
+          "verified": true,
+          "active": true,
+          "status": "Unknown",
+          "license": "Unknown",
+          "verifiedAt": "2025-09-19T21:50:25.631Z"
+        }
+      ],
+      "verificationRate": 100
+    },
+    {
+      "county": "Matanuska-Susitna",
+      "totalLawyers": 1,
+      "verifiedLawyers": 1,
+      "activeLawyers": 1,
+      "unverifiedLawyers": 0,
+      "lastVerified": null,
+      "lawyers": [
+        {
+          "name": "Michael Anderson 3, Esq.",
+          "verified": true,
+          "active": true,
+          "status": "Unknown",
+          "license": "Unknown",
+          "verifiedAt": "2025-09-19T21:50:25.631Z"
+        }
+      ],
+      "verificationRate": 100
+    }
+  ],
+  "summary": {
+    "totalLawyers": 4,
+    "verifiedLawyers": 4,
+    "activeLawyers": 4,
+    "unverifiedLawyers": 0,
+    "verificationRate": 100
+  }
+}

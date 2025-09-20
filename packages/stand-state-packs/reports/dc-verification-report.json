@@ -1,0 +1,32 @@
+{
+  "state": "DC",
+  "generatedAt": "2025-09-19T21:55:44.404Z",
+  "counties": [
+    {
+      "county": "District of Columbia",
+      "totalLawyers": 1,
+      "verifiedLawyers": 1,
+      "activeLawyers": 1,
+      "unverifiedLawyers": 0,
+      "lastVerified": null,
+      "lawyers": [
+        {
+          "name": "Alexandra Thompson, Esq.",
+          "verified": true,
+          "active": true,
+          "status": "Unknown",
+          "license": "Unknown",
+          "verifiedAt": "2025-09-19T21:50:25.637Z"
+        }
+      ],
+      "verificationRate": 100
+    }
+  ],
+  "summary": {
+    "totalLawyers": 1,
+    "verifiedLawyers": 1,
+    "activeLawyers": 1,
+    "unverifiedLawyers": 0,
+    "verificationRate": 100
+  }
+}

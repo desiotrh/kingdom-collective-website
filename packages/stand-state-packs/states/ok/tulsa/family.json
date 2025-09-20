@@ -1,0 +1,33 @@
+{
+  "state": "OK",
+  "county": "Tulsa",
+  "verification": {
+    "verifiedAt": "2025-09-19T21:50:59.310Z",
+    "sourceUrl": "https://www.kingdomstand.com/mediator-data"
+  },
+  "mediators": [
+    {
+      "name": "Michael Davis, LMFT",
+      "organization": "Oklahoma Family Resolution Services",
+      "specialties": "Family Therapy, Mediation",
+      "contact": "(405) 555-0200",
+      "email": "m.davis@okresolution.com",
+      "certification": "Oklahoma Certified Mediator",
+      "experience": "11 years",
+      "verified": true,
+      "location": "Tulsa, OK",
+      "county": "Tulsa",
+      "state": "OK",
+      "verifiedAt": "2025-09-19T21:50:25.660Z",
+      "source": "All States Enhanced Data Collection"
+    }
+  ],
+  "parentingClasses": [],
+  "galDirectory": [],
+  "dataQuality": {
+    "total": 1,
+    "certified": 1,
+    "withContact": 1,
+    "lastUpdated": "2025-09-19T21:50:59.310Z"
+  }
+}

@@ -1,0 +1,113 @@
+{
+  "state": "FL",
+  "generatedAt": "2025-09-19T21:55:59.568Z",
+  "counties": [
+    {
+      "county": "Broward",
+      "totalLawyers": 0,
+      "verifiedLawyers": 0,
+      "activeLawyers": 0,
+      "unverifiedLawyers": 0,
+      "lastVerified": null,
+      "lawyers": [],
+      "verificationRate": 0
+    },
+    {
+      "county": "Duval",
+      "totalLawyers": 0,
+      "verifiedLawyers": 0,
+      "activeLawyers": 0,
+      "unverifiedLawyers": 0,
+      "lastVerified": null,
+      "lawyers": [],
+      "verificationRate": 0
+    },
+    {
+      "county": "Hillsborough",
+      "totalLawyers": 0,
+      "verifiedLawyers": 0,
+      "activeLawyers": 0,
+      "unverifiedLawyers": 0,
+      "lastVerified": null,
+      "lawyers": [],
+      "verificationRate": 0
+    },
+    {
+      "county": "Lee",
+      "totalLawyers": 0,
+      "verifiedLawyers": 0,
+      "activeLawyers": 0,
+      "unverifiedLawyers": 0,
+      "lastVerified": null,
+      "lawyers": [],
+      "verificationRate": 0
+    },
+    {
+      "county": "Miami-Dade",
+      "totalLawyers": 0,
+      "verifiedLawyers": 0,
+      "activeLawyers": 0,
+      "unverifiedLawyers": 0,
+      "lastVerified": null,
+      "lawyers": [],
+      "verificationRate": 0
+    },
+    {
+      "county": "Orange",
+      "totalLawyers": 0,
+      "verifiedLawyers": 0,
+      "activeLawyers": 0,
+      "unverifiedLawyers": 0,
+      "lastVerified": null,
+      "lawyers": [],
+      "verificationRate": 0
+    },
+    {
+      "county": "Palm Beach",
+      "totalLawyers": 0,
+      "verifiedLawyers": 0,
+      "activeLawyers": 0,
+      "unverifiedLawyers": 0,
+      "lastVerified": null,
+      "lawyers": [],
+      "verificationRate": 0
+    },
+    {
+      "county": "Pinellas",
+      "totalLawyers": 0,
+      "verifiedLawyers": 0,
+      "activeLawyers": 0,
+      "unverifiedLawyers": 0,
+      "lastVerified": null,
+      "lawyers": [],
+      "verificationRate": 0
+    },
+    {
+      "county": "Polk",
+      "totalLawyers": 0,
+      "verifiedLawyers": 0,
+      "activeLawyers": 0,
+      "unverifiedLawyers": 0,
+      "lastVerified": null,
+      "lawyers": [],
+      "verificationRate": 0
+    },
+    {
+      "county": "Volusia",
+      "totalLawyers": 0,
+      "verifiedLawyers": 0,
+      "activeLawyers": 0,
+      "unverifiedLawyers": 0,
+      "lastVerified": null,
+      "lawyers": [],
+      "verificationRate": 0
+    }
+  ],
+  "summary": {
+    "totalLawyers": 0,
+    "verifiedLawyers": 0,
+    "activeLawyers": 0,
+    "unverifiedLawyers": 0,
+    "verificationRate": 0
+  }
+}

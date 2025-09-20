@@ -66,6 +66,7 @@ AMPLITUDE_API_KEY=your_amplitude_key
 # ==============================================
 FACEBOOK_APP_ID=your_facebook_app_id
 FACEBOOK_APP_SECRET=your_facebook_app_secret
+BASE_URL=https://kingdomstudiosapp.com
 INSTAGRAM_APP_ID=your_instagram_app_id
 INSTAGRAM_APP_SECRET=your_instagram_app_secret
 TWITTER_API_KEY=your_twitter_api_key

@@ -1,0 +1,33 @@
+{
+  "state": "GA",
+  "county": "Gwinnett",
+  "verification": {
+    "verifiedAt": "2025-09-19T21:50:33.569Z",
+    "sourceUrl": "https://www.kingdomstand.com/mediator-data"
+  },
+  "mediators": [
+    {
+      "name": "Dr. Sarah Mitchell",
+      "organization": "Georgia Family Mediation Institute",
+      "specialties": "Family Mediation, Parenting Coordination",
+      "contact": "(404) 555-0300",
+      "email": "s.mitchell@gamediation.com",
+      "certification": "Georgia Certified Family Mediator",
+      "experience": "18 years",
+      "verified": true,
+      "location": "Gwinnett, GA",
+      "county": "Gwinnett",
+      "state": "GA",
+      "verifiedAt": "2025-09-19T21:50:25.638Z",
+      "source": "All States Enhanced Data Collection"
+    }
+  ],
+  "parentingClasses": [],
+  "galDirectory": [],
+  "dataQuality": {
+    "total": 1,
+    "certified": 1,
+    "withContact": 1,
+    "lastUpdated": "2025-09-19T21:50:33.569Z"
+  }
+}

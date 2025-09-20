@@ -1,0 +1,17 @@
+{
+  "state": "IA",
+  "county": "Black Hawk",
+  "verification": {
+    "verifiedAt": "2025-09-19T21:50:36.115Z",
+    "sourceUrl": "https://www.kingdomstand.com/mediator-data"
+  },
+  "mediators": [],
+  "parentingClasses": [],
+  "galDirectory": [],
+  "dataQuality": {
+    "total": 0,
+    "certified": 0,
+    "withContact": 0,
+    "lastUpdated": "2025-09-19T21:50:36.115Z"
+  }
+}

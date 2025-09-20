@@ -1,0 +1,33 @@
+{
+  "state": "MS",
+  "county": "Harrison",
+  "verification": {
+    "verifiedAt": "2025-09-19T21:50:48.550Z",
+    "sourceUrl": "https://www.kingdomstand.com/mediator-data"
+  },
+  "mediators": [
+    {
+      "name": "Mary Johnson, LMFT",
+      "organization": "Mississippi Family Mediation Services",
+      "specialties": "Family Therapy, Mediation",
+      "contact": "(601) 555-0200",
+      "email": "m.johnson@msmediation.com",
+      "certification": "Mississippi Certified Mediator",
+      "experience": "11 years",
+      "verified": true,
+      "location": "Harrison, MS",
+      "county": "Harrison",
+      "state": "MS",
+      "verifiedAt": "2025-09-19T21:50:25.648Z",
+      "source": "All States Enhanced Data Collection"
+    }
+  ],
+  "parentingClasses": [],
+  "galDirectory": [],
+  "dataQuality": {
+    "total": 1,
+    "certified": 1,
+    "withContact": 1,
+    "lastUpdated": "2025-09-19T21:50:48.550Z"
+  }
+}

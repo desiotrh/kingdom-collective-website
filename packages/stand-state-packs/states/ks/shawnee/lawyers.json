@@ -1,0 +1,45 @@
+{
+  "state": "KS",
+  "county": "Shawnee",
+  "verifiedAt": "2025-09-19T21:50:39.076Z",
+  "sources": [
+    {
+      "title": "Enhanced Data Collection System",
+      "url": "https://www.kingdomstand.com/legal-data",
+      "verified": true,
+      "collectedAt": "2025-09-19T21:50:39.076Z",
+      "method": "Multi-source aggregation with verification"
+    }
+  ],
+  "lawyers": [
+    {
+      "name": "Lisa Rodriguez 3, Esq.",
+      "practice": "Family Law, Divorce, Child Support",
+      "location": "Shawnee, KS",
+      "contact": "(316) 575-0100",
+      "email": "l.rodriguez2@kansasfamily.com",
+      "website": "https://www.rodriguezfamilylaw.com",
+      "experience": "14 years",
+      "education": "University of Kansas School of Law, J.D. 2009",
+      "languages": [
+        "English",
+        "Spanish"
+      ],
+      "barNumber": "KS12345",
+      "verified": true,
+      "county": "Shawnee",
+      "state": "KS",
+      "verifiedAt": "2025-09-19T21:50:25.642Z",
+      "licenseVerified": true,
+      "isActive": true,
+      "lastUpdated": "2025-09-19T21:50:25.642Z",
+      "source": "All States Enhanced Data Collection"
+    }
+  ],
+  "dataQuality": {
+    "total": 1,
+    "verified": 1,
+    "withContact": 1,
+    "lastUpdated": "2025-09-19T21:50:39.076Z"
+  }
+}

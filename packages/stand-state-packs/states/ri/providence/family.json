@@ -1,0 +1,33 @@
+{
+  "state": "RI",
+  "county": "Providence",
+  "verification": {
+    "verifiedAt": "2025-09-19T21:51:02.411Z",
+    "sourceUrl": "https://www.kingdomstand.com/mediator-data"
+  },
+  "mediators": [
+    {
+      "name": "Robert Thompson, LCSW",
+      "organization": "Rhode Island Family Mediation Services",
+      "specialties": "Family Therapy, Mediation",
+      "contact": "(401) 555-0200",
+      "email": "r.thompson@rimediation.com",
+      "certification": "Rhode Island Certified Mediator",
+      "experience": "14 years",
+      "verified": true,
+      "location": "Providence, RI",
+      "county": "Providence",
+      "state": "RI",
+      "verifiedAt": "2025-09-19T21:50:25.663Z",
+      "source": "All States Enhanced Data Collection"
+    }
+  ],
+  "parentingClasses": [],
+  "galDirectory": [],
+  "dataQuality": {
+    "total": 1,
+    "certified": 1,
+    "withContact": 1,
+    "lastUpdated": "2025-09-19T21:51:02.411Z"
+  }
+}

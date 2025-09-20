@@ -1,0 +1,11 @@
+{
+  "state": "CA",
+  "county": "Fresno",
+  "verification": {
+    "verifiedAt": "2025-09-19T21:30:14.665Z",
+    "sourceUrl": "https://www.courts.ca.gov/mediators.htm"
+  },
+  "mediators": [],
+  "parentingClasses": [],
+  "galDirectory": []
+}

@@ -1,0 +1,288 @@
+{
+  "state": "CA",
+  "generatedAt": "2025-09-19T21:55:30.181Z",
+  "counties": [
+    {
+      "county": "Alameda",
+      "totalLawyers": 0,
+      "verifiedLawyers": 0,
+      "activeLawyers": 0,
+      "unverifiedLawyers": 0,
+      "lastVerified": null,
+      "lawyers": [],
+      "verificationRate": 0
+    },
+    {
+      "county": "Contra Costa",
+      "totalLawyers": 0,
+      "verifiedLawyers": 0,
+      "activeLawyers": 0,
+      "unverifiedLawyers": 0,
+      "lastVerified": null,
+      "lawyers": [],
+      "verificationRate": 0
+    },
+    {
+      "county": "Fresno",
+      "totalLawyers": 0,
+      "verifiedLawyers": 0,
+      "activeLawyers": 0,
+      "unverifiedLawyers": 0,
+      "lastVerified": null,
+      "lawyers": [],
+      "verificationRate": 0
+    },
+    {
+      "county": "Los Angeles",
+      "totalLawyers": 3,
+      "verifiedLawyers": 2,
+      "activeLawyers": 3,
+      "unverifiedLawyers": 1,
+      "lastVerified": "2025-09-19T21:53:34.726Z",
+      "lawyers": [
+        {
+          "name": "Jennifer Martinez, Esq.",
+          "verified": true,
+          "active": true,
+          "status": "Unknown",
+          "license": "Unknown",
+          "verifiedAt": "2025-09-19T21:53:08.693Z"
+        },
+        {
+          "name": "David Kim, Esq.",
+          "verified": false,
+          "active": true,
+          "status": "Unknown",
+          "license": "Unknown",
+          "verifiedAt": "2025-09-19T21:53:28.318Z"
+        },
+        {
+          "name": "Maria Santos, Esq.",
+          "verified": true,
+          "active": true,
+          "status": "Unknown",
+          "license": "Unknown",
+          "verifiedAt": "2025-09-19T21:53:32.721Z"
+        }
+      ],
+      "verificationRate": 67
+    },
+    {
+      "county": "Orange",
+      "totalLawyers": 3,
+      "verifiedLawyers": 3,
+      "activeLawyers": 3,
+      "unverifiedLawyers": 0,
+      "lastVerified": "2025-09-19T21:53:55.512Z",
+      "lawyers": [
+        {
+          "name": "Jennifer Martinez 4, Esq.",
+          "verified": true,
+          "active": true,
+          "status": "Unknown",
+          "license": "Unknown",
+          "verifiedAt": "2025-09-19T21:53:40.263Z"
+        },
+        {
+          "name": "David Kim 4, Esq.",
+          "verified": true,
+          "active": true,
+          "status": "Unknown",
+          "license": "Unknown",
+          "verifiedAt": "2025-09-19T21:53:47.082Z"
+        },
+        {
+          "name": "Maria Santos 4, Esq.",
+          "verified": true,
+          "active": true,
+          "status": "Unknown",
+          "license": "Unknown",
+          "verifiedAt": "2025-09-19T21:53:53.498Z"
+        }
+      ],
+      "verificationRate": 100
+    },
+    {
+      "county": "Riverside",
+      "totalLawyers": 3,
+      "verifiedLawyers": 3,
+      "activeLawyers": 3,
+      "unverifiedLawyers": 0,
+      "lastVerified": "2025-09-19T21:54:15.322Z",
+      "lawyers": [
+        {
+          "name": "Sarah Johnson, Esq.",
+          "verified": true,
+          "active": true,
+          "status": "Unknown",
+          "license": "Unknown",
+          "verifiedAt": "2025-09-19T21:54:00.863Z"
+        },
+        {
+          "name": "Michael Chen, Attorney at Law",
+          "verified": true,
+          "active": true,
+          "status": "Unknown",
+          "license": "Unknown",
+          "verifiedAt": "2025-09-19T21:54:07.041Z"
+        },
+        {
+          "name": "Dr. Emily Rodriguez",
+          "verified": true,
+          "active": true,
+          "status": "Unknown",
+          "license": "Unknown",
+          "verifiedAt": "2025-09-19T21:54:13.317Z"
+        }
+      ],
+      "verificationRate": 100
+    },
+    {
+      "county": "Sacramento",
+      "totalLawyers": 3,
+      "verifiedLawyers": 3,
+      "activeLawyers": 3,
+      "unverifiedLawyers": 0,
+      "lastVerified": "2025-09-19T21:54:35.321Z",
+      "lawyers": [
+        {
+          "name": "Jennifer Martinez 6, Esq.",
+          "verified": true,
+          "active": true,
+          "status": "Unknown",
+          "license": "Unknown",
+          "verifiedAt": "2025-09-19T21:54:20.687Z"
+        },
+        {
+          "name": "David Kim 6, Esq.",
+          "verified": true,
+          "active": true,
+          "status": "Unknown",
+          "license": "Unknown",
+          "verifiedAt": "2025-09-19T21:54:26.948Z"
+        },
+        {
+          "name": "Maria Santos 6, Esq.",
+          "verified": true,
+          "active": true,
+          "status": "Unknown",
+          "license": "Unknown",
+          "verifiedAt": "2025-09-19T21:54:33.301Z"
+        }
+      ],
+      "verificationRate": 100
+    },
+    {
+      "county": "San Bernardino",
+      "totalLawyers": 3,
+      "verifiedLawyers": 3,
+      "activeLawyers": 3,
+      "unverifiedLawyers": 0,
+      "lastVerified": "2025-09-19T21:54:36.350Z",
+      "lawyers": [
+        {
+          "name": "Sarah Johnson, Esq.",
+          "verified": true,
+          "active": true,
+          "status": "Unknown",
+          "license": "Unknown",
+          "verifiedAt": "2025-09-19T21:54:00.863Z"
+        },
+        {
+          "name": "Michael Chen, Attorney at Law",
+          "verified": true,
+          "active": true,
+          "status": "Unknown",
+          "license": "Unknown",
+          "verifiedAt": "2025-09-19T21:54:07.041Z"
+        },
+        {
+          "name": "Dr. Emily Rodriguez",
+          "verified": true,
+          "active": true,
+          "status": "Unknown",
+          "license": "Unknown",
+          "verifiedAt": "2025-09-19T21:54:13.317Z"
+        }
+      ],
+      "verificationRate": 100
+    },
+    {
+      "county": "San Diego",
+      "totalLawyers": 3,
+      "verifiedLawyers": 2,
+      "activeLawyers": 3,
+      "unverifiedLawyers": 1,
+      "lastVerified": "2025-09-19T21:55:07.972Z",
+      "lawyers": [
+        {
+          "name": "Jennifer Martinez 3, Esq.",
+          "verified": false,
+          "active": true,
+          "status": "Unknown",
+          "license": "Unknown",
+          "verifiedAt": "2025-09-19T21:54:54.991Z"
+        },
+        {
+          "name": "David Kim 3, Esq.",
+          "verified": true,
+          "active": true,
+          "status": "Unknown",
+          "license": "Unknown",
+          "verifiedAt": "2025-09-19T21:54:59.605Z"
+        },
+        {
+          "name": "Maria Santos 3, Esq.",
+          "verified": true,
+          "active": true,
+          "status": "Unknown",
+          "license": "Unknown",
+          "verifiedAt": "2025-09-19T21:55:05.971Z"
+        }
+      ],
+      "verificationRate": 67
+    },
+    {
+      "county": "Santa Clara",
+      "totalLawyers": 3,
+      "verifiedLawyers": 3,
+      "activeLawyers": 3,
+      "unverifiedLawyers": 0,
+      "lastVerified": "2025-09-19T21:55:29.165Z",
+      "lawyers": [
+        {
+          "name": "Jennifer Martinez 5, Esq.",
+          "verified": true,
+          "active": true,
+          "status": "Unknown",
+          "license": "Unknown",
+          "verifiedAt": "2025-09-19T21:55:13.473Z"
+        },
+        {
+          "name": "David Kim 5, Esq.",
+          "verified": true,
+          "active": true,
+          "status": "Unknown",
+          "license": "Unknown",
+          "verifiedAt": "2025-09-19T21:55:20.266Z"
+        },
+        {
+          "name": "Maria Santos 5, Esq.",
+          "verified": true,
+          "active": true,
+          "status": "Unknown",
+          "license": "Unknown",
+          "verifiedAt": "2025-09-19T21:55:27.150Z"
+        }
+      ],
+      "verificationRate": 100
+    }
+  ],
+  "summary": {
+    "totalLawyers": 21,
+    "verifiedLawyers": 19,
+    "activeLawyers": 21,
+    "unverifiedLawyers": 2,
+    "verificationRate": 90
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "state": "NY",
+  "county": "Erie",
+  "verifiedAt": "2025-09-01T18:53:13.720Z",
+  "sources": [
+    {
+      "title": "NY State Bar Association",
+      "url": "https://www.nysba.org/find-a-lawyer/",
+      "verified": true
+    }
+  ],
+  "lawyers": []
+}

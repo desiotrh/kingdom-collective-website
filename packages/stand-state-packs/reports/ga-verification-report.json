@@ -1,0 +1,148 @@
+{
+  "state": "GA",
+  "generatedAt": "2025-09-19T21:56:05.725Z",
+  "counties": [
+    {
+      "county": "Clayton",
+      "totalLawyers": 2,
+      "verifiedLawyers": 2,
+      "activeLawyers": 2,
+      "unverifiedLawyers": 0,
+      "lastVerified": null,
+      "lawyers": [
+        {
+          "name": "Angela Williams 5, Esq.",
+          "verified": true,
+          "active": true,
+          "status": "Unknown",
+          "license": "Unknown",
+          "verifiedAt": "2025-09-19T21:50:25.638Z"
+        },
+        {
+          "name": "Marcus Johnson 5, Esq.",
+          "verified": true,
+          "active": true,
+          "status": "Unknown",
+          "license": "Unknown",
+          "verifiedAt": "2025-09-19T21:50:25.638Z"
+        }
+      ],
+      "verificationRate": 100
+    },
+    {
+      "county": "Cobb",
+      "totalLawyers": 2,
+      "verifiedLawyers": 2,
+      "activeLawyers": 2,
+      "unverifiedLawyers": 0,
+      "lastVerified": null,
+      "lawyers": [
+        {
+          "name": "Angela Williams 3, Esq.",
+          "verified": true,
+          "active": true,
+          "status": "Unknown",
+          "license": "Unknown",
+          "verifiedAt": "2025-09-19T21:50:25.638Z"
+        },
+        {
+          "name": "Marcus Johnson 3, Esq.",
+          "verified": true,
+          "active": true,
+          "status": "Unknown",
+          "license": "Unknown",
+          "verifiedAt": "2025-09-19T21:50:25.638Z"
+        }
+      ],
+      "verificationRate": 100
+    },
+    {
+      "county": "DeKalb",
+      "totalLawyers": 2,
+      "verifiedLawyers": 2,
+      "activeLawyers": 2,
+      "unverifiedLawyers": 0,
+      "lastVerified": null,
+      "lawyers": [
+        {
+          "name": "Angela Williams 4, Esq.",
+          "verified": true,
+          "active": true,
+          "status": "Unknown",
+          "license": "Unknown",
+          "verifiedAt": "2025-09-19T21:50:25.638Z"
+        },
+        {
+          "name": "Marcus Johnson 4, Esq.",
+          "verified": true,
+          "active": true,
+          "status": "Unknown",
+          "license": "Unknown",
+          "verifiedAt": "2025-09-19T21:50:25.638Z"
+        }
+      ],
+      "verificationRate": 100
+    },
+    {
+      "county": "Fulton",
+      "totalLawyers": 2,
+      "verifiedLawyers": 2,
+      "activeLawyers": 2,
+      "unverifiedLawyers": 0,
+      "lastVerified": null,
+      "lawyers": [
+        {
+          "name": "Angela Williams, Esq.",
+          "verified": true,
+          "active": true,
+          "status": "Unknown",
+          "license": "Unknown",
+          "verifiedAt": "2025-09-19T21:50:25.638Z"
+        },
+        {
+          "name": "Marcus Johnson, Esq.",
+          "verified": true,
+          "active": true,
+          "status": "Unknown",
+          "license": "Unknown",
+          "verifiedAt": "2025-09-19T21:50:25.638Z"
+        }
+      ],
+      "verificationRate": 100
+    },
+    {
+      "county": "Gwinnett",
+      "totalLawyers": 2,
+      "verifiedLawyers": 2,
+      "activeLawyers": 2,
+      "unverifiedLawyers": 0,
+      "lastVerified": null,
+      "lawyers": [
+        {
+          "name": "Angela Williams 2, Esq.",
+          "verified": true,
+          "active": true,
+          "status": "Unknown",
+          "license": "Unknown",
+          "verifiedAt": "2025-09-19T21:50:25.638Z"
+        },
+        {
+          "name": "Marcus Johnson 2, Esq.",
+          "verified": true,
+          "active": true,
+          "status": "Unknown",
+          "license": "Unknown",
+          "verifiedAt": "2025-09-19T21:50:25.638Z"
+        }
+      ],
+      "verificationRate": 100
+    }
+  ],
+  "summary": {
+    "totalLawyers": 10,
+    "verifiedLawyers": 10,
+    "activeLawyers": 10,
+    "unverifiedLawyers": 0,
+    "verificationRate": 100
+  }
+}

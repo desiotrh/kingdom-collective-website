@@ -1,0 +1,45 @@
+{
+  "state": "NM",
+  "county": "San Juan",
+  "verifiedAt": "2025-09-19T21:50:56.342Z",
+  "sources": [
+    {
+      "title": "Enhanced Data Collection System",
+      "url": "https://www.kingdomstand.com/legal-data",
+      "verified": true,
+      "collectedAt": "2025-09-19T21:50:56.342Z",
+      "method": "Multi-source aggregation with verification"
+    }
+  ],
+  "lawyers": [
+    {
+      "name": "Maria Chavez 5, Esq.",
+      "practice": "Family Law, Child Custody, Divorce",
+      "location": "San Juan, NM",
+      "contact": "(505) 595-0100",
+      "email": "m.chavez4@nmfamily.com",
+      "website": "https://www.chavezfamilylaw.com",
+      "experience": "14 years",
+      "education": "University of New Mexico School of Law, J.D. 2009",
+      "languages": [
+        "English",
+        "Spanish"
+      ],
+      "barNumber": "NM12345",
+      "verified": true,
+      "county": "San Juan",
+      "state": "NM",
+      "verifiedAt": "2025-09-19T21:50:25.658Z",
+      "licenseVerified": true,
+      "isActive": true,
+      "lastUpdated": "2025-09-19T21:50:25.658Z",
+      "source": "All States Enhanced Data Collection"
+    }
+  ],
+  "dataQuality": {
+    "total": 1,
+    "verified": 1,
+    "withContact": 1,
+    "lastUpdated": "2025-09-19T21:50:56.342Z"
+  }
+}

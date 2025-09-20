@@ -1,0 +1,33 @@
+{
+  "state": "WY",
+  "county": "Natrona",
+  "verification": {
+    "verifiedAt": "2025-09-19T21:51:12.133Z",
+    "sourceUrl": "https://www.kingdomstand.com/mediator-data"
+  },
+  "mediators": [
+    {
+      "name": "Mary Thompson, LMFT",
+      "organization": "Wyoming Family Solutions",
+      "specialties": "Rural Mediation, Ranch Family Issues",
+      "contact": "(307) 555-0200",
+      "email": "m.thompson@wysolutions.com",
+      "certification": "Wyoming Certified Mediator",
+      "experience": "10 years",
+      "verified": true,
+      "location": "Natrona, WY",
+      "county": "Natrona",
+      "state": "WY",
+      "verifiedAt": "2025-09-19T21:50:25.672Z",
+      "source": "All States Enhanced Data Collection"
+    }
+  ],
+  "parentingClasses": [],
+  "galDirectory": [],
+  "dataQuality": {
+    "total": 1,
+    "certified": 1,
+    "withContact": 1,
+    "lastUpdated": "2025-09-19T21:51:12.133Z"
+  }
+}

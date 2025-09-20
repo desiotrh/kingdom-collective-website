@@ -1,0 +1,33 @@
+{
+  "state": "AL",
+  "county": "Jefferson",
+  "verification": {
+    "verifiedAt": "2025-09-19T21:50:26.629Z",
+    "sourceUrl": "https://www.kingdomstand.com/mediator-data"
+  },
+  "mediators": [
+    {
+      "name": "Dr. Robert Johnson",
+      "organization": "Alabama Family Mediation Services",
+      "specialties": "Divorce Mediation, Parenting Plans",
+      "contact": "(205) 555-0300",
+      "email": "r.johnson@alamediation.com",
+      "certification": "Alabama Certified Mediator",
+      "experience": "14 years",
+      "verified": true,
+      "location": "Jefferson, AL",
+      "county": "Jefferson",
+      "state": "AL",
+      "verifiedAt": "2025-09-19T21:50:25.631Z",
+      "source": "All States Enhanced Data Collection"
+    }
+  ],
+  "parentingClasses": [],
+  "galDirectory": [],
+  "dataQuality": {
+    "total": 1,
+    "certified": 1,
+    "withContact": 1,
+    "lastUpdated": "2025-09-19T21:50:26.629Z"
+  }
+}

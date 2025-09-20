@@ -1,0 +1,48 @@
+{
+  "expo": {
+    "name": "Kingdom Stand",
+    "slug": "kingdom-stand",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/images/Kingdom Stand Logo.png",
+    "scheme": "kingdomstand",
+    "userInterfaceStyle": "automatic",
+    "newArchEnabled": true,
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "pro.kingdomcollective.stand",
+      "buildNumber": "1"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/images/Kingdom Stand Logo.png",
+        "backgroundColor": "#0B1020"
+      },
+      "edgeToEdgeEnabled": true,
+      "package": "pro.kingdomcollective.stand",
+      "versionCode": 1
+    },
+    "web": {
+      "bundler": "metro",
+      "output": "static",
+      "favicon": "./assets/images/Kingdom Stand Logo.png"
+    },
+    "plugins": [
+      "expo-router",
+      [
+        "expo-splash-screen",
+        {
+          "image": "./assets/images/Kingdom Stand Logo.png",
+          "imageWidth": 220,
+          "resizeMode": "contain",
+          "backgroundColor": "#0B1020"
+        }
+      ]
+    ],
+    "experiments": {
+      "typedRoutes": true
+    }
+  }
+}
+
+

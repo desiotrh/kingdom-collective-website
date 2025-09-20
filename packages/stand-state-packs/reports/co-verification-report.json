@@ -1,0 +1,148 @@
+{
+  "state": "CO",
+  "generatedAt": "2025-09-19T21:55:36.279Z",
+  "counties": [
+    {
+      "county": "Adams",
+      "totalLawyers": 2,
+      "verifiedLawyers": 2,
+      "activeLawyers": 2,
+      "unverifiedLawyers": 0,
+      "lastVerified": null,
+      "lawyers": [
+        {
+          "name": "Patricia Johnson 5, Esq.",
+          "verified": true,
+          "active": true,
+          "status": "Unknown",
+          "license": "Unknown",
+          "verifiedAt": "2025-09-19T21:50:25.635Z"
+        },
+        {
+          "name": "David Martinez 5, Esq.",
+          "verified": true,
+          "active": true,
+          "status": "Unknown",
+          "license": "Unknown",
+          "verifiedAt": "2025-09-19T21:50:25.635Z"
+        }
+      ],
+      "verificationRate": 100
+    },
+    {
+      "county": "Arapahoe",
+      "totalLawyers": 2,
+      "verifiedLawyers": 2,
+      "activeLawyers": 2,
+      "unverifiedLawyers": 0,
+      "lastVerified": null,
+      "lawyers": [
+        {
+          "name": "Patricia Johnson 3, Esq.",
+          "verified": true,
+          "active": true,
+          "status": "Unknown",
+          "license": "Unknown",
+          "verifiedAt": "2025-09-19T21:50:25.635Z"
+        },
+        {
+          "name": "David Martinez 3, Esq.",
+          "verified": true,
+          "active": true,
+          "status": "Unknown",
+          "license": "Unknown",
+          "verifiedAt": "2025-09-19T21:50:25.635Z"
+        }
+      ],
+      "verificationRate": 100
+    },
+    {
+      "county": "Denver",
+      "totalLawyers": 2,
+      "verifiedLawyers": 2,
+      "activeLawyers": 2,
+      "unverifiedLawyers": 0,
+      "lastVerified": null,
+      "lawyers": [
+        {
+          "name": "Patricia Johnson, Esq.",
+          "verified": true,
+          "active": true,
+          "status": "Unknown",
+          "license": "Unknown",
+          "verifiedAt": "2025-09-19T21:50:25.635Z"
+        },
+        {
+          "name": "David Martinez, Esq.",
+          "verified": true,
+          "active": true,
+          "status": "Unknown",
+          "license": "Unknown",
+          "verifiedAt": "2025-09-19T21:50:25.635Z"
+        }
+      ],
+      "verificationRate": 100
+    },
+    {
+      "county": "El Paso",
+      "totalLawyers": 2,
+      "verifiedLawyers": 2,
+      "activeLawyers": 2,
+      "unverifiedLawyers": 0,
+      "lastVerified": null,
+      "lawyers": [
+        {
+          "name": "Patricia Johnson 2, Esq.",
+          "verified": true,
+          "active": true,
+          "status": "Unknown",
+          "license": "Unknown",
+          "verifiedAt": "2025-09-19T21:50:25.635Z"
+        },
+        {
+          "name": "David Martinez 2, Esq.",
+          "verified": true,
+          "active": true,
+          "status": "Unknown",
+          "license": "Unknown",
+          "verifiedAt": "2025-09-19T21:50:25.635Z"
+        }
+      ],
+      "verificationRate": 100
+    },
+    {
+      "county": "Jefferson",
+      "totalLawyers": 2,
+      "verifiedLawyers": 2,
+      "activeLawyers": 2,
+      "unverifiedLawyers": 0,
+      "lastVerified": null,
+      "lawyers": [
+        {
+          "name": "Patricia Johnson 4, Esq.",
+          "verified": true,
+          "active": true,
+          "status": "Unknown",
+          "license": "Unknown",
+          "verifiedAt": "2025-09-19T21:50:25.635Z"
+        },
+        {
+          "name": "David Martinez 4, Esq.",
+          "verified": true,
+          "active": true,
+          "status": "Unknown",
+          "license": "Unknown",
+          "verifiedAt": "2025-09-19T21:50:25.635Z"
+        }
+      ],
+      "verificationRate": 100
+    }
+  ],
+  "summary": {
+    "totalLawyers": 10,
+    "verifiedLawyers": 10,
+    "activeLawyers": 10,
+    "unverifiedLawyers": 0,
+    "verificationRate": 100
+  }
+}

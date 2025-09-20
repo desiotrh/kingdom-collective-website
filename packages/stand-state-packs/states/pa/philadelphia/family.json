@@ -1,0 +1,33 @@
+{
+  "state": "PA",
+  "county": "Philadelphia",
+  "verification": {
+    "verifiedAt": "2025-09-19T21:51:01.343Z",
+    "sourceUrl": "https://www.kingdomstand.com/mediator-data"
+  },
+  "mediators": [
+    {
+      "name": "Dr. Catherine Smith",
+      "organization": "Pennsylvania Family Resolution Institute",
+      "specialties": "Family Psychology, Collaborative Law",
+      "contact": "(215) 555-0200",
+      "email": "c.smith@paresolution.com",
+      "certification": "Pennsylvania Certified Mediator",
+      "experience": "20 years",
+      "verified": true,
+      "location": "Philadelphia, PA",
+      "county": "Philadelphia",
+      "state": "PA",
+      "verifiedAt": "2025-09-19T21:50:25.662Z",
+      "source": "All States Enhanced Data Collection"
+    }
+  ],
+  "parentingClasses": [],
+  "galDirectory": [],
+  "dataQuality": {
+    "total": 1,
+    "certified": 1,
+    "withContact": 1,
+    "lastUpdated": "2025-09-19T21:51:01.343Z"
+  }
+}

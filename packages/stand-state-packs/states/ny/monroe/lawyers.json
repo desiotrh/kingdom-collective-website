@@ -1,0 +1,13 @@
+{
+  "state": "NY",
+  "county": "Monroe",
+  "verifiedAt": "2025-09-01T18:53:51.322Z",
+  "sources": [
+    {
+      "title": "NY State Bar Association",
+      "url": "https://www.nysba.org/find-a-lawyer/",
+      "verified": true
+    }
+  ],
+  "lawyers": []
+}

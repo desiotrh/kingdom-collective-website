@@ -8,10 +8,14 @@ import {
     PanGestureHandler,
     State,
     Dimensions,
+    Alert,
 } from 'react-native';
 import { Colors } from '@/constants/Colors';
 import { useColorScheme } from '@/hooks/useColorScheme';
 import { useFaithMode } from 'packages/hooks/useFaithMode';
+import PostCreator from '@/components/PostCreator';
+import Feed from '@/components/Feed';
+import { PostData } from '@/components/PostCreator';
 
 interface EncouragementMessage {
     id: string;
@@ -90,6 +94,8 @@ export default function CircleHomeScreen() {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [messages, setMessages] = useState<EncouragementMessage[]>([]);
     const [showFullScreen, setShowFullScreen] = useState(false);
+    const [showPostCreator, setShowPostCreator] = useState(false);
+    const [posts, setPosts] = useState<any[]>([]);
 
     // Animations
     const fadeAnim = useRef(new Animated.Value(1)).current;
@@ -127,6 +133,101 @@ export default function CircleHomeScreen() {
             ).start();
         }
     }, [faithMode]);
+
+    // Post creation handler
+    const handleCreatePost = async (postData: PostData) => {
+        try {
+            // In a real app, this would upload to backend
+            const newPost = {
+                id: `post_${Date.now()}`,
+                userId: 'current_user',
+                userName: 'You',
+                userAvatar: 'https://randomuser.me/api/portraits/men/1.jpg',
+                mediaUrl: postData.mediaUrl,
+                mediaType: postData.mediaUrl.includes('.mp4') ? 'video' : 'image',
+                caption: postData.caption,
+                category: postData.category,
+                tags: postData.tags,
+                monetization: postData.monetization,
+                visibilityFlags: postData.visibilityFlags,
+                engagement: {
+                    views: 0,
+                    likes: 0,
+                    shares: 0,
+                    saves: 0,
+                    comments: 0,
+                    watchTimePercent: 0,
+                    rewatches: 0,
+                    profileClicks: 0,
+                },
+                timestamp: new Date(),
+                score: 0,
+            };
+
+            setPosts(prev => [newPost, ...prev]);
+            Alert.alert(
+                faithMode ? 'Truth Shared! 🙏' : 'Post Created! ✨',
+                faithMode
+                    ? 'Your message has been shared with the community. May it bless others!'
+                    : 'Your post has been shared with the community!'
+            );
+        } catch (error) {
+            Alert.alert('Error', 'Failed to create post. Please try again.');
+        }
+    };
+
+    // Feed interaction handlers
+    const handlePostPress = (post: any) => {
+        // Handle post press - could open detailed view
+        console.log('Post pressed:', post.id);
+    };
+
+    const handleUserPress = (userId: string) => {
+        // Handle user profile press
+        console.log('User pressed:', userId);
+    };
+
+    const handleLike = (postId: string) => {
+        setPosts(prev => prev.map(post => 
+            post.id === postId 
+                ? { ...post, engagement: { ...post.engagement, likes: post.engagement.likes + 1 } }
+                : post
+        ));
+    };
+
+    const handleShare = (postId: string) => {
+        setPosts(prev => prev.map(post => 
+            post.id === postId 
+                ? { ...post, engagement: { ...post.engagement, shares: post.engagement.shares + 1 } }
+                : post
+        ));
+    };
+
+    const handleSave = (postId: string) => {
+        setPosts(prev => prev.map(post => 
+            post.id === postId 
+                ? { ...post, engagement: { ...post.engagement, saves: post.engagement.saves + 1 } }
+                : post
+        ));
+    };
+
+    const handleComment = (postId: string) => {
+        // Handle comment action
+        console.log('Comment on post:', postId);
+    };
+
+    const handleTip = (postId: string) => {
+        Alert.alert(
+            faithMode ? 'Bless Creator' : 'Tip Creator',
+            faithMode
+                ? 'This would open a blessing interface to support the creator.'
+                : 'This would open a tipping interface to support the creator.'
+        );
+    };
+
+    const handleProductClick = (productLink: string) => {
+        Alert.alert('Product Link', `This would open: ${productLink}`);
+    };
 
     const nextMessage = () => {
         Animated.sequence([
@@ -303,41 +404,38 @@ export default function CircleHomeScreen() {
                 </Text>
             </View>
 
-            {/* Encouragement Feed */}
+            {/* Social Media Feed */}
             <View style={styles.feedContainer}>
-                {renderEncouragementCard()}
-
-                {/* Navigation Buttons */}
-                <View style={styles.navigationContainer}>
-                    <TouchableOpacity
-                        style={[styles.navButton, { backgroundColor: colors.olive }]}
-                        onPress={() => handleSwipe('right')}
-                    >
-                        <Text style={[styles.navButtonText, { color: colors.cream }]}>
-                            ← Previous
-                        </Text>
-                    </TouchableOpacity>
-
-                    <TouchableOpacity
-                        style={[styles.navButton, { backgroundColor: colors.emerald }]}
-                        onPress={() => handleSwipe('left')}
-                    >
-                        <Text style={[styles.navButtonText, { color: colors.cream }]}>
-                            Next →
-                        </Text>
-                    </TouchableOpacity>
-                </View>
-
-                {/* Mode Indicator */}
-                <View style={[styles.modeIndicator, { backgroundColor: colors.card }]}>
-                    <Text style={[styles.modeText, { color: colors.olive }]}>
-                        {faithMode ? '✝️ Faith Mode' : '🕊 Encouragement Mode'}
+                {/* Create Post Button */}
+                <TouchableOpacity
+                    style={[styles.createPostButton, { backgroundColor: colors.emerald }]}
+                    onPress={() => setShowPostCreator(true)}
+                >
+                    <Text style={[styles.createPostButtonText, { color: colors.cream }]}>
+                        {faithMode ? '✝️ Share Your Truth' : '✨ Create Post'}
                     </Text>
-                    <Text style={[styles.autoRotateText, { color: colors.olive }]}>
-                        Auto-rotates every 24 hours
-                    </Text>
-                </View>
+                </TouchableOpacity>
+
+                {/* Feed Component */}
+                <Feed
+                    posts={posts}
+                    onPostPress={handlePostPress}
+                    onUserPress={handleUserPress}
+                    onLike={handleLike}
+                    onShare={handleShare}
+                    onSave={handleSave}
+                    onComment={handleComment}
+                    onTip={handleTip}
+                    onProductClick={handleProductClick}
+                />
             </View>
+
+            {/* Post Creator Modal */}
+            <PostCreator
+                visible={showPostCreator}
+                onClose={() => setShowPostCreator(false)}
+                onSubmit={handleCreatePost}
+            />
 
             {/* Full Screen Modal (Future Implementation) */}
             {showFullScreen && (
@@ -394,7 +492,16 @@ const styles = StyleSheet.create({
     },
     feedContainer: {
         flex: 1,
-        justifyContent: 'center',
+    },
+    createPostButton: {
+        padding: 16,
+        borderRadius: 12,
+        marginBottom: 16,
+        alignItems: 'center',
+    },
+    createPostButtonText: {
+        fontSize: 16,
+        fontWeight: '600',
     },
     encouragementCard: {
         marginHorizontal: 20,

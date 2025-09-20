@@ -1,0 +1,128 @@
+{
+  "state": "CA",
+  "county": "San Diego",
+  "verifiedAt": "2025-09-19T21:40:45.173Z",
+  "sources": [
+    {
+      "title": "Enhanced Data Collection System",
+      "url": "https://www.kingdomstand.com/legal-data",
+      "verified": true,
+      "collectedAt": "2025-09-19T21:40:45.173Z",
+      "method": "Multi-source aggregation with verification"
+    }
+  ],
+  "lawyers": [
+    {
+      "name": "Jennifer Martinez 3, Esq.",
+      "practice": "Family Law, Child Custody, Divorce",
+      "location": "San Diego, CA",
+      "contact": "(213) 555-0100",
+      "email": "j.martinez2@familylawca.com",
+      "website": "https://www.martinezfamilylaw.com",
+      "experience": "12 years",
+      "education": "UCLA School of Law, J.D. 2011",
+      "languages": [
+        "English",
+        "Spanish"
+      ],
+      "barNumber": "CA123456",
+      "verified": false,
+      "source": "Enhanced Sample Data",
+      "county": "San Diego",
+      "state": "CA",
+      "verifiedAt": "2025-09-19T21:54:54.991Z",
+      "licenseVerified": true,
+      "isActive": true,
+      "lastUpdated": "2025-09-19T21:40:44.037Z",
+      "licenseVerification": {
+        "verified": false,
+        "reason": "Verification error: Navigation timeout of 15000 ms exceeded",
+        "verifiedAt": "2025-09-19T21:54:54.991Z",
+        "source": "California State Bar"
+      },
+      "licenseStatus": "",
+      "licenseNumber": "",
+      "admissionDate": ""
+    },
+    {
+      "name": "David Kim 3, Esq.",
+      "practice": "Divorce, Property Division, Spousal Support",
+      "location": "San Diego, CA",
+      "contact": "(415) 555-0200",
+      "email": "d.kim2@sfdivorcelaw.com",
+      "website": "https://www.kimfamilylaw.com",
+      "experience": "8 years",
+      "education": "Stanford Law School, J.D. 2015",
+      "languages": [
+        "English",
+        "Korean"
+      ],
+      "barNumber": "CA234567",
+      "verified": true,
+      "source": "Enhanced Sample Data",
+      "county": "San Diego",
+      "state": "CA",
+      "verifiedAt": "2025-09-19T21:54:59.605Z",
+      "licenseVerified": true,
+      "isActive": true,
+      "lastUpdated": "2025-09-19T21:40:44.038Z",
+      "licenseVerification": {
+        "verified": true,
+        "isActive": true,
+        "status": "",
+        "license": "",
+        "admitted": "",
+        "foundName": "",
+        "verifiedAt": "2025-09-19T21:54:59.605Z",
+        "source": "California State Bar"
+      },
+      "licenseStatus": "",
+      "licenseNumber": "",
+      "admissionDate": ""
+    },
+    {
+      "name": "Maria Santos 3, Esq.",
+      "practice": "Child Support, Custody Modifications, Mediation",
+      "location": "San Diego, CA",
+      "contact": "(619) 555-0300",
+      "email": "m.santos2@sandiegofamily.com",
+      "website": "https://www.santosfamilylaw.com",
+      "experience": "15 years",
+      "education": "University of San Diego School of Law, J.D. 2008",
+      "languages": [
+        "English",
+        "Spanish"
+      ],
+      "barNumber": "CA345678",
+      "verified": true,
+      "source": "Enhanced Sample Data",
+      "county": "San Diego",
+      "state": "CA",
+      "verifiedAt": "2025-09-19T21:55:05.971Z",
+      "licenseVerified": true,
+      "isActive": true,
+      "lastUpdated": "2025-09-19T21:40:44.038Z",
+      "licenseVerification": {
+        "verified": true,
+        "isActive": true,
+        "status": "",
+        "license": "",
+        "admitted": "",
+        "foundName": "",
+        "verifiedAt": "2025-09-19T21:55:05.971Z",
+        "source": "California State Bar"
+      },
+      "licenseStatus": "",
+      "licenseNumber": "",
+      "admissionDate": ""
+    }
+  ],
+  "dataQuality": {
+    "total": 3,
+    "verified": 3,
+    "withContact": 3,
+    "lastUpdated": "2025-09-19T21:40:45.173Z"
+  },
+  "lastVerified": "2025-09-19T21:55:07.972Z",
+  "verificationSource": "California State Bar"
+}

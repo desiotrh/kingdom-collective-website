@@ -1,0 +1,33 @@
+{
+  "state": "NC",
+  "county": "Mecklenburg",
+  "verification": {
+    "verifiedAt": "2025-09-19T21:50:50.573Z",
+    "sourceUrl": "https://www.kingdomstand.com/mediator-data"
+  },
+  "mediators": [
+    {
+      "name": "James Johnson, LMFT",
+      "organization": "North Carolina Family Mediation Center",
+      "specialties": "Family Therapy, Mediation",
+      "contact": "(704) 555-0200",
+      "email": "j.johnson@ncmediation.com",
+      "certification": "North Carolina Certified Family Mediator",
+      "experience": "13 years",
+      "verified": true,
+      "location": "Mecklenburg, NC",
+      "county": "Mecklenburg",
+      "state": "NC",
+      "verifiedAt": "2025-09-19T21:50:25.653Z",
+      "source": "All States Enhanced Data Collection"
+    }
+  ],
+  "parentingClasses": [],
+  "galDirectory": [],
+  "dataQuality": {
+    "total": 1,
+    "certified": 1,
+    "withContact": 1,
+    "lastUpdated": "2025-09-19T21:50:50.573Z"
+  }
+}

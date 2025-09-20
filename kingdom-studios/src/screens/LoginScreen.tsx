@@ -81,12 +81,20 @@ const LoginScreen = () => {
   const handleFacebookPress = async () => {
     setFacebookLoading(true);
     try {
-      await signInWithFacebook();
-      Alert.alert('Success', 'Logged in successfully!');
-      // Navigation will be handled automatically by AuthNavigator
+      const result = await signInWithFacebook();
+      
+      if (result.type === 'success') {
+        Alert.alert('Success', 'Logged in successfully!');
+        // Navigation will be handled automatically by AuthNavigator
+      } else if (result.type === 'cancel') {
+        // User cancelled login - no need to show error
+        console.log('Facebook login cancelled by user');
+      } else {
+        Alert.alert('Error', 'Facebook login failed. Please try again.');
+      }
     } catch (error) {
       console.error('Facebook login error:', error);
-      Alert.alert('Error', 'Login failed.');
+      Alert.alert('Error', 'Login failed. Please try again.');
     } finally {
       setFacebookLoading(false);
     }

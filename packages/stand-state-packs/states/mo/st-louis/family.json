@@ -1,0 +1,33 @@
+{
+  "state": "MO",
+  "county": "St. Louis",
+  "verification": {
+    "verifiedAt": "2025-09-19T21:50:47.380Z",
+    "sourceUrl": "https://www.kingdomstand.com/mediator-data"
+  },
+  "mediators": [
+    {
+      "name": "Robert Wilson, J.D.",
+      "organization": "Missouri Family Resolution Center",
+      "specialties": "Divorce Mediation, Collaborative Law",
+      "contact": "(314) 555-0200",
+      "email": "r.wilson@moresolution.com",
+      "certification": "Missouri Certified Mediator",
+      "experience": "17 years",
+      "verified": true,
+      "location": "St. Louis, MO",
+      "county": "St. Louis",
+      "state": "MO",
+      "verifiedAt": "2025-09-19T21:50:25.648Z",
+      "source": "All States Enhanced Data Collection"
+    }
+  ],
+  "parentingClasses": [],
+  "galDirectory": [],
+  "dataQuality": {
+    "total": 1,
+    "certified": 1,
+    "withContact": 1,
+    "lastUpdated": "2025-09-19T21:50:47.380Z"
+  }
+}

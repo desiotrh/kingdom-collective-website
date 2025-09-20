@@ -1,0 +1,33 @@
+{
+  "state": "OR",
+  "county": "Washington",
+  "verification": {
+    "verifiedAt": "2025-09-19T21:51:00.391Z",
+    "sourceUrl": "https://www.kingdomstand.com/mediator-data"
+  },
+  "mediators": [
+    {
+      "name": "Dr. David Wilson",
+      "organization": "Oregon Family Mediation Center",
+      "specialties": "Environmental Mediation, Family Systems",
+      "contact": "(503) 555-0200",
+      "email": "d.wilson@ormediation.com",
+      "certification": "Oregon Certified Family Mediator",
+      "experience": "16 years",
+      "verified": true,
+      "location": "Washington, OR",
+      "county": "Washington",
+      "state": "OR",
+      "verifiedAt": "2025-09-19T21:50:25.661Z",
+      "source": "All States Enhanced Data Collection"
+    }
+  ],
+  "parentingClasses": [],
+  "galDirectory": [],
+  "dataQuality": {
+    "total": 1,
+    "certified": 1,
+    "withContact": 1,
+    "lastUpdated": "2025-09-19T21:51:00.391Z"
+  }
+}

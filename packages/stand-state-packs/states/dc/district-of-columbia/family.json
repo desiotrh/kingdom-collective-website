@@ -1,0 +1,33 @@
+{
+  "state": "DC",
+  "county": "District of Columbia",
+  "verification": {
+    "verifiedAt": "2025-09-19T21:50:31.976Z",
+    "sourceUrl": "https://www.kingdomstand.com/mediator-data"
+  },
+  "mediators": [
+    {
+      "name": "Dr. James Wilson",
+      "organization": "DC Family Mediation Center",
+      "specialties": "Federal Employee Issues, High-Profile Mediation",
+      "contact": "(202) 555-0200",
+      "email": "j.wilson@dcmediation.com",
+      "certification": "DC Bar Certified Mediator",
+      "experience": "19 years",
+      "verified": true,
+      "location": "District of Columbia, DC",
+      "county": "District of Columbia",
+      "state": "DC",
+      "verifiedAt": "2025-09-19T21:50:25.637Z",
+      "source": "All States Enhanced Data Collection"
+    }
+  ],
+  "parentingClasses": [],
+  "galDirectory": [],
+  "dataQuality": {
+    "total": 1,
+    "certified": 1,
+    "withContact": 1,
+    "lastUpdated": "2025-09-19T21:50:31.976Z"
+  }
+}

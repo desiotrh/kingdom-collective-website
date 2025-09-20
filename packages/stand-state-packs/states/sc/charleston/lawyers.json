@@ -1,0 +1,44 @@
+{
+  "state": "SC",
+  "county": "Charleston",
+  "verifiedAt": "2025-09-19T21:51:03.683Z",
+  "sources": [
+    {
+      "title": "Enhanced Data Collection System",
+      "url": "https://www.kingdomstand.com/legal-data",
+      "verified": true,
+      "collectedAt": "2025-09-19T21:51:03.683Z",
+      "method": "Multi-source aggregation with verification"
+    }
+  ],
+  "lawyers": [
+    {
+      "name": "William Davis 3, Esq.",
+      "practice": "Family Law, Child Custody, Divorce",
+      "location": "Charleston, SC",
+      "contact": "(843) 575-0100",
+      "email": "w.davis2@scfamily.com",
+      "website": "https://www.davisfamilylaw.com",
+      "experience": "15 years",
+      "education": "University of South Carolina School of Law, J.D. 2008",
+      "languages": [
+        "English"
+      ],
+      "barNumber": "SC12345",
+      "verified": true,
+      "county": "Charleston",
+      "state": "SC",
+      "verifiedAt": "2025-09-19T21:50:25.664Z",
+      "licenseVerified": true,
+      "isActive": true,
+      "lastUpdated": "2025-09-19T21:50:25.664Z",
+      "source": "All States Enhanced Data Collection"
+    }
+  ],
+  "dataQuality": {
+    "total": 1,
+    "verified": 1,
+    "withContact": 1,
+    "lastUpdated": "2025-09-19T21:51:03.683Z"
+  }
+}

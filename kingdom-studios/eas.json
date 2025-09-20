@@ -11,11 +11,7 @@
       "distribution": "internal"
     },
     "production": {
-      "bundler": "metro",
-      "cache": {
-        "disabled": false
-      },
-      "optimization": "speed"
+      "distribution": "store"
     }
   },
   "submit": {

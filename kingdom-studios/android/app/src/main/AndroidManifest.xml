@@ -33,6 +33,7 @@
         <category android:name="android.intent.category.DEFAULT"/>
         <category android:name="android.intent.category.BROWSABLE"/>
         <data android:scheme="kingdom-studios"/>
+        <data android:scheme="exp+kingdom-studios"/>
       </intent-filter>
     </activity>
   </application>

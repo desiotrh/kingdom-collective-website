@@ -1,0 +1,45 @@
+{
+  "state": "LA",
+  "county": "East Baton Rouge",
+  "verifiedAt": "2025-09-19T21:50:41.207Z",
+  "sources": [
+    {
+      "title": "Enhanced Data Collection System",
+      "url": "https://www.kingdomstand.com/legal-data",
+      "verified": true,
+      "collectedAt": "2025-09-19T21:50:41.207Z",
+      "method": "Multi-source aggregation with verification"
+    }
+  ],
+  "lawyers": [
+    {
+      "name": "Marie Boudreaux 3, Esq.",
+      "practice": "Family Law, Divorce, Child Support",
+      "location": "East Baton Rouge, LA",
+      "contact": "(504) 575-0100",
+      "email": "m.boudreaux2@louisianafamily.com",
+      "website": "https://www.boudreauxfamilylaw.com",
+      "experience": "15 years",
+      "education": "Tulane University Law School, J.D. 2008",
+      "languages": [
+        "English",
+        "French"
+      ],
+      "barNumber": "LA12345",
+      "verified": true,
+      "county": "East Baton Rouge",
+      "state": "LA",
+      "verifiedAt": "2025-09-19T21:50:25.644Z",
+      "licenseVerified": true,
+      "isActive": true,
+      "lastUpdated": "2025-09-19T21:50:25.644Z",
+      "source": "All States Enhanced Data Collection"
+    }
+  ],
+  "dataQuality": {
+    "total": 1,
+    "verified": 1,
+    "withContact": 1,
+    "lastUpdated": "2025-09-19T21:50:41.207Z"
+  }
+}

@@ -1,0 +1,215 @@
+{
+  "state": "NY",
+  "generatedAt": "2025-09-19T22:02:38.911Z",
+  "counties": [
+    {
+      "county": "Bronx",
+      "totalLawyers": 0,
+      "verifiedLawyers": 0,
+      "activeLawyers": 0,
+      "unverifiedLawyers": 0,
+      "lastVerified": null,
+      "lawyers": [],
+      "verificationRate": 0
+    },
+    {
+      "county": "Erie",
+      "totalLawyers": 0,
+      "verifiedLawyers": 0,
+      "activeLawyers": 0,
+      "unverifiedLawyers": 0,
+      "lastVerified": null,
+      "lawyers": [],
+      "verificationRate": 0
+    },
+    {
+      "county": "Kings",
+      "totalLawyers": 2,
+      "verifiedLawyers": 0,
+      "activeLawyers": 2,
+      "unverifiedLawyers": 2,
+      "lastVerified": "2025-09-19T21:58:52.199Z",
+      "lawyers": [
+        {
+          "name": "Robert Thompson 2, Esq.",
+          "verified": false,
+          "active": true,
+          "status": "Unknown",
+          "license": "Unknown",
+          "verifiedAt": "2025-09-19T21:58:40.923Z"
+        },
+        {
+          "name": "Lisa Chen 2, Esq.",
+          "verified": false,
+          "active": true,
+          "status": "Unknown",
+          "license": "Unknown",
+          "verifiedAt": "2025-09-19T21:58:52.199Z"
+        }
+      ],
+      "verificationRate": 0
+    },
+    {
+      "county": "Monroe",
+      "totalLawyers": 0,
+      "verifiedLawyers": 0,
+      "activeLawyers": 0,
+      "unverifiedLawyers": 0,
+      "lastVerified": null,
+      "lawyers": [],
+      "verificationRate": 0
+    },
+    {
+      "county": "Nassau",
+      "totalLawyers": 2,
+      "verifiedLawyers": 0,
+      "activeLawyers": 2,
+      "unverifiedLawyers": 2,
+      "lastVerified": "2025-09-19T21:59:35.191Z",
+      "lawyers": [
+        {
+          "name": "Robert Thompson 4, Esq.",
+          "verified": false,
+          "active": true,
+          "status": "Unknown",
+          "license": "Unknown",
+          "verifiedAt": "2025-09-19T21:59:12.791Z"
+        },
+        {
+          "name": "Lisa Chen 4, Esq.",
+          "verified": false,
+          "active": true,
+          "status": "Unknown",
+          "license": "Unknown",
+          "verifiedAt": "2025-09-19T21:59:35.191Z"
+        }
+      ],
+      "verificationRate": 0
+    },
+    {
+      "county": "New York",
+      "totalLawyers": 2,
+      "verifiedLawyers": 0,
+      "activeLawyers": 2,
+      "unverifiedLawyers": 2,
+      "lastVerified": "2025-09-19T22:00:17.888Z",
+      "lawyers": [
+        {
+          "name": "Robert Thompson, Esq.",
+          "verified": false,
+          "active": true,
+          "status": "Unknown",
+          "license": "Unknown",
+          "verifiedAt": "2025-09-19T21:59:57.792Z"
+        },
+        {
+          "name": "Lisa Chen, Esq.",
+          "verified": false,
+          "active": true,
+          "status": "Unknown",
+          "license": "Unknown",
+          "verifiedAt": "2025-09-19T22:00:17.888Z"
+        }
+      ],
+      "verificationRate": 0
+    },
+    {
+      "county": "Queens",
+      "totalLawyers": 2,
+      "verifiedLawyers": 0,
+      "activeLawyers": 2,
+      "unverifiedLawyers": 2,
+      "lastVerified": "2025-09-19T22:01:02.751Z",
+      "lawyers": [
+        {
+          "name": "Robert Thompson 3, Esq.",
+          "verified": false,
+          "active": true,
+          "status": "Unknown",
+          "license": "Unknown",
+          "verifiedAt": "2025-09-19T22:00:40.120Z"
+        },
+        {
+          "name": "Lisa Chen 3, Esq.",
+          "verified": false,
+          "active": true,
+          "status": "Unknown",
+          "license": "Unknown",
+          "verifiedAt": "2025-09-19T22:01:02.751Z"
+        }
+      ],
+      "verificationRate": 0
+    },
+    {
+      "county": "Richmond",
+      "totalLawyers": 0,
+      "verifiedLawyers": 0,
+      "activeLawyers": 0,
+      "unverifiedLawyers": 0,
+      "lastVerified": null,
+      "lawyers": [],
+      "verificationRate": 0
+    },
+    {
+      "county": "Suffolk",
+      "totalLawyers": 2,
+      "verifiedLawyers": 0,
+      "activeLawyers": 2,
+      "unverifiedLawyers": 2,
+      "lastVerified": "2025-09-19T22:01:46.488Z",
+      "lawyers": [
+        {
+          "name": "Robert Thompson 6, Esq.",
+          "verified": false,
+          "active": true,
+          "status": "Unknown",
+          "license": "Unknown",
+          "verifiedAt": "2025-09-19T22:01:25.073Z"
+        },
+        {
+          "name": "Lisa Chen 6, Esq.",
+          "verified": false,
+          "active": true,
+          "status": "Unknown",
+          "license": "Unknown",
+          "verifiedAt": "2025-09-19T22:01:46.488Z"
+        }
+      ],
+      "verificationRate": 0
+    },
+    {
+      "county": "Westchester",
+      "totalLawyers": 2,
+      "verifiedLawyers": 0,
+      "activeLawyers": 2,
+      "unverifiedLawyers": 2,
+      "lastVerified": "2025-09-19T22:02:37.904Z",
+      "lawyers": [
+        {
+          "name": "Robert Thompson 5, Esq.",
+          "verified": false,
+          "active": true,
+          "status": "Unknown",
+          "license": "Unknown",
+          "verifiedAt": "2025-09-19T22:02:07.353Z"
+        },
+        {
+          "name": "Lisa Chen 5, Esq.",
+          "verified": false,
+          "active": true,
+          "status": "Unknown",
+          "license": "Unknown",
+          "verifiedAt": "2025-09-19T22:02:37.904Z"
+        }
+      ],
+      "verificationRate": 0
+    }
+  ],
+  "summary": {
+    "totalLawyers": 12,
+    "verifiedLawyers": 0,
+    "activeLawyers": 12,
+    "unverifiedLawyers": 12,
+    "verificationRate": 0
+  }
+}

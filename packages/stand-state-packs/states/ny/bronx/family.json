@@ -1,0 +1,11 @@
+{
+  "state": "NY",
+  "county": "Bronx",
+  "verification": {
+    "verifiedAt": "2025-09-01T18:52:56.072Z",
+    "sourceUrl": "https://www.nycourts.gov/ip/mediation/"
+  },
+  "mediators": [],
+  "parentingClasses": [],
+  "galDirectory": []
+}

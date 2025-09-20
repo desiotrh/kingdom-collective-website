@@ -1,0 +1,63 @@
+{
+  "state": "VA",
+  "generatedAt": "2025-09-19T22:03:57.314Z",
+  "counties": [
+    {
+      "county": "Chesterfield",
+      "totalLawyers": 0,
+      "verifiedLawyers": 0,
+      "activeLawyers": 0,
+      "unverifiedLawyers": 0,
+      "lastVerified": null,
+      "lawyers": [],
+      "verificationRate": 0
+    },
+    {
+      "county": "Fairfax",
+      "totalLawyers": 0,
+      "verifiedLawyers": 0,
+      "activeLawyers": 0,
+      "unverifiedLawyers": 0,
+      "lastVerified": null,
+      "lawyers": [],
+      "verificationRate": 0
+    },
+    {
+      "county": "Henrico",
+      "totalLawyers": 0,
+      "verifiedLawyers": 0,
+      "activeLawyers": 0,
+      "unverifiedLawyers": 0,
+      "lastVerified": null,
+      "lawyers": [],
+      "verificationRate": 0
+    },
+    {
+      "county": "Prince William",
+      "totalLawyers": 0,
+      "verifiedLawyers": 0,
+      "activeLawyers": 0,
+      "unverifiedLawyers": 0,
+      "lastVerified": null,
+      "lawyers": [],
+      "verificationRate": 0
+    },
+    {
+      "county": "Virginia Beach",
+      "totalLawyers": 0,
+      "verifiedLawyers": 0,
+      "activeLawyers": 0,
+      "unverifiedLawyers": 0,
+      "lastVerified": null,
+      "lawyers": [],
+      "verificationRate": 0
+    }
+  ],
+  "summary": {
+    "totalLawyers": 0,
+    "verifiedLawyers": 0,
+    "activeLawyers": 0,
+    "unverifiedLawyers": 0,
+    "verificationRate": 0
+  }
+}

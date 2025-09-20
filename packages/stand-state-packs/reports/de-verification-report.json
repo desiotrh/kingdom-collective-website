@@ -1,0 +1,70 @@
+{
+  "state": "DE",
+  "generatedAt": "2025-09-19T21:55:48.469Z",
+  "counties": [
+    {
+      "county": "Kent",
+      "totalLawyers": 1,
+      "verifiedLawyers": 1,
+      "activeLawyers": 1,
+      "unverifiedLawyers": 0,
+      "lastVerified": null,
+      "lawyers": [
+        {
+          "name": "Michelle Davis 2, Esq.",
+          "verified": true,
+          "active": true,
+          "status": "Unknown",
+          "license": "Unknown",
+          "verifiedAt": "2025-09-19T21:50:25.638Z"
+        }
+      ],
+      "verificationRate": 100
+    },
+    {
+      "county": "New Castle",
+      "totalLawyers": 1,
+      "verifiedLawyers": 1,
+      "activeLawyers": 1,
+      "unverifiedLawyers": 0,
+      "lastVerified": null,
+      "lawyers": [
+        {
+          "name": "Michelle Davis, Esq.",
+          "verified": true,
+          "active": true,
+          "status": "Unknown",
+          "license": "Unknown",
+          "verifiedAt": "2025-09-19T21:50:25.638Z"
+        }
+      ],
+      "verificationRate": 100
+    },
+    {
+      "county": "Sussex",
+      "totalLawyers": 1,
+      "verifiedLawyers": 1,
+      "activeLawyers": 1,
+      "unverifiedLawyers": 0,
+      "lastVerified": null,
+      "lawyers": [
+        {
+          "name": "Michelle Davis 3, Esq.",
+          "verified": true,
+          "active": true,
+          "status": "Unknown",
+          "license": "Unknown",
+          "verifiedAt": "2025-09-19T21:50:25.638Z"
+        }
+      ],
+      "verificationRate": 100
+    }
+  ],
+  "summary": {
+    "totalLawyers": 3,
+    "verifiedLawyers": 3,
+    "activeLawyers": 3,
+    "unverifiedLawyers": 0,
+    "verificationRate": 100
+  }
+}

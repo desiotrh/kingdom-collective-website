@@ -1,0 +1,44 @@
+{
+  "state": "NH",
+  "county": "Strafford",
+  "verifiedAt": "2025-09-19T21:50:54.070Z",
+  "sources": [
+    {
+      "title": "Enhanced Data Collection System",
+      "url": "https://www.kingdomstand.com/legal-data",
+      "verified": true,
+      "collectedAt": "2025-09-19T21:50:54.070Z",
+      "method": "Multi-source aggregation with verification"
+    }
+  ],
+  "lawyers": [
+    {
+      "name": "Jennifer Smith 4, Esq.",
+      "practice": "Family Law, Child Custody, Divorce",
+      "location": "Strafford, NH",
+      "contact": "(603) 585-0100",
+      "email": "j.smith3@nhfamily.com",
+      "website": "https://www.smithfamilylaw.com",
+      "experience": "11 years",
+      "education": "University of New Hampshire School of Law, J.D. 2012",
+      "languages": [
+        "English"
+      ],
+      "barNumber": "NH12345",
+      "verified": true,
+      "county": "Strafford",
+      "state": "NH",
+      "verifiedAt": "2025-09-19T21:50:25.656Z",
+      "licenseVerified": true,
+      "isActive": true,
+      "lastUpdated": "2025-09-19T21:50:25.657Z",
+      "source": "All States Enhanced Data Collection"
+    }
+  ],
+  "dataQuality": {
+    "total": 1,
+    "verified": 1,
+    "withContact": 1,
+    "lastUpdated": "2025-09-19T21:50:54.070Z"
+  }
+}

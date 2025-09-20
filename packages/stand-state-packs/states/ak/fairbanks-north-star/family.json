@@ -1,0 +1,33 @@
+{
+  "state": "AK",
+  "county": "Fairbanks North Star",
+  "verification": {
+    "verifiedAt": "2025-09-19T21:50:25.796Z",
+    "sourceUrl": "https://www.kingdomstand.com/mediator-data"
+  },
+  "mediators": [
+    {
+      "name": "Lisa Wilson, LCSW",
+      "organization": "Alaska Family Solutions",
+      "specialties": "Family Mediation, Co-Parenting",
+      "contact": "(907) 555-0200",
+      "email": "l.wilson@alaskasolutions.com",
+      "certification": "Alaska Certified Family Mediator",
+      "experience": "9 years",
+      "verified": true,
+      "location": "Fairbanks North Star, AK",
+      "county": "Fairbanks North Star",
+      "state": "AK",
+      "verifiedAt": "2025-09-19T21:50:25.631Z",
+      "source": "All States Enhanced Data Collection"
+    }
+  ],
+  "parentingClasses": [],
+  "galDirectory": [],
+  "dataQuality": {
+    "total": 1,
+    "certified": 1,
+    "withContact": 1,
+    "lastUpdated": "2025-09-19T21:50:25.796Z"
+  }
+}

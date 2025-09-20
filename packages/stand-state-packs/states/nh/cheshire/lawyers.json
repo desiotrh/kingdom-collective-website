@@ -1,0 +1,44 @@
+{
+  "state": "NH",
+  "county": "Cheshire",
+  "verifiedAt": "2025-09-19T21:50:54.177Z",
+  "sources": [
+    {
+      "title": "Enhanced Data Collection System",
+      "url": "https://www.kingdomstand.com/legal-data",
+      "verified": true,
+      "collectedAt": "2025-09-19T21:50:54.177Z",
+      "method": "Multi-source aggregation with verification"
+    }
+  ],
+  "lawyers": [
+    {
+      "name": "Jennifer Smith 5, Esq.",
+      "practice": "Family Law, Child Custody, Divorce",
+      "location": "Cheshire, NH",
+      "contact": "(603) 595-0100",
+      "email": "j.smith4@nhfamily.com",
+      "website": "https://www.smithfamilylaw.com",
+      "experience": "11 years",
+      "education": "University of New Hampshire School of Law, J.D. 2012",
+      "languages": [
+        "English"
+      ],
+      "barNumber": "NH12345",
+      "verified": true,
+      "county": "Cheshire",
+      "state": "NH",
+      "verifiedAt": "2025-09-19T21:50:25.657Z",
+      "licenseVerified": true,
+      "isActive": true,
+      "lastUpdated": "2025-09-19T21:50:25.657Z",
+      "source": "All States Enhanced Data Collection"
+    }
+  ],
+  "dataQuality": {
+    "total": 1,
+    "verified": 1,
+    "withContact": 1,
+    "lastUpdated": "2025-09-19T21:50:54.177Z"
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "state": "NY",
+  "generatedAt": "2025-09-19T21:38:50.372Z",
+  "dataQuality": {
+    "overall": "Poor",
+    "score": 25,
+    "factors": [
+      "Low verification rate (<60%)",
+      "Limited county coverage (<60%)",
+      "Very limited lawyer database (<10 lawyers)",
+      "Low active lawyer rate (<75%)"
+    ]
+  },
+  "coverage": {
+    "countiesWithData": 0,
+    "totalCounties": 10,
+    "coveragePercentage": 0
+  },
+  "verification": {
+    "totalLawyers": 0,
+    "verifiedLawyers": 0,
+    "verificationRate": 0,
+    "activeLawyers": 0
+  },
+  "dataFreshness": {
+    "lastCollected": "2025-09-19T21:38:39.228Z",
+    "lastVerified": null,
+    "staleSources": []
+  },
+  "recommendations": [
+    "Improve license verification process",
+    "Expand data collection to more counties",
+    "Increase data collection efforts",
+    "Review and update inactive lawyer records",
+    "Major improvements needed in data collection and verification"
+  ]
+}

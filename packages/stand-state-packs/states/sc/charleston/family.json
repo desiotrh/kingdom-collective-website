@@ -1,0 +1,17 @@
+{
+  "state": "SC",
+  "county": "Charleston",
+  "verification": {
+    "verifiedAt": "2025-09-19T21:51:03.686Z",
+    "sourceUrl": "https://www.kingdomstand.com/mediator-data"
+  },
+  "mediators": [],
+  "parentingClasses": [],
+  "galDirectory": [],
+  "dataQuality": {
+    "total": 0,
+    "certified": 0,
+    "withContact": 0,
+    "lastUpdated": "2025-09-19T21:51:03.686Z"
+  }
+}

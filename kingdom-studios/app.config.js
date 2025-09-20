@@ -61,6 +61,7 @@ export default {
 
       // Facebook Integration
       facebookAppId: process.env.EXPO_PUBLIC_FACEBOOK_APP_ID,
+      facebookClientToken: process.env.EXPO_PUBLIC_FACEBOOK_CLIENT_TOKEN,
 
       // AI Content Generation
       openaiApiKey: process.env.EXPO_PUBLIC_OPENAI_API_KEY,

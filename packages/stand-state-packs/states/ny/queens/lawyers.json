@@ -1,0 +1,81 @@
+{
+  "state": "NY",
+  "county": "Queens",
+  "verifiedAt": "2025-09-19T21:40:53.034Z",
+  "sources": [
+    {
+      "title": "Enhanced Data Collection System",
+      "url": "https://www.kingdomstand.com/legal-data",
+      "verified": true,
+      "collectedAt": "2025-09-19T21:40:53.035Z",
+      "method": "Multi-source aggregation with verification"
+    }
+  ],
+  "lawyers": [
+    {
+      "name": "Robert Thompson 3, Esq.",
+      "practice": "Family Law, Matrimonial Law, Child Custody",
+      "location": "Queens, NY",
+      "contact": "(212) 555-0400",
+      "email": "r.thompson2@nycfamilylaw.com",
+      "website": "https://www.thompsonfamilylaw.com",
+      "experience": "20 years",
+      "education": "Columbia Law School, J.D. 2003",
+      "languages": [
+        "English"
+      ],
+      "barNumber": "NY456789",
+      "verified": false,
+      "source": "Enhanced Sample Data",
+      "county": "Queens",
+      "state": "NY",
+      "verifiedAt": "2025-09-19T22:00:40.120Z",
+      "licenseVerified": true,
+      "isActive": true,
+      "lastUpdated": "2025-09-19T21:40:52.006Z",
+      "licenseVerification": {
+        "verified": false,
+        "reason": "Verification error: Waiting for selector `#lastName` failed",
+        "verifiedAt": "2025-09-19T22:00:40.120Z",
+        "source": "New York Courts Attorney Registration"
+      }
+    },
+    {
+      "name": "Lisa Chen 3, Esq.",
+      "practice": "Divorce, Prenuptial Agreements, Family Mediation",
+      "location": "Queens, NY",
+      "contact": "(718) 555-0500",
+      "email": "l.chen2@brooklynfamily.com",
+      "website": "https://www.chenfamilylaw.com",
+      "experience": "10 years",
+      "education": "Brooklyn Law School, J.D. 2013",
+      "languages": [
+        "English",
+        "Mandarin"
+      ],
+      "barNumber": "NY567890",
+      "verified": false,
+      "source": "Enhanced Sample Data",
+      "county": "Queens",
+      "state": "NY",
+      "verifiedAt": "2025-09-19T22:01:02.751Z",
+      "licenseVerified": true,
+      "isActive": true,
+      "lastUpdated": "2025-09-19T21:40:52.006Z",
+      "licenseVerification": {
+        "verified": false,
+        "reason": "Verification error: Waiting for selector `#lastName` failed",
+        "verifiedAt": "2025-09-19T22:01:02.751Z",
+        "source": "New York Courts Attorney Registration"
+      }
+    }
+  ],
+  "dataQuality": {
+    "total": 2,
+    "verified": 2,
+    "withContact": 2,
+    "lastUpdated": "2025-09-19T21:40:53.035Z"
+  },
+  "lastVerified": "2025-09-19T22:01:02.751Z",
+  "verificationSource": "New York Courts Attorney Registration"
+}

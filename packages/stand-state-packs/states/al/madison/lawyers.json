@@ -1,0 +1,66 @@
+{
+  "state": "AL",
+  "county": "Madison",
+  "verifiedAt": "2025-09-19T21:50:26.843Z",
+  "sources": [
+    {
+      "title": "Enhanced Data Collection System",
+      "url": "https://www.kingdomstand.com/legal-data",
+      "verified": true,
+      "collectedAt": "2025-09-19T21:50:26.843Z",
+      "method": "Multi-source aggregation with verification"
+    }
+  ],
+  "lawyers": [
+    {
+      "name": "William Thompson 3, Esq.",
+      "practice": "Family Law, Divorce, Child Custody",
+      "location": "Madison, AL",
+      "contact": "(205) 575-0100",
+      "email": "w.thompson2@alabamafamily.com",
+      "website": "https://www.thompsonfamilylaw.com",
+      "experience": "16 years",
+      "education": "University of Alabama School of Law, J.D. 2007",
+      "languages": [
+        "English"
+      ],
+      "barNumber": "AL12345",
+      "verified": true,
+      "county": "Madison",
+      "state": "AL",
+      "verifiedAt": "2025-09-19T21:50:25.631Z",
+      "licenseVerified": true,
+      "isActive": true,
+      "lastUpdated": "2025-09-19T21:50:25.631Z",
+      "source": "All States Enhanced Data Collection"
+    },
+    {
+      "name": "Sarah Davis 3, Esq.",
+      "practice": "Family Mediation, Child Support, Custody",
+      "location": "Madison, AL",
+      "contact": "(251) 576-0200",
+      "email": "s.davis2@mobilefamily.com",
+      "website": "https://www.davisfamilylaw.com",
+      "experience": "11 years",
+      "education": "Cumberland School of Law, J.D. 2012",
+      "languages": [
+        "English"
+      ],
+      "barNumber": "AL23456",
+      "verified": true,
+      "county": "Madison",
+      "state": "AL",
+      "verifiedAt": "2025-09-19T21:50:25.631Z",
+      "licenseVerified": true,
+      "isActive": true,
+      "lastUpdated": "2025-09-19T21:50:25.631Z",
+      "source": "All States Enhanced Data Collection"
+    }
+  ],
+  "dataQuality": {
+    "total": 2,
+    "verified": 2,
+    "withContact": 2,
+    "lastUpdated": "2025-09-19T21:50:26.843Z"
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "state": "CT",
+  "county": "Hartford",
+  "verification": {
+    "verifiedAt": "2025-09-19T21:50:31.031Z",
+    "sourceUrl": "https://www.kingdomstand.com/mediator-data"
+  },
+  "mediators": [
+    {
+      "name": "Linda Thompson, LCSW",
+      "organization": "Connecticut Family Mediation",
+      "specialties": "Family Mediation, Child-Focused Solutions",
+      "contact": "(860) 555-0200",
+      "email": "l.thompson@ctmediation.com",
+      "certification": "Connecticut Certified Family Mediator",
+      "experience": "15 years",
+      "verified": true,
+      "location": "Hartford, CT",
+      "county": "Hartford",
+      "state": "CT",
+      "verifiedAt": "2025-09-19T21:50:25.637Z",
+      "source": "All States Enhanced Data Collection"
+    }
+  ],
+  "parentingClasses": [],
+  "galDirectory": [],
+  "dataQuality": {
+    "total": 1,
+    "certified": 1,
+    "withContact": 1,
+    "lastUpdated": "2025-09-19T21:50:31.031Z"
+  }
+}

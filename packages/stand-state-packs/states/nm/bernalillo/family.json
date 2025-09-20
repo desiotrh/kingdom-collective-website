@@ -1,0 +1,33 @@
+{
+  "state": "NM",
+  "county": "Bernalillo",
+  "verification": {
+    "verifiedAt": "2025-09-19T21:50:55.857Z",
+    "sourceUrl": "https://www.kingdomstand.com/mediator-data"
+  },
+  "mediators": [
+    {
+      "name": "Carlos Rodriguez, LCSW",
+      "organization": "New Mexico Family Solutions",
+      "specialties": "Bilingual Mediation, Cultural Sensitivity",
+      "contact": "(505) 555-0200",
+      "email": "c.rodriguez@nmsolutions.com",
+      "certification": "New Mexico Certified Mediator",
+      "experience": "12 years",
+      "verified": true,
+      "location": "Bernalillo, NM",
+      "county": "Bernalillo",
+      "state": "NM",
+      "verifiedAt": "2025-09-19T21:50:25.658Z",
+      "source": "All States Enhanced Data Collection"
+    }
+  ],
+  "parentingClasses": [],
+  "galDirectory": [],
+  "dataQuality": {
+    "total": 1,
+    "certified": 1,
+    "withContact": 1,
+    "lastUpdated": "2025-09-19T21:50:55.857Z"
+  }
+}

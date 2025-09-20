@@ -26,6 +26,13 @@ interface NotificationSettings {
     notificationsEnabled: boolean;
 }
 
+interface UserSettings {
+    faithMode: boolean;
+    contentPreferences: string[];
+    blessingPoolOptIn: boolean;
+    creatorType: 'free' | 'pro';
+}
+
 export default function SettingsScreen() {
     const colorScheme = useColorScheme();
     const colors = Colors[colorScheme ?? 'light'];
@@ -40,6 +47,12 @@ export default function SettingsScreen() {
         discipleshipPrompt: false,
         preferredTime: '09:00',
         notificationsEnabled: false,
+    });
+    const [userSettings, setUserSettings] = useState<UserSettings>({
+        faithMode: faithMode,
+        contentPreferences: [],
+        blessingPoolOptIn: false,
+        creatorType: 'free',
     });
     const [showDeleteModal, setShowDeleteModal] = useState(false);
     const [deletingAccount, setDeletingAccount] = useState(false);
@@ -443,6 +456,90 @@ export default function SettingsScreen() {
                     )}
                 </View>
 
+                {/* Faith Mode & Preferences Section */}
+                <View style={styles.section}>
+                    <Text style={[styles.sectionTitle, { color: colors.emerald }]}>
+                        {faithMode ? '✝️ Faith & Content Preferences' : '🕊 Content Preferences'}
+                    </Text>
+
+                    {/* Faith Mode Toggle */}
+                    <View style={[styles.settingItem, { backgroundColor: colors.card }]}>
+                        <View style={styles.settingHeader}>
+                            <Text style={[styles.settingIcon, { color: colors.emerald }]}>
+                                {faithMode ? '✝️' : '🕊'}
+                            </Text>
+                            <View style={styles.settingText}>
+                                <Text style={[styles.settingTitle, { color: colors.text }]}>
+                                    Enable Faith Mode
+                                </Text>
+                                <Text style={[styles.settingDescription, { color: colors.olive }]}>
+                                    {faithMode
+                                        ? 'Use spiritual language and faith-based content'
+                                        : 'Use wellness language and growth-focused content'
+                                    }
+                                </Text>
+                            </View>
+                        </View>
+                        <Switch
+                            value={userSettings.faithMode}
+                            onValueChange={(value) => setUserSettings(prev => ({ ...prev, faithMode: value }))}
+                            trackColor={{ false: colors.olive, true: colors.emerald }}
+                            thumbColor={colors.cream}
+                        />
+                    </View>
+
+                    {/* Blessing Pool Toggle */}
+                    <View style={[styles.settingItem, { backgroundColor: colors.card }]}>
+                        <View style={styles.settingHeader}>
+                            <Text style={[styles.settingIcon, { color: colors.emerald }]}>
+                                💝
+                            </Text>
+                            <View style={styles.settingText}>
+                                <Text style={[styles.settingTitle, { color: colors.text }]}>
+                                    {faithMode ? 'Contribute to Kingdom Blessing Pool' : 'Contribute to Blessing Pool'}
+                                </Text>
+                                <Text style={[styles.settingDescription, { color: colors.olive }]}>
+                                    {faithMode
+                                        ? 'Give an extra 5% to help other creators in need'
+                                        : 'Give an extra 5% to help other creators in need'
+                                    }
+                                </Text>
+                            </View>
+                        </View>
+                        <Switch
+                            value={userSettings.blessingPoolOptIn}
+                            onValueChange={(value) => setUserSettings(prev => ({ ...prev, blessingPoolOptIn: value }))}
+                            trackColor={{ false: colors.olive, true: colors.emerald }}
+                            thumbColor={colors.cream}
+                        />
+                    </View>
+
+                    {/* Creator Type */}
+                    <View style={[styles.settingItem, { backgroundColor: colors.card }]}>
+                        <View style={styles.settingHeader}>
+                            <Text style={[styles.settingIcon, { color: colors.emerald }]}>
+                                👑
+                            </Text>
+                            <View style={styles.settingText}>
+                                <Text style={[styles.settingTitle, { color: colors.text }]}>
+                                    Creator Type
+                                </Text>
+                                <Text style={[styles.settingDescription, { color: colors.olive }]}>
+                                    {userSettings.creatorType === 'pro' ? 'Pro Creator' : 'Free Creator'}
+                                </Text>
+                            </View>
+                        </View>
+                        <TouchableOpacity
+                            style={[styles.upgradeButton, { backgroundColor: colors.olive }]}
+                            onPress={() => Alert.alert('Upgrade', 'This would open the upgrade flow.')}
+                        >
+                            <Text style={[styles.upgradeButtonText, { color: colors.cream }]}>
+                                {userSettings.creatorType === 'pro' ? 'Manage Pro' : 'Upgrade to Pro'}
+                            </Text>
+                        </TouchableOpacity>
+                    </View>
+                </View>
+
                 {/* Mode Indicator */}
                 <View style={[styles.modeIndicator, { backgroundColor: colors.card }]}>
                     <Text style={[styles.modeText, { color: colors.emerald }]}>
@@ -705,5 +802,15 @@ const styles = StyleSheet.create({
         color: '#ffffff',
         fontWeight: 'bold',
         fontFamily: 'Nunito_700SemiBold',
+    },
+    upgradeButton: {
+        paddingHorizontal: 16,
+        paddingVertical: 8,
+        borderRadius: 8,
+    },
+    upgradeButtonText: {
+        fontSize: 14,
+        fontWeight: '600',
+        fontFamily: 'Nunito_600SemiBold',
     },
 }); 

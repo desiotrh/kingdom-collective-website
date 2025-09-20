@@ -1,0 +1,33 @@
+{
+  "state": "ID",
+  "county": "Ada",
+  "verification": {
+    "verifiedAt": "2025-09-19T21:50:36.743Z",
+    "sourceUrl": "https://www.kingdomstand.com/mediator-data"
+  },
+  "mediators": [
+    {
+      "name": "Rebecca Thompson, LCSW",
+      "organization": "Idaho Family Mediation Center",
+      "specialties": "Family Mediation, Co-Parenting Plans",
+      "contact": "(208) 555-0200",
+      "email": "r.thompson@idahomediation.com",
+      "certification": "Idaho Certified Mediator",
+      "experience": "10 years",
+      "verified": true,
+      "location": "Ada, ID",
+      "county": "Ada",
+      "state": "ID",
+      "verifiedAt": "2025-09-19T21:50:25.640Z",
+      "source": "All States Enhanced Data Collection"
+    }
+  ],
+  "parentingClasses": [],
+  "galDirectory": [],
+  "dataQuality": {
+    "total": 1,
+    "certified": 1,
+    "withContact": 1,
+    "lastUpdated": "2025-09-19T21:50:36.743Z"
+  }
+}

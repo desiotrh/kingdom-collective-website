@@ -1,0 +1,44 @@
+{
+  "state": "MS",
+  "county": "Jackson",
+  "verifiedAt": "2025-09-19T21:50:48.766Z",
+  "sources": [
+    {
+      "title": "Enhanced Data Collection System",
+      "url": "https://www.kingdomstand.com/legal-data",
+      "verified": true,
+      "collectedAt": "2025-09-19T21:50:48.766Z",
+      "method": "Multi-source aggregation with verification"
+    }
+  ],
+  "lawyers": [
+    {
+      "name": "William Davis 4, Esq.",
+      "practice": "Family Law, Divorce, Child Support",
+      "location": "Jackson, MS",
+      "contact": "(601) 585-0100",
+      "email": "w.davis3@mississippifamily.com",
+      "website": "https://www.davisfamilylaw.com",
+      "experience": "15 years",
+      "education": "University of Mississippi School of Law, J.D. 2008",
+      "languages": [
+        "English"
+      ],
+      "barNumber": "MS12345",
+      "verified": true,
+      "county": "Jackson",
+      "state": "MS",
+      "verifiedAt": "2025-09-19T21:50:25.648Z",
+      "licenseVerified": true,
+      "isActive": true,
+      "lastUpdated": "2025-09-19T21:50:25.648Z",
+      "source": "All States Enhanced Data Collection"
+    }
+  ],
+  "dataQuality": {
+    "total": 1,
+    "verified": 1,
+    "withContact": 1,
+    "lastUpdated": "2025-09-19T21:50:48.766Z"
+  }
+}

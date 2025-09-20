@@ -1,0 +1,422 @@
+{
+  "startTime": "2025-09-19T21:52:35.073Z",
+  "totalStates": 51,
+  "processedStates": 51,
+  "totalLawyers": 270,
+  "verifiedLawyers": 256,
+  "activeLawyers": 270,
+  "errors": [],
+  "stateResults": [
+    {
+      "state": "AK",
+      "totalLawyers": 4,
+      "verifiedLawyers": 4,
+      "verificationRate": 100,
+      "activeLawyers": 4,
+      "counties": 4
+    },
+    {
+      "state": "AL",
+      "totalLawyers": 10,
+      "verifiedLawyers": 10,
+      "verificationRate": 100,
+      "activeLawyers": 10,
+      "counties": 5
+    },
+    {
+      "state": "AR",
+      "totalLawyers": 5,
+      "verifiedLawyers": 5,
+      "verificationRate": 100,
+      "activeLawyers": 5,
+      "counties": 5
+    },
+    {
+      "state": "AZ",
+      "totalLawyers": 10,
+      "verifiedLawyers": 10,
+      "verificationRate": 100,
+      "activeLawyers": 10,
+      "counties": 5
+    },
+    {
+      "state": "CA",
+      "totalLawyers": 21,
+      "verifiedLawyers": 19,
+      "verificationRate": 90,
+      "activeLawyers": 21,
+      "counties": 10
+    },
+    {
+      "state": "CO",
+      "totalLawyers": 10,
+      "verifiedLawyers": 10,
+      "verificationRate": 100,
+      "activeLawyers": 10,
+      "counties": 5
+    },
+    {
+      "state": "CT",
+      "totalLawyers": 5,
+      "verifiedLawyers": 5,
+      "verificationRate": 100,
+      "activeLawyers": 5,
+      "counties": 5
+    },
+    {
+      "state": "DC",
+      "totalLawyers": 1,
+      "verifiedLawyers": 1,
+      "verificationRate": 100,
+      "activeLawyers": 1,
+      "counties": 1
+    },
+    {
+      "state": "DE",
+      "totalLawyers": 3,
+      "verifiedLawyers": 3,
+      "verificationRate": 100,
+      "activeLawyers": 3,
+      "counties": 3
+    },
+    {
+      "state": "FL",
+      "totalLawyers": 0,
+      "verifiedLawyers": 0,
+      "verificationRate": 0,
+      "activeLawyers": 0,
+      "counties": 10
+    },
+    {
+      "state": "GA",
+      "totalLawyers": 10,
+      "verifiedLawyers": 10,
+      "verificationRate": 100,
+      "activeLawyers": 10,
+      "counties": 5
+    },
+    {
+      "state": "HI",
+      "totalLawyers": 4,
+      "verifiedLawyers": 4,
+      "verificationRate": 100,
+      "activeLawyers": 4,
+      "counties": 4
+    },
+    {
+      "state": "IA",
+      "totalLawyers": 5,
+      "verifiedLawyers": 5,
+      "verificationRate": 100,
+      "activeLawyers": 5,
+      "counties": 5
+    },
+    {
+      "state": "ID",
+      "totalLawyers": 5,
+      "verifiedLawyers": 5,
+      "verificationRate": 100,
+      "activeLawyers": 5,
+      "counties": 5
+    },
+    {
+      "state": "IL",
+      "totalLawyers": 0,
+      "verifiedLawyers": 0,
+      "verificationRate": 0,
+      "activeLawyers": 0,
+      "counties": 5
+    },
+    {
+      "state": "IN",
+      "totalLawyers": 5,
+      "verifiedLawyers": 5,
+      "verificationRate": 100,
+      "activeLawyers": 5,
+      "counties": 5
+    },
+    {
+      "state": "KS",
+      "totalLawyers": 5,
+      "verifiedLawyers": 5,
+      "verificationRate": 100,
+      "activeLawyers": 5,
+      "counties": 5
+    },
+    {
+      "state": "KY",
+      "totalLawyers": 5,
+      "verifiedLawyers": 5,
+      "verificationRate": 100,
+      "activeLawyers": 5,
+      "counties": 5
+    },
+    {
+      "state": "LA",
+      "totalLawyers": 5,
+      "verifiedLawyers": 5,
+      "verificationRate": 100,
+      "activeLawyers": 5,
+      "counties": 5
+    },
+    {
+      "state": "MA",
+      "totalLawyers": 5,
+      "verifiedLawyers": 5,
+      "verificationRate": 100,
+      "activeLawyers": 5,
+      "counties": 5
+    },
+    {
+      "state": "MD",
+      "totalLawyers": 5,
+      "verifiedLawyers": 5,
+      "verificationRate": 100,
+      "activeLawyers": 5,
+      "counties": 5
+    },
+    {
+      "state": "ME",
+      "totalLawyers": 5,
+      "verifiedLawyers": 5,
+      "verificationRate": 100,
+      "activeLawyers": 5,
+      "counties": 5
+    },
+    {
+      "state": "MI",
+      "totalLawyers": 5,
+      "verifiedLawyers": 5,
+      "verificationRate": 100,
+      "activeLawyers": 5,
+      "counties": 5
+    },
+    {
+      "state": "MN",
+      "totalLawyers": 5,
+      "verifiedLawyers": 5,
+      "verificationRate": 100,
+      "activeLawyers": 5,
+      "counties": 5
+    },
+    {
+      "state": "MO",
+      "totalLawyers": 5,
+      "verifiedLawyers": 5,
+      "verificationRate": 100,
+      "activeLawyers": 5,
+      "counties": 5
+    },
+    {
+      "state": "MS",
+      "totalLawyers": 5,
+      "verifiedLawyers": 5,
+      "verificationRate": 100,
+      "activeLawyers": 5,
+      "counties": 5
+    },
+    {
+      "state": "MT",
+      "totalLawyers": 5,
+      "verifiedLawyers": 5,
+      "verificationRate": 100,
+      "activeLawyers": 5,
+      "counties": 5
+    },
+    {
+      "state": "NC",
+      "totalLawyers": 5,
+      "verifiedLawyers": 5,
+      "verificationRate": 100,
+      "activeLawyers": 5,
+      "counties": 5
+    },
+    {
+      "state": "ND",
+      "totalLawyers": 5,
+      "verifiedLawyers": 5,
+      "verificationRate": 100,
+      "activeLawyers": 5,
+      "counties": 5
+    },
+    {
+      "state": "NE",
+      "totalLawyers": 5,
+      "verifiedLawyers": 5,
+      "verificationRate": 100,
+      "activeLawyers": 5,
+      "counties": 5
+    },
+    {
+      "state": "NH",
+      "totalLawyers": 5,
+      "verifiedLawyers": 5,
+      "verificationRate": 100,
+      "activeLawyers": 5,
+      "counties": 5
+    },
+    {
+      "state": "NJ",
+      "totalLawyers": 5,
+      "verifiedLawyers": 5,
+      "verificationRate": 100,
+      "activeLawyers": 5,
+      "counties": 5
+    },
+    {
+      "state": "NM",
+      "totalLawyers": 5,
+      "verifiedLawyers": 5,
+      "verificationRate": 100,
+      "activeLawyers": 5,
+      "counties": 5
+    },
+    {
+      "state": "NV",
+      "totalLawyers": 5,
+      "verifiedLawyers": 5,
+      "verificationRate": 100,
+      "activeLawyers": 5,
+      "counties": 5
+    },
+    {
+      "state": "NY",
+      "totalLawyers": 12,
+      "verifiedLawyers": 0,
+      "verificationRate": 0,
+      "activeLawyers": 12,
+      "counties": 10
+    },
+    {
+      "state": "OH",
+      "totalLawyers": 5,
+      "verifiedLawyers": 5,
+      "verificationRate": 100,
+      "activeLawyers": 5,
+      "counties": 5
+    },
+    {
+      "state": "OK",
+      "totalLawyers": 5,
+      "verifiedLawyers": 5,
+      "verificationRate": 100,
+      "activeLawyers": 5,
+      "counties": 5
+    },
+    {
+      "state": "OR",
+      "totalLawyers": 5,
+      "verifiedLawyers": 5,
+      "verificationRate": 100,
+      "activeLawyers": 5,
+      "counties": 5
+    },
+    {
+      "state": "PA",
+      "totalLawyers": 5,
+      "verifiedLawyers": 5,
+      "verificationRate": 100,
+      "activeLawyers": 5,
+      "counties": 5
+    },
+    {
+      "state": "RI",
+      "totalLawyers": 5,
+      "verifiedLawyers": 5,
+      "verificationRate": 100,
+      "activeLawyers": 5,
+      "counties": 5
+    },
+    {
+      "state": "SC",
+      "totalLawyers": 5,
+      "verifiedLawyers": 5,
+      "verificationRate": 100,
+      "activeLawyers": 5,
+      "counties": 5
+    },
+    {
+      "state": "SD",
+      "totalLawyers": 5,
+      "verifiedLawyers": 5,
+      "verificationRate": 100,
+      "activeLawyers": 5,
+      "counties": 5
+    },
+    {
+      "state": "TN",
+      "totalLawyers": 5,
+      "verifiedLawyers": 5,
+      "verificationRate": 100,
+      "activeLawyers": 5,
+      "counties": 5
+    },
+    {
+      "state": "TX",
+      "totalLawyers": 0,
+      "verifiedLawyers": 0,
+      "verificationRate": 0,
+      "activeLawyers": 0,
+      "counties": 10
+    },
+    {
+      "state": "UT",
+      "totalLawyers": 5,
+      "verifiedLawyers": 5,
+      "verificationRate": 100,
+      "activeLawyers": 5,
+      "counties": 5
+    },
+    {
+      "state": "VT",
+      "totalLawyers": 5,
+      "verifiedLawyers": 5,
+      "verificationRate": 100,
+      "activeLawyers": 5,
+      "counties": 5
+    },
+    {
+      "state": "VA",
+      "totalLawyers": 0,
+      "verifiedLawyers": 0,
+      "verificationRate": 0,
+      "activeLawyers": 0,
+      "counties": 5
+    },
+    {
+      "state": "WA",
+      "totalLawyers": 5,
+      "verifiedLawyers": 5,
+      "verificationRate": 100,
+      "activeLawyers": 5,
+      "counties": 5
+    },
+    {
+      "state": "WV",
+      "totalLawyers": 5,
+      "verifiedLawyers": 5,
+      "verificationRate": 100,
+      "activeLawyers": 5,
+      "counties": 5
+    },
+    {
+      "state": "WI",
+      "totalLawyers": 5,
+      "verifiedLawyers": 5,
+      "verificationRate": 100,
+      "activeLawyers": 5,
+      "counties": 5
+    },
+    {
+      "state": "WY",
+      "totalLawyers": 5,
+      "verifiedLawyers": 5,
+      "verificationRate": 100,
+      "activeLawyers": 5,
+      "counties": 5
+    }
+  ],
+  "endTime": "2025-09-19T22:04:22.617Z",
+  "processingTime": 707544,
+  "overallVerificationRate": 95
+}

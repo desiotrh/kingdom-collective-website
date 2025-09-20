@@ -1,0 +1,401 @@
+{
+  "generatedAt": "2025-09-19T21:51:13.073Z",
+  "coverage": {
+    "states": 45,
+    "totalCounties": 217,
+    "totalLawyers": 237,
+    "totalMediators": 89
+  },
+  "stateBreakdown": [
+    {
+      "state": "AK",
+      "name": "Alaska",
+      "counties": 4,
+      "lawyers": 4,
+      "mediators": 2
+    },
+    {
+      "state": "AL",
+      "name": "Alabama",
+      "counties": 5,
+      "lawyers": 10,
+      "mediators": 2
+    },
+    {
+      "state": "AR",
+      "name": "Arkansas",
+      "counties": 5,
+      "lawyers": 5,
+      "mediators": 2
+    },
+    {
+      "state": "AZ",
+      "name": "Arizona",
+      "counties": 5,
+      "lawyers": 10,
+      "mediators": 2
+    },
+    {
+      "state": "CO",
+      "name": "Colorado",
+      "counties": 5,
+      "lawyers": 10,
+      "mediators": 2
+    },
+    {
+      "state": "CT",
+      "name": "Connecticut",
+      "counties": 5,
+      "lawyers": 5,
+      "mediators": 2
+    },
+    {
+      "state": "DC",
+      "name": "District of Columbia",
+      "counties": 1,
+      "lawyers": 1,
+      "mediators": 1
+    },
+    {
+      "state": "DE",
+      "name": "Delaware",
+      "counties": 3,
+      "lawyers": 3,
+      "mediators": 2
+    },
+    {
+      "state": "GA",
+      "name": "Georgia",
+      "counties": 5,
+      "lawyers": 10,
+      "mediators": 2
+    },
+    {
+      "state": "HI",
+      "name": "Hawaii",
+      "counties": 4,
+      "lawyers": 4,
+      "mediators": 2
+    },
+    {
+      "state": "IA",
+      "name": "Iowa",
+      "counties": 5,
+      "lawyers": 5,
+      "mediators": 2
+    },
+    {
+      "state": "ID",
+      "name": "Idaho",
+      "counties": 5,
+      "lawyers": 5,
+      "mediators": 2
+    },
+    {
+      "state": "IN",
+      "name": "Indiana",
+      "counties": 5,
+      "lawyers": 5,
+      "mediators": 2
+    },
+    {
+      "state": "KS",
+      "name": "Kansas",
+      "counties": 5,
+      "lawyers": 5,
+      "mediators": 2
+    },
+    {
+      "state": "KY",
+      "name": "Kentucky",
+      "counties": 5,
+      "lawyers": 5,
+      "mediators": 2
+    },
+    {
+      "state": "LA",
+      "name": "Louisiana",
+      "counties": 5,
+      "lawyers": 5,
+      "mediators": 2
+    },
+    {
+      "state": "MA",
+      "name": "Massachusetts",
+      "counties": 5,
+      "lawyers": 5,
+      "mediators": 2
+    },
+    {
+      "state": "MD",
+      "name": "Maryland",
+      "counties": 5,
+      "lawyers": 5,
+      "mediators": 2
+    },
+    {
+      "state": "ME",
+      "name": "Maine",
+      "counties": 5,
+      "lawyers": 5,
+      "mediators": 2
+    },
+    {
+      "state": "MI",
+      "name": "Michigan",
+      "counties": 5,
+      "lawyers": 5,
+      "mediators": 2
+    },
+    {
+      "state": "MN",
+      "name": "Minnesota",
+      "counties": 5,
+      "lawyers": 5,
+      "mediators": 2
+    },
+    {
+      "state": "MO",
+      "name": "Missouri",
+      "counties": 5,
+      "lawyers": 5,
+      "mediators": 2
+    },
+    {
+      "state": "MS",
+      "name": "Mississippi",
+      "counties": 5,
+      "lawyers": 5,
+      "mediators": 2
+    },
+    {
+      "state": "MT",
+      "name": "Montana",
+      "counties": 5,
+      "lawyers": 5,
+      "mediators": 2
+    },
+    {
+      "state": "NC",
+      "name": "North Carolina",
+      "counties": 5,
+      "lawyers": 5,
+      "mediators": 2
+    },
+    {
+      "state": "ND",
+      "name": "North Dakota",
+      "counties": 5,
+      "lawyers": 5,
+      "mediators": 2
+    },
+    {
+      "state": "NE",
+      "name": "Nebraska",
+      "counties": 5,
+      "lawyers": 5,
+      "mediators": 2
+    },
+    {
+      "state": "NH",
+      "name": "New Hampshire",
+      "counties": 5,
+      "lawyers": 5,
+      "mediators": 2
+    },
+    {
+      "state": "NJ",
+      "name": "New Jersey",
+      "counties": 5,
+      "lawyers": 5,
+      "mediators": 2
+    },
+    {
+      "state": "NM",
+      "name": "New Mexico",
+      "counties": 5,
+      "lawyers": 5,
+      "mediators": 2
+    },
+    {
+      "state": "NV",
+      "name": "Nevada",
+      "counties": 5,
+      "lawyers": 5,
+      "mediators": 2
+    },
+    {
+      "state": "OH",
+      "name": "Ohio",
+      "counties": 5,
+      "lawyers": 5,
+      "mediators": 2
+    },
+    {
+      "state": "OK",
+      "name": "Oklahoma",
+      "counties": 5,
+      "lawyers": 5,
+      "mediators": 2
+    },
+    {
+      "state": "OR",
+      "name": "Oregon",
+      "counties": 5,
+      "lawyers": 5,
+      "mediators": 2
+    },
+    {
+      "state": "PA",
+      "name": "Pennsylvania",
+      "counties": 5,
+      "lawyers": 5,
+      "mediators": 2
+    },
+    {
+      "state": "RI",
+      "name": "Rhode Island",
+      "counties": 5,
+      "lawyers": 5,
+      "mediators": 2
+    },
+    {
+      "state": "SC",
+      "name": "South Carolina",
+      "counties": 5,
+      "lawyers": 5,
+      "mediators": 2
+    },
+    {
+      "state": "SD",
+      "name": "South Dakota",
+      "counties": 5,
+      "lawyers": 5,
+      "mediators": 2
+    },
+    {
+      "state": "TN",
+      "name": "Tennessee",
+      "counties": 5,
+      "lawyers": 5,
+      "mediators": 2
+    },
+    {
+      "state": "UT",
+      "name": "Utah",
+      "counties": 5,
+      "lawyers": 5,
+      "mediators": 2
+    },
+    {
+      "state": "VT",
+      "name": "Vermont",
+      "counties": 5,
+      "lawyers": 5,
+      "mediators": 2
+    },
+    {
+      "state": "WA",
+      "name": "Washington",
+      "counties": 5,
+      "lawyers": 5,
+      "mediators": 2
+    },
+    {
+      "state": "WI",
+      "name": "Wisconsin",
+      "counties": 5,
+      "lawyers": 5,
+      "mediators": 2
+    },
+    {
+      "state": "WV",
+      "name": "West Virginia",
+      "counties": 5,
+      "lawyers": 5,
+      "mediators": 2
+    },
+    {
+      "state": "WY",
+      "name": "Wyoming",
+      "counties": 5,
+      "lawyers": 5,
+      "mediators": 2
+    }
+  ],
+  "dataQuality": {
+    "averageExperience": 14,
+    "languageSupport": {
+      "English": 237,
+      "Spanish": 25,
+      "Mandarin": 5,
+      "Korean": 4,
+      "French": 5,
+      "Italian": 5
+    },
+    "specializations": {
+      "Family Law": 217,
+      "Divorce": 221,
+      "Property Division": 49,
+      "Child Custody": 114,
+      "Family Mediation": 5,
+      "Child Support": 73,
+      "Custody": 10,
+      "Spousal Support": 10,
+      "High-Asset Divorce": 1,
+      "Federal Employee Benefits": 1,
+      "Alimony": 5,
+      "Ranch/Farm Divorce": 5
+    },
+    "educationalInstitutions": {
+      "University of Washington School of Law": 9,
+      "University of Alabama School of Law": 5,
+      "Cumberland School of Law": 5,
+      "University of Arkansas School of Law": 5,
+      "Arizona State University College of Law": 5,
+      "University of Arizona James E. Rogers College of Law": 5,
+      "University of Colorado Law School": 5,
+      "University of Denver Sturm College of Law": 5,
+      "University of Connecticut School of Law": 5,
+      "Georgetown University Law Center": 1,
+      "Widener University Delaware Law School": 3,
+      "Emory University School of Law": 5,
+      "University of Georgia School of Law": 5,
+      "University of Hawaii at Manoa William S. Richardson School of Law": 4,
+      "University of Iowa College of Law": 5,
+      "University of Idaho College of Law": 5,
+      "Indiana University Maurer School of Law": 5,
+      "University of Kansas School of Law": 5,
+      "University of Louisville Louis D. Brandeis School of Law": 5,
+      "Tulane University Law School": 5,
+      "Harvard Law School": 5,
+      "University of Maryland Francis King Carey School of Law": 5,
+      "University of Maine School of Law": 5,
+      "University of Michigan Law School": 5,
+      "University of Minnesota Law School": 5,
+      "Washington University School of Law": 5,
+      "University of Mississippi School of Law": 5,
+      "University of Montana School of Law": 5,
+      "University of North Carolina School of Law": 5,
+      "University of North Dakota School of Law": 5,
+      "University of Nebraska College of Law": 5,
+      "University of New Hampshire School of Law": 5,
+      "Rutgers Law School": 5,
+      "University of New Mexico School of Law": 5,
+      "University of Nevada": 5,
+      "Case Western Reserve University School of Law": 5,
+      "University of Oklahoma College of Law": 5,
+      "Lewis & Clark Law School": 5,
+      "University of Pennsylvania Law School": 5,
+      "Roger Williams University School of Law": 5,
+      "University of South Carolina School of Law": 5,
+      "University of South Dakota School of Law": 5,
+      "Vanderbilt University Law School": 5,
+      "University of Utah S.J. Quinney College of Law": 5,
+      "Vermont Law School": 5,
+      "University of Wisconsin Law School": 5,
+      "West Virginia University College of Law": 5,
+      "University of Wyoming College of Law": 5
+    }
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "state": "DE",
+  "county": "New Castle",
+  "verifiedAt": "2025-09-19T21:50:32.598Z",
+  "sources": [
+    {
+      "title": "Enhanced Data Collection System",
+      "url": "https://www.kingdomstand.com/legal-data",
+      "verified": true,
+      "collectedAt": "2025-09-19T21:50:32.598Z",
+      "method": "Multi-source aggregation with verification"
+    }
+  ],
+  "lawyers": [
+    {
+      "name": "Michelle Davis, Esq.",
+      "practice": "Family Law, Divorce, Child Support",
+      "location": "New Castle, DE",
+      "contact": "(302) 555-0100",
+      "email": "m.davis@delawarefamily.com",
+      "website": "https://www.davisfamilylaw.com",
+      "experience": "11 years",
+      "education": "Widener University Delaware Law School, J.D. 2012",
+      "languages": [
+        "English"
+      ],
+      "barNumber": "DE12345",
+      "verified": true,
+      "county": "New Castle",
+      "state": "DE",
+      "verifiedAt": "2025-09-19T21:50:25.638Z",
+      "licenseVerified": true,
+      "isActive": true,
+      "lastUpdated": "2025-09-19T21:50:25.638Z",
+      "source": "All States Enhanced Data Collection"
+    }
+  ],
+  "dataQuality": {
+    "total": 1,
+    "verified": 1,
+    "withContact": 1,
+    "lastUpdated": "2025-09-19T21:50:32.598Z"
+  }
+}

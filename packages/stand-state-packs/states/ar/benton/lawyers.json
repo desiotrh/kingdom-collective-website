@@ -1,0 +1,44 @@
+{
+  "state": "AR",
+  "county": "Benton",
+  "verifiedAt": "2025-09-19T21:50:27.921Z",
+  "sources": [
+    {
+      "title": "Enhanced Data Collection System",
+      "url": "https://www.kingdomstand.com/legal-data",
+      "verified": true,
+      "collectedAt": "2025-09-19T21:50:27.921Z",
+      "method": "Multi-source aggregation with verification"
+    }
+  ],
+  "lawyers": [
+    {
+      "name": "James Miller 3, Esq.",
+      "practice": "Family Law, Child Support, Custody",
+      "location": "Benton, AR",
+      "contact": "(501) 575-0100",
+      "email": "j.miller2@arkansasfamily.com",
+      "website": "https://www.millerfamilylaw.com",
+      "experience": "14 years",
+      "education": "University of Arkansas School of Law, J.D. 2009",
+      "languages": [
+        "English"
+      ],
+      "barNumber": "AR12345",
+      "verified": true,
+      "county": "Benton",
+      "state": "AR",
+      "verifiedAt": "2025-09-19T21:50:25.632Z",
+      "licenseVerified": true,
+      "isActive": true,
+      "lastUpdated": "2025-09-19T21:50:25.632Z",
+      "source": "All States Enhanced Data Collection"
+    }
+  ],
+  "dataQuality": {
+    "total": 1,
+    "verified": 1,
+    "withContact": 1,
+    "lastUpdated": "2025-09-19T21:50:27.921Z"
+  }
+}

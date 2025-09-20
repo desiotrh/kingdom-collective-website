@@ -1,0 +1,11 @@
+{
+  "state": "NY",
+  "county": "Erie",
+  "verification": {
+    "verifiedAt": "2025-09-01T18:53:13.725Z",
+    "sourceUrl": "https://www.nycourts.gov/ip/mediation/"
+  },
+  "mediators": [],
+  "parentingClasses": [],
+  "galDirectory": []
+}

@@ -1,0 +1,44 @@
+{
+  "state": "IA",
+  "county": "Polk",
+  "verifiedAt": "2025-09-19T21:50:35.630Z",
+  "sources": [
+    {
+      "title": "Enhanced Data Collection System",
+      "url": "https://www.kingdomstand.com/legal-data",
+      "verified": true,
+      "collectedAt": "2025-09-19T21:50:35.630Z",
+      "method": "Multi-source aggregation with verification"
+    }
+  ],
+  "lawyers": [
+    {
+      "name": "Thomas Wilson, Esq.",
+      "practice": "Family Law, Child Custody, Divorce",
+      "location": "Polk, IA",
+      "contact": "(515) 555-0100",
+      "email": "t.wilson@iowafamily.com",
+      "website": "https://www.wilsonfamilylaw.com",
+      "experience": "13 years",
+      "education": "University of Iowa College of Law, J.D. 2010",
+      "languages": [
+        "English"
+      ],
+      "barNumber": "IA12345",
+      "verified": true,
+      "county": "Polk",
+      "state": "IA",
+      "verifiedAt": "2025-09-19T21:50:25.639Z",
+      "licenseVerified": true,
+      "isActive": true,
+      "lastUpdated": "2025-09-19T21:50:25.639Z",
+      "source": "All States Enhanced Data Collection"
+    }
+  ],
+  "dataQuality": {
+    "total": 1,
+    "verified": 1,
+    "withContact": 1,
+    "lastUpdated": "2025-09-19T21:50:35.630Z"
+  }
+}

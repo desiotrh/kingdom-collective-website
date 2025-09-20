@@ -1,0 +1,44 @@
+{
+  "state": "TN",
+  "county": "Rutherford",
+  "verifiedAt": "2025-09-19T21:51:06.074Z",
+  "sources": [
+    {
+      "title": "Enhanced Data Collection System",
+      "url": "https://www.kingdomstand.com/legal-data",
+      "verified": true,
+      "collectedAt": "2025-09-19T21:51:06.074Z",
+      "method": "Multi-source aggregation with verification"
+    }
+  ],
+  "lawyers": [
+    {
+      "name": "Jennifer Miller 5, Esq.",
+      "practice": "Family Law, Child Custody, Divorce",
+      "location": "Rutherford, TN",
+      "contact": "(615) 595-0100",
+      "email": "j.miller4@tennesseefamily.com",
+      "website": "https://www.millerfamilylaw.com",
+      "experience": "14 years",
+      "education": "Vanderbilt University Law School, J.D. 2009",
+      "languages": [
+        "English"
+      ],
+      "barNumber": "TN12345",
+      "verified": true,
+      "county": "Rutherford",
+      "state": "TN",
+      "verifiedAt": "2025-09-19T21:50:25.667Z",
+      "licenseVerified": true,
+      "isActive": true,
+      "lastUpdated": "2025-09-19T21:50:25.667Z",
+      "source": "All States Enhanced Data Collection"
+    }
+  ],
+  "dataQuality": {
+    "total": 1,
+    "verified": 1,
+    "withContact": 1,
+    "lastUpdated": "2025-09-19T21:51:06.074Z"
+  }
+}

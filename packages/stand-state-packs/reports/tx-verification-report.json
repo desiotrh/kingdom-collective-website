@@ -1,0 +1,113 @@
+{
+  "state": "TX",
+  "generatedAt": "2025-09-19T22:03:39.034Z",
+  "counties": [
+    {
+      "county": "Bexar",
+      "totalLawyers": 0,
+      "verifiedLawyers": 0,
+      "activeLawyers": 0,
+      "unverifiedLawyers": 0,
+      "lastVerified": null,
+      "lawyers": [],
+      "verificationRate": 0
+    },
+    {
+      "county": "Collin",
+      "totalLawyers": 0,
+      "verifiedLawyers": 0,
+      "activeLawyers": 0,
+      "unverifiedLawyers": 0,
+      "lastVerified": null,
+      "lawyers": [],
+      "verificationRate": 0
+    },
+    {
+      "county": "Dallas",
+      "totalLawyers": 0,
+      "verifiedLawyers": 0,
+      "activeLawyers": 0,
+      "unverifiedLawyers": 0,
+      "lastVerified": null,
+      "lawyers": [],
+      "verificationRate": 0
+    },
+    {
+      "county": "El Paso",
+      "totalLawyers": 0,
+      "verifiedLawyers": 0,
+      "activeLawyers": 0,
+      "unverifiedLawyers": 0,
+      "lastVerified": null,
+      "lawyers": [],
+      "verificationRate": 0
+    },
+    {
+      "county": "Fort Bend",
+      "totalLawyers": 0,
+      "verifiedLawyers": 0,
+      "activeLawyers": 0,
+      "unverifiedLawyers": 0,
+      "lastVerified": null,
+      "lawyers": [],
+      "verificationRate": 0
+    },
+    {
+      "county": "Harris",
+      "totalLawyers": 0,
+      "verifiedLawyers": 0,
+      "activeLawyers": 0,
+      "unverifiedLawyers": 0,
+      "lastVerified": null,
+      "lawyers": [],
+      "verificationRate": 0
+    },
+    {
+      "county": "Hidalgo",
+      "totalLawyers": 0,
+      "verifiedLawyers": 0,
+      "activeLawyers": 0,
+      "unverifiedLawyers": 0,
+      "lastVerified": null,
+      "lawyers": [],
+      "verificationRate": 0
+    },
+    {
+      "county": "Montgomery",
+      "totalLawyers": 0,
+      "verifiedLawyers": 0,
+      "activeLawyers": 0,
+      "unverifiedLawyers": 0,
+      "lastVerified": null,
+      "lawyers": [],
+      "verificationRate": 0
+    },
+    {
+      "county": "Tarrant",
+      "totalLawyers": 0,
+      "verifiedLawyers": 0,
+      "activeLawyers": 0,
+      "unverifiedLawyers": 0,
+      "lastVerified": null,
+      "lawyers": [],
+      "verificationRate": 0
+    },
+    {
+      "county": "Travis",
+      "totalLawyers": 0,
+      "verifiedLawyers": 0,
+      "activeLawyers": 0,
+      "unverifiedLawyers": 0,
+      "lastVerified": null,
+      "lawyers": [],
+      "verificationRate": 0
+    }
+  ],
+  "summary": {
+    "totalLawyers": 0,
+    "verifiedLawyers": 0,
+    "activeLawyers": 0,
+    "unverifiedLawyers": 0,
+    "verificationRate": 0
+  }
+}

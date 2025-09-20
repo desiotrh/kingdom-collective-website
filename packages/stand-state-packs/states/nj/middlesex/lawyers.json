@@ -1,0 +1,45 @@
+{
+  "state": "NJ",
+  "county": "Middlesex",
+  "verifiedAt": "2025-09-19T21:50:54.912Z",
+  "sources": [
+    {
+      "title": "Enhanced Data Collection System",
+      "url": "https://www.kingdomstand.com/legal-data",
+      "verified": true,
+      "collectedAt": "2025-09-19T21:50:54.912Z",
+      "method": "Multi-source aggregation with verification"
+    }
+  ],
+  "lawyers": [
+    {
+      "name": "Anthony Rossi 2, Esq.",
+      "practice": "Family Law, Divorce, Child Support",
+      "location": "Middlesex, NJ",
+      "contact": "(973) 565-0100",
+      "email": "a.rossi1@njfamily.com",
+      "website": "https://www.rossifamilylaw.com",
+      "experience": "16 years",
+      "education": "Rutgers Law School, J.D. 2007",
+      "languages": [
+        "English",
+        "Italian"
+      ],
+      "barNumber": "NJ12345",
+      "verified": true,
+      "county": "Middlesex",
+      "state": "NJ",
+      "verifiedAt": "2025-09-19T21:50:25.657Z",
+      "licenseVerified": true,
+      "isActive": true,
+      "lastUpdated": "2025-09-19T21:50:25.657Z",
+      "source": "All States Enhanced Data Collection"
+    }
+  ],
+  "dataQuality": {
+    "total": 1,
+    "verified": 1,
+    "withContact": 1,
+    "lastUpdated": "2025-09-19T21:50:54.912Z"
+  }
+}

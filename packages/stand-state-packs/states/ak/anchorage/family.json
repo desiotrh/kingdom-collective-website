@@ -1,0 +1,33 @@
+{
+  "state": "AK",
+  "county": "Anchorage",
+  "verification": {
+    "verifiedAt": "2025-09-19T21:50:25.679Z",
+    "sourceUrl": "https://www.kingdomstand.com/mediator-data"
+  },
+  "mediators": [
+    {
+      "name": "Lisa Wilson, LCSW",
+      "organization": "Alaska Family Solutions",
+      "specialties": "Family Mediation, Co-Parenting",
+      "contact": "(907) 555-0200",
+      "email": "l.wilson@alaskasolutions.com",
+      "certification": "Alaska Certified Family Mediator",
+      "experience": "9 years",
+      "verified": true,
+      "location": "Anchorage, AK",
+      "county": "Anchorage",
+      "state": "AK",
+      "verifiedAt": "2025-09-19T21:50:25.630Z",
+      "source": "All States Enhanced Data Collection"
+    }
+  ],
+  "parentingClasses": [],
+  "galDirectory": [],
+  "dataQuality": {
+    "total": 1,
+    "certified": 1,
+    "withContact": 1,
+    "lastUpdated": "2025-09-19T21:50:25.680Z"
+  }
+}

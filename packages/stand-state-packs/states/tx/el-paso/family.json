@@ -1,0 +1,11 @@
+{
+  "state": "TX",
+  "county": "El Paso",
+  "verification": {
+    "verifiedAt": null,
+    "sourceUrl": ""
+  },
+  "mediators": [],
+  "parentingClasses": [],
+  "galDirectory": []
+}

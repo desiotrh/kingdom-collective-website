@@ -4,7 +4,11 @@
   "private": true,
   "workspaces": [
     "kingdom-studios",
-    "kingdom-studios-backend"
+    "kingdom-studios-backend",
+    "apps/kingdom-stand",
+    "packages/stand-core",
+    "packages/stand-state-packs",
+    "packages/ui"
   ],
   "scripts": {
     "build": "cd kingdom-website && npm run build",

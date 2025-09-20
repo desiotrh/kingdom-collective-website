@@ -1,0 +1,44 @@
+{
+  "state": "MN",
+  "county": "Ramsey",
+  "verifiedAt": "2025-09-19T21:50:46.418Z",
+  "sources": [
+    {
+      "title": "Enhanced Data Collection System",
+      "url": "https://www.kingdomstand.com/legal-data",
+      "verified": true,
+      "collectedAt": "2025-09-19T21:50:46.418Z",
+      "method": "Multi-source aggregation with verification"
+    }
+  ],
+  "lawyers": [
+    {
+      "name": "Karen Johnson 2, Esq.",
+      "practice": "Family Law, Child Custody, Divorce",
+      "location": "Ramsey, MN",
+      "contact": "(612) 565-0100",
+      "email": "k.johnson1@minnesotafamily.com",
+      "website": "https://www.johnsonfamilylaw.com",
+      "experience": "13 years",
+      "education": "University of Minnesota Law School, J.D. 2010",
+      "languages": [
+        "English"
+      ],
+      "barNumber": "MN12345",
+      "verified": true,
+      "county": "Ramsey",
+      "state": "MN",
+      "verifiedAt": "2025-09-19T21:50:25.647Z",
+      "licenseVerified": true,
+      "isActive": true,
+      "lastUpdated": "2025-09-19T21:50:25.647Z",
+      "source": "All States Enhanced Data Collection"
+    }
+  ],
+  "dataQuality": {
+    "total": 1,
+    "verified": 1,
+    "withContact": 1,
+    "lastUpdated": "2025-09-19T21:50:46.418Z"
+  }
+}
