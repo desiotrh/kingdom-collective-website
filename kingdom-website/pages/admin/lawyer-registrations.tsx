@@ -1,7 +1,6 @@
 import React from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
-import { LawyerRegistrationAdmin } from '@kingdom-studios/ui';
 
 export default function LawyerRegistrationsAdminPage() {
   return (
@@ -30,9 +29,6 @@ export default function LawyerRegistrationsAdminPage() {
                 <Link href="/stand" className="text-gray-600 hover:text-gray-900">
                   Kingdom Stand
                 </Link>
-                <Link href="/admin" className="text-gray-600 hover:text-gray-900">
-                  Admin Dashboard
-                </Link>
               </nav>
             </div>
           </div>
@@ -40,7 +36,61 @@ export default function LawyerRegistrationsAdminPage() {
 
         {/* Admin Content */}
         <main className="py-8">
-          <LawyerRegistrationAdmin />
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="bg-white shadow rounded-lg p-6">
+              <h1 className="text-2xl font-bold text-gray-900 mb-6">
+                Lawyer Registration Admin
+              </h1>
+              
+              <div className="mb-8">
+                <h2 className="text-lg font-semibold text-gray-800 mb-4">
+                  Registration Statistics
+                </h2>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <div className="bg-blue-50 p-4 rounded-lg">
+                    <div className="text-2xl font-bold text-blue-600">0</div>
+                    <div className="text-blue-800">Total Registrations</div>
+                  </div>
+                  <div className="bg-green-50 p-4 rounded-lg">
+                    <div className="text-2xl font-bold text-green-600">0</div>
+                    <div className="text-green-800">Verified Lawyers</div>
+                  </div>
+                  <div className="bg-yellow-50 p-4 rounded-lg">
+                    <div className="text-2xl font-bold text-yellow-600">0</div>
+                    <div className="text-yellow-800">Pending Reviews</div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mb-8">
+                <h2 className="text-lg font-semibold text-gray-800 mb-4">
+                  Recent Registrations
+                </h2>
+                <div className="bg-gray-50 p-4 rounded-lg">
+                  <p className="text-gray-600 text-center">
+                    No lawyer registrations yet. Registrations will appear here once lawyers start signing up.
+                  </p>
+                </div>
+              </div>
+
+              <div className="mb-8">
+                <h2 className="text-lg font-semibold text-gray-800 mb-4">
+                  Admin Actions
+                </h2>
+                <div className="flex flex-wrap gap-4">
+                  <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+                    Export Registrations
+                  </button>
+                  <button className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700">
+                    Send Verification Emails
+                  </button>
+                  <button className="px-4 py-2 bg-yellow-600 text-white rounded-lg hover:bg-yellow-700">
+                    Review Pending
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
         </main>
 
         {/* Quick Links */}
@@ -52,12 +102,6 @@ export default function LawyerRegistrationsAdminPage() {
               </h3>
               <div className="flex flex-wrap justify-center gap-4">
                 <Link
-                  href="/admin"
-                  className="px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700"
-                >
-                  Admin Dashboard
-                </Link>
-                <Link
                   href="/lawyer-registration"
                   className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
                 >
@@ -68,6 +112,12 @@ export default function LawyerRegistrationsAdminPage() {
                   className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700"
                 >
                   View Kingdom Stand
+                </Link>
+                <Link
+                  href="/legal-education"
+                  className="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700"
+                >
+                  Legal Education Hub
                 </Link>
               </div>
             </div>
