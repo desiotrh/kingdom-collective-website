@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Head from 'next/head';
+import Navigation from './Navigation';
 import FloatingFlameButton from './FloatingFlameButton';
 import EnhancedChatWindow from './EnhancedChatWindow';
 import AIReflectBanner from './AIReflectBanner';
@@ -67,6 +68,8 @@ export default function Layout({ children, title = 'Kingdom Collective', descrip
                 <a href="#main-content" className="skip-link">
                     Skip to main content
                 </a>
+                
+                <Navigation />
                 
                 <main role="main" id="main-content">
                     {children}

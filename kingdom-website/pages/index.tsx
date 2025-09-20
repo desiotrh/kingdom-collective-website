@@ -1,7 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
 import Layout from '../components/Layout';
-import Navigation from '../components/Navigation';
 import Hero from '../components/Hero';
 import AppCard from '../components/AppCard';
 import Footer from '../components/Footer';
@@ -72,7 +71,6 @@ export default function Home() {
       <div className="relative flex size-full min-h-screen flex-col bg-navy dark group/design-root overflow-x-hidden">
         <BackgroundVideo />
         <div className="layout-container flex h-full grow flex-col relative z-10">
-          <Navigation />
           
           {/* Main Content */}
           <main role="main">
