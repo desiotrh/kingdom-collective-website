@@ -57,6 +57,14 @@ export default function Home() {
       color: 'kingdom-gold',
       href: '/kingdom-lens',
     },
+    {
+      title: 'Kingdom Stand',
+      description: 'Navigate legal challenges with confidence and faith. Comprehensive legal support tools, education hub, and community resources for self-represented litigants.',
+      icon: '⚖️',
+      logo: '/kingdom-stand-logo.png',
+      color: 'kingdom-gold',
+      href: '/stand',
+    },
   ];
 
   return (

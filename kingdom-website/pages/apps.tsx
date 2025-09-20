@@ -55,6 +55,15 @@ export default function Apps() {
       features: ['Photo Planning', 'Editing Tools', 'Story Templates', 'Faith-Based Themes', 'Social Sharing', 'Portfolio Building'],
       color: 'teal'
     }
+    ,
+    {
+      name: 'Kingdom Stand',
+      description: 'Rooted in truth and honesty, we help every person stand prepared—knowing they do not stand alone.',
+      logo: '/kingdom-stand-logo.png',
+      href: '/kingdom-stand',
+      features: ['AI Form Assistant', 'Deadline Calculator', 'Court Binder', 'State Directory', 'Accessibility Tools', 'Verified Sources'],
+      color: 'blue'
+    }
   ];
 
   return (

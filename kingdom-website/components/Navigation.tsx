@@ -66,6 +66,9 @@ export default function Navigation() {
               <Link href="/kingdom-lens" className="nav-dropdown-item" role="menuitem">
                 Kingdom Lens
               </Link>
+              <Link href="/stand" className="nav-dropdown-item" role="menuitem">
+                Kingdom Stand
+              </Link>
             </div>
           </div>
 
@@ -284,6 +287,13 @@ export default function Navigation() {
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Kingdom Lens
+                </Link>
+                <Link
+                  href="/stand"
+                  className="block text-white hover:text-kingdom-gold transition-colors duration-200 text-sm"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Kingdom Stand
                 </Link>
               </div>
             </div>
