@@ -7,6 +7,7 @@ import Footer from '../components/Footer';
 import BackgroundVideo from '../components/BackgroundVideo';
 
 export default function Home() {
+  console.log('Home component rendering...');
   const apps = [
     {
       title: 'Kingdom Studios',
@@ -96,6 +97,7 @@ export default function Home() {
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+                  {console.log('About to render apps:', apps.length, apps)}
                   {apps.map((app, index) => (
                     <AppCard
                       key={index}
