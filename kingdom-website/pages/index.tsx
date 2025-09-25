@@ -97,7 +97,7 @@ export default function Home() {
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-                  {console.log('About to render apps:', apps.length, apps)}
+                  {(() => { console.log('About to render apps:', apps.length, apps); return null; })()}
                   {apps.map((app, index) => (
                     <AppCard
                       key={index}
