@@ -80,16 +80,11 @@ export default function Home() {
               <Hero />
             </section>
             
-            {/* DEBUG: Apps section should be visible */}
-            <div className="bg-red-500 text-white p-4 text-center">
-              🚨 DEBUG: APPS SECTION IS HERE - SHOULD BE VISIBLE 🚨
-            </div>
-            
-            <section className="px-4 sm:px-6 md:px-8 lg:px-12 xl:px-40 py-12 sm:py-16 md:py-20 bg-blue-500" aria-labelledby="apps-heading">
+            <section className="px-4 sm:px-6 md:px-8 lg:px-12 xl:px-40 py-12 sm:py-16 md:py-20" aria-labelledby="apps-heading">
               <div className="max-w-[960px] mx-auto">
                 <div className="text-center mb-12 sm:mb-16">
                   <h2 id="apps-heading" className="text-white text-2xl sm:text-3xl md:text-4xl font-black leading-tight tracking-[-0.033em] mb-6">
-                    🚀 OUR STUDIO APPS - TESTING DEPLOYMENT 🚀
+                    Our Studio Apps
                   </h2>
                   <p className="text-white text-sm sm:text-base font-normal leading-normal max-w-3xl mx-auto">
                     Kingdom Collective is more than just a suite of apps—it&apos;s a movement
@@ -100,12 +95,6 @@ export default function Home() {
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-                  {/* DEBUG: Simple test card */}
-                  <div className="bg-green-500 text-white p-6 rounded-xl">
-                    <h3 className="text-xl font-bold">TEST CARD</h3>
-                    <p>This should be visible if the grid is working</p>
-                  </div>
-                  
                   {apps.map((app, index) => (
                     <AppCard
                       key={index}

@@ -14,8 +14,8 @@ export default function Hero() {
           priority
         />
                 <p className="text-body-secondary text-lg sm:text-xl md:text-2xl font-light leading-relaxed -mt-20 sm:-mt-24 md:-mt-28 lg:-mt-36">
-                  🎯 TESTING DEPLOYMENT - Create with Purpose. Share with Authority. <br />
-                  Build What Matters. 🎯
+                  Create with Purpose. Share with Authority. <br />
+                  Build What Matters.
                 </p>
       </div>
     </section>
