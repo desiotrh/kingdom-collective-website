@@ -298,7 +298,7 @@ function LawyerRegistrationFormComponent() {
     city: '',
     state: '',
     zipCode: '',
-    practiceAreas: [],
+    practiceAreas: [] as string[],
     barNumber: '',
     barState: '',
     yearsExperience: '',

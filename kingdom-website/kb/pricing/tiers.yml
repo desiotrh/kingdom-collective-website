@@ -1,0 +1,261 @@
+apps:
+  studios:
+    tagline: "Create with Purpose. Share with Authority. Build What Matters."
+    tiers:
+      - id: free
+        price_usd: 0
+        features:
+          - Basic content creation tools
+          - Limited templates (10)
+          - Standard export quality
+          - Community support
+          - Faith Mode toggle
+      - id: pro
+        price_usd: 29
+        features:
+          - All Free features
+          - Advanced content scheduler
+          - Premium templates (100+)
+          - High-resolution exports
+          - Priority support
+          - Team collaboration (up to 5 users)
+          - Analytics dashboard
+      - id: enterprise
+        price_usd: 199
+        features:
+          - All Pro features
+          - SSO integration
+          - Audit logs
+          - Priority support (24/7)
+          - Custom branding
+          - Advanced analytics
+          - Unlimited team members
+          - API access
+
+  circle:
+    tagline: "Connect. Collaborate. Build Community."
+    tiers:
+      - id: free
+        price_usd: 0
+        features:
+          - Up to 50 members
+          - Basic discussion forums
+          - File sharing (1GB)
+          - Event calendar
+          - Basic analytics
+      - id: seed
+        price_usd: 19
+        features:
+          - Up to 200 members
+          - Advanced discussion features
+          - File sharing (10GB)
+          - Event management
+          - Member directory
+          - Basic integrations
+      - id: growth
+        price_usd: 49
+        features:
+          - Up to 1,000 members
+          - Advanced analytics
+          - Custom branding
+          - API access
+          - Advanced integrations
+          - Priority support
+      - id: enterprise
+        price_usd: 149
+        features:
+          - Unlimited members
+          - SSO integration
+          - Advanced security
+          - Custom development
+          - 24/7 support
+          - Audit logs
+
+  voice:
+    tagline: "Speak with Purpose. Listen with Wisdom."
+    tiers:
+      - id: free
+        price_usd: 0
+        features:
+          - Basic voice recognition
+          - 100 voice interactions/month
+          - Standard voice models
+          - Basic analytics
+          - Community support
+      - id: pro
+        price_usd: 39
+        features:
+          - Advanced voice recognition
+          - 1,000 voice interactions/month
+          - Custom voice models
+          - Advanced analytics
+          - Priority support
+          - API access
+      - id: enterprise
+        price_usd: 199
+        features:
+          - Premium voice recognition
+          - Unlimited voice interactions
+          - Custom voice training
+          - Advanced security
+          - 24/7 support
+          - Custom integrations
+
+  lens:
+    tagline: "See Beyond. Experience More."
+    tiers:
+      - id: free
+        price_usd: 0
+        features:
+          - Basic AR experiences
+          - 5 AR projects
+          - Standard templates
+          - Basic analytics
+          - Community support
+      - id: pro
+        price_usd: 49
+        features:
+          - Advanced AR experiences
+          - 50 AR projects
+          - Premium templates
+          - Advanced analytics
+          - Priority support
+          - Custom branding
+      - id: enterprise
+        price_usd: 299
+        features:
+          - Premium AR experiences
+          - Unlimited AR projects
+          - Custom development
+          - Advanced security
+          - 24/7 support
+          - White-label options
+
+  launchpad:
+    tagline: "Launch with Purpose. Scale with Wisdom."
+    tiers:
+      - id: free
+        price_usd: 0
+        features:
+          - Basic business planning tools
+          - Community access
+          - Resource library
+          - Basic analytics
+          - Email support
+      - id: seed
+        price_usd: 29
+        features:
+          - Advanced planning tools
+          - Mentorship matching
+          - Funding resources
+          - Advanced analytics
+          - Priority support
+          - Networking events
+      - id: growth
+        price_usd: 79
+        features:
+          - Premium planning tools
+          - Expert consultations
+          - Investor connections
+          - Custom analytics
+          - 24/7 support
+          - Accelerator programs
+      - id: enterprise
+        price_usd: 199
+        features:
+          - Custom development
+          - Dedicated support
+          - Advanced integrations
+          - White-label options
+          - Custom training
+          - Strategic partnerships
+
+  clips:
+    tagline: "Create. Edit. Inspire."
+    tiers:
+      - id: free
+        price_usd: 0
+        features:
+          - Basic video editing tools
+          - 5 video projects
+          - Standard templates
+          - Basic export options
+          - Community support
+      - id: pro
+        price_usd: 39
+        features:
+          - Advanced editing tools
+          - 50 video projects
+          - Premium templates
+          - High-resolution exports
+          - Priority support
+          - Stock footage library
+      - id: enterprise
+        price_usd: 149
+        features:
+          - Professional editing suite
+          - Unlimited projects
+          - Custom templates
+          - 4K/8K exports
+          - 24/7 support
+          - Team collaboration
+          - Custom branding
+
+  stand:
+    tagline: "Stand for Truth. Act with Love."
+    tiers:
+      - id: free
+        price_usd: 0
+        features:
+          - Basic advocacy tools
+          - Campaign creation
+          - Community access
+          - Basic analytics
+          - Email support
+      - id: pro
+        price_usd: 29
+        features:
+          - Advanced advocacy tools
+          - Campaign management
+          - Advanced analytics
+          - Priority support
+          - Custom branding
+          - Integration options
+      - id: enterprise
+        price_usd: 99
+        features:
+          - Premium advocacy suite
+          - Custom development
+          - Advanced security
+          - 24/7 support
+          - White-label options
+          - API access
+
+bundles:
+  all_apps:
+    price_usd: 399
+    description: "Complete Kingdom Collective suite"
+    features:
+      - Access to all 7 apps
+      - Enterprise features for all apps
+      - Priority support
+      - Custom integrations
+      - Dedicated account manager
+
+  business_essentials:
+    price_usd: 199
+    description: "Core business apps bundle"
+    apps: [studios, circle, launchpad]
+    features:
+      - Pro tier for included apps
+      - Priority support
+      - Basic integrations
+
+  creative_suite:
+    price_usd: 149
+    description: "Creative and content apps bundle"
+    apps: [studios, clips, lens]
+    features:
+      - Pro tier for included apps
+      - Priority support
+      - Creative resources

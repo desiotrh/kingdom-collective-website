@@ -1,338 +1,276 @@
-# 🚀 Kingdom Collective Website - Deployment Guide
+# Kingdom Collective Chatbot Deployment Guide
 
-## 📋 Pre-Deployment Checklist
+## Overview
+This guide covers deploying the enhanced Kingdom Collective chatbot with RAG capabilities, dual-mode functionality, and comprehensive evaluation systems.
 
-### ✅ Required Setup
-- [ ] Node.js 18+ installed
-- [ ] Git repository created
-- [ ] Vercel account created
-- [ ] Domain `kingdomcollective.pro` purchased
-- [ ] GoDaddy account for DNS management
+## Prerequisites
 
-### ✅ Environment Variables
-- [ ] Copy `env-template.txt` to `.env.local`
-- [ ] Fill in all required API keys
-- [ ] Test local development server
+### Required Services
+1. **OpenAI Account** - For GPT-4 and embeddings
+2. **Supabase Project** - For vector storage and database
+3. **Vercel Account** - For hosting (or your preferred platform)
+4. **Domain** - For production deployment
 
-## 🌐 Vercel Deployment
+### Required API Keys
+- OpenAI API Key
+- Supabase Project URL and Service Role Key
+- Stripe Keys (if using payments)
+- Email service credentials (optional)
 
-### Step 1: Connect to Vercel
+## Setup Instructions
+
+### 1. Environment Configuration
+
+Create a `.env.local` file in the `kingdom-website` directory:
 
 ```bash
-# Install Vercel CLI
-npm install -g vercel
+# Copy from env.example
+cp env.example .env.local
+```
 
-# Login to Vercel
-vercel login
+Fill in your actual values:
 
-# Navigate to project directory
+```env
+OPENAI_API_KEY=sk-your-openai-key
+NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
+SUPABASE_SERVICE_ROLE_KEY=your-service-role-key
+NEXTAUTH_SECRET=your-random-secret
+NEXTAUTH_URL=https://yourdomain.com
+```
+
+### 2. Supabase Setup
+
+#### Create Supabase Project
+1. Go to [supabase.com](https://supabase.com)
+2. Create a new project
+3. Note your project URL and service role key
+
+#### Run Database Schema
+```bash
+# Connect to your Supabase project and run the schema
+psql -h your-project.supabase.co -U postgres -d postgres -f supabase/schema.sql
+```
+
+Or use the Supabase dashboard SQL editor to run the contents of `supabase/schema.sql`.
+
+#### Enable pgvector Extension
+In your Supabase dashboard:
+1. Go to Database → Extensions
+2. Enable the `vector` extension
+
+### 3. Knowledge Base Ingestion
+
+#### Install Dependencies
+```bash
 cd kingdom-website
+npm install
 ```
 
-### Step 2: Deploy to Vercel
-
+#### Run Ingestion Script
 ```bash
-# Deploy to production
-vercel --prod
-
-# Or deploy to preview
-vercel
+npm run ingest
 ```
 
-### Step 3: Configure Project Settings
+This will:
+- Process all markdown and YAML files in the `/kb` directory
+- Generate embeddings using OpenAI
+- Store vectors in Supabase
 
-1. **Go to Vercel Dashboard**
-   - Navigate to your project
-   - Click "Settings" tab
+### 4. Local Development
 
-2. **Set Environment Variables**
-   ```
-   NEXT_PUBLIC_APP_URL=https://kingdomcollective.pro
-   NEXT_PUBLIC_API_URL=https://api.kingdomcollective.pro
-   NEXT_PUBLIC_STORE_URL=https://desitotrh.com
-   ```
-
-3. **Configure Build Settings**
-   - Framework Preset: Next.js
-   - Build Command: `npm run build`
-   - Output Directory: `.next`
-   - Install Command: `npm install`
-
-## 🔗 Domain Configuration
-
-### Step 1: Add Domain to Vercel
-
-1. **In Vercel Dashboard**
-   - Go to "Domains" section
-   - Add `kingdomcollective.pro`
-   - Add subdomains:
-     - `app.kingdomcollective.pro`
-     - `clips.kingdomcollective.pro`
-     - `voice.kingdomcollective.pro`
-     - `launchpad.kingdomcollective.pro`
-     - `circle.kingdomcollective.pro`
-     - `lens.kingdomcollective.pro`
-     - `mantle.kingdomcollective.pro`
-     - `chatbots.kingdomcollective.pro`
-
-### Step 2: Configure DNS in GoDaddy
-
-1. **Log into GoDaddy**
-   - Navigate to DNS management
-   - Find `kingdomcollective.pro` domain
-
-2. **Add Vercel DNS Records**
-   ```
-   Type: A
-   Name: @
-   Value: 76.76.19.19
-   TTL: 600
-   ```
-
-3. **Add CNAME Records for Subdomains**
-   ```
-   Type: CNAME
-   Name: app
-   Value: cname.vercel-dns.com
-   TTL: 600
-   ```
-   
-   Repeat for each subdomain:
-   - `clips` → `cname.vercel-dns.com`
-   - `voice` → `cname.vercel-dns.com`
-   - `launchpad` → `cname.vercel-dns.com`
-   - `circle` → `cname.vercel-dns.com`
-   - `lens` → `cname.vercel-dns.com`
-   - `mantle` → `cname.vercel-dns.com`
-   - `chatbots` → `cname.vercel-dns.com`
-
-### Step 3: Verify DNS Propagation
-
+#### Start Development Server
 ```bash
-# Check DNS propagation
-nslookup kingdomcollective.pro
-nslookup app.kingdomcollective.pro
-nslookup clips.kingdomcollective.pro
-# ... repeat for all subdomains
+npm run dev
 ```
 
-## 🔧 Environment Variables Setup
+#### Test the Chatbot
+1. Open http://localhost:3000
+2. Click the chat button
+3. Test both Faith and Marketplace modes
+4. Verify responses include sources
 
-### Required Variables
+### 5. Production Deployment
 
-Create `.env.local` file with:
+#### Vercel Deployment
+1. Connect your GitHub repository to Vercel
+2. Set environment variables in Vercel dashboard
+3. Deploy from main branch (as per user preference)
 
+#### Environment Variables in Vercel
+Add all your environment variables in the Vercel dashboard:
+- `OPENAI_API_KEY`
+- `NEXT_PUBLIC_SUPABASE_URL`
+- `SUPABASE_SERVICE_ROLE_KEY`
+- `NEXTAUTH_SECRET`
+- `NEXTAUTH_URL`
+
+#### Build and Deploy
 ```bash
-# App Configuration
-NEXT_PUBLIC_APP_URL=https://kingdomcollective.pro
-NEXT_PUBLIC_API_URL=https://api.kingdomcollective.pro
-NEXT_PUBLIC_STORE_URL=https://desitotrh.com
-
-# Analytics (Optional)
-NEXT_PUBLIC_GOOGLE_ANALYTICS_ID=G-XXXXXXXXXX
-NEXT_PUBLIC_FACEBOOK_PIXEL_ID=XXXXXXXXXX
-NEXT_PUBLIC_TIKTOK_PIXEL_ID=XXXXXXXXXX
-
-# Development
-NODE_ENV=production
-NEXT_PUBLIC_DEBUG_MODE=false
-```
-
-### Vercel Environment Variables
-
-Set these in Vercel dashboard:
-
-1. **Go to Project Settings**
-2. **Environment Variables section**
-3. **Add each variable**:
-   - `NEXT_PUBLIC_APP_URL` = `https://kingdomcollective.pro`
-   - `NEXT_PUBLIC_API_URL` = `https://api.kingdomcollective.pro`
-   - `NEXT_PUBLIC_STORE_URL` = `https://desitotrh.com`
-
-## 🧪 Testing Deployment
-
-### Step 1: Test Main Domain
-```bash
-# Test homepage
-curl -I https://kingdomcollective.pro
-
-# Test privacy page
-curl -I https://kingdomcollective.pro/privacy
-
-# Test terms page
-curl -I https://kingdomcollective.pro/terms
-```
-
-### Step 2: Test Subdomains
-```bash
-# Test each subdomain
-curl -I https://app.kingdomcollective.pro
-curl -I https://clips.kingdomcollective.pro
-curl -I https://voice.kingdomcollective.pro
-curl -I https://launchpad.kingdomcollective.pro
-curl -I https://circle.kingdomcollective.pro
-curl -I https://lens.kingdomcollective.pro
-curl -I https://mantle.kingdomcollective.pro
-curl -I https://chatbots.kingdomcollective.pro
-```
-
-### Step 3: Browser Testing
-- [ ] Homepage loads correctly
-- [ ] Navigation works on mobile
-- [ ] App cards are interactive
-- [ ] Store iframe loads
-- [ ] Privacy page accessible
-- [ ] Terms page accessible
-- [ ] Footer links work
-- [ ] Faith Mode toggle works
-
-## 🔒 Security Configuration
-
-### SSL Certificate
-- Vercel automatically provides SSL certificates
-- Verify HTTPS is working on all domains
-
-### Security Headers
-Already configured in `vercel.json`:
-- X-Frame-Options: SAMEORIGIN
-- X-Content-Type-Options: nosniff
-- Referrer-Policy: origin-when-cross-origin
-- Permissions-Policy: camera=(), microphone=(), geolocation=()
-
-## 📊 Analytics Setup
-
-### Google Analytics
-1. Create Google Analytics 4 property
-2. Get Measurement ID (G-XXXXXXXXXX)
-3. Add to environment variables
-4. Verify tracking in Google Analytics dashboard
-
-### Facebook Pixel
-1. Create Facebook Business Manager account
-2. Create Facebook Pixel
-3. Get Pixel ID
-4. Add to environment variables
-
-### TikTok Pixel
-1. Create TikTok Ads account
-2. Create TikTok Pixel
-3. Get Pixel ID
-4. Add to environment variables
-
-## 🚀 Performance Optimization
-
-### Build Optimization
-```bash
-# Build for production
 npm run build
-
-# Check bundle size
-npm run analyze
 ```
 
-### Image Optimization
-- All images are optimized by Next.js
-- Use WebP format where possible
-- Implement lazy loading
+## Testing and Validation
 
-### Caching Strategy
-- Static pages cached at edge
-- API routes cached appropriately
-- CDN distribution via Vercel
+### 1. Run Evaluation Suite
+```bash
+npm run test
+npm run evaluate
+```
 
-## 🔄 Continuous Deployment
+### 2. Manual Testing Checklist
+- [ ] Chatbot opens and closes properly
+- [ ] Faith Mode vs Marketplace Mode toggle works
+- [ ] Responses are accurate and cite sources
+- [ ] Function calling works (pricing, features, etc.)
+- [ ] Mobile responsiveness
+- [ ] Error handling works
+- [ ] Rate limiting is in place
 
-### GitHub Integration
-1. **Connect GitHub repository**
-   - Go to Vercel project settings
-   - Connect to GitHub
-   - Select repository
+### 3. Performance Testing
+- [ ] Response times under 3 seconds
+- [ ] Vector search performance
+- [ ] Concurrent user handling
+- [ ] Memory usage optimization
 
-2. **Configure auto-deploy**
-   - Deploy on push to main branch
-   - Create preview deployments for PRs
+## Monitoring and Maintenance
 
-### Deployment Triggers
-- Push to `main` branch → Production deployment
-- Pull request → Preview deployment
-- Manual deployment via Vercel CLI
+### 1. Set Up Monitoring
+- **Error Tracking**: Use Sentry or similar
+- **Performance**: Vercel Analytics or PostHog
+- **Usage Analytics**: Track chatbot interactions
+- **Uptime Monitoring**: UptimeRobot or similar
 
-## 📱 Mobile Optimization
+### 2. Regular Maintenance Tasks
 
-### Responsive Design
-- Test on various screen sizes
-- Verify touch interactions
-- Check loading performance
+#### Weekly
+- Review chatbot interactions and feedback
+- Update knowledge base with new information
+- Check for failed responses or errors
+- Monitor API usage and costs
 
-### PWA Features (Optional)
-- Add manifest.json
-- Configure service worker
-- Enable offline functionality
+#### Monthly
+- Run full evaluation suite
+- Update dependencies
+- Review and optimize prompts
+- Analyze user feedback and improve responses
 
-## 🐛 Troubleshooting
+#### Quarterly
+- Comprehensive knowledge base review
+- Performance optimization
+- Security audit
+- Feature enhancement planning
+
+### 3. Knowledge Base Updates
+
+#### Adding New Content
+1. Add new markdown/YAML files to `/kb` directory
+2. Run ingestion script: `npm run ingest`
+3. Test new content with evaluation suite
+4. Deploy updates
+
+#### Updating Existing Content
+1. Modify files in `/kb` directory
+2. Run ingestion script to update vectors
+3. Test changes
+4. Deploy updates
+
+## Troubleshooting
 
 ### Common Issues
 
-1. **DNS Not Propagating**
-   ```bash
-   # Wait 24-48 hours for full propagation
-   # Check with multiple DNS lookup tools
-   ```
+#### 1. Chatbot Not Responding
+- Check OpenAI API key and quota
+- Verify Supabase connection
+- Check browser console for errors
+- Ensure API routes are working
 
-2. **Build Failures**
-   ```bash
-   # Check build logs in Vercel
-   # Verify all dependencies are installed
-   # Test locally first
-   ```
+#### 2. Poor Response Quality
+- Review and update system prompts
+- Check knowledge base content
+- Run evaluation suite to identify issues
+- Adjust retrieval parameters
 
-3. **Environment Variables Not Working**
-   ```bash
-   # Verify variables are set in Vercel dashboard
-   # Check for typos in variable names
-   # Restart deployment after changes
-   ```
+#### 3. Slow Response Times
+- Optimize vector search queries
+- Check Supabase performance
+- Review OpenAI API response times
+- Consider caching strategies
 
-4. **Subdomain Not Working**
-   ```bash
-   # Verify CNAME record in GoDaddy
-   # Check DNS propagation
-   # Verify subdomain is added to Vercel
-   ```
+#### 4. Missing Sources
+- Verify knowledge base ingestion
+- Check vector similarity thresholds
+- Review retrieval logic
+- Ensure proper chunking
 
-### Debug Commands
-```bash
-# Test local build
-npm run build
-
-# Test local server
-npm run start
-
-# Check environment variables
-echo $NEXT_PUBLIC_APP_URL
-
-# Test DNS resolution
-dig kingdomcollective.pro
+### Debug Mode
+Enable debug logging by setting:
+```env
+DEBUG=true
+NODE_ENV=development
 ```
 
-## 📞 Support
+## Security Considerations
 
-### Vercel Support
-- Documentation: https://vercel.com/docs
-- Community: https://github.com/vercel/vercel/discussions
-- Status: https://vercel-status.com
+### 1. API Security
+- Rate limiting on chat endpoints
+- Input validation and sanitization
+- Proper error handling (no sensitive data exposure)
+- CORS configuration
 
-### Domain Support
-- GoDaddy Support: https://www.godaddy.com/help
-- DNS Management: https://www.godaddy.com/help/manage-dns-records-680
+### 2. Data Protection
+- Encrypt sensitive data
+- Implement proper access controls
+- Regular security audits
+- GDPR/CCPA compliance
 
-### Technical Support
-- Email: support@kingdomcollective.pro
-- Documentation: [Link to docs]
-- GitHub Issues: [Repository issues]
+### 3. OpenAI Security
+- Monitor API usage and costs
+- Implement usage limits
+- Review and filter user inputs
+- Regular prompt security reviews
 
----
+## Scaling Considerations
 
-**Deployment Status: Ready for Production** 🚀
+### 1. Performance Optimization
+- Implement response caching
+- Optimize vector search
+- Use CDN for static assets
+- Database query optimization
 
-*"Unless the Lord builds the house, the builders labor in vain." - Psalm 127:1* 
+### 2. Cost Management
+- Monitor OpenAI API usage
+- Implement usage quotas
+- Optimize embedding generation
+- Consider alternative models for non-critical queries
+
+### 3. High Availability
+- Implement proper error handling
+- Set up monitoring and alerting
+- Plan for API rate limits
+- Consider backup systems
+
+## Support and Maintenance
+
+### 1. Documentation
+- Keep deployment guide updated
+- Document any custom configurations
+- Maintain troubleshooting guides
+- Update API documentation
+
+### 2. Team Training
+- Train team on chatbot management
+- Document knowledge base update procedures
+- Create response quality guidelines
+- Establish escalation procedures
+
+### 3. Continuous Improvement
+- Regular user feedback collection
+- A/B testing for prompt improvements
+- Performance monitoring and optimization
+- Feature enhancement based on usage patterns
+
+## Conclusion
+
+This deployment guide provides a comprehensive approach to deploying and maintaining the Kingdom Collective chatbot. Regular monitoring, testing, and updates will ensure optimal performance and user satisfaction.
+
+For additional support or questions, contact the development team or refer to the project documentation.

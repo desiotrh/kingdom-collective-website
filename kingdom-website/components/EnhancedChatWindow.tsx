@@ -1,8 +1,6 @@
 'use client';
 
 import React, { useState, useRef, useEffect } from 'react';
-import { aiResponseGenerator } from '../utils/ai-response-generator';
-import { conversationManager } from '../utils/conversation-memory';
 import ChatAvatar from './ChatAvatar';
 import Image from 'next/image';
 
@@ -11,6 +9,11 @@ interface Message {
   text: string;
   isUser: boolean;
   timestamp: Date;
+  sources?: Array<{
+    title: string;
+    section: string;
+    url: string;
+  }>;
   context?: {
     page?: string;
     intent?: string;
@@ -24,12 +27,16 @@ interface EnhancedChatWindowProps {
   currentPage: string;
 }
 
+type ChatMode = 'faith' | 'marketplace';
+
 export default function EnhancedChatWindow({ isOpen, onClose, currentPage }: EnhancedChatWindowProps) {
   const [messages, setMessages] = useState<Message[]>([]);
   const [inputText, setInputText] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [sessionId, setSessionId] = useState('');
   const [isTyping, setIsTyping] = useState(false);
+  const [mode, setMode] = useState<ChatMode>('marketplace');
+  const [showSources, setShowSources] = useState<string | null>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   // Initialize session
@@ -37,10 +44,18 @@ export default function EnhancedChatWindow({ isOpen, onClose, currentPage }: Enh
     const newSessionId = `session_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
     setSessionId(newSessionId);
     
-    // Add welcome message
+    // Load mode from localStorage
+    const savedMode = localStorage.getItem('kingdom-chat-mode') as ChatMode;
+    if (savedMode) {
+      setMode(savedMode);
+    }
+    
+    // Add welcome message based on mode
     const welcomeMessage: Message = {
       id: 'welcome',
-      text: "Hi! I'm your Kingdom Collective assistant — here to help you navigate our apps, tools, and features built with purpose. Whether you're exploring for business or faith, I've got you covered. How can I help today?",
+      text: mode === 'faith' 
+        ? "🔥 Greetings! I am your Kingdom Collective assistant, standing firm in biblical truth. As we explore our innovative apps together, remember that 'Every good and perfect gift is from above' (James 1:17). How can I help you discover how our technology can serve God's kingdom today?"
+        : "Hello! I'm your Kingdom Collective assistant, here to help you explore our innovative apps and solutions. Whether you're looking for content creation tools, community platforms, or business acceleration services, I'm here to guide you. How can I assist you today?",
       isUser: false,
       timestamp: new Date(),
       context: {
@@ -49,14 +64,12 @@ export default function EnhancedChatWindow({ isOpen, onClose, currentPage }: Enh
       }
     };
     setMessages([welcomeMessage]);
-  }, [currentPage]);
+  }, [currentPage, mode]);
 
-  // Update current page in memory when it changes
+  // Save mode to localStorage when it changes
   useEffect(() => {
-    if (sessionId) {
-      conversationManager.updateCurrentPage(sessionId, currentPage);
-    }
-  }, [currentPage, sessionId]);
+    localStorage.setItem('kingdom-chat-mode', mode);
+  }, [mode]);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -88,22 +101,38 @@ export default function EnhancedChatWindow({ isOpen, onClose, currentPage }: Enh
     setIsLoading(true);
     setIsTyping(true);
 
-    // Save user message to conversation memory
-    conversationManager.addMessage(sessionId, userMessage);
-
     try {
-      // Generate AI response
-      const response = aiResponseGenerator.generateResponse(textToSend, sessionId, currentPage);
+      const response = await fetch('/api/chat', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          messages: [...messages, userMessage].map(msg => ({
+            role: msg.isUser ? 'user' : 'assistant',
+            content: msg.text
+          })),
+          mode,
+          sessionId
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to get response');
+      }
+
+      const data = await response.json();
       
-      // Simulate typing delay with realistic timing
+      // Simulate typing delay
       const typingDelay = 1000 + Math.random() * 2000;
       await new Promise(resolve => setTimeout(resolve, typingDelay));
 
       const botMessage: Message = {
         id: (Date.now() + 1).toString(),
-        text: response,
+        text: data.message,
         isUser: false,
         timestamp: new Date(),
+        sources: data.sources,
         context: {
           page: currentPage,
           intent: 'bot_response'
@@ -111,9 +140,6 @@ export default function EnhancedChatWindow({ isOpen, onClose, currentPage }: Enh
       };
 
       setMessages(prev => [...prev, botMessage]);
-      
-      // Save bot message to conversation memory
-      conversationManager.addMessage(sessionId, botMessage);
     } catch (error) {
       console.error('Error generating response:', error);
       const errorMessage: Message = {
@@ -127,7 +153,6 @@ export default function EnhancedChatWindow({ isOpen, onClose, currentPage }: Enh
         }
       };
       setMessages(prev => [...prev, errorMessage]);
-      conversationManager.addMessage(sessionId, errorMessage);
     } finally {
       setIsLoading(false);
       setIsTyping(false);
@@ -145,6 +170,14 @@ export default function EnhancedChatWindow({ isOpen, onClose, currentPage }: Enh
     handleSendMessage();
   };
 
+  const toggleMode = () => {
+    setMode(prev => prev === 'faith' ? 'marketplace' : 'faith');
+  };
+
+  const copyToClipboard = (text: string) => {
+    navigator.clipboard.writeText(text);
+  };
+
   if (!isOpen) return null;
 
   return (
@@ -158,14 +191,39 @@ export default function EnhancedChatWindow({ isOpen, onClose, currentPage }: Enh
             <p className="text-gray-400 text-xs">AI-powered guidance</p>
           </div>
         </div>
-        <button
-          onClick={onClose}
-          className="text-gray-400 hover:text-white transition-colors duration-200"
-        >
-          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-          </svg>
-        </button>
+        <div className="flex items-center gap-2">
+          {/* Mode Toggle */}
+          <div className="flex items-center bg-black/20 rounded-lg p-1">
+            <button
+              onClick={() => setMode('marketplace')}
+              className={`px-3 py-1 rounded-md text-xs font-medium transition-colors ${
+                mode === 'marketplace'
+                  ? 'bg-[#FFD700] text-black'
+                  : 'text-gray-400 hover:text-white'
+              }`}
+            >
+              Marketplace
+            </button>
+            <button
+              onClick={() => setMode('faith')}
+              className={`px-3 py-1 rounded-md text-xs font-medium transition-colors ${
+                mode === 'faith'
+                  ? 'bg-[#FFD700] text-black'
+                  : 'text-gray-400 hover:text-white'
+              }`}
+            >
+              Faith
+            </button>
+          </div>
+          <button
+            onClick={onClose}
+            className="text-gray-400 hover:text-white transition-colors duration-200"
+          >
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
       </div>
 
       {/* Messages */}
@@ -191,9 +249,42 @@ export default function EnhancedChatWindow({ isOpen, onClose, currentPage }: Enh
                 <div className="bg-black/30 text-white rounded-xl p-3 text-sm sm:text-base leading-relaxed">
                   {message.text}
                 </div>
-                <p className="text-xs text-gray-400 mt-1">
-                  {new Date(message.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
-                </p>
+                
+                {/* Sources */}
+                {message.sources && message.sources.length > 0 && (
+                  <div className="mt-2">
+                    <button
+                      onClick={() => setShowSources(showSources === message.id ? null : message.id)}
+                      className="text-xs text-[#FFD700] hover:text-yellow-300 transition-colors"
+                    >
+                      📚 Sources ({message.sources.length})
+                    </button>
+                    {showSources === message.id && (
+                      <div className="mt-2 space-y-1">
+                        {message.sources.map((source, index) => (
+                          <div key={index} className="text-xs text-gray-400">
+                            • {source.title} - {source.section}
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                )}
+                
+                <div className="flex items-center justify-between mt-1">
+                  <p className="text-xs text-gray-400">
+                    {new Date(message.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                  </p>
+                  {!message.isUser && (
+                    <button
+                      onClick={() => copyToClipboard(message.text)}
+                      className="text-xs text-gray-400 hover:text-white transition-colors"
+                      title="Copy message"
+                    >
+                      📋
+                    </button>
+                  )}
+                </div>
               </div>
               {message.isUser && (
                 <div className="w-6 h-6 rounded-full bg-blue flex items-center justify-center flex-shrink-0">
@@ -240,7 +331,7 @@ export default function EnhancedChatWindow({ isOpen, onClose, currentPage }: Enh
             value={inputText}
             onChange={(e) => setInputText(e.target.value)}
             onKeyPress={handleKeyPress}
-            placeholder="Type your question here..."
+            placeholder={mode === 'faith' ? "Ask about our kingdom-focused solutions..." : "Type your question here..."}
             className="w-full px-4 py-2 rounded-md bg-black/20 text-white placeholder-white/60 border border-white/10 focus:outline-none focus:ring-2 focus:ring-[#FFD700]"
             disabled={isLoading}
           />
@@ -254,7 +345,37 @@ export default function EnhancedChatWindow({ isOpen, onClose, currentPage }: Enh
             </svg>
           </button>
         </div>
+        
+        {/* Quick Actions */}
+        <div className="mt-3 flex flex-wrap gap-2">
+          <button
+            onClick={() => handleSendMessage("Tell me about your apps")}
+            className="text-xs bg-white/10 text-white px-3 py-1 rounded-full hover:bg-white/20 transition-colors"
+          >
+            Our Apps
+          </button>
+          <button
+            onClick={() => handleSendMessage("What are your pricing options?")}
+            className="text-xs bg-white/10 text-white px-3 py-1 rounded-full hover:bg-white/20 transition-colors"
+          >
+            Pricing
+          </button>
+          <button
+            onClick={() => handleSendMessage("Tell me about your AI bots")}
+            className="text-xs bg-white/10 text-white px-3 py-1 rounded-full hover:bg-white/20 transition-colors"
+          >
+            AI Bots
+          </button>
+          {mode === 'faith' && (
+            <button
+              onClick={() => handleSendMessage("How do your apps align with biblical principles?")}
+              className="text-xs bg-white/10 text-white px-3 py-1 rounded-full hover:bg-white/20 transition-colors"
+            >
+              Biblical Foundation
+            </button>
+          )}
+        </div>
       </div>
     </div>
   );
-} 
+}

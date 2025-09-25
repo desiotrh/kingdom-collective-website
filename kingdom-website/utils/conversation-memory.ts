@@ -81,9 +81,10 @@ export class ConversationManager {
     let memory = this.memories.get(sessionId);
     
     if (!memory) {
-      memory = this.loadFromLocalStorage(sessionId);
-      if (memory) {
-        this.memories.set(sessionId, memory);
+      const loadedMemory = this.loadFromLocalStorage(sessionId);
+      if (loadedMemory) {
+        this.memories.set(sessionId, loadedMemory);
+        memory = loadedMemory;
       }
     }
     

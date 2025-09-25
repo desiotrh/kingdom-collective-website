@@ -1,0 +1,217 @@
+# Cursor Rules for Kingdom Collective Website
+
+## Project Overview
+This is the Kingdom Collective website with a RAG-based chatbot implementation. The project uses Next.js, TypeScript, Tailwind CSS, and integrates with OpenAI and Supabase.
+
+## Code Style and Standards
+
+### TypeScript
+- Always use TypeScript with strict type checking
+- Define proper interfaces for all data structures
+- Use type guards and proper error handling
+- Prefer type inference where possible, explicit types where necessary
+
+### React/Next.js
+- Use functional components with hooks
+- Implement proper error boundaries
+- Use Next.js App Router patterns
+- Optimize for performance with proper memoization
+- Use proper SEO practices with metadata
+
+### Tailwind CSS
+- Always use Tailwind with responsive classes (sm/md/lg/xl) and mobile-first approach
+- Maintain brand palette: deep blue + realistic gold accents (#FFD700); avoid purples
+- Use utility classes over custom CSS when possible
+- Ensure proper contrast ratios for accessibility
+- Use consistent spacing and typography scales
+
+### Brand Guidelines
+- Maintain Kingdom Collective brand identity
+- Use consistent typography sizes and font weights
+- All titles should be white instead of mixing white and yellow
+- No green status indicator lights (user preference)
+- Faith mode content should be inviting and curiosity-driven without being pushy
+- No pledges in messaging and content
+
+## Component Architecture
+
+### Chat Components
+- Keep bottom-right position on desktop, full-screen modal on mobile
+- Implement proper loading states and error handling
+- Use streaming responses where appropriate
+- Maintain conversation context and memory
+- Implement proper accessibility (ARIA labels, focus states, 16px min tap targets)
+
+### API Routes
+- Use proper error handling and validation
+- Implement rate limiting and security measures
+- Use edge runtime where appropriate
+- Properly handle streaming responses
+- Implement proper CORS and security headers
+
+## Database and Backend
+
+### Supabase Integration
+- Use proper RLS (Row Level Security) policies
+- Implement proper error handling for database operations
+- Use prepared statements and proper parameterization
+- Implement proper indexing for performance
+
+### RAG Implementation
+- Use hybrid retrieval (semantic + keyword search)
+- Implement proper chunking strategies
+- Use appropriate embedding models
+- Implement proper re-ranking
+- Maintain source citations and references
+
+## AI and Chatbot
+
+### Prompt Engineering
+- Maintain dual-mode system (Faith vs Marketplace)
+- Use proper system prompts with clear instructions
+- Implement function calling for structured data
+- Maintain conversation context and memory
+- Implement proper guardrails and safety measures
+
+### Response Quality
+- Always cite sources from SSOT
+- Never hallucinate facts, dates, or prices
+- Implement confidence scoring and fallbacks
+- Provide actionable next steps
+- Maintain consistent tone and branding
+
+## File Organization
+
+### Directory Structure
+- Keep components in `/components`
+- API routes in `/app/api`
+- Utilities in `/lib` or `/utils`
+- Types in `/types`
+- Constants in `/constants`
+- Keep knowledge base in `/kb`
+
+### Naming Conventions
+- Use PascalCase for components
+- Use camelCase for functions and variables
+- Use kebab-case for files and directories
+- Use descriptive names that indicate purpose
+
+## Testing and Quality
+
+### Testing Strategy
+- Write unit tests for utility functions
+- Write integration tests for API routes
+- Use Playwright for E2E testing
+- Test both Faith and Marketplace modes
+- Test responsive design across devices
+
+### Code Quality
+- Run `npm run lint` and `npm run test` before suggesting changes
+- Use proper error handling and logging
+- Implement proper TypeScript types
+- Use proper async/await patterns
+- Avoid inline styles; prefer utility classes and reusable components
+
+## Performance
+
+### Optimization
+- Use proper image optimization with Next.js Image component
+- Implement proper caching strategies
+- Use lazy loading where appropriate
+- Optimize bundle size and loading times
+- Implement proper SEO optimization
+
+### Monitoring
+- Implement proper error tracking
+- Use performance monitoring
+- Track user interactions and conversions
+- Monitor API response times and errors
+
+## Security
+
+### Best Practices
+- Never expose API keys or sensitive data
+- Use proper authentication and authorization
+- Implement proper input validation and sanitization
+- Use HTTPS everywhere
+- Implement proper CORS policies
+
+### Data Protection
+- Follow GDPR and CCPA compliance
+- Implement proper data retention policies
+- Use proper encryption for sensitive data
+- Implement proper access controls
+
+## Deployment
+
+### Environment Management
+- Use proper environment variables
+- Implement proper staging and production environments
+- Use proper CI/CD pipelines
+- Implement proper monitoring and alerting
+
+### Vercel Deployment
+- Use main branch for deployment (user preference)
+- Implement proper build optimization
+- Use proper environment variable management
+- Implement proper error tracking
+
+## Documentation
+
+### Code Documentation
+- Use proper JSDoc comments for functions
+- Document complex algorithms and business logic
+- Maintain README files with setup instructions
+- Document API endpoints and data structures
+
+### User Documentation
+- Maintain comprehensive knowledge base
+- Document all features and capabilities
+- Provide clear setup and usage instructions
+- Maintain troubleshooting guides
+
+## Accessibility
+
+### WCAG Compliance
+- Ensure proper color contrast ratios
+- Implement proper keyboard navigation
+- Use proper ARIA labels and roles
+- Test with screen readers
+- Ensure proper focus management
+
+### User Experience
+- Implement proper loading states
+- Provide clear error messages
+- Use consistent navigation patterns
+- Implement proper responsive design
+- Test across different devices and browsers
+
+## Integration Guidelines
+
+### Third-Party Services
+- Use proper error handling for external APIs
+- Implement proper rate limiting and retry logic
+- Use proper authentication and authorization
+- Implement proper fallback mechanisms
+
+### API Integration
+- Use proper HTTP status codes
+- Implement proper error responses
+- Use proper request/response validation
+- Implement proper logging and monitoring
+
+## Maintenance
+
+### Code Maintenance
+- Regular dependency updates
+- Regular security audits
+- Regular performance reviews
+- Regular accessibility audits
+- Regular user feedback integration
+
+### Content Updates
+- Regular knowledge base updates
+- Regular content review and optimization
+- Regular A/B testing of responses
+- Regular user feedback analysis
+- Regular performance monitoring
