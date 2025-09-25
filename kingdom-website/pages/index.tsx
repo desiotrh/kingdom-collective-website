@@ -108,6 +108,11 @@ export default function Home() {
                     />
                   ))}
                 </div>
+                
+                {/* Debug: Show apps count */}
+                <div className="text-white text-center mt-4">
+                  Debug: {apps.length} apps loaded
+                </div>
               </div>
             </section>
 

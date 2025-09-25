@@ -18,7 +18,7 @@ const nextConfig = {
                             "default-src 'self'",
                             "script-src 'self' https://js.stripe.com",
                             "style-src 'self' 'unsafe-inline'",
-                            "img-src 'self' data: https:",
+                            "img-src 'self' data: https: blob:",
                             "frame-src 'self' https://js.stripe.com https://hooks.stripe.com",
                             "connect-src 'self' https://api.stripe.com https://js.stripe.com"
                         ].join('; '),
