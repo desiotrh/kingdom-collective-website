@@ -68,7 +68,7 @@ export default function Home() {
   ];
 
   return (
-    <div className="relative min-h-screen bg-navy overflow-x-hidden">
+    <div className="relative min-h-screen overflow-x-hidden">
       <BackgroundVideo />
       <div className="relative z-10">
         <Navigation />

@@ -11,10 +11,16 @@ export default function BackgroundVideo() {
         playsInline
         className="absolute inset-0 w-full h-full object-cover"
         style={{ objectPosition: 'center center' }}
+        onError={(e) => console.error('Video failed to load:', e)}
+        onLoadStart={() => console.log('Video loading started')}
+        onCanPlay={() => console.log('Video can play')}
       >
         <source src="/background-video.mp4" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
+      
+      {/* Fallback gradient background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-kingdom-dark via-kingdom-darker to-kingdom-navy"></div>
       
       {/* Overlay for better text readability */}
       <div className="absolute inset-0 bg-black/40"></div>
