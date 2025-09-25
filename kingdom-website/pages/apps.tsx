@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import Layout from '../components/Layout';
+import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
 import BackgroundVideo from '../components/BackgroundVideo';
 
@@ -67,10 +67,10 @@ export default function Apps() {
   ];
 
   return (
-    <Layout>
-      <div className="relative flex size-full min-h-screen flex-col bg-navy dark group/design-root overflow-x-hidden">
-        <BackgroundVideo />
-        <div className="layout-container flex h-full grow flex-col relative z-10">
+    <div className="relative flex size-full min-h-screen flex-col bg-navy dark group/design-root overflow-x-hidden">
+      <BackgroundVideo />
+      <div className="layout-container flex h-full grow flex-col relative z-10">
+        <Navigation />
         
         {/* Hero Section */}
         <section className="section-padding">
@@ -173,8 +173,7 @@ export default function Apps() {
         </section>
 
         <Footer />
-        </div>
       </div>
-    </Layout>
+    </div>
   );
 } 

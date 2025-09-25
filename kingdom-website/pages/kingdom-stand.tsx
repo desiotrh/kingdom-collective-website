@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import Layout from '../components/Layout';
+import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
 import BackgroundVideo from '../components/BackgroundVideo';
 
@@ -16,10 +16,10 @@ export default function KingdomStand() {
   ];
 
   return (
-    <Layout>
-      <div className="relative flex size-full min-h-screen flex-col bg-navy dark group/design-root overflow-x-hidden">
-        <BackgroundVideo />
-        <div className="layout-container flex h-full grow flex-col relative z-10">
+    <div className="relative flex size-full min-h-screen flex-col bg-navy dark group/design-root overflow-x-hidden">
+      <BackgroundVideo />
+      <div className="layout-container flex h-full grow flex-col relative z-10">
+        <Navigation />
 
         <section className="px-4 sm:px-6 md:px-8 lg:px-12 xl:px-40 py-12 sm:py-16 md:py-20">
           <div className="max-w-[960px] mx-auto text-center">
@@ -84,9 +84,8 @@ export default function KingdomStand() {
         </section>
 
         <Footer />
-        </div>
       </div>
-    </Layout>
+    </div>
   );
 }
 

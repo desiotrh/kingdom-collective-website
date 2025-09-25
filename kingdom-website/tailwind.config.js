@@ -18,6 +18,8 @@ module.exports = {
         'kingdom-darker': '#1e293b',
         'kingdom-navy': '#0f172a',
         'kingdom-gold': '#facc15',
+        'kingdom-gold-soft': '#fde047',
+        'kingdom-gold-matte': '#eab308',
         'kingdom-orange': '#f97316',
         'kingdom-gold-light': '#fef3c7',
         'kingdom-orange-light': '#fed7aa',

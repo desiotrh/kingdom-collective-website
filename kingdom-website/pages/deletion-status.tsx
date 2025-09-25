@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-import Layout from '../components/Layout';
+import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
 import BackgroundVideo from '../components/BackgroundVideo';
 
@@ -49,7 +49,8 @@ export default function DeletionStatus() {
   }, [code, checkDeletionStatus]);
 
   return (
-    <Layout>
+    <>
+      <Navigation />
       <BackgroundVideo />
       
       <main className="min-h-screen flex items-center justify-center px-4 py-8">
@@ -177,7 +178,7 @@ export default function DeletionStatus() {
       </main>
 
       <Footer />
-    </Layout>
+    </>
   );
 }
 
