@@ -22,11 +22,16 @@ export default function AppCard({
   return (
     <Link href={href}>
       <div className="bg-black/20 backdrop-blur-sm rounded-xl p-6 border border-white/10 hover:bg-black/30 transition-all duration-200 h-full flex flex-col group">
-        {/* Logo with fallback */}
+        {/* Logo */}
         <div className="mb-4">
-          <div className="h-16 w-16 rounded-lg bg-kingdom-gold/20 flex items-center justify-center text-2xl">
-            {icon}
-          </div>
+          <Image
+            src={logo}
+            alt={`${title} Logo`}
+            width={64}
+            height={64}
+            className="h-16 w-auto rounded-lg"
+            priority
+          />
         </div>
         
         {/* Title */}
