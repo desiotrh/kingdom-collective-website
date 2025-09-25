@@ -1,0 +1,18 @@
+[33mcommit 9bbe0d8193d9d0a71a4642840c21fe395fd0e7bc[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Desirea Tritz <Desimeyer9@gmail.com>
+Date:   Thu Aug 7 22:27:28 2025 -0500
+
+    Website: rename AI Bots to Chatbots in nav/dashboard; update checkout labels; prefer STRIPE_SECRET_KEY env with fallback in create-stripe-features-v2.js
+
+components/Navigation.tsx
+pages/ai-bots/course-explainer.tsx
+pages/ai-bots/enhanced-sales.tsx
+pages/ai-bots/event-management.tsx
+pages/ai-bots/faq-knowledge.tsx
+pages/ai-bots/inventory-management.tsx
+pages/ai-bots/job-application.tsx
+pages/ai-bots/lead-generation.tsx
+pages/ai-bots/social-media.tsx
+pages/api/create-checkout-session.ts
+pages/dashboard.tsx
+scripts/create-stripe-features-v2.js
