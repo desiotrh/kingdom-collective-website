@@ -17,7 +17,8 @@ export default function BackgroundVideo() {
         onError={(e) => {
           console.error('Video failed to load:', e);
           // Hide video and show fallback
-          e.target.style.display = 'none';
+          const target = e.target as HTMLVideoElement;
+          target.style.display = 'none';
         }}
         onLoadStart={() => console.log('Video loading started')}
         onCanPlay={() => console.log('Video can play')}
