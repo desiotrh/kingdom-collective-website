@@ -1,0 +1,10 @@
+[33m4b693bbf[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m Fix duplicate navigation bars - Remove Navigation from individual pages
+[33m3f59d699[m Fix website layout issues - Move Navigation to Layout component
+[33m5cf531f7[m Fix second Vercel build error - Replace external UI dependency in lawyer registration page
+[33maeb4a8f6[m Fix Vercel build error - Remove external dependency from admin page
+[33m234d0112[m Fix Vercel build error: Remove external dependency from admin page
+[33m3a7dca79[m Add Kingdom Stand to website with Legal Education Hub integration
+[33m3c382051[m Convert kingdom-website from submodule to regular directory for Vercel deployment
+[33m81297d40[m Fix vercel.json: remove invalid rootDirectory property
+[33m2c05e581[m Fix Vercel configuration: set root directory to kingdom-website
+[33mfc34914b[m UX: add 'Remember my choice' for Pause & Reflect pre-steps across Studios, Launchpad, Voice, Clips, Lens, Circle (7-day persistence); refine banner persistence

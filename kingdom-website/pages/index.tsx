@@ -68,9 +68,9 @@ export default function Home() {
 
   return (
     <Layout>
-      <div className="relative min-h-screen bg-navy overflow-x-hidden">
+      <div className="relative min-h-screen overflow-x-hidden">
         <BackgroundVideo />
-        <div className="relative z-10">
+        <div className="relative z-30">
           <Navigation />
           
           <main role="main">

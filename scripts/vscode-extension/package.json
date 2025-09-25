@@ -1,0 +1,122 @@
+{
+  "name": "kingdom-api-discovery",
+  "displayName": "Kingdom API Discovery",
+  "description": "Automated API discovery and integration tool for Kingdom Studios",
+  "version": "1.0.0",
+  "publisher": "kingdom-studios",
+  "engines": {
+    "vscode": "^1.74.0"
+  },
+  "categories": [
+    "Other",
+    "Snippets",
+    "Data Science"
+  ],
+  "keywords": [
+    "api",
+    "discovery",
+    "automation",
+    "web scraping",
+    "integration"
+  ],
+  "activationEvents": [
+    "onCommand:kingdom-api-discovery.discover",
+    "onCommand:kingdom-api-discovery.manage"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "kingdom-api-discovery.discover",
+        "title": "Discover APIs",
+        "category": "Kingdom"
+      },
+      {
+        "command": "kingdom-api-discovery.manage",
+        "title": "Manage APIs",
+        "category": "Kingdom"
+      },
+      {
+        "command": "kingdom-api-discovery.integrate",
+        "title": "Integrate API",
+        "category": "Kingdom"
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "kingdom-api-explorer",
+          "title": "Kingdom APIs",
+          "icon": "$(cloud-download)"
+        }
+      ]
+    },
+    "views": {
+      "kingdom-api-explorer": [
+        {
+          "id": "discoveredApis",
+          "name": "Discovered APIs",
+          "when": "workspaceFolderCount != 0"
+        },
+        {
+          "id": "apiTemplates",
+          "name": "API Templates",
+          "when": "workspaceFolderCount != 0"
+        }
+      ]
+    },
+    "menus": {
+      "view/item/context": [
+        {
+          "command": "kingdom-api-discovery.integrate",
+          "when": "view == discoveredApis",
+          "group": "inline"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Kingdom API Discovery",
+      "properties": {
+        "kingdomApiDiscovery.autoDiscovery": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically discover APIs when opening a project"
+        },
+        "kingdomApiDiscovery.outputDirectory": {
+          "type": "string",
+          "default": "docs/discovered-apis",
+          "description": "Directory to save discovered API information"
+        },
+        "kingdomApiDiscovery.platforms": {
+          "type": "array",
+          "default": ["amazon", "etsy", "shopify", "stripe", "printify"],
+          "description": "Platforms to discover APIs from"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js",
+    "package": "vsce package"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.74.0",
+    "@types/node": "16.x",
+    "@typescript-eslint/eslint-plugin": "^5.45.0",
+    "@typescript-eslint/parser": "^5.45.0",
+    "eslint": "^8.28.0",
+    "typescript": "^4.9.4",
+    "@vscode/test-electron": "^2.2.0",
+    "vsce": "^2.15.0"
+  },
+  "dependencies": {
+    "axios": "^1.6.0",
+    "cheerio": "^1.0.0-rc.12",
+    "puppeteer": "^21.0.0"
+  }
+}

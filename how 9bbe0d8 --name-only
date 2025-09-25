@@ -1,0 +1,20 @@
+[33m39a77b4f[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m Fix cursor issues: remove excessive z-index values and fix background video display
+[33m4ae6da31[m Fix website layout issues: restore background video, logos, gradients, and remove duplicate layouts
+[33m4b693bbf[m Fix duplicate navigation bars - Remove Navigation from individual pages
+[33m3f59d699[m Fix website layout issues - Move Navigation to Layout component
+[33m5cf531f7[m Fix second Vercel build error - Replace external UI dependency in lawyer registration page
+[33maeb4a8f6[m Fix Vercel build error - Remove external dependency from admin page
+[33m234d0112[m Fix Vercel build error: Remove external dependency from admin page
+[33m3a7dca79[m Add Kingdom Stand to website with Legal Education Hub integration
+[33m3c382051[m Convert kingdom-website from submodule to regular directory for Vercel deployment
+[33m81297d40[m Fix vercel.json: remove invalid rootDirectory property
+[33m2c05e581[m Fix Vercel configuration: set root directory to kingdom-website
+[33mfc34914b[m UX: add 'Remember my choice' for Pause & Reflect pre-steps across Studios, Launchpad, Voice, Clips, Lens, Circle (7-day persistence); refine banner persistence
+[33mbc019938[m UX: refine Pause & Reflect timers (8s first uses, 3s after; 03s post), concise prompts, in-modal faith toggle; website banner auto-hide + 7-day dismissal persistence
+[33m45a5fbae[m Faith/Neutral alignment: add valuesStyle helper and wire Pause & Reflect prompts to Faith Mode or Encouragement Mode across key flows (Studios, Launchpad, Voice, Clips, Lens). Neutral copy remains biblically faithful, non-overt.
+[33m35928ae9[m UX: add Pause & Reflect modal (pre-generate/submit) to key AI flows: Studios ContentGenerator, Launchpad ProductNaming, Voice Devotional Generator, Clips AI Image Studio, Lens AI Workflow (Create Preset), Circle Challenge creation; add shared component in packages/ui
+[33m51c6b019[m UI: add AIReflectBanner across apps (Circle, Voice, Lens, Launchpad, Clips) and Studios root; non-intrusive, dismissible banner reinforcing AI-as-tool principle
+[33mec45604b[m Docs: add AI approach, guardrails, and shared reflect config for cross-app implementation
+[33m89b13fcc[m Fix git structure: convert ai-bots/sales-bot from embedded repo to regular folder; remove local lockfile; micro-app build fixes intact.
+[33m9fce5663[m Micro-apps: enable builds. enhanced-sales-bot: remove pages/ (App Router), fix framer-motion types, nullable memory; sales-bot: scaffold app/layout+page, remove local lockfile; add CSP/base config where needed.
+[33m287fe532[m  Simplify Vercel configuration to use root package.json build script
