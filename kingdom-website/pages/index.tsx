@@ -84,7 +84,7 @@ export default function Home() {
               <div className="max-w-[960px] mx-auto">
                 <div className="text-center mb-12 sm:mb-16">
                   <h2 id="apps-heading" className="text-white text-2xl sm:text-3xl md:text-4xl font-black leading-tight tracking-[-0.033em] mb-6">
-                    Our Studio Apps
+                    🚀 OUR STUDIO APPS - TESTING DEPLOYMENT 🚀
                   </h2>
                   <p className="text-white text-sm sm:text-base font-normal leading-normal max-w-3xl mx-auto">
                     Kingdom Collective is more than just a suite of apps—it&apos;s a movement
