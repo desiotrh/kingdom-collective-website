@@ -54,8 +54,8 @@ export default function EnhancedChatWindow({ isOpen, onClose, currentPage }: Enh
     const welcomeMessage: Message = {
       id: 'welcome',
       text: mode === 'faith' 
-        ? "🔥 Greetings! I am your Kingdom Collective assistant, standing firm in biblical truth. As we explore our innovative apps together, remember that 'Every good and perfect gift is from above' (James 1:17). How can I help you discover how our technology can serve God's kingdom today?"
-        : "Hello! I'm your Kingdom Collective assistant, here to help you explore our innovative apps and solutions. Whether you're looking for content creation tools, community platforms, or business acceleration services, I'm here to guide you. How can I assist you today?",
+        ? "🔥 Greetings! I am your Kingdom Collective assistant, standing firm in biblical truth. As we explore our innovative apps together, remember that 'Every good and perfect gift is from above' (James 1:17).\n\nI can help you with:\n• Our 7 Kingdom apps and their features\n• How our technology serves God's kingdom\n• Biblical principles behind our solutions\n• Getting started with any app\n\nWhat would you like to explore first?"
+        : "Hello! I'm your Kingdom Collective assistant, here to help you explore our innovative apps and solutions.\n\nI can help you with:\n• All 7 Kingdom apps and their features\n• Pricing and subscription options\n• AI bots and automation tools\n• Getting started guides\n• Technical support\n\nWhat can I help you with today?",
       isUser: false,
       timestamp: new Date(),
       context: {
@@ -319,6 +319,33 @@ export default function EnhancedChatWindow({ isOpen, onClose, currentPage }: Enh
             </div>
           </div>
         )}
+
+        {/* Suggested Questions - Show when only welcome message exists */}
+        {messages.length === 1 && !isTyping && (
+          <div className="mt-4 space-y-2">
+            <p className="text-xs text-gray-400 text-center">Try asking:</p>
+            <div className="grid grid-cols-1 gap-2">
+              <button
+                onClick={() => handleSendMessage("What is Kingdom Studios?")}
+                className="text-left text-xs bg-white/5 text-white px-3 py-2 rounded-lg hover:bg-white/10 transition-colors border border-white/10"
+              >
+                What is Kingdom Studios?
+              </button>
+              <button
+                onClick={() => handleSendMessage("How much does it cost?")}
+                className="text-left text-xs bg-white/5 text-white px-3 py-2 rounded-lg hover:bg-white/10 transition-colors border border-white/10"
+              >
+                How much does it cost?
+              </button>
+              <button
+                onClick={() => handleSendMessage("What AI bots do you offer?")}
+                className="text-left text-xs bg-white/5 text-white px-3 py-2 rounded-lg hover:bg-white/10 transition-colors border border-white/10"
+              >
+                What AI bots do you offer?
+              </button>
+            </div>
+          </div>
+        )}
         
         <div ref={messagesEndRef} />
       </div>
@@ -331,7 +358,7 @@ export default function EnhancedChatWindow({ isOpen, onClose, currentPage }: Enh
             value={inputText}
             onChange={(e) => setInputText(e.target.value)}
             onKeyPress={handleKeyPress}
-            placeholder={mode === 'faith' ? "Ask about our kingdom-focused solutions..." : "Type your question here..."}
+            placeholder={mode === 'faith' ? "Ask about our kingdom-focused solutions..." : "Ask about apps, pricing, features, or support..."}
             className="w-full px-4 py-2 rounded-md bg-black/20 text-white placeholder-white/60 border border-white/10 focus:outline-none focus:ring-2 focus:ring-[#FFD700]"
             disabled={isLoading}
           />
@@ -349,29 +376,47 @@ export default function EnhancedChatWindow({ isOpen, onClose, currentPage }: Enh
         {/* Quick Actions */}
         <div className="mt-3 flex flex-wrap gap-2">
           <button
-            onClick={() => handleSendMessage("Tell me about your apps")}
+            onClick={() => handleSendMessage("Show me all your Kingdom apps")}
             className="text-xs bg-white/10 text-white px-3 py-1 rounded-full hover:bg-white/20 transition-colors"
           >
-            Our Apps
+            📱 All Apps
           </button>
           <button
             onClick={() => handleSendMessage("What are your pricing options?")}
             className="text-xs bg-white/10 text-white px-3 py-1 rounded-full hover:bg-white/20 transition-colors"
           >
-            Pricing
+            💰 Pricing
+          </button>
+          <button
+            onClick={() => handleSendMessage("Tell me about Kingdom Studios")}
+            className="text-xs bg-white/10 text-white px-3 py-1 rounded-full hover:bg-white/20 transition-colors"
+          >
+            🎬 Studios
+          </button>
+          <button
+            onClick={() => handleSendMessage("Tell me about Kingdom Circle")}
+            className="text-xs bg-white/10 text-white px-3 py-1 rounded-full hover:bg-white/20 transition-colors"
+          >
+            👥 Circle
           </button>
           <button
             onClick={() => handleSendMessage("Tell me about your AI bots")}
             className="text-xs bg-white/10 text-white px-3 py-1 rounded-full hover:bg-white/20 transition-colors"
           >
-            AI Bots
+            🤖 AI Bots
+          </button>
+          <button
+            onClick={() => handleSendMessage("How do I get started?")}
+            className="text-xs bg-white/10 text-white px-3 py-1 rounded-full hover:bg-white/20 transition-colors"
+          >
+            🚀 Get Started
           </button>
           {mode === 'faith' && (
             <button
               onClick={() => handleSendMessage("How do your apps align with biblical principles?")}
               className="text-xs bg-white/10 text-white px-3 py-1 rounded-full hover:bg-white/20 transition-colors"
             >
-              Biblical Foundation
+              ✝️ Biblical Foundation
             </button>
           )}
         </div>

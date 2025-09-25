@@ -151,6 +151,20 @@
     @apply fixed bottom-4 right-4 w-80 h-96 bg-navy/95 backdrop-blur-sm border border-white/30 rounded-xl shadow-2xl z-50;
   }
 
+  /* Mobile responsive chat */
+  @media (max-width: 768px) {
+    .chat-container {
+      @apply fixed inset-4 w-auto h-auto max-w-none max-h-none bg-navy/95 backdrop-blur-sm border border-white/30 rounded-xl shadow-2xl z-50;
+    }
+  }
+
+  /* Ensure chat doesn't cover important content */
+  @media (min-width: 769px) {
+    .chat-container {
+      @apply fixed bottom-6 right-6 w-96 h-[500px] bg-navy/95 backdrop-blur-sm border border-white/30 rounded-xl shadow-2xl z-50;
+    }
+  }
+
   .chat-message {
     @apply mb-4 p-3 rounded-lg max-w-[85%];
   }
