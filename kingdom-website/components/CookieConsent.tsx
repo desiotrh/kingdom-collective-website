@@ -69,32 +69,20 @@ export default function CookieConsent() {
 
   return (
     <div 
-      className="fixed bottom-0 left-0 right-0 z-[9999] bg-[#2E093F]/60 backdrop-blur-md border-t border-white/20 shadow-2xl"
+      className="fixed bottom-0 left-0 right-0 z-[9999] bg-[#2E093F]/30 backdrop-blur-lg border-t border-white/10 shadow-2xl"
       role="dialog"
       aria-labelledby="cookie-consent-title"
       aria-describedby="cookie-consent-description"
     >
       <div className="container-standard py-3">
         <div className="flex flex-col md:flex-row items-center justify-between gap-3">
-          <div className="flex-1 flex items-center gap-3">
-            <h3 
-              id="cookie-consent-title"
-              className="text-white font-semibold text-sm"
-              style={{ textShadow: '0 2px 8px rgba(46, 9, 63, 0.9), 0 1px 3px rgba(0, 0, 0, 0.7)' }}
-            >
-              Cookie Preferences
-            </h3>
-            <p 
-              id="cookie-consent-description"
-              className="text-white/90 text-xs sm:text-sm"
-              style={{ textShadow: '0 1px 4px rgba(0, 0, 0, 0.6)' }}
-            >
-              We use cookies to enhance your experience.{' '}
-              <Link href="/privacy" className="text-[#FFB347] hover:text-[#FFD700] underline transition-colors">
-                Learn more
-              </Link>
-            </p>
-          </div>
+          <p 
+            id="cookie-consent-description"
+            className="text-white/90 text-xs sm:text-sm flex-1"
+            style={{ textShadow: '0 2px 8px rgba(46, 9, 63, 0.9), 0 1px 3px rgba(0, 0, 0, 0.7)' }}
+          >
+            <span className="font-semibold">Cookie Preferences:</span> We use cookies to enhance your experience.
+          </p>
           
           <div className="flex gap-3">
             <button
