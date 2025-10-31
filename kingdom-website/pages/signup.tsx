@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { useAuth } from '../contexts/AuthContext';
 import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
-import BackgroundVideo from '../components/BackgroundVideo';
+import OptimizedVideoBackground from '../components/OptimizedVideoBackground';
 import OnboardingWizard from '../components/OnboardingWizard';
 import Image from 'next/image';
 
