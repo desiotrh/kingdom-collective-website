@@ -1,0 +1,78 @@
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Rotated to point top-left -->
+  <g transform="rotate(-45 16 16)">
+    <!-- Glow effect -->
+    <ellipse cx="16" cy="12" rx="3" ry="10" fill="url(#glowGradient)" opacity="0.4"/>
+    
+    <!-- Blade with gradient (orange to purple) -->
+    <path d="M16 2 L16.8 18 L15.2 18 L15.2 2 Z" fill="url(#bladeGradient)" stroke="#FFB347" stroke-width="0.3"/>
+    
+    <!-- Blade shine -->
+    <path d="M15.5 2 L15.5 17 L15.7 17 L15.7 2 Z" fill="white" opacity="0.5"/>
+    
+    <!-- Crown embellishment on blade -->
+    <g transform="translate(16, 16)">
+      <path d="M-2 0 L-1 -2 L0 -1 L1 -2 L2 0 L1.5 0.5 L-1.5 0.5 Z" fill="#FFD700" stroke="#B8860B" stroke-width="0.3"/>
+      <circle cx="-1" cy="-2" r="0.4" fill="#FFD700"/>
+      <circle cx="1" cy="-2" r="0.4" fill="#FFD700"/>
+    </g>
+    
+    <!-- Golden cross guard -->
+    <rect x="11" y="18" width="10" height="2.5" rx="0.3" fill="url(#goldGradient)" stroke="#B8860B" stroke-width="0.4"/>
+    <ellipse cx="16" cy="19.25" rx="1" ry="0.5" fill="#FFED4E" opacity="0.6"/>
+    
+    <!-- Leather handle -->
+    <rect x="14" y="20.5" width="4" height="6" rx="0.8" fill="url(#leatherGradient)" stroke="#4A2511" stroke-width="0.3"/>
+    <line x1="14" y1="22" x2="18" y2="22" stroke="#654321" stroke-width="0.2" opacity="0.5"/>
+    <line x1="14" y1="24" x2="18" y2="24" stroke="#654321" stroke-width="0.2" opacity="0.5"/>
+    
+    <!-- Golden pommel with flame -->
+    <circle cx="16" cy="27.5" r="1.8" fill="url(#goldGradient)" stroke="#B8860B" stroke-width="0.4"/>
+    <ellipse cx="16" cy="27.5" rx="0.8" ry="0.6" fill="#FFED4E" opacity="0.7"/>
+    
+    <!-- Small flame on pommel -->
+    <path d="M16 29 Q15.5 30 16 31 Q16.5 30 16 29 Z" fill="url(#flameGradient)" opacity="0.8"/>
+    <path d="M16 29.5 Q15.7 30.2 16 30.8 Q16.3 30.2 16 29.5 Z" fill="#FFE57F" opacity="0.9"/>
+  </g>
+  
+  <!-- Gradients and effects -->
+  <defs>
+    <!-- Blade gradient: orange to purple -->
+    <linearGradient id="bladeGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFB347;stop-opacity:1" />
+      <stop offset="40%" style="stop-color:#FF8C42;stop-opacity:1" />
+      <stop offset="70%" style="stop-color:#B47EDE;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#9B5DE5;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- Gold gradient -->
+    <linearGradient id="goldGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFED4E;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#FFD700;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#DAA520;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- Leather gradient -->
+    <linearGradient id="leatherGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#654321;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#8B4513;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#654321;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- Flame gradient -->
+    <linearGradient id="flameGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFD580;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#FF8C42;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FF6B35;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- Glow effect -->
+    <linearGradient id="glowGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFD580;stop-opacity:0.8" />
+      <stop offset="50%" style="stop-color:#FFB347;stop-opacity:0.4" />
+      <stop offset="100%" style="stop-color:#9B5DE5;stop-opacity:0.2" />
+    </linearGradient>
+  </defs>
+</svg>
+
+
