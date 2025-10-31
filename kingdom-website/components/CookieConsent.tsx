@@ -69,42 +69,44 @@ export default function CookieConsent() {
 
   return (
     <div 
-      className="fixed bottom-4 left-4 right-4 md:left-auto md:right-4 md:max-w-md z-[9999] bg-[#2E093F]/40 backdrop-blur-md border border-white/20 rounded-2xl shadow-2xl"
+      className="fixed bottom-0 left-0 right-0 z-[9999] bg-[#2E093F]/60 backdrop-blur-md border-t border-white/20 shadow-2xl"
       role="dialog"
       aria-labelledby="cookie-consent-title"
       aria-describedby="cookie-consent-description"
     >
-      <div className="p-4">
-        <div className="flex flex-col gap-3">
-          <h3 
-            id="cookie-consent-title"
-            className="text-white font-semibold text-base"
-            style={{ textShadow: '0 2px 8px rgba(46, 9, 63, 0.9), 0 1px 3px rgba(0, 0, 0, 0.7)' }}
-          >
-            Cookie Preferences
-          </h3>
-          <p 
-            id="cookie-consent-description"
-            className="text-white/90 text-sm leading-relaxed"
-            style={{ textShadow: '0 1px 4px rgba(0, 0, 0, 0.6)' }}
-          >
-            We use cookies to enhance your experience and analyze site traffic.{' '}
-            <Link href="/privacy" className="text-[#FFB347] hover:text-[#FFD700] underline transition-colors">
-              Learn more
-            </Link>
-          </p>
+      <div className="container-standard py-3">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-3">
+          <div className="flex-1 flex items-center gap-3">
+            <h3 
+              id="cookie-consent-title"
+              className="text-white font-semibold text-sm"
+              style={{ textShadow: '0 2px 8px rgba(46, 9, 63, 0.9), 0 1px 3px rgba(0, 0, 0, 0.7)' }}
+            >
+              Cookie Preferences
+            </h3>
+            <p 
+              id="cookie-consent-description"
+              className="text-white/90 text-xs sm:text-sm"
+              style={{ textShadow: '0 1px 4px rgba(0, 0, 0, 0.6)' }}
+            >
+              We use cookies to enhance your experience.{' '}
+              <Link href="/privacy" className="text-[#FFB347] hover:text-[#FFD700] underline transition-colors">
+                Learn more
+              </Link>
+            </p>
+          </div>
           
-          <div className="flex flex-col sm:flex-row gap-2 mt-2">
+          <div className="flex gap-3">
             <button
               onClick={handleAcceptNecessary}
-              className="flex-1 px-4 py-2 bg-white/10 backdrop-blur-sm border border-white/20 text-white text-sm rounded-lg hover:bg-white/20 transition-all font-medium"
+              className="px-5 py-2 bg-white/10 backdrop-blur-sm border border-white/20 text-white text-sm rounded-lg hover:bg-white/20 transition-all font-medium whitespace-nowrap"
               aria-label="Accept necessary cookies only"
             >
               Necessary Only
             </button>
             <button
               onClick={handleAcceptAll}
-              className="flex-1 px-4 py-2 bg-[#FFB347] text-black text-sm rounded-lg hover:bg-[#FFD700] hover:shadow-[0_0_20px_rgba(255,179,71,0.5)] transition-all font-semibold"
+              className="px-5 py-2 bg-[#FFB347] text-black text-sm rounded-lg hover:bg-[#FFD700] hover:shadow-[0_0_20px_rgba(255,179,71,0.5)] transition-all font-semibold whitespace-nowrap"
               aria-label="Accept all cookies"
             >
               Accept All
