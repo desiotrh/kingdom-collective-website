@@ -18,10 +18,10 @@ export default function Custom500() {
             Server Error
           </h2>
           <p className="text-xl text-white/80 mb-8">
-            We're experiencing technical difficulties. Our team has been notified and is working to resolve the issue.
+            We&apos;re experiencing technical difficulties. Our team has been notified and is working to resolve the issue.
           </p>
           <p className="text-lg text-white/60 mb-8 italic">
-            "The Lord is my strength and my shield; my heart trusts in him, and he helps me." - Psalm 28:7
+            &ldquo;The Lord is my strength and my shield; my heart trusts in him, and he helps me.&rdquo; - Psalm 28:7
           </p>
           <Link
             href="/"
