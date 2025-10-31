@@ -2,11 +2,11 @@ import React, { useLayoutEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import Layout from '../components/Layout';
 import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
 import OptimizedVideoBackground from '../components/OptimizedVideoBackground';
 import WarriorWithFlame from '../components/WarriorWithFlame';
+import Head from 'next/head';
 
 export default function Home() {
   const titleRef = useRef<HTMLHeadingElement | null>(null);
@@ -81,10 +81,12 @@ export default function Home() {
   ];
 
   return (
-    <Layout
-      title="Kingdom Collective - Create with Purpose. Share with Authority. Build What Matters."
-      description="Kingdom Collective is a Jesus-founded digital company creating world-class websites, apps, and AI systems. Every design, line of code, and creative decision begins with prayer, excellence, and purpose."
-    >
+    <>
+      <Head>
+        <title>Kingdom Collective - Create with Purpose. Share with Authority. Build What Matters.</title>
+        <meta name="description" content="Kingdom Collective is a Jesus-founded digital company creating world-class websites, apps, and AI systems. Every design, line of code, and creative decision begins with prayer, excellence, and purpose." />
+      </Head>
+      
       <div className="relative min-h-screen overflow-x-hidden">
         {/* Video Background - Full page coverage, behind everything */}
         <div className="fixed inset-0 z-0">
@@ -345,6 +347,6 @@ export default function Home() {
           <Footer />
         </div>
       </div>
-    </Layout>
+    </>
   );
 }
