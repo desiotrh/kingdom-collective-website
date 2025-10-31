@@ -56,7 +56,6 @@ export default function StaticVideoBackground({
         style={{ 
           opacity,
           filter: 'contrast(1.05) saturate(1.1) brightness(1.01)',
-          imageRendering: 'high-quality',
           objectFit: 'cover',
           transform: 'scale(3.0)', // Zoom out 200%
           transformOrigin: 'center center'
