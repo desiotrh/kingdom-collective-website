@@ -69,22 +69,22 @@ export default function CookieConsent() {
 
   return (
     <div 
-      className="fixed bottom-0 left-0 right-0 z-[9999] bg-[#2E093F]/30 backdrop-blur-lg border-t border-white/10 shadow-2xl"
+      className="fixed bottom-0 left-0 right-0 z-[9999] bg-[#2E093F]/15 backdrop-blur-xl border-t border-white/10 shadow-2xl"
       role="dialog"
       aria-labelledby="cookie-consent-title"
       aria-describedby="cookie-consent-description"
     >
       <div className="container-standard py-3">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-3">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-4">
           <p 
             id="cookie-consent-description"
-            className="text-white/90 text-xs sm:text-sm flex-1"
+            className="text-white/95 text-xs sm:text-sm flex-1 text-left"
             style={{ textShadow: '0 2px 8px rgba(46, 9, 63, 0.9), 0 1px 3px rgba(0, 0, 0, 0.7)' }}
           >
-            <span className="font-semibold">Cookie Preferences:</span> We use cookies to enhance your experience.
+            <span className="font-semibold">Cookie Preferences:</span> We use cookies to enhance your experience, analyze site traffic, and provide personalized content. Your privacy matters to us.
           </p>
           
-          <div className="flex gap-3">
+          <div className="flex gap-3 flex-shrink-0">
             <button
               onClick={handleAcceptNecessary}
               className="px-5 py-2 bg-white/10 backdrop-blur-sm border border-white/20 text-white text-sm rounded-lg hover:bg-white/20 transition-all font-medium whitespace-nowrap"
