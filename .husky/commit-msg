@@ -1,0 +1,27 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+# Kingdom Collective Commit Message Hook
+# Enforces Conventional Commits standard
+
+echo "📝 Validating commit message..."
+
+npx --no-install commitlint --edit "$1" || {
+  echo ""
+  echo "❌ Commit message does not follow Conventional Commits standard."
+  echo ""
+  echo "Valid formats:"
+  echo "  feat: add new feature"
+  echo "  fix: fix a bug"
+  echo "  docs: update documentation"
+  echo "  style: code formatting"
+  echo "  refactor: code refactoring"
+  echo "  test: add tests"
+  echo "  chore: maintenance tasks"
+  echo ""
+  echo "Example: feat: add user authentication system"
+  exit 1
+}
+
+echo "✅ Commit message format valid!"
+

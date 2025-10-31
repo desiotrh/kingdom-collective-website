@@ -1,0 +1,920 @@
+{
+  "config": {
+    "configFile": "D:\\Kingdom Studios App\\playwright.config.ts",
+    "rootDir": "D:/Kingdom Studios App/tests/workflow-audits",
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "reporter": [
+      [
+        "html",
+        {
+          "outputFolder": "tests/reports/playwright-html",
+          "open": "never"
+        }
+      ],
+      [
+        "json",
+        {
+          "outputFile": "tests/reports/playwright-results.json"
+        }
+      ],
+      [
+        "list",
+        null
+      ],
+      [
+        "D:\\Kingdom Studios App\\tests\\workflow-audits\\custom-reporter.ts",
+        null
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "quiet": false,
+    "projects": [
+      {
+        "outputDir": "D:/Kingdom Studios App/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "kingdom-studios",
+        "name": "kingdom-studios",
+        "testDir": "D:/Kingdom Studios App/tests/workflow-audits",
+        "testIgnore": [],
+        "testMatch": [
+          "**/kingdom-studios.spec.ts"
+        ],
+        "timeout": 60000
+      },
+      {
+        "outputDir": "D:/Kingdom Studios App/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "kingdom-circle",
+        "name": "kingdom-circle",
+        "testDir": "D:/Kingdom Studios App/tests/workflow-audits",
+        "testIgnore": [],
+        "testMatch": [
+          "**/kingdom-circle.spec.ts"
+        ],
+        "timeout": 60000
+      },
+      {
+        "outputDir": "D:/Kingdom Studios App/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "kingdom-clips",
+        "name": "kingdom-clips",
+        "testDir": "D:/Kingdom Studios App/tests/workflow-audits",
+        "testIgnore": [],
+        "testMatch": [
+          "**/kingdom-clips.spec.ts"
+        ],
+        "timeout": 60000
+      },
+      {
+        "outputDir": "D:/Kingdom Studios App/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "kingdom-launchpad",
+        "name": "kingdom-launchpad",
+        "testDir": "D:/Kingdom Studios App/tests/workflow-audits",
+        "testIgnore": [],
+        "testMatch": [
+          "**/kingdom-launchpad.spec.ts"
+        ],
+        "timeout": 60000
+      },
+      {
+        "outputDir": "D:/Kingdom Studios App/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "kingdom-lens",
+        "name": "kingdom-lens",
+        "testDir": "D:/Kingdom Studios App/tests/workflow-audits",
+        "testIgnore": [],
+        "testMatch": [
+          "**/kingdom-lens.spec.ts"
+        ],
+        "timeout": 60000
+      },
+      {
+        "outputDir": "D:/Kingdom Studios App/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "kingdom-stand",
+        "name": "kingdom-stand",
+        "testDir": "D:/Kingdom Studios App/tests/workflow-audits",
+        "testIgnore": [],
+        "testMatch": [
+          "**/kingdom-stand.spec.ts"
+        ],
+        "timeout": 60000
+      },
+      {
+        "outputDir": "D:/Kingdom Studios App/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "kingdom-voice",
+        "name": "kingdom-voice",
+        "testDir": "D:/Kingdom Studios App/tests/workflow-audits",
+        "testIgnore": [],
+        "testMatch": [
+          "**/kingdom-voice.spec.ts"
+        ],
+        "timeout": 60000
+      },
+      {
+        "outputDir": "D:/Kingdom Studios App/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "kingdom-website",
+        "name": "kingdom-website",
+        "testDir": "D:/Kingdom Studios App/tests/workflow-audits",
+        "testIgnore": [],
+        "testMatch": [
+          "**/kingdom-website.spec.ts"
+        ],
+        "timeout": 60000
+      }
+    ],
+    "shard": null,
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.52.0",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "kingdom-studios.spec.ts",
+      "file": "kingdom-studios.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Workflow Audit - Kingdom Studios",
+          "file": "kingdom-studios.spec.ts",
+          "line": 8,
+          "column": 6,
+          "specs": [
+            {
+              "title": "should navigate to Home from any page",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "kingdom-studios",
+                  "projectName": "kingdom-studios",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2268,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "Navigate to Home",
+                          "duration": 89
+                        }
+                      ],
+                      "startTime": "2025-10-14T19:35:26.636Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "929d2cbb4c3cb1cd20b3-04df7902c2ab163e0b8f",
+              "file": "kingdom-studios.spec.ts",
+              "line": 20,
+              "column": 7
+            },
+            {
+              "title": "should navigate to Profile/Account",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "kingdom-studios",
+                  "projectName": "kingdom-studios",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1138,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "Navigate to Profile",
+                          "duration": 47
+                        }
+                      ],
+                      "startTime": "2025-10-14T19:35:29.479Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "929d2cbb4c3cb1cd20b3-8ad14526f94e5b48a8bc",
+              "file": "kingdom-studios.spec.ts",
+              "line": 31,
+              "column": 7
+            },
+            {
+              "title": "should navigate to Settings",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "kingdom-studios",
+                  "projectName": "kingdom-studios",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1212,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "Navigate to Settings",
+                          "duration": 51
+                        }
+                      ],
+                      "startTime": "2025-10-14T19:35:30.629Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "929d2cbb4c3cb1cd20b3-35d1b67e56fd51d5e04c",
+              "file": "kingdom-studios.spec.ts",
+              "line": 42,
+              "column": 7
+            },
+            {
+              "title": "should navigate to Dashboard",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "kingdom-studios",
+                  "projectName": "kingdom-studios",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1197,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "Navigate to Dashboard",
+                          "duration": 73
+                        }
+                      ],
+                      "startTime": "2025-10-14T19:35:31.850Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "929d2cbb4c3cb1cd20b3-6a7df51b3a0185ae59d4",
+              "file": "kingdom-studios.spec.ts",
+              "line": 53,
+              "column": 7
+            },
+            {
+              "title": "should display login page for unauthenticated users",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "kingdom-studios",
+                  "projectName": "kingdom-studios",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 1969,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeTruthy\u001b[2m()\u001b[22m\n\nReceived: \u001b[31mfalse\u001b[39m",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeTruthy\u001b[2m()\u001b[22m\n\nReceived: \u001b[31mfalse\u001b[39m\n    at D:\\Kingdom Studios App\\tests\\workflow-audits\\kingdom-studios.spec.ts:79:27\n    at D:\\Kingdom Studios App\\tests\\workflow-audits\\kingdom-studios.spec.ts:69:5",
+                        "location": {
+                          "file": "D:\\Kingdom Studios App\\tests\\workflow-audits\\kingdom-studios.spec.ts",
+                          "column": 27,
+                          "line": 79
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 77 |\u001b[39m                           \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgetByRole(\u001b[32m'button'\u001b[39m\u001b[33m,\u001b[39m { name\u001b[33m:\u001b[39m \u001b[35m/sign in|log in/i\u001b[39m })\u001b[33m.\u001b[39misVisible()\u001b[33m;\u001b[39m\n \u001b[90m 78 |\u001b[39m       \n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 79 |\u001b[39m       expect(isLoginPage)\u001b[33m.\u001b[39mtoBeTruthy()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                           \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 80 |\u001b[39m     })\u001b[33m;\u001b[39m\n \u001b[90m 81 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 82 |\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "D:\\Kingdom Studios App\\tests\\workflow-audits\\kingdom-studios.spec.ts",
+                            "column": 27,
+                            "line": 79
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeTruthy\u001b[2m()\u001b[22m\n\nReceived: \u001b[31mfalse\u001b[39m\n\n\u001b[0m \u001b[90m 77 |\u001b[39m                           \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgetByRole(\u001b[32m'button'\u001b[39m\u001b[33m,\u001b[39m { name\u001b[33m:\u001b[39m \u001b[35m/sign in|log in/i\u001b[39m })\u001b[33m.\u001b[39misVisible()\u001b[33m;\u001b[39m\n \u001b[90m 78 |\u001b[39m       \n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 79 |\u001b[39m       expect(isLoginPage)\u001b[33m.\u001b[39mtoBeTruthy()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                           \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 80 |\u001b[39m     })\u001b[33m;\u001b[39m\n \u001b[90m 81 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 82 |\u001b[39m\u001b[0m\n\u001b[2m    at D:\\Kingdom Studios App\\tests\\workflow-audits\\kingdom-studios.spec.ts:79:27\u001b[22m\n\u001b[2m    at D:\\Kingdom Studios App\\tests\\workflow-audits\\kingdom-studios.spec.ts:69:5\u001b[22m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "Check login redirect",
+                          "duration": 714,
+                          "error": {
+                            "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeTruthy\u001b[2m()\u001b[22m\n\nReceived: \u001b[31mfalse\u001b[39m",
+                            "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeTruthy\u001b[2m()\u001b[22m\n\nReceived: \u001b[31mfalse\u001b[39m\n    at D:\\Kingdom Studios App\\tests\\workflow-audits\\kingdom-studios.spec.ts:79:27\n    at D:\\Kingdom Studios App\\tests\\workflow-audits\\kingdom-studios.spec.ts:69:5",
+                            "location": {
+                              "file": "D:\\Kingdom Studios App\\tests\\workflow-audits\\kingdom-studios.spec.ts",
+                              "column": 27,
+                              "line": 79
+                            },
+                            "snippet": "\u001b[0m \u001b[90m 77 |\u001b[39m                           \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgetByRole(\u001b[32m'button'\u001b[39m\u001b[33m,\u001b[39m { name\u001b[33m:\u001b[39m \u001b[35m/sign in|log in/i\u001b[39m })\u001b[33m.\u001b[39misVisible()\u001b[33m;\u001b[39m\n \u001b[90m 78 |\u001b[39m       \n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 79 |\u001b[39m       expect(isLoginPage)\u001b[33m.\u001b[39mtoBeTruthy()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                           \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 80 |\u001b[39m     })\u001b[33m;\u001b[39m\n \u001b[90m 81 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 82 |\u001b[39m\u001b[0m"
+                          }
+                        }
+                      ],
+                      "startTime": "2025-10-14T19:35:33.059Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "D:\\Kingdom Studios App\\test-results\\kingdom-studios-Workflow-A-96b83-e-for-unauthenticated-users-kingdom-studios\\test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "D:\\Kingdom Studios App\\test-results\\kingdom-studios-Workflow-A-96b83-e-for-unauthenticated-users-kingdom-studios\\video.webm"
+                        },
+                        {
+                          "name": "_error-context-0",
+                          "contentType": "text/markdown",
+                          "path": "D:\\Kingdom Studios App\\test-results\\kingdom-studios-Workflow-A-96b83-e-for-unauthenticated-users-kingdom-studios\\error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "D:\\Kingdom Studios App\\tests\\workflow-audits\\kingdom-studios.spec.ts",
+                        "column": 27,
+                        "line": 79
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "929d2cbb4c3cb1cd20b3-2d75158f681b1e616b7d",
+              "file": "kingdom-studios.spec.ts",
+              "line": 68,
+              "column": 7
+            },
+            {
+              "title": "should navigate to Sign Up page",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "kingdom-studios",
+                  "projectName": "kingdom-studios",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2228,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "Navigate to Sign Up",
+                          "duration": 92
+                        }
+                      ],
+                      "startTime": "2025-10-14T19:35:44.229Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "929d2cbb4c3cb1cd20b3-66877bb0c9d3052387c3",
+              "file": "kingdom-studios.spec.ts",
+              "line": 83,
+              "column": 7
+            },
+            {
+              "title": "should verify all primary buttons are clickable",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "kingdom-studios",
+                  "projectName": "kingdom-studios",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1162,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "Check primary buttons",
+                          "duration": 65
+                        }
+                      ],
+                      "startTime": "2025-10-14T19:35:47.224Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "929d2cbb4c3cb1cd20b3-3126c6bb66de9d8be2d0",
+              "file": "kingdom-studios.spec.ts",
+              "line": 98,
+              "column": 7
+            },
+            {
+              "title": "should verify all navigation links are valid",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "kingdom-studios",
+                  "projectName": "kingdom-studios",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1257,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "Check navigation links",
+                          "duration": 55
+                        }
+                      ],
+                      "startTime": "2025-10-14T19:35:48.397Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "929d2cbb4c3cb1cd20b3-804f8641cd839320c417",
+              "file": "kingdom-studios.spec.ts",
+              "line": 112,
+              "column": 7
+            },
+            {
+              "title": "should validate login form",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "kingdom-studios",
+                  "projectName": "kingdom-studios",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1813,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "Check login form",
+                          "duration": 685
+                        }
+                      ],
+                      "startTime": "2025-10-14T19:35:49.665Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "929d2cbb4c3cb1cd20b3-62649988d979298b7373",
+              "file": "kingdom-studios.spec.ts",
+              "line": 129,
+              "column": 7
+            },
+            {
+              "title": "should protect dashboard routes",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "kingdom-studios",
+                  "projectName": "kingdom-studios",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 3325,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "Route /dashboard accessible (may be authenticated)\n"
+                        },
+                        {
+                          "text": "Route /admin accessible (may be authenticated)\n"
+                        },
+                        {
+                          "text": "Route /settings accessible (may be authenticated)\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "Check dashboard protection",
+                          "duration": 2230
+                        }
+                      ],
+                      "startTime": "2025-10-14T19:35:51.488Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "929d2cbb4c3cb1cd20b3-f6ce36f07debb0a3a094",
+              "file": "kingdom-studios.spec.ts",
+              "line": 156,
+              "column": 7
+            },
+            {
+              "title": "should complete sign-up workflow",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "kingdom-studios",
+                  "projectName": "kingdom-studios",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1792,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "Sign up flow",
+                          "duration": 676
+                        }
+                      ],
+                      "startTime": "2025-10-14T19:35:54.821Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "929d2cbb4c3cb1cd20b3-c62bb0f85422905361c4",
+              "file": "kingdom-studios.spec.ts",
+              "line": 181,
+              "column": 7
+            },
+            {
+              "title": "should navigate through app tabs/sections",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "kingdom-studios",
+                  "projectName": "kingdom-studios",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1140,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "Check app sections",
+                          "duration": 52
+                        }
+                      ],
+                      "startTime": "2025-10-14T19:35:56.624Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "929d2cbb4c3cb1cd20b3-587bc4fdb3b1b9437783",
+              "file": "kingdom-studios.spec.ts",
+              "line": 201,
+              "column": 7
+            },
+            {
+              "title": "should handle 404 errors gracefully",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "kingdom-studios",
+                  "projectName": "kingdom-studios",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 2015,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeTruthy\u001b[2m()\u001b[22m\n\nReceived: \u001b[31mfalse\u001b[39m",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeTruthy\u001b[2m()\u001b[22m\n\nReceived: \u001b[31mfalse\u001b[39m\n    at D:\\Kingdom Studios App\\tests\\workflow-audits\\kingdom-studios.spec.ts:232:38\n    at D:\\Kingdom Studios App\\tests\\workflow-audits\\kingdom-studios.spec.ts:225:5",
+                        "location": {
+                          "file": "D:\\Kingdom Studios App\\tests\\workflow-audits\\kingdom-studios.spec.ts",
+                          "column": 38,
+                          "line": 232
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 230 |\u001b[39m       \u001b[36mconst\u001b[39m hasErrorPage \u001b[33m=\u001b[39m page\u001b[33m.\u001b[39murl()\u001b[33m.\u001b[39mincludes(\u001b[32m'/404'\u001b[39m) \u001b[33m||\u001b[39m page\u001b[33m.\u001b[39murl()\u001b[33m.\u001b[39mincludes(\u001b[32m'/not-found'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 231 |\u001b[39m       \n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 232 |\u001b[39m       expect(has404 \u001b[33m||\u001b[39m hasErrorPage)\u001b[33m.\u001b[39mtoBeTruthy()\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                                      \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 233 |\u001b[39m     })\u001b[33m;\u001b[39m\n \u001b[90m 234 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 235 |\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "D:\\Kingdom Studios App\\tests\\workflow-audits\\kingdom-studios.spec.ts",
+                            "column": 38,
+                            "line": 232
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeTruthy\u001b[2m()\u001b[22m\n\nReceived: \u001b[31mfalse\u001b[39m\n\n\u001b[0m \u001b[90m 230 |\u001b[39m       \u001b[36mconst\u001b[39m hasErrorPage \u001b[33m=\u001b[39m page\u001b[33m.\u001b[39murl()\u001b[33m.\u001b[39mincludes(\u001b[32m'/404'\u001b[39m) \u001b[33m||\u001b[39m page\u001b[33m.\u001b[39murl()\u001b[33m.\u001b[39mincludes(\u001b[32m'/not-found'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 231 |\u001b[39m       \n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 232 |\u001b[39m       expect(has404 \u001b[33m||\u001b[39m hasErrorPage)\u001b[33m.\u001b[39mtoBeTruthy()\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                                      \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 233 |\u001b[39m     })\u001b[33m;\u001b[39m\n \u001b[90m 234 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 235 |\u001b[39m\u001b[0m\n\u001b[2m    at D:\\Kingdom Studios App\\tests\\workflow-audits\\kingdom-studios.spec.ts:232:38\u001b[22m\n\u001b[2m    at D:\\Kingdom Studios App\\tests\\workflow-audits\\kingdom-studios.spec.ts:225:5\u001b[22m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "Check 404 handling",
+                          "duration": 748,
+                          "error": {
+                            "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeTruthy\u001b[2m()\u001b[22m\n\nReceived: \u001b[31mfalse\u001b[39m",
+                            "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeTruthy\u001b[2m()\u001b[22m\n\nReceived: \u001b[31mfalse\u001b[39m\n    at D:\\Kingdom Studios App\\tests\\workflow-audits\\kingdom-studios.spec.ts:232:38\n    at D:\\Kingdom Studios App\\tests\\workflow-audits\\kingdom-studios.spec.ts:225:5",
+                            "location": {
+                              "file": "D:\\Kingdom Studios App\\tests\\workflow-audits\\kingdom-studios.spec.ts",
+                              "column": 38,
+                              "line": 232
+                            },
+                            "snippet": "\u001b[0m \u001b[90m 230 |\u001b[39m       \u001b[36mconst\u001b[39m hasErrorPage \u001b[33m=\u001b[39m page\u001b[33m.\u001b[39murl()\u001b[33m.\u001b[39mincludes(\u001b[32m'/404'\u001b[39m) \u001b[33m||\u001b[39m page\u001b[33m.\u001b[39murl()\u001b[33m.\u001b[39mincludes(\u001b[32m'/not-found'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 231 |\u001b[39m       \n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 232 |\u001b[39m       expect(has404 \u001b[33m||\u001b[39m hasErrorPage)\u001b[33m.\u001b[39mtoBeTruthy()\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                                      \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 233 |\u001b[39m     })\u001b[33m;\u001b[39m\n \u001b[90m 234 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 235 |\u001b[39m\u001b[0m"
+                          }
+                        }
+                      ],
+                      "startTime": "2025-10-14T19:35:57.773Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "D:\\Kingdom Studios App\\test-results\\kingdom-studios-Workflow-A-07292-andle-404-errors-gracefully-kingdom-studios\\test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "D:\\Kingdom Studios App\\test-results\\kingdom-studios-Workflow-A-07292-andle-404-errors-gracefully-kingdom-studios\\video.webm"
+                        },
+                        {
+                          "name": "_error-context-0",
+                          "contentType": "text/markdown",
+                          "path": "D:\\Kingdom Studios App\\test-results\\kingdom-studios-Workflow-A-07292-andle-404-errors-gracefully-kingdom-studios\\error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "D:\\Kingdom Studios App\\tests\\workflow-audits\\kingdom-studios.spec.ts",
+                        "column": 38,
+                        "line": 232
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "929d2cbb4c3cb1cd20b3-1b51686d579d8d333452",
+              "file": "kingdom-studios.spec.ts",
+              "line": 224,
+              "column": 7
+            },
+            {
+              "title": "should have accessible navigation",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "kingdom-studios",
+                  "projectName": "kingdom-studios",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1752,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "Check accessibility",
+                          "duration": 71
+                        }
+                      ],
+                      "startTime": "2025-10-14T19:36:11.692Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "929d2cbb4c3cb1cd20b3-ae6259481cc07991e5d6",
+              "file": "kingdom-studios.spec.ts",
+              "line": 240,
+              "column": 7
+            },
+            {
+              "title": "should have proper heading hierarchy",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "kingdom-studios",
+                  "projectName": "kingdom-studios",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1225,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "Check headings",
+                          "duration": 151
+                        }
+                      ],
+                      "startTime": "2025-10-14T19:36:13.764Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "929d2cbb4c3cb1cd20b3-707817cc1d300f298b81",
+              "file": "kingdom-studios.spec.ts",
+              "line": 249,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2025-10-14T19:35:14.409Z",
+    "duration": 60963.636,
+    "expected": 13,
+    "skipped": 0,
+    "unexpected": 2,
+    "flaky": 0
+  }
+}

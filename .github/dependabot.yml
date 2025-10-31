@@ -1,0 +1,9 @@
+# Dependabot is DISABLED for development phase
+#
+# To enable Dependabot when ready for production:
+# 1. Delete this file
+# 2. Rename dependabot.yml.disabled to dependabot.yml
+# 3. Push to GitHub
+#
+# This keeps development easy and consistent without automated dependency update PRs.
+# Enable before production launch for automated security updates.

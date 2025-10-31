@@ -1,0 +1,60 @@
+# Kingdom Collective Code Owners
+# All code requires review before merge
+
+# Default owners for everything
+* @kingdom-collective/core-team
+
+# Critical security and infrastructure files
+/.github/** @kingdom-collective/devops-team
+/scripts/** @kingdom-collective/devops-team
+/.husky/** @kingdom-collective/devops-team
+/KINGDOM_MANIFESTO.md @kingdom-collective/core-team @kingdom-collective/devops-team
+
+# Backend infrastructure
+/kingdom-studios-backend/** @kingdom-collective/backend-team
+/kingdom-website/pages/api/** @kingdom-collective/backend-team
+/kingdom-website/lib/api/** @kingdom-collective/backend-team
+
+# Frontend applications
+/kingdom-website/** @kingdom-collective/frontend-team
+/apps/** @kingdom-collective/frontend-team
+/packages/ui/** @kingdom-collective/frontend-team
+/packages/theme/** @kingdom-collective/frontend-team
+
+# Mobile/Native development
+/kingdom-studios/src/** @kingdom-collective/mobile-team @kingdom-collective/frontend-team
+
+# Database and data
+/kingdom-studios-backend/src/models/** @kingdom-collective/backend-team @kingdom-collective/data-team
+/kingdom-studios-backend/migrations/** @kingdom-collective/backend-team @kingdom-collective/data-team
+/prisma/** @kingdom-collective/backend-team @kingdom-collective/data-team
+
+# Documentation
+*.md @kingdom-collective/docs-team
+/docs/** @kingdom-collective/docs-team
+
+# Security-sensitive files (require 2 approvals)
+/.env.example @kingdom-collective/backend-team @kingdom-collective/devops-team
+/vercel.json @kingdom-collective/devops-team
+/package.json @kingdom-collective/devops-team
+/package-lock.json @kingdom-collective/devops-team
+
+# Configuration files
+/tsconfig.json @kingdom-collective/frontend-team @kingdom-collective/backend-team
+/eslint.config.js @kingdom-collective/frontend-team
+/.eslintrc.js @kingdom-collective/frontend-team
+/.prettierrc @kingdom-collective/frontend-team
+/commitlint.config.js @kingdom-collective/devops-team
+/.lighthouserc.json @kingdom-collective/frontend-team @kingdom-collective/devops-team
+
+# Testing
+/tests/** @kingdom-collective/qa-team
+/testing/** @kingdom-collective/qa-team
+/**/*.test.* @kingdom-collective/qa-team
+/**/*.spec.* @kingdom-collective/qa-team
+/playwright.config.ts @kingdom-collective/qa-team
+/jest.config.js @kingdom-collective/qa-team
+
+# CI/CD workflows
+/.github/workflows/** @kingdom-collective/devops-team @kingdom-collective/core-team
+

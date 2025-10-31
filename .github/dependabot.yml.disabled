@@ -1,0 +1,160 @@
+# Kingdom Collective Dependabot Configuration
+# Automated dependency updates
+# 
+# ⚠️ CURRENTLY DISABLED FOR DEVELOPMENT PHASE
+# 
+# This file is renamed to .disabled to keep Dependabot inactive during development.
+# When ready for production, rename this file from:
+#   .github/dependabot.yml.disabled
+# to:
+#   .github/dependabot.yml
+#
+# Then Dependabot will start creating automated dependency update PRs.
+
+version: 2
+updates:
+  # Root workspace
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+      timezone: "America/New_York"
+    open-pull-requests-limit: 5
+    reviewers:
+      - "kingdom-collective/core-team"
+    labels:
+      - "dependencies"
+      - "automerge"
+    commit-message:
+      prefix: "chore"
+      include: "scope"
+    ignore:
+      # Ignore major version updates for stability
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
+
+  # Kingdom Website
+  - package-ecosystem: "npm"
+    directory: "/kingdom-website"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+    open-pull-requests-limit: 10
+    reviewers:
+      - "kingdom-collective/frontend-team"
+    labels:
+      - "dependencies"
+      - "website"
+    commit-message:
+      prefix: "chore"
+      prefix-development: "chore"
+      include: "scope"
+
+  # Kingdom Studios Backend
+  - package-ecosystem: "npm"
+    directory: "/kingdom-studios-backend"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "10:00"
+    open-pull-requests-limit: 10
+    reviewers:
+      - "kingdom-collective/backend-team"
+    labels:
+      - "dependencies"
+      - "backend"
+      - "security"
+    commit-message:
+      prefix: "chore"
+      include: "scope"
+    # Auto-merge patch updates for security
+    allow:
+      - dependency-type: "direct"
+      - dependency-type: "indirect"
+
+  # Kingdom Studios (Main App)
+  - package-ecosystem: "npm"
+    directory: "/kingdom-studios"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 10
+    labels:
+      - "dependencies"
+      - "app"
+
+  # Kingdom Circle
+  - package-ecosystem: "npm"
+    directory: "/apps/kingdom-circle"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+    labels:
+      - "dependencies"
+      - "kingdom-circle"
+
+  # Kingdom Clips
+  - package-ecosystem: "npm"
+    directory: "/apps/kingdom-clips"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+    labels:
+      - "dependencies"
+      - "kingdom-clips"
+
+  # Kingdom Launchpad
+  - package-ecosystem: "npm"
+    directory: "/apps/kingdom-launchpad"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+    labels:
+      - "dependencies"
+      - "kingdom-launchpad"
+
+  # Kingdom Lens
+  - package-ecosystem: "npm"
+    directory: "/apps/kingdom-lens"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+    labels:
+      - "dependencies"
+      - "kingdom-lens"
+
+  # Kingdom Voice
+  - package-ecosystem: "npm"
+    directory: "/apps/kingdom-voice"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+    labels:
+      - "dependencies"
+      - "kingdom-voice"
+
+  # Kingdom Stand
+  - package-ecosystem: "npm"
+    directory: "/apps/kingdom-stand"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+    labels:
+      - "dependencies"
+      - "kingdom-stand"
+
+  # GitHub Actions
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "monthly"
+      day: "monday"
+    open-pull-requests-limit: 3
+    labels:
+      - "dependencies"
+      - "github-actions"
+    commit-message:
+      prefix: "ci"
+

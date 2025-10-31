@@ -75,6 +75,9 @@ coverage/
 # nyc test coverage
 .nyc_output
 
+# Test reports (auto-generated)
+testing/reports/
+
 # Dependency directories
 jspm_packages/
 

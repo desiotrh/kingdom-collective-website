@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
-import BackgroundVideo from '../components/BackgroundVideo';
+import OptimizedVideoBackground from '../components/OptimizedVideoBackground';
 
 export default function Features() {
   const differentiators = [
@@ -73,7 +73,16 @@ export default function Features() {
 
   return (
     <div className="relative flex size-full min-h-screen flex-col bg-navy dark group/design-root overflow-x-hidden">
-      <BackgroundVideo />
+      <div className="fixed inset-0 z-0">
+        <OptimizedVideoBackground 
+          videoSrc="/assets/Heavenly-BG-video.mp4"
+          fadeHeight={31}
+          fadeColor="#0B0614"
+          opacity={1}
+          frozen={true}
+          frozenFrame={0.3}
+        />
+      </div>
       <div className="layout-container flex h-full grow flex-col relative z-10">
         <Navigation />
         
@@ -151,10 +160,10 @@ export default function Features() {
               Join thousands of faith-driven creators who are already building with purpose and making an impact.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/apps" className="bg-gradient-to-r from-kingdom-gold to-kingdom-gold-soft text-black px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-bold hover:from-kingdom-gold-soft hover:to-kingdom-gold-matte hover-scale animate-standard" aria-label="Explore our suite of applications">
+              <Link href="/apps" className="bg-white/10 backdrop-blur-sm border-2 border-white/30 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-bold hover:bg-[#FFB347] hover:border-[#FFB347] hover:text-black hover:shadow-[0_0_30px_rgba(255,179,71,0.6)] transition-all duration-300" aria-label="Explore our suite of applications">
                 Explore Our Apps
               </Link>
-              <Link href="/vision" className="bg-gradient-to-r from-kingdom-gold to-kingdom-gold-soft text-black px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-bold hover:from-kingdom-gold-soft hover:to-kingdom-gold-matte hover-scale animate-standard" aria-label="Learn about our vision and mission">
+              <Link href="/vision" className="bg-white/10 backdrop-blur-sm border-2 border-white/30 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-bold hover:bg-[#FFB347] hover:border-[#FFB347] hover:text-black hover:shadow-[0_0_30px_rgba(255,179,71,0.6)] transition-all duration-300" aria-label="Learn about our vision and mission">
                 Learn Our Vision
               </Link>
             </div>

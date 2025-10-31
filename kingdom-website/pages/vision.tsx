@@ -2,12 +2,21 @@ import React from 'react';
 import Link from 'next/link';
 import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
-import BackgroundVideo from '../components/BackgroundVideo';
+import OptimizedVideoBackground from '../components/OptimizedVideoBackground';
 
 export default function Vision() {
   return (
     <div className="relative flex size-full min-h-screen flex-col bg-navy dark group/design-root overflow-x-hidden">
-      <BackgroundVideo />
+      <div className="fixed inset-0 z-0">
+        <OptimizedVideoBackground 
+          videoSrc="/assets/Heavenly-BG-video.mp4"
+          fadeHeight={31}
+          fadeColor="#0B0614"
+          opacity={1}
+          frozen={true}
+          frozenFrame={0.3}
+        />
+      </div>
       <div className="layout-container flex h-full grow flex-col relative z-10">
         <Navigation />
         
@@ -18,45 +27,45 @@ export default function Vision() {
               Our Vision
             </h1>
             <p className="text-white text-base sm:text-lg md:text-xl leading-relaxed max-w-3xl mx-auto mb-8">
-              Kingdom Studios was birthed out of a mandate — not a marketing plan.
+              Kingdom Collective was birthed out of a mandate — not a marketing plan.
             </p>
           </div>
         </section>
 
-        {/* Mission Statement Section */}
+        {/* Origin Section */}
         <section className="px-4 sm:px-6 md:px-8 lg:px-12 xl:px-40 py-12 sm:py-16 md:py-20 bg-black/30 backdrop-blur-sm">
           <div className="max-w-[960px] mx-auto">
             <div className="text-center mb-12 sm:mb-16">
               <h2 className="text-white text-2xl sm:text-3xl md:text-4xl font-black leading-tight tracking-[-0.033em] mb-6">
-                The Mandate
+                Born from a Blueprint of Heaven
               </h2>
             </div>
 
             <div className="space-y-6 sm:space-y-8 text-white leading-relaxed text-base sm:text-lg">
               <p>
-                We believe we are living in a time where boldness, purity, and truth must rise in the digital space, and it&apos;s not enough to just &quot;create content.&quot; We are here to bring Heaven to Earth — to reflect the glory of God through everything we build, say, and share.
+                Kingdom Collective was founded by Desirea Tritz, after being given a divine blueprint by the Holy Spirit — a call to build technology that reflects God&apos;s excellence and truth.
               </p>
               
               <p>
-                This platform was designed to empower faith-driven creators, entrepreneurs, and messengers to step fully into their God-given assignments. Whether you&apos;re called to testify through a video, launch a Kingdom business, share a prophetic word, or build a discipleship community — we believe your voice matters. The Kingdom needs you bold. The harvest is ready.
+                We create with conviction, steward innovation with integrity, and deliver professional solutions that bring Kingdom values into the digital world. We believe creativity is worship, and excellence is ministry. Every project is a collaboration between vision, technology, and faith.
               </p>
               
               <p>
-                Our mission is to equip Spirit-led creators with the tools, technology, and clarity they need to rise with authority, multiply their message, and impact culture without compromise. Every feature inside Kingdom Studios was prayerfully built to reflect the model of the early Church in Acts — marked by power, unity, generosity, and the fear of the Lord. This isn&apos;t just another app. This is a remnant rising.
+                Whether you&apos;re launching a ministry, building a business, or creating content that matters — we&apos;re here to help you build it with excellence and purpose. Our standard is not competition — it&apos;s obedience and excellence in the Spirit.
               </p>
             </div>
           </div>
         </section>
 
-        {/* Dual Mode Section */}
+        {/* Dual Mode Section - For Kingdom Apps */}
         <section className="px-4 sm:px-6 md:px-8 lg:px-12 xl:px-40 py-12 sm:py-16 md:py-20">
           <div className="max-w-[960px] mx-auto">
             <div className="text-center mb-12 sm:mb-16">
               <h2 className="text-white text-2xl sm:text-3xl md:text-4xl font-black leading-tight tracking-[-0.033em] mb-6">
-                Built to Include
+                Our Kingdom Apps: Built to Include
               </h2>
               <p className="text-white text-base sm:text-lg md:text-xl leading-relaxed max-w-3xl mx-auto mb-8">
-                We recognize that not everyone who comes here is already walking with Jesus — and that&apos;s okay. That&apos;s why we built a dual-mode experience.
+                In our Kingdom Apps suite, we recognize that not everyone is already walking with Jesus — and that&apos;s okay. That&apos;s why we built a dual-mode experience that serves both the called and the curious.
               </p>
             </div>
 
@@ -180,11 +189,11 @@ export default function Vision() {
               Start creating with purpose, sharing with authority, and building what truly matters.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/apps" className="bg-gradient-to-r from-kingdom-gold to-kingdom-gold-soft text-black px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-bold hover:from-kingdom-gold-soft hover:to-kingdom-gold-matte transition-all duration-200">
-                Explore Our Apps
+              <Link href="/contact" className="bg-white/10 backdrop-blur-sm border-2 border-white/30 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-bold hover:bg-[#FFB347] hover:border-[#FFB347] hover:text-black hover:shadow-[0_0_30px_rgba(255,179,71,0.6)] transition-all duration-300">
+                Start a Project
               </Link>
-              <Link href="/features" className="bg-gradient-to-r from-kingdom-gold to-kingdom-gold-soft text-black px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-bold hover:from-kingdom-gold-soft hover:to-kingdom-gold-matte transition-all duration-200">
-                See Our Features
+              <Link href="/apps" className="bg-white/10 backdrop-blur-sm border-2 border-white/30 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-bold hover:bg-[#FFB347] hover:border-[#FFB347] hover:text-black hover:shadow-[0_0_30px_rgba(255,179,71,0.6)] transition-all duration-300">
+                Explore Our Apps
               </Link>
             </div>
           </div>

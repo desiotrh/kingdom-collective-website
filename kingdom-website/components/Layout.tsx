@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import Head from 'next/head';
+import { useRouter } from 'next/router';
 import FloatingFlameButton from './FloatingFlameButton';
 import EnhancedChatWindow from './EnhancedChatWindow';
-import AIReflectBanner from './AIReflectBanner';
+import CookieConsent from './CookieConsent';
+import SwordCursor from './SwordCursor';
+import { OrganizationSchema, WebSiteSchema } from './StructuredData';
 
 interface LayoutProps {
     children: React.ReactNode;
@@ -11,6 +14,7 @@ interface LayoutProps {
 }
 
 export default function Layout({ children, title = 'Kingdom Collective', description = 'Create with Purpose. Share with Authority. Build What Matters.' }: LayoutProps) {
+    const router = useRouter();
     const [isChatOpen, setIsChatOpen] = useState(false);
     const [currentPage, setCurrentPage] = useState('/');
 
@@ -33,6 +37,9 @@ export default function Layout({ children, title = 'Kingdom Collective', descrip
         }
     }, []);
 
+    // Get canonical URL (remove query params)
+    const canonicalUrl = `https://kingdomcollective.pro${router.asPath.split('?')[0]}`;
+
     return (
         <>
             <Head>
@@ -41,11 +48,14 @@ export default function Layout({ children, title = 'Kingdom Collective', descrip
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <link rel="icon" href="/favicon.ico" />
                 
+                {/* Canonical URL - Matthew 5:14: SEO/visibility with purpose */}
+                <link rel="canonical" href={canonicalUrl} />
+                
                 {/* Open Graph */}
                 <meta property="og:title" content={title} />
                 <meta property="og:description" content={description} />
                 <meta property="og:type" content="website" />
-                <meta property="og:url" content="https://kingdomcollective.pro" />
+                <meta property="og:url" content={canonicalUrl} />
                 <meta property="og:image" content="https://kingdomcollective.pro/og-image.jpg" />
                 
                 {/* Twitter Card */}
@@ -62,7 +72,14 @@ export default function Layout({ children, title = 'Kingdom Collective', descrip
                 <meta name="theme-color" content="#144e9c" />
             </Head>
             
+            {/* JSON-LD Structured Data - SEO enhancement */}
+            <OrganizationSchema />
+            <WebSiteSchema />
+            
             <div lang="en">
+                {/* Custom Sword Cursor with Flame Trail */}
+                <SwordCursor />
+                
                 {/* Skip to main content link for accessibility */}
                 <a href="#main-content" className="skip-link">
                     Skip to main content
@@ -84,7 +101,9 @@ export default function Layout({ children, title = 'Kingdom Collective', descrip
                         currentPage={currentPage}
                     />
                 )}
-                <AIReflectBanner />
+                
+                {/* GDPR/CCPA Cookie Consent - Romans 12:17: Legal + data honesty */}
+                <CookieConsent />
             </div>
         </>
     );

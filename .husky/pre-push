@@ -1,0 +1,24 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+# Kingdom Collective Pre-Push Hook
+# Ensures tests pass before pushing
+
+echo "🧪 Running pre-push checks..."
+
+# Run tests
+echo "🧪 Running unit tests..."
+npm run test:quick || {
+  echo "❌ Tests failed. Fix them before pushing."
+  exit 1
+}
+
+# Build check
+echo "🏗️ Verifying build..."
+npm run build --if-present || {
+  echo "❌ Build failed. Fix build errors before pushing."
+  exit 1
+}
+
+echo "✅ Pre-push checks passed!"
+

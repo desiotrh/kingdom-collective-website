@@ -188,12 +188,11 @@ export default function EnhancedChatWindow({ isOpen, onClose, currentPage }: Enh
           <ChatAvatar />
           <div>
             <h3 className="text-white font-semibold text-sm">Kingdom Assistant</h3>
-            <p className="text-gray-400 text-xs">AI-powered guidance</p>
           </div>
         </div>
         <div className="flex items-center gap-2">
           {/* Mode Toggle */}
-          <div className="flex items-center bg-black/20 rounded-lg p-1">
+          <div className="flex items-center bg-[#2E093F]/40 rounded-lg p-1">
             <button
               onClick={() => setMode('marketplace')}
               className={`px-3 py-1 rounded-md text-xs font-medium transition-colors ${
@@ -235,18 +234,18 @@ export default function EnhancedChatWindow({ isOpen, onClose, currentPage }: Enh
           >
             <div className="flex items-start gap-3">
               {!message.isUser && (
-                <div className="w-6 h-6 rounded-full bg-gradient-to-r from-[#FFD700] to-yellow-400 flex items-center justify-center flex-shrink-0">
+                <div className="w-6 h-6 flex items-center justify-center flex-shrink-0">
                   <Image
-                    src="/kingdom-flame-avatar.png"
+                    src="/new-flame-icon.svg"
                     alt="Kingdom Assistant"
-                    width={16}
-                    height={16}
-                    className="w-4 h-4"
+                    width={24}
+                    height={24}
+                    className="w-6 h-6"
                   />
                 </div>
               )}
               <div className="flex-1">
-                <div className="bg-black/30 text-white rounded-xl p-3 text-sm sm:text-base leading-relaxed">
+                <div className="bg-[#2E093F]/30 text-white rounded-xl p-3 text-sm sm:text-base leading-relaxed">
                   {message.text}
                 </div>
                 
@@ -298,17 +297,17 @@ export default function EnhancedChatWindow({ isOpen, onClose, currentPage }: Enh
         {isTyping && (
           <div className="chat-message chat-message-assistant">
             <div className="flex items-start gap-3">
-              <div className="w-6 h-6 rounded-full bg-gradient-to-r from-[#FFD700] to-yellow-400 flex items-center justify-center flex-shrink-0">
+              <div className="w-6 h-6 flex items-center justify-center flex-shrink-0">
                 <Image
-                  src="/kingdom-flame-avatar.png"
+                  src="/new-flame-icon.svg"
                   alt="Kingdom Assistant"
-                  width={16}
-                  height={16}
-                  className="w-4 h-4"
+                  width={24}
+                  height={24}
+                  className="w-6 h-6"
                 />
               </div>
               <div className="flex-1">
-                <div className="bg-black/30 text-white rounded-xl p-3">
+                <div className="bg-[#2E093F]/30 text-white rounded-xl p-3">
                   <div className="flex space-x-1">
                     <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
                     <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
@@ -325,24 +324,24 @@ export default function EnhancedChatWindow({ isOpen, onClose, currentPage }: Enh
           <div className="mt-4 space-y-2">
             <p className="text-xs text-gray-400 text-center">Try asking:</p>
             <div className="grid grid-cols-1 gap-2">
-              <button
-                onClick={() => handleSendMessage("What is Kingdom Studios?")}
-                className="text-left text-xs bg-white/5 text-white px-3 py-2 rounded-lg hover:bg-white/10 transition-colors border border-white/10"
-              >
-                What is Kingdom Studios?
-              </button>
-              <button
-                onClick={() => handleSendMessage("How much does it cost?")}
-                className="text-left text-xs bg-white/5 text-white px-3 py-2 rounded-lg hover:bg-white/10 transition-colors border border-white/10"
-              >
-                How much does it cost?
-              </button>
-              <button
-                onClick={() => handleSendMessage("What AI bots do you offer?")}
-                className="text-left text-xs bg-white/5 text-white px-3 py-2 rounded-lg hover:bg-white/10 transition-colors border border-white/10"
-              >
-                What AI bots do you offer?
-              </button>
+          <button
+            onClick={() => handleSendMessage("What is Kingdom Studios?")}
+            className="text-left text-xs bg-[#2E093F]/20 text-white px-3 py-2 rounded-lg hover:bg-[#2E093F]/40 transition-colors border border-white/10"
+          >
+            What is Kingdom Studios?
+          </button>
+          <button
+            onClick={() => handleSendMessage("How much does it cost?")}
+            className="text-left text-xs bg-[#2E093F]/20 text-white px-3 py-2 rounded-lg hover:bg-[#2E093F]/40 transition-colors border border-white/10"
+          >
+            How much does it cost?
+          </button>
+          <button
+            onClick={() => handleSendMessage("What AI bots do you offer?")}
+            className="text-left text-xs bg-[#2E093F]/20 text-white px-3 py-2 rounded-lg hover:bg-[#2E093F]/40 transition-colors border border-white/10"
+          >
+            What AI bots do you offer?
+          </button>
             </div>
           </div>
         )}
@@ -359,7 +358,7 @@ export default function EnhancedChatWindow({ isOpen, onClose, currentPage }: Enh
             onChange={(e) => setInputText(e.target.value)}
             onKeyPress={handleKeyPress}
             placeholder={mode === 'faith' ? "Ask about our kingdom-focused solutions..." : "Ask about apps, pricing, features, or support..."}
-            className="w-full px-4 py-2 rounded-md bg-black/20 text-white placeholder-white/60 border border-white/10 focus:outline-none focus:ring-2 focus:ring-[#FFD700]"
+            className="w-full px-4 py-2 rounded-md bg-[#2E093F]/25 text-white placeholder-white/60 border border-white/10 focus:outline-none focus:ring-2 focus:ring-[#FFD700]"
             disabled={isLoading}
           />
           <button
@@ -377,44 +376,44 @@ export default function EnhancedChatWindow({ isOpen, onClose, currentPage }: Enh
         <div className="mt-3 flex flex-wrap gap-2">
           <button
             onClick={() => handleSendMessage("Show me all your Kingdom apps")}
-            className="text-xs bg-white/10 text-white px-3 py-1 rounded-full hover:bg-white/20 transition-colors"
+            className="text-xs bg-[#2E093F]/25 text-white px-3 py-1 rounded-full hover:bg-[#2E093F]/45 transition-colors"
           >
             📱 All Apps
           </button>
           <button
             onClick={() => handleSendMessage("What are your pricing options?")}
-            className="text-xs bg-white/10 text-white px-3 py-1 rounded-full hover:bg-white/20 transition-colors"
+            className="text-xs bg-[#2E093F]/25 text-white px-3 py-1 rounded-full hover:bg-[#2E093F]/45 transition-colors"
           >
             💰 Pricing
           </button>
           <button
             onClick={() => handleSendMessage("Tell me about Kingdom Studios")}
-            className="text-xs bg-white/10 text-white px-3 py-1 rounded-full hover:bg-white/20 transition-colors"
+            className="text-xs bg-[#2E093F]/25 text-white px-3 py-1 rounded-full hover:bg-[#2E093F]/45 transition-colors"
           >
             🎬 Studios
           </button>
           <button
             onClick={() => handleSendMessage("Tell me about Kingdom Circle")}
-            className="text-xs bg-white/10 text-white px-3 py-1 rounded-full hover:bg-white/20 transition-colors"
+            className="text-xs bg-[#2E093F]/25 text-white px-3 py-1 rounded-full hover:bg-[#2E093F]/45 transition-colors"
           >
             👥 Circle
           </button>
           <button
             onClick={() => handleSendMessage("Tell me about your AI bots")}
-            className="text-xs bg-white/10 text-white px-3 py-1 rounded-full hover:bg-white/20 transition-colors"
+            className="text-xs bg-[#2E093F]/25 text-white px-3 py-1 rounded-full hover:bg-[#2E093F]/45 transition-colors"
           >
             🤖 AI Bots
           </button>
           <button
             onClick={() => handleSendMessage("How do I get started?")}
-            className="text-xs bg-white/10 text-white px-3 py-1 rounded-full hover:bg-white/20 transition-colors"
+            className="text-xs bg-[#2E093F]/25 text-white px-3 py-1 rounded-full hover:bg-[#2E093F]/45 transition-colors"
           >
             🚀 Get Started
           </button>
           {mode === 'faith' && (
             <button
               onClick={() => handleSendMessage("How do your apps align with biblical principles?")}
-              className="text-xs bg-white/10 text-white px-3 py-1 rounded-full hover:bg-white/20 transition-colors"
+              className="text-xs bg-[#2E093F]/25 text-white px-3 py-1 rounded-full hover:bg-[#2E093F]/45 transition-colors"
             >
               ✝️ Biblical Foundation
             </button>

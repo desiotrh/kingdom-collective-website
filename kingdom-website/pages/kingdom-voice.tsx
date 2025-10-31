@@ -3,7 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
-import BackgroundVideo from '../components/BackgroundVideo';
+import OptimizedVideoBackground from '../components/OptimizedVideoBackground';
 
 export default function KingdomVoice() {
   const features = [
@@ -101,7 +101,16 @@ export default function KingdomVoice() {
 
   return (
     <div className="relative flex size-full min-h-screen flex-col bg-navy dark group/design-root overflow-x-hidden">
-      <BackgroundVideo />
+      <div className="fixed inset-0 z-0">
+        <OptimizedVideoBackground 
+          videoSrc="/assets/Heavenly-BG-video.mp4"
+          fadeHeight={31}
+          fadeColor="#0B0614"
+          opacity={1}
+          frozen={true}
+          frozenFrame={0.3}
+        />
+      </div>
       <div className="layout-container flex h-full grow flex-col relative z-10">
         <Navigation />
         
@@ -127,11 +136,11 @@ export default function KingdomVoice() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button 
                 onClick={() => window.open('https://voice.kingdomcollective.pro', '_blank')}
-                className="bg-gradient-to-r from-kingdom-gold to-kingdom-gold-soft text-black px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-bold hover:from-kingdom-gold-soft hover:to-kingdom-gold-matte transition-all duration-200"
+                className="bg-white/10 backdrop-blur-sm border-2 border-white/30 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-bold hover:bg-[#FFB347] hover:border-[#FFB347] hover:text-black hover:shadow-[0_0_30px_rgba(255,179,71,0.6)] transition-all duration-300"
               >
                 Launch Kingdom Voice
               </button>
-              <Link href="#features" className="bg-gradient-to-r from-kingdom-gold to-kingdom-gold-soft text-black px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-bold hover:from-kingdom-gold-soft hover:to-kingdom-gold-matte transition-all duration-200">
+              <Link href="#features" className="bg-white/10 backdrop-blur-sm border-2 border-white/30 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-bold hover:bg-[#FFB347] hover:border-[#FFB347] hover:text-black hover:shadow-[0_0_30px_rgba(255,179,71,0.6)] transition-all duration-300">
                 Learn More
               </Link>
             </div>
@@ -218,7 +227,7 @@ export default function KingdomVoice() {
                     <div className="text-center">
                       <button 
                         onClick={() => window.open('https://voice.kingdomcollective.pro', '_blank')}
-                        className="w-full py-3 px-6 rounded-full font-bold bg-gradient-to-r from-kingdom-gold to-kingdom-gold-soft text-black hover:from-kingdom-gold-soft hover:to-kingdom-gold-matte transition-all duration-200"
+                        className="w-full py-3 px-6 rounded-full font-bold bg-white/10 backdrop-blur-sm border-2 border-white/30 text-white hover:bg-[#FFB347] hover:border-[#FFB347] hover:text-black hover:shadow-[0_0_30px_rgba(255,179,71,0.6)] transition-all duration-300"
                       >
                         {tier.price === '$0' ? 'Start Free' : 'Get Started'}
                       </button>

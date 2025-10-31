@@ -1,0 +1,19 @@
+{
+  "files": [
+    {
+      "path": "kingdom-website/.next/static/chunks/**/*.js",
+      "maxSize": "250 KB",
+      "compression": "gzip"
+    },
+    {
+      "path": "kingdom-website/.next/static/css/**/*.css",
+      "maxSize": "50 KB",
+      "compression": "gzip"
+    }
+  ],
+  "ci": {
+    "trackBranches": ["main", "develop"],
+    "repoBranchBase": "main"
+  }
+}
+

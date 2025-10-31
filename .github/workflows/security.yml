@@ -1,0 +1,100 @@
+# Kingdom Collective Security Scanning
+# Automated security vulnerability detection
+
+name: Security Scan
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+  schedule:
+    # Run security scans weekly on Monday at 9 AM UTC
+    - cron: '0 9 * * 1'
+
+jobs:
+  # Secret scanning with Gitleaks
+  secrets:
+    name: 🔍 Secret Scanning
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Run Gitleaks
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITLEAKS_LICENSE: ${{ secrets.GITLEAKS_LICENSE}}
+
+  # Dependency vulnerability scanning
+  dependencies:
+    name: 📦 Dependency Scan
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: npm Audit (Root)
+        run: npm audit --audit-level=moderate
+        continue-on-error: true
+
+      - name: npm Audit (kingdom-website)
+        run: cd kingdom-website && npm audit --audit-level=moderate
+        continue-on-error: true
+
+      - name: npm Audit (kingdom-studios-backend)
+        run: cd kingdom-studios-backend && npm audit --audit-level=moderate
+        continue-on-error: true
+
+      - name: Snyk Security Scan
+        uses: snyk/actions/node@master
+        continue-on-error: true
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          args: --severity-threshold=high
+
+  # SBOM Generation
+  sbom:
+    name: 📋 SBOM Generation
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Generate SBOM
+        uses: anchore/sbom-action@v0
+        with:
+          format: cyclonedx-json
+          output-file: sbom.json
+
+      - name: Upload SBOM
+        uses: actions/upload-artifact@v3
+        with:
+          name: sbom
+          path: sbom.json
+          retention-days: 90
+
+  # Security headers check
+  headers:
+    name: 🛡️ Security Headers
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check security headers
+        run: |
+          echo "Security headers check would run against deployed URL"
+          echo "Example: https://kingdomcollective.pro"
+          # Add actual header checking once deployed
+

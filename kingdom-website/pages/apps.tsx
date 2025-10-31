@@ -3,7 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
-import BackgroundVideo from '../components/BackgroundVideo';
+import OptimizedVideoBackground from '../components/OptimizedVideoBackground';
 
 export default function Apps() {
   const apps = [
@@ -68,7 +68,16 @@ export default function Apps() {
 
   return (
     <div className="relative flex size-full min-h-screen flex-col bg-navy dark group/design-root overflow-x-hidden">
-      <BackgroundVideo />
+      <div className="fixed inset-0 z-0">
+        <OptimizedVideoBackground 
+          videoSrc="/assets/Heavenly-BG-video.mp4"
+          fadeHeight={31}
+          fadeColor="#0B0614"
+          opacity={1}
+          frozen={true}
+          frozenFrame={0.3}
+        />
+      </div>
       <div className="layout-container flex h-full grow flex-col relative z-10">
         <Navigation />
         
@@ -76,7 +85,7 @@ export default function Apps() {
         <section className="section-padding">
           <div className="container-standard text-center">
             <h1 className="text-4xl md:text-6xl font-bold leading-tight tracking-[-0.033em] text-white mb-6">
-              Our <span className="text-[#FFD700]">Studio Apps</span>
+              Our Studio Apps
             </h1>
             <p className="text-white text-sm sm:text-base font-normal leading-relaxed max-w-3xl mx-auto">
               A complete suite of tools designed to empower faith-driven creators, entrepreneurs, and community builders. Each app is built with purpose and designed for Kingdom impact.
@@ -125,13 +134,13 @@ export default function Apps() {
                   <div className="flex gap-4 mt-auto">
                     <Link
                       href={app.href}
-                      className="bg-transparent border border-white/30 text-white px-6 py-2 rounded-md font-semibold hover:bg-white/10 animate-standard flex-1 text-center"
+                      className="bg-white/10 backdrop-blur-sm border-2 border-white/30 text-white px-6 py-2 rounded-full font-semibold hover:bg-[#FFB347] hover:border-[#FFB347] hover:text-black hover:shadow-[0_0_30px_rgba(255,179,71,0.6)] transition-all duration-300 flex-1 text-center"
                     >
                       Learn More
                     </Link>
                     <button
                       onClick={() => window.open('https://app.kingdomcollective.pro', '_blank')}
-                      className="bg-gradient-to-r from-[#FFD700] to-yellow-400 text-black font-semibold px-6 py-2 rounded-md shadow-md hover:brightness-110 transition flex-1 text-center"
+                      className="bg-white/10 backdrop-blur-sm border-2 border-white/30 text-white font-semibold px-6 py-2 rounded-full hover:bg-[#FFB347] hover:border-[#FFB347] hover:text-black hover:shadow-[0_0_30px_rgba(255,179,71,0.6)] transition-all duration-300 flex-1 text-center"
                     >
                       Launch App
                     </button>
