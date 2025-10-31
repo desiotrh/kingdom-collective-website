@@ -139,8 +139,7 @@ export default function OptimizedVideoBackground({
         style={{ 
           opacity,
           // Optimized filters for compressed video
-          filter: 'contrast(1.08) saturate(1.15) brightness(1.02) blur(0.3px)', 
-          imageRendering: 'high-quality',
+          filter: 'contrast(1.08) saturate(1.15) brightness(1.02) blur(0.3px)',
           objectFit: 'cover',
           transform: 'translateZ(0)', // GPU acceleration only, no zoom
           transformOrigin: 'center center',
