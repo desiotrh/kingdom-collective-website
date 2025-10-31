@@ -82,14 +82,8 @@ export default function Footer() {
           </p>
           <nav aria-label="Legal links">
             <div className="flex flex-wrap justify-center md:justify-end gap-4 text-sm">
-              <Link href="/privacy" className="nav-link">
-                Privacy Policy
-              </Link>
-              <Link href="/terms" className="nav-link">
-                Terms of Service
-              </Link>
-              <Link href="/cookies" className="nav-link">
-                Cookie Policy
+              <Link href="/legal" className="nav-link">
+                Legal
               </Link>
             </div>
           </nav>
