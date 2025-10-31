@@ -50,10 +50,22 @@ export default function DeletionStatus() {
 
   return (
     <>
+      <div className="fixed inset-0 z-0">
+        <OptimizedVideoBackground
+          videoSrc="/assets/Heavenly-BG-video.mp4"
+          fadeHeight={31}
+          fadeColor="#0B0614"
+          opacity={1}
+          playbackRate={1.0}
+          pauseOnScroll={true}
+          scrollThreshold={200}
+          frozen={true}
+          frozenFrame={0.3}
+        />
+      </div>
       <Navigation />
-      <BackgroundVideo />
       
-      <main className="min-h-screen flex items-center justify-center px-4 py-8">
+      <main className="relative z-10 min-h-screen flex items-center justify-center px-4 py-8">
         <div className="max-w-2xl w-full">
           <div className="bg-black/80 backdrop-blur-lg rounded-2xl p-8 border border-kingdom-gold/20">
             <div className="text-center mb-8">

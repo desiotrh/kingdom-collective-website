@@ -3,7 +3,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import Navigation from '../../components/Navigation';
 import Footer from '../../components/Footer';
-import BackgroundVideo from '../../components/BackgroundVideo';
+import OptimizedVideoBackground from '../../components/OptimizedVideoBackground';
 
 interface Message {
   type: 'user' | 'bot';
@@ -157,7 +157,7 @@ export default function SocialMediaBot() {
       </Head>
       
       <div className="relative flex size-full min-h-screen flex-col bg-navy dark group/design-root overflow-x-hidden">
-        <BackgroundVideo />
+        <div className="fixed inset-0 z-0"><OptimizedVideoBackground videoSrc="/assets/Heavenly-BG-video.mp4" fadeHeight={31} fadeColor="#0B0614" opacity={1} playbackRate={1.0} pauseOnScroll={true} scrollThreshold={200} frozen={true} frozenFrame={0.3} /></div>
         <div className="layout-container flex h-full grow flex-col relative z-10">
           <Navigation />
           
@@ -781,3 +781,4 @@ export default function SocialMediaBot() {
     </>
   );
 } 
+
