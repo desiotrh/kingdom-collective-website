@@ -6,31 +6,106 @@ export default function Footer() {
   return (
     <footer className="relative z-10 bg-black/30 backdrop-blur-sm border-t border-gray/30 w-full" role="contentinfo" aria-label="Site footer">
       <div className="w-full px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20 py-8">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 sm:gap-12">
-          {/* Company Info */}
-          <div className="col-span-1 md:col-span-2">
-            <div className="flex items-center gap-4 mb-4">
-              <div className="flex items-center">
-                <Image
-                  src="/kingdom-collective-logo.png"
-                  alt="Kingdom Collective Logo"
-                  width={32}
-                  height={32}
-                  className="h-8 w-auto"
-                  priority
-                />
-              </div>
-              <h2 className="text-white text-lg font-bold leading-tight tracking-[-0.015em]">
-                Kingdom Collective
-              </h2>
-            </div>
-            <p className="text-white/70 text-sm max-w-md mb-4">
-              Empowering creators, entrepreneurs, and community builders to create
-              with purpose, share with authority, and build what truly matters.
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 sm:gap-12">
+          {/* Products */}
+          <nav aria-labelledby="footer-products">
+            <h3 id="footer-products" className="text-white font-semibold mb-4">Products</h3>
+            <ul className="space-y-2">
+              <li>
+                <Link href="/apps" className="text-white/70 hover:text-[#FFB347] transition-colors text-sm">
+                  Kingdom Apps
+                </Link>
+              </li>
+              <li>
+                <Link href="/pricing" className="text-white/70 hover:text-[#FFB347] transition-colors text-sm">
+                  Pricing
+                </Link>
+              </li>
+              <li>
+                <Link href="/login" className="text-white/70 hover:text-[#FFB347] transition-colors text-sm">
+                  Log in
+                </Link>
+              </li>
+              <li>
+                <Link href="/features" className="text-white/70 hover:text-[#FFB347] transition-colors text-sm">
+                  Features
+                </Link>
+              </li>
+            </ul>
+          </nav>
+
+          {/* About us */}
+          <nav aria-labelledby="footer-about">
+            <h3 id="footer-about" className="text-white font-semibold mb-4">About us</h3>
+            <ul className="space-y-2">
+              <li>
+                <Link href="/vision" className="text-white/70 hover:text-[#FFB347] transition-colors text-sm">
+                  Our Vision
+                </Link>
+              </li>
+              <li>
+                <Link href="/contact" className="text-white/70 hover:text-[#FFB347] transition-colors text-sm">
+                  Contact us
+                </Link>
+              </li>
+              <li>
+                <Link href="/services" className="text-white/70 hover:text-[#FFB347] transition-colors text-sm">
+                  Services
+                </Link>
+              </li>
+              <li>
+                <Link href="/portfolio" className="text-white/70 hover:text-[#FFB347] transition-colors text-sm">
+                  Portfolio
+                </Link>
+              </li>
+            </ul>
+          </nav>
+
+          {/* Resources */}
+          <nav aria-labelledby="footer-resources">
+            <h3 id="footer-resources" className="text-white font-semibold mb-4">Resources</h3>
+            <ul className="space-y-2">
+              <li>
+                <Link href="/legal" className="text-white/70 hover:text-[#FFB347] transition-colors text-sm">
+                  Legal Documents
+                </Link>
+              </li>
+              <li>
+                <Link href="/ai-bots" className="text-white/70 hover:text-[#FFB347] transition-colors text-sm">
+                  AI Bots
+                </Link>
+              </li>
+              <li>
+                <Link href="/contact" className="text-white/70 hover:text-[#FFB347] transition-colors text-sm">
+                  Support
+                </Link>
+              </li>
+              <li>
+                <Link href="/spiritual-disclaimer" className="text-white/70 hover:text-[#FFB347] transition-colors text-sm">
+                  Faith Statement
+                </Link>
+              </li>
+            </ul>
+          </nav>
+
+          {/* Get in touch */}
+          <div>
+            <h3 className="text-white font-semibold mb-4">Get in touch</h3>
+            <p className="text-white/70 text-sm mb-2">
+              Questions or feedback?
             </p>
+            <p className="text-white/70 text-sm mb-4">
+              We&apos;d love to hear from you
+            </p>
+            <a 
+              href="mailto:contact@kingdomcollective.pro" 
+              className="text-[#FFB347] hover:text-[#FFD700] transition-colors text-sm block mb-4"
+            >
+              contact@kingdomcollective.pro
+            </a>
             
-            {/* Social Media Links */}
-            <div className="flex gap-4 mt-4">
+            {/* Social Media Icons */}
+            <div className="flex gap-4">
               <a 
                 href="https://tiktok.com/@kingdomcollectivepro" 
                 target="_blank" 
@@ -66,68 +141,6 @@ export default function Footer() {
               </a>
             </div>
           </div>
-
-          {/* Quick Links */}
-          <nav aria-labelledby="footer-quick-links">
-            <h3 id="footer-quick-links" className="text-white font-semibold mb-4">Quick Links</h3>
-            <ul className="space-y-2">
-              <li>
-                <Link href="/" className="nav-link text-sm">
-                  Home
-                </Link>
-              </li>
-              <li>
-                <Link href="/apps" className="nav-link text-sm">
-                  Kingdom Apps
-                </Link>
-              </li>
-              <li>
-                <Link href="/services" className="nav-link text-sm">
-                  Services
-                </Link>
-              </li>
-              <li>
-                <Link href="/portfolio" className="nav-link text-sm">
-                  Portfolio
-                </Link>
-              </li>
-              <li>
-                <Link href="/pricing" className="nav-link text-sm">
-                  Pricing
-                </Link>
-              </li>
-            </ul>
-          </nav>
-
-          {/* Company */}
-          <nav aria-labelledby="footer-company">
-            <h3 id="footer-company" className="text-white font-semibold mb-4">Company</h3>
-            <ul className="space-y-2">
-              <li>
-                <Link href="/vision" className="nav-link text-sm">
-                  Vision
-                </Link>
-              </li>
-              <li>
-                <Link href="/contact" className="nav-link text-sm">
-                  Contact
-                </Link>
-              </li>
-              <li>
-                <Link href="/legal" className="nav-link text-sm">
-                  Legal
-                </Link>
-              </li>
-              <li>
-                <a 
-                  href="mailto:contact@kingdomcollective.pro" 
-                  className="nav-link text-sm"
-                >
-                  contact@kingdomcollective.pro
-                </a>
-              </li>
-            </ul>
-          </nav>
         </div>
 
         {/* Bottom Bar */}
