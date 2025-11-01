@@ -5,12 +5,12 @@ import Image from 'next/image';
 export default function Footer() {
   return (
     <footer className="relative z-10 bg-black/30 backdrop-blur-sm border-t border-gray/30 w-full" role="contentinfo" aria-label="Site footer">
-      <div className="w-full px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20 py-8">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 sm:gap-12">
+      <div className="w-full px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20 py-6">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
           {/* Products */}
           <nav aria-labelledby="footer-products">
-            <h3 id="footer-products" className="text-white font-semibold mb-4">Products</h3>
-            <ul className="space-y-2">
+            <h3 id="footer-products" className="text-white font-semibold mb-3 text-sm">Products</h3>
+            <ul className="space-y-1.5">
               <li>
                 <Link href="/apps" className="text-white/70 hover:text-[#FFB347] transition-colors text-sm">
                   Kingdom Apps
@@ -36,8 +36,8 @@ export default function Footer() {
 
           {/* About us */}
           <nav aria-labelledby="footer-about">
-            <h3 id="footer-about" className="text-white font-semibold mb-4">About us</h3>
-            <ul className="space-y-2">
+            <h3 id="footer-about" className="text-white font-semibold mb-3 text-sm">About us</h3>
+            <ul className="space-y-1.5">
               <li>
                 <Link href="/vision" className="text-white/70 hover:text-[#FFB347] transition-colors text-sm">
                   Our Vision
@@ -63,8 +63,8 @@ export default function Footer() {
 
           {/* Resources */}
           <nav aria-labelledby="footer-resources">
-            <h3 id="footer-resources" className="text-white font-semibold mb-4">Resources</h3>
-            <ul className="space-y-2">
+            <h3 id="footer-resources" className="text-white font-semibold mb-3 text-sm">Resources</h3>
+            <ul className="space-y-1.5">
               <li>
                 <Link href="/legal" className="text-white/70 hover:text-[#FFB347] transition-colors text-sm">
                   Legal Documents
@@ -90,22 +90,22 @@ export default function Footer() {
 
           {/* Get in touch */}
           <div>
-            <h3 className="text-white font-semibold mb-4">Get in touch</h3>
-            <p className="text-white/70 text-sm mb-2">
+            <h3 className="text-white font-semibold mb-3 text-sm">Get in touch</h3>
+            <p className="text-white/70 text-xs mb-1">
               Questions or feedback?
             </p>
-            <p className="text-white/70 text-sm mb-4">
+            <p className="text-white/70 text-xs mb-3">
               We&apos;d love to hear from you
             </p>
             <a 
               href="mailto:contact@kingdomcollective.pro" 
-              className="text-[#FFB347] hover:text-[#FFD700] transition-colors text-sm block mb-4"
+              className="text-[#FFB347] hover:text-[#FFD700] transition-colors text-xs block mb-3"
             >
               contact@kingdomcollective.pro
             </a>
             
             {/* Social Media Icons */}
-            <div className="flex gap-4">
+            <div className="flex gap-3">
               <a 
                 href="https://tiktok.com/@kingdomcollectivepro" 
                 target="_blank" 
@@ -144,12 +144,12 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="mt-8 pt-4 border-t border-gray/20 flex flex-col space-y-4 md:flex-row md:justify-between md:items-center">
-          <p className="text-white/60 text-sm text-center md:text-left">
+        <div className="mt-6 pt-3 border-t border-gray/20 flex flex-col space-y-2 md:flex-row md:justify-between md:items-center">
+          <p className="text-white/60 text-xs text-center md:text-left">
             © {new Date().getFullYear()} Kingdom Collective. All rights reserved.
           </p>
           <nav aria-label="Legal and social links">
-            <div className="flex flex-wrap justify-center md:justify-end gap-4 text-sm items-center">
+            <div className="flex flex-wrap justify-center md:justify-end gap-3 text-xs items-center">
               <Link href="/legal" className="text-white/70 hover:text-[#FFB347] transition-colors">
                 Legal
               </Link>
